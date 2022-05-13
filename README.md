@@ -10,4 +10,6 @@ Il faut run les commandes suivantes :
 
 ```cp .env.example .env```
 
+```php artisan key:generate```
+
 ```php artisan serve```
