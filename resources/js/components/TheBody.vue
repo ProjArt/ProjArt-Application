@@ -2,11 +2,9 @@
     import { computed } from 'vue';
     import { sideMenuWidth } from '../stores/sideMenu.js';
      const bodyWidth =  computed(() => {
-        return 'calc(100vw - '+ sideMenuWidth.value + "vw)";
+        return 'calc(100vw - '+ sideMenuWidth.value;
     });
-    const bodyMargin = computed(() => {
-        return sideMenuWidth.value + "vw";
-    });
+    
 </script>
 
 <template>
@@ -19,7 +17,7 @@
         flex-direction: column;
         background-color: #ba0606;
         height: 100vh;
-        margin-left: v-bind(bodyMargin);
+        margin-left: v-bind(sideMenuWidth);
         width : v-bind(bodyWidth);
     }
 </style>

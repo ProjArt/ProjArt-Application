@@ -1,3 +1,15 @@
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
-export const sideMenuWidth = ref(30);
+const sideMenuCompact = ref(true);
+
+export const sideMenuWidth = computed({
+    get: () => {
+        if (sideMenuCompact.value) {
+            return '18vw';
+        }
+        return '5vw';
+    },
+    set: (value) => {
+        sideMenuCompact.value = !sideMenuCompact.value;
+    }
+});
