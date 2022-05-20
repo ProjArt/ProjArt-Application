@@ -7,4 +7,8 @@ describe("test.vue", () => {
         expect(1).toBe(1);
     });
 
+    it("test fail", () => {
+        expect(1).toBe(2);
+    });
+
 });
