@@ -21,7 +21,6 @@ class ExampleTest extends TestCase
 
     public function test_this_test_will_fail()
     {
-        
         $this->assertTrue(false);
     }
 }
