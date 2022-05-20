@@ -42,6 +42,8 @@ jobs:
         to: "-791975647"
         token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
         message: |
+            A COMMIT DIDN'T PASS THE TEST
+            
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
             
