@@ -37,10 +37,8 @@ jobs:
       
     - name: Step To run on failure
       if: ${{ failure() }}
-      env:
-        STEPS_CONTEXT: ${{ toJson(steps) }}
       run: |
           curl -X POST \
             -H 'Content-Type: application/json' \
-            -d '{"chat_id": "-791975647", "text": "An error failed on some test with the message : ${{STEPS_CONTEXT}} "}' \
+            -d '{"chat_id": "-791975647", "text": "An error failed on some test with the message : ${{ toJson(steps) }} "}' \
             https://api.telegram.org/bot5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U/sendMessage
