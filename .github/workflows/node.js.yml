@@ -29,3 +29,19 @@ jobs:
     - run: npm ci
     - run: npm run build --if-present
     - run: npm run test
+
+    - name: send telegram message on push
+      if: ${{ failure() }}
+      uses: appleboy/telegram-action@master
+      with:
+        to: "-791975647"
+        token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
+        message: |
+            A COMMIT DIDN'T PASS THE TEST IN VUE
+            
+            ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+            
+            Repository: ${{ github.repository }}
+            
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
