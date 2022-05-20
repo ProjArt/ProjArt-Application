@@ -35,10 +35,18 @@ jobs:
       run: vendor/bin/phpunit
       id: tests
       
-    - name: Step To run on failure
+    - name: send telegram message on push
       if: ${{ failure() }}
-      run: |
-          curl -X POST \
-            -H 'Content-Type: application/json' \
-            -d '{"chat_id": "-791975647", "text": "An error failed on some test with the message : ${{steps.tests.outputs.result}} "}' \
-            https://api.telegram.org/bot5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U/sendMessage
+      uses: appleboy/telegram-action@master
+      with:
+        to: "-791975647"
+        token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
+        message: |
+            A COMMIT DIDN'T PASS THE TEST IN LARAVEL
+            
+            ${{ github.actor }} created commit:
+            Commit message: ${{ github.event.commits[0].message }}
+            
+            Repository: ${{ github.repository }}
+            
+            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
