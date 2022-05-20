@@ -18,4 +18,9 @@ class ExampleTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    public function test_this_test_will_fail()
+    {
+        $this->assertTrue(false);
+    }
 }
