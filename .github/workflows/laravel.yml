@@ -38,7 +38,7 @@ jobs:
     - name: Step To run on failure
       if: ${{ failure() }}
       env:
-         STEPS_CONTEXT: ${{ toJson(steps) }}
+         STEPS_CONTEXT: ${{ toJSON(steps) }}
       run: |
           curl -X POST \
             -H 'Content-Type: application/json' \
