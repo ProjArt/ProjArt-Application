@@ -15,8 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->renameColumn('name', 'username');
-            $table->dropColumn('email');
-            $table->dropColumn('email_verified_at');
+         
         });
     }
 
@@ -29,8 +28,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->renameColumn('username', 'name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
+           
         });
     }
 };
