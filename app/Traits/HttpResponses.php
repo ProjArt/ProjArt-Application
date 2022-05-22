@@ -4,21 +4,23 @@ namespace App\Traits;
 
 trait HttpResponses
 {
-    protected function success($message, $data = [], $status = 200)
+
+    private function response($message, $data = [], $success = false)
     {
-        return response()->json([
-            'success' => true,
+        return [
+            'success' => $success,
             'message' => $message,
             'data' => $data,
-        ], $status);
+        ];
     }
 
-    protected function failure($message, $status = 401, $data = [])
+    protected function success($message, $data = [], $status = 200)
     {
-        return response()->json([
-            'success' => false,
-            'message' => $message,
-            'data' => $data
-        ], $status);
+        return response()->json($this->response($message, $data, true), $status);
+    }
+
+    protected function failure($message, $data = [], $status = 401)
+    {
+        return response()->json($this->response($message, $data, false), $status);
     }
 }

@@ -62,7 +62,7 @@ class Handler extends ExceptionHandler
      */
     protected function invalidJson($request, ValidationException $exception)
     {
-        return $this->failure($exception->getMessage(), $exception->status);
+        return $this->failure($exception->getMessage(), $exception->errors(), $exception->status);
     }
 
     /**
@@ -76,7 +76,7 @@ class Handler extends ExceptionHandler
     {
         return $request->expectsJson()
             // Here you can change the form of the json response
-            ? $this->failure('Unauthenticated', 401)
+            ? $this->failure('Unauthenticated', $exception->guards(), 401)
             : redirect()->guest($exception->redirectTo() ?? route('login'));
     }
 }
