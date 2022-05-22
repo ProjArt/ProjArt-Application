@@ -22,5 +22,8 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/login',  'login')->name('api.login');
     Route::post('/register',  'register')->name('api.register');
 
-    Route::get('/me', 'me')->middleware('auth:sanctum');
+    Route::middleware('auth:sanctum')->group(function() {
+        Route::get('/me', 'me');
+        Route::post('/logout', 'logout');
+    });
 });

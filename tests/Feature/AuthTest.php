@@ -39,7 +39,7 @@ class AuthTest extends TestCase
 
         $response = $this->json('POST', '/api/login', [
             'username' => $user->username,
-            'password' => 'password',
+            'password' => $user->password,
         ]);
 
         $response->assertOk();
