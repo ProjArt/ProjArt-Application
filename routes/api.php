@@ -17,13 +17,18 @@ use \App\Http\Controllers\Api\AuthController;
 |
 */
 
-
 Route::controller(AuthController::class)->group(function () {
     Route::post('/login',  'login')->name('api.login');
     Route::post('/register',  'register')->name('api.register');
+});
 
-    Route::middleware('auth:sanctum')->group(function() {
-        Route::get('/me', 'me');
-        Route::post('/logout', 'logout');
+
+//Auth routes
+Route::middleware('auth:sanctum')->group(function () {
+
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/me', 'me')->name("api.me");
+        Route::get('/logout', 'logout')->name("api.logout");
     });
+
 });

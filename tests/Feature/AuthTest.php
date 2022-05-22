@@ -69,13 +69,11 @@ class AuthTest extends TestCase
 
     public function test_register_goes_wrong_because_credentials()
     {
-        Sanctum::actingAs(
-            User::factory()->create(),
-        );
-
-        $response = $this->post('/api/logout');
-
-        $response->assertOk();
+        $response = $this->json('POST', '/api/register', [
+            'name' => 'test',
+            'password' => 'password',
+        ]);
+        $response->assertStatus(422);
     }
 
     public function test_can_logout_if_logged() {
@@ -84,14 +82,14 @@ class AuthTest extends TestCase
             User::factory()->create(),
         );
 
-        $response = $this->post('/api/logout');
+        $response = $this->get('/api/logout');
 
         $response->assertOk();
     }
 
     public function test_cannot_logout_if_not_logged() {
 
-        $response = $this->json('POST', '/api/logout', []);
+        $response = $this->json('GET', '/api/logout', []);
 
         $response->assertUnauthorized();
     }
