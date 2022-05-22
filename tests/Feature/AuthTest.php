@@ -18,7 +18,6 @@ class AuthTest extends TestCase
             "Accept" => "application/json", 
         ]);
 
-        dd($response->getContent());
         $response->assertStatus(401);
     }
 
