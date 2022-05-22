@@ -13,11 +13,12 @@ trait HttpResponses
         ], $status);
     }
 
-    protected function failure($message, $status = 401)
+    protected function failure($message, $status = 401, $data = [])
     {
         return response()->json([
             'success' => false,
             'message' => $message,
+            'data' => $data
         ], $status);
     }
 }
