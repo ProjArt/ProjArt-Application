@@ -14,11 +14,15 @@ class AuthTest extends TestCase
 
     public function test_non_authenticated_user_cannot_access_protected_routes()
     {
-        $this->json('GET', '/api/me')
-            ->assertStatus(401);
+        $response = $this->get('/api/me', [
+            "Accept" => "application/json", 
+        ]);
+
+        dd($response->getContent());
+        $response->assertStatus(401);
     }
 
-     public function test_authenticated_user_can_access_protected_routes()
+    public function test_authenticated_user_can_access_protected_routes()
     {
 
         Sanctum::actingAs(
@@ -28,7 +32,7 @@ class AuthTest extends TestCase
         $response = $this->get('/api/me');
 
         $response->assertOk();
-    } 
+    }
 
     public function test_login()
     {

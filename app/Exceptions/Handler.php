@@ -2,11 +2,16 @@
 
 namespace App\Exceptions;
 
+use App\Traits\HttpResponses;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Illuminate\Validation\ValidationException;
+
 
 class Handler extends ExceptionHandler
 {
+    use HttpResponses;
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -43,8 +48,35 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
+        return  $this->reportable(function (Throwable $e) {
             //
         });
+    }
+
+    /**
+     * Convert a validation exception into a JSON response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Validation\ValidationException  $exception
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function invalidJson($request, ValidationException $exception)
+    {
+        return $this->failure($exception->getMessage(), $exception->status);
+    }
+
+    /**
+     * Convert an authentication exception into a response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Auth\AuthenticationException  $exception
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+        return $request->expectsJson()
+            // Here you can change the form of the json response
+            ? $this->failure('Unauthenticated', 401)
+            : redirect()->guest($exception->redirectTo() ?? route('login'));
     }
 }
