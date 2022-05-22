@@ -18,7 +18,7 @@ class AuthTest extends TestCase
             "Accept" => "application/json", 
         ]);
 
-        $response->assertStatus(401);
+        $response->assertUnauthorized();
     }
 
     public function test_authenticated_user_can_access_protected_routes()
@@ -54,7 +54,7 @@ class AuthTest extends TestCase
             'password' => 'wrong-password',
         ]);
 
-        $response->assertStatus(401);
+        $response->assertUnauthorized();
     }
 
     public function test_register()
@@ -69,11 +69,30 @@ class AuthTest extends TestCase
 
     public function test_register_goes_wrong_because_credentials()
     {
-        $response = $this->json('POST', '/api/register', [
-            'name' => 'test',
-            'password' => 'password',
-        ]);
+        Sanctum::actingAs(
+            User::factory()->create(),
+        );
 
-        $response->assertStatus(422);
+        $response = $this->post('/api/logout');
+
+        $response->assertOk();
+    }
+
+    public function test_can_logout_if_logged() {
+
+        Sanctum::actingAs(
+            User::factory()->create(),
+        );
+
+        $response = $this->post('/api/logout');
+
+        $response->assertOk();
+    }
+
+    public function test_cannot_logout_if_not_logged() {
+
+        $response = $this->json('POST', '/api/logout', []);
+
+        $response->assertUnauthorized();
     }
 }
