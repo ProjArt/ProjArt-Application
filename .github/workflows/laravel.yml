@@ -28,12 +28,29 @@ jobs:
       run: |
         mkdir -p database
         touch database/database.sqlite
+        
+    - name: Running migration
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: php artisan migrate:refresh
+      id: migrations
+      
+    - name: Seeding Database
+      env:
+        DB_CONNECTION: sqlite
+        DB_DATABASE: database/database.sqlite
+      run: php artisan db:seed
+      id: seeding
+      
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
       id: tests
+      
+
       
     - name: send telegram message on push
       if: ${{ failure() }}
