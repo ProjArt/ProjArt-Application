@@ -59,7 +59,7 @@ jobs:
         to: "-791975647"
         token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
         message: |
-            A COMMIT DIDN'T PASS THE TEST IN LARAVEL
+            ❌❌❌ A COMMIT DIDN'T PASS THE TEST IN LARAVEL ❌❌❌
             
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
@@ -75,7 +75,7 @@ jobs:
         to: "-791975647"
         token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
         message: |
-            A COMMIT WAS DONE.
+            ✅✅✅ A COMMIT WAS DONE. ✅✅✅
             
             ${{ github.actor }} created commit:
             Commit message: ${{ github.event.commits[0].message }}
