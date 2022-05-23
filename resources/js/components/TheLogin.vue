@@ -13,13 +13,15 @@ const submitHandler = async () => {
     useFetch({
         url: API.login.path(),
         method: API.login.method,
-        body: toRaw(formData.value)
+        data: toRaw(formData.value)
     }).then((response) => {
         console.log(response);
         if (response.success === true) {
             isAuthenticated.value = true;
             localStorage.setItem('token', response.access_token);
             /* window.location.href += "signup"; */
+        } else {
+            isAuthenticated.value = false;
         }
     });
 }

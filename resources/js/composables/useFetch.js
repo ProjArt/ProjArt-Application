@@ -1,4 +1,5 @@
 import { API } from "../stores/api";
+import axios from "axios";
 /**
  * It takes a url, a token, a method and a body and returns a response
  * @param {FetchParameters} params - FetchParameters
@@ -7,44 +8,36 @@ import { API } from "../stores/api";
  * interface FetchParameters {
  *      url: string;
  *      method: string;
- *      jtoken?: string;
- *      body?: Object;
+ *      token?: string;
+ *      data?: Object;
  *  }
  */
-const useFetch = async (params) => {
-    const [url, token, method, body] = [
+async function useFetch(params) {
+    const [url, token, method, data] = [
         params.url,
         params.token,
         params.method,
-        params.body,
+        params.data,
     ];
 
-    const formdata = new FormData();
-    if (body) {
-        Object.entries(body).forEach(([key, value]) => {
-            formdata.append(key, value);
-        });
-    }
-
-    const myHeaders = new Headers();
-    myHeaders.append("Accept", "application/json");
-    myHeaders.append("Authorization", `Bearer ${token}`);
-
-    const requestOptions = {
-        method: method,
-        headers: myHeaders,
-        redirect: "follow",
-        body: method === "POST" ? formdata : null,
+    const headers = {
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
     };
 
-    let response = null;
+    const requestOptions = {
+        url: url,
+        method: method,
+        config: { headers },
+        data: data,
+    };
+
     try {
-        response = await fetch(url, requestOptions);
-        response = await response.json();
-        return response;
+        const response = await axios(requestOptions);
+        return response.data;
     } catch (error) {
         console.log({ error });
     }
-};
+}
 
 export default useFetch;
