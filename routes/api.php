@@ -31,9 +31,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/logout', 'logout')->name("api.logout");
     });
 
-    Route::prefix('/fetch')->group(function() {
-        Route::get('/horaires', [GapsEventsController::class, 'fetchAll'])->name('api.fetch.horaires');
-        Route::get('/notes', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.horaires');
+    Route::prefix('/fetch/gaps')->group(function() {
+        Route::get('/events', [GapsEventsController::class, 'fetchAll'])->name('api.fetch.gaps.events');
+        Route::get('/notes', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
     });
 });
 
