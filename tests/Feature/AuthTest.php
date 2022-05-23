@@ -11,6 +11,7 @@ use Laravel\Sanctum\Sanctum;
 
 class AuthTest extends TestCase
 {
+    use RefreshDatabase;
 
     public function test_non_authenticated_user_cannot_access_protected_routes()
     {
@@ -74,6 +75,22 @@ class AuthTest extends TestCase
             'password' => 'password',
         ]);
         $response->assertStatus(422);
+    }
+
+    public function test_register_fail_username_already_taken() {
+        $response = $this->json('POST', '/api/register', [
+            'username' => 'test',
+            'password' => 'password',
+        ]);
+
+        $response->assertOk();
+
+        $response = $this->json('POST', '/api/register', [
+            'username' => 'test',
+            'password' => 'password',
+        ]);
+
+        $response->assertUnauthorized();
     }
 
     public function test_can_logout_if_logged() {

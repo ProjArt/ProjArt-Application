@@ -5,7 +5,7 @@ namespace App\Traits;
 trait HttpResponses
 {
 
-    private function response($message, $data = [], $success = false)
+    private function response($message, $data = null, $success = false)
     {
         return [
             'success' => $success,
@@ -14,7 +14,7 @@ trait HttpResponses
         ];
     }
 
-    protected function success($message, $data = [], $status = 200)
+    protected function success($message, $data, $status = 200)
     {
         return response()->json($this->response($message, $data, true), $status);
     }

@@ -15,7 +15,13 @@ class AuthController extends Controller
 
     public function register(AuthUserRequest $request)
     {
-        $user = User::firstOrCreate($request->all());
+        $user = User::whereUsername($request->username)->first();
+
+        if ($user) {
+            return $this->failure("This username is already taken");
+        }
+
+        $user = User::create($request->all());
         $token = $user->createToken('auth_token')->plainTextToken;
 
         return $this->success("Register validated", [
@@ -48,10 +54,10 @@ class AuthController extends Controller
         ]);
     }
 
-    public function logout(Request $request) {
+    public function logout(Request $request)
+    {
         $request->user()->currentAccessToken()->delete();
 
         return $this->success("Logout succeed", []);
-
     }
 }
