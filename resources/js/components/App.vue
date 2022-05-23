@@ -1,6 +1,6 @@
 <script setup>
-    import TheMenu from './TheMenu.vue'
-    import TheBody from './TheBody.vue'
+import TheMenu from './TheMenu.vue'
+import TheBody from './TheBody.vue'
 </script>
 
 

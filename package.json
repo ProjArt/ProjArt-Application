@@ -8,7 +8,9 @@
         "hot": "mix watch --hot",
         "prod": "npm run production",
         "production": "mix --production",
-        "test": "jest"
+        "test": "jest",
+        "start": "cd script; bash ./start.sh",
+        "stop": "cd script; bash ./stop.sh"
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
@@ -29,6 +31,11 @@
         "ts-jest": "^28.0.2",
         "vue": "^3.2.33",
         "vue-loader": "^17.0.0",
-        "vue-template-compiler": "^2.6.12"
+        "vue-template-compiler": "^2.6.12",
+        "webpack": "^5.58.2"
+    },
+    "dependencies": {
+        "@formkit/vue": "^1.0.0-beta.8",
+        "vue-router": "^4.0.15"
     }
 }
