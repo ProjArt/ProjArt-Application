@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
-
-
+use App\Http\Controllers\HorairesController;
+use App\Http\Controllers\NotesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::controller(AuthController::class)->group(function () {
         Route::get('/me', 'me')->name("api.me");
         Route::get('/logout', 'logout')->name("api.logout");
+    });
+
+    Route::prefix('/fetch')->group(function() {
+        Route::get('/horaires', [HorairesController::class, 'fetchAll'])->name('api.fetch.horaires');
+        Route::get('/notes', [NotesController::class, 'fetchAll'])->name('api.fetch.horaires');
     });
 });
 
