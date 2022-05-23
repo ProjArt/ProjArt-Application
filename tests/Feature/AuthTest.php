@@ -11,14 +11,18 @@ use Laravel\Sanctum\Sanctum;
 
 class AuthTest extends TestCase
 {
+    use RefreshDatabase;
 
     public function test_non_authenticated_user_cannot_access_protected_routes()
     {
-        $this->json('GET', '/api/me')
-            ->assertStatus(401);
+        $response = $this->get('/api/me', [
+            "Accept" => "application/json", 
+        ]);
+
+        $response->assertUnauthorized();
     }
 
-     public function test_authenticated_user_can_access_protected_routes()
+    public function test_authenticated_user_can_access_protected_routes()
     {
 
         Sanctum::actingAs(
@@ -28,7 +32,7 @@ class AuthTest extends TestCase
         $response = $this->get('/api/me');
 
         $response->assertOk();
-    } 
+    }
 
     public function test_login()
     {
@@ -36,7 +40,7 @@ class AuthTest extends TestCase
 
         $response = $this->json('POST', '/api/login', [
             'username' => $user->username,
-            'password' => 'password',
+            'password' => $user->password,
         ]);
 
         $response->assertOk();
@@ -51,7 +55,7 @@ class AuthTest extends TestCase
             'password' => 'wrong-password',
         ]);
 
-        $response->assertStatus(401);
+        $response->assertUnauthorized();
     }
 
     public function test_register()
@@ -70,7 +74,40 @@ class AuthTest extends TestCase
             'name' => 'test',
             'password' => 'password',
         ]);
-
         $response->assertStatus(422);
+    }
+
+    public function test_register_fail_username_already_taken() {
+        $user = User::create([
+            'username' => 'test',
+            'password' => 'password',
+        ]);
+
+        $this->assertDatabaseHas('users', ['username' => $user->username]);
+
+        $response = $this->json('POST', '/api/register', [
+            'username' => $user->username,
+            'password' => 'password',
+        ]);
+
+        $response->assertUnauthorized();
+    }
+
+    public function test_can_logout_if_logged() {
+
+        Sanctum::actingAs(
+            User::factory()->create(),
+        );
+
+        $response = $this->get('/api/logout');
+
+        $response->assertOk();
+    }
+
+    public function test_cannot_logout_if_not_logged() {
+
+        $response = $this->json('GET', '/api/logout', []);
+
+        $response->assertUnauthorized();
     }
 }
