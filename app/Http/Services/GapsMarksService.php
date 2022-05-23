@@ -8,7 +8,7 @@ use voku\helper\HtmlDomParser;
 
 
 
-class NotesService
+class GapsMarksService
 {
     public function __construct(private User $user)
     {
