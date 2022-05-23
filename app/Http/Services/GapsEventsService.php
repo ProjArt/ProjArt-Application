@@ -6,7 +6,7 @@ use App\Models\User;
 use ICal\ICal;
 use Illuminate\Support\Facades\DB;
 
-class HorairesService
+class GapsEventsService
 {
     public function __construct(private User $user)
     {

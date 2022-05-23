@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Services\NotesService;
+use App\Http\Services\GapsEventsService;
 use Illuminate\Http\Request;
 
-class NotesController extends Controller
+class GapsEventsController extends Controller
 {
     public function fetchAll()
     {
         try {
-            NotesService::fetchAllNotes(auth()->user());
+            GapsEventsService::fetchAllHoraires(auth()->user());
         } catch (\Exception $e) {
             return httpError($e->getMessage());
         }
 
-        return httpSuccess("Notes fetched");
+        return httpSuccess("Horaires fetched");
     }
 }

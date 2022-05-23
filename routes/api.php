@@ -3,8 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\HorairesController;
-use App\Http\Controllers\NotesController;
+use App\Http\Controllers\GapsEventsController;
+use App\Http\Controllers\GapsMarksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +32,8 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::prefix('/fetch')->group(function() {
-        Route::get('/horaires', [HorairesController::class, 'fetchAll'])->name('api.fetch.horaires');
-        Route::get('/notes', [NotesController::class, 'fetchAll'])->name('api.fetch.horaires');
+        Route::get('/horaires', [GapsEventsController::class, 'fetchAll'])->name('api.fetch.horaires');
+        Route::get('/notes', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.horaires');
     });
 });
 
