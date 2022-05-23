@@ -1,6 +1,16 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
+
+/***/ "./node_modules/@babel/runtime/regenerator/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@babel/runtime/regenerator/index.js ***!
+  \**********************************************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+module.exports = __webpack_require__(/*! regenerator-runtime */ "./node_modules/regenerator-runtime/runtime.js");
+
+
+/***/ }),
 
 /***/ "./node_modules/@vue/compiler-core/dist/compiler-core.esm-bundler.js":
 /*!***************************************************************************!*\
@@ -8,6 +18,7 @@
   \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BASE_TRANSITION": () => (/* binding */ BASE_TRANSITION),
@@ -5002,6 +5013,7 @@ const noopDirectiveTransform = () => ({ props: [] });
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BASE_TRANSITION": () => (/* reexport safe */ _vue_compiler_core__WEBPACK_IMPORTED_MODULE_0__.BASE_TRANSITION),
@@ -5614,12 +5626,270 @@ function parse(template, options = {}) {
 
 /***/ }),
 
+/***/ "./node_modules/@vue/devtools-api/lib/esm/const.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/const.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HOOK_PLUGIN_SETTINGS_SET": () => (/* binding */ HOOK_PLUGIN_SETTINGS_SET),
+/* harmony export */   "HOOK_SETUP": () => (/* binding */ HOOK_SETUP)
+/* harmony export */ });
+const HOOK_SETUP = 'devtools-plugin:setup';
+const HOOK_PLUGIN_SETTINGS_SET = 'plugin:settings:set';
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/env.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/env.js ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "getDevtoolsGlobalHook": () => (/* binding */ getDevtoolsGlobalHook),
+/* harmony export */   "getTarget": () => (/* binding */ getTarget),
+/* harmony export */   "isProxyAvailable": () => (/* binding */ isProxyAvailable)
+/* harmony export */ });
+function getDevtoolsGlobalHook() {
+    return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
+}
+function getTarget() {
+    // @ts-ignore
+    return (typeof navigator !== 'undefined' && typeof window !== 'undefined')
+        ? window
+        : typeof __webpack_require__.g !== 'undefined'
+            ? __webpack_require__.g
+            : {};
+}
+const isProxyAvailable = typeof Proxy === 'function';
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/index.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/index.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isPerformanceSupported": () => (/* reexport safe */ _time__WEBPACK_IMPORTED_MODULE_0__.isPerformanceSupported),
+/* harmony export */   "now": () => (/* reexport safe */ _time__WEBPACK_IMPORTED_MODULE_0__.now),
+/* harmony export */   "setupDevtoolsPlugin": () => (/* binding */ setupDevtoolsPlugin)
+/* harmony export */ });
+/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./env */ "./node_modules/@vue/devtools-api/lib/esm/env.js");
+/* harmony import */ var _const__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./const */ "./node_modules/@vue/devtools-api/lib/esm/const.js");
+/* harmony import */ var _proxy__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./proxy */ "./node_modules/@vue/devtools-api/lib/esm/proxy.js");
+/* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./time */ "./node_modules/@vue/devtools-api/lib/esm/time.js");
+
+
+
+
+
+
+function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
+    const descriptor = pluginDescriptor;
+    const target = (0,_env__WEBPACK_IMPORTED_MODULE_1__.getTarget)();
+    const hook = (0,_env__WEBPACK_IMPORTED_MODULE_1__.getDevtoolsGlobalHook)();
+    const enableProxy = _env__WEBPACK_IMPORTED_MODULE_1__.isProxyAvailable && descriptor.enableEarlyProxy;
+    if (hook && (target.__VUE_DEVTOOLS_PLUGIN_API_AVAILABLE__ || !enableProxy)) {
+        hook.emit(_const__WEBPACK_IMPORTED_MODULE_2__.HOOK_SETUP, pluginDescriptor, setupFn);
+    }
+    else {
+        const proxy = enableProxy ? new _proxy__WEBPACK_IMPORTED_MODULE_3__.ApiProxy(descriptor, hook) : null;
+        const list = target.__VUE_DEVTOOLS_PLUGINS__ = target.__VUE_DEVTOOLS_PLUGINS__ || [];
+        list.push({
+            pluginDescriptor: descriptor,
+            setupFn,
+            proxy,
+        });
+        if (proxy)
+            setupFn(proxy.proxiedTarget);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/proxy.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/proxy.js ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ApiProxy": () => (/* binding */ ApiProxy)
+/* harmony export */ });
+/* harmony import */ var _const__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./const */ "./node_modules/@vue/devtools-api/lib/esm/const.js");
+/* harmony import */ var _time__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./time */ "./node_modules/@vue/devtools-api/lib/esm/time.js");
+
+
+class ApiProxy {
+    constructor(plugin, hook) {
+        this.target = null;
+        this.targetQueue = [];
+        this.onQueue = [];
+        this.plugin = plugin;
+        this.hook = hook;
+        const defaultSettings = {};
+        if (plugin.settings) {
+            for (const id in plugin.settings) {
+                const item = plugin.settings[id];
+                defaultSettings[id] = item.defaultValue;
+            }
+        }
+        const localSettingsSaveId = `__vue-devtools-plugin-settings__${plugin.id}`;
+        let currentSettings = Object.assign({}, defaultSettings);
+        try {
+            const raw = localStorage.getItem(localSettingsSaveId);
+            const data = JSON.parse(raw);
+            Object.assign(currentSettings, data);
+        }
+        catch (e) {
+            // noop
+        }
+        this.fallbacks = {
+            getSettings() {
+                return currentSettings;
+            },
+            setSettings(value) {
+                try {
+                    localStorage.setItem(localSettingsSaveId, JSON.stringify(value));
+                }
+                catch (e) {
+                    // noop
+                }
+                currentSettings = value;
+            },
+            now() {
+                return (0,_time__WEBPACK_IMPORTED_MODULE_0__.now)();
+            },
+        };
+        if (hook) {
+            hook.on(_const__WEBPACK_IMPORTED_MODULE_1__.HOOK_PLUGIN_SETTINGS_SET, (pluginId, value) => {
+                if (pluginId === this.plugin.id) {
+                    this.fallbacks.setSettings(value);
+                }
+            });
+        }
+        this.proxiedOn = new Proxy({}, {
+            get: (_target, prop) => {
+                if (this.target) {
+                    return this.target.on[prop];
+                }
+                else {
+                    return (...args) => {
+                        this.onQueue.push({
+                            method: prop,
+                            args,
+                        });
+                    };
+                }
+            },
+        });
+        this.proxiedTarget = new Proxy({}, {
+            get: (_target, prop) => {
+                if (this.target) {
+                    return this.target[prop];
+                }
+                else if (prop === 'on') {
+                    return this.proxiedOn;
+                }
+                else if (Object.keys(this.fallbacks).includes(prop)) {
+                    return (...args) => {
+                        this.targetQueue.push({
+                            method: prop,
+                            args,
+                            resolve: () => { },
+                        });
+                        return this.fallbacks[prop](...args);
+                    };
+                }
+                else {
+                    return (...args) => {
+                        return new Promise(resolve => {
+                            this.targetQueue.push({
+                                method: prop,
+                                args,
+                                resolve,
+                            });
+                        });
+                    };
+                }
+            },
+        });
+    }
+    async setRealTarget(target) {
+        this.target = target;
+        for (const item of this.onQueue) {
+            this.target.on[item.method](...item.args);
+        }
+        for (const item of this.targetQueue) {
+            item.resolve(await this.target[item.method](...item.args));
+        }
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/time.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/time.js ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "isPerformanceSupported": () => (/* binding */ isPerformanceSupported),
+/* harmony export */   "now": () => (/* binding */ now)
+/* harmony export */ });
+let supported;
+let perf;
+function isPerformanceSupported() {
+    var _a;
+    if (supported !== undefined) {
+        return supported;
+    }
+    if (typeof window !== 'undefined' && window.performance) {
+        supported = true;
+        perf = window.performance;
+    }
+    else if (typeof __webpack_require__.g !== 'undefined' && ((_a = __webpack_require__.g.perf_hooks) === null || _a === void 0 ? void 0 : _a.performance)) {
+        supported = true;
+        perf = __webpack_require__.g.perf_hooks.performance;
+    }
+    else {
+        supported = false;
+    }
+    return supported;
+}
+function now() {
+    return isPerformanceSupported() ? perf.now() : Date.now();
+}
+
+
+/***/ }),
+
 /***/ "./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js":
 /*!*********************************************************************!*\
   !*** ./node_modules/@vue/reactivity/dist/reactivity.esm-bundler.js ***!
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "EffectScope": () => (/* binding */ EffectScope),
@@ -6893,6 +7163,7 @@ function deferredComputed(getter) {
   \*************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BaseTransition": () => (/* binding */ BaseTransition),
@@ -14792,6 +15063,7 @@ const compatUtils = (null);
   \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BaseTransition": () => (/* reexport safe */ _vue_runtime_core__WEBPACK_IMPORTED_MODULE_0__.BaseTransition),
@@ -16638,6 +16910,7 @@ const initDirectivesForSSR = () => {
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "EMPTY_ARR": () => (/* binding */ EMPTY_ARR),
@@ -17296,6 +17569,7 @@ const getGlobalThis = () => {
   \********************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -17328,6 +17602,7 @@ __webpack_require__.r(__webpack_exports__);
   \************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -17367,12 +17642,102 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheLogin.vue?vue&type=script&setup=true&lang=js":
+/*!*************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheLogin.vue?vue&type=script&setup=true&lang=js ***!
+  \*************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _composables_useFetch__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../composables/useFetch */ "./resources/js/composables/useFetch.js");
+/* harmony import */ var _stores_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../stores/api */ "./resources/js/stores/api.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  setup: function setup(__props, _ref) {
+    var expose = _ref.expose;
+    expose();
+    var isSubmitted = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    var formData = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)({});
+    var isAuthenticated = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
+    console.log(window.location.href);
+
+    var submitHandler = /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                isSubmitted.value = true;
+                console.log((0,vue__WEBPACK_IMPORTED_MODULE_1__.toRaw)(formData.value));
+                (0,_composables_useFetch__WEBPACK_IMPORTED_MODULE_2__["default"])({
+                  url: _stores_api__WEBPACK_IMPORTED_MODULE_3__.API.login.path(),
+                  method: _stores_api__WEBPACK_IMPORTED_MODULE_3__.API.login.method,
+                  body: (0,vue__WEBPACK_IMPORTED_MODULE_1__.toRaw)(formData.value)
+                }).then(function (response) {
+                  console.log(response);
+
+                  if (response.success === true) {
+                    isAuthenticated.value = true;
+                    localStorage.setItem('token', response.access_token);
+                    /* window.location.href += "signup"; */
+                  }
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }));
+
+      return function submitHandler() {
+        return _ref2.apply(this, arguments);
+      };
+    }();
+
+    var __returned__ = {
+      isSubmitted: isSubmitted,
+      formData: formData,
+      isAuthenticated: isAuthenticated,
+      submitHandler: submitHandler,
+      ref: vue__WEBPACK_IMPORTED_MODULE_1__.ref,
+      toRaw: vue__WEBPACK_IMPORTED_MODULE_1__.toRaw,
+      useFetch: _composables_useFetch__WEBPACK_IMPORTED_MODULE_2__["default"],
+      API: _stores_api__WEBPACK_IMPORTED_MODULE_3__.API
+    };
+    Object.defineProperty(__returned__, '__isScriptSetup', {
+      enumerable: false,
+      value: true
+    });
+    return __returned__;
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheMenu.vue?vue&type=script&setup=true&lang=js":
 /*!************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheMenu.vue?vue&type=script&setup=true&lang=js ***!
   \************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -17412,12 +17777,43 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/router/HomeRoute.vue?vue&type=script&setup=true&lang=js":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/router/HomeRoute.vue?vue&type=script&setup=true&lang=js ***!
+  \**********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _components_TheLogin_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/TheLogin.vue */ "./resources/js/components/TheLogin.vue");
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  setup: function setup(__props, _ref) {
+    var expose = _ref.expose;
+    expose();
+    var __returned__ = {
+      TheLogin: _components_TheLogin_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    };
+    Object.defineProperty(__returned__, '__isScriptSetup', {
+      enumerable: false,
+      value: true
+    });
+    return __returned__;
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/App.vue?vue&type=template&id=332fccf4":
 /*!*************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/App.vue?vue&type=template&id=332fccf4 ***!
   \*************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": () => (/* binding */ render)
@@ -17438,6 +17834,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   \*****************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": () => (/* binding */ render)
@@ -17453,7 +17850,79 @@ var _hoisted_1 = {
   "class": "main-body"
 };
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, "BODY");
+  var _component_router_view = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("router-view");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_router_view)]);
+}
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheLogin.vue?vue&type=template&id=f4ef123a":
+/*!******************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheLogin.vue?vue&type=template&id=f4ef123a ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+
+var _hoisted_1 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", null, "Connexion", -1
+/* HOISTED */
+);
+
+var _hoisted_2 = {
+  key: 0
+};
+var _hoisted_3 = {
+  key: 1
+};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
+  "class": "forgot-password",
+  href: "#"
+}, "Forgot password ?", -1
+/* HOISTED */
+);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_FormKit = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("FormKit");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+    type: "form",
+    modelValue: $setup.formData,
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $setup.formData = $event;
+    }),
+    "form-class": $setup.isSubmitted ? 'hide' : 'show',
+    "submit-label": "Login",
+    onSubmit: $setup.submitHandler
+  }, {
+    "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
+      return [_hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        type: "text",
+        name: "username",
+        placeholder: "unsername",
+        validation: "required",
+        label: "UserName"
+      }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_FormKit, {
+        type: "password",
+        name: "password",
+        placeholder: "password",
+        validation: "required",
+        label: "Password"
+      })];
+    }),
+    _: 1
+    /* STABLE */
+
+  }, 8
+  /* PROPS */
+  , ["modelValue", "form-class"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", null, [$setup.isAuthenticated && $setup.isSubmitted ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h2", _hoisted_2, "Connexion établie")) : !$setup.isAuthenticated && $setup.isSubmitted ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("h2", _hoisted_3, "Mot de passe ou username non valid")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), _hoisted_4]);
 }
 
 /***/ }),
@@ -17464,6 +17933,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   \*****************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": () => (/* binding */ render)
@@ -17491,18 +17961,221 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/router/HomeRoute.vue?vue&type=template&id=452fe7c2":
+/*!***************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/router/HomeRoute.vue?vue&type=template&id=452fe7c2 ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["TheLogin"]);
+}
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
   \*****************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var _components_App_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/App.vue */ "./resources/js/components/App.vue");
+/* harmony import */ var _formkit_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @formkit/vue */ "./node_modules/@formkit/vue/dist/index.mjs");
+/* harmony import */ var _router_routes__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./router/routes */ "./resources/js/router/routes.js");
 
 
-(0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]).mount("#app");
+
+
+var app = (0,vue__WEBPACK_IMPORTED_MODULE_0__.createApp)(_components_App_vue__WEBPACK_IMPORTED_MODULE_1__["default"]).use(_router_routes__WEBPACK_IMPORTED_MODULE_3__["default"]);
+app.use(_formkit_vue__WEBPACK_IMPORTED_MODULE_2__.plugin, _formkit_vue__WEBPACK_IMPORTED_MODULE_2__.defaultConfig);
+app.mount("#app");
+
+/***/ }),
+
+/***/ "./resources/js/composables/useFetch.js":
+/*!**********************************************!*\
+  !*** ./resources/js/composables/useFetch.js ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _stores_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../stores/api */ "./resources/js/stores/api.js");
+
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+/**
+ * It takes a url, a token, a method and a body and returns a response
+ * @param {FetchParameters} params - FetchParameters
+ * @returns The response from the fetch request.
+ *
+ * interface FetchParameters {
+ *      url: string;
+ *      method: string;
+ *      jtoken?: string;
+ *      body?: Object;
+ *  }
+ */
+
+var useFetch = /*#__PURE__*/function () {
+  var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee(params) {
+    var _ref2, url, token, method, body, formdata, myHeaders, requestOptions, response;
+
+    return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+      while (1) {
+        switch (_context.prev = _context.next) {
+          case 0:
+            _ref2 = [params.url, params.token, params.method, params.body], url = _ref2[0], token = _ref2[1], method = _ref2[2], body = _ref2[3];
+            formdata = new FormData();
+
+            if (body) {
+              Object.entries(body).forEach(function (_ref3) {
+                var _ref4 = _slicedToArray(_ref3, 2),
+                    key = _ref4[0],
+                    value = _ref4[1];
+
+                formdata.append(key, value);
+              });
+            }
+
+            myHeaders = new Headers();
+            myHeaders.append("Accept", "application/json");
+            myHeaders.append("Authorization", "Bearer ".concat(token));
+            requestOptions = {
+              method: method,
+              headers: myHeaders,
+              redirect: "follow",
+              body: method === "POST" ? formdata : null
+            };
+            response = null;
+            _context.prev = 8;
+            _context.next = 11;
+            return fetch(url, requestOptions);
+
+          case 11:
+            response = _context.sent;
+            _context.next = 14;
+            return response.json();
+
+          case 14:
+            response = _context.sent;
+            return _context.abrupt("return", response);
+
+          case 18:
+            _context.prev = 18;
+            _context.t0 = _context["catch"](8);
+            console.log({
+              error: _context.t0
+            });
+
+          case 21:
+          case "end":
+            return _context.stop();
+        }
+      }
+    }, _callee, null, [[8, 18]]);
+  }));
+
+  return function useFetch(_x) {
+    return _ref.apply(this, arguments);
+  };
+}();
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (useFetch);
+
+/***/ }),
+
+/***/ "./resources/js/router/routes.js":
+/*!***************************************!*\
+  !*** ./resources/js/router/routes.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm-bundler.js");
+/* harmony import */ var _HomeRoute_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HomeRoute.vue */ "./resources/js/router/HomeRoute.vue");
+
+
+var routes = [{
+  name: "home",
+  path: "/",
+  component: _HomeRoute_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+}];
+var router = (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createRouter)({
+  history: (0,vue_router__WEBPACK_IMPORTED_MODULE_1__.createWebHistory)(),
+  routes: routes
+}); // router.beforeEach(async (to, from) => {
+//     const isAuthenticated = localStorage.getItem("token");
+//     if (!isAuthenticated && to.name !== "home") {
+//         return { name: "home" };
+//     }
+// });
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (router);
+
+/***/ }),
+
+/***/ "./resources/js/stores/api.js":
+/*!************************************!*\
+  !*** ./resources/js/stores/api.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "API": () => (/* binding */ API)
+/* harmony export */ });
+var API_URL = "http://localhost:8000/api/";
+var API = {
+  register: {
+    method: "POST",
+    path: function path() {
+      return "".concat(API_URL, "register");
+    }
+  },
+  login: {
+    method: "POST",
+    path: function path() {
+      return "".concat(API_URL, "login");
+    }
+  }
+};
 
 /***/ }),
 
@@ -17512,6 +18185,7 @@ __webpack_require__.r(__webpack_exports__);
   \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "sideMenuWidth": () => (/* binding */ sideMenuWidth)
@@ -17540,6 +18214,7 @@ var sideMenuWidth = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)({
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -17550,7 +18225,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.main-body[data-v-754ae598] {\n        display: flex;\n        flex-direction: column;\n        background-color: #ba0606;\n        height: 100vh;\n        margin-left: var(--754ae598-sideMenuWidth);\n        width : var(--754ae598-bodyWidth);\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.main-body[data-v-754ae598] {\n    display: flex;\n    flex-direction: column;\n    background-color: #ba0606;\n    height: 100vh;\n    margin-left: var(--754ae598-sideMenuWidth);\n    width: var(--754ae598-bodyWidth);\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -17563,6 +18238,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.main-body[data-v-754ae598] {\n     
   \**************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -17586,6 +18262,7 @@ ___CSS_LOADER_EXPORT___.push([module.id, "\n.side-menu[data-v-285cca56] {\n  bac
   \*****************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /*
@@ -17661,8 +18338,773 @@ module.exports = function (cssWithMappingToString) {
   \*********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
+
+
+/***/ }),
+
+/***/ "./node_modules/regenerator-runtime/runtime.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/regenerator-runtime/runtime.js ***!
+  \*****************************************************/
+/***/ ((module) => {
+
+/**
+ * Copyright (c) 2014-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ */
+
+var runtime = (function (exports) {
+  "use strict";
+
+  var Op = Object.prototype;
+  var hasOwn = Op.hasOwnProperty;
+  var undefined; // More compressible than void 0.
+  var $Symbol = typeof Symbol === "function" ? Symbol : {};
+  var iteratorSymbol = $Symbol.iterator || "@@iterator";
+  var asyncIteratorSymbol = $Symbol.asyncIterator || "@@asyncIterator";
+  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
+
+  function define(obj, key, value) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+    return obj[key];
+  }
+  try {
+    // IE 8 has a broken Object.defineProperty that only works on DOM objects.
+    define({}, "");
+  } catch (err) {
+    define = function(obj, key, value) {
+      return obj[key] = value;
+    };
+  }
+
+  function wrap(innerFn, outerFn, self, tryLocsList) {
+    // If outerFn provided and outerFn.prototype is a Generator, then outerFn.prototype instanceof Generator.
+    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
+    var generator = Object.create(protoGenerator.prototype);
+    var context = new Context(tryLocsList || []);
+
+    // The ._invoke method unifies the implementations of the .next,
+    // .throw, and .return methods.
+    generator._invoke = makeInvokeMethod(innerFn, self, context);
+
+    return generator;
+  }
+  exports.wrap = wrap;
+
+  // Try/catch helper to minimize deoptimizations. Returns a completion
+  // record like context.tryEntries[i].completion. This interface could
+  // have been (and was previously) designed to take a closure to be
+  // invoked without arguments, but in all the cases we care about we
+  // already have an existing method we want to call, so there's no need
+  // to create a new function object. We can even get away with assuming
+  // the method takes exactly one argument, since that happens to be true
+  // in every case, so we don't have to touch the arguments object. The
+  // only additional allocation required is the completion record, which
+  // has a stable shape and so hopefully should be cheap to allocate.
+  function tryCatch(fn, obj, arg) {
+    try {
+      return { type: "normal", arg: fn.call(obj, arg) };
+    } catch (err) {
+      return { type: "throw", arg: err };
+    }
+  }
+
+  var GenStateSuspendedStart = "suspendedStart";
+  var GenStateSuspendedYield = "suspendedYield";
+  var GenStateExecuting = "executing";
+  var GenStateCompleted = "completed";
+
+  // Returning this object from the innerFn has the same effect as
+  // breaking out of the dispatch switch statement.
+  var ContinueSentinel = {};
+
+  // Dummy constructor functions that we use as the .constructor and
+  // .constructor.prototype properties for functions that return Generator
+  // objects. For full spec compliance, you may wish to configure your
+  // minifier not to mangle the names of these two functions.
+  function Generator() {}
+  function GeneratorFunction() {}
+  function GeneratorFunctionPrototype() {}
+
+  // This is a polyfill for %IteratorPrototype% for environments that
+  // don't natively support it.
+  var IteratorPrototype = {};
+  define(IteratorPrototype, iteratorSymbol, function () {
+    return this;
+  });
+
+  var getProto = Object.getPrototypeOf;
+  var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
+  if (NativeIteratorPrototype &&
+      NativeIteratorPrototype !== Op &&
+      hasOwn.call(NativeIteratorPrototype, iteratorSymbol)) {
+    // This environment has a native %IteratorPrototype%; use it instead
+    // of the polyfill.
+    IteratorPrototype = NativeIteratorPrototype;
+  }
+
+  var Gp = GeneratorFunctionPrototype.prototype =
+    Generator.prototype = Object.create(IteratorPrototype);
+  GeneratorFunction.prototype = GeneratorFunctionPrototype;
+  define(Gp, "constructor", GeneratorFunctionPrototype);
+  define(GeneratorFunctionPrototype, "constructor", GeneratorFunction);
+  GeneratorFunction.displayName = define(
+    GeneratorFunctionPrototype,
+    toStringTagSymbol,
+    "GeneratorFunction"
+  );
+
+  // Helper for defining the .next, .throw, and .return methods of the
+  // Iterator interface in terms of a single ._invoke method.
+  function defineIteratorMethods(prototype) {
+    ["next", "throw", "return"].forEach(function(method) {
+      define(prototype, method, function(arg) {
+        return this._invoke(method, arg);
+      });
+    });
+  }
+
+  exports.isGeneratorFunction = function(genFun) {
+    var ctor = typeof genFun === "function" && genFun.constructor;
+    return ctor
+      ? ctor === GeneratorFunction ||
+        // For the native GeneratorFunction constructor, the best we can
+        // do is to check its .name property.
+        (ctor.displayName || ctor.name) === "GeneratorFunction"
+      : false;
+  };
+
+  exports.mark = function(genFun) {
+    if (Object.setPrototypeOf) {
+      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
+    } else {
+      genFun.__proto__ = GeneratorFunctionPrototype;
+      define(genFun, toStringTagSymbol, "GeneratorFunction");
+    }
+    genFun.prototype = Object.create(Gp);
+    return genFun;
+  };
+
+  // Within the body of any async function, `await x` is transformed to
+  // `yield regeneratorRuntime.awrap(x)`, so that the runtime can test
+  // `hasOwn.call(value, "__await")` to determine if the yielded value is
+  // meant to be awaited.
+  exports.awrap = function(arg) {
+    return { __await: arg };
+  };
+
+  function AsyncIterator(generator, PromiseImpl) {
+    function invoke(method, arg, resolve, reject) {
+      var record = tryCatch(generator[method], generator, arg);
+      if (record.type === "throw") {
+        reject(record.arg);
+      } else {
+        var result = record.arg;
+        var value = result.value;
+        if (value &&
+            typeof value === "object" &&
+            hasOwn.call(value, "__await")) {
+          return PromiseImpl.resolve(value.__await).then(function(value) {
+            invoke("next", value, resolve, reject);
+          }, function(err) {
+            invoke("throw", err, resolve, reject);
+          });
+        }
+
+        return PromiseImpl.resolve(value).then(function(unwrapped) {
+          // When a yielded Promise is resolved, its final value becomes
+          // the .value of the Promise<{value,done}> result for the
+          // current iteration.
+          result.value = unwrapped;
+          resolve(result);
+        }, function(error) {
+          // If a rejected Promise was yielded, throw the rejection back
+          // into the async generator function so it can be handled there.
+          return invoke("throw", error, resolve, reject);
+        });
+      }
+    }
+
+    var previousPromise;
+
+    function enqueue(method, arg) {
+      function callInvokeWithMethodAndArg() {
+        return new PromiseImpl(function(resolve, reject) {
+          invoke(method, arg, resolve, reject);
+        });
+      }
+
+      return previousPromise =
+        // If enqueue has been called before, then we want to wait until
+        // all previous Promises have been resolved before calling invoke,
+        // so that results are always delivered in the correct order. If
+        // enqueue has not been called before, then it is important to
+        // call invoke immediately, without waiting on a callback to fire,
+        // so that the async generator function has the opportunity to do
+        // any necessary setup in a predictable way. This predictability
+        // is why the Promise constructor synchronously invokes its
+        // executor callback, and why async functions synchronously
+        // execute code before the first await. Since we implement simple
+        // async functions in terms of async generators, it is especially
+        // important to get this right, even though it requires care.
+        previousPromise ? previousPromise.then(
+          callInvokeWithMethodAndArg,
+          // Avoid propagating failures to Promises returned by later
+          // invocations of the iterator.
+          callInvokeWithMethodAndArg
+        ) : callInvokeWithMethodAndArg();
+    }
+
+    // Define the unified helper method that is used to implement .next,
+    // .throw, and .return (see defineIteratorMethods).
+    this._invoke = enqueue;
+  }
+
+  defineIteratorMethods(AsyncIterator.prototype);
+  define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
+    return this;
+  });
+  exports.AsyncIterator = AsyncIterator;
+
+  // Note that simple async functions are implemented on top of
+  // AsyncIterator objects; they just return a Promise for the value of
+  // the final result produced by the iterator.
+  exports.async = function(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
+    if (PromiseImpl === void 0) PromiseImpl = Promise;
+
+    var iter = new AsyncIterator(
+      wrap(innerFn, outerFn, self, tryLocsList),
+      PromiseImpl
+    );
+
+    return exports.isGeneratorFunction(outerFn)
+      ? iter // If outerFn is a generator, return the full iterator.
+      : iter.next().then(function(result) {
+          return result.done ? result.value : iter.next();
+        });
+  };
+
+  function makeInvokeMethod(innerFn, self, context) {
+    var state = GenStateSuspendedStart;
+
+    return function invoke(method, arg) {
+      if (state === GenStateExecuting) {
+        throw new Error("Generator is already running");
+      }
+
+      if (state === GenStateCompleted) {
+        if (method === "throw") {
+          throw arg;
+        }
+
+        // Be forgiving, per 25.3.3.3.3 of the spec:
+        // https://people.mozilla.org/~jorendorff/es6-draft.html#sec-generatorresume
+        return doneResult();
+      }
+
+      context.method = method;
+      context.arg = arg;
+
+      while (true) {
+        var delegate = context.delegate;
+        if (delegate) {
+          var delegateResult = maybeInvokeDelegate(delegate, context);
+          if (delegateResult) {
+            if (delegateResult === ContinueSentinel) continue;
+            return delegateResult;
+          }
+        }
+
+        if (context.method === "next") {
+          // Setting context._sent for legacy support of Babel's
+          // function.sent implementation.
+          context.sent = context._sent = context.arg;
+
+        } else if (context.method === "throw") {
+          if (state === GenStateSuspendedStart) {
+            state = GenStateCompleted;
+            throw context.arg;
+          }
+
+          context.dispatchException(context.arg);
+
+        } else if (context.method === "return") {
+          context.abrupt("return", context.arg);
+        }
+
+        state = GenStateExecuting;
+
+        var record = tryCatch(innerFn, self, context);
+        if (record.type === "normal") {
+          // If an exception is thrown from innerFn, we leave state ===
+          // GenStateExecuting and loop back for another invocation.
+          state = context.done
+            ? GenStateCompleted
+            : GenStateSuspendedYield;
+
+          if (record.arg === ContinueSentinel) {
+            continue;
+          }
+
+          return {
+            value: record.arg,
+            done: context.done
+          };
+
+        } else if (record.type === "throw") {
+          state = GenStateCompleted;
+          // Dispatch the exception by looping back around to the
+          // context.dispatchException(context.arg) call above.
+          context.method = "throw";
+          context.arg = record.arg;
+        }
+      }
+    };
+  }
+
+  // Call delegate.iterator[context.method](context.arg) and handle the
+  // result, either by returning a { value, done } result from the
+  // delegate iterator, or by modifying context.method and context.arg,
+  // setting context.delegate to null, and returning the ContinueSentinel.
+  function maybeInvokeDelegate(delegate, context) {
+    var method = delegate.iterator[context.method];
+    if (method === undefined) {
+      // A .throw or .return when the delegate iterator has no .throw
+      // method always terminates the yield* loop.
+      context.delegate = null;
+
+      if (context.method === "throw") {
+        // Note: ["return"] must be used for ES3 parsing compatibility.
+        if (delegate.iterator["return"]) {
+          // If the delegate iterator has a return method, give it a
+          // chance to clean up.
+          context.method = "return";
+          context.arg = undefined;
+          maybeInvokeDelegate(delegate, context);
+
+          if (context.method === "throw") {
+            // If maybeInvokeDelegate(context) changed context.method from
+            // "return" to "throw", let that override the TypeError below.
+            return ContinueSentinel;
+          }
+        }
+
+        context.method = "throw";
+        context.arg = new TypeError(
+          "The iterator does not provide a 'throw' method");
+      }
+
+      return ContinueSentinel;
+    }
+
+    var record = tryCatch(method, delegate.iterator, context.arg);
+
+    if (record.type === "throw") {
+      context.method = "throw";
+      context.arg = record.arg;
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    var info = record.arg;
+
+    if (! info) {
+      context.method = "throw";
+      context.arg = new TypeError("iterator result is not an object");
+      context.delegate = null;
+      return ContinueSentinel;
+    }
+
+    if (info.done) {
+      // Assign the result of the finished delegate to the temporary
+      // variable specified by delegate.resultName (see delegateYield).
+      context[delegate.resultName] = info.value;
+
+      // Resume execution at the desired location (see delegateYield).
+      context.next = delegate.nextLoc;
+
+      // If context.method was "throw" but the delegate handled the
+      // exception, let the outer generator proceed normally. If
+      // context.method was "next", forget context.arg since it has been
+      // "consumed" by the delegate iterator. If context.method was
+      // "return", allow the original .return call to continue in the
+      // outer generator.
+      if (context.method !== "return") {
+        context.method = "next";
+        context.arg = undefined;
+      }
+
+    } else {
+      // Re-yield the result returned by the delegate method.
+      return info;
+    }
+
+    // The delegate iterator is finished, so forget it and continue with
+    // the outer generator.
+    context.delegate = null;
+    return ContinueSentinel;
+  }
+
+  // Define Generator.prototype.{next,throw,return} in terms of the
+  // unified ._invoke helper method.
+  defineIteratorMethods(Gp);
+
+  define(Gp, toStringTagSymbol, "Generator");
+
+  // A Generator should always return itself as the iterator object when the
+  // @@iterator function is called on it. Some browsers' implementations of the
+  // iterator prototype chain incorrectly implement this, causing the Generator
+  // object to not be returned from this call. This ensures that doesn't happen.
+  // See https://github.com/facebook/regenerator/issues/274 for more details.
+  define(Gp, iteratorSymbol, function() {
+    return this;
+  });
+
+  define(Gp, "toString", function() {
+    return "[object Generator]";
+  });
+
+  function pushTryEntry(locs) {
+    var entry = { tryLoc: locs[0] };
+
+    if (1 in locs) {
+      entry.catchLoc = locs[1];
+    }
+
+    if (2 in locs) {
+      entry.finallyLoc = locs[2];
+      entry.afterLoc = locs[3];
+    }
+
+    this.tryEntries.push(entry);
+  }
+
+  function resetTryEntry(entry) {
+    var record = entry.completion || {};
+    record.type = "normal";
+    delete record.arg;
+    entry.completion = record;
+  }
+
+  function Context(tryLocsList) {
+    // The root entry object (effectively a try statement without a catch
+    // or a finally block) gives us a place to store values thrown from
+    // locations where there is no enclosing try statement.
+    this.tryEntries = [{ tryLoc: "root" }];
+    tryLocsList.forEach(pushTryEntry, this);
+    this.reset(true);
+  }
+
+  exports.keys = function(object) {
+    var keys = [];
+    for (var key in object) {
+      keys.push(key);
+    }
+    keys.reverse();
+
+    // Rather than returning an object with a next method, we keep
+    // things simple and return the next function itself.
+    return function next() {
+      while (keys.length) {
+        var key = keys.pop();
+        if (key in object) {
+          next.value = key;
+          next.done = false;
+          return next;
+        }
+      }
+
+      // To avoid creating an additional object, we just hang the .value
+      // and .done properties off the next function object itself. This
+      // also ensures that the minifier will not anonymize the function.
+      next.done = true;
+      return next;
+    };
+  };
+
+  function values(iterable) {
+    if (iterable) {
+      var iteratorMethod = iterable[iteratorSymbol];
+      if (iteratorMethod) {
+        return iteratorMethod.call(iterable);
+      }
+
+      if (typeof iterable.next === "function") {
+        return iterable;
+      }
+
+      if (!isNaN(iterable.length)) {
+        var i = -1, next = function next() {
+          while (++i < iterable.length) {
+            if (hasOwn.call(iterable, i)) {
+              next.value = iterable[i];
+              next.done = false;
+              return next;
+            }
+          }
+
+          next.value = undefined;
+          next.done = true;
+
+          return next;
+        };
+
+        return next.next = next;
+      }
+    }
+
+    // Return an iterator with no values.
+    return { next: doneResult };
+  }
+  exports.values = values;
+
+  function doneResult() {
+    return { value: undefined, done: true };
+  }
+
+  Context.prototype = {
+    constructor: Context,
+
+    reset: function(skipTempReset) {
+      this.prev = 0;
+      this.next = 0;
+      // Resetting context._sent for legacy support of Babel's
+      // function.sent implementation.
+      this.sent = this._sent = undefined;
+      this.done = false;
+      this.delegate = null;
+
+      this.method = "next";
+      this.arg = undefined;
+
+      this.tryEntries.forEach(resetTryEntry);
+
+      if (!skipTempReset) {
+        for (var name in this) {
+          // Not sure about the optimal order of these conditions:
+          if (name.charAt(0) === "t" &&
+              hasOwn.call(this, name) &&
+              !isNaN(+name.slice(1))) {
+            this[name] = undefined;
+          }
+        }
+      }
+    },
+
+    stop: function() {
+      this.done = true;
+
+      var rootEntry = this.tryEntries[0];
+      var rootRecord = rootEntry.completion;
+      if (rootRecord.type === "throw") {
+        throw rootRecord.arg;
+      }
+
+      return this.rval;
+    },
+
+    dispatchException: function(exception) {
+      if (this.done) {
+        throw exception;
+      }
+
+      var context = this;
+      function handle(loc, caught) {
+        record.type = "throw";
+        record.arg = exception;
+        context.next = loc;
+
+        if (caught) {
+          // If the dispatched exception was caught by a catch block,
+          // then let that catch block handle the exception normally.
+          context.method = "next";
+          context.arg = undefined;
+        }
+
+        return !! caught;
+      }
+
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        var record = entry.completion;
+
+        if (entry.tryLoc === "root") {
+          // Exception thrown outside of any try block that could handle
+          // it, so set the completion value of the entire function to
+          // throw the exception.
+          return handle("end");
+        }
+
+        if (entry.tryLoc <= this.prev) {
+          var hasCatch = hasOwn.call(entry, "catchLoc");
+          var hasFinally = hasOwn.call(entry, "finallyLoc");
+
+          if (hasCatch && hasFinally) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            } else if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else if (hasCatch) {
+            if (this.prev < entry.catchLoc) {
+              return handle(entry.catchLoc, true);
+            }
+
+          } else if (hasFinally) {
+            if (this.prev < entry.finallyLoc) {
+              return handle(entry.finallyLoc);
+            }
+
+          } else {
+            throw new Error("try statement without catch or finally");
+          }
+        }
+      }
+    },
+
+    abrupt: function(type, arg) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc <= this.prev &&
+            hasOwn.call(entry, "finallyLoc") &&
+            this.prev < entry.finallyLoc) {
+          var finallyEntry = entry;
+          break;
+        }
+      }
+
+      if (finallyEntry &&
+          (type === "break" ||
+           type === "continue") &&
+          finallyEntry.tryLoc <= arg &&
+          arg <= finallyEntry.finallyLoc) {
+        // Ignore the finally entry if control is not jumping to a
+        // location outside the try/catch block.
+        finallyEntry = null;
+      }
+
+      var record = finallyEntry ? finallyEntry.completion : {};
+      record.type = type;
+      record.arg = arg;
+
+      if (finallyEntry) {
+        this.method = "next";
+        this.next = finallyEntry.finallyLoc;
+        return ContinueSentinel;
+      }
+
+      return this.complete(record);
+    },
+
+    complete: function(record, afterLoc) {
+      if (record.type === "throw") {
+        throw record.arg;
+      }
+
+      if (record.type === "break" ||
+          record.type === "continue") {
+        this.next = record.arg;
+      } else if (record.type === "return") {
+        this.rval = this.arg = record.arg;
+        this.method = "return";
+        this.next = "end";
+      } else if (record.type === "normal" && afterLoc) {
+        this.next = afterLoc;
+      }
+
+      return ContinueSentinel;
+    },
+
+    finish: function(finallyLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.finallyLoc === finallyLoc) {
+          this.complete(entry.completion, entry.afterLoc);
+          resetTryEntry(entry);
+          return ContinueSentinel;
+        }
+      }
+    },
+
+    "catch": function(tryLoc) {
+      for (var i = this.tryEntries.length - 1; i >= 0; --i) {
+        var entry = this.tryEntries[i];
+        if (entry.tryLoc === tryLoc) {
+          var record = entry.completion;
+          if (record.type === "throw") {
+            var thrown = record.arg;
+            resetTryEntry(entry);
+          }
+          return thrown;
+        }
+      }
+
+      // The context.catch method must only be called with a location
+      // argument that corresponds to a known catch block.
+      throw new Error("illegal catch attempt");
+    },
+
+    delegateYield: function(iterable, resultName, nextLoc) {
+      this.delegate = {
+        iterator: values(iterable),
+        resultName: resultName,
+        nextLoc: nextLoc
+      };
+
+      if (this.method === "next") {
+        // Deliberately forget the last sent value so that we don't
+        // accidentally pass it on to the delegate.
+        this.arg = undefined;
+      }
+
+      return ContinueSentinel;
+    }
+  };
+
+  // Regardless of whether this script is executing as a CommonJS module
+  // or not, return the runtime object so that we can declare the variable
+  // regeneratorRuntime in the outer scope, which allows this module to be
+  // injected easily by `bin/regenerator --include-runtime script.js`.
+  return exports;
+
+}(
+  // If this script is executing as a CommonJS module, use module.exports
+  // as the regeneratorRuntime namespace. Otherwise create a new empty
+  // object. Either way, the resulting object will be used to initialize
+  // the regeneratorRuntime variable at the top of this file.
+   true ? module.exports : 0
+));
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  // This module should not be running in strict mode, so the above
+  // assignment should always work unless something is misconfigured. Just
+  // in case runtime.js accidentally runs in strict mode, in modern engines
+  // we can explicitly access globalThis. In older engines we can escape
+  // strict mode using a global Function call. This could conceivably fail
+  // if a Content Security Policy forbids using Function, but in that case
+  // the proper solution is to fix the accidental strict mode problem. If
+  // you've misconfigured your bundler to force strict mode and applied a
+  // CSP to forbid Function, and you're not willing to fix either of those
+  // problems, please detail your unique predicament in a GitHub issue.
+  if (typeof globalThis === "object") {
+    globalThis.regeneratorRuntime = runtime;
+  } else {
+    Function("r", "regeneratorRuntime = r")(runtime);
+  }
+}
 
 
 /***/ }),
@@ -17673,6 +19115,7 @@ __webpack_require__.r(__webpack_exports__);
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -17702,6 +19145,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -17731,6 +19175,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \****************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 var isOldIE = function isOldIE() {
@@ -18009,6 +19454,7 @@ module.exports = function (list, options) {
   \******************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
+"use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 // runtime helper for setting properties on components
@@ -18030,6 +19476,7 @@ exports["default"] = (sfc, props) => {
   \*****************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -18057,6 +19504,7 @@ if (false) {}
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -18081,12 +19529,41 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/TheLogin.vue":
+/*!**********************************************!*\
+  !*** ./resources/js/components/TheLogin.vue ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TheLogin_vue_vue_type_template_id_f4ef123a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TheLogin.vue?vue&type=template&id=f4ef123a */ "./resources/js/components/TheLogin.vue?vue&type=template&id=f4ef123a");
+/* harmony import */ var _TheLogin_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TheLogin.vue?vue&type=script&setup=true&lang=js */ "./resources/js/components/TheLogin.vue?vue&type=script&setup=true&lang=js");
+/* harmony import */ var _Users_sebastientraber_Documents_Prog_ProjArt_Application_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Users_sebastientraber_Documents_Prog_ProjArt_Application_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_TheLogin_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_TheLogin_vue_vue_type_template_id_f4ef123a__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/components/TheLogin.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/TheMenu.vue":
 /*!*********************************************!*\
   !*** ./resources/js/components/TheMenu.vue ***!
   \*********************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -18111,12 +19588,41 @@ if (false) {}
 
 /***/ }),
 
+/***/ "./resources/js/router/HomeRoute.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/router/HomeRoute.vue ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _HomeRoute_vue_vue_type_template_id_452fe7c2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HomeRoute.vue?vue&type=template&id=452fe7c2 */ "./resources/js/router/HomeRoute.vue?vue&type=template&id=452fe7c2");
+/* harmony import */ var _HomeRoute_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HomeRoute.vue?vue&type=script&setup=true&lang=js */ "./resources/js/router/HomeRoute.vue?vue&type=script&setup=true&lang=js");
+/* harmony import */ var _Users_sebastientraber_Documents_Prog_ProjArt_Application_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./node_modules/vue-loader/dist/exportHelper.js */ "./node_modules/vue-loader/dist/exportHelper.js");
+
+
+
+
+;
+const __exports__ = /*#__PURE__*/(0,_Users_sebastientraber_Documents_Prog_ProjArt_Application_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_2__["default"])(_HomeRoute_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_1__["default"], [['render',_HomeRoute_vue_vue_type_template_id_452fe7c2__WEBPACK_IMPORTED_MODULE_0__.render],['__file',"resources/js/router/HomeRoute.vue"]])
+/* hot reload */
+if (false) {}
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
+
+/***/ }),
+
 /***/ "./resources/js/components/App.vue?vue&type=script&setup=true&lang=js":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/App.vue?vue&type=script&setup=true&lang=js ***!
   \****************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_App_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
@@ -18132,11 +19638,28 @@ __webpack_require__.r(__webpack_exports__);
   \********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheBody_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheBody_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TheBody.vue?vue&type=script&setup=true&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheBody.vue?vue&type=script&setup=true&lang=js");
+ 
+
+/***/ }),
+
+/***/ "./resources/js/components/TheLogin.vue?vue&type=script&setup=true&lang=js":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/TheLogin.vue?vue&type=script&setup=true&lang=js ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheLogin_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheLogin_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TheLogin.vue?vue&type=script&setup=true&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheLogin.vue?vue&type=script&setup=true&lang=js");
  
 
 /***/ }),
@@ -18147,11 +19670,28 @@ __webpack_require__.r(__webpack_exports__);
   \********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheMenu_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheMenu_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TheMenu.vue?vue&type=script&setup=true&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheMenu.vue?vue&type=script&setup=true&lang=js");
+ 
+
+/***/ }),
+
+/***/ "./resources/js/router/HomeRoute.vue?vue&type=script&setup=true&lang=js":
+/*!******************************************************************************!*\
+  !*** ./resources/js/router/HomeRoute.vue?vue&type=script&setup=true&lang=js ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HomeRoute_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__["default"])
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HomeRoute_vue_vue_type_script_setup_true_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HomeRoute.vue?vue&type=script&setup=true&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/router/HomeRoute.vue?vue&type=script&setup=true&lang=js");
  
 
 /***/ }),
@@ -18162,6 +19702,7 @@ __webpack_require__.r(__webpack_exports__);
   \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_App_vue_vue_type_template_id_332fccf4__WEBPACK_IMPORTED_MODULE_0__.render)
@@ -18177,11 +19718,28 @@ __webpack_require__.r(__webpack_exports__);
   \***************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheBody_vue_vue_type_template_id_754ae598_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheBody_vue_vue_type_template_id_754ae598_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TheBody.vue?vue&type=template&id=754ae598&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheBody.vue?vue&type=template&id=754ae598&scoped=true");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/TheLogin.vue?vue&type=template&id=f4ef123a":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/TheLogin.vue?vue&type=template&id=f4ef123a ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheLogin_vue_vue_type_template_id_f4ef123a__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheLogin_vue_vue_type_template_id_f4ef123a__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TheLogin.vue?vue&type=template&id=f4ef123a */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheLogin.vue?vue&type=template&id=f4ef123a");
 
 
 /***/ }),
@@ -18192,11 +19750,28 @@ __webpack_require__.r(__webpack_exports__);
   \***************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheMenu_vue_vue_type_template_id_285cca56_scoped_true__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheMenu_vue_vue_type_template_id_285cca56_scoped_true__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TheMenu.vue?vue&type=template&id=285cca56&scoped=true */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheMenu.vue?vue&type=template&id=285cca56&scoped=true");
+
+
+/***/ }),
+
+/***/ "./resources/js/router/HomeRoute.vue?vue&type=template&id=452fe7c2":
+/*!*************************************************************************!*\
+  !*** ./resources/js/router/HomeRoute.vue?vue&type=template&id=452fe7c2 ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HomeRoute_vue_vue_type_template_id_452fe7c2__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_HomeRoute_vue_vue_type_template_id_452fe7c2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./HomeRoute.vue?vue&type=template&id=452fe7c2 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/router/HomeRoute.vue?vue&type=template&id=452fe7c2");
 
 
 /***/ }),
@@ -18207,6 +19782,7 @@ __webpack_require__.r(__webpack_exports__);
   \*****************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheBody_vue_vue_type_style_index_0_id_754ae598_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TheBody.vue?vue&type=style&index=0&id=754ae598&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheBody.vue?vue&type=style&index=0&id=754ae598&scoped=true&lang=css");
 
@@ -18219,8 +19795,3504 @@ __webpack_require__.r(__webpack_exports__);
   \*****************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_9_use_1_node_modules_vue_loader_dist_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_9_use_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_TheMenu_vue_vue_type_style_index_0_id_285cca56_scoped_true_lang_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!../../../node_modules/vue-loader/dist/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./TheMenu.vue?vue&type=style&index=0&id=285cca56&scoped=true&lang=css */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-9.use[1]!./node_modules/vue-loader/dist/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-9.use[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/components/TheMenu.vue?vue&type=style&index=0&id=285cca56&scoped=true&lang=css");
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-router/dist/vue-router.esm-bundler.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/vue-router/dist/vue-router.esm-bundler.js ***!
+  \****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "NavigationFailureType": () => (/* binding */ NavigationFailureType),
+/* harmony export */   "RouterLink": () => (/* binding */ RouterLink),
+/* harmony export */   "RouterView": () => (/* binding */ RouterView),
+/* harmony export */   "START_LOCATION": () => (/* binding */ START_LOCATION_NORMALIZED),
+/* harmony export */   "createMemoryHistory": () => (/* binding */ createMemoryHistory),
+/* harmony export */   "createRouter": () => (/* binding */ createRouter),
+/* harmony export */   "createRouterMatcher": () => (/* binding */ createRouterMatcher),
+/* harmony export */   "createWebHashHistory": () => (/* binding */ createWebHashHistory),
+/* harmony export */   "createWebHistory": () => (/* binding */ createWebHistory),
+/* harmony export */   "isNavigationFailure": () => (/* binding */ isNavigationFailure),
+/* harmony export */   "matchedRouteKey": () => (/* binding */ matchedRouteKey),
+/* harmony export */   "onBeforeRouteLeave": () => (/* binding */ onBeforeRouteLeave),
+/* harmony export */   "onBeforeRouteUpdate": () => (/* binding */ onBeforeRouteUpdate),
+/* harmony export */   "parseQuery": () => (/* binding */ parseQuery),
+/* harmony export */   "routeLocationKey": () => (/* binding */ routeLocationKey),
+/* harmony export */   "routerKey": () => (/* binding */ routerKey),
+/* harmony export */   "routerViewLocationKey": () => (/* binding */ routerViewLocationKey),
+/* harmony export */   "stringifyQuery": () => (/* binding */ stringifyQuery),
+/* harmony export */   "useLink": () => (/* binding */ useLink),
+/* harmony export */   "useRoute": () => (/* binding */ useRoute),
+/* harmony export */   "useRouter": () => (/* binding */ useRouter),
+/* harmony export */   "viewDepthKey": () => (/* binding */ viewDepthKey)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _vue_devtools_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/devtools-api */ "./node_modules/@vue/devtools-api/lib/esm/index.js");
+/*!
+  * vue-router v4.0.15
+  * (c) 2022 Eduardo San Martin Morote
+  * @license MIT
+  */
+
+
+
+const hasSymbol = typeof Symbol === 'function' && typeof Symbol.toStringTag === 'symbol';
+const PolySymbol = (name) => 
+// vr = vue router
+hasSymbol
+    ? Symbol(( true) ? '[vue-router]: ' + name : 0)
+    : (( true) ? '[vue-router]: ' : 0) + name;
+// rvlm = Router View Location Matched
+/**
+ * RouteRecord being rendered by the closest ancestor Router View. Used for
+ * `onBeforeRouteUpdate` and `onBeforeRouteLeave`. rvlm stands for Router View
+ * Location Matched
+ *
+ * @internal
+ */
+const matchedRouteKey = /*#__PURE__*/ PolySymbol(( true) ? 'router view location matched' : 0);
+/**
+ * Allows overriding the router view depth to control which component in
+ * `matched` is rendered. rvd stands for Router View Depth
+ *
+ * @internal
+ */
+const viewDepthKey = /*#__PURE__*/ PolySymbol(( true) ? 'router view depth' : 0);
+/**
+ * Allows overriding the router instance returned by `useRouter` in tests. r
+ * stands for router
+ *
+ * @internal
+ */
+const routerKey = /*#__PURE__*/ PolySymbol(( true) ? 'router' : 0);
+/**
+ * Allows overriding the current route returned by `useRoute` in tests. rl
+ * stands for route location
+ *
+ * @internal
+ */
+const routeLocationKey = /*#__PURE__*/ PolySymbol(( true) ? 'route location' : 0);
+/**
+ * Allows overriding the current route used by router-view. Internally this is
+ * used when the `route` prop is passed.
+ *
+ * @internal
+ */
+const routerViewLocationKey = /*#__PURE__*/ PolySymbol(( true) ? 'router view location' : 0);
+
+const isBrowser = typeof window !== 'undefined';
+
+function isESModule(obj) {
+    return obj.__esModule || (hasSymbol && obj[Symbol.toStringTag] === 'Module');
+}
+const assign = Object.assign;
+function applyToParams(fn, params) {
+    const newParams = {};
+    for (const key in params) {
+        const value = params[key];
+        newParams[key] = Array.isArray(value) ? value.map(fn) : fn(value);
+    }
+    return newParams;
+}
+const noop = () => { };
+
+function warn(msg) {
+    // avoid using ...args as it breaks in older Edge builds
+    const args = Array.from(arguments).slice(1);
+    console.warn.apply(console, ['[Vue Router warn]: ' + msg].concat(args));
+}
+
+const TRAILING_SLASH_RE = /\/$/;
+const removeTrailingSlash = (path) => path.replace(TRAILING_SLASH_RE, '');
+/**
+ * Transforms an URI into a normalized history location
+ *
+ * @param parseQuery
+ * @param location - URI to normalize
+ * @param currentLocation - current absolute location. Allows resolving relative
+ * paths. Must start with `/`. Defaults to `/`
+ * @returns a normalized history location
+ */
+function parseURL(parseQuery, location, currentLocation = '/') {
+    let path, query = {}, searchString = '', hash = '';
+    // Could use URL and URLSearchParams but IE 11 doesn't support it
+    const searchPos = location.indexOf('?');
+    const hashPos = location.indexOf('#', searchPos > -1 ? searchPos : 0);
+    if (searchPos > -1) {
+        path = location.slice(0, searchPos);
+        searchString = location.slice(searchPos + 1, hashPos > -1 ? hashPos : location.length);
+        query = parseQuery(searchString);
+    }
+    if (hashPos > -1) {
+        path = path || location.slice(0, hashPos);
+        // keep the # character
+        hash = location.slice(hashPos, location.length);
+    }
+    // no search and no query
+    path = resolveRelativePath(path != null ? path : location, currentLocation);
+    // empty path means a relative query or hash `?foo=f`, `#thing`
+    return {
+        fullPath: path + (searchString && '?') + searchString + hash,
+        path,
+        query,
+        hash,
+    };
+}
+/**
+ * Stringifies a URL object
+ *
+ * @param stringifyQuery
+ * @param location
+ */
+function stringifyURL(stringifyQuery, location) {
+    const query = location.query ? stringifyQuery(location.query) : '';
+    return location.path + (query && '?') + query + (location.hash || '');
+}
+/**
+ * Strips off the base from the beginning of a location.pathname in a non
+ * case-sensitive way.
+ *
+ * @param pathname - location.pathname
+ * @param base - base to strip off
+ */
+function stripBase(pathname, base) {
+    // no base or base is not found at the beginning
+    if (!base || !pathname.toLowerCase().startsWith(base.toLowerCase()))
+        return pathname;
+    return pathname.slice(base.length) || '/';
+}
+/**
+ * Checks if two RouteLocation are equal. This means that both locations are
+ * pointing towards the same {@link RouteRecord} and that all `params`, `query`
+ * parameters and `hash` are the same
+ *
+ * @param a - first {@link RouteLocation}
+ * @param b - second {@link RouteLocation}
+ */
+function isSameRouteLocation(stringifyQuery, a, b) {
+    const aLastIndex = a.matched.length - 1;
+    const bLastIndex = b.matched.length - 1;
+    return (aLastIndex > -1 &&
+        aLastIndex === bLastIndex &&
+        isSameRouteRecord(a.matched[aLastIndex], b.matched[bLastIndex]) &&
+        isSameRouteLocationParams(a.params, b.params) &&
+        stringifyQuery(a.query) === stringifyQuery(b.query) &&
+        a.hash === b.hash);
+}
+/**
+ * Check if two `RouteRecords` are equal. Takes into account aliases: they are
+ * considered equal to the `RouteRecord` they are aliasing.
+ *
+ * @param a - first {@link RouteRecord}
+ * @param b - second {@link RouteRecord}
+ */
+function isSameRouteRecord(a, b) {
+    // since the original record has an undefined value for aliasOf
+    // but all aliases point to the original record, this will always compare
+    // the original record
+    return (a.aliasOf || a) === (b.aliasOf || b);
+}
+function isSameRouteLocationParams(a, b) {
+    if (Object.keys(a).length !== Object.keys(b).length)
+        return false;
+    for (const key in a) {
+        if (!isSameRouteLocationParamsValue(a[key], b[key]))
+            return false;
+    }
+    return true;
+}
+function isSameRouteLocationParamsValue(a, b) {
+    return Array.isArray(a)
+        ? isEquivalentArray(a, b)
+        : Array.isArray(b)
+            ? isEquivalentArray(b, a)
+            : a === b;
+}
+/**
+ * Check if two arrays are the same or if an array with one single entry is the
+ * same as another primitive value. Used to check query and parameters
+ *
+ * @param a - array of values
+ * @param b - array of values or a single value
+ */
+function isEquivalentArray(a, b) {
+    return Array.isArray(b)
+        ? a.length === b.length && a.every((value, i) => value === b[i])
+        : a.length === 1 && a[0] === b;
+}
+/**
+ * Resolves a relative path that starts with `.`.
+ *
+ * @param to - path location we are resolving
+ * @param from - currentLocation.path, should start with `/`
+ */
+function resolveRelativePath(to, from) {
+    if (to.startsWith('/'))
+        return to;
+    if (( true) && !from.startsWith('/')) {
+        warn(`Cannot resolve a relative location without an absolute path. Trying to resolve "${to}" from "${from}". It should look like "/${from}".`);
+        return to;
+    }
+    if (!to)
+        return from;
+    const fromSegments = from.split('/');
+    const toSegments = to.split('/');
+    let position = fromSegments.length - 1;
+    let toPosition;
+    let segment;
+    for (toPosition = 0; toPosition < toSegments.length; toPosition++) {
+        segment = toSegments[toPosition];
+        // can't go below zero
+        if (position === 1 || segment === '.')
+            continue;
+        if (segment === '..')
+            position--;
+        // found something that is not relative path
+        else
+            break;
+    }
+    return (fromSegments.slice(0, position).join('/') +
+        '/' +
+        toSegments
+            .slice(toPosition - (toPosition === toSegments.length ? 1 : 0))
+            .join('/'));
+}
+
+var NavigationType;
+(function (NavigationType) {
+    NavigationType["pop"] = "pop";
+    NavigationType["push"] = "push";
+})(NavigationType || (NavigationType = {}));
+var NavigationDirection;
+(function (NavigationDirection) {
+    NavigationDirection["back"] = "back";
+    NavigationDirection["forward"] = "forward";
+    NavigationDirection["unknown"] = "";
+})(NavigationDirection || (NavigationDirection = {}));
+/**
+ * Starting location for Histories
+ */
+const START = '';
+// Generic utils
+/**
+ * Normalizes a base by removing any trailing slash and reading the base tag if
+ * present.
+ *
+ * @param base - base to normalize
+ */
+function normalizeBase(base) {
+    if (!base) {
+        if (isBrowser) {
+            // respect <base> tag
+            const baseEl = document.querySelector('base');
+            base = (baseEl && baseEl.getAttribute('href')) || '/';
+            // strip full URL origin
+            base = base.replace(/^\w+:\/\/[^\/]+/, '');
+        }
+        else {
+            base = '/';
+        }
+    }
+    // ensure leading slash when it was removed by the regex above avoid leading
+    // slash with hash because the file could be read from the disk like file://
+    // and the leading slash would cause problems
+    if (base[0] !== '/' && base[0] !== '#')
+        base = '/' + base;
+    // remove the trailing slash so all other method can just do `base + fullPath`
+    // to build an href
+    return removeTrailingSlash(base);
+}
+// remove any character before the hash
+const BEFORE_HASH_RE = /^[^#]+#/;
+function createHref(base, location) {
+    return base.replace(BEFORE_HASH_RE, '#') + location;
+}
+
+function getElementPosition(el, offset) {
+    const docRect = document.documentElement.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    return {
+        behavior: offset.behavior,
+        left: elRect.left - docRect.left - (offset.left || 0),
+        top: elRect.top - docRect.top - (offset.top || 0),
+    };
+}
+const computeScrollPosition = () => ({
+    left: window.pageXOffset,
+    top: window.pageYOffset,
+});
+function scrollToPosition(position) {
+    let scrollToOptions;
+    if ('el' in position) {
+        const positionEl = position.el;
+        const isIdSelector = typeof positionEl === 'string' && positionEl.startsWith('#');
+        /**
+         * `id`s can accept pretty much any characters, including CSS combinators
+         * like `>` or `~`. It's still possible to retrieve elements using
+         * `document.getElementById('~')` but it needs to be escaped when using
+         * `document.querySelector('#\\~')` for it to be valid. The only
+         * requirements for `id`s are them to be unique on the page and to not be
+         * empty (`id=""`). Because of that, when passing an id selector, it should
+         * be properly escaped for it to work with `querySelector`. We could check
+         * for the id selector to be simple (no CSS combinators `+ >~`) but that
+         * would make things inconsistent since they are valid characters for an
+         * `id` but would need to be escaped when using `querySelector`, breaking
+         * their usage and ending up in no selector returned. Selectors need to be
+         * escaped:
+         *
+         * - `#1-thing` becomes `#\31 -thing`
+         * - `#with~symbols` becomes `#with\\~symbols`
+         *
+         * - More information about  the topic can be found at
+         *   https://mathiasbynens.be/notes/html5-id-class.
+         * - Practical example: https://mathiasbynens.be/demo/html5-id
+         */
+        if (( true) && typeof position.el === 'string') {
+            if (!isIdSelector || !document.getElementById(position.el.slice(1))) {
+                try {
+                    const foundEl = document.querySelector(position.el);
+                    if (isIdSelector && foundEl) {
+                        warn(`The selector "${position.el}" should be passed as "el: document.querySelector('${position.el}')" because it starts with "#".`);
+                        // return to avoid other warnings
+                        return;
+                    }
+                }
+                catch (err) {
+                    warn(`The selector "${position.el}" is invalid. If you are using an id selector, make sure to escape it. You can find more information about escaping characters in selectors at https://mathiasbynens.be/notes/css-escapes or use CSS.escape (https://developer.mozilla.org/en-US/docs/Web/API/CSS/escape).`);
+                    // return to avoid other warnings
+                    return;
+                }
+            }
+        }
+        const el = typeof positionEl === 'string'
+            ? isIdSelector
+                ? document.getElementById(positionEl.slice(1))
+                : document.querySelector(positionEl)
+            : positionEl;
+        if (!el) {
+            ( true) &&
+                warn(`Couldn't find element using selector "${position.el}" returned by scrollBehavior.`);
+            return;
+        }
+        scrollToOptions = getElementPosition(el, position);
+    }
+    else {
+        scrollToOptions = position;
+    }
+    if ('scrollBehavior' in document.documentElement.style)
+        window.scrollTo(scrollToOptions);
+    else {
+        window.scrollTo(scrollToOptions.left != null ? scrollToOptions.left : window.pageXOffset, scrollToOptions.top != null ? scrollToOptions.top : window.pageYOffset);
+    }
+}
+function getScrollKey(path, delta) {
+    const position = history.state ? history.state.position - delta : -1;
+    return position + path;
+}
+const scrollPositions = new Map();
+function saveScrollPosition(key, scrollPosition) {
+    scrollPositions.set(key, scrollPosition);
+}
+function getSavedScrollPosition(key) {
+    const scroll = scrollPositions.get(key);
+    // consume it so it's not used again
+    scrollPositions.delete(key);
+    return scroll;
+}
+// TODO: RFC about how to save scroll position
+/**
+ * ScrollBehavior instance used by the router to compute and restore the scroll
+ * position when navigating.
+ */
+// export interface ScrollHandler<ScrollPositionEntry extends HistoryStateValue, ScrollPosition extends ScrollPositionEntry> {
+//   // returns a scroll position that can be saved in history
+//   compute(): ScrollPositionEntry
+//   // can take an extended ScrollPositionEntry
+//   scroll(position: ScrollPosition): void
+// }
+// export const scrollHandler: ScrollHandler<ScrollPosition> = {
+//   compute: computeScroll,
+//   scroll: scrollToPosition,
+// }
+
+let createBaseLocation = () => location.protocol + '//' + location.host;
+/**
+ * Creates a normalized history location from a window.location object
+ * @param location -
+ */
+function createCurrentLocation(base, location) {
+    const { pathname, search, hash } = location;
+    // allows hash bases like #, /#, #/, #!, #!/, /#!/, or even /folder#end
+    const hashPos = base.indexOf('#');
+    if (hashPos > -1) {
+        let slicePos = hash.includes(base.slice(hashPos))
+            ? base.slice(hashPos).length
+            : 1;
+        let pathFromHash = hash.slice(slicePos);
+        // prepend the starting slash to hash so the url starts with /#
+        if (pathFromHash[0] !== '/')
+            pathFromHash = '/' + pathFromHash;
+        return stripBase(pathFromHash, '');
+    }
+    const path = stripBase(pathname, base);
+    return path + search + hash;
+}
+function useHistoryListeners(base, historyState, currentLocation, replace) {
+    let listeners = [];
+    let teardowns = [];
+    // TODO: should it be a stack? a Dict. Check if the popstate listener
+    // can trigger twice
+    let pauseState = null;
+    const popStateHandler = ({ state, }) => {
+        const to = createCurrentLocation(base, location);
+        const from = currentLocation.value;
+        const fromState = historyState.value;
+        let delta = 0;
+        if (state) {
+            currentLocation.value = to;
+            historyState.value = state;
+            // ignore the popstate and reset the pauseState
+            if (pauseState && pauseState === from) {
+                pauseState = null;
+                return;
+            }
+            delta = fromState ? state.position - fromState.position : 0;
+        }
+        else {
+            replace(to);
+        }
+        // console.log({ deltaFromCurrent })
+        // Here we could also revert the navigation by calling history.go(-delta)
+        // this listener will have to be adapted to not trigger again and to wait for the url
+        // to be updated before triggering the listeners. Some kind of validation function would also
+        // need to be passed to the listeners so the navigation can be accepted
+        // call all listeners
+        listeners.forEach(listener => {
+            listener(currentLocation.value, from, {
+                delta,
+                type: NavigationType.pop,
+                direction: delta
+                    ? delta > 0
+                        ? NavigationDirection.forward
+                        : NavigationDirection.back
+                    : NavigationDirection.unknown,
+            });
+        });
+    };
+    function pauseListeners() {
+        pauseState = currentLocation.value;
+    }
+    function listen(callback) {
+        // setup the listener and prepare teardown callbacks
+        listeners.push(callback);
+        const teardown = () => {
+            const index = listeners.indexOf(callback);
+            if (index > -1)
+                listeners.splice(index, 1);
+        };
+        teardowns.push(teardown);
+        return teardown;
+    }
+    function beforeUnloadListener() {
+        const { history } = window;
+        if (!history.state)
+            return;
+        history.replaceState(assign({}, history.state, { scroll: computeScrollPosition() }), '');
+    }
+    function destroy() {
+        for (const teardown of teardowns)
+            teardown();
+        teardowns = [];
+        window.removeEventListener('popstate', popStateHandler);
+        window.removeEventListener('beforeunload', beforeUnloadListener);
+    }
+    // setup the listeners and prepare teardown callbacks
+    window.addEventListener('popstate', popStateHandler);
+    window.addEventListener('beforeunload', beforeUnloadListener);
+    return {
+        pauseListeners,
+        listen,
+        destroy,
+    };
+}
+/**
+ * Creates a state object
+ */
+function buildState(back, current, forward, replaced = false, computeScroll = false) {
+    return {
+        back,
+        current,
+        forward,
+        replaced,
+        position: window.history.length,
+        scroll: computeScroll ? computeScrollPosition() : null,
+    };
+}
+function useHistoryStateNavigation(base) {
+    const { history, location } = window;
+    // private variables
+    const currentLocation = {
+        value: createCurrentLocation(base, location),
+    };
+    const historyState = { value: history.state };
+    // build current history entry as this is a fresh navigation
+    if (!historyState.value) {
+        changeLocation(currentLocation.value, {
+            back: null,
+            current: currentLocation.value,
+            forward: null,
+            // the length is off by one, we need to decrease it
+            position: history.length - 1,
+            replaced: true,
+            // don't add a scroll as the user may have an anchor and we want
+            // scrollBehavior to be triggered without a saved position
+            scroll: null,
+        }, true);
+    }
+    function changeLocation(to, state, replace) {
+        /**
+         * if a base tag is provided and we are on a normal domain, we have to
+         * respect the provided `base` attribute because pushState() will use it and
+         * potentially erase anything before the `#` like at
+         * https://github.com/vuejs/router/issues/685 where a base of
+         * `/folder/#` but a base of `/` would erase the `/folder/` section. If
+         * there is no host, the `<base>` tag makes no sense and if there isn't a
+         * base tag we can just use everything after the `#`.
+         */
+        const hashIndex = base.indexOf('#');
+        const url = hashIndex > -1
+            ? (location.host && document.querySelector('base')
+                ? base
+                : base.slice(hashIndex)) + to
+            : createBaseLocation() + base + to;
+        try {
+            // BROWSER QUIRK
+            // NOTE: Safari throws a SecurityError when calling this function 100 times in 30 seconds
+            history[replace ? 'replaceState' : 'pushState'](state, '', url);
+            historyState.value = state;
+        }
+        catch (err) {
+            if ((true)) {
+                warn('Error with push/replace State', err);
+            }
+            else {}
+            // Force the navigation, this also resets the call count
+            location[replace ? 'replace' : 'assign'](url);
+        }
+    }
+    function replace(to, data) {
+        const state = assign({}, history.state, buildState(historyState.value.back, 
+        // keep back and forward entries but override current position
+        to, historyState.value.forward, true), data, { position: historyState.value.position });
+        changeLocation(to, state, true);
+        currentLocation.value = to;
+    }
+    function push(to, data) {
+        // Add to current entry the information of where we are going
+        // as well as saving the current position
+        const currentState = assign({}, 
+        // use current history state to gracefully handle a wrong call to
+        // history.replaceState
+        // https://github.com/vuejs/router/issues/366
+        historyState.value, history.state, {
+            forward: to,
+            scroll: computeScrollPosition(),
+        });
+        if (( true) && !history.state) {
+            warn(`history.state seems to have been manually replaced without preserving the necessary values. Make sure to preserve existing history state if you are manually calling history.replaceState:\n\n` +
+                `history.replaceState(history.state, '', url)\n\n` +
+                `You can find more information at https://next.router.vuejs.org/guide/migration/#usage-of-history-state.`);
+        }
+        changeLocation(currentState.current, currentState, true);
+        const state = assign({}, buildState(currentLocation.value, to, null), { position: currentState.position + 1 }, data);
+        changeLocation(to, state, false);
+        currentLocation.value = to;
+    }
+    return {
+        location: currentLocation,
+        state: historyState,
+        push,
+        replace,
+    };
+}
+/**
+ * Creates an HTML5 history. Most common history for single page applications.
+ *
+ * @param base -
+ */
+function createWebHistory(base) {
+    base = normalizeBase(base);
+    const historyNavigation = useHistoryStateNavigation(base);
+    const historyListeners = useHistoryListeners(base, historyNavigation.state, historyNavigation.location, historyNavigation.replace);
+    function go(delta, triggerListeners = true) {
+        if (!triggerListeners)
+            historyListeners.pauseListeners();
+        history.go(delta);
+    }
+    const routerHistory = assign({
+        // it's overridden right after
+        location: '',
+        base,
+        go,
+        createHref: createHref.bind(null, base),
+    }, historyNavigation, historyListeners);
+    Object.defineProperty(routerHistory, 'location', {
+        enumerable: true,
+        get: () => historyNavigation.location.value,
+    });
+    Object.defineProperty(routerHistory, 'state', {
+        enumerable: true,
+        get: () => historyNavigation.state.value,
+    });
+    return routerHistory;
+}
+
+/**
+ * Creates a in-memory based history. The main purpose of this history is to handle SSR. It starts in a special location that is nowhere.
+ * It's up to the user to replace that location with the starter location by either calling `router.push` or `router.replace`.
+ *
+ * @param base - Base applied to all urls, defaults to '/'
+ * @returns a history object that can be passed to the router constructor
+ */
+function createMemoryHistory(base = '') {
+    let listeners = [];
+    let queue = [START];
+    let position = 0;
+    base = normalizeBase(base);
+    function setLocation(location) {
+        position++;
+        if (position === queue.length) {
+            // we are at the end, we can simply append a new entry
+            queue.push(location);
+        }
+        else {
+            // we are in the middle, we remove everything from here in the queue
+            queue.splice(position);
+            queue.push(location);
+        }
+    }
+    function triggerListeners(to, from, { direction, delta }) {
+        const info = {
+            direction,
+            delta,
+            type: NavigationType.pop,
+        };
+        for (const callback of listeners) {
+            callback(to, from, info);
+        }
+    }
+    const routerHistory = {
+        // rewritten by Object.defineProperty
+        location: START,
+        // TODO: should be kept in queue
+        state: {},
+        base,
+        createHref: createHref.bind(null, base),
+        replace(to) {
+            // remove current entry and decrement position
+            queue.splice(position--, 1);
+            setLocation(to);
+        },
+        push(to, data) {
+            setLocation(to);
+        },
+        listen(callback) {
+            listeners.push(callback);
+            return () => {
+                const index = listeners.indexOf(callback);
+                if (index > -1)
+                    listeners.splice(index, 1);
+            };
+        },
+        destroy() {
+            listeners = [];
+            queue = [START];
+            position = 0;
+        },
+        go(delta, shouldTrigger = true) {
+            const from = this.location;
+            const direction = 
+            // we are considering delta === 0 going forward, but in abstract mode
+            // using 0 for the delta doesn't make sense like it does in html5 where
+            // it reloads the page
+            delta < 0 ? NavigationDirection.back : NavigationDirection.forward;
+            position = Math.max(0, Math.min(position + delta, queue.length - 1));
+            if (shouldTrigger) {
+                triggerListeners(this.location, from, {
+                    direction,
+                    delta,
+                });
+            }
+        },
+    };
+    Object.defineProperty(routerHistory, 'location', {
+        enumerable: true,
+        get: () => queue[position],
+    });
+    return routerHistory;
+}
+
+/**
+ * Creates a hash history. Useful for web applications with no host (e.g.
+ * `file://`) or when configuring a server to handle any URL is not possible.
+ *
+ * @param base - optional base to provide. Defaults to `location.pathname +
+ * location.search` If there is a `<base>` tag in the `head`, its value will be
+ * ignored in favor of this parameter **but note it affects all the
+ * history.pushState() calls**, meaning that if you use a `<base>` tag, it's
+ * `href` value **has to match this parameter** (ignoring anything after the
+ * `#`).
+ *
+ * @example
+ * ```js
+ * // at https://example.com/folder
+ * createWebHashHistory() // gives a url of `https://example.com/folder#`
+ * createWebHashHistory('/folder/') // gives a url of `https://example.com/folder/#`
+ * // if the `#` is provided in the base, it won't be added by `createWebHashHistory`
+ * createWebHashHistory('/folder/#/app/') // gives a url of `https://example.com/folder/#/app/`
+ * // you should avoid doing this because it changes the original url and breaks copying urls
+ * createWebHashHistory('/other-folder/') // gives a url of `https://example.com/other-folder/#`
+ *
+ * // at file:///usr/etc/folder/index.html
+ * // for locations with no `host`, the base is ignored
+ * createWebHashHistory('/iAmIgnored') // gives a url of `file:///usr/etc/folder/index.html#`
+ * ```
+ */
+function createWebHashHistory(base) {
+    // Make sure this implementation is fine in terms of encoding, specially for IE11
+    // for `file://`, directly use the pathname and ignore the base
+    // location.pathname contains an initial `/` even at the root: `https://example.com`
+    base = location.host ? base || location.pathname + location.search : '';
+    // allow the user to provide a `#` in the middle: `/base/#/app`
+    if (!base.includes('#'))
+        base += '#';
+    if (( true) && !base.endsWith('#/') && !base.endsWith('#')) {
+        warn(`A hash base must end with a "#":\n"${base}" should be "${base.replace(/#.*$/, '#')}".`);
+    }
+    return createWebHistory(base);
+}
+
+function isRouteLocation(route) {
+    return typeof route === 'string' || (route && typeof route === 'object');
+}
+function isRouteName(name) {
+    return typeof name === 'string' || typeof name === 'symbol';
+}
+
+/**
+ * Initial route location where the router is. Can be used in navigation guards
+ * to differentiate the initial navigation.
+ *
+ * @example
+ * ```js
+ * import { START_LOCATION } from 'vue-router'
+ *
+ * router.beforeEach((to, from) => {
+ *   if (from === START_LOCATION) {
+ *     // initial navigation
+ *   }
+ * })
+ * ```
+ */
+const START_LOCATION_NORMALIZED = {
+    path: '/',
+    name: undefined,
+    params: {},
+    query: {},
+    hash: '',
+    fullPath: '/',
+    matched: [],
+    meta: {},
+    redirectedFrom: undefined,
+};
+
+const NavigationFailureSymbol = /*#__PURE__*/ PolySymbol(( true) ? 'navigation failure' : 0);
+/**
+ * Enumeration with all possible types for navigation failures. Can be passed to
+ * {@link isNavigationFailure} to check for specific failures.
+ */
+var NavigationFailureType;
+(function (NavigationFailureType) {
+    /**
+     * An aborted navigation is a navigation that failed because a navigation
+     * guard returned `false` or called `next(false)`
+     */
+    NavigationFailureType[NavigationFailureType["aborted"] = 4] = "aborted";
+    /**
+     * A cancelled navigation is a navigation that failed because a more recent
+     * navigation finished started (not necessarily finished).
+     */
+    NavigationFailureType[NavigationFailureType["cancelled"] = 8] = "cancelled";
+    /**
+     * A duplicated navigation is a navigation that failed because it was
+     * initiated while already being at the exact same location.
+     */
+    NavigationFailureType[NavigationFailureType["duplicated"] = 16] = "duplicated";
+})(NavigationFailureType || (NavigationFailureType = {}));
+// DEV only debug messages
+const ErrorTypeMessages = {
+    [1 /* MATCHER_NOT_FOUND */]({ location, currentLocation }) {
+        return `No match for\n ${JSON.stringify(location)}${currentLocation
+            ? '\nwhile being at\n' + JSON.stringify(currentLocation)
+            : ''}`;
+    },
+    [2 /* NAVIGATION_GUARD_REDIRECT */]({ from, to, }) {
+        return `Redirected from "${from.fullPath}" to "${stringifyRoute(to)}" via a navigation guard.`;
+    },
+    [4 /* NAVIGATION_ABORTED */]({ from, to }) {
+        return `Navigation aborted from "${from.fullPath}" to "${to.fullPath}" via a navigation guard.`;
+    },
+    [8 /* NAVIGATION_CANCELLED */]({ from, to }) {
+        return `Navigation cancelled from "${from.fullPath}" to "${to.fullPath}" with a new navigation.`;
+    },
+    [16 /* NAVIGATION_DUPLICATED */]({ from, to }) {
+        return `Avoided redundant navigation to current location: "${from.fullPath}".`;
+    },
+};
+function createRouterError(type, params) {
+    // keep full error messages in cjs versions
+    if (true) {
+        return assign(new Error(ErrorTypeMessages[type](params)), {
+            type,
+            [NavigationFailureSymbol]: true,
+        }, params);
+    }
+    else {}
+}
+function isNavigationFailure(error, type) {
+    return (error instanceof Error &&
+        NavigationFailureSymbol in error &&
+        (type == null || !!(error.type & type)));
+}
+const propertiesToLog = ['params', 'query', 'hash'];
+function stringifyRoute(to) {
+    if (typeof to === 'string')
+        return to;
+    if ('path' in to)
+        return to.path;
+    const location = {};
+    for (const key of propertiesToLog) {
+        if (key in to)
+            location[key] = to[key];
+    }
+    return JSON.stringify(location, null, 2);
+}
+
+// default pattern for a param: non greedy everything but /
+const BASE_PARAM_PATTERN = '[^/]+?';
+const BASE_PATH_PARSER_OPTIONS = {
+    sensitive: false,
+    strict: false,
+    start: true,
+    end: true,
+};
+// Special Regex characters that must be escaped in static tokens
+const REGEX_CHARS_RE = /[.+*?^${}()[\]/\\]/g;
+/**
+ * Creates a path parser from an array of Segments (a segment is an array of Tokens)
+ *
+ * @param segments - array of segments returned by tokenizePath
+ * @param extraOptions - optional options for the regexp
+ * @returns a PathParser
+ */
+function tokensToParser(segments, extraOptions) {
+    const options = assign({}, BASE_PATH_PARSER_OPTIONS, extraOptions);
+    // the amount of scores is the same as the length of segments except for the root segment "/"
+    const score = [];
+    // the regexp as a string
+    let pattern = options.start ? '^' : '';
+    // extracted keys
+    const keys = [];
+    for (const segment of segments) {
+        // the root segment needs special treatment
+        const segmentScores = segment.length ? [] : [90 /* Root */];
+        // allow trailing slash
+        if (options.strict && !segment.length)
+            pattern += '/';
+        for (let tokenIndex = 0; tokenIndex < segment.length; tokenIndex++) {
+            const token = segment[tokenIndex];
+            // resets the score if we are inside a sub segment /:a-other-:b
+            let subSegmentScore = 40 /* Segment */ +
+                (options.sensitive ? 0.25 /* BonusCaseSensitive */ : 0);
+            if (token.type === 0 /* Static */) {
+                // prepend the slash if we are starting a new segment
+                if (!tokenIndex)
+                    pattern += '/';
+                pattern += token.value.replace(REGEX_CHARS_RE, '\\$&');
+                subSegmentScore += 40 /* Static */;
+            }
+            else if (token.type === 1 /* Param */) {
+                const { value, repeatable, optional, regexp } = token;
+                keys.push({
+                    name: value,
+                    repeatable,
+                    optional,
+                });
+                const re = regexp ? regexp : BASE_PARAM_PATTERN;
+                // the user provided a custom regexp /:id(\\d+)
+                if (re !== BASE_PARAM_PATTERN) {
+                    subSegmentScore += 10 /* BonusCustomRegExp */;
+                    // make sure the regexp is valid before using it
+                    try {
+                        new RegExp(`(${re})`);
+                    }
+                    catch (err) {
+                        throw new Error(`Invalid custom RegExp for param "${value}" (${re}): ` +
+                            err.message);
+                    }
+                }
+                // when we repeat we must take care of the repeating leading slash
+                let subPattern = repeatable ? `((?:${re})(?:/(?:${re}))*)` : `(${re})`;
+                // prepend the slash if we are starting a new segment
+                if (!tokenIndex)
+                    subPattern =
+                        // avoid an optional / if there are more segments e.g. /:p?-static
+                        // or /:p?-:p2
+                        optional && segment.length < 2
+                            ? `(?:/${subPattern})`
+                            : '/' + subPattern;
+                if (optional)
+                    subPattern += '?';
+                pattern += subPattern;
+                subSegmentScore += 20 /* Dynamic */;
+                if (optional)
+                    subSegmentScore += -8 /* BonusOptional */;
+                if (repeatable)
+                    subSegmentScore += -20 /* BonusRepeatable */;
+                if (re === '.*')
+                    subSegmentScore += -50 /* BonusWildcard */;
+            }
+            segmentScores.push(subSegmentScore);
+        }
+        // an empty array like /home/ -> [[{home}], []]
+        // if (!segment.length) pattern += '/'
+        score.push(segmentScores);
+    }
+    // only apply the strict bonus to the last score
+    if (options.strict && options.end) {
+        const i = score.length - 1;
+        score[i][score[i].length - 1] += 0.7000000000000001 /* BonusStrict */;
+    }
+    // TODO: dev only warn double trailing slash
+    if (!options.strict)
+        pattern += '/?';
+    if (options.end)
+        pattern += '$';
+    // allow paths like /dynamic to only match dynamic or dynamic/... but not dynamic_something_else
+    else if (options.strict)
+        pattern += '(?:/|$)';
+    const re = new RegExp(pattern, options.sensitive ? '' : 'i');
+    function parse(path) {
+        const match = path.match(re);
+        const params = {};
+        if (!match)
+            return null;
+        for (let i = 1; i < match.length; i++) {
+            const value = match[i] || '';
+            const key = keys[i - 1];
+            params[key.name] = value && key.repeatable ? value.split('/') : value;
+        }
+        return params;
+    }
+    function stringify(params) {
+        let path = '';
+        // for optional parameters to allow to be empty
+        let avoidDuplicatedSlash = false;
+        for (const segment of segments) {
+            if (!avoidDuplicatedSlash || !path.endsWith('/'))
+                path += '/';
+            avoidDuplicatedSlash = false;
+            for (const token of segment) {
+                if (token.type === 0 /* Static */) {
+                    path += token.value;
+                }
+                else if (token.type === 1 /* Param */) {
+                    const { value, repeatable, optional } = token;
+                    const param = value in params ? params[value] : '';
+                    if (Array.isArray(param) && !repeatable)
+                        throw new Error(`Provided param "${value}" is an array but it is not repeatable (* or + modifiers)`);
+                    const text = Array.isArray(param) ? param.join('/') : param;
+                    if (!text) {
+                        if (optional) {
+                            // if we have more than one optional param like /:a?-static and there are more segments, we don't need to
+                            // care about the optional param
+                            if (segment.length < 2 && segments.length > 1) {
+                                // remove the last slash as we could be at the end
+                                if (path.endsWith('/'))
+                                    path = path.slice(0, -1);
+                                // do not append a slash on the next iteration
+                                else
+                                    avoidDuplicatedSlash = true;
+                            }
+                        }
+                        else
+                            throw new Error(`Missing required param "${value}"`);
+                    }
+                    path += text;
+                }
+            }
+        }
+        return path;
+    }
+    return {
+        re,
+        score,
+        keys,
+        parse,
+        stringify,
+    };
+}
+/**
+ * Compares an array of numbers as used in PathParser.score and returns a
+ * number. This function can be used to `sort` an array
+ *
+ * @param a - first array of numbers
+ * @param b - second array of numbers
+ * @returns 0 if both are equal, < 0 if a should be sorted first, > 0 if b
+ * should be sorted first
+ */
+function compareScoreArray(a, b) {
+    let i = 0;
+    while (i < a.length && i < b.length) {
+        const diff = b[i] - a[i];
+        // only keep going if diff === 0
+        if (diff)
+            return diff;
+        i++;
+    }
+    // if the last subsegment was Static, the shorter segments should be sorted first
+    // otherwise sort the longest segment first
+    if (a.length < b.length) {
+        return a.length === 1 && a[0] === 40 /* Static */ + 40 /* Segment */
+            ? -1
+            : 1;
+    }
+    else if (a.length > b.length) {
+        return b.length === 1 && b[0] === 40 /* Static */ + 40 /* Segment */
+            ? 1
+            : -1;
+    }
+    return 0;
+}
+/**
+ * Compare function that can be used with `sort` to sort an array of PathParser
+ *
+ * @param a - first PathParser
+ * @param b - second PathParser
+ * @returns 0 if both are equal, < 0 if a should be sorted first, > 0 if b
+ */
+function comparePathParserScore(a, b) {
+    let i = 0;
+    const aScore = a.score;
+    const bScore = b.score;
+    while (i < aScore.length && i < bScore.length) {
+        const comp = compareScoreArray(aScore[i], bScore[i]);
+        // do not return if both are equal
+        if (comp)
+            return comp;
+        i++;
+    }
+    // if a and b share the same score entries but b has more, sort b first
+    return bScore.length - aScore.length;
+    // this is the ternary version
+    // return aScore.length < bScore.length
+    //   ? 1
+    //   : aScore.length > bScore.length
+    //   ? -1
+    //   : 0
+}
+
+const ROOT_TOKEN = {
+    type: 0 /* Static */,
+    value: '',
+};
+const VALID_PARAM_RE = /[a-zA-Z0-9_]/;
+// After some profiling, the cache seems to be unnecessary because tokenizePath
+// (the slowest part of adding a route) is very fast
+// const tokenCache = new Map<string, Token[][]>()
+function tokenizePath(path) {
+    if (!path)
+        return [[]];
+    if (path === '/')
+        return [[ROOT_TOKEN]];
+    if (!path.startsWith('/')) {
+        throw new Error(( true)
+            ? `Route paths should start with a "/": "${path}" should be "/${path}".`
+            : 0);
+    }
+    // if (tokenCache.has(path)) return tokenCache.get(path)!
+    function crash(message) {
+        throw new Error(`ERR (${state})/"${buffer}": ${message}`);
+    }
+    let state = 0 /* Static */;
+    let previousState = state;
+    const tokens = [];
+    // the segment will always be valid because we get into the initial state
+    // with the leading /
+    let segment;
+    function finalizeSegment() {
+        if (segment)
+            tokens.push(segment);
+        segment = [];
+    }
+    // index on the path
+    let i = 0;
+    // char at index
+    let char;
+    // buffer of the value read
+    let buffer = '';
+    // custom regexp for a param
+    let customRe = '';
+    function consumeBuffer() {
+        if (!buffer)
+            return;
+        if (state === 0 /* Static */) {
+            segment.push({
+                type: 0 /* Static */,
+                value: buffer,
+            });
+        }
+        else if (state === 1 /* Param */ ||
+            state === 2 /* ParamRegExp */ ||
+            state === 3 /* ParamRegExpEnd */) {
+            if (segment.length > 1 && (char === '*' || char === '+'))
+                crash(`A repeatable param (${buffer}) must be alone in its segment. eg: '/:ids+.`);
+            segment.push({
+                type: 1 /* Param */,
+                value: buffer,
+                regexp: customRe,
+                repeatable: char === '*' || char === '+',
+                optional: char === '*' || char === '?',
+            });
+        }
+        else {
+            crash('Invalid state to consume buffer');
+        }
+        buffer = '';
+    }
+    function addCharToBuffer() {
+        buffer += char;
+    }
+    while (i < path.length) {
+        char = path[i++];
+        if (char === '\\' && state !== 2 /* ParamRegExp */) {
+            previousState = state;
+            state = 4 /* EscapeNext */;
+            continue;
+        }
+        switch (state) {
+            case 0 /* Static */:
+                if (char === '/') {
+                    if (buffer) {
+                        consumeBuffer();
+                    }
+                    finalizeSegment();
+                }
+                else if (char === ':') {
+                    consumeBuffer();
+                    state = 1 /* Param */;
+                }
+                else {
+                    addCharToBuffer();
+                }
+                break;
+            case 4 /* EscapeNext */:
+                addCharToBuffer();
+                state = previousState;
+                break;
+            case 1 /* Param */:
+                if (char === '(') {
+                    state = 2 /* ParamRegExp */;
+                }
+                else if (VALID_PARAM_RE.test(char)) {
+                    addCharToBuffer();
+                }
+                else {
+                    consumeBuffer();
+                    state = 0 /* Static */;
+                    // go back one character if we were not modifying
+                    if (char !== '*' && char !== '?' && char !== '+')
+                        i--;
+                }
+                break;
+            case 2 /* ParamRegExp */:
+                // TODO: is it worth handling nested regexp? like :p(?:prefix_([^/]+)_suffix)
+                // it already works by escaping the closing )
+                // https://paths.esm.dev/?p=AAMeJbiAwQEcDKbAoAAkP60PG2R6QAvgNaA6AFACM2ABuQBB#
+                // is this really something people need since you can also write
+                // /prefix_:p()_suffix
+                if (char === ')') {
+                    // handle the escaped )
+                    if (customRe[customRe.length - 1] == '\\')
+                        customRe = customRe.slice(0, -1) + char;
+                    else
+                        state = 3 /* ParamRegExpEnd */;
+                }
+                else {
+                    customRe += char;
+                }
+                break;
+            case 3 /* ParamRegExpEnd */:
+                // same as finalizing a param
+                consumeBuffer();
+                state = 0 /* Static */;
+                // go back one character if we were not modifying
+                if (char !== '*' && char !== '?' && char !== '+')
+                    i--;
+                customRe = '';
+                break;
+            default:
+                crash('Unknown state');
+                break;
+        }
+    }
+    if (state === 2 /* ParamRegExp */)
+        crash(`Unfinished custom RegExp for param "${buffer}"`);
+    consumeBuffer();
+    finalizeSegment();
+    // tokenCache.set(path, tokens)
+    return tokens;
+}
+
+function createRouteRecordMatcher(record, parent, options) {
+    const parser = tokensToParser(tokenizePath(record.path), options);
+    // warn against params with the same name
+    if ((true)) {
+        const existingKeys = new Set();
+        for (const key of parser.keys) {
+            if (existingKeys.has(key.name))
+                warn(`Found duplicated params with name "${key.name}" for path "${record.path}". Only the last one will be available on "$route.params".`);
+            existingKeys.add(key.name);
+        }
+    }
+    const matcher = assign(parser, {
+        record,
+        parent,
+        // these needs to be populated by the parent
+        children: [],
+        alias: [],
+    });
+    if (parent) {
+        // both are aliases or both are not aliases
+        // we don't want to mix them because the order is used when
+        // passing originalRecord in Matcher.addRoute
+        if (!matcher.record.aliasOf === !parent.record.aliasOf)
+            parent.children.push(matcher);
+    }
+    return matcher;
+}
+
+/**
+ * Creates a Router Matcher.
+ *
+ * @internal
+ * @param routes - array of initial routes
+ * @param globalOptions - global route options
+ */
+function createRouterMatcher(routes, globalOptions) {
+    // normalized ordered array of matchers
+    const matchers = [];
+    const matcherMap = new Map();
+    globalOptions = mergeOptions({ strict: false, end: true, sensitive: false }, globalOptions);
+    function getRecordMatcher(name) {
+        return matcherMap.get(name);
+    }
+    function addRoute(record, parent, originalRecord) {
+        // used later on to remove by name
+        const isRootAdd = !originalRecord;
+        const mainNormalizedRecord = normalizeRouteRecord(record);
+        // we might be the child of an alias
+        mainNormalizedRecord.aliasOf = originalRecord && originalRecord.record;
+        const options = mergeOptions(globalOptions, record);
+        // generate an array of records to correctly handle aliases
+        const normalizedRecords = [
+            mainNormalizedRecord,
+        ];
+        if ('alias' in record) {
+            const aliases = typeof record.alias === 'string' ? [record.alias] : record.alias;
+            for (const alias of aliases) {
+                normalizedRecords.push(assign({}, mainNormalizedRecord, {
+                    // this allows us to hold a copy of the `components` option
+                    // so that async components cache is hold on the original record
+                    components: originalRecord
+                        ? originalRecord.record.components
+                        : mainNormalizedRecord.components,
+                    path: alias,
+                    // we might be the child of an alias
+                    aliasOf: originalRecord
+                        ? originalRecord.record
+                        : mainNormalizedRecord,
+                    // the aliases are always of the same kind as the original since they
+                    // are defined on the same record
+                }));
+            }
+        }
+        let matcher;
+        let originalMatcher;
+        for (const normalizedRecord of normalizedRecords) {
+            const { path } = normalizedRecord;
+            // Build up the path for nested routes if the child isn't an absolute
+            // route. Only add the / delimiter if the child path isn't empty and if the
+            // parent path doesn't have a trailing slash
+            if (parent && path[0] !== '/') {
+                const parentPath = parent.record.path;
+                const connectingSlash = parentPath[parentPath.length - 1] === '/' ? '' : '/';
+                normalizedRecord.path =
+                    parent.record.path + (path && connectingSlash + path);
+            }
+            if (( true) && normalizedRecord.path === '*') {
+                throw new Error('Catch all routes ("*") must now be defined using a param with a custom regexp.\n' +
+                    'See more at https://next.router.vuejs.org/guide/migration/#removed-star-or-catch-all-routes.');
+            }
+            // create the object before hand so it can be passed to children
+            matcher = createRouteRecordMatcher(normalizedRecord, parent, options);
+            if (( true) && parent && path[0] === '/')
+                checkMissingParamsInAbsolutePath(matcher, parent);
+            // if we are an alias we must tell the original record that we exist
+            // so we can be removed
+            if (originalRecord) {
+                originalRecord.alias.push(matcher);
+                if ((true)) {
+                    checkSameParams(originalRecord, matcher);
+                }
+            }
+            else {
+                // otherwise, the first record is the original and others are aliases
+                originalMatcher = originalMatcher || matcher;
+                if (originalMatcher !== matcher)
+                    originalMatcher.alias.push(matcher);
+                // remove the route if named and only for the top record (avoid in nested calls)
+                // this works because the original record is the first one
+                if (isRootAdd && record.name && !isAliasRecord(matcher))
+                    removeRoute(record.name);
+            }
+            if ('children' in mainNormalizedRecord) {
+                const children = mainNormalizedRecord.children;
+                for (let i = 0; i < children.length; i++) {
+                    addRoute(children[i], matcher, originalRecord && originalRecord.children[i]);
+                }
+            }
+            // if there was no original record, then the first one was not an alias and all
+            // other alias (if any) need to reference this record when adding children
+            originalRecord = originalRecord || matcher;
+            // TODO: add normalized records for more flexibility
+            // if (parent && isAliasRecord(originalRecord)) {
+            //   parent.children.push(originalRecord)
+            // }
+            insertMatcher(matcher);
+        }
+        return originalMatcher
+            ? () => {
+                // since other matchers are aliases, they should be removed by the original matcher
+                removeRoute(originalMatcher);
+            }
+            : noop;
+    }
+    function removeRoute(matcherRef) {
+        if (isRouteName(matcherRef)) {
+            const matcher = matcherMap.get(matcherRef);
+            if (matcher) {
+                matcherMap.delete(matcherRef);
+                matchers.splice(matchers.indexOf(matcher), 1);
+                matcher.children.forEach(removeRoute);
+                matcher.alias.forEach(removeRoute);
+            }
+        }
+        else {
+            const index = matchers.indexOf(matcherRef);
+            if (index > -1) {
+                matchers.splice(index, 1);
+                if (matcherRef.record.name)
+                    matcherMap.delete(matcherRef.record.name);
+                matcherRef.children.forEach(removeRoute);
+                matcherRef.alias.forEach(removeRoute);
+            }
+        }
+    }
+    function getRoutes() {
+        return matchers;
+    }
+    function insertMatcher(matcher) {
+        let i = 0;
+        while (i < matchers.length &&
+            comparePathParserScore(matcher, matchers[i]) >= 0 &&
+            // Adding children with empty path should still appear before the parent
+            // https://github.com/vuejs/router/issues/1124
+            (matcher.record.path !== matchers[i].record.path ||
+                !isRecordChildOf(matcher, matchers[i])))
+            i++;
+        matchers.splice(i, 0, matcher);
+        // only add the original record to the name map
+        if (matcher.record.name && !isAliasRecord(matcher))
+            matcherMap.set(matcher.record.name, matcher);
+    }
+    function resolve(location, currentLocation) {
+        let matcher;
+        let params = {};
+        let path;
+        let name;
+        if ('name' in location && location.name) {
+            matcher = matcherMap.get(location.name);
+            if (!matcher)
+                throw createRouterError(1 /* MATCHER_NOT_FOUND */, {
+                    location,
+                });
+            name = matcher.record.name;
+            params = assign(
+            // paramsFromLocation is a new object
+            paramsFromLocation(currentLocation.params, 
+            // only keep params that exist in the resolved location
+            // TODO: only keep optional params coming from a parent record
+            matcher.keys.filter(k => !k.optional).map(k => k.name)), location.params);
+            // throws if cannot be stringified
+            path = matcher.stringify(params);
+        }
+        else if ('path' in location) {
+            // no need to resolve the path with the matcher as it was provided
+            // this also allows the user to control the encoding
+            path = location.path;
+            if (( true) && !path.startsWith('/')) {
+                warn(`The Matcher cannot resolve relative paths but received "${path}". Unless you directly called \`matcher.resolve("${path}")\`, this is probably a bug in vue-router. Please open an issue at https://new-issue.vuejs.org/?repo=vuejs/router.`);
+            }
+            matcher = matchers.find(m => m.re.test(path));
+            // matcher should have a value after the loop
+            if (matcher) {
+                // TODO: dev warning of unused params if provided
+                // we know the matcher works because we tested the regexp
+                params = matcher.parse(path);
+                name = matcher.record.name;
+            }
+            // location is a relative path
+        }
+        else {
+            // match by name or path of current route
+            matcher = currentLocation.name
+                ? matcherMap.get(currentLocation.name)
+                : matchers.find(m => m.re.test(currentLocation.path));
+            if (!matcher)
+                throw createRouterError(1 /* MATCHER_NOT_FOUND */, {
+                    location,
+                    currentLocation,
+                });
+            name = matcher.record.name;
+            // since we are navigating to the same location, we don't need to pick the
+            // params like when `name` is provided
+            params = assign({}, currentLocation.params, location.params);
+            path = matcher.stringify(params);
+        }
+        const matched = [];
+        let parentMatcher = matcher;
+        while (parentMatcher) {
+            // reversed order so parents are at the beginning
+            matched.unshift(parentMatcher.record);
+            parentMatcher = parentMatcher.parent;
+        }
+        return {
+            name,
+            path,
+            params,
+            matched,
+            meta: mergeMetaFields(matched),
+        };
+    }
+    // add initial routes
+    routes.forEach(route => addRoute(route));
+    return { addRoute, resolve, removeRoute, getRoutes, getRecordMatcher };
+}
+function paramsFromLocation(params, keys) {
+    const newParams = {};
+    for (const key of keys) {
+        if (key in params)
+            newParams[key] = params[key];
+    }
+    return newParams;
+}
+/**
+ * Normalizes a RouteRecordRaw. Creates a copy
+ *
+ * @param record
+ * @returns the normalized version
+ */
+function normalizeRouteRecord(record) {
+    return {
+        path: record.path,
+        redirect: record.redirect,
+        name: record.name,
+        meta: record.meta || {},
+        aliasOf: undefined,
+        beforeEnter: record.beforeEnter,
+        props: normalizeRecordProps(record),
+        children: record.children || [],
+        instances: {},
+        leaveGuards: new Set(),
+        updateGuards: new Set(),
+        enterCallbacks: {},
+        components: 'components' in record
+            ? record.components || {}
+            : { default: record.component },
+    };
+}
+/**
+ * Normalize the optional `props` in a record to always be an object similar to
+ * components. Also accept a boolean for components.
+ * @param record
+ */
+function normalizeRecordProps(record) {
+    const propsObject = {};
+    // props does not exist on redirect records but we can set false directly
+    const props = record.props || false;
+    if ('component' in record) {
+        propsObject.default = props;
+    }
+    else {
+        // NOTE: we could also allow a function to be applied to every component.
+        // Would need user feedback for use cases
+        for (const name in record.components)
+            propsObject[name] = typeof props === 'boolean' ? props : props[name];
+    }
+    return propsObject;
+}
+/**
+ * Checks if a record or any of its parent is an alias
+ * @param record
+ */
+function isAliasRecord(record) {
+    while (record) {
+        if (record.record.aliasOf)
+            return true;
+        record = record.parent;
+    }
+    return false;
+}
+/**
+ * Merge meta fields of an array of records
+ *
+ * @param matched - array of matched records
+ */
+function mergeMetaFields(matched) {
+    return matched.reduce((meta, record) => assign(meta, record.meta), {});
+}
+function mergeOptions(defaults, partialOptions) {
+    const options = {};
+    for (const key in defaults) {
+        options[key] = key in partialOptions ? partialOptions[key] : defaults[key];
+    }
+    return options;
+}
+function isSameParam(a, b) {
+    return (a.name === b.name &&
+        a.optional === b.optional &&
+        a.repeatable === b.repeatable);
+}
+/**
+ * Check if a path and its alias have the same required params
+ *
+ * @param a - original record
+ * @param b - alias record
+ */
+function checkSameParams(a, b) {
+    for (const key of a.keys) {
+        if (!key.optional && !b.keys.find(isSameParam.bind(null, key)))
+            return warn(`Alias "${b.record.path}" and the original record: "${a.record.path}" should have the exact same param named "${key.name}"`);
+    }
+    for (const key of b.keys) {
+        if (!key.optional && !a.keys.find(isSameParam.bind(null, key)))
+            return warn(`Alias "${b.record.path}" and the original record: "${a.record.path}" should have the exact same param named "${key.name}"`);
+    }
+}
+function checkMissingParamsInAbsolutePath(record, parent) {
+    for (const key of parent.keys) {
+        if (!record.keys.find(isSameParam.bind(null, key)))
+            return warn(`Absolute path "${record.record.path}" should have the exact same param named "${key.name}" as its parent "${parent.record.path}".`);
+    }
+}
+function isRecordChildOf(record, parent) {
+    return parent.children.some(child => child === record || isRecordChildOf(record, child));
+}
+
+/**
+ * Encoding Rules ␣ = Space Path: ␣ " < > # ? { } Query: ␣ " < > # & = Hash: ␣ "
+ * < > `
+ *
+ * On top of that, the RFC3986 (https://tools.ietf.org/html/rfc3986#section-2.2)
+ * defines some extra characters to be encoded. Most browsers do not encode them
+ * in encodeURI https://github.com/whatwg/url/issues/369, so it may be safer to
+ * also encode `!'()*`. Leaving unencoded only ASCII alphanumeric(`a-zA-Z0-9`)
+ * plus `-._~`. This extra safety should be applied to query by patching the
+ * string returned by encodeURIComponent encodeURI also encodes `[\]^`. `\`
+ * should be encoded to avoid ambiguity. Browsers (IE, FF, C) transform a `\`
+ * into a `/` if directly typed in. The _backtick_ (`````) should also be
+ * encoded everywhere because some browsers like FF encode it when directly
+ * written while others don't. Safari and IE don't encode ``"<>{}``` in hash.
+ */
+// const EXTRA_RESERVED_RE = /[!'()*]/g
+// const encodeReservedReplacer = (c: string) => '%' + c.charCodeAt(0).toString(16)
+const HASH_RE = /#/g; // %23
+const AMPERSAND_RE = /&/g; // %26
+const SLASH_RE = /\//g; // %2F
+const EQUAL_RE = /=/g; // %3D
+const IM_RE = /\?/g; // %3F
+const PLUS_RE = /\+/g; // %2B
+/**
+ * NOTE: It's not clear to me if we should encode the + symbol in queries, it
+ * seems to be less flexible than not doing so and I can't find out the legacy
+ * systems requiring this for regular requests like text/html. In the standard,
+ * the encoding of the plus character is only mentioned for
+ * application/x-www-form-urlencoded
+ * (https://url.spec.whatwg.org/#urlencoded-parsing) and most browsers seems lo
+ * leave the plus character as is in queries. To be more flexible, we allow the
+ * plus character on the query but it can also be manually encoded by the user.
+ *
+ * Resources:
+ * - https://url.spec.whatwg.org/#urlencoded-parsing
+ * - https://stackoverflow.com/questions/1634271/url-encoding-the-space-character-or-20
+ */
+const ENC_BRACKET_OPEN_RE = /%5B/g; // [
+const ENC_BRACKET_CLOSE_RE = /%5D/g; // ]
+const ENC_CARET_RE = /%5E/g; // ^
+const ENC_BACKTICK_RE = /%60/g; // `
+const ENC_CURLY_OPEN_RE = /%7B/g; // {
+const ENC_PIPE_RE = /%7C/g; // |
+const ENC_CURLY_CLOSE_RE = /%7D/g; // }
+const ENC_SPACE_RE = /%20/g; // }
+/**
+ * Encode characters that need to be encoded on the path, search and hash
+ * sections of the URL.
+ *
+ * @internal
+ * @param text - string to encode
+ * @returns encoded string
+ */
+function commonEncode(text) {
+    return encodeURI('' + text)
+        .replace(ENC_PIPE_RE, '|')
+        .replace(ENC_BRACKET_OPEN_RE, '[')
+        .replace(ENC_BRACKET_CLOSE_RE, ']');
+}
+/**
+ * Encode characters that need to be encoded on the hash section of the URL.
+ *
+ * @param text - string to encode
+ * @returns encoded string
+ */
+function encodeHash(text) {
+    return commonEncode(text)
+        .replace(ENC_CURLY_OPEN_RE, '{')
+        .replace(ENC_CURLY_CLOSE_RE, '}')
+        .replace(ENC_CARET_RE, '^');
+}
+/**
+ * Encode characters that need to be encoded query values on the query
+ * section of the URL.
+ *
+ * @param text - string to encode
+ * @returns encoded string
+ */
+function encodeQueryValue(text) {
+    return (commonEncode(text)
+        // Encode the space as +, encode the + to differentiate it from the space
+        .replace(PLUS_RE, '%2B')
+        .replace(ENC_SPACE_RE, '+')
+        .replace(HASH_RE, '%23')
+        .replace(AMPERSAND_RE, '%26')
+        .replace(ENC_BACKTICK_RE, '`')
+        .replace(ENC_CURLY_OPEN_RE, '{')
+        .replace(ENC_CURLY_CLOSE_RE, '}')
+        .replace(ENC_CARET_RE, '^'));
+}
+/**
+ * Like `encodeQueryValue` but also encodes the `=` character.
+ *
+ * @param text - string to encode
+ */
+function encodeQueryKey(text) {
+    return encodeQueryValue(text).replace(EQUAL_RE, '%3D');
+}
+/**
+ * Encode characters that need to be encoded on the path section of the URL.
+ *
+ * @param text - string to encode
+ * @returns encoded string
+ */
+function encodePath(text) {
+    return commonEncode(text).replace(HASH_RE, '%23').replace(IM_RE, '%3F');
+}
+/**
+ * Encode characters that need to be encoded on the path section of the URL as a
+ * param. This function encodes everything {@link encodePath} does plus the
+ * slash (`/`) character. If `text` is `null` or `undefined`, returns an empty
+ * string instead.
+ *
+ * @param text - string to encode
+ * @returns encoded string
+ */
+function encodeParam(text) {
+    return text == null ? '' : encodePath(text).replace(SLASH_RE, '%2F');
+}
+/**
+ * Decode text using `decodeURIComponent`. Returns the original text if it
+ * fails.
+ *
+ * @param text - string to decode
+ * @returns decoded string
+ */
+function decode(text) {
+    try {
+        return decodeURIComponent('' + text);
+    }
+    catch (err) {
+        ( true) && warn(`Error decoding "${text}". Using original value`);
+    }
+    return '' + text;
+}
+
+/**
+ * Transforms a queryString into a {@link LocationQuery} object. Accept both, a
+ * version with the leading `?` and without Should work as URLSearchParams
+
+ * @internal
+ *
+ * @param search - search string to parse
+ * @returns a query object
+ */
+function parseQuery(search) {
+    const query = {};
+    // avoid creating an object with an empty key and empty value
+    // because of split('&')
+    if (search === '' || search === '?')
+        return query;
+    const hasLeadingIM = search[0] === '?';
+    const searchParams = (hasLeadingIM ? search.slice(1) : search).split('&');
+    for (let i = 0; i < searchParams.length; ++i) {
+        // pre decode the + into space
+        const searchParam = searchParams[i].replace(PLUS_RE, ' ');
+        // allow the = character
+        const eqPos = searchParam.indexOf('=');
+        const key = decode(eqPos < 0 ? searchParam : searchParam.slice(0, eqPos));
+        const value = eqPos < 0 ? null : decode(searchParam.slice(eqPos + 1));
+        if (key in query) {
+            // an extra variable for ts types
+            let currentValue = query[key];
+            if (!Array.isArray(currentValue)) {
+                currentValue = query[key] = [currentValue];
+            }
+            currentValue.push(value);
+        }
+        else {
+            query[key] = value;
+        }
+    }
+    return query;
+}
+/**
+ * Stringifies a {@link LocationQueryRaw} object. Like `URLSearchParams`, it
+ * doesn't prepend a `?`
+ *
+ * @internal
+ *
+ * @param query - query object to stringify
+ * @returns string version of the query without the leading `?`
+ */
+function stringifyQuery(query) {
+    let search = '';
+    for (let key in query) {
+        const value = query[key];
+        key = encodeQueryKey(key);
+        if (value == null) {
+            // only null adds the value
+            if (value !== undefined) {
+                search += (search.length ? '&' : '') + key;
+            }
+            continue;
+        }
+        // keep null values
+        const values = Array.isArray(value)
+            ? value.map(v => v && encodeQueryValue(v))
+            : [value && encodeQueryValue(value)];
+        values.forEach(value => {
+            // skip undefined values in arrays as if they were not present
+            // smaller code than using filter
+            if (value !== undefined) {
+                // only append & with non-empty search
+                search += (search.length ? '&' : '') + key;
+                if (value != null)
+                    search += '=' + value;
+            }
+        });
+    }
+    return search;
+}
+/**
+ * Transforms a {@link LocationQueryRaw} into a {@link LocationQuery} by casting
+ * numbers into strings, removing keys with an undefined value and replacing
+ * undefined with null in arrays
+ *
+ * @param query - query object to normalize
+ * @returns a normalized query object
+ */
+function normalizeQuery(query) {
+    const normalizedQuery = {};
+    for (const key in query) {
+        const value = query[key];
+        if (value !== undefined) {
+            normalizedQuery[key] = Array.isArray(value)
+                ? value.map(v => (v == null ? null : '' + v))
+                : value == null
+                    ? value
+                    : '' + value;
+        }
+    }
+    return normalizedQuery;
+}
+
+/**
+ * Create a list of callbacks that can be reset. Used to create before and after navigation guards list
+ */
+function useCallbacks() {
+    let handlers = [];
+    function add(handler) {
+        handlers.push(handler);
+        return () => {
+            const i = handlers.indexOf(handler);
+            if (i > -1)
+                handlers.splice(i, 1);
+        };
+    }
+    function reset() {
+        handlers = [];
+    }
+    return {
+        add,
+        list: () => handlers,
+        reset,
+    };
+}
+
+function registerGuard(record, name, guard) {
+    const removeFromList = () => {
+        record[name].delete(guard);
+    };
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onUnmounted)(removeFromList);
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onDeactivated)(removeFromList);
+    (0,vue__WEBPACK_IMPORTED_MODULE_0__.onActivated)(() => {
+        record[name].add(guard);
+    });
+    record[name].add(guard);
+}
+/**
+ * Add a navigation guard that triggers whenever the component for the current
+ * location is about to be left. Similar to {@link beforeRouteLeave} but can be
+ * used in any component. The guard is removed when the component is unmounted.
+ *
+ * @param leaveGuard - {@link NavigationGuard}
+ */
+function onBeforeRouteLeave(leaveGuard) {
+    if (( true) && !(0,vue__WEBPACK_IMPORTED_MODULE_0__.getCurrentInstance)()) {
+        warn('getCurrentInstance() returned null. onBeforeRouteLeave() must be called at the top of a setup function');
+        return;
+    }
+    const activeRecord = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(matchedRouteKey, 
+    // to avoid warning
+    {}).value;
+    if (!activeRecord) {
+        ( true) &&
+            warn('No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside of a component child of <router-view>. Maybe you called it inside of App.vue?');
+        return;
+    }
+    registerGuard(activeRecord, 'leaveGuards', leaveGuard);
+}
+/**
+ * Add a navigation guard that triggers whenever the current location is about
+ * to be updated. Similar to {@link beforeRouteUpdate} but can be used in any
+ * component. The guard is removed when the component is unmounted.
+ *
+ * @param updateGuard - {@link NavigationGuard}
+ */
+function onBeforeRouteUpdate(updateGuard) {
+    if (( true) && !(0,vue__WEBPACK_IMPORTED_MODULE_0__.getCurrentInstance)()) {
+        warn('getCurrentInstance() returned null. onBeforeRouteUpdate() must be called at the top of a setup function');
+        return;
+    }
+    const activeRecord = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(matchedRouteKey, 
+    // to avoid warning
+    {}).value;
+    if (!activeRecord) {
+        ( true) &&
+            warn('No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside of a component child of <router-view>. Maybe you called it inside of App.vue?');
+        return;
+    }
+    registerGuard(activeRecord, 'updateGuards', updateGuard);
+}
+function guardToPromiseFn(guard, to, from, record, name) {
+    // keep a reference to the enterCallbackArray to prevent pushing callbacks if a new navigation took place
+    const enterCallbackArray = record &&
+        // name is defined if record is because of the function overload
+        (record.enterCallbacks[name] = record.enterCallbacks[name] || []);
+    return () => new Promise((resolve, reject) => {
+        const next = (valid) => {
+            if (valid === false)
+                reject(createRouterError(4 /* NAVIGATION_ABORTED */, {
+                    from,
+                    to,
+                }));
+            else if (valid instanceof Error) {
+                reject(valid);
+            }
+            else if (isRouteLocation(valid)) {
+                reject(createRouterError(2 /* NAVIGATION_GUARD_REDIRECT */, {
+                    from: to,
+                    to: valid,
+                }));
+            }
+            else {
+                if (enterCallbackArray &&
+                    // since enterCallbackArray is truthy, both record and name also are
+                    record.enterCallbacks[name] === enterCallbackArray &&
+                    typeof valid === 'function')
+                    enterCallbackArray.push(valid);
+                resolve();
+            }
+        };
+        // wrapping with Promise.resolve allows it to work with both async and sync guards
+        const guardReturn = guard.call(record && record.instances[name], to, from, ( true) ? canOnlyBeCalledOnce(next, to, from) : 0);
+        let guardCall = Promise.resolve(guardReturn);
+        if (guard.length < 3)
+            guardCall = guardCall.then(next);
+        if (( true) && guard.length > 2) {
+            const message = `The "next" callback was never called inside of ${guard.name ? '"' + guard.name + '"' : ''}:\n${guard.toString()}\n. If you are returning a value instead of calling "next", make sure to remove the "next" parameter from your function.`;
+            if (typeof guardReturn === 'object' && 'then' in guardReturn) {
+                guardCall = guardCall.then(resolvedValue => {
+                    // @ts-expect-error: _called is added at canOnlyBeCalledOnce
+                    if (!next._called) {
+                        warn(message);
+                        return Promise.reject(new Error('Invalid navigation guard'));
+                    }
+                    return resolvedValue;
+                });
+                // TODO: test me!
+            }
+            else if (guardReturn !== undefined) {
+                // @ts-expect-error: _called is added at canOnlyBeCalledOnce
+                if (!next._called) {
+                    warn(message);
+                    reject(new Error('Invalid navigation guard'));
+                    return;
+                }
+            }
+        }
+        guardCall.catch(err => reject(err));
+    });
+}
+function canOnlyBeCalledOnce(next, to, from) {
+    let called = 0;
+    return function () {
+        if (called++ === 1)
+            warn(`The "next" callback was called more than once in one navigation guard when going from "${from.fullPath}" to "${to.fullPath}". It should be called exactly one time in each navigation guard. This will fail in production.`);
+        // @ts-expect-error: we put it in the original one because it's easier to check
+        next._called = true;
+        if (called === 1)
+            next.apply(null, arguments);
+    };
+}
+function extractComponentsGuards(matched, guardType, to, from) {
+    const guards = [];
+    for (const record of matched) {
+        for (const name in record.components) {
+            let rawComponent = record.components[name];
+            if ((true)) {
+                if (!rawComponent ||
+                    (typeof rawComponent !== 'object' &&
+                        typeof rawComponent !== 'function')) {
+                    warn(`Component "${name}" in record with path "${record.path}" is not` +
+                        ` a valid component. Received "${String(rawComponent)}".`);
+                    // throw to ensure we stop here but warn to ensure the message isn't
+                    // missed by the user
+                    throw new Error('Invalid route component');
+                }
+                else if ('then' in rawComponent) {
+                    // warn if user wrote import('/component.vue') instead of () =>
+                    // import('./component.vue')
+                    warn(`Component "${name}" in record with path "${record.path}" is a ` +
+                        `Promise instead of a function that returns a Promise. Did you ` +
+                        `write "import('./MyPage.vue')" instead of ` +
+                        `"() => import('./MyPage.vue')" ? This will break in ` +
+                        `production if not fixed.`);
+                    const promise = rawComponent;
+                    rawComponent = () => promise;
+                }
+                else if (rawComponent.__asyncLoader &&
+                    // warn only once per component
+                    !rawComponent.__warnedDefineAsync) {
+                    rawComponent.__warnedDefineAsync = true;
+                    warn(`Component "${name}" in record with path "${record.path}" is defined ` +
+                        `using "defineAsyncComponent()". ` +
+                        `Write "() => import('./MyPage.vue')" instead of ` +
+                        `"defineAsyncComponent(() => import('./MyPage.vue'))".`);
+                }
+            }
+            // skip update and leave guards if the route component is not mounted
+            if (guardType !== 'beforeRouteEnter' && !record.instances[name])
+                continue;
+            if (isRouteComponent(rawComponent)) {
+                // __vccOpts is added by vue-class-component and contain the regular options
+                const options = rawComponent.__vccOpts || rawComponent;
+                const guard = options[guardType];
+                guard && guards.push(guardToPromiseFn(guard, to, from, record, name));
+            }
+            else {
+                // start requesting the chunk already
+                let componentPromise = rawComponent();
+                if (( true) && !('catch' in componentPromise)) {
+                    warn(`Component "${name}" in record with path "${record.path}" is a function that does not return a Promise. If you were passing a functional component, make sure to add a "displayName" to the component. This will break in production if not fixed.`);
+                    componentPromise = Promise.resolve(componentPromise);
+                }
+                guards.push(() => componentPromise.then(resolved => {
+                    if (!resolved)
+                        return Promise.reject(new Error(`Couldn't resolve component "${name}" at "${record.path}"`));
+                    const resolvedComponent = isESModule(resolved)
+                        ? resolved.default
+                        : resolved;
+                    // replace the function with the resolved component
+                    record.components[name] = resolvedComponent;
+                    // __vccOpts is added by vue-class-component and contain the regular options
+                    const options = resolvedComponent.__vccOpts || resolvedComponent;
+                    const guard = options[guardType];
+                    return guard && guardToPromiseFn(guard, to, from, record, name)();
+                }));
+            }
+        }
+    }
+    return guards;
+}
+/**
+ * Allows differentiating lazy components from functional components and vue-class-component
+ *
+ * @param component
+ */
+function isRouteComponent(component) {
+    return (typeof component === 'object' ||
+        'displayName' in component ||
+        'props' in component ||
+        '__vccOpts' in component);
+}
+
+// TODO: we could allow currentRoute as a prop to expose `isActive` and
+// `isExactActive` behavior should go through an RFC
+function useLink(props) {
+    const router = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(routerKey);
+    const currentRoute = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(routeLocationKey);
+    const route = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => router.resolve((0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(props.to)));
+    const activeRecordIndex = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => {
+        const { matched } = route.value;
+        const { length } = matched;
+        const routeMatched = matched[length - 1];
+        const currentMatched = currentRoute.matched;
+        if (!routeMatched || !currentMatched.length)
+            return -1;
+        const index = currentMatched.findIndex(isSameRouteRecord.bind(null, routeMatched));
+        if (index > -1)
+            return index;
+        // possible parent record
+        const parentRecordPath = getOriginalPath(matched[length - 2]);
+        return (
+        // we are dealing with nested routes
+        length > 1 &&
+            // if the parent and matched route have the same path, this link is
+            // referring to the empty child. Or we currently are on a different
+            // child of the same parent
+            getOriginalPath(routeMatched) === parentRecordPath &&
+            // avoid comparing the child with its parent
+            currentMatched[currentMatched.length - 1].path !== parentRecordPath
+            ? currentMatched.findIndex(isSameRouteRecord.bind(null, matched[length - 2]))
+            : index);
+    });
+    const isActive = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => activeRecordIndex.value > -1 &&
+        includesParams(currentRoute.params, route.value.params));
+    const isExactActive = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => activeRecordIndex.value > -1 &&
+        activeRecordIndex.value === currentRoute.matched.length - 1 &&
+        isSameRouteLocationParams(currentRoute.params, route.value.params));
+    function navigate(e = {}) {
+        if (guardEvent(e)) {
+            return router[(0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(props.replace) ? 'replace' : 'push']((0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(props.to)
+            // avoid uncaught errors are they are logged anyway
+            ).catch(noop);
+        }
+        return Promise.resolve();
+    }
+    // devtools only
+    if (( true) && isBrowser) {
+        const instance = (0,vue__WEBPACK_IMPORTED_MODULE_0__.getCurrentInstance)();
+        if (instance) {
+            const linkContextDevtools = {
+                route: route.value,
+                isActive: isActive.value,
+                isExactActive: isExactActive.value,
+            };
+            // @ts-expect-error: this is internal
+            instance.__vrl_devtools = instance.__vrl_devtools || [];
+            // @ts-expect-error: this is internal
+            instance.__vrl_devtools.push(linkContextDevtools);
+            (0,vue__WEBPACK_IMPORTED_MODULE_0__.watchEffect)(() => {
+                linkContextDevtools.route = route.value;
+                linkContextDevtools.isActive = isActive.value;
+                linkContextDevtools.isExactActive = isExactActive.value;
+            }, { flush: 'post' });
+        }
+    }
+    return {
+        route,
+        href: (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => route.value.href),
+        isActive,
+        isExactActive,
+        navigate,
+    };
+}
+const RouterLinkImpl = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+    name: 'RouterLink',
+    props: {
+        to: {
+            type: [String, Object],
+            required: true,
+        },
+        replace: Boolean,
+        activeClass: String,
+        // inactiveClass: String,
+        exactActiveClass: String,
+        custom: Boolean,
+        ariaCurrentValue: {
+            type: String,
+            default: 'page',
+        },
+    },
+    useLink,
+    setup(props, { slots }) {
+        const link = (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)(useLink(props));
+        const { options } = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(routerKey);
+        const elClass = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => ({
+            [getLinkClass(props.activeClass, options.linkActiveClass, 'router-link-active')]: link.isActive,
+            // [getLinkClass(
+            //   props.inactiveClass,
+            //   options.linkInactiveClass,
+            //   'router-link-inactive'
+            // )]: !link.isExactActive,
+            [getLinkClass(props.exactActiveClass, options.linkExactActiveClass, 'router-link-exact-active')]: link.isExactActive,
+        }));
+        return () => {
+            const children = slots.default && slots.default(link);
+            return props.custom
+                ? children
+                : (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)('a', {
+                    'aria-current': link.isExactActive
+                        ? props.ariaCurrentValue
+                        : null,
+                    href: link.href,
+                    // this would override user added attrs but Vue will still add
+                    // the listener so we end up triggering both
+                    onClick: link.navigate,
+                    class: elClass.value,
+                }, children);
+        };
+    },
+});
+// export the public type for h/tsx inference
+// also to avoid inline import() in generated d.ts files
+/**
+ * Component to render a link that triggers a navigation on click.
+ */
+const RouterLink = RouterLinkImpl;
+function guardEvent(e) {
+    // don't redirect with control keys
+    if (e.metaKey || e.altKey || e.ctrlKey || e.shiftKey)
+        return;
+    // don't redirect when preventDefault called
+    if (e.defaultPrevented)
+        return;
+    // don't redirect on right click
+    if (e.button !== undefined && e.button !== 0)
+        return;
+    // don't redirect if `target="_blank"`
+    // @ts-expect-error getAttribute does exist
+    if (e.currentTarget && e.currentTarget.getAttribute) {
+        // @ts-expect-error getAttribute exists
+        const target = e.currentTarget.getAttribute('target');
+        if (/\b_blank\b/i.test(target))
+            return;
+    }
+    // this may be a Weex event which doesn't have this method
+    if (e.preventDefault)
+        e.preventDefault();
+    return true;
+}
+function includesParams(outer, inner) {
+    for (const key in inner) {
+        const innerValue = inner[key];
+        const outerValue = outer[key];
+        if (typeof innerValue === 'string') {
+            if (innerValue !== outerValue)
+                return false;
+        }
+        else {
+            if (!Array.isArray(outerValue) ||
+                outerValue.length !== innerValue.length ||
+                innerValue.some((value, i) => value !== outerValue[i]))
+                return false;
+        }
+    }
+    return true;
+}
+/**
+ * Get the original path value of a record by following its aliasOf
+ * @param record
+ */
+function getOriginalPath(record) {
+    return record ? (record.aliasOf ? record.aliasOf.path : record.path) : '';
+}
+/**
+ * Utility class to get the active class based on defaults.
+ * @param propClass
+ * @param globalClass
+ * @param defaultClass
+ */
+const getLinkClass = (propClass, globalClass, defaultClass) => propClass != null
+    ? propClass
+    : globalClass != null
+        ? globalClass
+        : defaultClass;
+
+const RouterViewImpl = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({
+    name: 'RouterView',
+    // #674 we manually inherit them
+    inheritAttrs: false,
+    props: {
+        name: {
+            type: String,
+            default: 'default',
+        },
+        route: Object,
+    },
+    // Better compat for @vue/compat users
+    // https://github.com/vuejs/router/issues/1315
+    compatConfig: { MODE: 3 },
+    setup(props, { attrs, slots }) {
+        ( true) && warnDeprecatedUsage();
+        const injectedRoute = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(routerViewLocationKey);
+        const routeToDisplay = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => props.route || injectedRoute.value);
+        const depth = (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(viewDepthKey, 0);
+        const matchedRouteRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => routeToDisplay.value.matched[depth]);
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.provide)(viewDepthKey, depth + 1);
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.provide)(matchedRouteKey, matchedRouteRef);
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.provide)(routerViewLocationKey, routeToDisplay);
+        const viewRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)();
+        // watch at the same time the component instance, the route record we are
+        // rendering, and the name
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(() => [viewRef.value, matchedRouteRef.value, props.name], ([instance, to, name], [oldInstance, from, oldName]) => {
+            // copy reused instances
+            if (to) {
+                // this will update the instance for new instances as well as reused
+                // instances when navigating to a new route
+                to.instances[name] = instance;
+                // the component instance is reused for a different route or name so
+                // we copy any saved update or leave guards. With async setup, the
+                // mounting component will mount before the matchedRoute changes,
+                // making instance === oldInstance, so we check if guards have been
+                // added before. This works because we remove guards when
+                // unmounting/deactivating components
+                if (from && from !== to && instance && instance === oldInstance) {
+                    if (!to.leaveGuards.size) {
+                        to.leaveGuards = from.leaveGuards;
+                    }
+                    if (!to.updateGuards.size) {
+                        to.updateGuards = from.updateGuards;
+                    }
+                }
+            }
+            // trigger beforeRouteEnter next callbacks
+            if (instance &&
+                to &&
+                // if there is no instance but to and from are the same this might be
+                // the first visit
+                (!from || !isSameRouteRecord(to, from) || !oldInstance)) {
+                (to.enterCallbacks[name] || []).forEach(callback => callback(instance));
+            }
+        }, { flush: 'post' });
+        return () => {
+            const route = routeToDisplay.value;
+            const matchedRoute = matchedRouteRef.value;
+            const ViewComponent = matchedRoute && matchedRoute.components[props.name];
+            // we need the value at the time we render because when we unmount, we
+            // navigated to a different location so the value is different
+            const currentName = props.name;
+            if (!ViewComponent) {
+                return normalizeSlot(slots.default, { Component: ViewComponent, route });
+            }
+            // props from route configuration
+            const routePropsOption = matchedRoute.props[props.name];
+            const routeProps = routePropsOption
+                ? routePropsOption === true
+                    ? route.params
+                    : typeof routePropsOption === 'function'
+                        ? routePropsOption(route)
+                        : routePropsOption
+                : null;
+            const onVnodeUnmounted = vnode => {
+                // remove the instance reference to prevent leak
+                if (vnode.component.isUnmounted) {
+                    matchedRoute.instances[currentName] = null;
+                }
+            };
+            const component = (0,vue__WEBPACK_IMPORTED_MODULE_0__.h)(ViewComponent, assign({}, routeProps, attrs, {
+                onVnodeUnmounted,
+                ref: viewRef,
+            }));
+            if (( true) &&
+                isBrowser &&
+                component.ref) {
+                // TODO: can display if it's an alias, its props
+                const info = {
+                    depth,
+                    name: matchedRoute.name,
+                    path: matchedRoute.path,
+                    meta: matchedRoute.meta,
+                };
+                const internalInstances = Array.isArray(component.ref)
+                    ? component.ref.map(r => r.i)
+                    : [component.ref.i];
+                internalInstances.forEach(instance => {
+                    // @ts-expect-error
+                    instance.__vrv_devtools = info;
+                });
+            }
+            return (
+            // pass the vnode to the slot as a prop.
+            // h and <component :is="..."> both accept vnodes
+            normalizeSlot(slots.default, { Component: component, route }) ||
+                component);
+        };
+    },
+});
+function normalizeSlot(slot, data) {
+    if (!slot)
+        return null;
+    const slotContent = slot(data);
+    return slotContent.length === 1 ? slotContent[0] : slotContent;
+}
+// export the public type for h/tsx inference
+// also to avoid inline import() in generated d.ts files
+/**
+ * Component to display the current route the user is at.
+ */
+const RouterView = RouterViewImpl;
+// warn against deprecated usage with <transition> & <keep-alive>
+// due to functional component being no longer eager in Vue 3
+function warnDeprecatedUsage() {
+    const instance = (0,vue__WEBPACK_IMPORTED_MODULE_0__.getCurrentInstance)();
+    const parentName = instance.parent && instance.parent.type.name;
+    if (parentName &&
+        (parentName === 'KeepAlive' || parentName.includes('Transition'))) {
+        const comp = parentName === 'KeepAlive' ? 'keep-alive' : 'transition';
+        warn(`<router-view> can no longer be used directly inside <transition> or <keep-alive>.\n` +
+            `Use slot props instead:\n\n` +
+            `<router-view v-slot="{ Component }">\n` +
+            `  <${comp}>\n` +
+            `    <component :is="Component" />\n` +
+            `  </${comp}>\n` +
+            `</router-view>`);
+    }
+}
+
+function formatRouteLocation(routeLocation, tooltip) {
+    const copy = assign({}, routeLocation, {
+        // remove variables that can contain vue instances
+        matched: routeLocation.matched.map(matched => omit(matched, ['instances', 'children', 'aliasOf'])),
+    });
+    return {
+        _custom: {
+            type: null,
+            readOnly: true,
+            display: routeLocation.fullPath,
+            tooltip,
+            value: copy,
+        },
+    };
+}
+function formatDisplay(display) {
+    return {
+        _custom: {
+            display,
+        },
+    };
+}
+// to support multiple router instances
+let routerId = 0;
+function addDevtools(app, router, matcher) {
+    // Take over router.beforeEach and afterEach
+    // make sure we are not registering the devtool twice
+    if (router.__hasDevtools)
+        return;
+    router.__hasDevtools = true;
+    // increment to support multiple router instances
+    const id = routerId++;
+    (0,_vue_devtools_api__WEBPACK_IMPORTED_MODULE_1__.setupDevtoolsPlugin)({
+        id: 'org.vuejs.router' + (id ? '.' + id : ''),
+        label: 'Vue Router',
+        packageName: 'vue-router',
+        homepage: 'https://router.vuejs.org',
+        logo: 'https://router.vuejs.org/logo.png',
+        componentStateTypes: ['Routing'],
+        app,
+    }, api => {
+        // display state added by the router
+        api.on.inspectComponent((payload, ctx) => {
+            if (payload.instanceData) {
+                payload.instanceData.state.push({
+                    type: 'Routing',
+                    key: '$route',
+                    editable: false,
+                    value: formatRouteLocation(router.currentRoute.value, 'Current Route'),
+                });
+            }
+        });
+        // mark router-link as active and display tags on router views
+        api.on.visitComponentTree(({ treeNode: node, componentInstance }) => {
+            if (componentInstance.__vrv_devtools) {
+                const info = componentInstance.__vrv_devtools;
+                node.tags.push({
+                    label: (info.name ? `${info.name.toString()}: ` : '') + info.path,
+                    textColor: 0,
+                    tooltip: 'This component is rendered by &lt;router-view&gt;',
+                    backgroundColor: PINK_500,
+                });
+            }
+            // if multiple useLink are used
+            if (Array.isArray(componentInstance.__vrl_devtools)) {
+                componentInstance.__devtoolsApi = api;
+                componentInstance.__vrl_devtools.forEach(devtoolsData => {
+                    let backgroundColor = ORANGE_400;
+                    let tooltip = '';
+                    if (devtoolsData.isExactActive) {
+                        backgroundColor = LIME_500;
+                        tooltip = 'This is exactly active';
+                    }
+                    else if (devtoolsData.isActive) {
+                        backgroundColor = BLUE_600;
+                        tooltip = 'This link is active';
+                    }
+                    node.tags.push({
+                        label: devtoolsData.route.path,
+                        textColor: 0,
+                        tooltip,
+                        backgroundColor,
+                    });
+                });
+            }
+        });
+        (0,vue__WEBPACK_IMPORTED_MODULE_0__.watch)(router.currentRoute, () => {
+            // refresh active state
+            refreshRoutesView();
+            api.notifyComponentUpdate();
+            api.sendInspectorTree(routerInspectorId);
+            api.sendInspectorState(routerInspectorId);
+        });
+        const navigationsLayerId = 'router:navigations:' + id;
+        api.addTimelineLayer({
+            id: navigationsLayerId,
+            label: `Router${id ? ' ' + id : ''} Navigations`,
+            color: 0x40a8c4,
+        });
+        // const errorsLayerId = 'router:errors'
+        // api.addTimelineLayer({
+        //   id: errorsLayerId,
+        //   label: 'Router Errors',
+        //   color: 0xea5455,
+        // })
+        router.onError((error, to) => {
+            api.addTimelineEvent({
+                layerId: navigationsLayerId,
+                event: {
+                    title: 'Error during Navigation',
+                    subtitle: to.fullPath,
+                    logType: 'error',
+                    time: api.now(),
+                    data: { error },
+                    groupId: to.meta.__navigationId,
+                },
+            });
+        });
+        // attached to `meta` and used to group events
+        let navigationId = 0;
+        router.beforeEach((to, from) => {
+            const data = {
+                guard: formatDisplay('beforeEach'),
+                from: formatRouteLocation(from, 'Current Location during this navigation'),
+                to: formatRouteLocation(to, 'Target location'),
+            };
+            // Used to group navigations together, hide from devtools
+            Object.defineProperty(to.meta, '__navigationId', {
+                value: navigationId++,
+            });
+            api.addTimelineEvent({
+                layerId: navigationsLayerId,
+                event: {
+                    time: api.now(),
+                    title: 'Start of navigation',
+                    subtitle: to.fullPath,
+                    data,
+                    groupId: to.meta.__navigationId,
+                },
+            });
+        });
+        router.afterEach((to, from, failure) => {
+            const data = {
+                guard: formatDisplay('afterEach'),
+            };
+            if (failure) {
+                data.failure = {
+                    _custom: {
+                        type: Error,
+                        readOnly: true,
+                        display: failure ? failure.message : '',
+                        tooltip: 'Navigation Failure',
+                        value: failure,
+                    },
+                };
+                data.status = formatDisplay('❌');
+            }
+            else {
+                data.status = formatDisplay('✅');
+            }
+            // we set here to have the right order
+            data.from = formatRouteLocation(from, 'Current Location during this navigation');
+            data.to = formatRouteLocation(to, 'Target location');
+            api.addTimelineEvent({
+                layerId: navigationsLayerId,
+                event: {
+                    title: 'End of navigation',
+                    subtitle: to.fullPath,
+                    time: api.now(),
+                    data,
+                    logType: failure ? 'warning' : 'default',
+                    groupId: to.meta.__navigationId,
+                },
+            });
+        });
+        /**
+         * Inspector of Existing routes
+         */
+        const routerInspectorId = 'router-inspector:' + id;
+        api.addInspector({
+            id: routerInspectorId,
+            label: 'Routes' + (id ? ' ' + id : ''),
+            icon: 'book',
+            treeFilterPlaceholder: 'Search routes',
+        });
+        function refreshRoutesView() {
+            // the routes view isn't active
+            if (!activeRoutesPayload)
+                return;
+            const payload = activeRoutesPayload;
+            // children routes will appear as nested
+            let routes = matcher.getRoutes().filter(route => !route.parent);
+            // reset match state to false
+            routes.forEach(resetMatchStateOnRouteRecord);
+            // apply a match state if there is a payload
+            if (payload.filter) {
+                routes = routes.filter(route => 
+                // save matches state based on the payload
+                isRouteMatching(route, payload.filter.toLowerCase()));
+            }
+            // mark active routes
+            routes.forEach(route => markRouteRecordActive(route, router.currentRoute.value));
+            payload.rootNodes = routes.map(formatRouteRecordForInspector);
+        }
+        let activeRoutesPayload;
+        api.on.getInspectorTree(payload => {
+            activeRoutesPayload = payload;
+            if (payload.app === app && payload.inspectorId === routerInspectorId) {
+                refreshRoutesView();
+            }
+        });
+        /**
+         * Display information about the currently selected route record
+         */
+        api.on.getInspectorState(payload => {
+            if (payload.app === app && payload.inspectorId === routerInspectorId) {
+                const routes = matcher.getRoutes();
+                const route = routes.find(route => route.record.__vd_id === payload.nodeId);
+                if (route) {
+                    payload.state = {
+                        options: formatRouteRecordMatcherForStateInspector(route),
+                    };
+                }
+            }
+        });
+        api.sendInspectorTree(routerInspectorId);
+        api.sendInspectorState(routerInspectorId);
+    });
+}
+function modifierForKey(key) {
+    if (key.optional) {
+        return key.repeatable ? '*' : '?';
+    }
+    else {
+        return key.repeatable ? '+' : '';
+    }
+}
+function formatRouteRecordMatcherForStateInspector(route) {
+    const { record } = route;
+    const fields = [
+        { editable: false, key: 'path', value: record.path },
+    ];
+    if (record.name != null) {
+        fields.push({
+            editable: false,
+            key: 'name',
+            value: record.name,
+        });
+    }
+    fields.push({ editable: false, key: 'regexp', value: route.re });
+    if (route.keys.length) {
+        fields.push({
+            editable: false,
+            key: 'keys',
+            value: {
+                _custom: {
+                    type: null,
+                    readOnly: true,
+                    display: route.keys
+                        .map(key => `${key.name}${modifierForKey(key)}`)
+                        .join(' '),
+                    tooltip: 'Param keys',
+                    value: route.keys,
+                },
+            },
+        });
+    }
+    if (record.redirect != null) {
+        fields.push({
+            editable: false,
+            key: 'redirect',
+            value: record.redirect,
+        });
+    }
+    if (route.alias.length) {
+        fields.push({
+            editable: false,
+            key: 'aliases',
+            value: route.alias.map(alias => alias.record.path),
+        });
+    }
+    fields.push({
+        key: 'score',
+        editable: false,
+        value: {
+            _custom: {
+                type: null,
+                readOnly: true,
+                display: route.score.map(score => score.join(', ')).join(' | '),
+                tooltip: 'Score used to sort routes',
+                value: route.score,
+            },
+        },
+    });
+    return fields;
+}
+/**
+ * Extracted from tailwind palette
+ */
+const PINK_500 = 0xec4899;
+const BLUE_600 = 0x2563eb;
+const LIME_500 = 0x84cc16;
+const CYAN_400 = 0x22d3ee;
+const ORANGE_400 = 0xfb923c;
+// const GRAY_100 = 0xf4f4f5
+const DARK = 0x666666;
+function formatRouteRecordForInspector(route) {
+    const tags = [];
+    const { record } = route;
+    if (record.name != null) {
+        tags.push({
+            label: String(record.name),
+            textColor: 0,
+            backgroundColor: CYAN_400,
+        });
+    }
+    if (record.aliasOf) {
+        tags.push({
+            label: 'alias',
+            textColor: 0,
+            backgroundColor: ORANGE_400,
+        });
+    }
+    if (route.__vd_match) {
+        tags.push({
+            label: 'matches',
+            textColor: 0,
+            backgroundColor: PINK_500,
+        });
+    }
+    if (route.__vd_exactActive) {
+        tags.push({
+            label: 'exact',
+            textColor: 0,
+            backgroundColor: LIME_500,
+        });
+    }
+    if (route.__vd_active) {
+        tags.push({
+            label: 'active',
+            textColor: 0,
+            backgroundColor: BLUE_600,
+        });
+    }
+    if (record.redirect) {
+        tags.push({
+            label: 'redirect: ' +
+                (typeof record.redirect === 'string' ? record.redirect : 'Object'),
+            textColor: 0xffffff,
+            backgroundColor: DARK,
+        });
+    }
+    // add an id to be able to select it. Using the `path` is not possible because
+    // empty path children would collide with their parents
+    let id = record.__vd_id;
+    if (id == null) {
+        id = String(routeRecordId++);
+        record.__vd_id = id;
+    }
+    return {
+        id,
+        label: record.path,
+        tags,
+        children: route.children.map(formatRouteRecordForInspector),
+    };
+}
+//  incremental id for route records and inspector state
+let routeRecordId = 0;
+const EXTRACT_REGEXP_RE = /^\/(.*)\/([a-z]*)$/;
+function markRouteRecordActive(route, currentRoute) {
+    // no route will be active if matched is empty
+    // reset the matching state
+    const isExactActive = currentRoute.matched.length &&
+        isSameRouteRecord(currentRoute.matched[currentRoute.matched.length - 1], route.record);
+    route.__vd_exactActive = route.__vd_active = isExactActive;
+    if (!isExactActive) {
+        route.__vd_active = currentRoute.matched.some(match => isSameRouteRecord(match, route.record));
+    }
+    route.children.forEach(childRoute => markRouteRecordActive(childRoute, currentRoute));
+}
+function resetMatchStateOnRouteRecord(route) {
+    route.__vd_match = false;
+    route.children.forEach(resetMatchStateOnRouteRecord);
+}
+function isRouteMatching(route, filter) {
+    const found = String(route.re).match(EXTRACT_REGEXP_RE);
+    route.__vd_match = false;
+    if (!found || found.length < 3) {
+        return false;
+    }
+    // use a regexp without $ at the end to match nested routes better
+    const nonEndingRE = new RegExp(found[1].replace(/\$$/, ''), found[2]);
+    if (nonEndingRE.test(filter)) {
+        // mark children as matches
+        route.children.forEach(child => isRouteMatching(child, filter));
+        // exception case: `/`
+        if (route.record.path !== '/' || filter === '/') {
+            route.__vd_match = route.re.test(filter);
+            return true;
+        }
+        // hide the / route
+        return false;
+    }
+    const path = route.record.path.toLowerCase();
+    const decodedPath = decode(path);
+    // also allow partial matching on the path
+    if (!filter.startsWith('/') &&
+        (decodedPath.includes(filter) || path.includes(filter)))
+        return true;
+    if (decodedPath.startsWith(filter) || path.startsWith(filter))
+        return true;
+    if (route.record.name && String(route.record.name).includes(filter))
+        return true;
+    return route.children.some(child => isRouteMatching(child, filter));
+}
+function omit(obj, keys) {
+    const ret = {};
+    for (const key in obj) {
+        if (!keys.includes(key)) {
+            // @ts-expect-error
+            ret[key] = obj[key];
+        }
+    }
+    return ret;
+}
+
+/**
+ * Creates a Router instance that can be used by a Vue app.
+ *
+ * @param options - {@link RouterOptions}
+ */
+function createRouter(options) {
+    const matcher = createRouterMatcher(options.routes, options);
+    const parseQuery$1 = options.parseQuery || parseQuery;
+    const stringifyQuery$1 = options.stringifyQuery || stringifyQuery;
+    const routerHistory = options.history;
+    if (( true) && !routerHistory)
+        throw new Error('Provide the "history" option when calling "createRouter()":' +
+            ' https://next.router.vuejs.org/api/#history.');
+    const beforeGuards = useCallbacks();
+    const beforeResolveGuards = useCallbacks();
+    const afterGuards = useCallbacks();
+    const currentRoute = (0,vue__WEBPACK_IMPORTED_MODULE_0__.shallowRef)(START_LOCATION_NORMALIZED);
+    let pendingLocation = START_LOCATION_NORMALIZED;
+    // leave the scrollRestoration if no scrollBehavior is provided
+    if (isBrowser && options.scrollBehavior && 'scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    const normalizeParams = applyToParams.bind(null, paramValue => '' + paramValue);
+    const encodeParams = applyToParams.bind(null, encodeParam);
+    const decodeParams = 
+    // @ts-expect-error: intentionally avoid the type check
+    applyToParams.bind(null, decode);
+    function addRoute(parentOrRoute, route) {
+        let parent;
+        let record;
+        if (isRouteName(parentOrRoute)) {
+            parent = matcher.getRecordMatcher(parentOrRoute);
+            record = route;
+        }
+        else {
+            record = parentOrRoute;
+        }
+        return matcher.addRoute(record, parent);
+    }
+    function removeRoute(name) {
+        const recordMatcher = matcher.getRecordMatcher(name);
+        if (recordMatcher) {
+            matcher.removeRoute(recordMatcher);
+        }
+        else if ((true)) {
+            warn(`Cannot remove non-existent route "${String(name)}"`);
+        }
+    }
+    function getRoutes() {
+        return matcher.getRoutes().map(routeMatcher => routeMatcher.record);
+    }
+    function hasRoute(name) {
+        return !!matcher.getRecordMatcher(name);
+    }
+    function resolve(rawLocation, currentLocation) {
+        // const objectLocation = routerLocationAsObject(rawLocation)
+        // we create a copy to modify it later
+        currentLocation = assign({}, currentLocation || currentRoute.value);
+        if (typeof rawLocation === 'string') {
+            const locationNormalized = parseURL(parseQuery$1, rawLocation, currentLocation.path);
+            const matchedRoute = matcher.resolve({ path: locationNormalized.path }, currentLocation);
+            const href = routerHistory.createHref(locationNormalized.fullPath);
+            if ((true)) {
+                if (href.startsWith('//'))
+                    warn(`Location "${rawLocation}" resolved to "${href}". A resolved location cannot start with multiple slashes.`);
+                else if (!matchedRoute.matched.length) {
+                    warn(`No match found for location with path "${rawLocation}"`);
+                }
+            }
+            // locationNormalized is always a new object
+            return assign(locationNormalized, matchedRoute, {
+                params: decodeParams(matchedRoute.params),
+                hash: decode(locationNormalized.hash),
+                redirectedFrom: undefined,
+                href,
+            });
+        }
+        let matcherLocation;
+        // path could be relative in object as well
+        if ('path' in rawLocation) {
+            if (( true) &&
+                'params' in rawLocation &&
+                !('name' in rawLocation) &&
+                // @ts-expect-error: the type is never
+                Object.keys(rawLocation.params).length) {
+                warn(`Path "${
+                // @ts-expect-error: the type is never
+                rawLocation.path}" was passed with params but they will be ignored. Use a named route alongside params instead.`);
+            }
+            matcherLocation = assign({}, rawLocation, {
+                path: parseURL(parseQuery$1, rawLocation.path, currentLocation.path).path,
+            });
+        }
+        else {
+            // remove any nullish param
+            const targetParams = assign({}, rawLocation.params);
+            for (const key in targetParams) {
+                if (targetParams[key] == null) {
+                    delete targetParams[key];
+                }
+            }
+            // pass encoded values to the matcher so it can produce encoded path and fullPath
+            matcherLocation = assign({}, rawLocation, {
+                params: encodeParams(rawLocation.params),
+            });
+            // current location params are decoded, we need to encode them in case the
+            // matcher merges the params
+            currentLocation.params = encodeParams(currentLocation.params);
+        }
+        const matchedRoute = matcher.resolve(matcherLocation, currentLocation);
+        const hash = rawLocation.hash || '';
+        if (( true) && hash && !hash.startsWith('#')) {
+            warn(`A \`hash\` should always start with the character "#". Replace "${hash}" with "#${hash}".`);
+        }
+        // decoding them) the matcher might have merged current location params so
+        // we need to run the decoding again
+        matchedRoute.params = normalizeParams(decodeParams(matchedRoute.params));
+        const fullPath = stringifyURL(stringifyQuery$1, assign({}, rawLocation, {
+            hash: encodeHash(hash),
+            path: matchedRoute.path,
+        }));
+        const href = routerHistory.createHref(fullPath);
+        if ((true)) {
+            if (href.startsWith('//')) {
+                warn(`Location "${rawLocation}" resolved to "${href}". A resolved location cannot start with multiple slashes.`);
+            }
+            else if (!matchedRoute.matched.length) {
+                warn(`No match found for location with path "${'path' in rawLocation ? rawLocation.path : rawLocation}"`);
+            }
+        }
+        return assign({
+            fullPath,
+            // keep the hash encoded so fullPath is effectively path + encodedQuery +
+            // hash
+            hash,
+            query: 
+            // if the user is using a custom query lib like qs, we might have
+            // nested objects, so we keep the query as is, meaning it can contain
+            // numbers at `$route.query`, but at the point, the user will have to
+            // use their own type anyway.
+            // https://github.com/vuejs/router/issues/328#issuecomment-649481567
+            stringifyQuery$1 === stringifyQuery
+                ? normalizeQuery(rawLocation.query)
+                : (rawLocation.query || {}),
+        }, matchedRoute, {
+            redirectedFrom: undefined,
+            href,
+        });
+    }
+    function locationAsObject(to) {
+        return typeof to === 'string'
+            ? parseURL(parseQuery$1, to, currentRoute.value.path)
+            : assign({}, to);
+    }
+    function checkCanceledNavigation(to, from) {
+        if (pendingLocation !== to) {
+            return createRouterError(8 /* NAVIGATION_CANCELLED */, {
+                from,
+                to,
+            });
+        }
+    }
+    function push(to) {
+        return pushWithRedirect(to);
+    }
+    function replace(to) {
+        return push(assign(locationAsObject(to), { replace: true }));
+    }
+    function handleRedirectRecord(to) {
+        const lastMatched = to.matched[to.matched.length - 1];
+        if (lastMatched && lastMatched.redirect) {
+            const { redirect } = lastMatched;
+            let newTargetLocation = typeof redirect === 'function' ? redirect(to) : redirect;
+            if (typeof newTargetLocation === 'string') {
+                newTargetLocation =
+                    newTargetLocation.includes('?') || newTargetLocation.includes('#')
+                        ? (newTargetLocation = locationAsObject(newTargetLocation))
+                        : // force empty params
+                            { path: newTargetLocation };
+                // @ts-expect-error: force empty params when a string is passed to let
+                // the router parse them again
+                newTargetLocation.params = {};
+            }
+            if (( true) &&
+                !('path' in newTargetLocation) &&
+                !('name' in newTargetLocation)) {
+                warn(`Invalid redirect found:\n${JSON.stringify(newTargetLocation, null, 2)}\n when navigating to "${to.fullPath}". A redirect must contain a name or path. This will break in production.`);
+                throw new Error('Invalid redirect');
+            }
+            return assign({
+                query: to.query,
+                hash: to.hash,
+                params: to.params,
+            }, newTargetLocation);
+        }
+    }
+    function pushWithRedirect(to, redirectedFrom) {
+        const targetLocation = (pendingLocation = resolve(to));
+        const from = currentRoute.value;
+        const data = to.state;
+        const force = to.force;
+        // to could be a string where `replace` is a function
+        const replace = to.replace === true;
+        const shouldRedirect = handleRedirectRecord(targetLocation);
+        if (shouldRedirect)
+            return pushWithRedirect(assign(locationAsObject(shouldRedirect), {
+                state: data,
+                force,
+                replace,
+            }), 
+            // keep original redirectedFrom if it exists
+            redirectedFrom || targetLocation);
+        // if it was a redirect we already called `pushWithRedirect` above
+        const toLocation = targetLocation;
+        toLocation.redirectedFrom = redirectedFrom;
+        let failure;
+        if (!force && isSameRouteLocation(stringifyQuery$1, from, targetLocation)) {
+            failure = createRouterError(16 /* NAVIGATION_DUPLICATED */, { to: toLocation, from });
+            // trigger scroll to allow scrolling to the same anchor
+            handleScroll(from, from, 
+            // this is a push, the only way for it to be triggered from a
+            // history.listen is with a redirect, which makes it become a push
+            true, 
+            // This cannot be the first navigation because the initial location
+            // cannot be manually navigated to
+            false);
+        }
+        return (failure ? Promise.resolve(failure) : navigate(toLocation, from))
+            .catch((error) => isNavigationFailure(error)
+            ? // navigation redirects still mark the router as ready
+                isNavigationFailure(error, 2 /* NAVIGATION_GUARD_REDIRECT */)
+                    ? error
+                    : markAsReady(error) // also returns the error
+            : // reject any unknown error
+                triggerError(error, toLocation, from))
+            .then((failure) => {
+            if (failure) {
+                if (isNavigationFailure(failure, 2 /* NAVIGATION_GUARD_REDIRECT */)) {
+                    if (( true) &&
+                        // we are redirecting to the same location we were already at
+                        isSameRouteLocation(stringifyQuery$1, resolve(failure.to), toLocation) &&
+                        // and we have done it a couple of times
+                        redirectedFrom &&
+                        // @ts-expect-error: added only in dev
+                        (redirectedFrom._count = redirectedFrom._count
+                            ? // @ts-expect-error
+                                redirectedFrom._count + 1
+                            : 1) > 10) {
+                        warn(`Detected an infinite redirection in a navigation guard when going from "${from.fullPath}" to "${toLocation.fullPath}". Aborting to avoid a Stack Overflow. This will break in production if not fixed.`);
+                        return Promise.reject(new Error('Infinite redirect in navigation guard'));
+                    }
+                    return pushWithRedirect(
+                    // keep options
+                    assign(locationAsObject(failure.to), {
+                        state: data,
+                        force,
+                        replace,
+                    }), 
+                    // preserve the original redirectedFrom if any
+                    redirectedFrom || toLocation);
+                }
+            }
+            else {
+                // if we fail we don't finalize the navigation
+                failure = finalizeNavigation(toLocation, from, true, replace, data);
+            }
+            triggerAfterEach(toLocation, from, failure);
+            return failure;
+        });
+    }
+    /**
+     * Helper to reject and skip all navigation guards if a new navigation happened
+     * @param to
+     * @param from
+     */
+    function checkCanceledNavigationAndReject(to, from) {
+        const error = checkCanceledNavigation(to, from);
+        return error ? Promise.reject(error) : Promise.resolve();
+    }
+    // TODO: refactor the whole before guards by internally using router.beforeEach
+    function navigate(to, from) {
+        let guards;
+        const [leavingRecords, updatingRecords, enteringRecords] = extractChangingRecords(to, from);
+        // all components here have been resolved once because we are leaving
+        guards = extractComponentsGuards(leavingRecords.reverse(), 'beforeRouteLeave', to, from);
+        // leavingRecords is already reversed
+        for (const record of leavingRecords) {
+            record.leaveGuards.forEach(guard => {
+                guards.push(guardToPromiseFn(guard, to, from));
+            });
+        }
+        const canceledNavigationCheck = checkCanceledNavigationAndReject.bind(null, to, from);
+        guards.push(canceledNavigationCheck);
+        // run the queue of per route beforeRouteLeave guards
+        return (runGuardQueue(guards)
+            .then(() => {
+            // check global guards beforeEach
+            guards = [];
+            for (const guard of beforeGuards.list()) {
+                guards.push(guardToPromiseFn(guard, to, from));
+            }
+            guards.push(canceledNavigationCheck);
+            return runGuardQueue(guards);
+        })
+            .then(() => {
+            // check in components beforeRouteUpdate
+            guards = extractComponentsGuards(updatingRecords, 'beforeRouteUpdate', to, from);
+            for (const record of updatingRecords) {
+                record.updateGuards.forEach(guard => {
+                    guards.push(guardToPromiseFn(guard, to, from));
+                });
+            }
+            guards.push(canceledNavigationCheck);
+            // run the queue of per route beforeEnter guards
+            return runGuardQueue(guards);
+        })
+            .then(() => {
+            // check the route beforeEnter
+            guards = [];
+            for (const record of to.matched) {
+                // do not trigger beforeEnter on reused views
+                if (record.beforeEnter && !from.matched.includes(record)) {
+                    if (Array.isArray(record.beforeEnter)) {
+                        for (const beforeEnter of record.beforeEnter)
+                            guards.push(guardToPromiseFn(beforeEnter, to, from));
+                    }
+                    else {
+                        guards.push(guardToPromiseFn(record.beforeEnter, to, from));
+                    }
+                }
+            }
+            guards.push(canceledNavigationCheck);
+            // run the queue of per route beforeEnter guards
+            return runGuardQueue(guards);
+        })
+            .then(() => {
+            // NOTE: at this point to.matched is normalized and does not contain any () => Promise<Component>
+            // clear existing enterCallbacks, these are added by extractComponentsGuards
+            to.matched.forEach(record => (record.enterCallbacks = {}));
+            // check in-component beforeRouteEnter
+            guards = extractComponentsGuards(enteringRecords, 'beforeRouteEnter', to, from);
+            guards.push(canceledNavigationCheck);
+            // run the queue of per route beforeEnter guards
+            return runGuardQueue(guards);
+        })
+            .then(() => {
+            // check global guards beforeResolve
+            guards = [];
+            for (const guard of beforeResolveGuards.list()) {
+                guards.push(guardToPromiseFn(guard, to, from));
+            }
+            guards.push(canceledNavigationCheck);
+            return runGuardQueue(guards);
+        })
+            // catch any navigation canceled
+            .catch(err => isNavigationFailure(err, 8 /* NAVIGATION_CANCELLED */)
+            ? err
+            : Promise.reject(err)));
+    }
+    function triggerAfterEach(to, from, failure) {
+        // navigation is confirmed, call afterGuards
+        // TODO: wrap with error handlers
+        for (const guard of afterGuards.list())
+            guard(to, from, failure);
+    }
+    /**
+     * - Cleans up any navigation guards
+     * - Changes the url if necessary
+     * - Calls the scrollBehavior
+     */
+    function finalizeNavigation(toLocation, from, isPush, replace, data) {
+        // a more recent navigation took place
+        const error = checkCanceledNavigation(toLocation, from);
+        if (error)
+            return error;
+        // only consider as push if it's not the first navigation
+        const isFirstNavigation = from === START_LOCATION_NORMALIZED;
+        const state = !isBrowser ? {} : history.state;
+        // change URL only if the user did a push/replace and if it's not the initial navigation because
+        // it's just reflecting the url
+        if (isPush) {
+            // on the initial navigation, we want to reuse the scroll position from
+            // history state if it exists
+            if (replace || isFirstNavigation)
+                routerHistory.replace(toLocation.fullPath, assign({
+                    scroll: isFirstNavigation && state && state.scroll,
+                }, data));
+            else
+                routerHistory.push(toLocation.fullPath, data);
+        }
+        // accept current navigation
+        currentRoute.value = toLocation;
+        handleScroll(toLocation, from, isPush, isFirstNavigation);
+        markAsReady();
+    }
+    let removeHistoryListener;
+    // attach listener to history to trigger navigations
+    function setupListeners() {
+        // avoid setting up listeners twice due to an invalid first navigation
+        if (removeHistoryListener)
+            return;
+        removeHistoryListener = routerHistory.listen((to, _from, info) => {
+            // cannot be a redirect route because it was in history
+            const toLocation = resolve(to);
+            // due to dynamic routing, and to hash history with manual navigation
+            // (manually changing the url or calling history.hash = '#/somewhere'),
+            // there could be a redirect record in history
+            const shouldRedirect = handleRedirectRecord(toLocation);
+            if (shouldRedirect) {
+                pushWithRedirect(assign(shouldRedirect, { replace: true }), toLocation).catch(noop);
+                return;
+            }
+            pendingLocation = toLocation;
+            const from = currentRoute.value;
+            // TODO: should be moved to web history?
+            if (isBrowser) {
+                saveScrollPosition(getScrollKey(from.fullPath, info.delta), computeScrollPosition());
+            }
+            navigate(toLocation, from)
+                .catch((error) => {
+                if (isNavigationFailure(error, 4 /* NAVIGATION_ABORTED */ | 8 /* NAVIGATION_CANCELLED */)) {
+                    return error;
+                }
+                if (isNavigationFailure(error, 2 /* NAVIGATION_GUARD_REDIRECT */)) {
+                    // Here we could call if (info.delta) routerHistory.go(-info.delta,
+                    // false) but this is bug prone as we have no way to wait the
+                    // navigation to be finished before calling pushWithRedirect. Using
+                    // a setTimeout of 16ms seems to work but there is not guarantee for
+                    // it to work on every browser. So Instead we do not restore the
+                    // history entry and trigger a new navigation as requested by the
+                    // navigation guard.
+                    // the error is already handled by router.push we just want to avoid
+                    // logging the error
+                    pushWithRedirect(error.to, toLocation
+                    // avoid an uncaught rejection, let push call triggerError
+                    )
+                        .then(failure => {
+                        // manual change in hash history #916 ending up in the URL not
+                        // changing but it was changed by the manual url change, so we
+                        // need to manually change it ourselves
+                        if (isNavigationFailure(failure, 4 /* NAVIGATION_ABORTED */ |
+                            16 /* NAVIGATION_DUPLICATED */) &&
+                            !info.delta &&
+                            info.type === NavigationType.pop) {
+                            routerHistory.go(-1, false);
+                        }
+                    })
+                        .catch(noop);
+                    // avoid the then branch
+                    return Promise.reject();
+                }
+                // do not restore history on unknown direction
+                if (info.delta)
+                    routerHistory.go(-info.delta, false);
+                // unrecognized error, transfer to the global handler
+                return triggerError(error, toLocation, from);
+            })
+                .then((failure) => {
+                failure =
+                    failure ||
+                        finalizeNavigation(
+                        // after navigation, all matched components are resolved
+                        toLocation, from, false);
+                // revert the navigation
+                if (failure) {
+                    if (info.delta) {
+                        routerHistory.go(-info.delta, false);
+                    }
+                    else if (info.type === NavigationType.pop &&
+                        isNavigationFailure(failure, 4 /* NAVIGATION_ABORTED */ | 16 /* NAVIGATION_DUPLICATED */)) {
+                        // manual change in hash history #916
+                        // it's like a push but lacks the information of the direction
+                        routerHistory.go(-1, false);
+                    }
+                }
+                triggerAfterEach(toLocation, from, failure);
+            })
+                .catch(noop);
+        });
+    }
+    // Initialization and Errors
+    let readyHandlers = useCallbacks();
+    let errorHandlers = useCallbacks();
+    let ready;
+    /**
+     * Trigger errorHandlers added via onError and throws the error as well
+     *
+     * @param error - error to throw
+     * @param to - location we were navigating to when the error happened
+     * @param from - location we were navigating from when the error happened
+     * @returns the error as a rejected promise
+     */
+    function triggerError(error, to, from) {
+        markAsReady(error);
+        const list = errorHandlers.list();
+        if (list.length) {
+            list.forEach(handler => handler(error, to, from));
+        }
+        else {
+            if ((true)) {
+                warn('uncaught error during route navigation:');
+            }
+            console.error(error);
+        }
+        return Promise.reject(error);
+    }
+    function isReady() {
+        if (ready && currentRoute.value !== START_LOCATION_NORMALIZED)
+            return Promise.resolve();
+        return new Promise((resolve, reject) => {
+            readyHandlers.add([resolve, reject]);
+        });
+    }
+    function markAsReady(err) {
+        if (!ready) {
+            // still not ready if an error happened
+            ready = !err;
+            setupListeners();
+            readyHandlers
+                .list()
+                .forEach(([resolve, reject]) => (err ? reject(err) : resolve()));
+            readyHandlers.reset();
+        }
+        return err;
+    }
+    // Scroll behavior
+    function handleScroll(to, from, isPush, isFirstNavigation) {
+        const { scrollBehavior } = options;
+        if (!isBrowser || !scrollBehavior)
+            return Promise.resolve();
+        const scrollPosition = (!isPush && getSavedScrollPosition(getScrollKey(to.fullPath, 0))) ||
+            ((isFirstNavigation || !isPush) &&
+                history.state &&
+                history.state.scroll) ||
+            null;
+        return (0,vue__WEBPACK_IMPORTED_MODULE_0__.nextTick)()
+            .then(() => scrollBehavior(to, from, scrollPosition))
+            .then(position => position && scrollToPosition(position))
+            .catch(err => triggerError(err, to, from));
+    }
+    const go = (delta) => routerHistory.go(delta);
+    let started;
+    const installedApps = new Set();
+    const router = {
+        currentRoute,
+        addRoute,
+        removeRoute,
+        hasRoute,
+        getRoutes,
+        resolve,
+        options,
+        push,
+        replace,
+        go,
+        back: () => go(-1),
+        forward: () => go(1),
+        beforeEach: beforeGuards.add,
+        beforeResolve: beforeResolveGuards.add,
+        afterEach: afterGuards.add,
+        onError: errorHandlers.add,
+        isReady,
+        install(app) {
+            const router = this;
+            app.component('RouterLink', RouterLink);
+            app.component('RouterView', RouterView);
+            app.config.globalProperties.$router = router;
+            Object.defineProperty(app.config.globalProperties, '$route', {
+                enumerable: true,
+                get: () => (0,vue__WEBPACK_IMPORTED_MODULE_0__.unref)(currentRoute),
+            });
+            // this initial navigation is only necessary on client, on server it doesn't
+            // make sense because it will create an extra unnecessary navigation and could
+            // lead to problems
+            if (isBrowser &&
+                // used for the initial navigation client side to avoid pushing
+                // multiple times when the router is used in multiple apps
+                !started &&
+                currentRoute.value === START_LOCATION_NORMALIZED) {
+                // see above
+                started = true;
+                push(routerHistory.location).catch(err => {
+                    if ((true))
+                        warn('Unexpected error when starting the router:', err);
+                });
+            }
+            const reactiveRoute = {};
+            for (const key in START_LOCATION_NORMALIZED) {
+                // @ts-expect-error: the key matches
+                reactiveRoute[key] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.computed)(() => currentRoute.value[key]);
+            }
+            app.provide(routerKey, router);
+            app.provide(routeLocationKey, (0,vue__WEBPACK_IMPORTED_MODULE_0__.reactive)(reactiveRoute));
+            app.provide(routerViewLocationKey, currentRoute);
+            const unmountApp = app.unmount;
+            installedApps.add(app);
+            app.unmount = function () {
+                installedApps.delete(app);
+                // the router is not attached to an app anymore
+                if (installedApps.size < 1) {
+                    // invalidate the current navigation
+                    pendingLocation = START_LOCATION_NORMALIZED;
+                    removeHistoryListener && removeHistoryListener();
+                    removeHistoryListener = null;
+                    currentRoute.value = START_LOCATION_NORMALIZED;
+                    started = false;
+                    ready = false;
+                }
+                unmountApp();
+            };
+            if (( true) && isBrowser) {
+                addDevtools(app, router, matcher);
+            }
+        },
+    };
+    return router;
+}
+function runGuardQueue(guards) {
+    return guards.reduce((promise, guard) => promise.then(() => guard()), Promise.resolve());
+}
+function extractChangingRecords(to, from) {
+    const leavingRecords = [];
+    const updatingRecords = [];
+    const enteringRecords = [];
+    const len = Math.max(from.matched.length, to.matched.length);
+    for (let i = 0; i < len; i++) {
+        const recordFrom = from.matched[i];
+        if (recordFrom) {
+            if (to.matched.find(record => isSameRouteRecord(record, recordFrom)))
+                updatingRecords.push(recordFrom);
+            else
+                leavingRecords.push(recordFrom);
+        }
+        const recordTo = to.matched[i];
+        if (recordTo) {
+            // the type doesn't matter because we are comparing per reference
+            if (!from.matched.find(record => isSameRouteRecord(record, recordTo))) {
+                enteringRecords.push(recordTo);
+            }
+        }
+    }
+    return [leavingRecords, updatingRecords, enteringRecords];
+}
+
+/**
+ * Returns the router instance. Equivalent to using `$router` inside
+ * templates.
+ */
+function useRouter() {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(routerKey);
+}
+/**
+ * Returns the current route location. Equivalent to using `$route` inside
+ * templates.
+ */
+function useRoute() {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.inject)(routeLocationKey);
+}
+
+
 
 
 /***/ }),
@@ -18231,6 +23303,7 @@ __webpack_require__.r(__webpack_exports__);
   \**************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "BaseTransition": () => (/* reexport safe */ _vue_runtime_dom__WEBPACK_IMPORTED_MODULE_0__.BaseTransition),
@@ -18448,6 +23521,16032 @@ function compileToFunction(template, options) {
     return (compileCache[key] = render);
 }
 (0,_vue_runtime_dom__WEBPACK_IMPORTED_MODULE_1__.registerRuntimeCompiler)(compileToFunction);
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formkit/core/dist/index.mjs":
+/*!***************************************************!*\
+  !*** ./node_modules/@formkit/core/dist/index.mjs ***!
+  \***************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "bfs": () => (/* binding */ bfs),
+/* harmony export */   "clearErrors": () => (/* binding */ clearErrors),
+/* harmony export */   "compile": () => (/* binding */ compile),
+/* harmony export */   "createClasses": () => (/* binding */ createClasses),
+/* harmony export */   "createConfig": () => (/* binding */ createConfig$1),
+/* harmony export */   "createMessage": () => (/* binding */ createMessage),
+/* harmony export */   "createNode": () => (/* binding */ createNode),
+/* harmony export */   "createValue": () => (/* binding */ createValue),
+/* harmony export */   "deregister": () => (/* binding */ deregister),
+/* harmony export */   "error": () => (/* binding */ error),
+/* harmony export */   "errorHandler": () => (/* binding */ errorHandler),
+/* harmony export */   "generateClassList": () => (/* binding */ generateClassList),
+/* harmony export */   "getNode": () => (/* binding */ getNode$1),
+/* harmony export */   "isComponent": () => (/* binding */ isComponent),
+/* harmony export */   "isConditional": () => (/* binding */ isConditional),
+/* harmony export */   "isDOM": () => (/* binding */ isDOM),
+/* harmony export */   "isList": () => (/* binding */ isList),
+/* harmony export */   "isNode": () => (/* binding */ isNode),
+/* harmony export */   "isSugar": () => (/* binding */ isSugar),
+/* harmony export */   "names": () => (/* binding */ names),
+/* harmony export */   "register": () => (/* binding */ register),
+/* harmony export */   "reset": () => (/* binding */ reset),
+/* harmony export */   "resetCount": () => (/* binding */ resetCount),
+/* harmony export */   "resetRegistry": () => (/* binding */ resetRegistry),
+/* harmony export */   "setErrors": () => (/* binding */ setErrors),
+/* harmony export */   "submitForm": () => (/* binding */ submitForm),
+/* harmony export */   "sugar": () => (/* binding */ sugar),
+/* harmony export */   "use": () => (/* binding */ use),
+/* harmony export */   "useIndex": () => (/* binding */ useIndex),
+/* harmony export */   "valueInserted": () => (/* binding */ valueInserted),
+/* harmony export */   "valueMoved": () => (/* binding */ valueMoved),
+/* harmony export */   "valueRemoved": () => (/* binding */ valueRemoved),
+/* harmony export */   "warn": () => (/* binding */ warn),
+/* harmony export */   "warningHandler": () => (/* binding */ warningHandler),
+/* harmony export */   "watchRegistry": () => (/* binding */ watchRegistry)
+/* harmony export */ });
+/* harmony import */ var _formkit_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formkit/utils */ "./node_modules/@formkit/utils/dist/index.mjs");
+
+
+/**
+ * Creates a new dispatcher that allows the addition/removal of middleware
+ * functions, and the ability to dispatch a payload to all middleware.
+ * @returns FormKitDispatcher
+ */
+function createDispatcher() {
+    const middleware = [];
+    let currentIndex = 0;
+    const use = (dispatchable) => middleware.push(dispatchable);
+    const dispatch = (payload) => {
+        const current = middleware[currentIndex];
+        if (typeof current === 'function') {
+            return current(payload, (explicitPayload) => {
+                currentIndex++;
+                return dispatch(explicitPayload === undefined ? payload : explicitPayload);
+            });
+        }
+        currentIndex = 0;
+        return payload;
+    };
+    use.dispatch = dispatch;
+    use.unshift = (dispatchable) => middleware.unshift(dispatchable);
+    use.remove = (dispatchable) => {
+        const index = middleware.indexOf(dispatchable);
+        if (index > -1)
+            middleware.splice(index, 1);
+    };
+    return use;
+}
+
+/**
+ * Creates a new event emitter, each node uses one of these to allow it to emit
+ * events to local listeners and tree listeners.
+ * @returns FormKitEventEmitter
+ */
+function createEmitter() {
+    const listeners = new Map();
+    const receipts = new Map();
+    let buffer = undefined;
+    const emitter = (node, event) => {
+        if (buffer) {
+            buffer.set(event.name, [node, event]);
+            return;
+        }
+        if (listeners.has(event.name)) {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            listeners.get(event.name).forEach((wrapper) => {
+                if (event.origin === node || wrapper.modifiers.includes('deep')) {
+                    wrapper.listener(event);
+                }
+            });
+        }
+        if (event.bubble) {
+            node.bubble(event);
+        }
+    };
+    /**
+     * Add an event listener
+     * @param eventName - The name of the event to listen to
+     * @param listener - The callback
+     * @returns string
+     */
+    emitter.on = (eventName, listener) => {
+        const [event, ...modifiers] = eventName.split('.');
+        const receipt = listener.receipt || (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.token)();
+        const wrapper = {
+            modifiers,
+            event,
+            listener,
+            receipt,
+        };
+        /* eslint-disable @typescript-eslint/no-non-null-assertion */
+        listeners.has(event)
+            ? listeners.get(event).push(wrapper)
+            : listeners.set(event, [wrapper]);
+        receipts.has(receipt)
+            ? receipts.get(receipt).push(event)
+            : receipts.set(receipt, [event]);
+        /* eslint-enable @typescript-eslint/no-non-null-assertion */
+        return receipt;
+    };
+    /**
+     * Remove an event listener
+     * @param listenerOrReceipt - Either a receipt or the callback function.
+     */
+    emitter.off = (receipt) => {
+        var _a;
+        if (receipts.has(receipt)) {
+            (_a = receipts.get(receipt)) === null || _a === void 0 ? void 0 : _a.forEach((event) => {
+                const eventListeners = listeners.get(event);
+                if (Array.isArray(eventListeners)) {
+                    listeners.set(event, eventListeners.filter((wrapper) => wrapper.receipt !== receipt));
+                }
+            });
+            receipts.delete(receipt);
+        }
+    };
+    /**
+     * Pause emitting values. Any events emitted while paused will not be emitted
+     * but rather "stored" — and whichever events are emitted last will be output.
+     * For example:
+     * pause()
+     * emit('foo', 1)
+     * emit('foo', 2)
+     * emit('bar', 3)
+     * emit('bar', 4)
+     * play()
+     * // would result in
+     * emit('foo', 2)
+     * emit('bar', 4)
+     * Optionally pauses all children as well.
+     * @param node - A node to pause all children on.
+     */
+    emitter.pause = (node) => {
+        if (!buffer)
+            buffer = new Map();
+        if (node) {
+            node.walk((child) => child._e.pause());
+        }
+    };
+    /**
+     * Release the current event buffer.
+     * @param node - A node to unpause all children on.
+     */
+    emitter.play = (node) => {
+        if (!buffer)
+            return;
+        const events = buffer;
+        buffer = undefined;
+        events.forEach(([node, event]) => emitter(node, event));
+        if (node) {
+            node.walk((child) => child._e.play());
+        }
+    };
+    return emitter;
+}
+/**
+ * Emit an event from this node.
+ * @param node - The node that is emitting
+ * @param context - The context of that node
+ * @param name - The name of the event
+ * @param payload - The payload to emit
+ * @returns FormKitNode
+ */
+function emit$1(node, context, name, payload, // eslint-disable-line @typescript-eslint/explicit-module-boundary-types,
+bubble = true) {
+    context._e(node, {
+        payload,
+        name,
+        bubble,
+        origin: node,
+    });
+    return node;
+}
+/**
+ * Send an event from the given node up it's ancestor tree.
+ * @param node -
+ * @param _context -
+ * @param event -
+ */
+function bubble(node, _context, event) {
+    if (isNode(node.parent)) {
+        node.parent._e(node.parent, event);
+    }
+    return node;
+}
+/**
+ * Adds an event listener to the node for a specific event. The event name is a
+ * simple string matching the name of the event to listen to. It can optionally
+ * include modifiers like eventName.deep
+ * @param node -
+ * @param context -
+ * @param name -
+ * @param listener -
+ * @returns FormKitNode
+ */
+function on(_node, context, name, listener) {
+    return context._e.on(name, listener);
+}
+/**
+ * Removes an event listener from a node by the returned receipt from .on().
+ * @param node - The node to remote the listener from
+ * @param context - The context to remove
+ * @param receipt - The receipt returned by .on()
+ * @returns FormKitNode
+ */
+function off(node, context, receipt) {
+    context._e.off(receipt);
+    return node;
+}
+
+/**
+ * FormKit's global error handler.
+ * @public
+ */
+const errorHandler = createDispatcher();
+/**
+ * The default error handler just sets the error as the message.
+ */
+errorHandler((error, next) => {
+    if (!error.message)
+        error.message = String(`E${error.code}`);
+    return next(error);
+});
+/**
+ * FormKit's global warning handler.
+ * @public
+ */
+const warningHandler = createDispatcher();
+warningHandler((warning, next) => {
+    if (!warning.message)
+        warning.message = String(`W${warning.code}`);
+    const result = next(warning);
+    if (console && typeof console.warn === 'function')
+        console.warn(result.message);
+    return result;
+});
+/**
+ * Globally emits a warning.
+ * @param code - The integer error code.
+ * @param data - Usually an object of information to include.
+ * @public
+ */
+function warn(code, data = {}) {
+    warningHandler.dispatch({ code, data });
+}
+/**
+ * Emits an error, generally should result in an exception.
+ * @param code - The integer error code.
+ * @param data - Usually an object of information to include.
+ * @public
+ */
+function error(code, data = {}) {
+    throw Error(errorHandler.dispatch({ code, data }).message);
+}
+
+/**
+ * Creates a new FormKitMessage object.
+ * @param conf - The message configuration
+ * @returns FormKitMessage
+ * @public
+ */
+function createMessage(conf, node) {
+    const m = {
+        blocking: false,
+        key: (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.token)(),
+        meta: {},
+        type: 'state',
+        visible: true,
+        ...conf,
+    };
+    if (node && m.value && m.meta.localize !== false) {
+        m.value = node.t(m);
+        m.meta.locale = node.config.locale;
+    }
+    return m;
+}
+/**
+ * The available traps on the node's store.
+ */
+const storeTraps = {
+    apply: applyMessages,
+    set: setMessage,
+    remove: removeMessage,
+    filter: filterMessages,
+    reduce: reduceMessages,
+    release: releaseBuffer,
+    touch: touchMessages,
+};
+/**
+ * Creates a new FormKit message store.
+ * @returns FormKitStore
+ */
+function createStore(_buffer = false) {
+    const messages = {};
+    let node;
+    let buffer = _buffer;
+    let _b = [];
+    const _m = new Map();
+    let _r = undefined;
+    const store = new Proxy(messages, {
+        get(...args) {
+            const [_target, property] = args;
+            if (property === 'buffer')
+                return buffer;
+            if (property === '_b')
+                return _b;
+            if (property === '_m')
+                return _m;
+            if (property === '_r')
+                return _r;
+            if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(storeTraps, property)) {
+                return storeTraps[property].bind(null, messages, store, node);
+            }
+            return Reflect.get(...args);
+        },
+        set(_t, prop, value) {
+            if (prop === '_n') {
+                node = value;
+                if (_r === '__n')
+                    releaseMissed(node, store);
+                return true;
+            }
+            else if (prop === '_b') {
+                _b = value;
+                return true;
+            }
+            else if (prop === 'buffer') {
+                buffer = value;
+                return true;
+            }
+            else if (prop === '_r') {
+                _r = value;
+                return true;
+            }
+            error(101, node);
+            return false;
+        },
+    });
+    return store;
+}
+/**
+ * Adds a new value to a FormKit message bag.
+ * @param store - The store itself
+ * @param store - The store interface
+ * @param node - The node this store belongs to
+ * @param message - The message object
+ * @returns FormKitStore
+ */
+function setMessage(messageStore, store, node, message) {
+    if (store.buffer) {
+        store._b.push([[message]]);
+        return store;
+    }
+    if (messageStore[message.key] !== message) {
+        if (typeof message.value === 'string' && message.meta.localize !== false) {
+            // Expose the value to translation
+            const previous = message.value;
+            message.value = node.t(message);
+            if (message.value !== previous) {
+                message.meta.locale = node.props.locale;
+            }
+        }
+        const e = `message-${(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(messageStore, message.key) ? 'updated' : 'added'}`;
+        messageStore[message.key] = Object.freeze(node.hook.message.dispatch(message));
+        node.emit(e, message);
+    }
+    return store;
+}
+/**
+ * Run through each message in the store, and ensure it has been translated
+ * to the proper language. This most frequently happens after a locale change.
+ */
+function touchMessages(messageStore, store) {
+    for (const key in messageStore) {
+        const message = { ...messageStore[key] };
+        store.set(message);
+    }
+}
+/**
+ * Remove a message from the store.
+ * @param store - The store itself
+ * @param store - The store interface
+ * @param node - The node this store belongs to
+ * @param key - The message key
+ * @returns FormKitStore
+ */
+function removeMessage(messageStore, store, node, key) {
+    if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(messageStore, key)) {
+        const message = messageStore[key];
+        delete messageStore[key];
+        node.emit('message-removed', message);
+    }
+    if (store.buffer === true) {
+        store._b = store._b.filter((buffered) => {
+            buffered[0] = buffered[0].filter((m) => m.key !== key);
+            return buffered[1] || buffered[0].length;
+        });
+    }
+    return store;
+}
+/**
+ * Iterates over all messages removing those that are no longer wanted.
+ * @param messageStore - The store itself
+ * @param store - The store interface
+ * @param node - The node to filter for
+ * @param callback - A callback accepting a message and returning a boolean
+ * @param type - Pre filtered by a given message type
+ */
+function filterMessages(messageStore, store, node, callback, type) {
+    for (const key in messageStore) {
+        const message = messageStore[key];
+        if ((!type || message.type === type) && !callback(message)) {
+            removeMessage(messageStore, store, node, key);
+        }
+    }
+}
+/**
+ * Reduce the message store to some other generic value.
+ * @param messageStore - The store itself
+ * @param _store - Unused but curried — the store interface itself
+ * @param _node - The node owner of this store
+ * @param reducer - The callback that performs the reduction
+ * @param accumulator - The initial value
+ * @returns
+ */
+function reduceMessages(messageStore, _store, _node, reducer, accumulator) {
+    for (const key in messageStore) {
+        const message = messageStore[key];
+        accumulator = reducer(accumulator, message);
+    }
+    return accumulator;
+}
+/**
+ *
+ * @param messageStore - The store itself
+ * @param _store - Unused but curried — the store interface itself
+ * @param node - The node owner of this store
+ * @param messages - An array of FormKitMessages to apply to this input, or an object of messages to apply to children.
+ */
+function applyMessages(_messageStore, store, node, messages, clear) {
+    if (Array.isArray(messages)) {
+        if (store.buffer) {
+            store._b.push([messages, clear]);
+            return;
+        }
+        // In this case we are applying messages to this node’s store.
+        const applied = new Set(messages.map((message) => {
+            store.set(message);
+            return message.key;
+        }));
+        // Remove any messages that were not part of the initial apply:
+        if (typeof clear === 'string') {
+            store.filter((message) => message.type !== clear || applied.has(message.key));
+        }
+        else if (typeof clear === 'function') {
+            store.filter((message) => !clear(message) || applied.has(message.key));
+        }
+    }
+    else {
+        for (const address in messages) {
+            const child = node.at(address);
+            if (child) {
+                child.store.apply(messages[address], clear);
+            }
+            else {
+                missed(node, store, address, messages[address], clear);
+            }
+        }
+    }
+}
+/**
+ * Creates an array of message arrays from strings.
+ * @param errors - Arrays or objects of form errors or input errors
+ * @returns
+ * @internal
+ */
+function createMessages(node, ...errors) {
+    const sourceKey = `${node.name}-set`;
+    const make = (error) => createMessage({
+        key: (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.slugify)(error),
+        type: 'error',
+        value: error,
+        meta: { source: sourceKey, autoClear: true },
+    });
+    return errors
+        .filter((m) => !!m)
+        .map((errorSet) => {
+        if (typeof errorSet === 'string')
+            errorSet = [errorSet];
+        if (Array.isArray(errorSet)) {
+            return errorSet.map((error) => make(error));
+        }
+        else {
+            const errors = {};
+            for (const key in errorSet) {
+                if (Array.isArray(errorSet[key])) {
+                    errors[key] = errorSet[key].map((error) => make(error));
+                }
+                else {
+                    errors[key] = [make(errorSet[key])];
+                }
+            }
+            return errors;
+        }
+    });
+}
+/**
+ *
+ * @param store - The store to apply this missed applications.
+ * @param address - The address that was missed (a node path that didn't yet exist)
+ * @param messages - The messages that should have been applied.
+ * @param clear - The clearing function (if any)
+ */
+function missed(node, store, address, messages, clear) {
+    var _a;
+    const misses = store._m;
+    if (!misses.has(address))
+        misses.set(address, []);
+    // The created receipt
+    if (!store._r)
+        store._r = releaseMissed(node, store);
+    (_a = misses.get(address)) === null || _a === void 0 ? void 0 : _a.push([messages, clear]);
+}
+/**
+ * Releases messages that were applied to a child via parent, but the child did
+ * not exist. Once the child does exist, the created event for that child will
+ * bubble to this point, and any stored applications will be applied serially.
+ * @param store - The store object.
+ * @returns
+ */
+function releaseMissed(node, store) {
+    return node.on('child.deep', ({ payload: child }) => {
+        store._m.forEach((misses, address) => {
+            if (node.at(address) === child) {
+                misses.forEach(([messages, clear]) => {
+                    child.store.apply(messages, clear);
+                });
+                store._m.delete(address);
+            }
+        });
+        // If all the stored misses were applied, remove the listener.
+        if (store._m.size === 0 && store._r) {
+            node.off(store._r);
+            store._r = undefined;
+        }
+    });
+}
+/**
+ * Iterates over all buffered messages and applies them in sequence.
+ * @param messageStore - The store itself
+ * @param store - The store interface
+ * @param node - The node to filter for
+ */
+function releaseBuffer(_messageStore, store) {
+    store.buffer = false;
+    store._b.forEach(([messages, clear]) => store.apply(messages, clear));
+    store._b = [];
+}
+
+/**
+ * Creates a new ledger for use on a single node's context.
+ * @returns
+ */
+function createLedger() {
+    const ledger = {};
+    let n;
+    return {
+        count: (...args) => createCounter(n, ledger, ...args),
+        init(node) {
+            n = node;
+            node.on('message-added.deep', add(ledger, 1));
+            node.on('message-removed.deep', add(ledger, -1));
+        },
+        merge: (child) => merge(n, ledger, child),
+        settled(counterName) {
+            return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(ledger, counterName)
+                ? ledger[counterName].promise
+                : Promise.resolve();
+        },
+        unmerge: (child) => merge(n, ledger, child, true),
+        value(counterName) {
+            return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(ledger, counterName) ? ledger[counterName].count : 0;
+        },
+    };
+}
+/**
+ * Creates a new counter object in the counting ledger.
+ * @param ledger - The actual ledger storage object
+ * @param counterName - The name of the counter, can be arbitrary
+ * @param condition - The condition function (or string) that filters messages
+ * @param initialValue - The initial counter value
+ * @returns
+ */
+function createCounter(node, ledger, counterName, condition, increment = 0) {
+    condition = parseCondition(condition || counterName);
+    if (!(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(ledger, counterName)) {
+        const counter = {
+            condition,
+            count: 0,
+            name: counterName,
+            node,
+            promise: Promise.resolve(),
+            resolve: () => { }, // eslint-disable-line @typescript-eslint/no-empty-function
+        };
+        ledger[counterName] = counter;
+        increment = node.store.reduce((sum, m) => sum + counter.condition(m) * 1, increment);
+        node.each((child) => {
+            child.ledger.count(counter.name, counter.condition);
+            increment += child.ledger.value(counter.name);
+        });
+    }
+    return count(ledger[counterName], increment).promise;
+}
+/**
+ * We parse the condition to allow flexibility in how counters are specified.
+ * @param condition - The condition that, if true, allows a message to change a counter's value
+ * @returns
+ */
+function parseCondition(condition) {
+    if (typeof condition === 'function') {
+        return condition;
+    }
+    return (m) => m.type === condition;
+}
+/**
+ * Perform a counting action on the a given counter object of the ledger.
+ * @param counter - A counter object
+ * @param increment - The amount by which we are changing the count value
+ * @returns
+ */
+function count(counter, increment) {
+    const initial = counter.count;
+    const post = counter.count + increment;
+    counter.count = post;
+    if (initial === 0 && post !== 0) {
+        counter.node.emit(`unsettled:${counter.name}`, counter.count, false);
+        counter.promise = new Promise((r) => (counter.resolve = r));
+    }
+    else if (initial !== 0 && post === 0) {
+        counter.node.emit(`settled:${counter.name}`, counter.count, false);
+        counter.resolve();
+    }
+    counter.node.emit(`count:${counter.name}`, counter.count, false);
+    return counter;
+}
+/**
+ * Returns a function to be used as an event listener for message events.
+ * @param ledger - A ledger to operate on
+ * @param delta - The amount to add or subtract
+ * @returns
+ */
+function add(ledger, delta) {
+    return (e) => {
+        for (const name in ledger) {
+            const counter = ledger[name];
+            if (counter.condition(e.payload)) {
+                count(counter, delta);
+            }
+        }
+    };
+}
+/**
+ * Given a child node, add the parent node's counters to the child and then
+ * rectify the upstream ledger counts. Generally used when attaching a child
+ * to an already counted tree.
+ * @param parent - The parent that is "receiving" the child
+ * @param ledger - The ledger object
+ * @param child - The child (can be a subtree) that is being attached
+ */
+function merge(parent, ledger, child, remove = false) {
+    for (const key in ledger) {
+        const condition = ledger[key].condition;
+        if (!remove)
+            child.ledger.count(key, condition);
+        const increment = child.ledger.value(key) * (remove ? -1 : 1);
+        if (!parent)
+            continue;
+        do {
+            parent.ledger.count(key, condition, increment);
+            parent = parent.parent;
+        } while (parent);
+    }
+}
+
+/**
+ * A global registry of nodes by their alias or name (if root).
+ */
+const registry = new Map();
+const reflected = new Map();
+/**
+ * An event emitter for registered/set/unset nodes
+ */
+const emit = createEmitter();
+/**
+ * Receipts of listeners.
+ */
+const receipts = [];
+/**
+ * Registers a node to the registry _if_ the node is a root node, _or_ if the
+ * node has an explicit node.props.alias. If these two things are not true
+ * then no node is registered (idempotent).
+ *
+ * @param node - A node to register
+ * @public
+ */
+function register(node) {
+    if (node.props.id) {
+        registry.set(node.props.id, node);
+        reflected.set(node, node.props.id);
+        emit(node, {
+            payload: node,
+            name: node.props.id,
+            bubble: false,
+            origin: node,
+        });
+    }
+}
+/**
+ * Deregister a node from the registry.
+ * @param node - A node to remove
+ * @public
+ */
+function deregister(node) {
+    if (reflected.has(node)) {
+        const id = reflected.get(node); // eslint-disable-line @typescript-eslint/no-non-null-assertion
+        reflected.delete(node);
+        registry.delete(id);
+        emit(node, {
+            payload: null,
+            name: id,
+            bubble: false,
+            origin: node,
+        });
+    }
+}
+/**
+ * Get a node by a particular id.
+ * @param node - Get a node by a given id
+ * @public
+ */
+function getNode$1(id) {
+    return registry.get(id);
+}
+/**
+ * Reset the entire registry.
+ * @public
+ */
+function resetRegistry() {
+    registry.forEach((node) => {
+        deregister(node);
+    });
+    receipts.forEach((receipt) => emit.off(receipt));
+}
+/**
+ *
+ * @param id - An id to watch
+ * @param callback - A callback to notify when the node is set or removed.
+ * @public
+ */
+function watchRegistry(id, callback) {
+    // register a listener
+    receipts.push(emit.on(id, callback));
+}
+
+/**
+ * Applies a given config change to the node.
+ * @param node - The node to check for config change
+ * @param prop - Checks if this property exists in the local config or props
+ * @param value - The value to set
+ * @internal
+ */
+function configChange(node, prop, value) {
+    // When we return false, node.walk will not continue into that child.
+    let usingFallback = true;
+    !(prop in node.config._t)
+        ? node.emit(`config:${prop}`, value, false)
+        : (usingFallback = false);
+    if (!(prop in node.props)) {
+        node.emit('prop', { prop, value });
+        node.emit(`prop:${prop}`, value);
+    }
+    return usingFallback;
+}
+/**
+ * Creates a new instance of a global configuration option. This object is
+ * essentially just a FormKitOption object, but it can be used as the root for
+ * FormKitConfig's proxy and retain event "emitting".
+ *
+ * @param options - FormKit node options to be used globally.
+ * @public
+ */
+function createConfig$1(options = {}) {
+    const nodes = new Set();
+    const target = {
+        ...options,
+        ...{
+            _add: (node) => nodes.add(node),
+            _rm: (node) => node.remove(node),
+        },
+    };
+    const rootConfig = new Proxy(target, {
+        set(t, prop, value, r) {
+            if (typeof prop === 'string') {
+                nodes.forEach((node) => configChange(node, prop, value));
+            }
+            return Reflect.set(t, prop, value, r);
+        },
+    });
+    return rootConfig;
+}
+
+/**
+ * Submits a FormKit form programmatically.
+ * @param id - The id of the form
+ * @public
+ */
+function submitForm(id) {
+    const formElement = document.getElementById(id);
+    if (formElement instanceof HTMLFormElement) {
+        const event = new Event('submit', { cancelable: true, bubbles: true });
+        formElement.dispatchEvent(event);
+        return;
+    }
+    warn(151, id);
+}
+
+/**
+ * Clear all state and error messages.
+ */
+function clearState(node) {
+    const clear = (n) => {
+        for (const key in n.store) {
+            const message = n.store[key];
+            if (message.type === 'error' ||
+                (message.type === 'ui' && key === 'incomplete')) {
+                n.store.remove(key);
+            }
+            else if (message.type === 'state') {
+                n.store.set({ ...message, value: false });
+            }
+        }
+    };
+    clear(node);
+    node.walk(clear);
+}
+/**
+ * Resets an input to it’s "initial" value — if the input is a group or list it
+ * resets all the children as well.
+ * @param id - The id of an input to reset
+ * @returns
+ * @public
+ */
+function reset(id, resetTo) {
+    const node = typeof id === 'string' ? getNode$1(id) : id;
+    if (node) {
+        const initial = (n) => (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.cloneAny)(n.props.initial) ||
+            (n.type === 'group' ? {} : n.type === 'list' ? [] : undefined);
+        // pause all events in this tree.
+        node._e.pause(node);
+        // Set it back to basics
+        node.input((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.cloneAny)(resetTo) || initial(node), false);
+        // Set children back to basics in case they were additive (had their own value for example)
+        node.walk((child) => child.input(initial(child), false));
+        // Finally we need to lay any values back on top (if it is a group/list) since group values
+        // take precedence over child values.
+        const finalInit = initial(node);
+        node.input(typeof finalInit === 'object'
+            ? (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.cloneAny)(resetTo) || (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.init)(finalInit)
+            : finalInit, false);
+        // release the events.
+        node._e.play(node);
+        clearState(node);
+        node.emit('reset', node);
+        return node;
+    }
+    warn(152, id);
+    return;
+}
+
+/**
+ * Default configuration options.
+ */
+const defaultConfig = {
+    delimiter: '.',
+    delay: 0,
+    locale: 'en',
+    rootClasses: (key) => ({ [`formkit-${(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.kebab)(key)}`]: true }),
+};
+/**
+ * If a node’s name is set to useIndex, it replaces the node’s name with the
+ * index of the node relative to its parent’s children.
+ * @public
+ */
+const useIndex = Symbol('index');
+/**
+ * When propagating values up a tree, this value indicates the child should be
+ * removed.
+ * @public
+ */
+const valueRemoved = Symbol('removed');
+/**
+ * When propagating values up a tree, this value indicates the child should be
+ * moved.
+ * @public
+ */
+const valueMoved = Symbol('moved');
+/**
+ * When creating a new node and having its value injected directly at a specific
+ * location.
+ * @public
+ */
+const valueInserted = Symbol('inserted');
+/**
+ * A simple type guard to determine if the context being evaluated is a list
+ * type.
+ * @param arg -
+ * @returns arg is FormKitListContext
+ * @public
+ */
+function isList(arg) {
+    return arg.type === 'list' && Array.isArray(arg._value);
+}
+/**
+ * Determine if a given object is a node
+ * @public
+ */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+function isNode(node) {
+    return node && typeof node === 'object' && node.__FKNode__ === true;
+}
+/**
+ * The setter you are trying to access is invalid.
+ */
+const invalidSetter = (node, _context, property) => {
+    error(102, [node, property]);
+};
+const traps = {
+    _c: trap(getContext, invalidSetter, false),
+    add: trap(addChild),
+    addProps: trap(addProps),
+    address: trap(getAddress, invalidSetter, false),
+    at: trap(getNode),
+    bubble: trap(bubble),
+    clearErrors: trap(clearErrors$1),
+    calm: trap(calm),
+    config: trap(false),
+    define: trap(define),
+    disturb: trap(disturb),
+    destroy: trap(destroy),
+    hydrate: trap(hydrate),
+    index: trap(getIndex, setIndex, false),
+    input: trap(input),
+    each: trap(eachChild),
+    emit: trap(emit$1),
+    find: trap(find),
+    on: trap(on),
+    off: trap(off),
+    parent: trap(false, setParent),
+    plugins: trap(false),
+    remove: trap(removeChild),
+    root: trap(getRoot, invalidSetter, false),
+    reset: trap(resetValue),
+    resetConfig: trap(resetConfig),
+    setErrors: trap(setErrors$1),
+    submit: trap(submit),
+    t: trap(text),
+    use: trap(use),
+    name: trap(getName, false, false),
+    walk: trap(walkTree),
+};
+/**
+ * These are all the available "traps" for a given node. You can think of these
+ * a little bit like methods, but they are really Proxy interceptors.
+ */
+function createTraps() {
+    return new Map(Object.entries(traps));
+}
+/**
+ * Creates a getter/setter trap and curries the context/node pair
+ * @param getter - The getter function
+ * @param setter - The setter function
+ * @param curryGetter - Indicates if the getter should be curried or not
+ * @returns
+ */
+function trap(getter, setter, curryGetter = true) {
+    return {
+        get: getter
+            ? (node, context) => curryGetter
+                ? (...args) => getter(node, context, ...args)
+                : getter(node, context)
+            : false,
+        set: setter !== undefined ? setter : invalidSetter.bind(null),
+    };
+}
+/**
+ * Create all of the node's hook dispatchers.
+ */
+function createHooks() {
+    const hooks = new Map();
+    return new Proxy(hooks, {
+        get(_, property) {
+            if (!hooks.has(property)) {
+                hooks.set(property, createDispatcher());
+            }
+            return hooks.get(property);
+        },
+    });
+}
+/**
+ * This is a simple integer counter of every createName() where the name needs
+ * to be generated.
+ */
+let nameCount = 0;
+/**
+ * This is a simple integer counter of every default id created.
+ */
+let idCount = 0;
+/**
+ * Reports the global number of node registrations, useful for deterministic
+ * node naming.
+ * @public
+ */
+function resetCount() {
+    nameCount = 0;
+    idCount = 0;
+}
+/**
+ * Create a name based dictionary of all children in an array.
+ * @param children -
+ * @public
+ */
+function names(children) {
+    return children.reduce((named, child) => Object.assign(named, { [child.name]: child }), {});
+}
+/**
+ * This node is responsible for deterministically generating an id for this
+ * node. This cannot just be a random id, it _must_ be deterministic to ensure
+ * re-hydration of the form (like post-SSR) produces the same names/ids.
+ *
+ * @param options -
+ * @returns string
+ */
+function createName(options) {
+    var _a, _b;
+    if (((_a = options.parent) === null || _a === void 0 ? void 0 : _a.type) === 'list')
+        return useIndex;
+    return options.name || `${((_b = options.props) === null || _b === void 0 ? void 0 : _b.type) || 'input'}_${++nameCount}`;
+}
+/**
+ * Creates the initial value for a node based on the options passed in and the
+ * type of the input.
+ * @param options -
+ * @param type -
+ * @returns
+ * @internal
+ */
+function createValue(options) {
+    if (options.type === 'group') {
+        return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.init)(options.value &&
+            typeof options.value === 'object' &&
+            !Array.isArray(options.value)
+            ? options.value
+            : {});
+    }
+    else if (options.type === 'list') {
+        return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.init)(Array.isArray(options.value) ? options.value : []);
+    }
+    return options.value === null ? '' : options.value;
+}
+/**
+ * Sets the internal value of the node.
+ * @param node -
+ * @param context -
+ * @param value -
+ * @returns T
+ */
+function input(node, context, value, async = true) {
+    context._value = validateInput(node, node.hook.input.dispatch(value));
+    node.emit('input', context._value);
+    if (context.isSettled)
+        node.disturb();
+    if (async) {
+        if (context._tmo)
+            clearTimeout(context._tmo);
+        context._tmo = setTimeout(commit, node.props.delay, node, context);
+    }
+    else {
+        commit(node, context);
+    }
+    return context.settled;
+}
+/**
+ * Validate that the current input is allowed.
+ * @param type - The type of node (input, list, group)
+ * @param value - The value that is being set
+ */
+function validateInput(node, value) {
+    switch (node.type) {
+        // Inputs are allowed to have any type
+        case 'input':
+            break;
+        case 'group':
+            if (!value || typeof value !== 'object')
+                error(107, [node, value]);
+            break;
+        case 'list':
+            if (!Array.isArray(value))
+                error(108, [node, value]);
+            break;
+    }
+    return value;
+}
+/**
+ * Commits the working value to the node graph as the value of this node.
+ * @param node -
+ * @param context -
+ * @param calm -
+ * @param hydrate -
+ */
+function commit(node, context, calm = true, hydrate = true) {
+    context._value = context.value = node.hook.commit.dispatch(context._value);
+    if (node.type !== 'input' && hydrate)
+        node.hydrate();
+    node.emit('commit', context.value);
+    if (calm)
+        node.calm();
+}
+/**
+ * Perform a modification to a single element of a parent aggregate value. This
+ * is only performed on the pre-committed value (_value), although typically
+ * the value and _value are both linked in memory.
+ * @param context -
+ * @param name -
+ * @param value -
+ */
+function partial(context, { name, value, from }) {
+    if (Object.isFrozen(context._value))
+        return;
+    if (isList(context)) {
+        const insert = value === valueRemoved
+            ? []
+            : value === valueMoved && typeof from === 'number'
+                ? context._value.splice(from, 1)
+                : [value];
+        context._value.splice(name, value === valueMoved || from === valueInserted ? 0 : 1, ...insert);
+        return;
+    }
+    // In this case we know for sure we're dealing with a group, TS doesn't
+    // know that however, so we use some unpleasant casting here
+    if (value !== valueRemoved) {
+        context._value[name] = value;
+    }
+    else {
+        delete context._value[name];
+    }
+}
+/**
+ * Pass values down to children by calling hydrate on them.
+ * @param parent -
+ * @param child -
+ */
+function hydrate(node, context) {
+    const _value = context._value;
+    context.children.forEach((child) => {
+        if (typeof _value !== 'object')
+            return;
+        // if (has(context._value as FormKitGroupValue, child.name)) {
+        if (child.name in _value) {
+            // In this case, the parent has a value to give to the child, so we
+            // perform a down-tree synchronous input which will cascade values down
+            // and then ultimately back up.
+            const childValue = child.type !== 'input' ||
+                (_value[child.name] && typeof _value[child.name] === 'object')
+                ? (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.init)(_value[child.name])
+                : _value[child.name];
+            child.input(childValue, false);
+        }
+        else {
+            if (node.type !== 'list' || typeof child.name === 'number') {
+                // In this case, the parent’s values have no knowledge of the child
+                // value — this typically occurs on the commit at the end of addChild()
+                // we need to create a value reservation for this node’s name. This is
+                // especially important when dealing with lists where index matters.
+                partial(context, { name: child.name, value: child.value });
+            }
+            if (!_value.__init) {
+                // In this case, someone has explicitly set the value to an empty object
+                // with node.input({}) so we do not define the __init property:
+                if (child.type === 'group')
+                    child.input({}, false);
+                else if (child.type === 'list')
+                    child.input([], false);
+                else
+                    child.input(undefined, false);
+            }
+        }
+    });
+    return node;
+}
+/**
+ * Disturbs the state of a node from settled to unsettled — creating appropriate
+ * promises and resolutions.
+ * @param node -
+ * @param context -
+ */
+function disturb(node, context) {
+    var _a;
+    if (context._d <= 0) {
+        context.isSettled = false;
+        node.emit('settled', false, false);
+        context.settled = new Promise((resolve) => {
+            context._resolve = resolve;
+        });
+        if (node.parent)
+            (_a = node.parent) === null || _a === void 0 ? void 0 : _a.disturb();
+    }
+    context._d++;
+    return node;
+}
+/**
+ * Calms the given node's disturbed state by one.
+ * @param node -
+ * @param context -
+ */
+function calm(node, context, value) {
+    var _a;
+    if (value !== undefined && node.type !== 'input') {
+        partial(context, value);
+        // Commit the value up, but do not hydrate back down
+        return commit(node, context, true, false);
+    }
+    if (context._d > 0)
+        context._d--;
+    if (context._d === 0) {
+        context.isSettled = true;
+        node.emit('settled', true, false);
+        if (node.parent)
+            (_a = node.parent) === null || _a === void 0 ? void 0 : _a.calm({ name: node.name, value: context.value });
+        if (context._resolve)
+            context._resolve(context.value);
+    }
+}
+/**
+ * This node is being removed and needs to be cleaned up.
+ * @param node - The node to shut down
+ * @param context - The context to clean up
+ */
+function destroy(node, context) {
+    node.emit('destroying', node);
+    // flush all messages out
+    node.store.filter(() => false);
+    if (node.parent) {
+        node.parent.remove(node);
+    }
+    deregister(node);
+    context._value = context.value = undefined;
+    node.emit('destroyed', node);
+}
+/**
+ * Defines the current input type concretely.
+ * @param definition - The definition of the current input type.
+ */
+function define(node, context, definition) {
+    // Assign the type
+    context.type = definition.type;
+    // Assign the definition
+    context.props.definition = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.clone)(definition);
+    // Ensure the type is seeded with the `__init` value.
+    context.value = context._value = createValue({
+        type: node.type,
+        value: context.value,
+    });
+    // Apply any input features before resetting the props.
+    if (definition.features) {
+        definition.features.forEach((feature) => feature(node));
+    }
+    // Its possible that input-defined "props" have ended up in the context attrs
+    // these should be moved back out of the attrs object.
+    if (definition.props) {
+        node.addProps(definition.props);
+    }
+    node.emit('defined', definition);
+}
+/**
+ * Adds props to a given node by stripping them out of the node.props.attrs and
+ * then adding them to the nodes.
+ *
+ * @param node - The node to add props to
+ * @param context - The internal context object
+ * @param props - An array of prop strings (in camelCase!)
+ */
+function addProps(node, context, props) {
+    var _a;
+    if (node.props.attrs) {
+        const attrs = { ...node.props.attrs };
+        // Temporarily disable prop emits
+        node.props._emit = false;
+        for (const attr in attrs) {
+            const camelName = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.camel)(attr);
+            if (props.includes(camelName)) {
+                node.props[camelName] = attrs[attr];
+                delete attrs[attr];
+            }
+        }
+        const initial = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.cloneAny)(context._value);
+        node.props.initial =
+            node.type !== 'input' ? (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.init)(initial) : initial;
+        // Re-enable prop emits
+        node.props._emit = true;
+        node.props.attrs = attrs;
+        if (node.props.definition) {
+            node.props.definition.props = [
+                ...(((_a = node.props.definition) === null || _a === void 0 ? void 0 : _a.props) || []),
+                ...props,
+            ];
+        }
+    }
+    node.emit('added-props', props);
+    return node;
+}
+/**
+ * (node.add) Adds a child to the node.
+ * @param context -
+ * @param node -
+ * @param child -
+ */
+function addChild(parent, parentContext, child, listIndex) {
+    if (parent.type === 'input')
+        error(100, parent);
+    if (child.parent && child.parent !== parent) {
+        child.parent.remove(child);
+    }
+    // Synchronously set the initial value on the parent
+    if (!parentContext.children.includes(child)) {
+        if (listIndex !== undefined && parent.type === 'list') {
+            // Inject the child:
+            parentContext.children.splice(listIndex, 0, child);
+            if (Array.isArray(parent.value) &&
+                parent.value.length < parentContext.children.length) {
+                // When adding an node or value to a list it is absolutely critical to
+                // know if, at the moment of injection, the parent’s value or the node
+                // children are the source of truth. For example, if a user pushes or
+                // splices a new value onto the lists’s array then we want to use that
+                // value as the value of the new node, but if a user adds a node to the
+                // list then we want the node’s value. In this specific case, we
+                // assume (due to length) that a new node was injected into the list, so
+                // we want that new node’s value injected into the parent list value.
+                parent.disturb().calm({
+                    name: listIndex,
+                    value: child.value,
+                    from: valueInserted,
+                });
+            }
+        }
+        else {
+            parentContext.children.push(child);
+        }
+        if (!child.isSettled)
+            parent.disturb();
+    }
+    if (child.parent !== parent) {
+        child.parent = parent;
+        // In this edge case middleware changed the parent assignment so we need to
+        // re-add the child
+        if (child.parent !== parent) {
+            parent.remove(child);
+            child.parent.add(child);
+            return parent;
+        }
+    }
+    else {
+        // When a parent is properly assigned, we inject the parent's plugins on the
+        // child.
+        child.use(parent.plugins);
+    }
+    // Finally we call commit here, which sub-calls hydrate(), hydrate() will
+    // resolve any conflict between the parent and child values, and also ensure
+    // proper "placeholders" are made on the parent.
+    commit(parent, parentContext, false);
+    parent.ledger.merge(child);
+    parent.emit('child', child);
+    return parent;
+}
+/**
+ * The setter for node.parent = FormKitNode
+ * @param _context -
+ * @param node -
+ * @param _property -
+ * @param parent -
+ * @returns boolean
+ */
+function setParent(child, context, _property, parent) {
+    if (isNode(parent)) {
+        if (child.parent && child.parent !== parent) {
+            child.parent.remove(child);
+        }
+        context.parent = parent;
+        child.resetConfig();
+        !parent.children.includes(child)
+            ? parent.add(child)
+            : child.use(parent.plugins);
+        return true;
+    }
+    if (parent === null) {
+        context.parent = null;
+        return true;
+    }
+    return false;
+}
+/**
+ * (node.remove) Removes a child from the node.
+ * @param context -
+ * @param node -
+ * @param child -
+ */
+function removeChild(node, context, child) {
+    const childIndex = context.children.indexOf(child);
+    if (childIndex !== -1) {
+        if (child.isSettled)
+            node.disturb();
+        context.children.splice(childIndex, 1);
+        // If an ancestor uses the preserve prop, then we are expected to not remove
+        // our values on this node either, see #53
+        let preserve = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.undefine)(child.props.preserve);
+        let parent = child.parent;
+        while (preserve === undefined && parent) {
+            preserve = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.undefine)(parent.props.preserve);
+            parent = parent.parent;
+        }
+        if (!preserve) {
+            node.calm({
+                name: node.type === 'list' ? childIndex : child.name,
+                value: valueRemoved,
+            });
+        }
+        else {
+            node.calm();
+        }
+        child.parent = null;
+        // Remove the child from the config. Is this weird? Yes. Is it ok? Yes.
+        child.config._rmn = child;
+    }
+    node.ledger.unmerge(child);
+    return node;
+}
+/**
+ * Iterate over each immediate child and perform a callback.
+ * @param context -
+ * @param _node -
+ * @param callback -
+ */
+function eachChild(_node, context, callback) {
+    context.children.forEach((child) => callback(child));
+}
+/**
+ * Walk all nodes below this one and execute a callback.
+ * @param _node -
+ * @param context -
+ * @param callback -
+ */
+function walkTree(_node, context, callback, stopIfFalse = false) {
+    context.children.forEach((child) => {
+        if (callback(child) !== false || !stopIfFalse) {
+            child.walk(callback);
+        }
+    });
+}
+/**
+ * Set the configuration options of the node and it's subtree.
+ * @param node -
+ * @param context -
+ * @param _property -
+ * @param config -
+ */
+function resetConfig(node, context) {
+    const parent = node.parent || undefined;
+    context.config = createConfig(node.config._t, parent);
+    node.walk((n) => n.resetConfig());
+}
+/**
+ * Adds a plugin to the node, it’s children, and executes it.
+ * @param context -
+ * @param node -
+ * @param plugin -
+ * @public
+ */
+function use(node, context, plugin, run = true, library = true) {
+    if (Array.isArray(plugin) || plugin instanceof Set) {
+        plugin.forEach((p) => use(node, context, p));
+        return node;
+    }
+    if (!context.plugins.has(plugin)) {
+        if (library && typeof plugin.library === 'function')
+            plugin.library(node);
+        // When plugins return false, they are never added as to the plugins Set
+        // meaning they only ever have access to the single node they were added on.
+        if (run && plugin(node) !== false) {
+            context.plugins.add(plugin);
+            node.children.forEach((child) => child.use(plugin));
+        }
+    }
+    return node;
+}
+/**
+ * Moves a node in the parent’s children to the given index.
+ * @param node -
+ * @param _context -
+ * @param _property -
+ * @param setIndex -
+ */
+function setIndex(node, _context, _property, setIndex) {
+    if (isNode(node.parent)) {
+        const children = node.parent.children;
+        const index = setIndex >= children.length
+            ? children.length - 1
+            : setIndex < 0
+                ? 0
+                : setIndex;
+        const oldIndex = children.indexOf(node);
+        if (oldIndex === -1)
+            return false;
+        children.splice(oldIndex, 1);
+        children.splice(index, 0, node);
+        node.parent.children = children;
+        if (node.parent.type === 'list')
+            node.parent
+                .disturb()
+                .calm({ name: index, value: valueMoved, from: oldIndex });
+        return true;
+    }
+    return false;
+}
+/**
+ * Retrieves the index of a node from the parent’s children.
+ * @param node -
+ */
+function getIndex(node) {
+    if (node.parent) {
+        const index = [...node.parent.children].indexOf(node);
+        // If the index is currently -1 then the node isnt finished booting, so it
+        // must be the next node.
+        return index === -1 ? node.parent.children.length : index;
+    }
+    return -1;
+}
+/**
+ * Retrieves the context object of a given node. This is intended to be a
+ * private trap and should absolutely not be used in plugins or user-land code.
+ * @param _node -
+ * @param context -
+ */
+function getContext(_node, context) {
+    return context;
+}
+/**
+ * Get the name of the current node, allowing for slight mutations.
+ * @param node -
+ * @param context -
+ */
+function getName(node, context) {
+    var _a;
+    if (((_a = node.parent) === null || _a === void 0 ? void 0 : _a.type) === 'list')
+        return node.index;
+    return context.name !== useIndex ? context.name : node.index;
+}
+/**
+ * Returns the address of the current node.
+ * @param node -
+ * @param context -
+ */
+function getAddress(node, context) {
+    return context.parent
+        ? context.parent.address.concat([node.name])
+        : [node.name];
+}
+/**
+ * Fetches a node from the tree by its address.
+ * @param context -
+ * @param node -
+ * @param location -
+ * @returns FormKitNode
+ */
+function getNode(node, _context, locator) {
+    const address = typeof locator === 'string' ? locator.split(node.config.delimiter) : locator;
+    if (!address.length)
+        return undefined;
+    const first = address[0];
+    let pointer = node.parent;
+    if (!pointer) {
+        // This address names the root node, remove it to get child name:
+        if (String(address[0]) === String(node.name))
+            address.shift();
+        // All root nodes start at themselves ultimately:
+        pointer = node;
+    }
+    // Any addresses starting with $parent should discard it
+    if (first === '$parent')
+        address.shift();
+    while (pointer && address.length) {
+        const name = address.shift();
+        switch (name) {
+            case '$root':
+                pointer = node.root;
+                break;
+            case '$parent':
+                pointer = pointer.parent;
+                break;
+            case '$self':
+                pointer = node;
+                break;
+            default:
+                pointer =
+                    pointer.children.find((c) => String(c.name) === String(name)) ||
+                        select(pointer, name);
+        }
+    }
+    return pointer || undefined;
+}
+/**
+ * Perform selections on a subtree using the address "selector" methods.
+ * @param node -
+ * @param selector -
+ * @returns FormKitNode | undefined
+ */
+function select(node, selector) {
+    const matches = String(selector).match(/^(find)\((.*)\)$/);
+    if (matches) {
+        const [, action, argStr] = matches;
+        const args = argStr.split(',').map((arg) => arg.trim());
+        switch (action) {
+            case 'find':
+                return node.find(args[0], args[1]);
+            default:
+                return undefined;
+        }
+    }
+    return undefined;
+}
+/**
+ * Perform a breadth first search and return the first instance of a node that
+ * is found in the subtree or undefined.
+ * @param node - The node to start the search on/under
+ * @param _context - The context object
+ * @param searchTerm - The term we are searching for
+ * @param searcher - Either a key to search on, or a function
+ * @returns
+ */
+function find(node, _context, searchTerm, searcher) {
+    return bfs(node, searchTerm, searcher);
+}
+/**
+ * Perform a breadth-first-search on a node subtree and locate the first
+ * instance of a match.
+ * @param node -
+ * @param name -
+ * @returns FormKitNode
+ * @public
+ */
+function bfs(tree, searchValue, searchGoal = 'name') {
+    const search = typeof searchGoal === 'string'
+        ? (n) => n[searchGoal] == searchValue // non-strict comparison is intentional
+        : searchGoal;
+    const stack = [tree];
+    while (stack.length) {
+        const node = stack.shift(); // eslint-disable-line @typescript-eslint/no-non-null-assertion
+        if (search(node, searchValue))
+            return node;
+        stack.push(...node.children);
+    }
+    return undefined;
+}
+/**
+ * Get the root node of the tree.
+ */
+function getRoot(n) {
+    let node = n;
+    while (node.parent) {
+        node = node.parent;
+    }
+    return node;
+}
+/**
+ * Creates a new configuration option.
+ * @param parent -
+ * @param configOptions -
+ * @returns FormKitConfig
+ */
+function createConfig(target = {}, parent) {
+    let node = undefined;
+    return new Proxy(target, {
+        get(...args) {
+            const prop = args[1];
+            if (prop === '_t')
+                return target;
+            const localValue = Reflect.get(...args);
+            // Check our local values first
+            if (localValue !== undefined)
+                return localValue;
+            // Then check our parent values next
+            if (parent) {
+                const parentVal = parent.config[prop];
+                if (parentVal !== undefined)
+                    return parentVal;
+            }
+            if (target.rootConfig && typeof prop === 'string') {
+                const rootValue = target.rootConfig[prop];
+                if (rootValue !== undefined)
+                    return rootValue;
+            }
+            // The default delay value should be 20
+            if (prop === 'delay' && (node === null || node === void 0 ? void 0 : node.type) === 'input')
+                return 20;
+            // Finally check the default values
+            return defaultConfig[prop];
+        },
+        set(...args) {
+            const prop = args[1];
+            const value = args[2];
+            if (prop === '_n') {
+                node = value;
+                if (target.rootConfig)
+                    target.rootConfig._add(node);
+                return true;
+            }
+            if (prop === '_rmn') {
+                if (target.rootConfig)
+                    target.rootConfig._rm(node);
+                node = undefined;
+                return true;
+            }
+            if (!(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.eq)(target[prop], value, false)) {
+                const didSet = Reflect.set(...args);
+                if (node) {
+                    node.emit(`config:${prop}`, value, false);
+                    configChange(node, prop, value);
+                    // Walk the node tree and notify of config/prop changes where relevant
+                    node.walk((n) => configChange(n, prop, value), true);
+                }
+                return didSet;
+            }
+            return true;
+        },
+    });
+}
+/**
+ * Given a string of text, expose it for modification, translation, or full
+ * replacement.
+ * @param key - A message key, or generic string of text
+ * @returns
+ */
+function text(node, _context, key, type = 'ui') {
+    const fragment = typeof key === 'string' ? { key, value: key, type } : key;
+    const value = node.hook.text.dispatch(fragment);
+    node.emit('text', value, false);
+    return value.value;
+}
+/**
+ * Submits the nearest ancestor that is a FormKit "form". It determines which
+ * node is a form by locating an ancestor where node.props.isForm = true.
+ * @param node - The node to initiate the submit
+ */
+function submit(node) {
+    const name = node.name;
+    do {
+        if (node.props.isForm === true)
+            break;
+        if (!node.parent)
+            error(106, name);
+        node = node.parent;
+    } while (node);
+    if (node.props.id) {
+        submitForm(node.props.id);
+    }
+}
+/**
+ * Reset to the original value.
+ * @param node - The node to reset
+ * @param _context - The context
+ * @param value - The value to reset to
+ */
+function resetValue(node, _context, value) {
+    return reset(node, value);
+}
+/**
+ * Sets errors on the node and optionally its children.
+ * @param node - The node to set errors on
+ * @param _context - Not used
+ * @param localErrors - An array of errors to set on this node
+ * @param childErrors - An object of name to errors to set on children.
+ */
+function setErrors$1(node, _context, localErrors, childErrors) {
+    const sourceKey = `${node.name}-set`;
+    createMessages(node, localErrors, childErrors).forEach((errors) => {
+        node.store.apply(errors, (message) => message.meta.source === sourceKey);
+    });
+    return node;
+}
+/**
+ * Clears errors on the node and optionally its children.
+ * @param node - The node to set errors on
+ * @param _context - Not used
+ * @param localErrors - An array of errors to set on this node
+ * @param childErrors - An object of name to errors to set on children.
+ */
+function clearErrors$1(node, context, clearChildErrors = true) {
+    setErrors$1(node, context, []);
+    if (clearChildErrors) {
+        const sourceKey = `${node.name}-set`;
+        node.walk((child) => {
+            child.store.filter((message) => {
+                return !(message.type === 'error' &&
+                    message.meta &&
+                    message.meta.source === sourceKey);
+            });
+        });
+    }
+    return node;
+}
+/**
+ * Middleware to assign default prop values as issued by core.
+ * @param node - The node being registered
+ * @param next - Calls the next middleware.
+ * @returns
+ */
+function defaultProps(node) {
+    if (!(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(node.props, 'id'))
+        node.props.id = `input_${idCount++}`;
+    return node;
+}
+/**
+ * @param options -
+ * @param config -
+ */
+function createProps(initial) {
+    const props = {
+        initial: typeof initial === 'object' ? (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.cloneAny)(initial) : initial,
+    };
+    let node;
+    let isEmitting = true;
+    return new Proxy(props, {
+        get(...args) {
+            const [_t, prop] = args;
+            if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(props, prop))
+                return Reflect.get(...args);
+            if (node && typeof prop === 'string' && node.config[prop] !== undefined)
+                return node.config[prop];
+            return undefined;
+        },
+        set(target, property, originalValue, receiver) {
+            if (property === '_n') {
+                node = originalValue;
+                return true;
+            }
+            if (property === '_emit') {
+                isEmitting = originalValue;
+                return true;
+            }
+            const { prop, value } = node.hook.prop.dispatch({
+                prop: property,
+                value: originalValue,
+            });
+            // Typescript compiler cannot handle a symbol index, even though js can:
+            if (!(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.eq)(props[prop], value, false) ||
+                typeof value === 'object') {
+                const didSet = Reflect.set(target, prop, value, receiver);
+                if (isEmitting) {
+                    node.emit('prop', { prop, value });
+                    if (typeof prop === 'string')
+                        node.emit(`prop:${prop}`, value);
+                }
+                return didSet;
+            }
+            return true;
+        },
+    });
+}
+/**
+ * A cheap function that iterates over all plugins and stops once node.define
+ * is called.
+ * @param node - A formkit node
+ * @param plugins - An array of plugins
+ * @returns
+ */
+function findDefinition(node, plugins) {
+    // If the definition is already there, force call to define.
+    if (node.props.definition)
+        return node.define(node.props.definition);
+    for (const plugin of plugins) {
+        if (node.props.definition)
+            return;
+        if (typeof plugin.library === 'function') {
+            plugin.library(node);
+        }
+    }
+}
+/**
+ * Create a new context object for our a FormKit node, given default information
+ * @param options - An options object to override the defaults.
+ * @returns FormKitContext
+ */
+function createContext(options) {
+    const value = createValue(options);
+    const config = createConfig(options.config || {}, options.parent);
+    return {
+        _d: 0,
+        _e: createEmitter(),
+        _resolve: false,
+        _tmo: false,
+        _value: value,
+        children: (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.dedupe)(options.children || []),
+        config,
+        hook: createHooks(),
+        isCreated: false,
+        isSettled: true,
+        ledger: createLedger(),
+        name: createName(options),
+        parent: options.parent || null,
+        plugins: new Set(),
+        props: createProps(value),
+        settled: Promise.resolve(value),
+        store: createStore(true),
+        traps: createTraps(),
+        type: options.type || 'input',
+        value,
+    };
+}
+/**
+ * Initialize a node object's internal properties.
+ * @param node - The node to initialize
+ * @returns FormKitNode
+ */
+function nodeInit(node, options) {
+    var _a;
+    // Set the internal node on the props, config, ledger and store
+    node.ledger.init((node.store._n = node.props._n = node.config._n = node));
+    // Apply given in options to the node.
+    node.props._emit = false;
+    if (options.props)
+        Object.assign(node.props, options.props);
+    node.props._emit = true;
+    // Attempt to find a definition from the pre-existing plugins.
+    findDefinition(node, new Set([
+        ...(options.plugins || []),
+        ...(node.parent ? node.parent.plugins : []),
+    ]));
+    // Then we apply each plugin's root code, we do this with an explicit loop
+    // for that ity-bitty performance bump.
+    if (options.plugins) {
+        for (const plugin of options.plugins) {
+            use(node, node._c, plugin, true, false);
+        }
+    }
+    // Initialize the default props
+    defaultProps(node);
+    // Apply the parent to each child.
+    node.each((child) => node.add(child));
+    // If the node has a parent, ensure it's properly nested bi-directionally.
+    if (node.parent)
+        node.parent.add(node, options.index);
+    // Inputs are leafs, and cannot have children
+    if (node.type === 'input' && node.children.length)
+        error(100, node);
+    // Apply the input hook to the initial value.
+    input(node, node._c, node._value, false);
+    // Release the store buffer
+    node.store.release();
+    // Register the node globally if someone explicitly gave it an id
+    if ((_a = options.props) === null || _a === void 0 ? void 0 : _a.id)
+        register(node);
+    // Our node is finally ready, emit it to the world
+    node.emit('created', node);
+    node.isCreated = true;
+    return node;
+}
+/**
+ * Creates a new instance of a FormKit Node. Nodes are the atomic unit of
+ * a FormKit graph.
+ *
+ * @param options - An object of options to define the node.
+ * @returns FormKitNode
+ * @public
+ */
+function createNode(options) {
+    const ops = options || {};
+    const context = createContext(ops);
+    // Note: The typing for the proxy object cannot be fully modeled, thus we are
+    // force-typing to a FormKitNode. See:
+    // https://github.com/microsoft/TypeScript/issues/28067
+    const node = new Proxy(context, {
+        get(...args) {
+            const [, property] = args;
+            if (property === '__FKNode__')
+                return true;
+            const trap = context.traps.get(property);
+            if (trap && trap.get)
+                return trap.get(node, context);
+            return Reflect.get(...args);
+        },
+        set(...args) {
+            const [, property, value] = args;
+            const trap = context.traps.get(property);
+            if (trap && trap.set)
+                return trap.set(node, context, property, value);
+            return Reflect.set(...args);
+        },
+    });
+    return nodeInit(node, ops);
+}
+
+/**
+ * Type narrow that a node is a DOM node.
+ * @param node - A schema node to check
+ * @returns
+ * @public
+ */
+function isDOM(node) {
+    return typeof node !== 'string' && (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(node, '$el');
+}
+/**
+ * Type narrow that a node is a DOM node.
+ * @param node - A schema node to check
+ * @returns
+ * @public
+ */
+function isComponent(node) {
+    return typeof node !== 'string' && (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(node, '$cmp');
+}
+/**
+ * Root declaration.
+ * @param node - An object to check
+ * @returns
+ * @public
+ */
+function isConditional(node) {
+    if (!node || typeof node === 'string')
+        return false;
+    return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(node, 'if') && (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(node, 'then');
+}
+/**
+ * Determines if the node is syntactic sugar or not.
+ * @param node - Node
+ * @returns
+ * @public
+ */
+function isSugar(node) {
+    return typeof node !== 'string' && '$formkit' in node;
+}
+/**
+ * Converts syntactic sugar nodes to standard nodes.
+ * @param node - A node to covert
+ * @returns
+ * @public
+ */
+function sugar(node) {
+    if (typeof node === 'string') {
+        return {
+            $el: 'text',
+            children: node,
+        };
+    }
+    if (isSugar(node)) {
+        const { $formkit: type, for: iterator, if: condition, children, key, bind, ...props } = node;
+        return Object.assign({
+            $cmp: 'FormKit',
+            props: { ...props, type },
+        }, condition ? { if: condition } : {}, iterator ? { for: iterator } : {}, children ? { children } : {}, key ? { key } : {}, bind ? { bind } : {});
+    }
+    return node;
+}
+
+/**
+ * Compiles a logical string like "a != z || b == c" into a single function.
+ * The return value is an object with a "provide" method that iterates over all
+ * requirement tokens to use as replacements.
+ * ```typescript
+ * let name = {
+ *   value: 'jon'
+ * }
+ * const condition = compile("$name == 'bob'").provide((token) => {
+ *  return () => name.value // must return a function!
+ * })
+ *
+ * condition() // false
+ * ```
+ * @param expr - A string to compile
+ * @returns
+ * @public
+ */
+function compile(expr) {
+    /**
+     * These tokens are replacements used in evaluating a given condition.
+     */
+    // const tokens: FormKitTokens = {}
+    /**
+     * The value of the provide() callback. Used for late binding.
+     */
+    let provideTokens;
+    /**
+     * These are token requirements like "$name.value" that are need to fulfill
+     * a given condition call.
+     */
+    const requirements = new Set();
+    /**
+     * Expands the current value if it is a function.
+     * @param operand - A left or right hand operand
+     * @returns
+     */
+    const x = function expand(operand, tokens) {
+        return typeof operand === 'function' ? operand(tokens) : operand;
+    };
+    /**
+     * Comprehensive list of operators. This list MUST be
+     * ordered by the length of the operator characters in descending order.
+     */
+    const operatorRegistry = [
+        {
+            '&&': (l, r, t) => x(l, t) && x(r, t),
+            '||': (l, r, t) => x(l, t) || x(r, t),
+        },
+        {
+            '===': (l, r, t) => !!(x(l, t) === x(r, t)),
+            '!==': (l, r, t) => !!(x(l, t) !== x(r, t)),
+            '==': (l, r, t) => !!(x(l, t) == x(r, t)),
+            '!=': (l, r, t) => !!(x(l, t) != x(r, t)),
+            '>=': (l, r, t) => !!(x(l, t) >= x(r, t)),
+            '<=': (l, r, t) => !!(x(l, t) <= x(r, t)),
+            '>': (l, r, t) => !!(x(l, t) > x(r, t)),
+            '<': (l, r, t) => !!(x(l, t) < x(r, t)),
+        },
+        {
+            '+': (l, r, t) => x(l, t) + x(r, t),
+            '-': (l, r, t) => x(l, t) - x(r, t),
+        },
+        {
+            '*': (l, r, t) => x(l, t) * x(r, t),
+            '/': (l, r, t) => x(l, t) / x(r, t),
+            '%': (l, r, t) => x(l, t) % x(r, t),
+        },
+    ];
+    /**
+     * A full list of all operator symbols.
+     */
+    const operatorSymbols = operatorRegistry.reduce((s, g) => {
+        return s.concat(Object.keys(g));
+    }, []);
+    /**
+     * An array of the first character of each operator.
+     */
+    const operatorChars = new Set(operatorSymbols.map((key) => key.charAt(0)));
+    /**
+     * Determines if the current character is the start of an operator symbol, if it
+     * is, it returns that symbol.
+     * @param symbols - An array of symbols that are considered operators
+     * @param char - The current character being operated on
+     * @param p - The position of the pointer
+     * @param expression - The full string expression
+     * @returns
+     */
+    function getOp(symbols, char, p, expression) {
+        const candidates = symbols.filter((s) => s.startsWith(char));
+        if (!candidates.length)
+            return false;
+        return candidates.find((symbol) => {
+            if (expression.length >= p + symbol.length) {
+                const nextChars = expression.substring(p, p + symbol.length);
+                if (nextChars === symbol)
+                    return symbol;
+            }
+            return false;
+        });
+    }
+    /**
+     * Determines the step number of the right or left hand operator.
+     * @param p - The position of the pointer
+     * @param expression - The full string expression
+     * @param direction - 1 = right, 0 = left
+     */
+    function getStep(p, expression, direction = 1) {
+        let next = direction
+            ? expression.substring(p + 1).trim()
+            : expression.substring(0, p).trim();
+        if (!next.length)
+            return -1;
+        if (!direction) {
+            // left hand direction could include a function name we need to remove
+            const reversed = next.split('').reverse();
+            const start = reversed.findIndex((char) => operatorChars.has(char));
+            next = reversed.slice(start).join('');
+        }
+        const char = next[0];
+        return operatorRegistry.findIndex((operators) => {
+            const symbols = Object.keys(operators);
+            return !!getOp(symbols, char, 0, next);
+        });
+    }
+    /**
+     * Extracts a tail call. For example:
+     * ```
+     * $foo().bar(baz) + 7
+     * ```
+     * Would extract "bar(baz)" and return p of 15 (after the (baz)).
+     *
+     * @param p - The position of a closing parenthetical.
+     * @param expression - The full expression being parsed.
+     */
+    function getTail(pos, expression) {
+        let tail = '';
+        const length = expression.length;
+        let depth = 0;
+        for (let p = pos; p < length; p++) {
+            const char = expression.charAt(p);
+            if (char === '(') {
+                depth++;
+            }
+            else if (char === ')') {
+                depth--;
+            }
+            else if (depth === 0 && char === ' ') {
+                continue;
+            }
+            if (depth === 0 && getOp(operatorSymbols, char, p, expression)) {
+                return [tail, p - 1];
+            }
+            else {
+                tail += char;
+            }
+        }
+        return [tail, expression.length - 1];
+    }
+    /**
+     * Parse a string expression into a function that returns a boolean. This is
+     * the magic behind schema logic like $if.
+     * @param expression - A string expression to parse
+     * @returns
+     */
+    function parseLogicals(expression, step = 0) {
+        const operators = operatorRegistry[step];
+        const length = expression.length;
+        const symbols = Object.keys(operators);
+        let depth = 0;
+        let quote = false;
+        let op = null;
+        let operand = '';
+        let left = null;
+        let operation;
+        let lastChar = '';
+        let char = '';
+        let parenthetical = '';
+        let parenQuote = '';
+        let startP = 0;
+        const addTo = (depth, char) => {
+            depth ? (parenthetical += char) : (operand += char);
+        };
+        for (let p = 0; p < length; p++) {
+            lastChar = char;
+            char = expression.charAt(p);
+            if ((char === "'" || char === '"') &&
+                lastChar !== '\\' &&
+                ((depth === 0 && !quote) || (depth && !parenQuote))) {
+                if (depth) {
+                    parenQuote = char;
+                }
+                else {
+                    quote = char;
+                }
+                addTo(depth, char);
+                continue;
+            }
+            else if ((quote && (char !== quote || lastChar === '\\')) ||
+                (parenQuote && (char !== parenQuote || lastChar === '\\'))) {
+                addTo(depth, char);
+                continue;
+            }
+            else if (quote === char) {
+                quote = false;
+                addTo(depth, char);
+                continue;
+            }
+            else if (parenQuote === char) {
+                parenQuote = false;
+                addTo(depth, char);
+                continue;
+            }
+            else if (char === ' ') {
+                continue;
+            }
+            else if (char === '(') {
+                if (depth === 0) {
+                    startP = p;
+                }
+                else {
+                    parenthetical += char;
+                }
+                depth++;
+            }
+            else if (char === ')') {
+                depth--;
+                if (depth === 0) {
+                    // Parenthetical statements cannot be grouped up in the implicit order
+                    // of left/right statements based on which step they are on because
+                    // they are parsed on every step and then must be applied to the
+                    // operator. Example:
+                    //
+                    // 5 + (3) * 2
+                    //
+                    // This should yield 11 not 16. This order is normally implicit in the
+                    // sequence of operators being parsed, but with parenthesis the parse
+                    // happens each time. Instead we need to know if the resulting value
+                    // should be applied to the left or the right hand operator. The
+                    // general algorithm is:
+                    //
+                    // 1. Does this paren have an operator on the left or right side
+                    // 2. If not, it's unnecessarily wrapped (3 + 2)
+                    // 3. If it does, then which order of operation is highest?
+                    // 4. Wait for the highest order of operation to bind to an operator.
+                    // If the parenthetical has a preceding token like $fn(1 + 2) then we
+                    // need to subtract the existing operand length from the start
+                    // to determine if this is a left or right operation
+                    const fn = typeof operand === 'string' && operand.startsWith('$')
+                        ? operand
+                        : undefined;
+                    const hasTail = fn && expression.charAt(p + 1) === '.';
+                    // It's possible the function has a chained tail call:
+                    let tail = '';
+                    if (hasTail) {
+                        [tail, p] = getTail(p + 2, expression);
+                    }
+                    const lStep = op ? step : getStep(startP, expression, 0);
+                    const rStep = getStep(p, expression);
+                    if (lStep === -1 && rStep === -1) {
+                        // This parenthetical was unnecessarily wrapped at the root, or
+                        // these are args of a function call.
+                        operand = evaluate(parenthetical, -1, fn, tail);
+                    }
+                    else if (op && (lStep >= rStep || rStep === -1) && step === lStep) {
+                        // has a left hand operator with a higher order of operation
+                        left = op.bind(null, evaluate(parenthetical, -1, fn, tail));
+                        op = null;
+                        operand = '';
+                    }
+                    else if (rStep > lStep && step === rStep) {
+                        // should be applied to the right hand operator when it gets one
+                        operand = evaluate(parenthetical, -1, fn, tail);
+                    }
+                    else {
+                        operand += `(${parenthetical})${hasTail ? `.${tail}` : ''}`;
+                    }
+                    parenthetical = '';
+                }
+                else {
+                    parenthetical += char;
+                }
+            }
+            else if (depth === 0 &&
+                (operation = getOp(symbols, char, p, expression))) {
+                if (p === 0) {
+                    error(103, [operation, expression]);
+                }
+                // We identified the operator by looking ahead in the string, so we need
+                // our position to move past the operator
+                p += operation.length - 1;
+                if (p === expression.length - 1) {
+                    error(104, [operation, expression]);
+                }
+                if (!op) {
+                    // Bind the left hand operand
+                    if (left) {
+                        // In this case we've already parsed the left hand operator
+                        op = operators[operation].bind(null, evaluate(left, step));
+                        left = null;
+                    }
+                    else {
+                        op = operators[operation].bind(null, evaluate(operand, step));
+                        operand = '';
+                    }
+                }
+                else if (operand) {
+                    // Bind the right hand operand, and return the resulting expression as a new left hand operator
+                    left = op.bind(null, evaluate(operand, step));
+                    op = operators[operation].bind(null, left);
+                    operand = '';
+                }
+                continue;
+            }
+            else {
+                addTo(depth, char);
+            }
+        }
+        if (operand && op) {
+            // If we were left with an operand after the loop, and an op, it should
+            // be the right hand assignment.
+            op = op.bind(null, evaluate(operand, step));
+        }
+        // If we don't have an op, but we do have a left hand assignment, then that
+        // is actually our operator, so just re-assign it to op
+        op = !op && left ? left : op;
+        if (!op && operand) {
+            // If we don't have any op but we do have an operand so there is no boolean
+            // logic to perform, but that operand still means something so we need to
+            // evaluate it and return it as a function
+            op = (v, t) => {
+                return typeof v === 'function' ? v(t) : v;
+            };
+            op = op.bind(null, evaluate(operand, step));
+        }
+        if (!op && !operand) {
+            error(105, expression);
+        }
+        return op;
+    }
+    /**
+     * Given a string like '$name==bobby' evaluate it to true or false
+     * @param operand - A left or right boolean operand — usually conditions
+     * @param step - The current order of operation
+     * @param fnToken - The token (string) representation of a function being called
+     * @returns
+     */
+    function evaluate(operand, step, fnToken, tail //eslint-disable-line
+    ) {
+        if (fnToken) {
+            const fn = evaluate(fnToken, operatorRegistry.length);
+            let userFuncReturn;
+            // "Tail calls" are dot accessors after a function $foo().value. We need
+            // to compile tail calls, and then provide the function result to the
+            // exposed tokens.
+            let tailCall = tail
+                ? compile(`$${tail}`)
+                : false;
+            if (typeof fn === 'function') {
+                const args = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.parseArgs)(String(operand)).map((arg) => evaluate(arg, -1));
+                return (tokens) => {
+                    const userFunc = fn(tokens);
+                    if (typeof userFunc !== 'function') {
+                        warn(150, fnToken);
+                        return userFunc;
+                    }
+                    userFuncReturn = userFunc(...args.map((arg) => typeof arg === 'function' ? arg(tokens) : arg));
+                    if (tailCall) {
+                        tailCall = tailCall.provide((subTokens) => {
+                            const rootTokens = provideTokens(subTokens);
+                            const t = subTokens.reduce((tokenSet, token) => {
+                                const isTail = token === tail || (tail === null || tail === void 0 ? void 0 : tail.startsWith(`${token}(`));
+                                if (isTail) {
+                                    const value = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.getAt)(userFuncReturn, token);
+                                    tokenSet[token] = () => value;
+                                }
+                                else {
+                                    tokenSet[token] = rootTokens[token];
+                                }
+                                return tokenSet;
+                            }, {});
+                            return t;
+                        });
+                    }
+                    return tailCall ? tailCall() : userFuncReturn;
+                };
+            }
+        }
+        else if (typeof operand === 'string') {
+            // the word true or false will never contain further operations
+            if (operand === 'true')
+                return true;
+            if (operand === 'false')
+                return false;
+            if (operand === 'undefined')
+                return undefined;
+            // Truly quotes strings cannot contain an operation, return the string
+            if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.isQuotedString)(operand))
+                return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.rmEscapes)(operand.substring(1, operand.length - 1));
+            // Actual numbers cannot be contain an operation
+            if (!isNaN(+operand))
+                return Number(operand);
+            if (step < operatorRegistry.length - 1) {
+                return parseLogicals(operand, step + 1);
+            }
+            else {
+                if (operand.startsWith('$')) {
+                    const cleaned = operand.substring(1);
+                    requirements.add(cleaned);
+                    return function getToken(tokens) {
+                        return cleaned in tokens ? tokens[cleaned]() : undefined;
+                    };
+                }
+                // In this case we are dealing with an unquoted string, just treat it
+                // as a plain string.
+                return operand;
+            }
+        }
+        return operand;
+    }
+    /**
+     * Compile the string.
+     */
+    const compiled = parseLogicals(expr.startsWith('$:') ? expr.substring(2) : expr);
+    /**
+     * Convert compiled requirements to an array.
+     */
+    const reqs = Array.from(requirements);
+    /**
+     * Provides token values via callback to compiled output.
+     * @param callback - A callback that needs to provide all token requirements
+     * @returns
+     */
+    function provide(callback) {
+        provideTokens = callback;
+        return Object.assign(compiled.bind(null, callback(reqs)), {
+            provide,
+        });
+    }
+    return Object.assign(compiled, {
+        provide,
+    });
+}
+
+/**
+ * Function that produces a standardized object representation of CSS classes
+ * @param propertyKey - section key
+ * @param node - FormKit node
+ * @param sectionClassList - Things to turn into classes
+ * @returns
+ * @public
+ */
+function createClasses(propertyKey, node, sectionClassList) {
+    if (!sectionClassList)
+        return {};
+    if (typeof sectionClassList === 'string') {
+        const classKeys = sectionClassList.split(' ');
+        return classKeys.reduce((obj, key) => Object.assign(obj, { [key]: true }), {});
+    }
+    else if (typeof sectionClassList === 'function') {
+        return createClasses(propertyKey, node, sectionClassList(node, propertyKey));
+    }
+    return sectionClassList;
+}
+/**
+ * Combines multiple class lists into a single list
+ * @param node - the FormKit node being operated on
+ * @param property - The property key to which the class list will be applied
+ * @param args - CSS class list(s)
+ * @returns
+ * @public
+ */
+function generateClassList(node, property, ...args) {
+    const combinedClassList = args.reduce((finalClassList, currentClassList) => {
+        if (!currentClassList)
+            return finalClassList;
+        const { $reset, ...classList } = currentClassList;
+        if ($reset) {
+            return classList;
+        }
+        return Object.assign(finalClassList, classList);
+    }, {});
+    return (Object.keys(node.hook.classes.dispatch({ property, classes: combinedClassList })
+        .classes)
+        .filter((key) => combinedClassList[key])
+        .join(' ') || null);
+}
+
+/**
+ * Sets errors on a form, group, or input.
+ * @param formId - The id of a form
+ * @param localErrors - The errors to set on the form or the form’s inputs
+ * @param childErrors - (optional) The errors to set on the form or the form’s inputs
+ * @public
+ */
+function setErrors(id, localErrors, childErrors) {
+    const node = getNode$1(id);
+    if (node) {
+        node.setErrors(localErrors, childErrors);
+    }
+    else {
+        warn(651, id);
+    }
+}
+/**
+ * Clears child errors.
+ * @param id - The id of the node you want to clear errors for
+ * @param clearChildren - Determines if the the children of this node should have their errors cleared.
+ * @public
+ */
+function clearErrors(id, clearChildren = true) {
+    const node = getNode$1(id);
+    if (node) {
+        node.clearErrors(clearChildren);
+    }
+    else {
+        warn(652, id);
+    }
+}
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formkit/dev/dist/index.mjs":
+/*!**************************************************!*\
+  !*** ./node_modules/@formkit/dev/dist/index.mjs ***!
+  \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "errors": () => (/* binding */ errors),
+/* harmony export */   "warnings": () => (/* binding */ warnings)
+/* harmony export */ });
+/* harmony import */ var _formkit_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formkit/core */ "./node_modules/@formkit/core/dist/index.mjs");
+
+
+let registered = false;
+/**
+ * Catalog of the error message codes in FormKit.
+ * @public
+ */
+const errors = {
+    /**
+     * FormKit errors:
+     */
+    100: ({ data: node }) => `Only groups, lists, and forms can have children (${node.name}).`,
+    101: ({ data: node }) => `You cannot directly modify the store (${node.name}). See: https://formkit.com/advanced/core#message-store`,
+    102: ({ data: [node, property], }) => `You cannot directly assign node.${property} (${node.name})`,
+    103: ({ data: [operator] }) => `Schema expressions cannot start with an operator (${operator})`,
+    104: ({ data: [operator, expression] }) => `Schema expressions cannot end with an operator (${operator} in "${expression}")`,
+    105: ({ data: expression }) => `Invalid schema expression: ${expression}`,
+    106: ({ data: name }) => `Cannot submit because (${name}) is not in a form.`,
+    107: ({ data: [node, value] }) => `Cannot set ${node.name} to non object value: ${value}`,
+    108: ({ data: [node, value] }) => `Cannot set ${node.name} to non array value: ${value}`,
+    /**
+     * FormKit vue errors:
+     */
+    600: ({ data: node }) => `Unknown input type${typeof node.props.type === 'string' ? ' "' + node.props.type + '"' : ''} ("${node.name}")`,
+    601: ({ data: node }) => `Input definition${typeof node.props.type === 'string' ? ' "' + node.props.type + '"' : ''} is missing a schema or component property (${node.name}).`,
+};
+/**
+ * Catalog of the warning message codes in FormKit.
+ * @public
+ */
+const warnings = {
+    /**
+     * Core warnings:
+     */
+    150: ({ data: fn }) => `Schema function "${fn}()" is not a valid function.`,
+    151: ({ data: id }) => `No form element with id: ${id}`,
+    152: ({ data: id }) => `No input element with id: ${id}`,
+    /**
+     * Input specific warnings:
+     */
+    350: ({ data: node }) => `Invalid options prop for radio input (${node.name}). See https://formkit.com/inputs/radio`,
+    /**
+     * Vue warnings:
+     */
+    650: 'Schema "$get()" must use the id of an input to access.',
+    651: ({ data: id }) => `Cannot setErrors() on "${id}" because no such id exists.`,
+    652: ({ data: id }) => `Cannot clearErrors() on "${id}" because no such id exists.`,
+    /**
+     * Deprecation warnings:
+     */
+};
+/**
+ * Decodes an error that is being emitted and console logs it.
+ * @param error - The error currently being handled
+ * @param next - Call additional handlers
+ * @returns
+ */
+const decodeErrors = (error, next) => {
+    if (error.code in errors) {
+        const err = errors[error.code];
+        error.message = typeof err === 'function' ? err(error) : err;
+    }
+    return next(error);
+};
+if (!registered)
+    (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.errorHandler)(decodeErrors);
+/**
+ * Decodes an error that is being emitted and console logs it.
+ * @param error - The error currently being handled
+ * @param next - Call additional handlers
+ * @returns
+ */
+const decodeWarnings = (warning, next) => {
+    if (warning.code in warnings) {
+        const warn = warnings[warning.code];
+        warning.message = typeof warn === 'function' ? warn(warning) : warn;
+    }
+    return next(warning);
+};
+if (!registered)
+    (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.warningHandler)(decodeWarnings);
+registered = true;
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formkit/i18n/dist/index.mjs":
+/*!***************************************************!*\
+  !*** ./node_modules/@formkit/i18n/dist/index.mjs ***!
+  \***************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ar": () => (/* binding */ ar),
+/* harmony export */   "createI18nPlugin": () => (/* binding */ createI18nPlugin),
+/* harmony export */   "cs": () => (/* binding */ cs),
+/* harmony export */   "da": () => (/* binding */ da),
+/* harmony export */   "date": () => (/* binding */ date),
+/* harmony export */   "de": () => (/* binding */ de),
+/* harmony export */   "en": () => (/* binding */ en),
+/* harmony export */   "es": () => (/* binding */ es),
+/* harmony export */   "fa": () => (/* binding */ fa),
+/* harmony export */   "fi": () => (/* binding */ fi),
+/* harmony export */   "fr": () => (/* binding */ fr),
+/* harmony export */   "fy": () => (/* binding */ fy),
+/* harmony export */   "he": () => (/* binding */ he),
+/* harmony export */   "hr": () => (/* binding */ hr),
+/* harmony export */   "id": () => (/* binding */ id),
+/* harmony export */   "it": () => (/* binding */ it),
+/* harmony export */   "ja": () => (/* binding */ ja),
+/* harmony export */   "ko": () => (/* binding */ ko),
+/* harmony export */   "list": () => (/* binding */ list),
+/* harmony export */   "locales": () => (/* binding */ locales),
+/* harmony export */   "nl": () => (/* binding */ nl),
+/* harmony export */   "order": () => (/* binding */ order),
+/* harmony export */   "pl": () => (/* binding */ pl),
+/* harmony export */   "pt": () => (/* binding */ pt),
+/* harmony export */   "ro": () => (/* binding */ ro),
+/* harmony export */   "ru": () => (/* binding */ ru),
+/* harmony export */   "sentence": () => (/* binding */ sentence),
+/* harmony export */   "sl": () => (/* binding */ sl),
+/* harmony export */   "sv": () => (/* binding */ sv),
+/* harmony export */   "th": () => (/* binding */ th),
+/* harmony export */   "tr": () => (/* binding */ tr),
+/* harmony export */   "vi": () => (/* binding */ vi),
+/* harmony export */   "zh": () => (/* binding */ zh)
+/* harmony export */ });
+/* harmony import */ var _formkit_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formkit/utils */ "./node_modules/@formkit/utils/dist/index.mjs");
+
+
+/**
+ * Given a string, convert it to sentence case.
+ * @param item - The string to sentence case
+ * @returns
+ * @public
+ */
+function sentence(str) {
+    return str[0].toUpperCase() + str.substr(1);
+}
+/**
+ * Creates an oxford-comma separated list of items.
+ * @param args - items to list out
+ * @param conjunction - in: x, y, and z "and" is the conjunction to use
+ * @returns
+ * @public
+ */
+function list(items, conjunction = 'or') {
+    return items.reduce((oxford, item, index) => {
+        oxford += item;
+        if (index <= items.length - 2 && items.length > 2) {
+            oxford += ', ';
+        }
+        if (index === items.length - 2) {
+            oxford += `${items.length === 2 ? ' ' : ''}${conjunction} `;
+        }
+        return oxford;
+    }, '');
+}
+/**
+ * Given a string or a date return a nice human-readable version.
+ * @param date - A string or a date.
+ * @public
+ */
+function date(date) {
+    const dateTime = typeof date === 'string' ? new Date(Date.parse(date)) : date;
+    if (!(dateTime instanceof Date)) {
+        return '(unknown)';
+    }
+    return new Intl.DateTimeFormat(undefined, {
+        dateStyle: 'medium',
+    }).format(dateTime);
+}
+/**
+ * Orders two variables smallest to largest.
+ * @param first - first argument
+ * @param second - Second argument
+ * @returns
+ * @public
+ */
+function order(first, second) {
+    return Number(first) >= Number(second) ? [second, first] : [first, second];
+}
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$q = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'إضافة',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'إزالة',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'إزالة الكل',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'عذرا، لم يتم تعبئة جميع الحقول بشكل صحيح.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'إرسال',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'لا يوجد ملف مختار',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$q = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `الرجاء قبول ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `يجب أن يكون ${sentence(name)} بعد ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `يجب أن يكون ${sentence(name)} في المستقبل.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `يمكن أن يحتوي ${sentence(name)} على أحرف أبجدية فقط.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `يمكن أن يحتوي ${sentence(name)} على أحرف وأرقام فقط.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `يمكن أن تحتوي ${sentence(name)} على أحرف ومسافات فقط.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `يجب أن يكون ${sentence(name)} قبل ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `يجب أن يكون ${sentence(name)} في الماضي.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `تمت تهيئة هذا الحقل بشكل غير صحيح ولا يمكن إرساله.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `يجب أن يكون ${sentence(name)} ما بين ${a} و ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} غير متطابق.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} ليس تاريخًا صالحًا ، يرجى استخدام التنسيق ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'تمت تهيئة هذا الحقل بشكل غير صحيح ولا يمكن إرساله';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `يجب أن يكون ${sentence(name)} بين ${date(args[0])} و ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'الرجاء أدخال بريد إليكتروني صالح.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `لا ينتهي ${sentence(name)} بـ ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} ليست قيمة مسموح بها.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `يجب أن يكون ${sentence(name)} حرفًا واحدًا على الأقل.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `يجب أن يكون ${sentence(name)} أقل من أو يساوي ${max} حرفًا.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `يجب أن يكون ${sentence(name)} أكبر من أو يساوي ${min} حرفًا.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `يجب أن يكون ${sentence(name)} بين ${min} و ${max} حرفًا.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} ليست قيمة مسموح بها.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `لا يمكن أن يكون أكثر من ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `يجب أن يكون ${sentence(name)} أقل من أو يساوي ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'لا يسمح بتنسيقات الملفات.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `يجب أن يكون ${sentence(name)} من النوع: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `لا يمكن أن يكون أقل من ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `يجب أن يكون ${sentence(name)} على الأقل ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” ليس ${name} مسموحًا به.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} يجب ان يكون رقماً`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} مطلوب.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `لا يبدأ ${sentence(name)} بـ ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `الرجاء تضمين عنوان رابط صحيح.`;
+        /* </i18n> */
+    },
+};
+
+var ar = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$q,
+    validation: validation$q
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$p = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Přidat',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Odebrat',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Odebrat vše',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Pardon, ale ne všechna pole jsou vyplněna správně.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Odeslat',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Žádný soubor nebyl vybrán',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$p = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Prosím, zaškrtněte ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} musí být po ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} musí být v budoucnosti.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} může obsahovat pouze písmena.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} může obsahovat pouze písmena a čísla.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} musí být před ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} musí být v minulosti.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Toto pole bylo špatně nakonfigurováno a nemůže být odesláno.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} musí být mezi ${a} a ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} nejsou shodná.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} není platné datum, prosím, použijte formát ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Toto pole bylo špatně nakonfigurováno a nemůže být odesláno.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} musí být mezi ${date(args[0])} a ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Prosím, zadejte platnou e-mailovou adresu.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} nekončí na ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} není povolená hodnota.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} musí mít nejméně jeden znak.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} může mít maximálně ${max} znaků.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} musí obsahovat minimálně ${min} znaků.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} musí být dlouhé ${min} až ${max} znaků.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} není povolená hodnota.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Nelze použít více než ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} musí mít menší nebo rovno než ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Nejsou nakonfigurovány povolené typy souborů.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} musí být typu: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Nelze mít méně než ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} musí být minimálně ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” není dovolená hodnota pro ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} musí být číslo.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} je povinné.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} nezačíná na ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Zadejte, prosím, platnou URL adresu.`;
+        /* </i18n> */
+    },
+};
+
+var cs = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$p,
+    validation: validation$p
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$o = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Tilføj',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Fjern',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Fjern alle',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Alle felter er ikke korrekt udfyldt.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Send',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Ingen filer valgt',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$o = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Accepter venligst ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} skal være senere end ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} skal være i fremtiden.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} kan kun indeholde bogstaver.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} kan kun indeholde bogstaver og tal.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} kan kun indeholde bogstaver og mellemrum.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} skal være før ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} skal være før i dag.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Dette felt er ikke konfigureret korrekt og kan derfor ikke blive sendt.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} skal være mellem ${a} og ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} matcher ikke.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} er ikke gyldig, brug venligst formatet ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Dette felt er ikke konfigureret korrekt og kan derfor ikke blive sendt.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} skal være mellem ${date(args[0])} og ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Indtast venligst en gyldig email-adresse.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} slutter ikke med ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} er ikke en gyldig værdi.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} skal være på mindst ét tegn.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} skal være på højst ${max} tegn.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} skal være på mindst ${min} tegn.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} skal være på mindst ${min} og højst ${max} tegn.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} er ikke en gyldig værdi.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Kan ikke have flere end ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} skal være mindre eller lig med ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Ingen filformater tilladt.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} skal være af filtypen: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Kan ikke have mindre end ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} skal være mindst ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” er ikke en tilladt ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} skal være et tal.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} er påkrævet.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} starter ikke med ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Indtast venligst en gyldig URL.`;
+        /* </i18n> */
+    },
+};
+
+var da = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$o,
+    validation: validation$o
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$n = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Hinzufügen',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Entfernen',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Alles entfernen',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Entschuldigung, nicht alle Felder wurden korrekt ausgefüllt.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Senden',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Keine Datei ausgewählt',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$n = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Bitte ${name} akzeptieren.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} muss nach dem ${date(args[0])} liegen.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} muss in der Zukunft liegen.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} darf nur Buchstaben enthalten.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} darf nur Buchstaben und Zahlen enthalten.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} dürfen nur Buchstaben und Leerzeichen enthalten.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} muss vor dem ${date(args[0])} liegen.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} muss in der Vergangenheit liegen.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Dieses Feld wurde falsch konfiguriert und kann nicht übermittelt werden.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} muss zwischen ${args[0]} und ${args[1]} sein.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} stimmt nicht überein.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} ist kein gültiges Datum im Format ${args[0]}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Dieses Feld wurde falsch konfiguriert und kann nicht übermittelt werden.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} muss zwischen ${date(args[0])} und ${date(args[1])} liegen.`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'E-Mail Adresse ist ungültig.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} endet nicht mit ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} enthält einen ungültigen Wert.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = first <= second ? first : second;
+        const max = second >= first ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} muss mindestens ein Zeichen enthalten.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} darf maximal ${max} Zeichen enthalten.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} muss mindestens ${min} Zeichen enthalten.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} muss zwischen ${min} und ${max} Zeichen enthalten.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} enthält einen ungültigen Wert.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Darf maximal ${args[0]} ${name} haben.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} darf maximal ${args[0]} sein.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Keine Dateiformate konfiguriert.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} muss vom Typ ${args[0]} sein.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Mindestens ${args[0]} ${name} erforderlich.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} muss mindestens ${args[0]} sein.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” ist kein gültiger Wert für ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} muss eine Zahl sein.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} ist erforderlich.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} beginnt nicht mit ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `URL ist ungültig.`;
+        /* </i18n> */
+    },
+};
+
+var de = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$n,
+    validation: validation$n
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$m = {
+    /**
+     * Shown on a button for adding additional items.
+     */
+    add: 'Add',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Remove',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Remove all',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Sorry, not all fields are filled out correctly.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Submit',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'No file chosen',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$m = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Please accept the ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} must be after ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} must be in the future.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} can only contain alphabetical characters.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} can only contain letters and numbers.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} can only contain letters and spaces.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} must be before ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} must be in the past.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `This field was configured incorrectly and can’t be submitted.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} must be between ${a} and ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} does not match.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} is not a valid date, please use the format ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'This field was configured incorrectly and can’t be submitted';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} must be between ${date(args[0])} and ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Please enter a valid email address.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} doesn’t end with ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} is not an allowed value.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} must be at least one character.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} must be less than or equal to ${max} characters.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} must be greater than or equal to ${min} characters.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} must be between ${min} and ${max} characters.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} is not an allowed value.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Cannot have more than ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} must be less than or equal to ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'No file formats allowed.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} must be of the type: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Cannot have less than ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} must be at least ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” is not an allowed ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} must be a number.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} is required.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} doesn’t start with ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Please include a valid url.`;
+        /* </i18n> */
+    },
+};
+
+var en = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$m,
+    validation: validation$m
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$l = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Añadir',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Quitar',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Quitar todos',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Discúlpe, los campos no fueron completados correctamente.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Enviar',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Archivo no seleccionado',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$l = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Acepte el ${name} por favor.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} debe ser posterior a ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} debe ser una fecha futura.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} debe contener solo caractéres alfabéticos.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} debe ser alfanumérico.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} espacios alfa solo pueden contener letras y espacios.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} debe ser anterior a ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} debe ser una fecha pasada.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `El campo no fue completado correctamente y no puede ser enviado.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} debe estar entre ${a} y ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} no coincide.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} no es una fecha válida, por favor utilice el formato ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'El campo no fue completado correctamente y no puede ser enviado.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} debe estar entre ${date(args[0])} y ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Ingrese una dirección de correo electrónico válida por favor.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} no termina con ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} no es un valor permitido.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} debe tener al menos una letra.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} debe tener como máximo ${max} caractéres.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} debe tener como mínimo ${min} caractéres.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} debe tener entre ${min} y ${max} caractéres.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} no es un valor permitido.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Cannot have more than ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} debe ser menor o igual a ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'No existen formatos de archivos permitidos.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} debe ser del tipo: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Cannot have less than ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} debe ser de al menos ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” no es un valor permitido de ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} debe ser un número.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} es requerido.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} debe comenzar con ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Proporcione una URL válida por favor.`;
+        /* </i18n> */
+    },
+};
+
+var es = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$l,
+    validation: validation$l
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$k = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'افزودن',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'حذف',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'همه را حذف کنید',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'همه فیلدها به‌درستی پر نشده‌اند',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'ثبت',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'هیچ فایلی انتخاب نشده است',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$k = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `لطفاً ${name} را بپذیرید.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} باید بعد از تاریخ ${date(args[0])} باشد.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} باید مربوط به آینده باشد.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} فقط میتواند شامل حروف الفبا باشد.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} فقط میتواند شامل حروف و اعداد باشد.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} فقط می تواند شامل حروف و فاصله باشد.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} باید قبل از تاریخ ${date(args[0])} باشد.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} باید مربوط به گذشته باشد.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `این فیلد به اشتباه پیکربندی شده است و قابل ارسال نیست`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} باید بین ${args[0]} و ${args[1]} باشد.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} مطابقت ندارد.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} تاریخ معتبری نیست، لطفاً از قالب ${args[0]} استفاده کنید
+`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'این فیلد به اشتباه پیکربندی شده است و قابل ارسال نیست';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} باید بین ${date(args[0])} و ${date(args[1])} باشد.`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'لطفا آدرس ایمیل معتبر وارد کنید.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} باید به ${list(args)} ختم شود.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} مجاز نیست.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = first <= second ? first : second;
+        const max = second >= first ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} باید حداقل یک کاراکتر باشد.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} باید کمتر یا برابر با ${max} کاراکتر باشد.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} باید بزرگتر یا برابر با ${min} کاراکتر باشد.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} باید بین ${min} و ${max} کاراکتر باشد.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} مجاز نیست.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `${name} نمی تواند بیش از ${args[0]} باشد.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} باید کمتر یا برابر با ${args[0]} باشد.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'فرمت فایل مجاز نیست.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} باید از این نوع باشد: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `${name} نمی تواند کمتر از ${args[0]} باشد.
+`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} باید حداقل ${args[0]} باشد.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `"${value}" یک ${name} مجاز نیست.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} باید عدد باشد.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `پر کردن ${sentence(name)} اجباری است.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} باید با ${list(args)} شروع شود.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `لطفاً آدرس اینترنتی معتبر وارد کنید.`;
+        /* </i18n> */
+    },
+};
+
+var fa = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$k,
+    validation: validation$k
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$j = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Lisää',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Poista',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Poista kaikki',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Kaikkia kenttiä ei ole täytetty oikein.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Tallenna',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Ei valittuja tiedostoja',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$j = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Ole hyvä ja hyväksy ${name}`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} tulee olla ${date(args[0])} jälkeen.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} on oltava tulevaisuudessa.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} saa sisältää vain kirjaimia.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} saa sisältää vain kirjaimia ja numeroita.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} voivat sisältää vain kirjaimia ja välilyöntejä.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} tulee olla ennen: ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} on oltava menneisyydessä.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Tämä kenttä on täytetty virheellisesti joten sitä ei voitu lähettää.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} on oltava välillä ${a} - ${b} `;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} ei täsmää.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} ei ole validi päivämäärä, ole hyvä ja syötä muodossa: ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Tämä kenttä on täytetty virheellisesti joten sitä ei voitu lähettää.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} on oltava välillä ${date(args[0])} - ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Syötä validi sähköpostiosoite.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} tulee päättyä ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} ei ole sallittu vaihtoehto.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} on oltava vähintään yksi merkki.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} on oltava ${max} tai alle merkkiä.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} on oltava vähintään ${min} merkkiä.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} on oltava vähintään ${min}, enintään ${max} merkkiä.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} ei ole sallittu arvo.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Valitse enintään ${args[0]} ${name} vaihtoehtoa.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} on oltava ${args[0]} tai alle.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Tiedostoja ei sallita.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} tulee olla ${args[0]}-tiedostotyyppiä.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Valitse vähintään ${args[0]} ${name} vaihtoehtoa.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} tulee olla ${args[0]} tai suurempi.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” ei ole sallittu ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `Kentän ${sentence(name)} tulee olla numero.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} vaaditaan.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} on alettava ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Syötä validi url-osoite.`;
+        /* </i18n> */
+    },
+};
+
+var fi = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$j,
+    validation: validation$j
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$i = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Ajouter',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Supprimer',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Enlever tout',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Désolé, tous les champs ne sont pas remplis correctement.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Valider',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Aucun fichier choisi',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$i = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Veuillez accepter le ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} doit être postérieure au ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} doit être dans le futur.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} ne peut contenir que des caractères alphabétiques.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} ne peut contenir que des lettres et des chiffres.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} ne peuvent contenir que des lettres et des espaces.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} doit être antérieure au ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} doit être dans le passé.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Ce champ a été configuré de manière incorrecte et ne peut pas être soumis.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} doit être comprise entre ${a} et ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} ne correspond pas.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} n'est pas une date valide, veuillez utiliser le format ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Ce champ a été configuré de manière incorrecte et ne peut pas être soumis.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} doit être comprise entre ${date(args[0])} et ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Veuillez saisir une adresse email valide.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} ne se termine pas par ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} n'est pas une valeur autorisée.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} doit comporter au moins un caractère.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} doit être inférieur ou égal à ${max} caractères.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} doit être supérieur ou égal à ${min} caractères.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} doit être comprise entre ${min} et ${max} caractères.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} n'est pas une valeur autorisée.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Ne peut pas avoir plus de ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} doit être inférieur ou égal à ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Aucun format de fichier n’est autorisé';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} doit être du type: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Ne peut pas avoir moins de ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} doit être au moins de ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” n'est pas un ${name} autorisé.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} doit être un nombre.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} est requis.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} ne commence pas par ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Veuillez saisir une url valide.`;
+        /* </i18n> */
+    },
+};
+
+var fr = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$i,
+    validation: validation$i
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$h = {
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Ferwider',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Ferwider alles',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Sorry, net alle fjilden binne korrekt ynfolle.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Ferstjoere',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Gjin bestân keazen',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$h = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Akseptearje de ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} moat nei ${date(args[0])} wêze.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} moat yn de takomst lizze.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} mei allinne alfabetyske tekens befetsje.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} mei allinne letters en sifers befetsje.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} moat foar ${date(args[0])} falle.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} moat yn it ferline wêze.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Dit fjild is ferkeard konfigurearre en kin net ferstjoerd wurde.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} moat tusken ${a} en ${b} lizze.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} komt net oerien.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} is gjin jildige datum, brûk de notaasje ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Dit fjild is ferkeard konfigurearre en kin net ferstjoerd wurde';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} moat tusken ${date(args[0])} en ${date(args[1])} lizze`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Folje in jildich e-mailadres yn.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} einiget net mei ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} is gjin tastiene wearde.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} moat minimaal ien teken wêze.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} moat lytser wêze as of gelyk wêze oan ${max} tekens.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} moat grutter wêze as of gelyk wêze oan ${min} tekens.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} moat tusken de ${min} en ${max} tekens befetsje.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} is gjin tastiene wearde.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Mei net mear as ${args[0]} ${name} hawwe.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} moat lytser wêze as of gelyk wêze oan ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Gjin bestânsnotaasjes tastien.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} moat fan it type: ${args[0]} wêze`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Mei net minder as ${args[0]} ${name} hawwe.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} moat minimaal ${args[0]} wêze.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `"${value}" is gjin tastiene ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} moat in getal wêze.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} is ferplicht.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} begjint net mei ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Doch der in jildige url by.`;
+        /* </i18n> */
+    },
+};
+
+var fy = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$h,
+    validation: validation$h
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$g = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'הוסף',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'מחק',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'שים לב, לא כל השדות מלאים כראוי.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'שלח',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$g = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `אנא אשר את ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} חייב להיות אחרי ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} חייב להיות בעתיד.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} חייב להכיל אותיות אלפבת.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} יכול להכיל רק מספרים ואותיות.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} יכול להכיל רק אותיות ורווחים.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} חייב להיות לפני ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} חייב להיות בעבר`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `שדה זה לא הוגדר כראוי ולא יכול להישלח.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} חייב להיות בין ${args[0]} ו-${args[1]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} לא מתאים.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} הוא לא תאריך תקין, אנא השתמש בפורמט ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'שדה זה לא הוגדר כראוי ולא יכול להישלח.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} חייב להיות בין ${date(args[0])} ו- ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'אנא הקלד אימייל תקין.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} לא מסתיים ב- ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} הוא לא ערך מורשה.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = first <= second ? first : second;
+        const max = second >= first ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} חייב להיות לפחות תו אחד.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} חייב להיות פחות או שווה ל- ${max} תווים.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} חייב ליות גדול או שווה ל- ${min} תווים.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} חייב להיות בין ${min} ו- ${max} תווים.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} הוא לא ערך תקין.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `${name} לא יכול להיות עם יותר מ- ${args[0]}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} חייב להיות פחות או שווה ל- ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'פורמט הקובץ לא מורשה.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} חייב להיות מסוג: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `${name} לא יכול להיות עם פחות מ- ${args[0]}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} חייב להיות לפחות ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” לא מתאים ל- ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} חייב להיות מספר.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} הינו חובה.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} לא מתחיל ב- ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `אנא הקלד קישור תקין.`;
+        /* </i18n> */
+    },
+};
+
+var he = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$g,
+    validation: validation$g
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$f = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Dodaj',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Ukloni',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Pojedina polja nisu ispravno ispunjena.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Predaj',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$f = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Potrebno je potvrditi ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} mora biti u periodu poslije ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} mora biti u budućnosti.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} mora sadržavati samo slova.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} mora sadržavati slova i brojeve.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} mogu sadržavati samo slova i razmake..`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} mora biti prije ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} mora biti u prošlosti.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Format sadržaja nije ispravan i ne može biti predan.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} mora biti između ${args[0]} i ${args[1]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} ne odgovara zadanoj vrijednosti.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} nije ispravan format datuma. Molimo koristite sljedeći format: ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Ovo polje nije ispravno postavljeno i ne može biti predano.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} mora biti vrijednost između ${date(args[0])} i ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Molimo upišite ispravnu email adresu.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} ne završava s ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} nije dopuštena vrijednost.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = first <= second ? first : second;
+        const max = second >= first ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} mora sadržavati barem jedan znak.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} mora imati ${max} ili manje znakova.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} mora imati barem ${min} znakova.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `Broj znakova za polje ${sentence(name)} mora biti između ${min} i ${max}.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} nije dozvoljena vrijednost.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Ne smije imati više od ${args[0]} ${name} polja.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} mora imati vrijednost manju ili jednaku ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Format datoteke nije dozvoljen.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `Format datoteke na polju ${sentence(name)} mora odgovarati: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Broj upisanih vrijednosti na polju ${name} mora biti barem ${args[0]}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} mora biti barem ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” nije dozvoljena vrijednost na polju ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} mora biti broj.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} je obavezno.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} ne počinje s ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Molimo unesite ispravnu poveznicu.`;
+        /* </i18n> */
+    },
+};
+
+var hr = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$f,
+    validation: validation$f
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$e = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Tambah',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Hapus',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Hapus semua',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Maaf, tidak semua bidang formulir terisi dengan benar',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Kirim',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Tidak ada file yang dipilih',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$e = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Tolong terima kolom ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} nilainya harus lebih dari waktu ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} harus berisi waktu di masa depan.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} hanya bisa diisi huruf alfabet.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} hanya bisa diisi huruf dan angka.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} hanya boleh berisi huruf dan spasi..`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} nilainya harus kurang dari waktu ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} harus berisi waktu yang sudah lampau.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Kolom ini tidak diisi dengan benar sehingga tidak bisa dikirim`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} harus bernilai diantara ${a} dan ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} nilainya tidak cocok.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} waktu tidak cocok, mohon gunakan format waktu ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Kolom ini tidak diisi dengan benar sehingga tidak bisa dikirim';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} harus diantara waktu ${date(args[0])} dan waktu ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Tolong tulis alamat email yang benar.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} nilainya tidak berakhiran dengan ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} adalah nilai yang tidak diizinkan.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} nilainya setidaknya berisi satu karakter.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} jumlah karakternya harus kurang dari atau sama dengan ${max} karakter.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} jumlah karakternya harus lebih dari atau sama dengan ${min} karakter.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} jumlah karakternya hanya bisa antara ${min} dan ${max} karakter.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} nilainya tidak diizinkan.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Tidak bisa memiliki lebih dari ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} harus lebih kecil atau sama dengan ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Format file tidak diizinkan';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} hanya bisa bertipe: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Tidak boleh kurang dari ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} setidaknya harus berisi ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” adalah nilai yang tidak diperbolehkan untuk ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} harus berupa angka.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} harus diisi.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} tidak dimulai dengan ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Mohon tuliskan url yang benar.`;
+        /* </i18n> */
+    },
+};
+
+var id = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$e,
+    validation: validation$e
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$d = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Inserisci',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Rimuovi',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Rimuovi tutti',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Ci dispiace, non tutti i campi sono compilati correttamente.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Invia',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Nessun file selezionato',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$d = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Si prega di accettare ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `la data ${sentence(name)} deve essere successiva ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `la data ${sentence(name)} deve essere nel futuro.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} può contenere solo caratteri alfanumerici.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} può contenere solo lettere e numeri.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} può contenere solo lettere e spazi.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `la data ${sentence(name)} deve essere antecedente ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} deve essere nel passato.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Questo campo è stato configurato male e non può essere inviato.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} deve essere tra ${a} e ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} non corrisponde.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} non è una data valida, per favore usa il formato ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Questo campo è stato configurato in modo errato e non può essere inviato.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} deve essere tra ${date(args[0])} e ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Per favore inserire un indirizzo email valido.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} non termina con ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} non è un valore consentito.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} deve contenere almeno un carattere.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} deve essere minore o uguale a ${max} caratteri.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} deve essere maggiore o uguale a ${min} caratteri.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} deve essere tra ${min} e ${max} caratteri.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} non è un valore consentito.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Non può avere più di ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} deve essere minore o uguale a ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Formato file non consentito.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} deve essere di tipo: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Non può avere meno di ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} deve essere almeno ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `"${value}" non è un ${name} consentito.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} deve essere un numero.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} è richiesto.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} non inizia con ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Per favore utilizare un url valido.`;
+        /* </i18n> */
+    },
+};
+
+var it = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$d,
+    validation: validation$d
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$c = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: '追加',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: '削除',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: '全て削除',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: '項目が正しく入力されていません。',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: '送信',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'ファイルが選択されていません',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$c = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `${name}の同意が必要です。`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)}は${date(args[0])}より後の日付である必要があります。`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)}は将来の日付でなければなりません。`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)}には英字のみを含めることができます。`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)}には、文字と数字のみを含めることができます。`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)}には、文字とスペースのみを含めることができます。`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)}は${date(args[0])}より前の日付である必要があります。`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)}は過去の日付である必要があります。`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `このフィールドは正しく構成されていないため、送信できません。`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)}は${a}と${b}の間にある必要があります。`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)}が一致しません。`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)}は有効な日付ではありません。${args[0]}の形式を使用してください。`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'このフィールドは正しく構成されておらず、送信できません。';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)}は${date(args[0])}と${date(args[1])}の間にある必要があります。`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: '有効なメールアドレスを入力してください。',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)}は${list(args)}で終わっていません。`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)}は許可された値ではありません。`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)}は少なくとも1文字である必要があります。`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)}は${max}文字以下である必要があります。`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)}は${min}文字以上である必要があります。`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)}は${min}から${max}文字の間でなければなりません。`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)}は許可された値ではありません。`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `${name}は${args[0]}を超えることはできません。`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)}は${args[0]}以下である必要があります。`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'ファイル形式は許可されていません。';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)}は${args[0]}である必要があります。`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `${name}は${args[0]}未満にすることはできません。`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)}は少なくとも${args[0]}である必要があります。`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}”は許可された${name}ではありません。`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)}は数値でなければなりません。`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)}は必須です。`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)}は${list(args)}で始まっていません。`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `有効なURLを含めてください。`;
+        /* </i18n> */
+    },
+};
+
+var ja = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$c,
+    validation: validation$c
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$b = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: '추가',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: '제거',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: '모두 제거',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: '모든 값을 채워주세요',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: '제출하기',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: '선택된 파일이 없습니다',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$b = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `${name} 올바른 값을 선택 해주세요`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} ${date(args[0])} 이후여야 합니다`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} 미래의 날짜여야합니다`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} 알파벳 문자만 포함할 수 있습니다`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} 문자와 숫자만 포함될 수 있습니다`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} 문자와 공백만 포함할 수 있습니다.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} ${date(args[0])} 이전여야 합니다`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} 과거의 날짜여야합니다`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `잘못된 구성으로 제출할 수 없습니다`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} ${a}와 ${b} 사이여야 합니다`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} 일치하지 않습니다`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} 유효한 날짜가 아닙니다. ${args[0]}과 같은 형식을 사용해주세요`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return '잘못된 구성으로 제출할 수 없습니다';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} ${date(args[0])}에서 ${date(args[1])} 사이여야 합니다`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: '올바른 이메일 주소를 입력해주세요',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} ${list(args)}로 끝나지 않습니다`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} 허용되는 값이 아닙니다`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} 하나 이상의 문자여야 합니다`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} ${max}자 이하여야 합니다`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} ${min} 문자보다 크거나 같아야 합니다`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} ${min}에서 ${max}자 사이여야 합니다`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} 허용되는 값이 아닙니다`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `${args[0]} ${name} 초과할 수 없습니다`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} ${args[0]}보다 작거나 같아야 합니다`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return '파일 형식이 허용되지 않습니다';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} ${args[0]} 유형이어야 합니다`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `${args[0]} ${name}보다 작을 수 없습니다`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} ${args[0]} 이상이어야 합니다`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `${value}" 허용되지 않는 ${name}입니다`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} 숫자여야 합니다`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} 필수 값입니다`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} ${list(args)}로 시작하지 않습니다`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `올바른 URL을 입력해주세요`;
+        /* </i18n> */
+    },
+};
+
+var ko = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$b,
+    validation: validation$b
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$a = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Toevoegen',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Verwijder',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Verwijder alles',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Sorry, niet alle velden zijn correct ingevuld.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Versturen',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Geen bestand gekozen',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$a = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Accepteer de ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} moet na ${date(args[0])} zijn.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} moet in de toekomst liggen.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} mag alleen alfabetische tekens bevatten.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} mag alleen letters en cijfers bevatten.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} kunnen alleen letters en spaties bevatten.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} moet vóór ${date(args[0])} vallen.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} moet in het verleden zijn.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Dit veld is onjuist geconfigureerd en kan niet worden verzonden.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} moet tussen ${a} en ${b} liggen.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} komt niet overeen.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} is geen geldige datum, gebruik de notatie ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Dit veld is onjuist geconfigureerd en kan niet worden verzonden';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} moet tussen ${date(args[0])} en ${date(args[1])} liggen`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Vul een geldig e-mailadres in.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} eindigt niet met ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} is geen toegestane waarde.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} moet minimaal één teken zijn.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} moet kleiner zijn dan of gelijk zijn aan ${max} tekens.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} moet groter zijn dan of gelijk zijn aan ${min} tekens.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} moet tussen de ${min} en ${max} tekens bevatten.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} is geen toegestane waarde.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Mag niet meer dan ${args[0]} ${name} hebben.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} moet kleiner zijn dan of gelijk zijn aan ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Geen bestandsformaten toegestaan.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} moet van het type: ${args[0]} zijn`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Mag niet minder dan ${args[0]} ${name} hebben.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} moet minimaal ${args[0]} zijn.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `"${value}" is geen toegestane ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} moet een getal zijn.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} is verplicht.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} begint niet met ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Voeg een geldige url toe.`;
+        /* </i18n> */
+    },
+};
+
+var nl = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$a,
+    validation: validation$a
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$9 = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Dodaj',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Usuń',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Usuń wszystko',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Nie wszystkie pola zostały wypełnione poprawnie.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Wyślij',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Nie wybrano pliku',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$9 = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Proszę zaakceptować ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} musi być po ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} musi być w przyszłości.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `Pole ${sentence(name)} może zawierać tylko znaki alfabetyczne.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `Pole ${sentence(name)} może zawierać tylko znaki alfanumeryczne.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `Pole ${sentence(name)} mogą zawierać tylko litery i spacje.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} musi być przed ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} musi być w przeszłości.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Pole zostało wypełnione niepoprawnie i nie może zostać wysłane.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `Wartość pola ${sentence(name)} musi być pomiędzy ${a} i ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} nie pokrywa się.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `Wartość pola ${sentence(name)} nie jest poprawną datą, proszę użyć formatu ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'To pole zostało wypełnione niepoprawnie i nie może zostać wysłane';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `Data w polu ${sentence(name)} musi być pomiędzy ${date(args[0])} i ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Proszę wpisać poprawny adres email.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `Pole ${sentence(name)} nie kończy się na ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `Pole ${sentence(name)} nie jest dozwoloną wartością.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `Pole ${sentence(name)} musi posiadać minimum jeden znak.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `Pole ${sentence(name)} musi zawierać ${max} lub mniej znaków.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `Pole ${sentence(name)} musi zawierać ${min} lub więcej znaków.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `Pole ${sentence(name)} musi mieć ${min}-${max} znaków.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `Pole ${sentence(name)} zawiera niedozwolone znaki.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Nie można mieć więcej niż ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `Wartość pola ${sentence(name)} musi być mniejsza lub równa ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Nie podano dozwolonych typów plików.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} musi być typem: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Musisz podać więcej niż ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return ` Musisz podać conajmniej ${args[0]} ${sentence(name)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `Wartość pola ${name} jest niedozwolona.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} musi być numerem.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `Pole ${sentence(name)} jest wymagane.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `Wartośc pola ${sentence(name)} nie zaczyna się od ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Proszę podać prawidłowy adres url.`;
+        /* </i18n> */
+    },
+};
+
+var pl = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$9,
+    validation: validation$9
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$8 = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Adicionar',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Remover',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Deletar tudo',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Desculpe, nem todos os campos foram preenchidos corretamente.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Enviar',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Nenhum arquivo',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$8 = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Por favor aceite o ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} deve ser posterior a ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} deve ser no futuro.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} só pode conter caracteres do alfabeto.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} só pode ter letras e números.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} só podem conter letras e espaços.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} deve ser anterior a ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} deve ser anterior a data atual.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `O campo foi configurado incorretamente e não pode ser enviado.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} deve estar entre ${args[0]} e ${args[1]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} não confere.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} não é uma data válida, por favor use o formato ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'O campo foi configurado incorretamente e não pode ser enviado.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} deve ser entre ${date(args[0])} e ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Por favor informe um e-mail válido.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} não termina com ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} não é um valor permitido.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = first <= second ? first : second;
+        const max = second >= first ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} deve ter ao menos um caractere.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} não pode ter mais que ${max} caracteres.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} deve ter no mínimo ${min} caracteres.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} deve ter entre ${min} e ${max} caracteres.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} não é um valor permitido.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Não pode ter mais que ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} deve ser igual ou menor que ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Nenhum formato de arquivo permitido.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} deve ser do tipo: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Não pode ter menos que ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} deve ter pelo menos ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” não permite ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} deve ser um número.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} é obrigatório.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} não começa com ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Por favor informe um url válido.`;
+        /* </i18n> */
+    },
+};
+
+var pt = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$8,
+    validation: validation$8
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$7 = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Adăugare',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Elimină',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Elimină tot',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Pare rău, unele câmpuri nu sunt corect completate.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Trimite',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Nu este selectat nici un fișier',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$7 = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Te rog acceptă ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} trebuie să fie după ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} trebuie sa fie în viitor.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} poate conține doar caractere alafetice.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} poate conține doar litere și numere.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} poate conține doar litere și spații.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} trebuie să preceadă ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} trebuie să fie în trecut.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Câmpul a fost configurat incorect și nu poate fi trimis.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} trebuie să fie între ${a} și ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} nu se potrivește.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} nu este validă, te rog foloște formatul ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Câmpul a fost incorect configurat și nu poate fi trimis.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} trebuie să fie între ${date(args[0])} și ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Te rog folosește o adresă de email validă.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} nu se termină cu ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} nu este o valoare acceptată.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} trebuie sa conțină cel puțin un caracter.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} trebuie sa aibă cel mult ${max} caractere.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} trebuie să aibă cel puțin ${min} caractere.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} trebuie să aibă între ${min} și ${max} caractere.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} nu este o valoare acceptată.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Nu poate avea mai mult decat ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} trebuie să fie cel mult egal cu ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Tipul de fișier neacceptat.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} trebuie să fie de tipul: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Nu poate avea mai puțin decât ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} trebuie să fie cel puțin ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” nu este o valoare acceptă pentru ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} trebuie să fie un număr.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} este necesar.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} nu începe cu ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Te rog include o adresă web validă`;
+        /* </i18n> */
+    },
+};
+
+var ro = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$7,
+    validation: validation$7
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$6 = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Добавить',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Удалить',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Убрать все',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Извините, не все поля заполнены верно.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Отправить',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Файл не выбран',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$6 = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Пожалуйста, примите ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `Дата ${sentence(name)} должна быть позже ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `Дата ${sentence(name)} должна быть в будущем.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `Поле ${sentence(name)} может содержать только буквы.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `Поле ${sentence(name)} может содержать только буквы и цифры.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} могут содержать только буквы и пробелы.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `Дата ${sentence(name)} должна быть раньше ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `Дата ${sentence(name)} должна быть в прошлом.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Это поле заполнено неверно и не может быть отправлено.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `Поле ${sentence(name)} должно быть между ${a} и ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `Поле ${sentence(name)} не совпадает.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `Поле ${sentence(name)} имеет неверную дату. Пожалуйста, используйте формат ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Это поле заполнено неверно и не может быть отправлено.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `Дата ${sentence(name)} должна быть между ${date(args[0])} и ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Пожалуйста, введите действительный электронный адрес.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `Поле ${sentence(name)} не должно заканчиваться на ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `Поле ${sentence(name)} имеет неподустимое значение.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `Поле ${sentence(name)} должно содержать минимум один символ.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `Длина поля ${sentence(name)} должна быть меньше или равна ${max} символам.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `Длина поля ${sentence(name)} должна быть больше или равна ${min} символам.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `Длина поля ${sentence(name)} должна быть между ${min} и ${max} символами.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `Поле ${sentence(name)} имеет недопустимое значение.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Не может быть выбрано больше, чем ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `Поле ${sentence(name)} должно быть меньше или равно ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Не указаны поддержиавемые форматы файла.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `Формат файла в поле ${sentence(name)} должен быть: ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Не может быть выбрано меньше, чем ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `Поле ${sentence(name)} должно быть не менее, чем ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” не поддерживается в поле ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `Поле ${sentence(name)} должно быть числом.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `Поле ${sentence(name)} обязательно для заполнения.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `Поле ${sentence(name)} должно начинаться с ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Пожалуйста, введите действительный URL адрес.`;
+        /* </i18n> */
+    },
+};
+
+var ru = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$6,
+    validation: validation$6
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$5 = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Dodaj',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Odstrani',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Odstrani vse',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Nekatera polja niso pravilno izpolnjena.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Pošlji',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Nobena datoteka ni izbrana',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$5 = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Prosimo popravite ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} mora biti po ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} mora biti v prihodnosti.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} lahko vsebuje samo znake abecede.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} lahko vsebuje samo črke in številke.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} lahko vsebuje samo črke in presledke.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} mora biti pred ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} mora biti v preteklosti.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `To polje je narobe nastavljeno in ne mora biti izpolnjeno.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} mora biti med ${a} in ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} se ne ujema.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} ni pravilen datum, prosimo uporabite format ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'To polje je narobe nastavljeno in ne mora biti izpolnjeno.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} mora biti med ${date(args[0])} in ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Vnesite veljaven e-poštni naslov.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} se mora kočati z ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} ni dovoljena vrednost.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} mora vsebovati vsaj en znak.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} mora vsebovati največ ${max} znakov.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} mora vsebovati vsaj ${min} znakov.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} mora vsebovati med ${min} in ${max} znakov.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} ni dovoljena vrednost.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Največ je ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} je lahko največ ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Nobena vrsta datoteke ni dovoljena.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} mora biti tipa: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Najmanj ${args[0]} ${name} je dovoljenih.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} mora biti vsaj ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” ni dovoljen(a/o) ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} mora biti številka.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} je zahtevan(o/a).`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} se mora začeti z ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Vnesite veljavno povezavo.`;
+        /* </i18n> */
+    },
+};
+
+var sl = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$5,
+    validation: validation$5
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$4 = {
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Ta bort',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Ta bort alla',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Tyvärr är inte alla fält korrekt ifyllda',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Skicka',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Ingen fil vald',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$4 = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Var god acceptera ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} måste vara efter ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} måste vara framåt i tiden.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} kan enbart innehålla bokstäver i alfabetet.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} kan bara innehålla bokstäver och siffror.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} kan bara innehålla bokstäver och blanksteg.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} måste vara före ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} måste vara bakåt i tiden.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Det här fältet ställdes inte in korrekt och kan inte användas.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} måste vara mellan ${a} och ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} matchar inte.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} är inte ett giltigt datum, var god använd formatet ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Det här fältet ställdes inte in korrekt och kan inte användas';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} måste vara mellan ${date(args[0])} och ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Var god fyll i en giltig e-postadress.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} slutar inte med ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} är inte ett godkänt värde.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} måste ha minst ett tecken.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} måste vara ${max} tecken eller färre.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} måste vara ${min} tecken eller fler.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} måste vara mellan ${min} och ${max} tecken.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} är inte ett godkänt värde.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `Kan inte ha mer än ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} måste vara ${args[0]} eller mindre.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Inga filtyper tillåtna.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} måste vara av filtypen: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `Kan inte ha mindre än ${args[0]} ${name}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} måste vara minst ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” är inte ett godkänt ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} måste vara en siffra.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} är obligatoriskt.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} börjar inte med ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Var god fyll i en giltig länk.`;
+        /* </i18n> */
+    },
+};
+
+var sv = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$4,
+    validation: validation$4
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$3 = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'เพิ่ม',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'เอาออก',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'เอาออกทั้งหมด',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'ขออภัย ข้อมูลบางช่องที่กรอกไม่ถูกต้อง',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'ส่ง',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'ยังไม่ได้เลือกไฟล์',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$3 = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `กรุณายอมรับ ${name}`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} จะต้องเป็นวันที่หลังจาก ${date(args[0])}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} จะต้องเป็นวันที่ที่ยังไม่มาถึง`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} สามารถเป็นได้แค่ตัวอักษรเท่านั้น`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} สามารถเป็นได้แค่ตัวอักษรและตัวเลขเท่านั้น`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} สามารถเป็นได้แค่ตัวอักษรและเว้นวรรคเท่านั้น`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} จะต้องเป็นวันที่ที่มาก่อน ${date(args[0])}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} จะต้องเป็นวันที่ที่ผ่านมาแล้ว`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `ช่องนี้ถูกตั้งค่าอย่างไม่ถูกต้อง และจะไม่สามารถส่งข้อมูลได้`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} จะต้องเป็นค่าระหว่าง ${a} และ ${b}`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} ไม่ตรงกัน`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} ไม่อยู่ในรูปแบบวันที่ที่ถูกต้อง กรุณากรอกตามรูปแบบ ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'ช่องนี้ถูกตั้งค่าอย่างไม่ถูกต้อง และจะไม่สามารถส่งข้อมูลได้';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} จะต้องเป็นวันที่ระหว่าง ${date(args[0])} และ ${date(args[1])}`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'กรุณากรอกที่อยู่อีเมลทีถูกต้อง',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} จะต้องลงท้ายด้วย ${list(args)}`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} ไม่ใช่ค่าที่อนุญาตให้กรอก`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} จะต้องมีความยาวอย่างน้อยหนึ่งตัวอักษร`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} จะต้องมีความยาวไม่เกิน ${max} ตัวอักษร`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} จะต้องมีความยาว ${min} ตัวอักษรขึ้นไป`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} จะต้องมีความยาวระหว่าง ${min} และ ${max} ตัวอักษร`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} ไม่ใช่ค่าที่อนุญาตให้กรอก`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `ไม่สามารถเลือกมากกว่า ${args[0]} ${name} ได้`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} จะต้องมีค่าไม่เกิน ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'ไม่มีประเภทของไฟล์ที่อนุญาต';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} จะต้องเป็นไฟล์ประเภท ${args[0]} เท่านั้น`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `ไม่สามารถเลือกน้อยกว่า ${args[0]} ${name} ได้`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} จะต้องมีค่าอย่างน้อย ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” ไม่ใช่ค่า ${name} ที่อนุญาตให้กรอก`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} จะต้องเป็นตัวเลขเท่านั้น`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `กรุณากรอก ${sentence(name)}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} จะต้องเริ่มต้นด้วย ${list(args)}`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `กรุณาระบุที่อยู่ลิงก์ให้ถูกต้อง`;
+        /* </i18n> */
+    },
+};
+
+var th = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$3,
+    validation: validation$3
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$2 = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Ekle',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Kaldır',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Hepsini kaldır',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Maalesef, tüm alanlar doğru doldurulmadı.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Gönder',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Dosya yok',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$2 = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Lütfen ${name}'yi kabul edin.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} ${date(args[0])}'den sonra olmalıdır.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} gelecekte bir zaman olmalıdır.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} sadece alfabetik karakterler içerebilir.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} sadece alfabetik karakterler ve sayı içerebilir.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} yalnızca harf ve boşluk içerebilir.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} ${date(args[0])} tarihinden önce olmalı.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} geçmişte olmalı.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Alan yanlış yapılandırılmış ve gönderilemez.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} ${args[0]} ve ${args[1]} aralığında olmalı.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} eşleşmiyor.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} geçerli bir tarih değil, lütfen ${args[0]} biçimini kullanın.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Alan yanlış yapılandırılmış ve gönderilemez.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)}, ${date(args[0])} ve ${date(args[1])} aralığında olmalı.`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Lütfen geçerli bir e-mail adresi girin.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} ${list(args)} ile bitmiyor.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} izin verilen bir değer değil.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = first <= second ? first : second;
+        const max = second >= first ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} en azından bir karakter uzunluğunda olmalı.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} ${max}'e eşit veya daha küçük olmalı.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} ${min}'e eşit veya daha büyük olmalı.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)}, ${min} ve ${max} karakter uzunluğu aralığında olmalı.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} izin verilen bir değer değil.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `${name}'in uzunluğu ${args[0]}'dan daha uzun olamaz.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} en azından ${args[0]} uzunluğunda veya ona eşit olmalı.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Hiçbir dosya türüne izin verilmez.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} şu tiplerden biri olmalı: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `${name}'in uzunluğu ${args[0]}'dan daha kısa olamaz.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} en azından ${args[0]} uzunluğunda olmalı.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}” ${name} olamaz.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} sayı olmalı.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} gerekli.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} ${list(args)} ile başlamıyor.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Lütfen geçerli bir url dahil edin.`;
+        /* </i18n> */
+    },
+};
+
+var tr = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$2,
+    validation: validation$2
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui$1 = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: 'Thêm',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: 'Xoá',
+    /**
+     * Shown when there are multiple items to remove at the same time.
+     */
+    removeAll: 'Xoá tất cả',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: 'Xin lỗi, không phải tất cả các trường đều được nhập đúng.',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: 'Gửi',
+    /**
+     * Shown when no files are selected.
+     */
+    noFiles: 'Chưa chọn file',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation$1 = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `Hãy đồng ý với ${name}.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)} phải sau ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} phải trong tương lai.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)} có thể chỉ bao gồm các chữ cái alphabet.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)} có thể chỉ bao gồm các chữ cái và chữ số.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)} chỉ có thể chứa các chữ cái và khoảng trắng.`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)} phải trước ${date(args[0])}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)} phải trong quá khứ.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `Trường này đã được thiết lập sai và không thể gửi.`;
+            /* </i18n> */
+        }
+        const [a, b] = order(args[0], args[1]);
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)} phải ở giữa ${a} và ${b}.`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)} không khớp.`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)} không phải ngày hợp lệ, hãy sử dụng định dạng ${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return 'Trường này đã được thiết lập sai và không thể gửi.';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)} phải ở giữa khoảng từ ${date(args[0])} đến ${date(args[1])}.`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: 'Hãy nhập một địa chỉ email hợp lệ.',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)} không kết thúc với ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)} không phải một giá trị được cho phép.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = Number(first) <= Number(second) ? first : second;
+        const max = Number(second) >= Number(first) ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)} phải có độ dài tối thiểu một ký tự.`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)} phải có độ dài tối đa ${max} ký tự.`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)} phải có độ dài tối thiểu ${min} ký tự.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)} phải có độ dài tối đa trong khoảng từ ${min} đến ${max} ký tự.`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)} không phải một giá trị được cho phép.`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `${name} không thể lớn hơn ${args[0]}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)} phải tối đa bằng ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return 'Định dạng tệp tin này không được phép.';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)} phải là một trong các dạng: ${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `${name} không thể nhỏ hơn ${args[0]}.`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)} phải tối thiểu bằng ${args[0]}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `"${value}" không phải giá trị ${name} được phép.`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)} phải là một số.`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)} là bắt buộc.`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)} không bắt đầu với ${list(args)}.`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `Hãy nhập một URL hợp lệ.`;
+        /* </i18n> */
+    },
+};
+
+var vi = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui$1,
+    validation: validation$1
+});
+
+/**
+ * Here we can import additional helper functions to assist in formatting our
+ * language. Feel free to add additional helper methods to libs/formats if it
+ * assists in creating good validation messages for your locale.
+ */
+/**
+ * Standard language for interface features.
+ * @public
+ */
+const ui = {
+    /**
+     * Shown on buttons for adding new items.
+     */
+    add: '添加',
+    /**
+     * Shown when a button to remove items is visible.
+     */
+    remove: '移除',
+    /**
+     * Shown when all fields are not filled out correctly.
+     */
+    incomplete: '对不起，有些字段未被正确填写',
+    /**
+     * Shown in a button inside a form to submit the form.
+     */
+    submit: '提交',
+};
+/**
+ * These are all the possible strings that pertain to validation messages.
+ * @public
+ */
+const validation = {
+    /**
+     * The value is not an accepted value.
+     * @see {@link https://docs.formkit.com/essentials/validation#accepted}
+     */
+    accepted({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a valid 'accepted' value."> */
+        return `请接受${name}`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not after
+     * @see {@link https://docs.formkit.com/essentials/validation#date-after}
+     */
+    date_after({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not after the date supplied to the rule."> */
+            return `${sentence(name)}必须晚于${date(args[0])}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not after today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)}必须是未来的日期`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a letter.
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha}
+     */
+    alpha({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical characters."> */
+        return `${sentence(name)}仅能包含字母字符`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not alphanumeric
+     * @see {@link https://docs.formkit.com/essentials/validation#alphanumeric}
+     */
+    alphanumeric({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphanumeric characters."> */
+        return `${sentence(name)}仅能包含字母和数字`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not letter and/or spaces
+     * @see {@link https://docs.formkit.com/essentials/validation#alpha-spaces}
+     */
+    alpha_spaces({ name }) {
+        /* <i18n case="Shown when the user-provided value contains non-alphabetical and non-space characters."> */
+        return `${sentence(name)}只能包含字母和空格`;
+        /* </i18n> */
+    },
+    /**
+     * The date is not before
+     * @see {@link https://docs.formkit.com/essentials/validation#date-before}
+     */
+    date_before({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date is not before the date supplied to the rule."> */
+            return `${sentence(name)}必须早于${date(args[0])}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided date is not before today's date, since no date was supplied to the rule."> */
+        return `${sentence(name)}必须是过去的日期`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not between two numbers
+     * @see {@link https://docs.formkit.com/essentials/validation#between}
+     */
+    between({ name, args }) {
+        if (isNaN(args[0]) || isNaN(args[1])) {
+            /* <i18n case="Shown when any of the arguments supplied to the rule were not a number."> */
+            return `该字段未被正确设置而无法被提交`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is not between two numbers."> */
+        return `${sentence(name)}必须在${args[0]}和${args[1]}之间`;
+        /* </i18n> */
+    },
+    /**
+     * The confirmation field does not match
+     * @see {@link https://docs.formkit.com/essentials/validation#confirm}
+     */
+    confirm({ name }) {
+        /* <i18n case="Shown when the user-provided value does not equal the value of the matched input."> */
+        return `${sentence(name)}不匹配`;
+        /* </i18n> */
+    },
+    /**
+     * The value is not a valid date
+     * @see {@link https://docs.formkit.com/essentials/validation#date-format}
+     */
+    date_format({ name, args }) {
+        if (Array.isArray(args) && args.length) {
+            /* <i18n case="Shown when the user-provided date does not satisfy the date format supplied to the rule."> */
+            return `${sentence(name)}不是一个合法日期，请使用此格式${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when no date argument was supplied to the rule."> */
+        return '该字段未被正确设置而无法被提交';
+        /* </i18n> */
+    },
+    /**
+     * Is not within expected date range
+     * @see {@link https://docs.formkit.com/essentials/validation#date-between}
+     */
+    date_between({ name, args }) {
+        /* <i18n case="Shown when the user-provided date is not between the start and end dates supplied to the rule. "> */
+        return `${sentence(name)}必须在${date(args[0])}和${date(args[1])}之间`;
+        /* </i18n> */
+    },
+    /**
+     * Shown when the user-provided value is not a valid email address.
+     * @see {@link https://docs.formkit.com/essentials/validation#email}
+     */
+    email: '请输入一个合法的电子邮件地址',
+    /**
+     * Does not end with the specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#ends-with}
+     */
+    ends_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not end with the substring supplied to the rule."> */
+        return `${sentence(name)}并未以${list(args)}结尾`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#is}
+     */
+    is({ name }) {
+        /* <i18n case="Shown when the user-provided value is not one of the values supplied to the rule."> */
+        return `${sentence(name)}不是一个允许值`;
+        /* </i18n> */
+    },
+    /**
+     * Does not match specified length
+     * @see {@link https://docs.formkit.com/essentials/validation#length}
+     */
+    length({ name, args: [first = 0, second = Infinity] }) {
+        const min = first <= second ? first : second;
+        const max = second >= first ? second : first;
+        if (min == 1 && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is not at least one character."> */
+            return `${sentence(name)}至少要有一个字符`;
+            /* </i18n> */
+        }
+        if (min == 0 && max) {
+            /* <i18n case="Shown when first argument supplied to the rule is 0, and the user-provided value is longer than the max (the 2nd argument) supplied to the rule."> */
+            return `${sentence(name)}必须少于或等于${max}个字符`;
+            /* </i18n> */
+        }
+        if (min && max === Infinity) {
+            /* <i18n case="Shown when the length of the user-provided value is less than the minimum supplied to the rule and there is no maximum supplied to the rule."> */
+            return `${sentence(name)}必须多于或等于${min}个字符`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the length of the user-provided value is between the two lengths supplied to the rule."> */
+        return `${sentence(name)}必须有${min}至${max}个字符`;
+        /* </i18n> */
+    },
+    /**
+     * Value is not a match
+     * @see {@link https://docs.formkit.com/essentials/validation#matches}
+     */
+    matches({ name }) {
+        /* <i18n case="Shown when the user-provided value does not match any of the values or RegExp patterns supplied to the rule. "> */
+        return `${sentence(name)}不是一个允许值`;
+        /* </i18n> */
+    },
+    /**
+     * Exceeds maximum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#max}
+     */
+    max({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is longer than the max supplied to the rule."> */
+            return `${name}不能超过${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is greater than the maximum number supplied to the rule."> */
+        return `${sentence(name)}必须小于或等于${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * The (field-level) value does not match specified mime type
+     * @see {@link https://docs.formkit.com/essentials/validation#mime}
+     */
+    mime({ name, args }) {
+        if (!args[0]) {
+            /* <i18n case="Shown when no file formats were supplied to the rule."> */
+            return '无允许的文件格式';
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the mime type of user-provided file does not match any mime types supplied to the rule."> */
+        return `${sentence(name)}必须为此类型：${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Does not fulfill minimum allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#min}
+     */
+    min({ name, node: { value }, args }) {
+        if (Array.isArray(value)) {
+            /* <i18n case="Shown when the length of the array of user-provided values is shorter than the min supplied to the rule."> */
+            return `${name}不能少于${args[0]}`;
+            /* </i18n> */
+        }
+        /* <i18n case="Shown when the user-provided value is less than the minimum number supplied to the rule."> */
+        return `${sentence(name)}不能小于${args[0]}`;
+        /* </i18n> */
+    },
+    /**
+     * Is not an allowed value
+     * @see {@link https://docs.formkit.com/essentials/validation#not}
+     */
+    not({ name, node: { value } }) {
+        /* <i18n case="Shown when the user-provided value matches one of the values supplied to (and thus disallowed by) the rule."> */
+        return `“${value}”不是一个被允许的${name}`;
+        /* </i18n> */
+    },
+    /**
+     *  Is not a number
+     * @see {@link https://docs.formkit.com/essentials/validation#number}
+     */
+    number({ name }) {
+        /* <i18n case="Shown when the user-provided value is not a number."> */
+        return `${sentence(name)}必须是一个数字`;
+        /* </i18n> */
+    },
+    /**
+     * Required field.
+     * @see {@link https://docs.formkit.com/essentials/validation#required}
+     */
+    required({ name }) {
+        /* <i18n case="Shown when a user does not provide a value to a required input."> */
+        return `${sentence(name)}必须填写`;
+        /* </i18n> */
+    },
+    /**
+     * Does not start with specified value
+     * @see {@link https://docs.formkit.com/essentials/validation#starts-with}
+     */
+    starts_with({ name, args }) {
+        /* <i18n case="Shown when the user-provided value does not start with the substring supplied to the rule."> */
+        return `${sentence(name)}没有以${list(args)}开头`;
+        /* </i18n> */
+    },
+    /**
+     * Is not a url
+     * @see {@link https://docs.formkit.com/essentials/validation#url}
+     */
+    url() {
+        /* <i18n case="Shown when the user-provided value is not a valid url."> */
+        return `请包含一个合法的url`;
+        /* </i18n> */
+    },
+};
+
+var zh = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    ui: ui,
+    validation: validation
+});
+
+/**
+ * Create a new internationalization plugin for FormKit.
+ * @param locales - Creates the i18n plugin.
+ * @public
+ */
+function createI18nPlugin(registry) {
+    return function i18nPlugin(node) {
+        let localeKey = parseLocale(node.config.locale, registry);
+        let locale = localeKey ? registry[localeKey] : {};
+        /* If the locale prop changes, update the active locale */
+        node.on('prop:locale', ({ payload: lang }) => {
+            localeKey = parseLocale(lang, registry);
+            locale = localeKey ? registry[localeKey] : {};
+            // Run through all the messages in the store and update with new locale
+            node.store.touch();
+        });
+        node.on('prop:label', () => node.store.touch());
+        node.on('prop:validationLabel', () => node.store.touch());
+        /**
+         * Hook into the core text or t() hook to perform localization on the
+         * output of core functionality.
+         */
+        node.hook.text((fragment, next) => {
+            var _a, _b;
+            const key = ((_a = fragment.meta) === null || _a === void 0 ? void 0 : _a.messageKey) || fragment.key;
+            if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(locale, fragment.type) && (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(locale[fragment.type], key)) {
+                const t = locale[fragment.type][key];
+                if (typeof t === 'function') {
+                    fragment.value = Array.isArray((_b = fragment.meta) === null || _b === void 0 ? void 0 : _b.i18nArgs)
+                        ? t(...fragment.meta.i18nArgs) // eslint-disable-line @typescript-eslint/no-non-null-assertion
+                        : t(fragment);
+                }
+                else {
+                    fragment.value = t;
+                }
+            }
+            return next(fragment);
+        });
+    };
+}
+/**
+ * @param locale - An ISO 639-1 and (optionally) ISO 639-2 language tag. For
+ * example these are valid locale keys:
+ * zh
+ * zh-CN
+ * zh-HK
+ * en
+ * en-GB
+ * @param availableLocales - An array of locales that may be valid.
+ */
+function parseLocale(locale, availableLocales) {
+    if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(availableLocales, locale)) {
+        return locale;
+    }
+    const [lang] = locale.split('-');
+    if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(availableLocales, lang)) {
+        return lang;
+    }
+    for (const locale in availableLocales) {
+        return locale;
+    }
+    return false;
+}
+
+/**
+ * Export all the available locales at once.
+ * @public
+ */
+const locales = {
+    ar,
+    cs,
+    da,
+    de,
+    en,
+    es,
+    fa,
+    fi,
+    fr,
+    fy,
+    he,
+    hr,
+    id,
+    it,
+    ja,
+    ko,
+    nl,
+    pl,
+    pt,
+    ro,
+    ru,
+    sl,
+    sv,
+    th,
+    tr,
+    vi,
+    zh,
+};
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formkit/inputs/dist/index.mjs":
+/*!*****************************************************!*\
+  !*** ./node_modules/@formkit/inputs/dist/index.mjs ***!
+  \*****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "button": () => (/* binding */ button),
+/* harmony export */   "checkbox": () => (/* binding */ checkbox),
+/* harmony export */   "color": () => (/* binding */ color),
+/* harmony export */   "composable": () => (/* binding */ composable),
+/* harmony export */   "createLibraryPlugin": () => (/* binding */ createLibraryPlugin),
+/* harmony export */   "date": () => (/* binding */ date),
+/* harmony export */   "datetimeLocal": () => (/* binding */ datetimeLocal),
+/* harmony export */   "email": () => (/* binding */ email),
+/* harmony export */   "extendSchema": () => (/* binding */ extendSchema),
+/* harmony export */   "features": () => (/* binding */ index),
+/* harmony export */   "file": () => (/* binding */ file),
+/* harmony export */   "form": () => (/* binding */ form),
+/* harmony export */   "group": () => (/* binding */ group),
+/* harmony export */   "hidden": () => (/* binding */ hidden),
+/* harmony export */   "inputs": () => (/* binding */ inputs),
+/* harmony export */   "list": () => (/* binding */ list),
+/* harmony export */   "localize": () => (/* binding */ localize),
+/* harmony export */   "month": () => (/* binding */ month),
+/* harmony export */   "number": () => (/* binding */ number),
+/* harmony export */   "password": () => (/* binding */ password),
+/* harmony export */   "radio": () => (/* binding */ radio),
+/* harmony export */   "range": () => (/* binding */ range),
+/* harmony export */   "search": () => (/* binding */ search),
+/* harmony export */   "select": () => (/* binding */ select),
+/* harmony export */   "submit": () => (/* binding */ submit),
+/* harmony export */   "tel": () => (/* binding */ tel),
+/* harmony export */   "text": () => (/* binding */ text),
+/* harmony export */   "textarea": () => (/* binding */ textarea),
+/* harmony export */   "time": () => (/* binding */ time),
+/* harmony export */   "url": () => (/* binding */ url),
+/* harmony export */   "useSchema": () => (/* binding */ useSchema),
+/* harmony export */   "week": () => (/* binding */ week)
+/* harmony export */ });
+/* harmony import */ var _formkit_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formkit/utils */ "./node_modules/@formkit/utils/dist/index.mjs");
+/* harmony import */ var _formkit_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @formkit/core */ "./node_modules/@formkit/core/dist/index.mjs");
+
+
+
+const outer = composable('outer', () => ({
+    $el: 'div',
+    attrs: {
+        class: '$classes.outer',
+        'data-type': '$type',
+        'data-multiple': '$attrs.multiple',
+        'data-disabled': '$disabled || undefined',
+        'data-complete': '$state.complete || undefined',
+        'data-invalid': '$state.valid === false && $state.validationVisible || undefined',
+        'data-errors': '$state.errors || undefined',
+        'data-submitted': '$state.submitted || undefined',
+    },
+}));
+
+const wrapper$2 = composable('wrapper', () => ({
+    $el: 'div',
+    attrs: {
+        class: '$classes.wrapper',
+    },
+}));
+
+const inner = composable('inner', () => ({
+    $el: 'div',
+    attrs: {
+        class: '$classes.inner',
+    },
+}));
+
+const help = (schema = {}, children = [], target = 'help', cond = '$help') => ({
+    if: `$slots.${target}`,
+    then: `$slots.${target}`,
+    else: (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.extend)({
+        $el: 'div',
+        attrs: {
+            id: `$: "help-" + ${target == 'optionHelp' ? '$option.attrs.id' : '$id'}`,
+            class: `$classes.${target}`,
+        },
+        if: cond,
+        children,
+    }, schema),
+});
+
+const messages = composable('messages', () => ({
+    $el: 'ul',
+    if: '$fns.length($messages)',
+    attrs: {
+        class: '$classes.messages',
+        'aria-live': '$type === "form" && "assertive" || "polite"',
+    },
+}));
+
+const message = composable('message', () => ({
+    $el: 'li',
+    for: ['message', '$messages'],
+    attrs: {
+        key: '$message.key',
+        class: '$classes.message',
+        id: `$id + '-' + $message.key`,
+        'data-message-type': '$message.type',
+    },
+}));
+
+const prefix = composable('prefix', () => ({ $el: null }));
+
+const suffix = composable('suffix', () => ({ $el: null }));
+
+/**
+ * Type guard for schema objects.
+ * @param schema - returns true if the node is a schema node but not a string or conditional.
+ */
+function isSchemaObject(schema) {
+    return (typeof schema === 'object' &&
+        ('$el' in schema || '$cmp' in schema || '$formkit' in schema));
+}
+/**
+ * Extends a single schema node with an extension. The extension can be any partial node including strings.
+ * @param schema - Extend a base schema node.
+ * @param extension - The values to extend on the base schema node.
+ * @returns
+ * @public
+ */
+function extendSchema(schema, extension = {}) {
+    if (typeof schema === 'string') {
+        return isSchemaObject(extension) || typeof extension === 'string'
+            ? extension
+            : schema;
+    }
+    else if (Array.isArray(schema)) {
+        return isSchemaObject(extension) ? extension : schema;
+    }
+    return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.extend)(schema, extension);
+}
+/**
+ * Creates a new section key.
+ *
+ * @param key - A new section key name.
+ * @param schema - The default schema in this composable slot.
+ * @returns
+ * @public
+ */
+function composable(key, schema) {
+    return (extendWith = {}, children = undefined) => {
+        const root = typeof schema === 'function'
+            ? schema(children)
+            : typeof schema === 'object'
+                ? (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.clone)(schema)
+                : schema;
+        const isObj = isSchemaObject(root);
+        if (isObj && !('children' in root) && children) {
+            if (Array.isArray(children)) {
+                if (children.length) {
+                    root.children = children;
+                }
+            }
+            else {
+                root.children = [children];
+            }
+        }
+        const extended = extendSchema(root, extendWith);
+        return {
+            if: `$slots.${key}`,
+            then: `$slots.${key}`,
+            else: Array.isArray(extended) ? extended : [extended],
+        };
+    };
+}
+/**
+ * Creates an input schema with all of the wrapping base schema.
+ * @param inputSchema - Content to store in the input section key location.
+ * @public
+ */
+function useSchema(inputSchema) {
+    return (extensions = {}) => {
+        const input = composable('input', inputSchema)(extensions.input);
+        return [
+            outer(extensions.outer, [
+                wrapper$2(extensions.wrapper, [
+                    label(extensions.label, '$label'),
+                    inner(extensions.inner, [
+                        prefix(extensions.prefix),
+                        ...(Array.isArray(input) ? input : [input]),
+                        suffix(extensions.suffix),
+                    ]),
+                ]),
+                help(extensions.help, '$help'),
+                messages(extensions.messages, [
+                    message(extensions.message, '$message.value'),
+                ]),
+            ]),
+        ];
+    };
+}
+
+const label = composable('label', () => ({
+    $el: 'label',
+    if: '$label',
+    attrs: {
+        for: '$id',
+        class: '$classes.label',
+    },
+}));
+
+const text$1 = composable('input', () => ({
+    $el: 'input',
+    bind: '$attrs',
+    attrs: {
+        type: '$type',
+        disabled: '$disabled',
+        class: '$classes.input',
+        name: '$node.name',
+        onInput: '$handlers.DOMInput',
+        onBlur: '$handlers.blur',
+        value: '$_value',
+        id: '$id',
+        'aria-describedby': '$describedBy',
+    },
+}));
+
+/**
+ * The schema for text classifications.
+ * @public
+ */
+const textSchema$1 = (extensions = {}) => [
+    outer(extensions.outer, [
+        wrapper$2(extensions.wrapper, [
+            label(extensions.label, '$label'),
+            inner(extensions.inner, [
+                prefix(extensions.prefix),
+                text$1(extensions.input),
+                suffix(extensions.suffix),
+            ]),
+        ]),
+        help(extensions.help, '$help'),
+        messages(extensions.messages, [
+            message(extensions.message, '$message.value'),
+        ]),
+    ]),
+];
+
+const file$1 = composable('input', () => ({
+    $el: 'input',
+    bind: '$attrs',
+    attrs: {
+        type: 'file',
+        foo: 'bar',
+        disabled: '$disabled',
+        class: '$classes.input',
+        name: '$node.name',
+        onChange: '$handlers.files',
+        onBlur: '$handlers.blur',
+        id: '$id',
+        'aria-describedby': '$describedBy',
+    },
+}));
+
+const fileList = composable('fileList', () => ({
+    $el: 'ul',
+    if: '$value.length',
+    attrs: {
+        class: '$classes.fileList',
+        'data-has-multiple': {
+            if: '$value.length > 1',
+            then: 'true',
+        },
+    },
+}));
+
+const fileItem = composable('fileItem', () => ({
+    $el: 'li',
+    for: ['file', '$value'],
+    attrs: {
+        class: '$classes.fileItem',
+    },
+}));
+
+const fileName = composable('fileName', () => ({
+    $el: 'span',
+    attrs: {
+        class: '$classes.fileName',
+    },
+}));
+
+const noFiles = composable('noFiles', () => ({
+    $el: 'span',
+    if: '$value.length == 0',
+    attrs: {
+        class: '$classes.noFiles',
+    },
+}));
+
+const removeFiles = composable('removeFiles', () => ({
+    $el: 'a',
+    attrs: {
+        href: '#',
+        class: '$classes.removeFiles',
+        onClick: '$handlers.resetFiles',
+    },
+}));
+
+/**
+ * The schema for text classifications.
+ * @public
+ */
+const fileSchema = (extensions = {}) => [
+    outer(extensions.outer, [
+        wrapper$2(extensions.wrapper, [
+            label(extensions.label, '$label'),
+            inner(extensions.inner, [
+                prefix(extensions.prefix),
+                file$1(extensions.input),
+                fileList(extensions.fileList, [
+                    fileItem(extensions.file, [
+                        fileName(extensions.fileName, '$file.name'),
+                        {
+                            if: '$value.length == 1',
+                            then: removeFiles(extensions.removeFiles, '$ui.remove.value'),
+                        },
+                    ]),
+                ]),
+                {
+                    if: '$value.length > 1',
+                    then: removeFiles(extensions.removeFiles, '$ui.removeAll.value'),
+                },
+                noFiles(extensions.noFiles, '$ui.noFiles.value'),
+                suffix(extensions.suffix),
+            ]),
+        ]),
+        help(extensions.help, '$help'),
+        messages(extensions.messages, [
+            message(extensions.message, '$message.value'),
+        ]),
+    ]),
+];
+
+const textarea$1 = composable('input', () => ({
+    $el: 'textarea',
+    bind: '$attrs',
+    attrs: {
+        class: '$classes.input',
+        disabled: '$disabled',
+        name: '$node.name',
+        onInput: '$handlers.DOMInput',
+        onBlur: '$handlers.blur',
+        value: '$_value',
+        id: '$id',
+        'aria-describedby': '$describedBy',
+    },
+    children: '$initialValue',
+}));
+
+/**
+ * The schema for textarea classifications.
+ * @public
+ */
+const textareaSchema = (extensions = {}) => [
+    outer(extensions.outer, [
+        wrapper$2(extensions.wrapper, [
+            label(extensions.label, '$label'),
+            inner(extensions.inner, [
+                prefix(extensions.prefix),
+                textarea$1(extensions.input),
+                suffix(extensions.suffix),
+            ]),
+        ]),
+        help(extensions.help, '$help'),
+        messages(extensions.messages, [
+            message(extensions.message, '$message.value'),
+        ]),
+    ]),
+];
+
+/**
+ * The schema for text classifications.
+ * @public
+ */
+const hiddenSchema = (extensions = {}) => [
+    text$1(extensions.input),
+];
+
+const fragment = (schema = {}, children = []) => (Object.keys(schema).length || typeof children !== 'string'
+    ? (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.extend)({ $el: 'div', children }, schema)
+    : children);
+
+const groupSchema = (extensions = {}) => {
+    return [fragment(extensions.wrapper, '$slots.default')];
+};
+
+const listSchema = (extensions = {}) => {
+    return [fragment(extensions.wrapper, '$slots.default')];
+};
+
+const select$2 = composable('input', (children) => ({
+    $el: 'select',
+    bind: '$attrs',
+    attrs: {
+        id: '$id',
+        'data-placeholder': {
+            if: '$placeholder',
+            then: {
+                if: '$value',
+                then: undefined,
+                else: 'true',
+            },
+        },
+        disabled: '$disabled',
+        class: '$classes.input',
+        name: '$node.name',
+        onInput: '$handlers.selectInput',
+        onBlur: '$handlers.blur',
+        'aria-describedby': '$describedBy',
+    },
+    children: {
+        if: '$slots.default',
+        then: '$slots.default',
+        else: children,
+    },
+}));
+
+const option = (schema = {}, children = []) => ({
+    if: '$slots.option',
+    then: [
+        {
+            $el: 'text',
+            if: '$options.length',
+            for: ['option', '$options'],
+            children: '$slots.option',
+        },
+    ],
+    else: (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.extend)({
+        $el: 'option',
+        if: '$options.length',
+        for: ['option', '$options'],
+        bind: '$option.attrs',
+        attrs: {
+            class: '$classes.option',
+            value: '$option.value',
+            selected: '$fns.isSelected($option.value)',
+        },
+        children,
+    }, schema),
+});
+
+/**
+ * The schema for text classifications.
+ * @public
+ */
+const textSchema = (extensions = {}) => [
+    outer(extensions.outer, [
+        wrapper$2(extensions.wrapper, [
+            label(extensions.label, '$label'),
+            inner(extensions.inner, [
+                prefix(extensions.prefix),
+                select$2(extensions.input, [option(extensions.option, '$option.label')]),
+                suffix(extensions.suffix),
+            ]),
+        ]),
+        help(extensions.help, '$help'),
+        messages(extensions.messages, [
+            message(extensions.message, '$message.value'),
+        ]),
+    ]),
+];
+
+const boxLabel = composable('label', (children) => ({
+    $el: 'span',
+    if: typeof children === 'string' ? children : '$: true',
+    attrs: {
+        class: '$classes.label',
+    },
+}));
+
+const wrapper$1 = composable('wrapper', () => ({
+    $el: 'label',
+    attrs: {
+        class: '$classes.wrapper',
+        'data-disabled': {
+            if: '$options.length',
+            then: undefined,
+            else: '$disabled',
+        },
+    },
+}));
+
+const box = composable('input', () => ({
+    $el: 'input',
+    bind: '$attrs',
+    attrs: {
+        type: '$type',
+        class: '$classes.input',
+        name: '$node.props.altName || $node.name',
+        disabled: '$option.attrs.disabled || $disabled',
+        onInput: '$handlers.toggleChecked',
+        checked: '$fns.eq($_value, $onValue)',
+        onBlur: '$handlers.blur',
+        value: '$: true',
+        id: '$id',
+        'aria-describedby': {
+            if: '$options.length',
+            then: {
+                if: '$option.help',
+                then: '$: "help-" + $option.attrs.id',
+                else: undefined,
+            },
+            else: {
+                if: '$help',
+                then: '$: "help-" + $id',
+                else: undefined,
+            },
+        },
+    },
+}));
+
+const fieldset = composable('fieldset', () => ({
+    $el: 'fieldset',
+    attrs: {
+        id: '$id',
+        class: '$classes.fieldset',
+        'aria-describedby': {
+            if: '$help',
+            then: '$: "help-" + $id',
+            else: undefined,
+        },
+    },
+}));
+
+const legend = composable('legend', () => ({
+    $el: 'legend',
+    if: '$label',
+    attrs: {
+        class: '$classes.legend',
+    },
+}));
+
+const boxes = composable('option', () => ({
+    $el: 'li',
+    for: ['option', '$options'],
+    attrs: {
+        class: '$classes.option',
+        'data-disabled': '$option.attrs.disabled || $disabled',
+    },
+}));
+
+const wrapper = composable('options', () => ({
+    $el: 'ul',
+    attrs: {
+        class: '$classes.options',
+    },
+}));
+
+const decorator = composable('decorator', () => ({
+    $el: 'span',
+    attrs: {
+        class: '$classes.decorator',
+        'aria-hidden': 'true',
+    },
+}));
+
+/**
+ * The schema for text classifications.
+ * @public
+ */
+const boxSchema = (extensions = {}) => {
+    const singleCheckbox = [
+        wrapper$1(extensions.wrapper, [
+            inner(extensions.inner, [
+                prefix(extensions.prefix),
+                box(extensions.input),
+                decorator(extensions.decorator),
+                suffix(extensions.suffix),
+            ]),
+            boxLabel(extensions.label, '$label'),
+        ]),
+        help(extensions.help, '$help'),
+    ];
+    const multiCheckbox = fieldset(extensions.fieldset, [
+        legend(extensions.legend, '$label'),
+        help(extensions.help, '$help'),
+        wrapper(extensions.options, [
+            boxes(extensions.option, [
+                wrapper$1(extensions.wrapper, [
+                    inner(extensions.inner, [
+                        prefix(extensions.prefix),
+                        box((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.extend)({
+                            bind: '$option.attrs',
+                            attrs: {
+                                id: '$option.attrs.id',
+                                value: '$option.value',
+                                checked: '$fns.isChecked($option.value)',
+                            },
+                        }, extensions.input || {})),
+                        decorator(extensions.decorator),
+                        suffix(extensions.suffix),
+                    ]),
+                    boxLabel(extensions.label, '$option.label'),
+                ]),
+                help(extensions.optionHelp, '$option.help', 'optionHelp', '$option.help'),
+            ]),
+        ]),
+    ]);
+    return [
+        outer(extensions.outer, [
+            {
+                if: '$options.length',
+                then: multiCheckbox,
+                else: singleCheckbox,
+            },
+            messages(extensions.messages, [
+                message(extensions.message, '$message.value'),
+            ]),
+        ]),
+    ];
+};
+
+const actions = composable('actions', () => ({
+    $el: 'div',
+    if: '$actions',
+    attrs: {
+        class: '$classes.actions',
+    },
+}));
+
+const form$2 = composable('form', () => ({
+    $el: 'form',
+    bind: '$attrs',
+    attrs: {
+        id: '$id',
+        class: '$classes.form',
+        name: '$node.name',
+        onSubmit: '$handlers.submit',
+        'data-loading': '$state.loading || undefined',
+    },
+}));
+
+const submit$1 = composable('submit', () => ({
+    $cmp: 'FormKit',
+    bind: '$submitAttrs',
+    props: {
+        ignore: true,
+        type: 'submit',
+        disabled: '$disabled',
+        label: '$submitLabel',
+    },
+}));
+
+const formSchema = (extensions = {}) => {
+    return [
+        form$2(extensions.form, [
+            '$slots.default',
+            messages(extensions.messages, [
+                message(extensions.message, '$message.value'),
+            ]),
+            actions(extensions.actions, [submit$1(extensions.submit)]),
+        ]),
+    ];
+};
+
+const button$1 = composable('input', () => ({
+    $el: 'button',
+    bind: '$attrs',
+    attrs: {
+        type: '$type',
+        disabled: '$disabled',
+        class: '$classes.input',
+        name: '$node.name',
+        id: '$id',
+    },
+}));
+
+/**
+ * The schema for text classifications.
+ * @public
+ */
+const buttonSchema = (extensions = {}) => [
+    outer(extensions.outer, [
+        messages(extensions.messages, [
+            message(extensions.message, '$message.value'),
+        ]),
+        wrapper$2(extensions.wrapper, [
+            button$1(extensions.input, [
+                prefix(extensions.prefix),
+                {
+                    if: '$slots.default',
+                    then: '$slots.default',
+                    else: {
+                        if: '$label',
+                        then: '$label',
+                        else: '$ui.submit.value',
+                    },
+                },
+                suffix(extensions.suffix),
+            ]),
+        ]),
+        help(extensions.help, '$help'),
+    ]),
+];
+
+/**
+ * Accepts an array of objects, array of strings, or object of key-value pairs.
+ * and returns an array of objects with value and label properties.
+ * @param options -
+ */
+function normalizeOptions(options) {
+    let i = 1;
+    if (Array.isArray(options)) {
+        return options.map((option) => {
+            if (typeof option === 'string' || typeof option === 'number') {
+                return {
+                    label: option,
+                    value: option,
+                };
+            }
+            if (typeof option == 'object') {
+                if ('value' in option && typeof option.value !== 'string') {
+                    Object.assign(option, {
+                        value: `__mask_${i++}`,
+                        __original: option.value,
+                    });
+                }
+            }
+            return option;
+        });
+    }
+    return Object.keys(options).map((value) => {
+        return {
+            label: options[value],
+            value,
+        };
+    });
+}
+/**
+ * Given an option list, find the "true" value in the options.
+ * @param options - The options to check for a given value
+ * @param value - The value to return
+ * @returns
+ */
+function optionValue(options, value) {
+    if (Array.isArray(options)) {
+        for (const option of options) {
+            if (value == option.value) {
+                return '__original' in option ? option.__original : option.value;
+            }
+        }
+    }
+    return value;
+}
+/**
+ * Determines if the value should be selected.
+ * @param valueA - Any type of value
+ * @param valueB - Any type of value
+ */
+function shouldSelect(valueA, valueB) {
+    if (valueA == valueB)
+        return true;
+    if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.isPojo)(valueA) && (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.isPojo)(valueB))
+        return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.eq)(valueA, valueB);
+    return false;
+}
+/**
+ * Converts the options prop to usable values.
+ * @param node - A formkit node.
+ * @public
+ */
+function options(node) {
+    node.hook.prop((prop, next) => {
+        if (prop.prop === 'options') {
+            const options = normalizeOptions(prop.value);
+            prop.value = options;
+        }
+        return next(prop);
+    });
+}
+
+/**
+ * Checks if a the given option should have the selected attribute.
+ * @param node - The node being evaluated.
+ * @param option - The option value to check
+ * @returns
+ */
+function isSelected(node, option) {
+    // Here we trick reactivity (if at play) to watch this function.
+    node.context && node.context.value;
+    const value = optionValue(node.props.options, option);
+    return Array.isArray(node._value)
+        ? node._value.some((optionA) => shouldSelect(optionA, value))
+        : (node.value === undefined && !option) || shouldSelect(value, node._value);
+}
+/**
+ * Select the correct values.
+ * @param e - The input event emitted by the select.
+ */
+function selectInput(node, e) {
+    const target = e.target;
+    const value = target.hasAttribute('multiple')
+        ? Array.from(target.selectedOptions).map((o) => optionValue(node.props.options, o.value))
+        : optionValue(node.props.options, target.value);
+    node.input(value);
+}
+/**
+ * Appends a placeholder to the options list.
+ * @param options - An options list
+ * @param placeholder - A placeholder string to append
+ * @returns
+ */
+function applyPlaceholder(options, placeholder) {
+    if (!options.some((option) => option.attrs && option.attrs['data-is-placeholder'])) {
+        return [
+            {
+                label: placeholder,
+                value: '',
+                attrs: {
+                    hidden: true,
+                    disabled: true,
+                    'data-is-placeholder': 'true',
+                },
+            },
+            ...options,
+        ];
+    }
+    return options;
+}
+/**
+ * Converts the options prop to usable values.
+ * @param node - A formkit node.
+ * @public
+ */
+function select$1(node) {
+    // Set the initial value of a multi-input
+    node.on('created', () => {
+        var _a, _b, _c;
+        const isMultiple = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.undefine)((_a = node.props.attrs) === null || _a === void 0 ? void 0 : _a.multiple);
+        if (!isMultiple &&
+            node.props.placeholder &&
+            Array.isArray(node.props.options)) {
+            node.hook.prop(({ prop, value }, next) => {
+                if (prop === 'options') {
+                    value = applyPlaceholder(value, node.props.placeholder);
+                }
+                return next({ prop, value });
+            });
+            node.props.options = applyPlaceholder(node.props.options, node.props.placeholder);
+        }
+        if (isMultiple) {
+            if (node.value === undefined) {
+                node.input([], false);
+            }
+        }
+        else if (node.context && !node.context.options) {
+            // If this input is (probably) using the default slot, we need to add a
+            // "value" attribute to get bound
+            node.props.attrs = Object.assign({}, node.props.attrs, {
+                value: node._value,
+            });
+            node.on('input', ({ payload }) => {
+                node.props.attrs = Object.assign({}, node.props.attrs, {
+                    value: payload,
+                });
+            });
+        }
+        if ((_b = node.context) === null || _b === void 0 ? void 0 : _b.handlers) {
+            node.context.handlers.selectInput = selectInput.bind(null, node);
+        }
+        if ((_c = node.context) === null || _c === void 0 ? void 0 : _c.fns) {
+            node.context.fns.isSelected = isSelected.bind(null, node);
+        }
+    });
+    node.hook.input((value, next) => {
+        var _a, _b, _c;
+        if (!node.props.placeholder &&
+            value === undefined &&
+            Array.isArray((_a = node.props) === null || _a === void 0 ? void 0 : _a.options) &&
+            node.props.options.length &&
+            !(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.undefine)((_c = (_b = node.props) === null || _b === void 0 ? void 0 : _b.attrs) === null || _c === void 0 ? void 0 : _c.multiple)) {
+            value =
+                '__original' in node.props.options[0]
+                    ? node.props.options[0].__original
+                    : node.props.options[0].value;
+        }
+        return next(value);
+    });
+}
+
+/**
+ * Normalize the boxes.
+ * @param node - The node
+ * @returns
+ * @public
+ */
+function normalizeBoxes(node) {
+    return function (prop, next) {
+        if (prop.prop === 'options' && Array.isArray(prop.value)) {
+            prop.value = prop.value.map((option) => {
+                var _a;
+                if (!((_a = option.attrs) === null || _a === void 0 ? void 0 : _a.id)) {
+                    return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.extend)(option, {
+                        attrs: { id: `${node.name}-option-${(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.kebab)(String(option.value))}` },
+                    });
+                }
+                return option;
+            });
+            if (node.props.type === 'checkbox' && !Array.isArray(node.value)) {
+                if (node.isCreated) {
+                    node.input([], false);
+                }
+                else {
+                    node.on('created', () => {
+                        if (!Array.isArray(node.value)) {
+                            node.input([], false);
+                        }
+                    });
+                }
+            }
+        }
+        return next(prop);
+    };
+}
+
+/**
+ * Event handler when an input is toggled.
+ * @param node - The node being toggled
+ * @param e - The input even related to the toggling
+ */
+function toggleChecked$1(node, e) {
+    const el = e.target;
+    if (el instanceof HTMLInputElement) {
+        const value = Array.isArray(node.props.options)
+            ? optionValue(node.props.options, el.value)
+            : el.value;
+        if (Array.isArray(node.props.options) && node.props.options.length) {
+            if (!Array.isArray(node._value)) {
+                // There is no array value set
+                node.input([value]);
+            }
+            else if (!node._value.some((existingValue) => shouldSelect(value, existingValue))) {
+                // The value is not in the current set
+                node.input([...node._value, value]);
+            }
+            else {
+                // Filter out equivalent values
+                node.input(node._value.filter((existingValue) => !shouldSelect(value, existingValue)));
+            }
+        }
+        else {
+            if (el.checked) {
+                node.input(node.props.onValue);
+            }
+            else {
+                node.input(node.props.offValue);
+            }
+        }
+    }
+}
+/**
+ * Checks if a given option is present in the node value.
+ * @param node - The node being checked
+ * @param value - The value of any option
+ * @returns
+ */
+function isChecked$1(node, value) {
+    var _a, _b;
+    // We need to force vue’s reactivity to respond when the value is run:
+    (_a = node.context) === null || _a === void 0 ? void 0 : _a.value;
+    (_b = node.context) === null || _b === void 0 ? void 0 : _b._value;
+    if (Array.isArray(node._value)) {
+        return node._value.some((existingValue) => shouldSelect(optionValue(node.props.options, value), existingValue));
+    }
+    return false;
+}
+/**
+ * Adds checkbox selection support
+ * @param node - Node the feature is added to
+ * @public
+ */
+function checkboxes(node) {
+    node.on('created', () => {
+        var _a, _b;
+        if ((_a = node.context) === null || _a === void 0 ? void 0 : _a.handlers) {
+            node.context.handlers.toggleChecked = toggleChecked$1.bind(null, node);
+        }
+        if ((_b = node.context) === null || _b === void 0 ? void 0 : _b.fns) {
+            node.context.fns.isChecked = isChecked$1.bind(null, node);
+        }
+        // Configure our default onValue and offValue
+        if (!(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(node.props, 'onValue'))
+            node.props.onValue = true;
+        if (!(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(node.props, 'offValue'))
+            node.props.offValue = false;
+    });
+    node.hook.prop(normalizeBoxes(node));
+}
+
+/**
+ * Sets the value of a radio button when checked.
+ * @param node - FormKitNode
+ * @param value - Value
+ */
+function toggleChecked(node, event) {
+    if (event.target instanceof HTMLInputElement) {
+        node.input(optionValue(node.props.options, event.target.value));
+    }
+}
+/**
+ * Checks if the value being checked is the current value.
+ * @param node - The node to check against.
+ * @param value - The value to check
+ * @returns
+ */
+function isChecked(node, value) {
+    var _a, _b;
+    // We need to force vue’s reactivity to respond when the value is run:
+    (_a = node.context) === null || _a === void 0 ? void 0 : _a.value;
+    (_b = node.context) === null || _b === void 0 ? void 0 : _b._value;
+    return shouldSelect(optionValue(node.props.options, value), node._value);
+}
+/**
+ * Determines if a given radio input is being evaluated.
+ * @param node - The radio input group.
+ * @public
+ */
+function radios(node) {
+    node.on('created', () => {
+        var _a, _b;
+        if (!Array.isArray(node.props.options)) {
+            (0,_formkit_core__WEBPACK_IMPORTED_MODULE_1__.warn)(350, node);
+        }
+        if ((_a = node.context) === null || _a === void 0 ? void 0 : _a.handlers) {
+            node.context.handlers.toggleChecked = toggleChecked.bind(null, node);
+        }
+        if ((_b = node.context) === null || _b === void 0 ? void 0 : _b.fns) {
+            node.context.fns.isChecked = isChecked.bind(null, node);
+        }
+    });
+    node.hook.prop(normalizeBoxes(node));
+}
+
+/**
+ * Allows disabling children of this.
+ * @param node - The FormKitNode of the form/group/list
+ * @public
+ */
+function disables(node) {
+    node.on('created', () => {
+        node.props.disabled = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.undefine)(node.props.disabled);
+    });
+    node.hook.prop(({ prop, value }, next) => {
+        value = prop === 'disabled' ? (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.undefine)(value) : value;
+        return next({ prop, value });
+    });
+    node.on('prop:disabled', ({ payload: value }) => {
+        node.config.disabled = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.undefine)(value);
+    });
+    node.on('created', () => {
+        node.config.disabled = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.undefine)(node.props.disabled);
+    });
+}
+
+/**
+ * Handle the submit event.
+ * @param e - The event
+ */
+async function handleSubmit(node, submitEvent) {
+    submitEvent.preventDefault();
+    await node.settled;
+    // Set the submitted state on all children
+    node.walk((n) => {
+        n.store.set((0,_formkit_core__WEBPACK_IMPORTED_MODULE_1__.createMessage)({
+            key: 'submitted',
+            value: true,
+            visible: false,
+        }));
+    });
+    if (typeof node.props.onSubmitRaw === 'function') {
+        node.props.onSubmitRaw(submitEvent, node);
+    }
+    if (node.ledger.value('blocking')) {
+        // There is still a blocking message in the store.
+        if (node.props.incompleteMessage !== false) {
+            node.store.set((0,_formkit_core__WEBPACK_IMPORTED_MODULE_1__.createMessage)({
+                blocking: false,
+                key: `incomplete`,
+                meta: {
+                    localize: node.props.incompleteMessage === undefined,
+                    i18nArgs: [{ node }],
+                    showAsMessage: true,
+                },
+                type: 'ui',
+                value: node.props.incompleteMessage || 'Form incomplete.',
+            }));
+        }
+    }
+    else {
+        // No blocking messages
+        if (typeof node.props.onSubmit === 'function') {
+            // call onSubmit
+            const retVal = node.props.onSubmit((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.clone)(node.value), node);
+            if (retVal instanceof Promise) {
+                const autoDisable = node.props.disabled === undefined &&
+                    node.props.submitBehavior !== 'live';
+                if (autoDisable)
+                    node.props.disabled = true;
+                node.store.set((0,_formkit_core__WEBPACK_IMPORTED_MODULE_1__.createMessage)({
+                    key: 'loading',
+                    value: true,
+                    visible: false,
+                }));
+                await retVal;
+                if (autoDisable)
+                    node.props.disabled = false;
+                node.store.remove('loading');
+            }
+        }
+        else {
+            if (submitEvent.target instanceof HTMLFormElement) {
+                submitEvent.target.submit();
+            }
+        }
+    }
+}
+/**
+ * Converts the options prop to usable values.
+ * @param node - A formkit node.
+ * @public
+ */
+function form$1(node) {
+    node.props.isForm = true;
+    node.on('created', () => {
+        var _a;
+        if ((_a = node.context) === null || _a === void 0 ? void 0 : _a.handlers) {
+            node.context.handlers.submit = handleSubmit.bind(null, node);
+        }
+        if (!(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(node.props, 'actions')) {
+            node.props.actions = true;
+        }
+    });
+    node.on('settled:blocking', () => node.store.remove('incomplete'));
+}
+
+/**
+ * Creates a new feature that generates a localization message of type ui
+ * for use on a given component.
+ *
+ * @param key - The key of the message
+ * @param value - The value of the message
+ * @returns
+ * @public
+ */
+function localize(key, value) {
+    return (node) => {
+        node.store.set((0,_formkit_core__WEBPACK_IMPORTED_MODULE_1__.createMessage)({
+            key,
+            type: 'ui',
+            value: value || key,
+            meta: {
+                localize: true,
+                i18nArgs: [node],
+            },
+        }));
+    };
+}
+
+const isBrowser = typeof window !== 'undefined';
+/**
+ * Remove the data-file-hover attribute from the target.
+ * @param e - Event
+ */
+function removeHover(e) {
+    if (e.target instanceof HTMLElement &&
+        e.target.hasAttribute('data-file-hover')) {
+        e.target.removeAttribute('data-file-hover');
+    }
+}
+/**
+ * Prevent stray drag/drop events from navigating the window.
+ * @param e - Event
+ * @public
+ */
+function preventStrayDrop(type, e) {
+    if (!(e.target instanceof HTMLInputElement)) {
+        e.preventDefault();
+    }
+    else if (type === 'dragover') {
+        e.target.setAttribute('data-file-hover', 'true');
+    }
+    if (type === 'drop') {
+        removeHover(e);
+    }
+}
+function files(node) {
+    // Localize our content:
+    localize('noFiles', 'Select file')(node);
+    localize('removeAll', 'Remove all')(node);
+    localize('remove')(node);
+    if (isBrowser) {
+        if (!window._FormKit_File_Drop) {
+            window.addEventListener('dragover', preventStrayDrop.bind(null, 'dragover'));
+            window.addEventListener('drop', preventStrayDrop.bind(null, 'drop'));
+            window.addEventListener('dragleave', removeHover);
+            window._FormKit_File_Drop = true;
+        }
+    }
+    node.on('created', () => {
+        if (!Array.isArray(node.value)) {
+            node.input([], false);
+        }
+        if (!node.context)
+            return;
+        node.context.handlers.resetFiles = (e) => {
+            e.preventDefault();
+            node.input([]);
+            if (node.props.id && isBrowser) {
+                const el = document.getElementById(node.props.id);
+                if (el)
+                    el.value = '';
+            }
+        };
+        node.context.handlers.files = (e) => {
+            var _a, _b;
+            const files = [];
+            if (e.target instanceof HTMLInputElement && e.target.files) {
+                for (let i = 0; i < e.target.files.length; i++) {
+                    let file;
+                    if ((file = e.target.files.item(i))) {
+                        files.push({ name: file.name, file });
+                    }
+                }
+                node.input(files);
+            }
+            if (node.context)
+                node.context.files = files;
+            // Call the original listener if there is one.
+            if (typeof ((_a = node.props.attrs) === null || _a === void 0 ? void 0 : _a.onChange) === 'function') {
+                (_b = node.props.attrs) === null || _b === void 0 ? void 0 : _b.onChange(e);
+            }
+        };
+    });
+}
+
+/**
+ * Applies ignore="true" by default.
+ * @param node - The node
+ * @public
+ */
+function ignore(node) {
+    if (node.props.ignore === undefined) {
+        node.props.ignore = true;
+        node.parent = null;
+    }
+}
+
+function initialValue(node) {
+    node.on('created', () => {
+        if (node.context) {
+            node.context.initialValue = node.value || '';
+        }
+    });
+}
+
+/**
+ * Default classifications that are available.
+ */
+const textClassification = {
+    type: 'input',
+    schema: textSchema$1,
+};
+/**
+ * The color input.
+ * @public
+ */
+const color = textClassification;
+/**
+ * The date input.
+ * @public
+ */
+const date = textClassification;
+/**
+ * The datetime-local input.
+ * @public
+ */
+const datetimeLocal = textClassification;
+/**
+ * The email input.
+ * @public
+ */
+const email = textClassification;
+/**
+ * The month input.
+ * @public
+ */
+const month = textClassification;
+/**
+ * The number input.
+ * @public
+ */
+const number = textClassification;
+/**
+ * The password input.
+ * @public
+ */
+const password = textClassification;
+/**
+ * The search input.
+ * @public
+ */
+const search = textClassification;
+/**
+ * The tel input.
+ * @public
+ */
+const tel = textClassification;
+/**
+ * The time input.
+ * @public
+ */
+const time = textClassification;
+/**
+ * The text input.
+ * @public
+ */
+const text = textClassification;
+/**
+ * The url input.
+ * @public
+ */
+const url = textClassification;
+/**
+ * The week input.
+ * @public
+ */
+const week = textClassification;
+/**
+ * The range input.
+ * @public
+ */
+const range = textClassification;
+/**
+ * The textarea input.
+ * @public
+ */
+const textarea = {
+    type: 'input',
+    schema: textareaSchema,
+    features: [initialValue],
+};
+/**
+ * Buttons are all this classification:
+ */
+const buttonClassification = {
+    type: 'input',
+    schema: buttonSchema,
+    features: [localize('submit'), ignore],
+};
+/**
+ * The submit input.
+ * @public
+ */
+const submit = buttonClassification;
+/**
+ * The button classification.
+ * @public
+ */
+const button = buttonClassification;
+/**
+ * The hidden input.
+ * @public
+ */
+const hidden = {
+    type: 'input',
+    schema: hiddenSchema,
+};
+/**
+ * The select input type.
+ * @public
+ */
+const select = {
+    type: 'input',
+    schema: textSchema,
+    props: ['options', 'placeholder'],
+    features: [options, select$1],
+};
+/**
+ * The checkbox input type.
+ * @public
+ */
+const checkbox = {
+    type: 'input',
+    schema: boxSchema,
+    props: ['options', 'onValue', 'offValue'],
+    features: [options, checkboxes],
+};
+/**
+ * The radio input type.
+ * @public
+ */
+const radio = {
+    type: 'input',
+    schema: boxSchema,
+    props: ['options'],
+    features: [options, radios],
+};
+/**
+ * The group input type.
+ * @public
+ */
+const group = {
+    type: 'group',
+    schema: groupSchema,
+    features: [disables],
+};
+/**
+ * The form input type.
+ * @public
+ */
+const form = {
+    type: 'group',
+    schema: formSchema,
+    props: [
+        'actions',
+        'submit',
+        'submitLabel',
+        'submitAttrs',
+        'submitBehavior',
+        'incompleteMessage',
+    ],
+    features: [form$1, disables],
+};
+/**
+ * The list input type.
+ * @public
+ */
+const list = {
+    type: 'list',
+    schema: listSchema,
+    features: [disables],
+};
+/**
+ * The file input.
+ * @public
+ */
+const file = {
+    type: 'input',
+    schema: fileSchema,
+    features: [files],
+    props: ['files'],
+};
+
+var inputs = /*#__PURE__*/Object.freeze({
+    __proto__: null,
+    color: color,
+    date: date,
+    datetimeLocal: datetimeLocal,
+    email: email,
+    month: month,
+    number: number,
+    password: password,
+    search: search,
+    tel: tel,
+    time: time,
+    text: text,
+    url: url,
+    week: week,
+    range: range,
+    textarea: textarea,
+    submit: submit,
+    button: button,
+    hidden: hidden,
+    select: select,
+    checkbox: checkbox,
+    radio: radio,
+    group: group,
+    form: form,
+    list: list,
+    file: file
+});
+
+/**
+ *
+ * @param libraries - One or many formkit urls.
+ * @returns
+ * @public
+ */
+function createLibraryPlugin(...libraries) {
+    /**
+     * Merge all provided library items.
+     */
+    const library = libraries.reduce((merged, lib) => (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.extend)(merged, lib), {});
+    /* eslint-disable-next-line @typescript-eslint/no-empty-function */
+    const plugin = () => { };
+    /**
+     * Enables the hook that exposes all library inputs.
+     * @param node - The primary plugin
+     */
+    plugin.library = function (node) {
+        const type = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.camel)(node.props.type);
+        if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(library, type)) {
+            node.define(library[type]);
+        }
+    };
+    return plugin;
+}
+
+/**
+ * Export all features (#188):
+ * @public
+ */
+var index = {
+    checkbox: checkboxes,
+    disables,
+    files,
+    form: form$1,
+    ignore,
+    initialValue,
+    localize,
+    normalizeBoxes,
+    options,
+    radios,
+    select: select$1,
+};
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formkit/observer/dist/index.mjs":
+/*!*******************************************************!*\
+  !*** ./node_modules/@formkit/observer/dist/index.mjs ***!
+  \*******************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "applyListeners": () => (/* binding */ applyListeners),
+/* harmony export */   "createObserver": () => (/* binding */ createObserver),
+/* harmony export */   "diffDeps": () => (/* binding */ diffDeps),
+/* harmony export */   "isKilled": () => (/* binding */ isKilled),
+/* harmony export */   "removeListeners": () => (/* binding */ removeListeners)
+/* harmony export */ });
+/* harmony import */ var _formkit_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formkit/utils */ "./node_modules/@formkit/utils/dist/index.mjs");
+/* harmony import */ var _formkit_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @formkit/core */ "./node_modules/@formkit/core/dist/index.mjs");
+
+
+
+/**
+ * A registry of all revoked observers.
+ */
+const revokedObservers = new WeakSet();
+/**
+ * The FormKitNode to observe.
+ * @param node - Any formkit node to observe.
+ * @returns
+ * @public
+ */
+function createObserver(node, dependencies) {
+    // The dependencies touched during tracking
+    const deps = dependencies || Object.assign(new Map(), { active: false });
+    // A registry of event receipts returned by the event system
+    const receipts = new Map();
+    /**
+     * Simple function to add a dependency to the deps map.
+     * @param event - The name of the event type (like commit/input etc)
+     */
+    const addDependency = function (event) {
+        var _a;
+        if (!deps.active)
+            return;
+        if (!deps.has(node))
+            deps.set(node, new Set());
+        (_a = deps.get(node)) === null || _a === void 0 ? void 0 : _a.add(event);
+    };
+    /**
+     * Proxies the props of a node so we know which ones were messed with, could
+     * potentially be more generalized in the future if we want to support
+     * more sub-objects.
+     * @param props - The props object from a node
+     * @returns
+     */
+    const observeProps = function (props) {
+        return new Proxy(props, {
+            get(...args) {
+                typeof args[1] === 'string' && addDependency(`prop:${args[1]}`);
+                return Reflect.get(...args);
+            },
+        });
+    };
+    /**
+     * Observes the FormKit ledger "value".
+     * @param ledger - A formkit ledger counter.
+     */
+    const observeLedger = function (ledger) {
+        return new Proxy(ledger, {
+            get(...args) {
+                if (args[1] === 'value') {
+                    return (key) => {
+                        addDependency(`count:${key}`);
+                        return ledger.value(key);
+                    };
+                }
+                return Reflect.get(...args);
+            },
+        });
+    };
+    /**
+     * Return values from our observer proxy first pass through this function
+     * which gives us a chance to listen sub-dependencies and properties.
+     */
+    const observe = function (value, property) {
+        if ((0,_formkit_core__WEBPACK_IMPORTED_MODULE_1__.isNode)(value)) {
+            return createObserver(value, deps);
+        }
+        if (property === 'value')
+            addDependency('commit');
+        if (property === 'props')
+            return observeProps(value);
+        if (property === 'ledger')
+            return observeLedger(value);
+        return value;
+    };
+    /**
+     * The actual proxy object of the original node.
+     */
+    const { proxy: observed, revoke, } = Proxy.revocable(node, {
+        get(...args) {
+            switch (args[1]) {
+                case 'deps':
+                    return deps;
+                case 'watch':
+                    return (block) => watch(observed, block);
+                case 'observe':
+                    return () => {
+                        const old = new Map(deps);
+                        deps.clear();
+                        deps.active = true;
+                        return old;
+                    };
+                case 'stopObserve':
+                    return () => {
+                        const newDeps = new Map(deps);
+                        deps.active = false;
+                        return newDeps;
+                    };
+                case 'receipts':
+                    return receipts;
+                case 'kill':
+                    return () => {
+                        removeListeners(receipts);
+                        revokedObservers.add(args[2]);
+                        revoke();
+                    };
+            }
+            const value = Reflect.get(...args);
+            // If we're dealing with a function, we need to sub-call the function
+            // get that return value, and pass it through the same logic.
+            if (typeof value === 'function') {
+                return (...subArgs) => {
+                    const subValue = value(...subArgs);
+                    return observe(subValue, args[1]);
+                };
+            }
+            return observe(value, args[1]);
+        },
+    });
+    return observed;
+}
+/**
+ * Given two maps (toAdd and toRemove) apply the dependencies as event listeners
+ * on the underlying nodes.
+ * @param node - The node to apply dependencies to
+ * @param delta - The toAdd and toRemove dependency Maps
+ * @public
+ */
+function applyListeners(node, [toAdd, toRemove], callback) {
+    toAdd.forEach((events, depNode) => {
+        events.forEach((event) => {
+            node.receipts.has(depNode) || node.receipts.set(depNode, {});
+            node.receipts.set(depNode, Object.assign(node.receipts.get(depNode), {
+                [event]: depNode.on(event, callback),
+            }));
+        });
+    });
+    toRemove.forEach((events, depNode) => {
+        events.forEach((event) => {
+            if (node.receipts.has(depNode)) {
+                const nodeReceipts = node.receipts.get(depNode);
+                if (nodeReceipts && (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(nodeReceipts, event)) {
+                    depNode.off(nodeReceipts[event]);
+                    delete nodeReceipts[event];
+                    node.receipts.set(depNode, nodeReceipts);
+                }
+            }
+        });
+    });
+}
+/**
+ * Remove all the receipts from the observed node and subtree.
+ * @param receipts - The formkit observer receipts to remove
+ * @public
+ */
+function removeListeners(receipts) {
+    receipts.forEach((events, node) => {
+        for (const event in events) {
+            node.off(events[event]);
+        }
+    });
+}
+/**
+ * Observes a chunk of code to dependencies, and then re-calls that chunk of
+ * code when those dependencies are manipulated.
+ * @param node - The node to observer
+ * @param block - The block of code to observe
+ * @public
+ */
+async function watch(node, block) {
+    const oldDeps = new Map(node.deps);
+    node.observe();
+    const res = block(node);
+    if (res instanceof Promise)
+        await res;
+    const newDeps = node.stopObserve();
+    applyListeners(node, diffDeps(oldDeps, newDeps), () => watch(node, block));
+}
+/**
+ * Determines which nodes should be added as dependencies and which should be
+ * removed.
+ * @param previous - The previous watcher dependencies
+ * @param current - The new/current watcher dependencies
+ * @returns
+ * @public
+ */
+function diffDeps(previous, current) {
+    const toAdd = new Map();
+    const toRemove = new Map();
+    current.forEach((events, node) => {
+        if (!previous.has(node)) {
+            toAdd.set(node, events);
+        }
+        else {
+            const eventsToAdd = new Set();
+            const previousEvents = previous.get(node);
+            events.forEach((event) => !(previousEvents === null || previousEvents === void 0 ? void 0 : previousEvents.has(event)) && eventsToAdd.add(event));
+            toAdd.set(node, eventsToAdd);
+        }
+    });
+    previous.forEach((events, node) => {
+        if (!current.has(node)) {
+            toRemove.set(node, events);
+        }
+        else {
+            const eventsToRemove = new Set();
+            const newEvents = current.get(node);
+            events.forEach((event) => !(newEvents === null || newEvents === void 0 ? void 0 : newEvents.has(event)) && eventsToRemove.add(event));
+            toRemove.set(node, eventsToRemove);
+        }
+    });
+    return [toAdd, toRemove];
+}
+/**
+ * Checks if the given noe is revoked.
+ * @param node - Any observed node to check.
+ * @returns
+ * @public
+ */
+function isKilled(node) {
+    return revokedObservers.has(node);
+}
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formkit/rules/dist/index.mjs":
+/*!****************************************************!*\
+  !*** ./node_modules/@formkit/rules/dist/index.mjs ***!
+  \****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "accepted": () => (/* binding */ accepted),
+/* harmony export */   "alpha": () => (/* binding */ alpha),
+/* harmony export */   "alpha_spaces": () => (/* binding */ alpha_spaces),
+/* harmony export */   "alphanumeric": () => (/* binding */ alphanumeric),
+/* harmony export */   "between": () => (/* binding */ between),
+/* harmony export */   "confirm": () => (/* binding */ confirm),
+/* harmony export */   "date_after": () => (/* binding */ date_after),
+/* harmony export */   "date_before": () => (/* binding */ date_before),
+/* harmony export */   "date_between": () => (/* binding */ date_between),
+/* harmony export */   "date_format": () => (/* binding */ date_format),
+/* harmony export */   "email": () => (/* binding */ email),
+/* harmony export */   "ends_with": () => (/* binding */ ends_with),
+/* harmony export */   "is": () => (/* binding */ is),
+/* harmony export */   "length": () => (/* binding */ length),
+/* harmony export */   "matches": () => (/* binding */ matches),
+/* harmony export */   "max": () => (/* binding */ max),
+/* harmony export */   "min": () => (/* binding */ min),
+/* harmony export */   "not": () => (/* binding */ not),
+/* harmony export */   "number": () => (/* binding */ number),
+/* harmony export */   "required": () => (/* binding */ required),
+/* harmony export */   "starts_with": () => (/* binding */ starts_with),
+/* harmony export */   "url": () => (/* binding */ url)
+/* harmony export */ });
+/* harmony import */ var _formkit_utils__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formkit/utils */ "./node_modules/@formkit/utils/dist/index.mjs");
+
+
+/**
+ * Determine if the given input's value was should be considered "accepted".
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const accepted = function accepted({ value }) {
+    return ['yes', 'on', '1', 1, true, 'true'].includes(value);
+};
+
+/**
+ * Determine if the given input's value is after a given date.
+ * Defaults to current time.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const date_after = function ({ value }, compare = false) {
+    const timestamp = Date.parse(compare || new Date());
+    const fieldValue = Date.parse(String(value));
+    return isNaN(fieldValue) ? false : fieldValue > timestamp;
+};
+
+/**
+ * Determine if the given input's value is only alpha characters.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const alpha = function ({ value }, set = 'default') {
+    const sets = {
+        default: /^[a-zA-ZÀ-ÖØ-öø-ÿĄąĆćĘęŁłŃńŚśŹźŻż]+$/,
+        latin: /^[a-zA-Z]+$/,
+    };
+    const selectedSet = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(sets, set) ? set : 'default';
+    return sets[selectedSet].test(String(value));
+};
+
+/**
+ * Determine if the given input's value is only alpha characters.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const alpha_spaces = function ({ value }, set = 'default') {
+    const sets = {
+        default: /^[a-zA-ZÀ-ÖØ-öø-ÿĄąĆćĘęŁłŃńŚśŹźŻż ]+$/,
+        latin: /^[a-zA-Z ]+$/,
+    };
+    const selectedSet = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(sets, set) ? set : 'default';
+    return sets[selectedSet].test(String(value));
+};
+
+/**
+ * Determine if the given input's value is only alpha or numeric characters.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const alphanumeric = function ({ value }, set = 'default') {
+    const sets = {
+        default: /^[a-zA-Z0-9À-ÖØ-öø-ÿĄąĆćĘęŁłŃńŚśŹźŻż]+$/,
+        latin: /^[a-zA-Z0-9]+$/,
+    };
+    const selectedSet = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.has)(sets, set) ? set : 'default';
+    return sets[selectedSet].test(String(value));
+};
+
+/**
+ * Determine if the given input's value before a given date.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const date_before = function ({ value }, compare = false) {
+    const timestamp = Date.parse(compare || new Date());
+    const fieldValue = Date.parse(String(value));
+    return isNaN(fieldValue) ? false : fieldValue < timestamp;
+};
+
+/**
+ * Determine if the given input's value is between two other values.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const between = function between({ value }, from, to) {
+    if (!isNaN(value) && !isNaN(from) && !isNaN(to)) {
+        const val = 1 * value;
+        from = Number(from);
+        to = Number(to);
+        const [a, b] = from <= to ? [from, to] : [to, from];
+        return val >= 1 * a && val <= 1 * b;
+    }
+    return false;
+};
+
+const hasConfirm = /(_confirm(?:ed)?)$/;
+/**
+ * Determine if the given input's value matches another input's value
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const confirm = function confirm(node, address, comparison = 'loose') {
+    var _a;
+    if (!address) {
+        address = hasConfirm.test(node.name)
+            ? node.name.replace(hasConfirm, '')
+            : `${node.name}_confirm`;
+    }
+    const foreignValue = (_a = node.at(address)) === null || _a === void 0 ? void 0 : _a.value;
+    return comparison === 'strict'
+        ? node.value === foreignValue
+        : node.value == foreignValue;
+};
+
+/**
+ * Determine if the given input's value is between two other dates
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const date_between = function date_between({ value }, dateA, dateB) {
+    dateA = dateA instanceof Date ? dateA.getTime() : Date.parse(dateA);
+    dateB = dateB instanceof Date ? dateB.getTime() : Date.parse(dateB);
+    const compareTo = value instanceof Date ? value.getTime() : Date.parse(String(value));
+    if (dateA && !dateB) {
+        dateB = dateA;
+        dateA = Date.now();
+    }
+    else if (!dateA || !compareTo) {
+        return false;
+    }
+    return compareTo >= dateA && compareTo <= dateB;
+};
+
+/**
+ * Determine if the given input's value matches a specified date format
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const date_format = function date({ value }, format) {
+    if (format && typeof format === 'string') {
+        return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.regexForFormat)(format).test(String(value));
+    }
+    return !isNaN(Date.parse(String(value)));
+};
+
+/**
+ * Determine if the given input's value is a plausible email address.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const email = function email({ value }) {
+    const isEmail = /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+    return isEmail.test(String(value));
+};
+
+/**
+ * Determine if the given input's value ends with a given string
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const ends_with = function ends_with({ value }, ...stack) {
+    if (typeof value === 'string' && stack.length) {
+        return stack.some((item) => {
+            return value.endsWith(item);
+        });
+    }
+    else if (typeof value === 'string' && stack.length === 0) {
+        return true;
+    }
+    return false;
+};
+
+/**
+ * Determine if the given input's value is in a set of possible values.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const is = function is({ value }, ...stack) {
+    return stack.some((item) => {
+        if (typeof item === 'object') {
+            return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.eq)(item, value);
+        }
+        return item == value;
+    });
+};
+
+/**
+ * Determine if the given input's value length is full width.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const length = function length({ value }, first = 0, second = Infinity) {
+    first = parseInt(first);
+    second = isNaN(parseInt(second)) ? Infinity : parseInt(second);
+    const min = first <= second ? first : second;
+    const max = second >= first ? second : first;
+    if (typeof value === 'string' || Array.isArray(value)) {
+        return value.length >= min && value.length <= max;
+    }
+    else if (value && typeof value === 'object') {
+        const length = Object.keys(value).length;
+        return length >= min && length <= max;
+    }
+    return false;
+};
+
+/**
+ * Determine if the given input's value matches one or more values or regular expressions.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const matches = function matches({ value }, ...stack) {
+    return stack.some((pattern) => {
+        if (typeof pattern === 'string' &&
+            pattern.substr(0, 1) === '/' &&
+            pattern.substr(-1) === '/') {
+            pattern = new RegExp(pattern.substr(1, pattern.length - 2));
+        }
+        if (pattern instanceof RegExp) {
+            return pattern.test(String(value));
+        }
+        return pattern === value;
+    });
+};
+
+/**
+ * Determine if the given input's value is less than the maximum
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const max = function max({ value }, maximum = 10) {
+    if (Array.isArray(value)) {
+        return value.length <= maximum;
+    }
+    return Number(value) <= Number(maximum);
+};
+
+/**
+ * Determine if the given input's value is less than a certain value.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const min = function min({ value }, minimum = 1) {
+    if (Array.isArray(value)) {
+        return value.length >= minimum;
+    }
+    return Number(value) >= Number(minimum);
+};
+
+/**
+ * Determine if the given input's value is not in a given stack
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const not = function not({ value }, ...stack) {
+    return !stack.some((item) => {
+        if (typeof item === 'object') {
+            return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.eq)(item, value);
+        }
+        return item === value;
+    });
+};
+
+/**
+ * Determine if the given input's value is numeric
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const number = function number({ value }) {
+    return !isNaN(value);
+};
+
+/**
+ * Determine if the given input's value was required.
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const required = function required({ value }, action = 'default') {
+    return action === 'trim' && typeof value === 'string'
+        ? !(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.empty)(value.trim())
+        : !(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_0__.empty)(value);
+};
+/**
+ * This rules should run even if the inputs is empty (obviously)
+ */
+required.skipEmpty = false;
+
+/**
+ * Determine if the given input's value starts with a substring
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const starts_with = function starts_with({ value }, ...stack) {
+    if (typeof value === 'string' && stack.length) {
+        return stack.some((item) => {
+            return value.startsWith(item);
+        });
+    }
+    else if (typeof value === 'string' && stack.length === 0) {
+        return true;
+    }
+    return false;
+};
+
+/**
+ * Determine if the given input's value is an http url
+ * @param context - The FormKitValidationContext
+ * @public
+ */
+const url = function url({ value }, ...stack) {
+    try {
+        const protocols = stack.length ? stack : ['http:', 'https:'];
+        const url = new URL(String(value));
+        return protocols.includes(url.protocol);
+    }
+    catch {
+        return false;
+    }
+};
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formkit/utils/dist/index.mjs":
+/*!****************************************************!*\
+  !*** ./node_modules/@formkit/utils/dist/index.mjs ***!
+  \****************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "assignDeep": () => (/* binding */ assignDeep),
+/* harmony export */   "camel": () => (/* binding */ camel),
+/* harmony export */   "clone": () => (/* binding */ clone),
+/* harmony export */   "cloneAny": () => (/* binding */ cloneAny),
+/* harmony export */   "dedupe": () => (/* binding */ dedupe),
+/* harmony export */   "empty": () => (/* binding */ empty),
+/* harmony export */   "eq": () => (/* binding */ eq),
+/* harmony export */   "escapeExp": () => (/* binding */ escapeExp),
+/* harmony export */   "except": () => (/* binding */ except),
+/* harmony export */   "extend": () => (/* binding */ extend),
+/* harmony export */   "getAt": () => (/* binding */ getAt),
+/* harmony export */   "has": () => (/* binding */ has),
+/* harmony export */   "init": () => (/* binding */ init),
+/* harmony export */   "isObject": () => (/* binding */ isObject),
+/* harmony export */   "isPojo": () => (/* binding */ isPojo),
+/* harmony export */   "isQuotedString": () => (/* binding */ isQuotedString),
+/* harmony export */   "isRecord": () => (/* binding */ isRecord),
+/* harmony export */   "kebab": () => (/* binding */ kebab),
+/* harmony export */   "nodeProps": () => (/* binding */ nodeProps),
+/* harmony export */   "nodeType": () => (/* binding */ nodeType),
+/* harmony export */   "only": () => (/* binding */ only),
+/* harmony export */   "parseArgs": () => (/* binding */ parseArgs),
+/* harmony export */   "regexForFormat": () => (/* binding */ regexForFormat),
+/* harmony export */   "rmEscapes": () => (/* binding */ rmEscapes),
+/* harmony export */   "setify": () => (/* binding */ setify),
+/* harmony export */   "shallowClone": () => (/* binding */ shallowClone),
+/* harmony export */   "slugify": () => (/* binding */ slugify),
+/* harmony export */   "spread": () => (/* binding */ spread),
+/* harmony export */   "token": () => (/* binding */ token),
+/* harmony export */   "undefine": () => (/* binding */ undefine)
+/* harmony export */ });
+/**
+ * Generates a random string.
+ * @returns string
+ * @public
+ */
+function token() {
+    return Math.random().toString(36).substring(2, 15);
+}
+/**
+ * Creates a new set of the specified type and uses the values from an Array or
+ * an existing Set.
+ * @param items -
+ * @returns Set
+ * @public
+ */
+function setify(items) {
+    return items instanceof Set ? items : new Set(items);
+}
+/**
+ * Given 2 arrays, return them as a combined array with no duplicates.
+ * @param arr1 -
+ * @param arr2 -
+ * @returns any[]
+ * @public
+ */
+function dedupe(arr1, arr2) {
+    const original = arr1 instanceof Set ? arr1 : new Set(arr1);
+    if (arr2)
+        arr2.forEach((item) => original.add(item));
+    return [...original];
+}
+/**
+ * Checks if the given property exists on the given object.
+ * @param obj -
+ * @param property -
+ * @public
+ */
+function has(obj, property) {
+    return Object.prototype.hasOwnProperty.call(obj, property);
+}
+/**
+ * Compare two values for equality optionally at depth.
+ * @param valA - Any type of input
+ * @param valB - Any type of output
+ * @param deep - Indicate if we should recurse into the object
+ * @param explicit - Explicit keys
+ * @returns boolean
+ * @public
+ */
+function eq(valA, // eslint-disable-line
+valB, // eslint-disable-line
+deep = true, explicit = ['__key']) {
+    if (valA === valB)
+        return true;
+    if (typeof valB === 'object' && typeof valA === 'object') {
+        if (valA instanceof Map)
+            return false;
+        if (valA instanceof Set)
+            return false;
+        if (valA instanceof Date)
+            return false;
+        if (valA === null || valB === null)
+            return false;
+        if (Object.keys(valA).length !== Object.keys(valB).length)
+            return false;
+        for (const k of explicit) {
+            if ((k in valA || k in valB) && valA[k] !== valB[k])
+                return false;
+        }
+        for (const key in valA) {
+            if (!(key in valB))
+                return false;
+            if (valA[key] !== valB[key] && !deep)
+                return false;
+            if (deep && !eq(valA[key], valB[key], deep, explicit))
+                return false;
+        }
+        return true;
+    }
+    return false;
+}
+/**
+ * Determines if a value is empty or not.
+ * @param value - any type of value that could be returned by an input.
+ * @public
+ */
+function empty(value // eslint-disable-line
+) {
+    const type = typeof value;
+    if (type === 'number')
+        return false;
+    if (value === undefined)
+        return true;
+    if (type === 'string') {
+        return value === '';
+    }
+    if (type === 'object') {
+        if (value === null)
+            return true;
+        for (const _i in value)
+            return false;
+        if (value instanceof RegExp)
+            return false;
+        if (value instanceof Date)
+            return false;
+        return true;
+    }
+    return false;
+}
+/**
+ * Escape a string for use in regular expressions.
+ * @param string - The string to escape.
+ * @public
+ */
+function escapeExp(string) {
+    // $& means the whole matched string
+    return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+/**
+ * Given a string format (date) return a regex to match against.
+ * @param format - The format of the string
+ * @returns
+ * @public
+ */
+function regexForFormat(format) {
+    const escaped = `^${escapeExp(format)}$`;
+    const formats = {
+        MM: '(0[1-9]|1[012])',
+        M: '([1-9]|1[012])',
+        DD: '([012][0-9]|3[01])',
+        D: '([012]?[0-9]|3[01])',
+        YYYY: '\\d{4}',
+        YY: '\\d{2}',
+    };
+    const tokens = Object.keys(formats);
+    return new RegExp(tokens.reduce((regex, format) => {
+        return regex.replace(format, formats[format]);
+    }, escaped));
+}
+/**
+ * Given a FormKit input type
+ * @param type - Any FormKit input type
+ * @public
+ */
+function nodeType(type) {
+    const t = type.toLowerCase();
+    if (t === 'list')
+        return 'list';
+    if (t === 'group')
+        return 'group';
+    return 'input';
+}
+/**
+ * Determines if an object is an object or not.
+ * @param o - any value
+ * @returns
+ * @public
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+function isRecord(o) {
+    return Object.prototype.toString.call(o) === '[object Object]';
+}
+/**
+ * Checks if an object is a simple array or record.
+ * @param o - A value to check
+ * @returns
+ * @public
+ */
+function isObject(o) {
+    return isRecord(o) || Array.isArray(o);
+}
+/**
+ * Attempts to determine if an object is a plain object. Mostly lifted from
+ * is-plain-object: https://github.com/jonschlinkert/is-plain-object
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * @param o - any value
+ * @returns
+ * @public
+ */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+function isPojo(o) {
+    if (isRecord(o) === false)
+        return false;
+    if (o.__FKNode__ || o.__POJO__ === false)
+        return false;
+    const ctor = o.constructor;
+    if (ctor === undefined)
+        return true;
+    const prot = ctor.prototype;
+    if (isRecord(prot) === false)
+        return false;
+    if (prot.hasOwnProperty('isPrototypeOf') === false) {
+        return false;
+    }
+    return true;
+}
+/**
+ * Recursively merge data from additional into original returning a new object.
+ * @param original - An object to extend
+ * @param additional - An object to modify the original object with.
+ * @param arrays - By default replaces arrays, but can also append to them.
+ * @param ignoreUndefined - when true it treats undefined values as if they dont exist
+ * @public
+ */
+function extend(original, additional, extendArrays = false, ignoreUndefined = false) {
+    if (additional === null)
+        return null;
+    const merged = {};
+    if (typeof additional === 'string')
+        return additional;
+    for (const key in original) {
+        if (has(additional, key) &&
+            (additional[key] !== undefined || !ignoreUndefined)) {
+            if (extendArrays &&
+                Array.isArray(original[key]) &&
+                Array.isArray(additional[key])) {
+                merged[key] = original[key].concat(additional[key]);
+                continue;
+            }
+            if (additional[key] === undefined) {
+                continue;
+            }
+            if (isPojo(original[key]) && isPojo(additional[key])) {
+                merged[key] = extend(original[key], additional[key], extendArrays, ignoreUndefined);
+            }
+            else {
+                merged[key] = additional[key];
+            }
+        }
+        else {
+            merged[key] = original[key];
+        }
+    }
+    for (const key in additional) {
+        if (!has(merged, key) && additional[key] !== undefined) {
+            merged[key] = additional[key];
+        }
+    }
+    return merged;
+}
+/**
+ * Determine if the given string is fully quoted. Examples:
+ * hello - false
+ * "hello" - true
+ * 'world' - true
+ * "hello"=="world" - false
+ * "hello'this'" - false
+ * "hello"'there' - false
+ * "hello""there" - false
+ * 'hello === world' - true
+ * @param str - A string to check.
+ * @public
+ */
+function isQuotedString(str) {
+    // quickly return false if the value is note quoted
+    if (str[0] !== '"' && str[0] !== "'")
+        return false;
+    if (str[0] !== str[str.length - 1])
+        return false;
+    const quoteType = str[0];
+    for (let p = 1; p < str.length; p++) {
+        if (str[p] === quoteType &&
+            (p === 1 || str[p - 1] !== '\\') &&
+            p !== str.length - 1) {
+            return false;
+        }
+    }
+    return true;
+}
+/**
+ * Remove extra escape characters.
+ * @param str - A string to remove escape characters from.
+ * @public
+ */
+function rmEscapes(str) {
+    if (!str.length)
+        return '';
+    let clean = '';
+    let lastChar = '';
+    for (let p = 0; p < str.length; p++) {
+        const char = str.charAt(p);
+        if (char !== '\\' || lastChar === '\\') {
+            clean += char;
+        }
+        lastChar = char;
+    }
+    return clean;
+}
+/**
+ * Performs a recursive Object.assign like operation.
+ * @param a - An object to be extended by object b
+ * @param b - An object to copy values from
+ * @public
+ */
+function assignDeep(a, b) {
+    for (const key in a) {
+        if (has(b, key) &&
+            a[key] !== b[key] &&
+            !(isPojo(a[key]) && isPojo(b[key]))) {
+            a[key] = b[key];
+        }
+        else if (isPojo(a[key]) && isPojo(b[key])) {
+            assignDeep(a[key], b[key]);
+        }
+    }
+    for (const key in b) {
+        if (!has(a, key)) {
+            a[key] = b[key];
+        }
+    }
+    return a;
+}
+/**
+ * Filters out values from an object that should not be considered "props" of
+ * a core node, like "value" and "name".
+ * @param attrs - An object to extract core node config from.
+ * @public
+ */
+function nodeProps(...sets) {
+    return sets.reduce((valid, props) => {
+        const { value, name, modelValue, config, plugins, ...validProps } = props; // eslint-disable-line
+        return Object.assign(valid, validProps);
+    }, {});
+}
+/**
+ * Parse a string for comma-separated arguments
+ * @param str - A string to parse
+ * @public
+ */
+function parseArgs(str) {
+    const args = [];
+    let arg = '';
+    let depth = 0;
+    let quote = '';
+    let lastChar = '';
+    for (let p = 0; p < str.length; p++) {
+        const char = str.charAt(p);
+        if (char === quote && lastChar !== '\\') {
+            quote = '';
+        }
+        else if ((char === "'" || char === '"') && !quote && lastChar !== '\\') {
+            quote = char;
+        }
+        else if (char === '(' && !quote) {
+            depth++;
+        }
+        else if (char === ')' && !quote) {
+            depth--;
+        }
+        if (char === ',' && !quote && depth === 0) {
+            args.push(arg);
+            arg = '';
+        }
+        else if (char !== ' ' || quote) {
+            arg += char;
+        }
+        lastChar = char;
+    }
+    if (arg) {
+        args.push(arg);
+    }
+    return args;
+}
+/**
+ * Return a new (shallow) object with all properties from a given object
+ * that are present in the array.
+ * @param obj - An object to clone
+ * @param toRemove - An array of keys to remove
+ * @public
+ */
+function except(obj, toRemove) {
+    const clean = {};
+    const exps = toRemove.filter((n) => n instanceof RegExp);
+    const keysToRemove = new Set(toRemove);
+    for (const key in obj) {
+        if (!keysToRemove.has(key) && !exps.some((exp) => exp.test(key))) {
+            clean[key] = obj[key];
+        }
+    }
+    return clean;
+}
+/**
+ * Extracts a set of keys from a given object. Importantly, this will extract
+ * values even if they are not set on the original object they will just have an
+ * undefined value.
+ * @param obj - An object to extract values from
+ * @param include - A set of keys to extract
+ * @returns
+ * @public
+ */
+function only(obj, include) {
+    const clean = {};
+    const exps = include.filter((n) => n instanceof RegExp);
+    include.forEach((key) => {
+        if (!(key instanceof RegExp)) {
+            clean[key] = obj[key];
+        }
+    });
+    Object.keys(obj).forEach((key) => {
+        if (exps.some((exp) => exp.test(key))) {
+            clean[key] = obj[key];
+        }
+    });
+    return clean;
+}
+/**
+ * This converts kebab-case to camelCase. It ONLY converts from kebab for
+ * efficiency stake.
+ * @param str - String to convert.
+ * @public
+ */
+function camel(str) {
+    return str.replace(/-([a-z0-9])/gi, (_s, g) => g.toUpperCase());
+}
+/**
+ * This converts camel-case to kebab case. It ONLY converts from camel to kebab.
+ * @param str - Converts camel to kebab
+ * @returns
+ * @public
+ */
+function kebab(str) {
+    return str
+        .replace(/([a-z0-9])([A-Z])/g, (_s, trail, cap) => trail + '-' + cap.toLowerCase())
+        .replace(' ', '-')
+        .toLowerCase();
+}
+/**
+ * Very shallowly clones the given object.
+ * @param obj - The object to shallow clone
+ * @returns
+ * @public
+ */
+function shallowClone(obj, explicit = ['__key', '__init']) {
+    if (obj !== null && typeof obj === 'object') {
+        let returnObject;
+        if (Array.isArray(obj))
+            returnObject = [...obj];
+        else if (isPojo(obj))
+            returnObject = { ...obj };
+        if (returnObject) {
+            applyExplicit(obj, returnObject, explicit);
+            return returnObject;
+        }
+    }
+    return obj;
+}
+/**
+ * Perform a recursive clone on a given object. This only intended to be used
+ * for simple objects like arrays and pojos.
+ * @param obj - Object to clone
+ * @public
+ */
+function clone(obj, explicit = ['__key', '__init']) {
+    if (obj === null ||
+        obj instanceof RegExp ||
+        obj instanceof Date ||
+        obj instanceof Map ||
+        obj instanceof Set ||
+        (typeof File === 'function' && obj instanceof File))
+        return obj;
+    let returnObject;
+    if (Array.isArray(obj)) {
+        returnObject = obj.map((value) => {
+            if (typeof value === 'object')
+                return clone(value, explicit);
+            return value;
+        });
+    }
+    else {
+        returnObject = Object.keys(obj).reduce((newObj, key) => {
+            newObj[key] =
+                typeof obj[key] === 'object'
+                    ? clone(obj[key], explicit)
+                    : obj[key];
+            return newObj;
+        }, {});
+    }
+    for (const key of explicit) {
+        if (key in obj) {
+            Object.defineProperty(returnObject, key, {
+                enumerable: false,
+                value: obj[key],
+            });
+        }
+    }
+    return returnObject;
+}
+/**
+ * Clones anything. If the item is scalar, no worries, it passes it back. if it
+ * is an object, it performs a (fast/loose) clone operation.
+ * @param obj - The object to clone
+ * @public
+ */
+function cloneAny(obj) {
+    return typeof obj === 'object'
+        ? clone(obj)
+        : obj;
+}
+/**
+ * Get a specific value via dot notation.
+ * @param obj - An object to fetch data from
+ * @param addr - An "address" in dot notation
+ * @public
+ */
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+function getAt(obj, addr) {
+    if (!obj || typeof obj !== 'object')
+        return null;
+    const segments = addr.split('.');
+    let o = obj;
+    for (const i in segments) {
+        const segment = segments[i];
+        if (has(o, segment)) {
+            o = o[segment];
+        }
+        if (+i === segments.length - 1)
+            return o;
+        if (!o || typeof o !== 'object')
+            return null;
+    }
+    return null;
+}
+/**
+ * Determines if the value of a prop that is either present (true) or not
+ * present (false). For example the prop disabled should disable
+ * by just existing, but what if it is set to the string "false" — then it
+ * should not be disabled.
+ * @param value - value to be checked
+ * @returns
+ * @public
+ */
+function undefine(value) {
+    return value !== undefined && value !== 'false' && value !== false
+        ? true
+        : undefined;
+}
+/**
+ * Defines an object as an initial value.
+ * @param obj - Object
+ * @returns
+ * @public
+ */
+/* eslint-disable-next-line @typescript-eslint/ban-types */
+function init(obj) {
+    return !Object.isFrozen(obj)
+        ? Object.defineProperty(obj, '__init', {
+            enumerable: false,
+            value: true,
+        })
+        : obj;
+}
+/**
+ * Turn any string into a URL/DOM safe string.
+ * @public
+ */
+function slugify(str) {
+    return str
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, ' ')
+        .trim()
+        .replace(/\s+/g, '-');
+}
+/**
+ * Spreads an object or an array, otherwise returns the same value.
+ * @param obj - Any value, but will spread objects and arrays
+ * @public
+ */
+function spread(obj, explicit = ['__key', '__init']) {
+    if (obj && typeof obj === 'object') {
+        if (obj instanceof RegExp)
+            return obj;
+        if (obj instanceof Date)
+            return obj;
+        let spread;
+        if (Array.isArray(obj)) {
+            spread = [...obj];
+        }
+        else {
+            spread = { ...obj };
+        }
+        // eslint-disable-next-line @typescript-eslint/ban-types
+        return applyExplicit(obj, spread, explicit);
+    }
+    return obj;
+}
+/**
+ * Apply non enumerable properties to an object.
+ * @param obj - The object to apply non-enumerable properties to
+ * @param explicit - An array of non-enumerable properties to apply
+ * @internal
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+function applyExplicit(original, obj, explicit) {
+    for (const key of explicit) {
+        if (key in original) {
+            Object.defineProperty(obj, key, {
+                enumerable: false,
+                value: original[key],
+            });
+        }
+    }
+    return obj;
+}
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formkit/validation/dist/index.mjs":
+/*!*********************************************************!*\
+  !*** ./node_modules/@formkit/validation/dist/index.mjs ***!
+  \*********************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createValidationPlugin": () => (/* binding */ createValidationPlugin)
+/* harmony export */ });
+/* harmony import */ var _formkit_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formkit/core */ "./node_modules/@formkit/core/dist/index.mjs");
+/* harmony import */ var _formkit_observer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @formkit/observer */ "./node_modules/@formkit/observer/dist/index.mjs");
+/* harmony import */ var _formkit_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @formkit/utils */ "./node_modules/@formkit/utils/dist/index.mjs");
+
+
+
+
+/**
+ * Message that gets set when the node is awaiting validation.
+ */
+const validatingMessage = (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.createMessage)({
+    type: 'state',
+    blocking: true,
+    visible: false,
+    value: true,
+    key: 'validating',
+});
+/**
+ * The actual validation plugin function, everything must be bootstrapped here.
+ * @param node - The node to bind validation to.
+ * @public
+ */
+function createValidationPlugin(baseRules = {}) {
+    return function validationPlugin(node) {
+        const availableRules = Object.assign({}, baseRules, node.props.validationRules);
+        // create an observed node
+        let observedNode = (0,_formkit_observer__WEBPACK_IMPORTED_MODULE_1__.createObserver)(node);
+        const state = { input: (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.token)(), rerun: null, isPassing: true };
+        let validation = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.cloneAny)(node.props.validation);
+        // If the node's validation prop changes, update the rules:
+        node.on('prop:validation', ({ payload: value }) => {
+            if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.eq)(validation, value))
+                return;
+            validation = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.cloneAny)(value);
+            // Destroy all observers that may re-trigger validation on an old stack
+            (0,_formkit_observer__WEBPACK_IMPORTED_MODULE_1__.removeListeners)(observedNode.receipts);
+            // Remove all existing messages before re-validating
+            node.store.filter(() => false, 'validation');
+            node.props.parsedRules = parseRules(value, availableRules);
+            observedNode.kill();
+            observedNode = (0,_formkit_observer__WEBPACK_IMPORTED_MODULE_1__.createObserver)(node);
+            validate(observedNode, node.props.parsedRules, state);
+        });
+        // Validate the field when this plugin is initialized
+        node.props.parsedRules = parseRules(validation, availableRules);
+        validate(observedNode, node.props.parsedRules, state);
+    };
+}
+/**
+ * Given parsed validations, a value and a node, run the validations and set
+ * the appropriate store messages on the node.
+ * @param value - The value being validated
+ * @param node - The Node this value belongs to
+ * @param rules - The rules
+ */
+function validate(node, validations, state) {
+    if ((0,_formkit_observer__WEBPACK_IMPORTED_MODULE_1__.isKilled)(node))
+        return;
+    state.input = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.token)();
+    state.isPassing = true;
+    node.store.filter((message) => !message.meta.removeImmediately, 'validation');
+    validations.forEach((validation) => validation.debounce && clearTimeout(validation.timer));
+    if (validations.length) {
+        node.store.set(validatingMessage);
+        run(0, validations, node, state, false, () => {
+            node.store.remove(validatingMessage.key);
+        });
+    }
+}
+/**
+ * Runs validation rules recursively while collecting dependencies allowing for
+ * cross-node validation rules that automatically re-trigger when a foreign
+ * value is changed.
+ * @param current - The index of the current validation rule
+ * @param validations - The remaining validation rule stack to run
+ * @param node - An observed node, the owner of this validation stack
+ * @param state - An object of state information about this run
+ * @param removeImmediately - Should messages created during this call be removed immediately when a new commit takes place?
+ * @returns
+ */
+function run(current, validations, node, state, removeImmediately, complete) {
+    const validation = validations[current];
+    if (!validation)
+        return complete();
+    const currentRun = state.input;
+    validation.state = null;
+    function next(async, result) {
+        state.isPassing = state.isPassing && !!result;
+        validation.queued = false;
+        const newDeps = node.stopObserve();
+        (0,_formkit_observer__WEBPACK_IMPORTED_MODULE_1__.applyListeners)(node, (0,_formkit_observer__WEBPACK_IMPORTED_MODULE_1__.diffDeps)(validation.deps, newDeps), () => {
+            validation.queued = true;
+            if (state.rerun)
+                clearTimeout(state.rerun);
+            state.rerun = setTimeout(validate, 0, node, validations, state);
+        });
+        validation.deps = newDeps;
+        if (state.input === currentRun) {
+            validation.state = result;
+            if (result === false) {
+                createFailedMessage(node, validation, removeImmediately || async);
+            }
+            else {
+                removeMessage(node, validation);
+            }
+            if (validations.length > current + 1) {
+                run(current + 1, validations, node, state, removeImmediately || async, complete);
+            }
+            else {
+                // The validation has completed
+                complete();
+            }
+        }
+    }
+    if ((!(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.empty)(node.value) || !validation.skipEmpty) &&
+        (state.isPassing || validation.force)) {
+        if (validation.queued) {
+            runRule(validation, node, (result) => {
+                result instanceof Promise
+                    ? result.then((r) => next(true, r))
+                    : next(false, result);
+            });
+        }
+        else {
+            // In this case our rule is not queued, so literally nothing happened that
+            // would affect it, we just need to move past this rule and make no
+            // modifications to state
+            run(current + 1, validations, node, state, removeImmediately, complete);
+        }
+    }
+    else {
+        // This rule is not being run because either:
+        //  1. The field is empty and this rule should not run when empty
+        //  2. A previous validation rule is failing and this one is not forced
+        // In this case we should call next validation.
+        if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.empty)(node.value) && validation.skipEmpty && state.isPassing) {
+            // This node has an empty value so its validation was skipped. So we
+            // need to queue it up, we do that by starting an observation and just
+            // touching the value attribute.
+            node.observe();
+            node.value;
+        }
+        next(false, null);
+    }
+}
+/**
+ * Run a validation rule debounced or not.
+ * @param validation - A validation to debounce
+ */
+function runRule(validation, node, after) {
+    if (validation.debounce) {
+        validation.timer = setTimeout(() => {
+            node.observe();
+            after(validation.rule(node, ...validation.args));
+        }, validation.debounce);
+    }
+    else {
+        node.observe();
+        after(validation.rule(node, ...validation.args));
+    }
+}
+/**
+ * The messages given to this function have already been set on the node, but
+ * any other validation messages on the node that are not included in this
+ * stack should be removed because they have been resolved.
+ * @param node - The node to operate on.
+ * @param messages - A new stack of messages
+ */
+function removeMessage(node, validation) {
+    const key = `rule_${validation.name}`;
+    if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(node.store, key)) {
+        node.store.remove(key);
+    }
+}
+/**
+ *
+ * @param value - The value that is failing
+ * @param validation - The validation object
+ */
+function createFailedMessage(node, validation, removeImmediately) {
+    const i18nArgs = createI18nArgs(node, validation);
+    const customMessage = createCustomMessage(node, validation, i18nArgs);
+    // Here we short circuit the i18n system to force the output.
+    const message = (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.createMessage)({
+        blocking: validation.blocking,
+        key: `rule_${validation.name}`,
+        meta: {
+            /**
+             * Use this key instead of the message root key to produce i18n validation
+             * messages.
+             */
+            messageKey: validation.name,
+            /**
+             * For messages that were created *by or after* a debounced or async
+             * validation rule — we make note of it so we can immediately remove them
+             * as soon as the next commit happens.
+             */
+            removeImmediately,
+            /**
+             * Determines if this message should be passed to localization.
+             */
+            localize: !customMessage,
+            /**
+             * The arguments that will be passed to the validation rules
+             */
+            i18nArgs,
+        },
+        type: 'validation',
+        value: customMessage || 'This field is not valid.',
+    });
+    node.store.set(message);
+    return message;
+}
+/**
+ * Returns a custom validation message if applicable.
+ * @param node - FormKit Node
+ * @param validation - The validation rule being processed.
+ */
+function createCustomMessage(node, validation, i18nArgs) {
+    const customMessage = node.props.validationMessages &&
+        (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(node.props.validationMessages, validation.name)
+        ? node.props.validationMessages[validation.name]
+        : undefined;
+    if (typeof customMessage === 'function') {
+        return customMessage(...i18nArgs);
+    }
+    return customMessage;
+}
+/**
+ * Creates the arguments passed to the i18n
+ * @param node - The node that performed the validation
+ * @param validation - The validation that failed
+ */
+function createI18nArgs(node, validation) {
+    // If a custom message has been found, short circuit the i18n system.
+    return [
+        {
+            node,
+            name: createMessageName(node),
+            args: validation.args,
+        },
+    ];
+}
+/**
+ * The name used in validation messages.
+ * @param node - The node to display
+ * @returns
+ */
+function createMessageName(node) {
+    if (typeof node.props.validationLabel === 'function') {
+        return node.props.validationLabel(node);
+    }
+    return (node.props.validationLabel ||
+        node.props.label ||
+        node.props.name ||
+        String(node.name));
+}
+/**
+ * Describes hints, must also be changed in the debounceExtractor.
+ */
+const hintPattern = '(?:[\\*+?()0-9]+)';
+/**
+ * A pattern to describe rule names. Rules names can only contain letters,
+ * numbers, and underscores and must start with a letter.
+ */
+const rulePattern = '[a-zA-Z][a-zA-Z0-9_]+';
+/**
+ * Regular expression for extracting rule data.
+ */
+const ruleExtractor = new RegExp(`^(${hintPattern}?${rulePattern})(?:\\:(.*)+)?$`, 'i');
+/**
+ * Validation hints are special characters preceding a validation rule, like
+ * !phone
+ */
+const hintExtractor = new RegExp(`^(${hintPattern})(${rulePattern})$`, 'i');
+/**
+ * Given a hint string like ^(200)? or ^? or (200)?^ extract the hints to
+ * matches.
+ */
+const debounceExtractor = /([\*+?]+)?(\(\d+\))([\*+?]+)?/;
+/**
+ * Determines if a given string is in the proper debounce format.
+ */
+const hasDebounce = /\(\d+\)/;
+/**
+ * The default values of the available validation hints.
+ */
+const defaultHints = {
+    blocking: true,
+    debounce: 0,
+    force: false,
+    skipEmpty: true,
+    name: '',
+};
+/**
+ * Parse validation intents and strings into validation rule stacks.
+ * @param validation - Either a string a validation rules, or proper array of structured rules.
+ * @internal
+ */
+function parseRules(validation, rules) {
+    if (!validation)
+        return [];
+    const intents = typeof validation === 'string'
+        ? extractRules(validation)
+        : (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.clone)(validation);
+    return intents.reduce((validations, args) => {
+        let rule = args.shift();
+        const hints = {};
+        if (typeof rule === 'string') {
+            const [ruleName, parsedHints] = parseHints(rule);
+            if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(rules, ruleName)) {
+                rule = rules[ruleName];
+                Object.assign(hints, parsedHints);
+            }
+        }
+        if (typeof rule === 'function') {
+            validations.push({
+                rule,
+                args,
+                timer: 0,
+                state: null,
+                queued: true,
+                deps: new Map(),
+                ...defaultHints,
+                ...fnHints(hints, rule),
+            });
+        }
+        return validations;
+    }, []);
+}
+/**
+ * A string of validation rules written in FormKitRule notation.
+ * @param validation - The string of rules
+ * @internal
+ */
+function extractRules(validation) {
+    return validation.split('|').reduce((rules, rule) => {
+        const parsedRule = parseRule(rule);
+        if (parsedRule) {
+            rules.push(parsedRule);
+        }
+        return rules;
+    }, []);
+}
+/**
+ * Given a rule like confirm:password_confirm produce a FormKitValidationIntent
+ * @param rule - A string representing a validation rule.
+ * @returns
+ */
+function parseRule(rule) {
+    const trimmed = rule.trim();
+    if (trimmed) {
+        const matches = trimmed.match(ruleExtractor);
+        if (matches && typeof matches[1] === 'string') {
+            const ruleName = matches[1].trim();
+            const args = matches[2] && typeof matches[2] === 'string'
+                ? matches[2].split(',').map((s) => s.trim())
+                : [];
+            return [ruleName, ...args];
+        }
+    }
+    return false;
+}
+/**
+ * Given a rule name, detect if there are any additional hints like !
+ * @param ruleName - string representing a rule name
+ * @returns
+ */
+function parseHints(ruleName) {
+    const matches = ruleName.match(hintExtractor);
+    if (!matches) {
+        return [ruleName, { name: ruleName }];
+    }
+    const map = {
+        '*': { force: true },
+        '+': { skipEmpty: false },
+        '?': { blocking: false },
+    };
+    const [, hints, rule] = matches;
+    const hintGroups = hasDebounce.test(hints)
+        ? hints.match(debounceExtractor) || []
+        : [, hints];
+    return [
+        rule,
+        [hintGroups[1], hintGroups[2], hintGroups[3]].reduce((hints, group) => {
+            if (!group)
+                return hints;
+            if (hasDebounce.test(group)) {
+                hints.debounce = parseInt(group.substr(1, group.length - 1));
+            }
+            else {
+                group
+                    .split('')
+                    .forEach((hint) => (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(map, hint) && Object.assign(hints, map[hint]));
+            }
+            return hints;
+        }, { name: rule }),
+    ];
+}
+/**
+ * Extracts hint properties from the validation rule function itself and applies
+ * them if they are not already in the set of validation hints extracted from
+ * strings.
+ * @param existingHints - An existing set of hints already parsed
+ * @param rule - The actual rule function, which can contain hint properties
+ * @returns
+ */
+function fnHints(existingHints, rule) {
+    if (!existingHints.name) {
+        existingHints.name = rule.ruleName || rule.name;
+    }
+    return ['skipEmpty', 'force', 'debounce', 'blocking'].reduce((hints, hint) => {
+        if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(rule, hint) && !(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(hints, hint)) {
+            Object.assign(hints, {
+                [hint]: rule[hint],
+            });
+        }
+        return hints;
+    }, existingHints);
+}
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@formkit/vue/dist/index.mjs":
+/*!**************************************************!*\
+  !*** ./node_modules/@formkit/vue/dist/index.mjs ***!
+  \**************************************************/
+/***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "FormKit": () => (/* binding */ FormKit),
+/* harmony export */   "FormKitSchema": () => (/* binding */ FormKitSchema),
+/* harmony export */   "bindings": () => (/* binding */ vueBindings),
+/* harmony export */   "clearErrors": () => (/* reexport safe */ _formkit_core__WEBPACK_IMPORTED_MODULE_0__.clearErrors),
+/* harmony export */   "configSymbol": () => (/* binding */ configSymbol),
+/* harmony export */   "createInput": () => (/* binding */ createInput),
+/* harmony export */   "defaultConfig": () => (/* binding */ defaultConfig),
+/* harmony export */   "errorHandler": () => (/* reexport safe */ _formkit_core__WEBPACK_IMPORTED_MODULE_0__.errorHandler),
+/* harmony export */   "optionsSymbol": () => (/* binding */ optionsSymbol),
+/* harmony export */   "parentSymbol": () => (/* binding */ parentSymbol),
+/* harmony export */   "plugin": () => (/* binding */ plugin),
+/* harmony export */   "reset": () => (/* reexport safe */ _formkit_core__WEBPACK_IMPORTED_MODULE_0__.reset),
+/* harmony export */   "resetCount": () => (/* reexport safe */ _formkit_core__WEBPACK_IMPORTED_MODULE_0__.resetCount),
+/* harmony export */   "setErrors": () => (/* reexport safe */ _formkit_core__WEBPACK_IMPORTED_MODULE_0__.setErrors),
+/* harmony export */   "submitForm": () => (/* reexport safe */ _formkit_core__WEBPACK_IMPORTED_MODULE_0__.submitForm),
+/* harmony export */   "useInput": () => (/* binding */ useInput),
+/* harmony export */   "watchVerbose": () => (/* binding */ watchVerbose)
+/* harmony export */ });
+/* harmony import */ var _formkit_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @formkit/core */ "./node_modules/@formkit/core/dist/index.mjs");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _formkit_utils__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @formkit/utils */ "./node_modules/@formkit/utils/dist/index.mjs");
+/* harmony import */ var _formkit_inputs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @formkit/inputs */ "./node_modules/@formkit/inputs/dist/index.mjs");
+/* harmony import */ var _formkit_rules__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @formkit/rules */ "./node_modules/@formkit/rules/dist/index.mjs");
+/* harmony import */ var _formkit_validation__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @formkit/validation */ "./node_modules/@formkit/validation/dist/index.mjs");
+/* harmony import */ var _formkit_i18n__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @formkit/i18n */ "./node_modules/@formkit/i18n/dist/index.mjs");
+/* harmony import */ var _formkit_observer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @formkit/observer */ "./node_modules/@formkit/observer/dist/index.mjs");
+/* harmony import */ var _formkit_dev__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @formkit/dev */ "./node_modules/@formkit/dev/dist/index.mjs");
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * A registry of memoized schemas (in JSON) to their respective render function
+ * and provider registry.
+ */
+const memo = {};
+/**
+ * This symbol represents the current component instance during render. It is
+ * critical for linking the current instance to the data required for render.
+ */
+let instanceKey;
+/**
+ * A registry of scoped data produced during runtime that is keyed by the
+ * instance symbol. For example data from: for-loop instances and slot data.
+ */
+const instanceScopes = new Map();
+/**
+ * Indicates the a section of the schema is raw.
+ */
+const raw = '__raw__';
+/**
+ * Is a class prop.
+ */
+const isClassProp = /[a-zA-Z0-9\-][cC]lass$/;
+/**
+ * Returns a reference as a placeholder to a specific location on an object.
+ * @param data - A reactive data object
+ * @param token - A dot-syntax string representing the object path
+ * @returns
+ */
+function getRef(token, data) {
+    const value = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(null);
+    if (token === 'get') {
+        const nodeRefs = {};
+        value.value = get$1.bind(null, nodeRefs);
+        return value;
+    }
+    const path = token.split('.');
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watchEffect)(() => (value.value = getValue(data, path)));
+    return value;
+}
+/**
+ * Returns a value inside a set of data objects.
+ * @param sets - An array of objects to search through
+ * @param path - A array of string paths easily produced by split()
+ * @returns
+ */
+function getValue(set, path) {
+    if (Array.isArray(set)) {
+        for (const subset of set) {
+            const value = subset !== false && getValue(subset, path);
+            if (value !== undefined)
+                return value;
+        }
+        return undefined;
+    }
+    let foundValue = undefined;
+    path.reduce((obj, segment, i, arr) => {
+        if (typeof obj !== 'object') {
+            foundValue = undefined;
+            return arr.splice(1); // Forces an exit
+        }
+        const currentValue = obj[segment];
+        if (i === path.length - 1 && currentValue !== undefined) {
+            foundValue = currentValue;
+        }
+        return obj[segment];
+    }, set);
+    return foundValue;
+}
+/**
+ * Get the node from the global registry
+ * @param id - A dot-syntax string where the node is located.
+ */
+function get$1(nodeRefs, id) {
+    if (typeof id !== 'string')
+        return (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.warn)(650);
+    if (!(id in nodeRefs))
+        nodeRefs[id] = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(undefined);
+    if (nodeRefs[id].value === undefined) {
+        nodeRefs[id].value = null;
+        const root = (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.getNode)(id);
+        if (root)
+            nodeRefs[id].value = root.context;
+        (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.watchRegistry)(id, ({ payload: node }) => {
+            nodeRefs[id].value = (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.isNode)(node) ? node.context : node;
+        });
+    }
+    return nodeRefs[id].value;
+}
+/**
+ *
+ * @param library - A library of concrete components to use
+ * @param schema -
+ * @returns
+ */
+function parseSchema(library, schema) {
+    /**
+     * Given an if/then/else schema node, pre-compile the node and return the
+     * artifacts for the render function.
+     * @param data - The schema context object
+     * @param library - The available components
+     * @param node - The node to parse
+     */
+    function parseCondition(library, node) {
+        const condition = provider((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.compile)(node.if), { if: true });
+        const children = createElements(library, node.then);
+        const alternate = node.else ? createElements(library, node.else) : null;
+        return [condition, children, alternate];
+    }
+    /**
+     * Parses a conditional if/then/else attribute statement.
+     * @param data - The data object
+     * @param attr - The attribute
+     * @param _default - The default value
+     * @returns
+     */
+    function parseConditionAttr(attr, _default) {
+        var _a, _b;
+        const condition = provider((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.compile)(attr.if));
+        let b = () => _default;
+        let a = () => _default;
+        if (typeof attr.then === 'object') {
+            a = parseAttrs(attr.then, undefined);
+        }
+        else if (typeof attr.then === 'string' && ((_a = attr.then) === null || _a === void 0 ? void 0 : _a.startsWith('$'))) {
+            a = provider((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.compile)(attr.then));
+        }
+        else {
+            a = () => attr.then;
+        }
+        if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(attr, 'else')) {
+            if (typeof attr.else === 'object') {
+                b = parseAttrs(attr.else);
+            }
+            else if (typeof attr.else === 'string' && ((_b = attr.else) === null || _b === void 0 ? void 0 : _b.startsWith('$'))) {
+                b = provider((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.compile)(attr.else));
+            }
+            else {
+                b = () => attr.else;
+            }
+        }
+        return () => (condition() ? a() : b());
+    }
+    /**
+     * Parse attributes for dynamic content.
+     * @param attrs - Object of attributes
+     * @returns
+     */
+    function parseAttrs(unparsedAttrs, bindExp, _default = {}) {
+        const explicitAttrs = new Set(Object.keys(unparsedAttrs || {}));
+        const boundAttrs = bindExp ? provider((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.compile)(bindExp)) : () => ({});
+        const staticAttrs = {};
+        const setters = [
+            (attrs) => {
+                const bound = boundAttrs();
+                for (const attr in bound) {
+                    if (!explicitAttrs.has(attr)) {
+                        attrs[attr] = bound[attr];
+                    }
+                }
+            },
+        ];
+        if (unparsedAttrs) {
+            if ((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.isConditional)(unparsedAttrs)) {
+                // This is a root conditional object that must produce an object of
+                // attributes.
+                const condition = parseConditionAttr(unparsedAttrs, _default);
+                return condition;
+            }
+            // Some attributes are explicitly bound, we need to parse those ones
+            // using the compiler and create a dynamic "setter".
+            for (let attr in unparsedAttrs) {
+                const value = unparsedAttrs[attr];
+                let getValue;
+                const isStr = typeof value === 'string';
+                if (attr.startsWith(raw)) {
+                    // attributes prefixed with __raw__ should not be parsed
+                    attr = attr.substring(7);
+                    getValue = () => value;
+                }
+                else if (isStr &&
+                    value.startsWith('$') &&
+                    value.length > 1 &&
+                    !(value.startsWith('$reset') && isClassProp.test(attr))) {
+                    // Most attribute values starting with $ should be compiled
+                    // -class attributes starting with `$reset` should not be compiled
+                    getValue = provider((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.compile)(value));
+                }
+                else if (typeof value === 'object' && (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.isConditional)(value)) {
+                    // Conditional attrs require further processing
+                    getValue = parseConditionAttr(value, undefined);
+                }
+                else if (typeof value === 'object' && (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.isPojo)(value)) {
+                    // Sub-parse pojos
+                    getValue = parseAttrs(value);
+                }
+                else {
+                    // In all other cases, the value is static
+                    getValue = () => value;
+                    staticAttrs[attr] = value;
+                }
+                setters.push((attrs) => {
+                    attrs[attr] = getValue();
+                });
+            }
+        }
+        return () => {
+            const attrs = {};
+            setters.forEach((setter) => setter(attrs));
+            return attrs;
+        };
+    }
+    /**
+     * Given a single schema node, parse it and extract the value.
+     * @param data - A state object provided to each node
+     * @param node - The schema node being parsed
+     * @returns
+     */
+    function parseNode(library, _node) {
+        let element = null;
+        let attrs = () => null;
+        let condition = false;
+        let children = null;
+        let alternate = null;
+        let iterator = null;
+        let resolve = false;
+        const node = (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.sugar)(_node);
+        if ((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.isDOM)(node)) {
+            // This is an actual HTML DOM element
+            element = node.$el;
+            attrs =
+                node.$el !== 'text' ? parseAttrs(node.attrs, node.bind) : () => null;
+        }
+        else if ((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.isComponent)(node)) {
+            // This is a Vue Component
+            if (typeof node.$cmp === 'string') {
+                if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(library, node.$cmp)) {
+                    element = library[node.$cmp];
+                }
+                else {
+                    element = node.$cmp;
+                    resolve = true;
+                }
+            }
+            else {
+                // in this case it must be an actual component
+                element = node.$cmp;
+            }
+            attrs = parseAttrs(node.props, node.bind);
+        }
+        else if ((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.isConditional)(node)) {
+            [condition, children, alternate] = parseCondition(library, node);
+        }
+        // This is the same as a "v-if" statement — not an if/else statement
+        if (!(0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.isConditional)(node) && 'if' in node) {
+            condition = provider((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.compile)(node.if));
+        }
+        else if (!(0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.isConditional)(node) && element === null) {
+            // In this odd case our element is actually a partial and
+            // we only want to render the children.
+            condition = () => true;
+        }
+        // Compile children down to a function
+        if ('children' in node && node.children) {
+            if (typeof node.children === 'string') {
+                // We are dealing with a raw string value
+                if (node.children.startsWith('$slots.')) {
+                    // this is a lone text node, turn it into a slot
+                    element = element === 'text' ? 'slot' : element;
+                    children = provider((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.compile)(node.children));
+                }
+                else if (node.children.startsWith('$') && node.children.length > 1) {
+                    const value = provider((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.compile)(node.children));
+                    children = () => String(value());
+                }
+                else {
+                    children = () => String(node.children);
+                }
+            }
+            else if (Array.isArray(node.children)) {
+                // We are dealing with node sub-children
+                children = createElements(library, node.children);
+            }
+            else {
+                // This is a conditional if/else clause
+                const [childCondition, c, a] = parseCondition(library, node.children);
+                children = (iterationData) => childCondition && childCondition()
+                    ? c && c(iterationData)
+                    : a && a(iterationData);
+            }
+        }
+        if ((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.isComponent)(node)) {
+            if (children) {
+                // Children of components need to be provided as an object of slots
+                // so we provide an object with the default slot provided as children.
+                // We also create a new scope for this default slot, and then on each
+                // render pass the scoped slot props to the scope.
+                const produceChildren = children;
+                children = (iterationData) => {
+                    return {
+                        default(slotData, key) {
+                            var _a, _b, _c, _d;
+                            // We need to switch the current instance key back to the one that
+                            // originally called this component's render function.
+                            const currentKey = instanceKey;
+                            if (key)
+                                instanceKey = key;
+                            if (slotData)
+                                (_a = instanceScopes.get(instanceKey)) === null || _a === void 0 ? void 0 : _a.unshift(slotData);
+                            if (iterationData)
+                                (_b = instanceScopes.get(instanceKey)) === null || _b === void 0 ? void 0 : _b.unshift(iterationData);
+                            const c = produceChildren(iterationData);
+                            // Ensure our instance key never changed during runtime
+                            if (slotData)
+                                (_c = instanceScopes.get(instanceKey)) === null || _c === void 0 ? void 0 : _c.shift();
+                            if (iterationData)
+                                (_d = instanceScopes.get(instanceKey)) === null || _d === void 0 ? void 0 : _d.shift();
+                            instanceKey = currentKey;
+                            return c;
+                        },
+                    };
+                };
+                children.slot = true;
+            }
+            else {
+                // If we dont have any children, we still need to provide an object
+                // instead of an empty array (which raises a warning in vue)
+                children = () => ({});
+            }
+        }
+        // Compile the for loop down
+        if ('for' in node && node.for) {
+            const values = node.for.length === 3 ? node.for[2] : node.for[1];
+            const getValues = typeof values === 'string' && values.startsWith('$')
+                ? provider((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.compile)(values))
+                : () => values;
+            iterator = [
+                getValues,
+                node.for[0],
+                node.for.length === 3 ? String(node.for[1]) : null,
+            ];
+        }
+        return [condition, element, attrs, children, alternate, iterator, resolve];
+    }
+    /**
+     * Given a particular function that produces children, ensure that the second
+     * argument of all these slots is the original instance key being used to
+     * render the slots.
+     * @param children - The children() function that will produce slots
+     */
+    function createSlots(children, iterationData) {
+        const slots = children(iterationData);
+        const currentKey = instanceKey;
+        return Object.keys(slots).reduce((allSlots, slotName) => {
+            const slotFn = slots && slots[slotName];
+            allSlots[slotName] = (data) => {
+                return (slotFn && slotFn(data, currentKey)) || null;
+            };
+            return allSlots;
+        }, {});
+    }
+    /**
+     * Creates an element
+     * @param data - The context data available to the node
+     * @param node - The schema node to render
+     * @returns
+     */
+    function createElement(library, node) {
+        // Parses the schema node into pertinent parts
+        const [condition, element, attrs, children, alternate, iterator, resolve] = parseNode(library, node);
+        // This is a sub-render function (called within a render function). It must
+        // only use pre-compiled features, and be organized in the most efficient
+        // manner possible.
+        let createNodes = ((iterationData) => {
+            if (condition && element === null && children) {
+                // Handle conditional if/then statements
+                return condition()
+                    ? children(iterationData)
+                    : alternate && alternate(iterationData);
+            }
+            if (element && (!condition || condition())) {
+                // handle text nodes
+                if (element === 'text' && children) {
+                    return (0,vue__WEBPACK_IMPORTED_MODULE_1__.createTextVNode)(String(children()));
+                }
+                // Handle lone slots
+                if (element === 'slot' && children)
+                    return children(iterationData);
+                // Handle resolving components
+                const el = resolve ? (0,vue__WEBPACK_IMPORTED_MODULE_1__.resolveComponent)(element) : element;
+                // If we are rendering slots as children, ensure their instanceKey is properly added
+                const slots = (children === null || children === void 0 ? void 0 : children.slot)
+                    ? createSlots(children, iterationData)
+                    : null;
+                // Handle dom elements and components
+                return (0,vue__WEBPACK_IMPORTED_MODULE_1__.h)(el, attrs(), (slots || (children ? children(iterationData) : [])));
+            }
+            return typeof alternate === 'function'
+                ? alternate(iterationData)
+                : alternate;
+        });
+        if (iterator) {
+            const repeatedNode = createNodes;
+            const [getValues, valueName, keyName] = iterator;
+            createNodes = (() => {
+                const _v = getValues();
+                const values = !isNaN(_v)
+                    ? Array(Number(_v))
+                        .fill(0)
+                        .map((_, i) => i)
+                    : _v;
+                const fragment = [];
+                if (typeof values !== 'object')
+                    return null;
+                const instanceScope = instanceScopes.get(instanceKey) || [];
+                for (const key in values) {
+                    const iterationData = Object.defineProperty({
+                        ...instanceScope.reduce((previousIterationData, scopedData) => {
+                            if (previousIterationData.__idata) {
+                                return { ...previousIterationData, ...scopedData };
+                            }
+                            return scopedData;
+                        }, {}),
+                        [valueName]: values[key],
+                        ...(keyName !== null ? { [keyName]: key } : {}),
+                    }, '__idata', { enumerable: false, value: true });
+                    instanceScope.unshift(iterationData);
+                    fragment.push(repeatedNode.bind(null, iterationData)());
+                    instanceScope.shift();
+                }
+                return fragment;
+            });
+        }
+        return createNodes;
+    }
+    /**
+     * Given a schema, parse it and return the resulting renderable nodes.
+     * @param data - The schema context object
+     * @param library - The available components
+     * @param node - The node to parse
+     * @returns
+     */
+    function createElements(library, schema) {
+        if (Array.isArray(schema)) {
+            const els = schema.map(createElement.bind(null, library));
+            return (iterationData) => els.map((element) => element(iterationData));
+        }
+        // Single node to render
+        const element = createElement(library, schema);
+        return (iterationData) => element(iterationData);
+    }
+    /**
+     * Data providers produced as a result of the compiler.
+     */
+    const providers = [];
+    /**
+     * Append the requisite compiler provider and return the compiled function.
+     * @param compiled - A compiled function
+     * @returns
+     */
+    function provider(compiled, hints = {}) {
+        const compiledFns = {};
+        providers.push((callback, key) => {
+            compiledFns[key] = compiled.provide((tokens) => callback(tokens, hints));
+        });
+        return () => compiledFns[instanceKey]();
+    }
+    /**
+     * Creates a new instance of a given schema — this either comes from a
+     * memoized copy of the parsed schema or a freshly parsed version. An symbol
+     * instance key, and dataProvider functions are passed in.
+     * @param providerCallback - A function that is called for each required provider
+     * @param key - a symbol representing the current instance
+     */
+    return function createInstance(providerCallback, key) {
+        const memoKey = JSON.stringify(schema);
+        const [render, compiledProviders] = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(memo, memoKey)
+            ? memo[memoKey]
+            : [createElements(library, schema), providers];
+        memo[memoKey] = [render, compiledProviders];
+        compiledProviders.forEach((compiledProvider) => {
+            compiledProvider(providerCallback, key);
+        });
+        return () => {
+            instanceKey = key;
+            return render();
+        };
+    };
+}
+/**
+ * Checks the current runtime scope for data.
+ * @param token - The token to lookup in the current scope
+ * @param defaultValue - The default ref value to use if no scope is found.
+ */
+function useScope(token, defaultValue) {
+    const scopedData = instanceScopes.get(instanceKey) || [];
+    let scopedValue = undefined;
+    if (scopedData.length) {
+        scopedValue = getValue(scopedData, token.split('.'));
+    }
+    return scopedValue === undefined ? defaultValue : scopedValue;
+}
+/**
+ * Get the current scoped data and flatten it.
+ */
+function slotData(data, key) {
+    return new Proxy(data, {
+        get(...args) {
+            let data = undefined;
+            const property = args[1];
+            if (typeof property === 'string') {
+                const prevKey = instanceKey;
+                instanceKey = key;
+                data = useScope(property, undefined);
+                instanceKey = prevKey;
+            }
+            return data !== undefined ? data : Reflect.get(...args);
+        },
+    });
+}
+/**
+ * Provides data to a parsed schema.
+ * @param provider - The SchemaProvider (output of calling parseSchema)
+ * @param data - Data to fetch values from
+ * @returns
+ */
+function createRenderFn(instanceCreator, data, instanceKey) {
+    return instanceCreator((requirements, hints = {}) => {
+        return requirements.reduce((tokens, token) => {
+            if (token.startsWith('slots.')) {
+                const slot = token.substring(6);
+                const hasSlot = data.slots && (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(data.slots, slot);
+                if (hints.if) {
+                    // If statement — dont render the slot, check if it exists
+                    tokens[token] = () => hasSlot;
+                }
+                else if (data.slots && hasSlot) {
+                    // Render the slot with current scope data
+                    const scopedData = slotData(data, instanceKey);
+                    tokens[token] = () => data.slots[slot](scopedData);
+                    return tokens;
+                }
+            }
+            const value = getRef(token, data);
+            tokens[token] = () => useScope(token, value.value);
+            return tokens;
+        }, {});
+    }, instanceKey);
+}
+let i = 0;
+/**
+ * The FormKitSchema vue component:
+ * @public
+ */
+const FormKitSchema = (0,vue__WEBPACK_IMPORTED_MODULE_1__.defineComponent)({
+    name: 'FormKitSchema',
+    props: {
+        schema: {
+            type: [Array, Object],
+            required: true,
+        },
+        data: {
+            type: Object,
+            default: () => ({}),
+        },
+        library: {
+            type: Object,
+            default: () => ({}),
+        },
+    },
+    setup(props, context) {
+        const instance = (0,vue__WEBPACK_IMPORTED_MODULE_1__.getCurrentInstance)();
+        let instanceKey = Symbol(String(i++));
+        instanceScopes.set(instanceKey, []);
+        let provider = parseSchema(props.library, props.schema);
+        let render;
+        let data;
+        // Re-parse the schema if it changes:
+        (0,vue__WEBPACK_IMPORTED_MODULE_1__.watch)(() => props.schema, (newSchema, oldSchema) => {
+            var _a;
+            instanceKey = Symbol(String(i++));
+            provider = parseSchema(props.library, props.schema);
+            render = createRenderFn(provider, data, instanceKey);
+            if (newSchema === oldSchema) {
+                ((_a = instance === null || instance === void 0 ? void 0 : instance.proxy) === null || _a === void 0 ? void 0 : _a.$forceUpdate)();
+            }
+        }, { deep: true });
+        // Watch the data object explicitly
+        (0,vue__WEBPACK_IMPORTED_MODULE_1__.watchEffect)(() => {
+            data = Object.assign((0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)(props.data), {
+                slots: context.slots,
+            });
+            render = createRenderFn(provider, data, instanceKey);
+        });
+        return () => render();
+    },
+});
+
+/**
+ * All the explicit FormKit props.
+ */
+const nativeProps = {
+    config: {
+        type: Object,
+        default: {},
+    },
+    classes: {
+        type: Object,
+        required: false,
+    },
+    delay: {
+        type: Number,
+        required: false,
+    },
+    errors: {
+        type: Array,
+        default: [],
+    },
+    inputErrors: {
+        type: Object,
+        default: () => ({}),
+    },
+    index: {
+        type: Number,
+        required: false,
+    },
+    id: {
+        type: String,
+        required: false,
+    },
+    modelValue: {
+        required: false,
+    },
+    name: {
+        type: String,
+        required: false,
+    },
+    parent: {
+        type: Object,
+        required: false,
+    },
+    plugins: {
+        type: Array,
+        default: [],
+    },
+    sectionsSchema: {
+        type: Object,
+        default: {},
+    },
+    type: {
+        type: [String, Object],
+        default: 'text',
+    },
+    validation: {
+        type: [String, Array],
+        required: false,
+    },
+    validationMessages: {
+        type: Object,
+        required: false,
+    },
+    validationRules: {
+        type: Object,
+        required: false,
+    },
+    validationLabel: {
+        type: [String, Function],
+        required: false,
+    },
+};
+/**
+ * The FormKit props object.
+ * @internal
+ */
+const props = nativeProps;
+
+/**
+ * The symbol that represents the formkit parent injection value.
+ * @public
+ */
+const parentSymbol = Symbol('FormKitParent');
+/**
+ * The root FormKit component.
+ * @public
+ */
+const FormKit = (0,vue__WEBPACK_IMPORTED_MODULE_1__.defineComponent)({
+    props,
+    emits: {
+        /* eslint-disable @typescript-eslint/no-unused-vars */
+        input: (_value, _node) => true,
+        inputRaw: (_value, _node) => true,
+        'update:modelValue': (_value) => true,
+        node: (node) => !!node,
+        submit: (_data, _node) => true,
+        submitRaw: (_event, _node) => true,
+        /* eslint-enable @typescript-eslint/no-unused-vars */
+    },
+    inheritAttrs: false,
+    setup(props, context) {
+        const node = useInput(props, context);
+        if (!node.props.definition)
+            (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.error)(600, node);
+        if (node.props.definition.component) {
+            return () => {
+                var _a;
+                return (0,vue__WEBPACK_IMPORTED_MODULE_1__.h)((_a = node.props.definition) === null || _a === void 0 ? void 0 : _a.component, {
+                    context: node.context,
+                }, { ...context.slots });
+            };
+        }
+        const schema = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)([]);
+        const generateSchema = () => {
+            var _a, _b;
+            const schemaDefinition = (_b = (_a = node.props) === null || _a === void 0 ? void 0 : _a.definition) === null || _b === void 0 ? void 0 : _b.schema;
+            if (!schemaDefinition)
+                (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.error)(601, node);
+            schema.value =
+                typeof schemaDefinition === 'function'
+                    ? schemaDefinition({ ...props.sectionsSchema })
+                    : schemaDefinition;
+        };
+        generateSchema();
+        // If someone emits the schema event, we re-generate the schema
+        node.on('schema', generateSchema);
+        context.emit('node', node);
+        const library = node.props.definition.library;
+        // Expose the FormKitNode to template refs.
+        context.expose({ node });
+        return () => (0,vue__WEBPACK_IMPORTED_MODULE_1__.h)(FormKitSchema, { schema: schema.value, data: node.context, library }, { ...context.slots });
+    },
+});
+
+/**
+ * The Create a new instance of the FormKit plugin for Vue.
+ * @param app - A Vue application
+ * @param config - FormKit Vue plugin configuration options
+ */
+function createPlugin(app, options) {
+    app
+        .component(options.alias || 'FormKit', FormKit)
+        .component(options.schemaAlias || 'FormKitSchema', FormKitSchema);
+    return {
+        get: _formkit_core__WEBPACK_IMPORTED_MODULE_0__.getNode,
+        setLocale: (locale) => {
+            var _a;
+            if ((_a = options.config) === null || _a === void 0 ? void 0 : _a.rootConfig) {
+                options.config.rootConfig.locale = locale;
+            }
+        },
+        clearErrors: _formkit_core__WEBPACK_IMPORTED_MODULE_0__.clearErrors,
+        setErrors: _formkit_core__WEBPACK_IMPORTED_MODULE_0__.setErrors,
+        submit: _formkit_core__WEBPACK_IMPORTED_MODULE_0__.submitForm,
+        reset: _formkit_core__WEBPACK_IMPORTED_MODULE_0__.reset,
+    };
+}
+/**
+ * The symbol key for accessing the FormKit node options.
+ * @public
+ */
+const optionsSymbol = Symbol.for('FormKitOptions');
+/**
+ * The symbol key for accessing FormKit root configuration.
+ * @public
+ */
+const configSymbol = Symbol.for('FormKitConfig');
+/**
+ * Create the FormKit plugin.
+ * @public
+ */
+const plugin = {
+    install(app, _options) {
+        /**
+         * Extend the default configuration options.
+         */
+        const options = Object.assign({
+            alias: 'FormKit',
+            schemaAlias: 'FormKitSchema',
+        }, typeof _options === 'function' ? _options() : _options);
+        /**
+         * The root configuration options.
+         */
+        const rootConfig = (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.createConfig)(options.config || {});
+        /**
+         * We dont want to explicitly provide any "config" options, only a root
+         * config option — so here we override the existing config options.
+         */
+        options.config = { rootConfig };
+        /**
+         * Register the global $formkit plugin property.
+         */
+        app.config.globalProperties.$formkit = createPlugin(app, options);
+        /**
+         * Provide the config to the application for injection.
+         */
+        app.provide(optionsSymbol, options);
+        /**
+         * Provide the root config to the application.
+         */
+        app.provide(configSymbol, rootConfig);
+    },
+};
+
+/**
+ * Indicates that the path that was requested is no longer valid in the object.
+ */
+const invalidGet = Symbol();
+/**
+ *
+ * @param obj - An object to observe at depth
+ * @param callback - A callback that
+ * @public
+ */
+function watchVerbose(obj, callback) {
+    const watchers = {};
+    const applyWatch = (paths) => {
+        // Watch each property
+        for (const path of paths) {
+            // Stops pre-existing watchers at a given location to prevent dupes:
+            if (path.__str in watchers)
+                watchers[path.__str]();
+            watchers[path.__str] = (0,vue__WEBPACK_IMPORTED_MODULE_1__.watch)(touch.bind(null, obj, path), dispatcher.bind(null, path), { deep: false });
+        }
+    };
+    /**
+     * Clear any watchers deeper than this path.
+     * @param path - The path to start from
+     */
+    const clearWatch = (path) => {
+        if (!path.length)
+            return;
+        for (const key in watchers) {
+            if (`${key}`.startsWith(`${path.__str}.`)) {
+                watchers[key]();
+                delete watchers[key];
+            }
+        }
+    };
+    const dispatcher = createDispatcher(obj, callback, applyWatch, clearWatch);
+    applyWatch(getPaths(obj));
+}
+/**
+ * This function synchronously dispatches to the watch callbacks. It uses the
+ * knowledge that the getPath function is a depth-first-search thus lower
+ * specificity (lower tree nodes) will always have their watchers called first.
+ * If a lower specificity watcher is triggered we want to ignore the higher
+ * specificity watcher.
+ * @param obj - The object to dispatch
+ * @param callback - The callback function to emit
+ * @param applyWatch - A way to apply watchers to update objects
+ * @returns
+ */
+function createDispatcher(obj, callback, applyWatch, clearChildWatches) {
+    // let dispatchedPaths: Record<string, ObjectPath> = {}
+    // let clear: Promise<void> | null = null
+    return (path) => {
+        const value = get(obj, path);
+        if (value === invalidGet)
+            return;
+        if (path.__deep)
+            clearChildWatches(path);
+        if (typeof value === 'object')
+            applyWatch(getPaths(value, [path], ...path));
+        callback(path, value, obj);
+    };
+}
+/**
+ * "Touches" a given property for reactivity tracking purposes, if the value at
+ * the given path is an object, we flatten it to just its keys since we will
+ * already be tracking sub properties independently.
+ * @param obj - A ref to traverse for a given path
+ * @param path - An array of strings representing the path to locate
+ * @returns
+ */
+function touch(obj, path) {
+    const value = get(obj, path);
+    return value && typeof value === 'object' ? Object.keys(value) : value;
+}
+/**
+ * "Touches" a given property for reactivity tracking purposes.
+ * @param obj - A ref to traverse for a given path
+ * @param path - An array of strings representing the path to locate
+ * @returns
+ */
+function get(obj, path) {
+    if ((0,vue__WEBPACK_IMPORTED_MODULE_1__.isRef)(obj)) {
+        if (path.length === 0)
+            return obj.value;
+        obj = obj.value;
+    }
+    return path.reduce((value, segment) => {
+        if (value === invalidGet)
+            return value;
+        if (value === null || typeof value !== 'object') {
+            return invalidGet;
+        }
+        return value[segment];
+    }, obj);
+}
+/**
+ * Recursively retrieves all enumerable property paths from the origination
+ * object. For example:
+ * ```js
+ * const obj = {
+ *   a: {
+ *     b: 123
+ *   },
+ *   c: 567
+ * }
+ * const paths = getPaths(obj)
+ * // [
+ * //   ['a'],
+ * //   ['a', 'b'],
+ * //   ['c']
+ * // ]
+ * ```
+ * @param obj - An object to retrieve paths for.
+ * @param parents - An array of parent paths.
+ * @returns
+ * @internal
+ */
+function getPaths(obj, paths = [], ...parents) {
+    if (obj === null)
+        return paths;
+    if (!parents.length) {
+        const path = Object.defineProperty([], '__str', {
+            value: '',
+        });
+        obj = (0,vue__WEBPACK_IMPORTED_MODULE_1__.isRef)(obj) ? obj.value : obj;
+        if (obj && typeof obj === 'object') {
+            Object.defineProperty(path, '__deep', { value: true });
+            paths.push(path);
+        }
+        else {
+            return [path];
+        }
+    }
+    if (obj === null || typeof obj !== 'object')
+        return paths;
+    for (const key in obj) {
+        const path = parents.concat(key);
+        Object.defineProperty(path, '__str', { value: path.join('.') });
+        const value = obj[key];
+        if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.isPojo)(value) || Array.isArray(value)) {
+            paths.push(Object.defineProperty(path, '__deep', { value: true }));
+            paths = paths.concat(getPaths(value, [], ...path));
+        }
+        else {
+            paths.push(path);
+        }
+    }
+    return paths;
+}
+
+/**
+ * Gets the raw underlying target object from a Vue Ref or Reactive object.
+ * @param obj - Get the underlying target object, or no-op.
+ * @returns
+ */
+// eslint-disable-next-line @typescript-eslint/ban-types
+function useRaw(obj) {
+    if (obj === null || typeof obj !== 'object')
+        return obj;
+    if ((0,vue__WEBPACK_IMPORTED_MODULE_1__.isReactive)(obj)) {
+        obj = (0,vue__WEBPACK_IMPORTED_MODULE_1__.toRaw)(obj);
+    }
+    else if ((0,vue__WEBPACK_IMPORTED_MODULE_1__.isRef)(obj)) {
+        obj = ((0,vue__WEBPACK_IMPORTED_MODULE_1__.isReactive)(obj.value) ? useRaw(obj.value) : obj.value);
+    }
+    return obj;
+}
+
+/**
+ * Props that are extracted from the attrs object.
+ * TODO: Currently local, this should probably exported to a inputs or another
+ * package.
+ */
+const pseudoProps = [
+    'help',
+    'label',
+    'ignore',
+    'disabled',
+    'preserve',
+    /^preserve(-e|E)rrors/,
+    /^[a-z]+(?:-visibility|Visibility)$/,
+    /^[a-zA-Z-]+(?:-class|Class)$/,
+];
+/**
+ * Given some props, map those props to individualized props internally.
+ * @param node - A formkit node
+ * @param props - Some props that may include a classes object
+ */
+function classesToNodeProps(node, props) {
+    if (props.classes) {
+        Object.keys(props.classes).forEach((key) => {
+            if (typeof key === 'string') {
+                node.props[`_${key}Class`] = props.classes[key];
+                // We need to ensure Vue is aware that we want to actually observe the
+                // child values too, so we touch them here.
+                if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.isObject)(props.classes[key]) && key === 'inner')
+                    Object.values(props.classes[key]);
+            }
+        });
+    }
+}
+/**
+ * Extracts known FormKit listeners.
+ * @param props - Extract known FormKit listeners.
+ * @returns
+ */
+function onlyListeners(props) {
+    if (!props)
+        return {};
+    const knownListeners = ['Submit', 'SubmitRaw'].reduce((listeners, listener) => {
+        const name = `on${listener}`;
+        if (name in props) {
+            if (typeof props[name] === 'function') {
+                listeners[name] = props[name];
+            }
+        }
+        return listeners;
+    }, {});
+    return knownListeners;
+}
+/**
+ * A composable for creating a new FormKit node.
+ * @param type - The type of node (input, group, list)
+ * @param attrs - The FormKit "props" — which is really the attrs list.
+ * @returns
+ * @public
+ */
+function useInput(props, context, options = {}) {
+    /**
+     * The configuration options, these are provided by either the plugin or by
+     * explicit props.
+     */
+    const config = Object.assign({}, (0,vue__WEBPACK_IMPORTED_MODULE_1__.inject)(optionsSymbol) || {}, options);
+    /**
+     * The current instance.
+     */
+    const instance = (0,vue__WEBPACK_IMPORTED_MODULE_1__.getCurrentInstance)();
+    /**
+     * Extracts the listeners.
+     */
+    const listeners = onlyListeners(instance === null || instance === void 0 ? void 0 : instance.vnode.props);
+    /**
+     * Determines if the prop is v-modeled.
+     */
+    const isVModeled = props.modelValue !== undefined;
+    /**
+     * Determines if the object being passed as a v-model is reactive.
+     */
+    // const isReactiveVModel = isVModeled && isReactive(props.modelValue)
+    /**
+     * Define the initial component
+     */
+    const value = props.modelValue !== undefined
+        ? props.modelValue
+        : (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.cloneAny)(context.attrs.value);
+    /**
+     * Creates the node's initial props from the context, props, and definition
+     * @returns
+     */
+    function createInitialProps() {
+        const initialProps = {
+            ...(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.nodeProps)(props),
+            ...listeners,
+        };
+        const attrs = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.except)((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.nodeProps)(context.attrs), pseudoProps);
+        initialProps.attrs = attrs;
+        const propValues = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.only)((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.nodeProps)(context.attrs), pseudoProps);
+        for (const propName in propValues) {
+            initialProps[(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.camel)(propName)] = propValues[propName];
+        }
+        const classesProps = { props: {} };
+        classesToNodeProps(classesProps, props);
+        Object.assign(initialProps, classesProps.props);
+        if (typeof initialProps.type !== 'string') {
+            initialProps.definition = initialProps.type;
+            delete initialProps.type;
+        }
+        return initialProps;
+    }
+    /**
+     * Create the FormKitNode.
+     */
+    const initialProps = createInitialProps();
+    /**
+     * The parent node.
+     */
+    const parent = initialProps.ignore
+        ? null
+        : props.parent || (0,vue__WEBPACK_IMPORTED_MODULE_1__.inject)(parentSymbol, null);
+    const node = (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.createNode)((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.extend)(config || {}, {
+        name: props.name || undefined,
+        value,
+        parent,
+        plugins: (config.plugins || []).concat(props.plugins),
+        config: props.config,
+        props: initialProps,
+        index: props.index,
+    }, false, true));
+    /**
+     * If no definition has been assigned at this point — we're out!
+     */
+    if (!node.props.definition)
+        (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.error)(600, node);
+    /**
+     * All props that are bound "late" (after node creation) — are added to a set
+     * which is used to watch the context.attrs object.
+     */
+    const lateBoundProps = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(new Set(node.props.definition.props || []));
+    /**
+     * Any additional props added at a "later" time should also be part of the
+     * late bound props.
+     */
+    node.on('added-props', ({ payload: lateProps }) => {
+        if (Array.isArray(lateProps))
+            lateProps.forEach((newProp) => lateBoundProps.value.add(newProp));
+    });
+    /**
+     * These prop names must be assigned.
+     */
+    const pseudoPropNames = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(() => pseudoProps.concat([...lateBoundProps.value]).reduce((names, prop) => {
+        if (typeof prop === 'string') {
+            names.push((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.camel)(prop));
+            names.push((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.kebab)(prop));
+        }
+        else {
+            names.push(prop);
+        }
+        return names;
+    }, []));
+    /* Splits Classes object into discrete props for each key */
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watchEffect)(() => classesToNodeProps(node, props));
+    /**
+     * The props object already has properties even if they start as "undefined"
+     * so we can loop over them and individual watchEffect to prevent responding
+     * inappropriately.
+     */
+    const passThrough = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.nodeProps)(props);
+    for (const prop in passThrough) {
+        (0,vue__WEBPACK_IMPORTED_MODULE_1__.watch)(() => props[prop], () => {
+            if (props[prop] !== undefined) {
+                node.props[prop] = props[prop];
+            }
+        });
+    }
+    /**
+     * Watch "pseudoProp" attributes explicitly.
+     */
+    const attributeWatchers = new Set();
+    const possibleProps = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.nodeProps)(context.attrs);
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watchEffect)(() => {
+        watchAttributes((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.only)(possibleProps, pseudoPropNames.value));
+    });
+    /**
+     * Defines attributes that should be used as props.
+     * @param attrProps - Attributes that should be used as props instead
+     */
+    function watchAttributes(attrProps) {
+        attributeWatchers.forEach((stop) => {
+            stop();
+            attributeWatchers.delete(stop);
+        });
+        for (const prop in attrProps) {
+            const camelName = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.camel)(prop);
+            attributeWatchers.add((0,vue__WEBPACK_IMPORTED_MODULE_1__.watch)(() => context.attrs[prop], () => {
+                node.props[camelName] = context.attrs[prop];
+            }));
+        }
+    }
+    /**
+     * Watch and dynamically set attribute values, those values that are not
+     * props and are not pseudoProps
+     */
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watchEffect)(() => {
+        const attrs = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.except)((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.nodeProps)(context.attrs), pseudoPropNames.value);
+        node.props.attrs = Object.assign({}, node.props.attrs || {}, attrs);
+    });
+    /**
+     * Add any/all "prop" errors to the store.
+     */
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watchEffect)(() => {
+        const messages = props.errors.map((error) => (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.createMessage)({
+            key: (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.slugify)(error),
+            type: 'error',
+            value: error,
+            meta: { source: 'prop' },
+        }));
+        node.store.apply(messages, (message) => message.type === 'error' && message.meta.source === 'prop');
+    });
+    /**
+     * Add input errors.
+     */
+    if (node.type !== 'input') {
+        const sourceKey = `${node.name}-prop`;
+        (0,vue__WEBPACK_IMPORTED_MODULE_1__.watchEffect)(() => {
+            const keys = Object.keys(props.inputErrors);
+            const messages = keys.reduce((messages, key) => {
+                let value = props.inputErrors[key];
+                if (typeof value === 'string')
+                    value = [value];
+                if (Array.isArray(value)) {
+                    messages[key] = value.map((error) => (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.createMessage)({
+                        key: error,
+                        type: 'error',
+                        value: error,
+                        meta: { source: sourceKey },
+                    }));
+                }
+                return messages;
+            }, {});
+            node.store.apply(messages, (message) => message.type === 'error' && message.meta.source === sourceKey);
+        });
+    }
+    /**
+     * Watch the config prop for any changes.
+     */
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watchEffect)(() => Object.assign(node.config, props.config));
+    /**
+     * Produce another parent object.
+     */
+    if (node.type !== 'input') {
+        (0,vue__WEBPACK_IMPORTED_MODULE_1__.provide)(parentSymbol, node);
+    }
+    let inputTimeout;
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    const mutex = new WeakSet();
+    /**
+     * Explicitly watch the input value, and emit changes (lazy)
+     */
+    node.on('modelUpdated', () => {
+        var _a, _b;
+        // Emit the values after commit
+        context.emit('inputRaw', (_a = node.context) === null || _a === void 0 ? void 0 : _a.value, node);
+        clearTimeout(inputTimeout);
+        inputTimeout = setTimeout(context.emit, 20, 'input', (_b = node.context) === null || _b === void 0 ? void 0 : _b.value, node);
+        if (isVModeled && node.context) {
+            const newValue = useRaw(node.context.value);
+            if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.isObject)(newValue) && useRaw(props.modelValue) !== newValue) {
+                // If this is an object that has been mutated inside FormKit core then
+                // we know when it is emitted it will "return" in the watchVerbose so
+                // we pro-actively add it to the mutex.
+                mutex.add(newValue);
+            }
+            context.emit('update:modelValue', newValue);
+        }
+    });
+    /**
+     * Enabled support for v-model, using this for groups/lists is not recommended
+     */
+    if (isVModeled) {
+        watchVerbose((0,vue__WEBPACK_IMPORTED_MODULE_1__.toRef)(props, 'modelValue'), (path, value) => {
+            var _a;
+            const rawValue = useRaw(value);
+            if ((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.isObject)(rawValue) && mutex.has(rawValue)) {
+                return mutex.delete(rawValue);
+            }
+            if (!path.length)
+                node.input(value, false);
+            else
+                (_a = node.at(path)) === null || _a === void 0 ? void 0 : _a.input(value, false);
+        });
+    }
+    /**
+     * When this input shuts down, we need to "delete" the node too.
+     */
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.onUnmounted)(() => node.destroy());
+    return node;
+}
+
+let totalCreated = 1;
+/**
+ * Determine if the given object is a vue component.
+ *
+ * @param obj - Object or function
+ * @returns
+ * @public
+ */
+function isComponent(obj) {
+    return ((typeof obj === 'function' && obj.length === 2) ||
+        (typeof obj === 'object' &&
+            !Array.isArray(obj) &&
+            !('$el' in obj) &&
+            !('$cmp' in obj) &&
+            !('if' in obj)));
+}
+/**
+ * Creates a new input from schema or a Vue component with the "standard"
+ * FormKit features in place such as labels, help text, validation messages, and
+ * class support.
+ *
+ * @param schemaOrComponent - The actual schema of the input.
+ * @public
+ */
+function createInput(schemaOrComponent, definitionOptions = {}) {
+    const definition = {
+        type: 'input',
+        ...definitionOptions,
+    };
+    let schema = undefined;
+    if (isComponent(schemaOrComponent)) {
+        const cmpName = `SchemaComponent${totalCreated++}`;
+        schema = () => ({
+            $cmp: cmpName,
+            props: {
+                context: '$node.context',
+            },
+        });
+        definition.library = { [cmpName]: (0,vue__WEBPACK_IMPORTED_MODULE_1__.markRaw)(schemaOrComponent) };
+    }
+    else {
+        schema = schemaOrComponent;
+    }
+    // Use the default wrapping schema
+    definition.schema = (0,_formkit_inputs__WEBPACK_IMPORTED_MODULE_3__.useSchema)(schema || 'Schema undefined');
+    return definition;
+}
+
+/**
+ * A plugin that creates Vue-specific context object on each given node.
+ * @param node - FormKitNode to create the context on.
+ * @public
+ */
+const vueBindings = function vueBindings(node) {
+    /**
+     * Start a validity counter on all blocking messages.
+     */
+    node.ledger.count('blocking', (m) => m.blocking);
+    const isValid = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(!node.ledger.value('blocking'));
+    /**
+     * Start an error message counter.
+     */
+    node.ledger.count('errors', (m) => m.type === 'error');
+    const hasErrors = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(!!node.ledger.value('errors'));
+    /**
+     * Keep track of the first time a Vue tick cycle has passed.
+     */
+    let hasTicked = false;
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.nextTick)(() => {
+        hasTicked = true;
+    });
+    /**
+     * All messages with the visibility state set to true.
+     */
+    const availableMessages = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)(node.store.reduce((store, message) => {
+        if (message.visible) {
+            store[message.key] = message;
+        }
+        return store;
+    }, {}));
+    /**
+     * A flag that determines when validation messages should be displayed.
+     */
+    const validationVisibility = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(node.props.validationVisibility || 'blur');
+    node.on('prop:validationVisibility', ({ payload }) => {
+        validationVisibility.value = payload;
+    });
+    /**
+     * Keep track of if this input has ever shown validation errors.
+     */
+    const hasShownErrors = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(validationVisibility.value === 'live');
+    /**
+     * The current visibility state of validation messages.
+     */
+    const validationVisible = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(() => {
+        if (context.state.submitted)
+            return true;
+        if (!hasShownErrors.value && !context.state.settled) {
+            return false;
+        }
+        switch (validationVisibility.value) {
+            case 'live':
+                return true;
+            case 'blur':
+                return context.state.blurred;
+            case 'dirty':
+                return context.state.dirty;
+            default:
+                return false;
+        }
+    });
+    /**
+     * Determines if the input should be considered "complete".
+     */
+    const isComplete = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(() => {
+        return hasValidation.value
+            ? isValid.value && !hasErrors.value
+            : context.state.dirty && !(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.empty)(context.value);
+    });
+    /**
+     * If the input has validation rules or not.
+     */
+    const hasValidation = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(Array.isArray(node.props.parsedRules) && node.props.parsedRules.length > 0);
+    node.on('prop:parsedRules', ({ payload: rules }) => {
+        hasValidation.value = Array.isArray(rules) && rules.length > 0;
+    });
+    /**
+     * All messages that are currently on display to an end user. This changes
+     * based on the current message type visibility, like errorVisibility.
+     */
+    const messages = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(() => {
+        const visibleMessages = {};
+        for (const key in availableMessages) {
+            const message = availableMessages[key];
+            if (message.type !== 'validation' || validationVisible.value) {
+                visibleMessages[key] = message;
+            }
+        }
+        return visibleMessages;
+    });
+    /**
+     * UI Messages.
+     */
+    const ui = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)(node.store.reduce((messages, message) => {
+        if (message.type === 'ui' && message.visible)
+            messages[message.key] = message;
+        return messages;
+    }, {}));
+    /**
+     * This is the reactive data object that is provided to all schemas and
+     * forms. It is a subset of data in the core node object.
+     */
+    const cachedClasses = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({});
+    const classes = new Proxy(cachedClasses, {
+        get(...args) {
+            const [target, property] = args;
+            let className = Reflect.get(...args);
+            if (!className && typeof property === 'string') {
+                if (!(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(target, property) && !property.startsWith('__v')) {
+                    const observedNode = (0,_formkit_observer__WEBPACK_IMPORTED_MODULE_7__.createObserver)(node);
+                    observedNode.watch((node) => {
+                        const rootClasses = typeof node.config.rootClasses === 'function'
+                            ? node.config.rootClasses(property, node)
+                            : {};
+                        const globalConfigClasses = node.config.classes
+                            ? (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.createClasses)(property, node, node.config.classes[property])
+                            : {};
+                        const classesPropClasses = (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.createClasses)(property, node, node.props[`_${property}Class`]);
+                        const sectionPropClasses = (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.createClasses)(property, node, node.props[`${property}Class`]);
+                        className = (0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.generateClassList)(node, property, rootClasses, globalConfigClasses, classesPropClasses, sectionPropClasses);
+                        target[property] = className;
+                    });
+                }
+            }
+            return className;
+        },
+    });
+    const describedBy = (0,vue__WEBPACK_IMPORTED_MODULE_1__.computed)(() => {
+        const describers = [];
+        if (context.help) {
+            describers.push(`help-${node.props.id}`);
+        }
+        for (const key in messages.value) {
+            describers.push(`${node.props.id}-${key}`);
+        }
+        return describers.length ? describers.join(' ') : undefined;
+    });
+    const value = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(node.value);
+    const _value = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(node.value);
+    const context = (0,vue__WEBPACK_IMPORTED_MODULE_1__.reactive)({
+        _value,
+        attrs: node.props.attrs,
+        disabled: node.props.disabled,
+        describedBy,
+        fns: {
+            length: (obj) => Object.keys(obj).length,
+            number: (value) => Number(value),
+            string: (value) => String(value),
+            json: (value) => JSON.stringify(value),
+            eq: _formkit_utils__WEBPACK_IMPORTED_MODULE_2__.eq,
+        },
+        handlers: {
+            blur: () => node.store.set((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.createMessage)({ key: 'blurred', visible: false, value: true })),
+            touch: () => {
+                node.store.set((0,_formkit_core__WEBPACK_IMPORTED_MODULE_0__.createMessage)({ key: 'dirty', visible: false, value: true }));
+            },
+            DOMInput: (e) => {
+                node.input(e.target.value);
+                node.emit('dom-input-event', e);
+            },
+        },
+        help: node.props.help,
+        id: node.props.id,
+        label: node.props.label,
+        messages,
+        node: (0,vue__WEBPACK_IMPORTED_MODULE_1__.markRaw)(node),
+        options: node.props.options,
+        state: {
+            blurred: false,
+            complete: isComplete,
+            dirty: false,
+            submitted: false,
+            settled: node.isSettled,
+            valid: isValid,
+            errors: hasErrors,
+            rules: hasValidation,
+            validationVisible,
+        },
+        type: node.props.type,
+        ui,
+        value,
+        classes,
+    });
+    /**
+     * Ensure the context object is properly configured after booting up.
+     */
+    node.on('created', () => {
+        if (!(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.eq)(context.value, node.value)) {
+            _value.value = node.value;
+            value.value = node.value;
+            (0,vue__WEBPACK_IMPORTED_MODULE_1__.triggerRef)(value);
+            (0,vue__WEBPACK_IMPORTED_MODULE_1__.triggerRef)(_value);
+        }
+    });
+    /**
+     * Sets the settled state.
+     */
+    node.on('settled', ({ payload: isSettled }) => {
+        context.state.settled = isSettled;
+    });
+    /**
+     * Observes node.props properties explicitly and updates them in the context
+     * object.
+     * @param observe - Props to observe and register as context data.
+     */
+    function observeProps(observe) {
+        observe.forEach((prop) => {
+            prop = (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.camel)(prop);
+            if (!(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(context, prop) && (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.has)(node.props, prop)) {
+                context[prop] = node.props[prop];
+            }
+            node.on(`prop:${prop}`, ({ payload }) => {
+                context[prop] = payload;
+            });
+        });
+    }
+    /**
+     * We use a node observer to individually observe node props.
+     */
+    const rootProps = [
+        'help',
+        'label',
+        'disabled',
+        'options',
+        'type',
+        'attrs',
+        'preserve',
+        'preserveErrors',
+        'id',
+    ];
+    observeProps(rootProps);
+    /**
+     * Once the input is defined, deal with it.
+     * @param definition - Type definition.
+     */
+    function definedAs(definition) {
+        if (definition.props)
+            observeProps(definition.props);
+    }
+    node.props.definition && definedAs(node.props.definition);
+    /**
+     * When new props are added to the core node as "props" (ie not attrs) then
+     * we automatically need to start tracking them here.
+     */
+    node.on('added-props', ({ payload }) => observeProps(payload));
+    /**
+     * Watch for input events from core.
+     */
+    node.on('input', ({ payload }) => {
+        _value.value = payload;
+        (0,vue__WEBPACK_IMPORTED_MODULE_1__.triggerRef)(_value);
+    });
+    /**
+     * Watch for input commits from core.
+     */
+    node.on('commit', ({ payload }) => {
+        value.value = _value.value = payload;
+        (0,vue__WEBPACK_IMPORTED_MODULE_1__.triggerRef)(value);
+        node.emit('modelUpdated');
+        // The input is dirty after a value has been input by a user
+        if (!context.state.dirty && node.isCreated && hasTicked)
+            context.handlers.touch();
+        if (isComplete &&
+            node.type === 'input' &&
+            hasErrors.value &&
+            !(0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.undefine)(node.props.preserveErrors)) {
+            node.store.filter((message) => { var _a; return !(message.type === 'error' && ((_a = message.meta) === null || _a === void 0 ? void 0 : _a.autoClear) === true); });
+        }
+    });
+    /**
+     * Update the local state in response to messages.
+     * @param message - A formkit message
+     */
+    const updateState = async (message) => {
+        if (message.type === 'ui' &&
+            message.visible &&
+            !message.meta.showAsMessage) {
+            ui[message.key] = message;
+        }
+        else if (message.visible) {
+            availableMessages[message.key] = message;
+        }
+        else if (message.type === 'state') {
+            // await node.settled
+            context.state[message.key] = !!message.value;
+        }
+    };
+    /**
+     * Listen to message events and modify the local message data values.
+     */
+    node.on('message-added', (e) => updateState(e.payload));
+    node.on('message-updated', (e) => updateState(e.payload));
+    node.on('message-removed', ({ payload: message }) => {
+        delete ui[message.key];
+        delete availableMessages[message.key];
+        delete context.state[message.key];
+    });
+    node.on('settled:blocking', () => {
+        isValid.value = true;
+    });
+    node.on('unsettled:blocking', () => {
+        isValid.value = false;
+    });
+    node.on('settled:errors', () => {
+        hasErrors.value = false;
+    });
+    node.on('unsettled:errors', () => {
+        hasErrors.value = true;
+    });
+    /**
+     * Watch the validation visible prop and set the hasShownErrors state.
+     */
+    (0,vue__WEBPACK_IMPORTED_MODULE_1__.watch)(validationVisible, (value) => {
+        if (value) {
+            hasShownErrors.value = true;
+        }
+    });
+    node.context = context;
+    // The context is complete
+    node.emit('context', node, false);
+};
+
+/**
+ * Default configuration options. Includes all validation rules,
+ * en i18n messages.
+ * @public
+ */
+const defaultConfig = (options = {}) => {
+    const { rules = {}, locales = {}, inputs: inputs$1 = {}, messages = {}, locale = undefined, ...nodeOptions } = options;
+    /**
+     * The default configuration includes the validation plugin,
+     * with all core-available validation rules.
+     */
+    const validation = (0,_formkit_validation__WEBPACK_IMPORTED_MODULE_5__.createValidationPlugin)({
+        ..._formkit_rules__WEBPACK_IMPORTED_MODULE_4__,
+        ...(rules || {}),
+    });
+    /**
+     * Includes the i18n plugin with only the english language
+     * messages.
+     */
+    const i18n = (0,_formkit_i18n__WEBPACK_IMPORTED_MODULE_6__.createI18nPlugin)((0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.extend)({ en: _formkit_i18n__WEBPACK_IMPORTED_MODULE_6__.en, ...(locales || {}) }, messages));
+    /**
+     * Create the library of inputs that are generally available. This default
+     * config imports all "native" inputs by default, but
+     */
+    const library = (0,_formkit_inputs__WEBPACK_IMPORTED_MODULE_3__.createLibraryPlugin)(_formkit_inputs__WEBPACK_IMPORTED_MODULE_3__.inputs, inputs$1);
+    return (0,_formkit_utils__WEBPACK_IMPORTED_MODULE_2__.extend)({
+        plugins: [library, vueBindings, i18n, validation],
+        ...(!locale ? {} : { config: { locale } }),
+    }, nodeOptions || {}, true);
+};
 
 
 
