@@ -83,7 +83,7 @@ class AuthTest extends TestCase
             'password' => 'password',
         ]);
 
-        $this->assertDatabaseHas('users', $user->toArray());
+        $this->assertDatabaseHas('users', ['username' => $user->username]);
 
         $response = $this->json('POST', '/api/register', [
             'username' => $user->username,
