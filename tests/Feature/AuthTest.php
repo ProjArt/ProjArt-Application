@@ -78,15 +78,15 @@ class AuthTest extends TestCase
     }
 
     public function test_register_fail_username_already_taken() {
-        $response = $this->json('POST', '/api/register', [
+        $user = User::create([
             'username' => 'test',
             'password' => 'password',
         ]);
 
-        $response->assertOk();
+        $this->assertDatabaseHas('users', $user->toArray());
 
         $response = $this->json('POST', '/api/register', [
-            'username' => 'test',
+            'username' => $user->username,
             'password' => 'password',
         ]);
 
