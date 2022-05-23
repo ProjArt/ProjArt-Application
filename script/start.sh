@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
+cd ..
 composer update &&
-npm install &&
-npm run hot  &
 php artisan serve &
+npm install &&
+npm run dev  &

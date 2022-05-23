@@ -9,8 +9,8 @@
         "prod": "npm run production",
         "production": "mix --production",
         "test": "jest",
-        "start": "cd script; ./start.sh",
-        "stop": "cd script; ./stop.sh"
+        "start": "cd script; bash ./start.sh",
+        "stop": "cd script; bash ./stop.sh"
     },
     "devDependencies": {
         "@popperjs/core": "^2.10.2",
