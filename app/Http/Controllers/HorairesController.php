@@ -7,8 +7,13 @@ use Illuminate\Http\Request;
 
 class HorairesController extends Controller
 {
-    public function fetchAll() {
-        HorairesService::fetchAllHoraires(auth()->user());
+    public function fetchAll()
+    {
+        try {
+            HorairesService::fetchAllHoraires(auth()->user());
+        } catch (\Exception $e) {
+            return httpError($e->getMessage());
+        }
 
         return httpSuccess("Horaires fetched");
     }
