@@ -68,10 +68,10 @@ jobs:
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
           
-  Vue-test:
+  vue-tests:
 
     runs-on: ubuntu-latest
-
+    needs: laravel-tests
     strategy:
       matrix:
         node-version: [12.x, 14.x, 16.x]
@@ -104,8 +104,9 @@ jobs:
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
             
-  Confirmation:
+  confirmation:
         runs-on: ubuntu-latest
+        needs: vue-tests
         steps:
         - name: send telegram message on push
           uses: appleboy/telegram-action@master
