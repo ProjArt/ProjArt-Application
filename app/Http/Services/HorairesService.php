@@ -85,7 +85,7 @@ class HorairesService
                 ]);
                 $horairesID[] = $horaire->id; */
             }
-            $user->horaires()->sync($horairesID);
+            //$user->horaires()->sync($horairesID);
         }
     }
 }
