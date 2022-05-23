@@ -69,7 +69,6 @@ jobs:
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
           
   vue-tests:
-    if: false
     runs-on: ubuntu-latest
     needs: laravel-tests
     strategy:
@@ -84,10 +83,10 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm install
-    - run: npm run build --if-present
-    - run: npm run test
+    #- run: npm ci
+    #- run: npm install
+    #- run: npm run build --if-present
+    #- run: npm run test
 
     - name: send telegram message on push
       if: ${{ failure() }}
