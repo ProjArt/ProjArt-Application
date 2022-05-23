@@ -33,7 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('/fetch/gaps')->group(function() {
         Route::get('/events', [GapsEventsController::class, 'fetchAll'])->name('api.fetch.gaps.events');
-        Route::get('/notes', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
+        Route::get('/marks', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
     });
 });
 
