@@ -75,17 +75,19 @@ class GapsEventsService
             $ical->initUrl($user->getActualHoraireLink());
 
 
-            $horairesID = [];
+            /* $horairesID = [];
             foreach ($ical->events() as $event) {
-                /* $horaire = Horaire::firstOrCreate([
+                 $horaire = Horaire::firstOrCreate([
                     'title' => $event->summary,
                     'start' => $event->dtstart,
                     'end' => $event->dtend,
                     'location' => $event->location ?? "",
                 ]);
-                $horairesID[] = $horaire->id; */
-            }
+                $horairesID[] = $horaire->id;
+            } */
             //$user->horaires()->sync($horairesID);
+
+            return $ical->events(); // Returns an array of events
         }
     }
 }

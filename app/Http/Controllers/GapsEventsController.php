@@ -10,11 +10,11 @@ class GapsEventsController extends Controller
     public function fetchAll()
     {
         try {
-            GapsEventsService::fetchAllHoraires(auth()->user());
+            $events = GapsEventsService::fetchAllHoraires(auth()->user());
         } catch (\Exception $e) {
             return httpError($e->getMessage());
         }
 
-        return httpSuccess("Horaires fetched");
+        return httpSuccess("Horaires fetched", $events);
     }
 }

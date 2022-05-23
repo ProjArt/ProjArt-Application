@@ -10,11 +10,11 @@ class GapsMarksController extends Controller
     public function fetchAll()
     {
         try {
-            GapsMarksService::fetchAllNotes(auth()->user());
+            $marks = GapsMarksService::fetchAllNotes(auth()->user());
         } catch (\Exception $e) {
             return httpError($e->getMessage());
         }
 
-        return httpSuccess("Notes fetched");
+        return httpSuccess("Notes fetched", $marks);
     }
 }

@@ -48,6 +48,7 @@ class GapsMarksService
 
             $trs = $dom->findMulti("#record_table tr");
 
+            $marks = [];
             foreach ($trs as $tr) {
                 if ($tr->class == "bulletin_unit_row") {
                     $tds = $tr->findMulti("td");
@@ -57,16 +58,19 @@ class GapsMarksService
                     $yearStart = explode("-", $tds[3]->innerText)[0];
                     $yearEnd = explode("-", $tds[3]->innerText)[1];
 
-                   /*  $note = Note::firstOrCreate([
+                    $mark = /* Note::firstOrCreate */([
                         'module_code' => $moduleCode,
                         'module_name' => $moduleName,
                         'note' => str_replace("<br>", " ", $note),
                         'yearStart' => $yearStart,
                         'yearEnd' => $yearEnd,
-                        'user_user_id' => $user->id,
-                    ]); */
+                        'user_id' => $user->id,
+                    ]); 
+
+                    $marks[] = $mark;
                 }
             }
+            return $marks;
         }
     }
 }
