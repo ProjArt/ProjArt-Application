@@ -106,7 +106,7 @@ class AuthTest extends TestCase
 
     public function test_cannot_logout_if_not_logged() {
 
-        $response = $this->json('GET', '/api/logout', []);
+        $response = $this->json('GET', '/api/logout', []); 
 
         $response->assertUnauthorized();
     }

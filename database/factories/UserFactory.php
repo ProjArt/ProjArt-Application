@@ -19,7 +19,7 @@ class UserFactory extends Factory
     {
         return [
             'username' => $this->faker->userName(),
-            'password' => encrypt('password'),
+            'password' => ('password'),
             'remember_token' => Str::random(10),
         ];
     }
