@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use voku\helper\HtmlDomParser;
 
 class User extends Authenticatable
 {
@@ -49,5 +50,33 @@ class User extends Authenticatable
             get: fn ($value) => decrypt($value),
             set : fn($value) => encrypt($value)
         );
+    }
+
+    public function setPersonnalNumber()
+    {
+        if ($this->personal_number == 0) {
+            $content = file_get_contents("https://" . $this->username . ":" . urlencode($this->password) . "@gaps.heig-vd.ch/consultation/horaires/");
+            $dom = HtmlDomParser::str_get_html($content);
+            $element = $dom->findOne('div.scheduleLinks span.navLink a'); // "$element" === instance of "SimpleHtmlDomInterface"
+
+            preg_match('/[0-9]{5}/', $element->href, $matches);
+            $this->personal_number = $matches[0];
+            $this->update();
+        }
+    }
+
+    public function getActualHoraireLink()
+    {
+        $url = "https://" . $this->username . ":" . urlencode($this->password) . "@gaps.heig-vd.ch/consultation/horaires/";
+        $content = file_get_contents($url);
+        $dom = HtmlDomParser::str_get_html($content);
+        $links = $dom->findMulti("a");
+        $found = "";
+        foreach ($links as $link) {
+            if (str_contains($link->innerText, "[Outlook et Apple Calendar]")) {
+                $found = $link->href;
+            }
+        }
+        return $url.$found;
     }
 }
