@@ -8,6 +8,4 @@ export const API = {
         method: "POST",
         path: () => `${API_URL}login`,
     },
-
 };
-

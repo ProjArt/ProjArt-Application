@@ -7,24 +7,22 @@ use App\Http\Requests\AuthUserRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Traits\HttpResponses;
 
 class AuthController extends Controller
 {
-    use HttpResponses;
 
     public function register(AuthUserRequest $request)
     {
         $user = User::whereUsername($request->username)->first();
 
         if ($user) {
-            return $this->failure("This username is already taken");
+            return httpError("This username is already taken");
         }
 
         $user = User::create($request->all());
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return $this->success("Register validated", [
+        return httpSuccess("Register validated", [
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);
@@ -36,12 +34,12 @@ class AuthController extends Controller
 
         if (!$user || ($user->password != $request->password)) { // user not found or password is wrong
 
-            return $this->failure('Invalid login details');
+            return httpError('Invalid login details');
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
-        return $this->success("Login validated", [
+        return httpSuccess("Login validated", [
             'access_token' => $token,
             'token_type' => 'Bearer',
         ]);
@@ -49,7 +47,7 @@ class AuthController extends Controller
 
     public function me(Request $request)
     {
-        return $this->success("User found", [
+        return httpSuccess("User found", [
             'user' => $request->user(),
         ]);
     }
@@ -58,6 +56,6 @@ class AuthController extends Controller
     {
         $request->user()->currentAccessToken()->delete();
 
-        return $this->success("Logout succeed", []);
+        return httpSuccess("Logout succeed");
     }
 }

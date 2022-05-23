@@ -2,7 +2,6 @@
 
 namespace App\Exceptions;
 
-use App\Traits\HttpResponses;
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
@@ -11,7 +10,6 @@ use Illuminate\Validation\ValidationException;
 
 class Handler extends ExceptionHandler
 {
-    use HttpResponses;
     /**
      * A list of exception types with their corresponding custom log levels.
      *
@@ -62,7 +60,7 @@ class Handler extends ExceptionHandler
      */
     protected function invalidJson($request, ValidationException $exception)
     {
-        return $this->failure($exception->getMessage(), $exception->errors(), $exception->status);
+        return httpError($exception->getMessage(), $exception->errors(), $exception->status);
     }
 
     /**
@@ -76,7 +74,7 @@ class Handler extends ExceptionHandler
     {
         return $request->expectsJson()
             // Here you can change the form of the json response
-            ? $this->failure('Unauthenticated', $exception->guards(), 401)
+            ? httpError('Unauthenticated', $exception->guards(), 401)
             : redirect()->guest($exception->redirectTo() ?? route('login'));
     }
 }
