@@ -30,5 +30,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/me', 'me')->name("api.me");
         Route::get('/logout', 'logout')->name("api.logout");
     });
+});
 
+Route::get('/', function () {
+    return response()->json(['message' => 'Welcome to API']);
 });

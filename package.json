@@ -13,6 +13,7 @@
         "stop": "cd script; bash ./stop.sh"
     },
     "devDependencies": {
+        "@babel/plugin-transform-runtime": "^7.18.0",
         "@popperjs/core": "^2.10.2",
         "@types/jest": "^27.5.1",
         "@vue/compiler-sfc": "^3.2.33",
