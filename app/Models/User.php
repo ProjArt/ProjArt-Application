@@ -14,8 +14,6 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
-
-
     const ROLE_STUDENT = 'student';
     const ROLE_TEACHER = 'teacher';
     const ROLE_ADMIN = 'admin';
@@ -55,7 +53,7 @@ class User extends Authenticatable
     {
         return Attribute::make(
             get: fn ($value) => decrypt($value),
-            set : fn($value) => encrypt($value)
+            set: fn ($value) => encrypt($value)
         );
     }
 
@@ -84,6 +82,15 @@ class User extends Authenticatable
                 $found = $link->href;
             }
         }
-        return $url.$found;
+        return $url . $found;
+    }
+
+    public function person()
+    {
+        if ($this->role == User::ROLE_STUDENT) {
+            return $this->hasOne(Student::class);
+        } else if ($this->role == User::ROLE_TEACHER) {
+            return $this->hasOne(Teacher::class);
+        }
     }
 }
