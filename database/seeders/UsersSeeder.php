@@ -18,8 +18,6 @@ class UsersSeeder extends Seeder
     {
         DB::table('users')->truncate();
         \App\Models\User::factory()
-            ->create([
-                'theme_id' => 1,
-            ]);
+            ->create();
     }
 }

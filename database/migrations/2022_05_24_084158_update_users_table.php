@@ -15,9 +15,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('theme_id')->constrained('themes')->onDelete('restrict')->onUpdate('restrict');
+            $table->foreignId('theme_id')->default(1)->constrained('themes')->onDelete('restrict')->onUpdate('restrict');
             $table->integer('gaps_id')->default(0);
             $table->enum('role', User::ROLES)->default(User::ROLE_STUDENT);
+            $table->unique(['username'], 'user_unique');
         });
     }
 

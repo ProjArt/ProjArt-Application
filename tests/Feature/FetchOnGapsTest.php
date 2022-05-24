@@ -24,12 +24,18 @@ class FetchOnGapsTest extends TestCase
 
     public function test_fetch_on_gaps_failed_if_user_not_on_gaps()
     {
+        $user =  User::factory()->create([
+            "username" => "test" . date("YmdHis"),
+            "password" => "testtest",
+        ]);
         Sanctum::actingAs(
-            User::factory()->create(),
+            $user
         );
 
         $response = $this->json('GET', route('api.fetch.gaps.events'));
 
         $response->assertUnauthorized();
+
+        $user->delete();
     }
 }

@@ -39,8 +39,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/marks', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
     });
 
-    Route::resource('/events', EventController::class);
-    Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents']);
+    Route::resource('/events', EventController::class, [
+        'as' => 'api'
+    ]);
+    Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents'])->name("api.getCalendarEvents");
 });
 
 Route::get('/', function () {

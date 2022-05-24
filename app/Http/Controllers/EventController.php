@@ -18,17 +18,12 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        $user = $request->user();
-        $followedCalendars = $user->calendarsFollow()->get();
-        $events = [];
+        $events = $request->user()->calendarsFollow->map(function ($calendar) {
+            return $calendar->events;
+        });
 
-        foreach($followedCalendars as $calendar){
-            $calendarEvents = $calendar->events()->get();
-            array_push($events, $calendarEvents);
-        }
-        return httpSuccess('user', $calendarEvents);      
-
-    }    
+        return httpSuccess('user', $events);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -74,13 +69,12 @@ class EventController extends Controller
         //
     }
 
-    
+
 
     //Renvoit un objet json contenant une liste d'évènements. Elle correspond à l'ensemble des évènements de la classe
-    public function getCalendarEvents($calendarId){
+    public function getCalendarEvents($calendarId)
+    {
         $calendar = Calendar::findOrFail($calendarId);
-        $events = $calendar->events()->get();
-        return httpSuccess('Events', $events);
-
+        return httpSuccess('Events', $calendar->events);
     }
 }
