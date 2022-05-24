@@ -15,7 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        if(config('database.default') == "mysql") {
+            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        }
         //DB::table('horaires')->truncate();
         // \App\Models\User::factory(10)->create();
 
@@ -28,6 +30,10 @@ class DatabaseSeeder extends Seeder
         $this->call(ThemeSeeder::class);
         $this->call(UsersSeeder::class);
         $this->call(EventSeeder::class);
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        $this->call(CalendarSeeder::class);
+        $this->call(CalendarUserFollowSeeder::class);
+        if(config('database.default') == "mysql") {
+            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        }
     }
 }

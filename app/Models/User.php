@@ -100,7 +100,14 @@ class User extends Authenticatable
         }
     }
 
-    public function calendars(){
-        return $this->belongsToMany(Calendar::class); 
+    public function calendarsFollow(){
+        // $calendarIds = DB::table('calendar_user_follow')
+        // ->select('calendar_id')
+        // ->where('user_id', '=', $this->id)
+        // ->get();
+
+
+        // $calendars = DB::table('calendars')->where('id', '=', )
+        return $this->belongsToMany(Calendar::class, 'calendar_user_follow', 'calendar_id', 'user_id');
     }
 }

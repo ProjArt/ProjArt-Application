@@ -40,7 +40,6 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::resource('/events', EventController::class);
-    Route::get('/events/{eventId}', [EventController::class, 'getSpecificEvent']);
     Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents']);
 });
 

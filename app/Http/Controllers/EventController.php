@@ -6,6 +6,7 @@ use App\Models\Event;
 use App\Models\Calendar;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Request;
 
 class EventController extends Controller
@@ -18,14 +19,15 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $followedCalendars = $user->calendars();
+        $followedCalendars = $user->calendarsFollow()->get();
         $events = [];
 
         foreach($followedCalendars as $calendar){
-            $calendarEvents = $calendar->events();
+            $calendarEvents = $calendar->events()->get();
             array_push($events, $calendarEvents);
         }
-        return response()->json(['success' => true,  'data' => $events], 200);
+        return httpSuccess('user', $calendarEvents);      
+
     }    
     /**
      * Store a newly created resource in storage.
@@ -46,7 +48,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return httpSuccess('Events', $event);
     }
 
     /**
@@ -72,11 +74,7 @@ class EventController extends Controller
         //
     }
 
-    //Renvoit un objet json correspondant à l'évènement dont l'id est spécifié en url
-    public function getSpecificEvent($eventId){
-        $event = Event::findOrFail($eventId);
-        return response()->json(['success' => true,  'data' => $event], 200);
-    }
+    
 
     //Renvoit un objet json contenant une liste d'évènements. Elle correspond à l'ensemble des évènements de la classe
     public function getCalendarEvents($calendarId){
