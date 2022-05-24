@@ -55,27 +55,28 @@ class GapsEventsService
 
         if ($user == null) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-            DB::table('horaires')->truncate();
+            //DB::table('horaires')->truncate();
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         }
 
         $users = $user != null ? [$user] : User::all();
 
         foreach ($users as $user) {
-            $user->setPersonnalNumber();
-            $ical = new ICal('ICal.ics', array(
-                'defaultSpan'                 => 2,     // Default value
-                'defaultTimeZone'             => 'UTC',
-                'defaultWeekStart'            => 'MO',  // Default value
-                'disableCharacterReplacement' => false, // Default value
-                'filterDaysAfter'             => null,  // Default value
-                'filterDaysBefore'            => null,  // Default value
-                'skipRecurrence'              => false, // Default value
-            ));
-            $ical->initUrl($user->getActualHoraireLink());
+            try {
+                $user->setPersonnalNumber();
+                $ical = new ICal('ICal.ics', array(
+                    'defaultSpan'                 => 2,     // Default value
+                    'defaultTimeZone'             => 'UTC',
+                    'defaultWeekStart'            => 'MO',  // Default value
+                    'disableCharacterReplacement' => false, // Default value
+                    'filterDaysAfter'             => null,  // Default value
+                    'filterDaysBefore'            => null,  // Default value
+                    'skipRecurrence'              => false, // Default value
+                ));
+                $ical->initUrl($user->getActualHoraireLink());
 
 
-            /* $horairesID = [];
+                /* $horairesID = [];
             foreach ($ical->events() as $event) {
                  $horaire = Horaire::firstOrCreate([
                     'title' => $event->summary,
@@ -85,9 +86,11 @@ class GapsEventsService
                 ]);
                 $horairesID[] = $horaire->id;
             } */
-            //$user->horaires()->sync($horairesID);
-
-            return $ical->events(); // Returns an array of events
+                //$user->horaires()->sync($horairesID);
+            } catch (\Exception $e) {
+               continue;
+            }
         }
+        return $ical->events(); // Returns an array of events
     }
 }

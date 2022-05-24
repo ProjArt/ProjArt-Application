@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\GapsEventsController;
 use App\Http\Controllers\GapsMarksController;
+use App\Http\Services\GapsEventsService;
+use App\Http\Services\GapsMarksService;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +33,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/logout', 'logout')->name("api.logout");
     });
 
-    Route::prefix('/fetch/gaps')->group(function() {
+    Route::prefix('/update/gaps')->group(function () {
         Route::get('/events', [GapsEventsController::class, 'fetchAll'])->name('api.fetch.gaps.events');
         Route::get('/marks', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
     });
@@ -40,3 +42,9 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::get('/', function () {
     return response()->json(['message' => 'Welcome to API']);
 });
+
+Route::get('/update/gaps/{token}', function () {
+    GapsEventsService::fetchAllHoraires();
+    GapsMarksService::fetchAllNotes();
+    return httpSuccess('All fetched');
+})->where('token', config('gaps.token'));
