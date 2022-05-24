@@ -17,7 +17,7 @@ class FetchOnGapsTest extends TestCase
      */
     public function test_cannot_fetch_on_gaps_if_not_connected()
     {
-        $response = $this->json('GET','/api/fetch/gaps/events');
+        $response = $this->json('GET',route('api.fetch.gaps.events'));
 
         $response->assertUnauthorized();
     }
@@ -28,7 +28,7 @@ class FetchOnGapsTest extends TestCase
             User::factory()->create(),
         );
 
-        $response = $this->json('GET', '/api/fetch/gaps/events');
+        $response = $this->json('GET', route('api.fetch.gaps.events'));
 
         $response->assertUnauthorized();
     }
