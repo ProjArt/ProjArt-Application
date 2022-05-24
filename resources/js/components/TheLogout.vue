@@ -11,8 +11,8 @@ const submitHandler = async () => {
     isSubmitted.value = true
     console.log(toRaw(formData.value))
     useFetch({
-        url: API.login.path(),
-        method: API.login.method,
+        url: API.register.path(),
+        method: API.register.method,
         data: toRaw(formData.value)
     }).then((response) => {
         console.log(response);
@@ -33,6 +33,8 @@ const submitHandler = async () => {
             <h2>Création de compte</h2>
             <FormKit type="text" name="username" placeholder="unsername" validation="required" label="UserName" />
             <FormKit type="password" name="password" placeholder="password" validation="required" label="Password" />
+            <FormKit type="password" name="password_confirm" label="Confirm password" help="Confirm your new password"
+                validation="required|confirm" validation-visibility="live" validation-label="Password confirmation" />
         </FormKit>
         <div>
             <h2 v-if="isAuthenticated && isSubmitted">Compte crée</h2>
