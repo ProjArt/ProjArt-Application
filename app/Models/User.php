@@ -93,4 +93,8 @@ class User extends Authenticatable
             return $this->hasOne(Teacher::class);
         }
     }
+
+    public function calendars(){
+        return $this->belongsToMany(Calendar::class); 
+    }
 }

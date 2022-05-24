@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\GapsEventsController;
 use App\Http\Controllers\GapsMarksController;
 use App\Http\Services\GapsEventsService;
@@ -37,6 +38,10 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/events', [GapsEventsController::class, 'fetchAll'])->name('api.fetch.gaps.events');
         Route::get('/marks', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
     });
+
+    Route::resource('/events', EventController::class);
+    Route::get('/events/{eventId}', [EventController::class, 'getSpecificEvent']);
+    Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents']);
 });
 
 Route::get('/', function () {
