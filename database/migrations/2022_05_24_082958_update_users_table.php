@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->integer('theme_id')->nullable();
             $table->integer('gaps_id')->default(0);
-            $table->enum('role', User::ROLES);
+            $table->enum('role', User::ROLES)->nullable();
         });
     }
 
