@@ -14,14 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('themes', function (Blueprint $table) {
-            $table->integer('id');
+            $table->id();
             // $table->integer('primary_color_id');
             // $table->integer('secondary_color_id');
 
 
             $table->foreignId('primary_color_id')->on('colors')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('secondary_color_id')->on('colors')->onDelete('cascade')->onUpdate('cascade');
-            $table->primary(["id", "primary_color_id", "secondary_color_id"]);
+            $table->unique(["id", "primary_color_id", "secondary_color_id"]);
             $table->timestamps();
         });
     }
