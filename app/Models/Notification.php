@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Notification extends Model
 {
     use HasFactory;
+
+    public function notificationType()
+    {
+        return $this->belongsTo(NotificationType::class);
+    }
 }
