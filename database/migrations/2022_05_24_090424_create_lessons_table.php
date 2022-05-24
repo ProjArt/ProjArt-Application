@@ -22,7 +22,7 @@ return new class extends Migration
             $table->foreignId('event_calendar_id')->constrained('calendars')->onUpdate('cascade')->onDelete('cascade');
             $table->string('room');
 
-            $table->unique(['course_id', 'course_teacher_id', 'course_teacher_user_id', 'event_id', 'event_calendar_id', 'id']);
+            $table->unique(['course_id', 'course_teacher_id', 'course_teacher_user_id', 'event_id', 'event_calendar_id', 'id'], 'primary_keys_lessons');
             $table->timestamps();
         });
     }
