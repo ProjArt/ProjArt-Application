@@ -79,7 +79,8 @@ class EventController extends Controller
     //Renvoit un objet json contenant une liste d'évènements. Elle correspond à l'ensemble des évènements de la classe
     public function getCalendarEvents($calendarId){
         $calendar = Calendar::findOrFail($calendarId);
-        $events = $calendar->events();
-        return response()->json(['success' => true,  'data' => $events], 200);
+        $events = $calendar->events()->get();
+        return httpSuccess('Events', $events);
+
     }
 }
