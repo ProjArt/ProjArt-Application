@@ -64,7 +64,9 @@ class GapsEventsService
         $users = $user != null ? [$user] : User::all();
 
         foreach ($users as $user) {
-            $calendar = Calendar::firstOrCreate(['name' => 'M49-1']);
+            $calendar = Calendar::firstOrCreate([
+                'name' => $user->classrooms()->latest()->first()->name
+            ]);
             try {
                 $user->setPersonalNumber();
                 $ical = new ICal('ICal.ics', array(
