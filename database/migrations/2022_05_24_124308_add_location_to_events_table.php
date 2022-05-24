@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('personal_number')->default(0);
+        Schema::table('events', function (Blueprint $table) {
+            $table->string('location')->nullable();
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('personal_number');
+        Schema::table('events', function (Blueprint $table) {
+            $table->dropColumn('location');
         });
     }
 };

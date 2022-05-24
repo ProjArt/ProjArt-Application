@@ -65,8 +65,9 @@ class User extends Authenticatable
             $element = $dom->findOne('div.scheduleLinks span.navLink a'); // "$element" === instance of "SimpleHtmlDomInterface"
 
             preg_match('/[0-9]{5}/', $element->href, $matches);
-            $this->personal_number = $matches[0];
-            $this->update();
+            $this->update([
+                'gaps_id' => $matches[0],
+            ]);
         }
     }
 
@@ -83,6 +84,11 @@ class User extends Authenticatable
             }
         }
         return $url . $found;
+    }
+
+    public function theme()
+    {
+        return $this->hasOne(Theme::class);
     }
 
     public function person()
