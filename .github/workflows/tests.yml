@@ -61,8 +61,8 @@ jobs:
       if: ${{ failure() }}
       uses: appleboy/telegram-action@master
       with:
-        to: "-791975647"
-        token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
             ❌❌❌ A COMMIT DIDN'T PASS THE TEST IN LARAVEL ❌❌❌
             
@@ -97,8 +97,8 @@ jobs:
       if: ${{ failure() }}
       uses: appleboy/telegram-action@master
       with:
-        to: "-791975647"
-        token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
             ❌❌❌ A COMMIT DIDN'T PASS THE TEST IN VUE ❌❌❌
             
@@ -116,8 +116,8 @@ jobs:
         - name: send telegram message on push
           uses: appleboy/telegram-action@master
           with:
-            to: "-791975647"
-            token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
+            to: ${{ secrets.TELEGRAM_CHAT_ID }}
+            token: ${{ secrets.TELEGRAM_TOKEN }}
             message: |
                 ✅✅✅ A COMMIT WAS DONE. ✅✅✅
 
