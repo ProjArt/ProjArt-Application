@@ -15,9 +15,9 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('theme_id');
+            $table->integer('theme_id')->nullable();
             $table->integer('gaps_id');
-            $table->enum('role',User::ROLES);
+            $table->enum('role', User::ROLES);
         });
     }
 
