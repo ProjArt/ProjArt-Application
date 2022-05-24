@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class CalendarSeeder extends Seeder
+class CalendarUserFollowSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,12 +15,9 @@ class CalendarSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('calendars')->insert([
-            'name' => 'nomUser'
-        ]);
-
-        DB::table('calendars')->insert([
-            'name' => 'classUser'
+        DB::table('calendar_user_follow')->insert([
+            "user_id" => 1,
+            "calendar_id" => 1
         ]);
     }
 }
