@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('file_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('file_id')->on('files')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('file_id')->constrained('files')->onDelete('cascade')->onUpdate('cascade');
             $table->unique(["id", "user_id", "file_id"]);
         });
     }

@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('notification_type_user', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('notification_type_id')->on('notification_types')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('user_id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('notification_type_id')->constrained('notification_types')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
             $table->unique(["id", "notification_type_id", "user_id"]);
 
             $table->timestamps();

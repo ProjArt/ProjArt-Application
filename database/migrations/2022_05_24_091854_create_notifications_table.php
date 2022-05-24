@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->text('text');
-            $table->foreignId('notification_type_id')->on('notification_types')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('notification_type_id')->constrained('notification_types')->onDelete('cascade')->onUpdate('cascade');
             $table->unique(["id", "notification_type_id"]);
             $table->timestamps();
         });
