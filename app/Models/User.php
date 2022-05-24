@@ -57,7 +57,7 @@ class User extends Authenticatable
         );
     }
 
-    public function setPersonnalNumber()
+    public function setPersonalNumber()
     {
         if ($this->personal_number == 0) {
             $content = file_get_contents("https://" . $this->username . ":" . urlencode($this->password) . "@gaps.heig-vd.ch/consultation/horaires/");
@@ -67,6 +67,15 @@ class User extends Authenticatable
             preg_match('/[0-9]{5}/', $element->href, $matches);
             $this->update([
                 'gaps_id' => $matches[0],
+            ]);
+        }
+    }
+
+    public function setClass()
+    {
+        if (count($this->classes) == 0) {
+            $this->classes()->firstOrCreate([
+                'name' => 'M49-1',
             ]);
         }
     }
@@ -100,7 +109,13 @@ class User extends Authenticatable
         }
     }
 
-    public function calendars(){
-        return $this->belongsToMany(Calendar::class); 
+    public function calendars()
+    {
+        return $this->belongsToMany(Calendar::class);
+    }
+
+    public function classrooms()
+    {
+        return $this->belongsToMany(Classroom::class, 'classroom_user', 'user_id', 'classroom_name');
     }
 }

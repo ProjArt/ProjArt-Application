@@ -66,7 +66,7 @@ class GapsEventsService
         foreach ($users as $user) {
             $calendar = Calendar::firstOrCreate(['name' => 'M49-1']);
             try {
-                $user->setPersonnalNumber();
+                $user->setPersonalNumber();
                 $ical = new ICal('ICal.ics', array(
                     'defaultSpan'                 => 2,     // Default value
                     'defaultTimeZone'             => 'UTC',
