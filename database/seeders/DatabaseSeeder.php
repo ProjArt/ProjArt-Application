@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Classroom;
+use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +30,10 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ColorSeeder::class);
         $this->call(ThemeSeeder::class);
+        $this->call(ClassroomSeeder::class);
         $this->call(UsersSeeder::class);
+        DB::table('classroom_user')->truncate();
+        User::find(1)->classrooms()->attach('M49-1');
         $this->call(EventSeeder::class);
         $this->call(CalendarSeeder::class);
         $this->call(CalendarUserFollowSeeder::class);
