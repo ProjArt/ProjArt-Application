@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,11 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('theme_id')->default(1)->constrained('themes')->onDelete('restrict')->onUpdate('restrict');
-            $table->integer('gaps_id')->default(0);
-            $table->enum('role', User::ROLES)->default(User::ROLE_STUDENT);
-            $table->unique(['username'], 'user_unique');
+        Schema::table('events', function (Blueprint $table) {
+            $table->string('location')->nullable();
         });
     }
 
@@ -29,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('events', function (Blueprint $table) {
+            $table->dropColumn('location');
+        });
     }
 };

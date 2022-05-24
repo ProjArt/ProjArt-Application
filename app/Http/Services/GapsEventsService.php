@@ -2,6 +2,8 @@
 
 namespace App\Http\Services;
 
+use App\Models\Calendar;
+use App\Models\Event;
 use App\Models\User;
 use ICal\ICal;
 use Illuminate\Support\Facades\DB;
@@ -62,8 +64,11 @@ class GapsEventsService
         $users = $user != null ? [$user] : User::all();
 
         foreach ($users as $user) {
+            $calendar = $user->calendarsFollow()->firstOrCreate([
+                'name' => $user->classrooms()->latest()->first()->name
+            ]);
             try {
-                $user->setPersonnalNumber();
+                $user->setPersonalNumber();
                 $ical = new ICal('ICal.ics', array(
                     'defaultSpan'                 => 2,     // Default value
                     'defaultTimeZone'             => 'UTC',
@@ -76,21 +81,20 @@ class GapsEventsService
                 $ical->initUrl($user->getActualHoraireLink());
 
 
-                /* $horairesID = [];
-            foreach ($ical->events() as $event) {
-                 $horaire = Horaire::firstOrCreate([
-                    'title' => $event->summary,
-                    'start' => $event->dtstart,
-                    'end' => $event->dtend,
-                    'location' => $event->location ?? "",
-                ]);
-                $horairesID[] = $horaire->id;
-            } */
-                //$user->horaires()->sync($horairesID);
+                foreach ($ical->events() as $event) {
+                    $event = $calendar->events()->create([
+                        'calendar_id' => $calendar->id,
+                        'title' => $event->summary,
+                        'description' => $event->description,
+                        'start' => $event->dtstart,
+                        'end' => $event->dtend,
+                        'location' => $event->location ?? "",
+                    ]);
+                }
             } catch (\Exception $e) {
-               continue;
+                return $e->getMessage();
             }
         }
-        return $ical->events(); // Returns an array of events
+        return $calendar->events; // Returns an array of events
     }
 }

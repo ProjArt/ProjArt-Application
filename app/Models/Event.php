@@ -9,8 +9,18 @@ class Event extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'title',
+        'description',
+        'start',
+        'end',
+        'location',
+    ];
+
     public function calendar()
     {
         return $this->belongsTo(Calendar::class);
     }
+
+    
 }

@@ -57,7 +57,7 @@ class User extends Authenticatable
         );
     }
 
-    public function setPersonnalNumber()
+    public function setPersonalNumber()
     {
         if ($this->personal_number == 0) {
             $content = file_get_contents("https://" . $this->username . ":" . urlencode($this->password) . "@gaps.heig-vd.ch/consultation/horaires/");
@@ -65,8 +65,18 @@ class User extends Authenticatable
             $element = $dom->findOne('div.scheduleLinks span.navLink a'); // "$element" === instance of "SimpleHtmlDomInterface"
 
             preg_match('/[0-9]{5}/', $element->href, $matches);
-            $this->personal_number = $matches[0];
-            $this->update();
+            $this->update([
+                'gaps_id' => $matches[0],
+            ]);
+        }
+    }
+
+    public function setClass()
+    {
+        if (count($this->classes) == 0) {
+            $this->classes()->firstOrCreate([
+                'name' => 'M49-1',
+            ]);
         }
     }
 
@@ -85,6 +95,11 @@ class User extends Authenticatable
         return $url . $found;
     }
 
+    public function theme()
+    {
+        return $this->hasOne(Theme::class);
+    }
+
     public function person()
     {
         if ($this->role == User::ROLE_STUDENT) {
@@ -92,5 +107,20 @@ class User extends Authenticatable
         } else if ($this->role == User::ROLE_TEACHER) {
             return $this->hasOne(Teacher::class);
         }
+    }
+
+    public function calendarsFollow()
+    {
+        return $this->belongsToMany(Calendar::class, 'calendar_user_follow', 'user_id', 'calendar_id');
+    }
+
+    public function calendarsOwn()
+    {
+        return $this->belongsToMany(Calendar::class, 'calendar_user_own', 'user_id', 'calendar_id');
+    }
+
+    public function classrooms()
+    {
+        return $this->belongsToMany(Classroom::class, 'classroom_user', 'user_id', 'classroom_name', 'id', 'name');
     }
 }

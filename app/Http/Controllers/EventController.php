@@ -2,22 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Event;
+use App\Models\Calendar;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
-use App\Models\Event;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Symfony\Component\HttpFoundation\Request;
 
 class EventController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Retourne un json contenant une liste des évènements. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-    }
+        $events = $request->user()->calendarsFollow->map(function ($calendar) {
+            return $calendar->events;
+        });
 
+        return httpSuccess('user', $events);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -37,7 +43,7 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        return httpSuccess('Events', $event);
     }
 
     /**
@@ -61,5 +67,14 @@ class EventController extends Controller
     public function destroy(Event $event)
     {
         //
+    }
+
+
+
+    //Renvoit un objet json contenant une liste d'évènements. Elle correspond à l'ensemble des évènements de la classe
+    public function getCalendarEvents($calendarId)
+    {
+        $calendar = Calendar::findOrFail($calendarId);
+        return httpSuccess('Events', $calendar->events);
     }
 }
