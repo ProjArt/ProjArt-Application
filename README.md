@@ -2,14 +2,16 @@
 
 Il faut run les commandes suivantes :
 
-```composer install```
+```composer install
 
-```npm install```
+npm install
 
-```npm run dev```
+npm run dev
 
-```cp .env.example .env```
+cp .env.example .env
 
-```php artisan key:generate```
+php artisan key:generate
 
-```php artisan serve```
+echo 'GAPS_TOKEN="VGrxhPp9xuDb947JZADe7ESdBDkwdq"' >> .env
+
+php artisan serve```
