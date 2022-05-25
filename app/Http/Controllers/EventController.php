@@ -4,10 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Calendar;
+use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
 use Symfony\Component\HttpFoundation\Request;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 /**
  * @group Evènements
@@ -62,17 +63,7 @@ class EventController extends Controller
      * 
      * Enregistre un nouvel évènement dans la BDD
      * Succès: retourne un json contenant l'évènement créé
-     *  Fail: erreur
-     * 
-     * 
-     * À fournir dans le body de la request
-     * 
-     * title: string
-     * description: string
-     * start: date au format: 1901-01-01T00:00Z
-     * end: date au format: 1901-01-01T00:00Z
-     * calendar_id: int (il faut l'envoyer dépendamment du calendrier concerné)
-     * 
+     * Fail: erreur
      * 
      * @response scenario=success [
      *"success" => true, 
@@ -129,7 +120,10 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-        //
+
+
+        $event->update($request->all());
+        return httpSuccess('Events', $event);
     }
 
     /**
@@ -145,6 +139,7 @@ class EventController extends Controller
     {
         //
     }
+
 
 
     /* 
