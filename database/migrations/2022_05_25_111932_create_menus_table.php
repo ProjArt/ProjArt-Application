@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->date('date');
+            $table->datetime('date')->useCurrent();
             $table->timestamps();
         });
     }

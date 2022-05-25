@@ -14,10 +14,13 @@
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
-        "voku/simple_html_dom": "^4.8"
+        "php-imap/php-imap": "^2.0",
+        "voku/simple_html_dom": "^4.8",
+        "webklex/laravel-imap": "^2.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
+        "knuckleswtf/scribe": "^3.29",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",

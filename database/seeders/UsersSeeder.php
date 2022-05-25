@@ -22,5 +22,6 @@ class UsersSeeder extends Seeder
                 'theme_id' => 1,
                 'card_money' => 10,
             ]);
+            ->create();
     }
 }

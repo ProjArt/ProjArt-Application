@@ -64,7 +64,7 @@ class GapsEventsService
         $users = $user != null ? [$user] : User::all();
 
         foreach ($users as $user) {
-            $calendar = Calendar::firstOrCreate([
+            $calendar = $user->calendarsFollow()->firstOrCreate([
                 'name' => $user->classrooms()->latest()->first()->name
             ]);
             try {

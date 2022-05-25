@@ -17,10 +17,13 @@ class Event extends Model
         'location',
     ];
 
+    protected $casts = [
+        'start' => 'datetime:Y-m-d H:i:s',
+        'end' => 'datetime:Y-m-d H:i:s',
+    ];
+
     public function calendar()
     {
         return $this->belongsTo(Calendar::class);
     }
-
-    
 }

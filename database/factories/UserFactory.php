@@ -21,6 +21,7 @@ class UserFactory extends Factory
             'username' => config('gaps.username'),
             'password' => config('gaps.password'),
             'remember_token' => Str::random(10),
+            'theme_id' => 1,
         ];
     }
 

@@ -1,0 +1,43 @@
+name: Evènements
+description: |-
+
+  APIs pour gérer les évènements
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/events
+    metadata:
+      title: 'Obtenir tous les évènements'
+      description: 'Retourne un json contenant une liste des évènements. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+           "id" => 1,
+           "name" => "Calendrier 1",
+           "events" => [
+               "id" => 1,
+               "title" => "Event 1",
+               "start" => "2020-01-01",
+               "end" => "2020-01-01",
+               "description" => "Description 1",
+               "location" => "Location 1",
+               "calendar_id" => 1,
+               "created_at" => "2020-01-01",
+               "updated_at" => "2020-01-01",
+            ]
+          ]
+        headers: []
+        description: '200, success'
+    responseFields: []

@@ -10,11 +10,11 @@ class Menu extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date',
+        'id'
     ];
 
-    public function meals(){
+    public function meals()
+    {
         return $this->hasMany(Meal::class);
     }
-
 }
