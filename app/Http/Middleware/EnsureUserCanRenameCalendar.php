@@ -18,9 +18,16 @@ class EnsureUserCanManageCalendar
     {
 
         $userId = $request->user()->id;
+        $manageableCalendarsIds = DB::table('calendar_user_own')
+        ->select('calendar_id')
+        ->where('user_id', '=', $userId)
+        ->get();
 
-
-        if($request->user())
-        return $next($request);
+        if($manageableCalendarsIds != null)
+        {
+            return $next($request);
+        } else {
+            abort(403, "Vous n'avez pas le droit de faire cette opération");
+        }       
     }
 }
