@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\GapsController;
 use App\Http\Controllers\GapsEventsController;
 use App\Http\Controllers\GapsMarksController;
 use App\Http\Services\GapsEventsService;
@@ -49,8 +50,5 @@ Route::get('/', function () {
     return response()->json(['message' => 'Welcome to API']);
 });
 
-Route::get('/update/gaps/{token}', function () {
-    GapsEventsService::fetchAllHoraires();
-    GapsMarksService::fetchAllNotes();
-    return httpSuccess('All fetched');
-})->where('token', config('gaps.token'));
+
+Route::get('/update/gaps/{token}', [GapsController::class, "updateAll"])->where('token', config('gaps.token'));
