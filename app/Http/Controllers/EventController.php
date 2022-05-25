@@ -18,7 +18,7 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        $events = $request->user()->calendarsFollow->map(function ($calendar) {
+        $calendars = $request->user()->calendarsFollow->map(function ($calendar) {
             return [
                 "id" => $calendar->id,
                 "name" => $calendar->name,
@@ -26,7 +26,7 @@ class EventController extends Controller
             ];
         });
 
-        return httpSuccess('user', $events);
+        return httpSuccess('user', $calendars);
     }
     /**
      * Store a newly created resource in storage.

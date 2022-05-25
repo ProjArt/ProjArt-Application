@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "ccb058a5-c1f0-43e2-8d9a-e8dd59d9cb8f",
+        "_postman_id": "1c8bd77b-31d7-4a48-8caa-c96e6ab0571c",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"sylqyarimamknczkhwnaygyvkfkukulcvwwveuaslyqjyyuvjmdubgbqwrfxzsqphiwysuprybnvqkdntrphhswviwlhmpxlobotjfokfyoznrjxtndzbucp\",\"password\":\"z\"}"
+                            "raw": "{\"username\":\"vpiyhcpkosndjmszaevyubzmjdekxdasziqagqivlxbmyvvgofwkqbifbqpihiormwzklwboklzmzkoljxegztxwmfkefghorcuxxippnpmoygsnafafwmynctrajquzomubyjvlcjfdafracsnbxdcwcyodpezskrapzk\",\"password\":\"z\"}"
                         },
                         "description": "",
                         "auth": {
@@ -72,7 +72,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"vvdocnfejickroozqfeofbcyyfpjcydsazczffkuvnwofhnnymqgrxnfaawvzxcrsaxzswhyzilvvljbbxwfxxenzknwiqgziktcpmklcbcimemgmuepprgeexufkymvdbdwjdeooqhtobutmedzzvbkhiibtcnmbnbjyrjzaybkguseyikvhxtbisyjdxdlsbbdoqemmgbpoamxyechdld\",\"password\":\"rszwa\"}"
+                            "raw": "{\"username\":\"lyssvujnsmydxexqfxsjttuybvkbuxvhuqsthmftwrjfwkqjqhbbcnuzubzashtx\",\"password\":\"\"}"
                         },
                         "description": "",
                         "auth": {
@@ -178,13 +178,13 @@
                     ]
                 },
                 {
-                    "name": "api\/fetch\/gaps\/events",
+                    "name": "api\/update\/gaps\/events",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/fetch\/gaps\/events",
+                            "path": "api\/update\/gaps\/events",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/fetch\/gaps\/events"
+                            "raw": "{{baseUrl}}\/api\/update\/gaps\/events"
                         },
                         "method": "GET",
                         "header": [
@@ -226,13 +226,13 @@
                     ]
                 },
                 {
-                    "name": "api\/fetch\/gaps\/marks",
+                    "name": "api\/update\/gaps\/marks",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/fetch\/gaps\/marks",
+                            "path": "api\/update\/gaps\/marks",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/fetch\/gaps\/marks"
+                            "raw": "{{baseUrl}}\/api\/update\/gaps\/marks"
                         },
                         "method": "GET",
                         "header": [
@@ -269,6 +269,330 @@
                             ],
                             "code": 401,
                             "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Retourne un json contenant une liste des \u00e9v\u00e8nements. La liste correspond \u00e0 l'ensemble des \u00e9v\u00e8nements de tous les calendriers que suit l'utilisateur.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Store a newly created resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Display the specified resource.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "Update the specified resource in storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Remove the specified resource from storage.",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
+                    "name": "api\/events\/calendar\/{calendarId}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/calendar\/:calendarId",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/calendar\/:calendarId",
+                            "variable": [
+                                {
+                                    "id": "calendarId",
+                                    "key": "calendarId",
+                                    "value": "10",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "api\/update\/gaps\/{token}",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/update\/gaps\/:token",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/update\/gaps\/:token",
+                            "variable": [
+                                {
+                                    "id": "token",
+                                    "key": "token",
+                                    "value": "VGrxhPp9xuDb947JZADe7ESdBDkwdq",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "59"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 500,
+                            "body": "{\n    \"message\": \"Undefined variable $marks\",\n    \"exception\": \"ErrorException\",\n    \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/app\/Http\/Services\/GapsMarksService.php\",\n    \"line\": 78,\n    \"trace\": [\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Bootstrap\/HandleExceptions.php\",\n            \"line\": 255,\n            \"function\": \"handleError\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Bootstrap\\\\HandleExceptions\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/app\/Http\/Services\/GapsMarksService.php\",\n            \"line\": 78,\n            \"function\": \"Illuminate\\\\Foundation\\\\Bootstrap\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Bootstrap\\\\HandleExceptions\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/routes\/api.php\",\n            \"line\": 54,\n            \"function\": \"fetchAllNotes\",\n            \"class\": \"App\\\\Http\\\\Services\\\\GapsMarksService\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Route.php\",\n            \"line\": 237,\n            \"function\": \"{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\RouteFileRegistrar\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Route.php\",\n            \"line\": 207,\n            \"function\": \"runCallable\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 725,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 141,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/SubstituteBindings.php\",\n            \"line\": 50,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php\",\n            \"line\": 126,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php\",\n            \"line\": 102,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Middleware\/ThrottleRequests.php\",\n            \"line\": 54,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/sanctum\/src\/Http\/Middleware\/EnsureFrontendRequestsAreStateful.php\",\n            \"line\": 33,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 141,\n            \"function\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\{closure}\",\n            \"class\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/sanctum\/src\/Http\/Middleware\/EnsureFrontendRequestsAreStateful.php\",\n            \"line\": 34,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 726,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 703,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 667,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Routing\/Router.php\",\n            \"line\": 656,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 167,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 141,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Middleware\/PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Http\/Middleware\/HandleCors.php\",\n            \"line\": 62,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Http\/Middleware\/TrustProxies.php\",\n            \"line\": 39,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Pipeline\/Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 142,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Http\/Kernel.php\",\n            \"line\": 111,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 299,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 89,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 45,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Strategies\/Responses\/ResponseCalls.php\",\n            \"line\": 35,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 222,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 179,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/Extracting\/Extractor.php\",\n            \"line\": 116,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 123,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 80,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/GroupedEndpoints\/GroupedEndpointsFromApp.php\",\n            \"line\": 56,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/knuckleswtf\/scribe\/src\/Commands\/GenerateDocumentation.php\",\n            \"line\": 55,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Util.php\",\n            \"line\": 41,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/BoundMethod.php\",\n            \"line\": 37,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Container\/Container.php\",\n            \"line\": 651,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php\",\n            \"line\": 136,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/symfony\/console\/Command\/Command.php\",\n            \"line\": 291,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Command.php\",\n            \"line\": 121,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 989,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 299,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/symfony\/console\/Application.php\",\n            \"line\": 171,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Console\/Application.php\",\n            \"line\": 102,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Console\/Kernel.php\",\n            \"line\": 129,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"\/Users\/vincenttarrit\/CloudTarrit\/HEIG\/2eme\/2\/ProjArt\/ProjArt-Application\/artisan\",\n            \"line\": 37,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
                             "name": ""
                         }
                     ]

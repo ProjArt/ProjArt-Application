@@ -86,11 +86,32 @@
                                     <li class="tocify-item level-2" data-unique="endpoints-GETapi-logout">
                         <a href="#endpoints-GETapi-logout">GET api/logout</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-fetch-gaps-events">
-                        <a href="#endpoints-GETapi-fetch-gaps-events">GET api/fetch/gaps/events</a>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-update-gaps-events">
+                        <a href="#endpoints-GETapi-update-gaps-events">GET api/update/gaps/events</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-fetch-gaps-marks">
-                        <a href="#endpoints-GETapi-fetch-gaps-marks">GET api/fetch/gaps/marks</a>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-update-gaps-marks">
+                        <a href="#endpoints-GETapi-update-gaps-marks">GET api/update/gaps/marks</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-events">
+                        <a href="#endpoints-GETapi-events">Retourne un json contenant une liste des évènements. La liste correspond à l&#039;ensemble des évènements de tous les calendriers que suit l&#039;utilisateur.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-events">
+                        <a href="#endpoints-POSTapi-events">Store a newly created resource in storage.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-events--id-">
+                        <a href="#endpoints-GETapi-events--id-">Display the specified resource.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-PUTapi-events--id-">
+                        <a href="#endpoints-PUTapi-events--id-">Update the specified resource in storage.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-events--id-">
+                        <a href="#endpoints-DELETEapi-events--id-">Remove the specified resource from storage.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-events-calendar--calendarId-">
+                        <a href="#endpoints-GETapi-events-calendar--calendarId-">GET api/events/calendar/{calendarId}</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-update-gaps--token-">
+                        <a href="#endpoints-GETapi-update-gaps--token-">GET api/update/gaps/{token}</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -104,7 +125,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 24 2022</li>
+        <li>Last updated: May 25 2022</li>
     </ul>
 </div>
 
@@ -144,7 +165,7 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"sylqyarimamknczkhwnaygyvkfkukulcvwwveuaslyqjyyuvjmdubgbqwrfxzsqphiwysuprybnvqkdntrphhswviwlhmpxlobotjfokfyoznrjxtndzbucp\",
+    \"username\": \"vpiyhcpkosndjmszaevyubzmjdekxdasziqagqivlxbmyvvgofwkqbifbqpihiormwzklwboklzmzkoljxegztxwmfkefghorcuxxippnpmoygsnafafwmynctrajquzomubyjvlcjfdafracsnbxdcwcyodpezskrapzk\",
     \"password\": \"z\"
 }"
 </code></pre></div>
@@ -161,7 +182,7 @@ const headers = {
 };
 
 let body = {
-    "username": "sylqyarimamknczkhwnaygyvkfkukulcvwwveuaslyqjyyuvjmdubgbqwrfxzsqphiwysuprybnvqkdntrphhswviwlhmpxlobotjfokfyoznrjxtndzbucp",
+    "username": "vpiyhcpkosndjmszaevyubzmjdekxdasziqagqivlxbmyvvgofwkqbifbqpihiormwzklwboklzmzkoljxegztxwmfkefghorcuxxippnpmoygsnafafwmynctrajquzomubyjvlcjfdafracsnbxdcwcyodpezskrapzk",
     "password": "z"
 };
 
@@ -220,7 +241,7 @@ fetch(url, {
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-login"
-               value="sylqyarimamknczkhwnaygyvkfkukulcvwwveuaslyqjyyuvjmdubgbqwrfxzsqphiwysuprybnvqkdntrphhswviwlhmpxlobotjfokfyoznrjxtndzbucp"
+               value="vpiyhcpkosndjmszaevyubzmjdekxdasziqagqivlxbmyvvgofwkqbifbqpihiormwzklwboklzmzkoljxegztxwmfkefghorcuxxippnpmoygsnafafwmynctrajquzomubyjvlcjfdafracsnbxdcwcyodpezskrapzk"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -254,8 +275,8 @@ fetch(url, {
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"vvdocnfejickroozqfeofbcyyfpjcydsazczffkuvnwofhnnymqgrxnfaawvzxcrsaxzswhyzilvvljbbxwfxxenzknwiqgziktcpmklcbcimemgmuepprgeexufkymvdbdwjdeooqhtobutmedzzvbkhiibtcnmbnbjyrjzaybkguseyikvhxtbisyjdxdlsbbdoqemmgbpoamxyechdld\",
-    \"password\": \"rszwa\"
+    \"username\": \"lyssvujnsmydxexqfxsjttuybvkbuxvhuqsthmftwrjfwkqjqhbbcnuzubzashtx\",
+    \"password\": \"\"
 }"
 </code></pre></div>
 
@@ -271,8 +292,8 @@ const headers = {
 };
 
 let body = {
-    "username": "vvdocnfejickroozqfeofbcyyfpjcydsazczffkuvnwofhnnymqgrxnfaawvzxcrsaxzswhyzilvvljbbxwfxxenzknwiqgziktcpmklcbcimemgmuepprgeexufkymvdbdwjdeooqhtobutmedzzvbkhiibtcnmbnbjyrjzaybkguseyikvhxtbisyjdxdlsbbdoqemmgbpoamxyechdld",
-    "password": "rszwa"
+    "username": "lyssvujnsmydxexqfxsjttuybvkbuxvhuqsthmftwrjfwkqjqhbbcnuzubzashtx",
+    "password": ""
 };
 
 fetch(url, {
@@ -330,7 +351,7 @@ fetch(url, {
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-register"
-               value="vvdocnfejickroozqfeofbcyyfpjcydsazczffkuvnwofhnnymqgrxnfaawvzxcrsaxzswhyzilvvljbbxwfxxenzknwiqgziktcpmklcbcimemgmuepprgeexufkymvdbdwjdeooqhtobutmedzzvbkhiibtcnmbnbjyrjzaybkguseyikvhxtbisyjdxdlsbbdoqemmgbpoamxyechdld"
+               value="lyssvujnsmydxexqfxsjttuybvkbuxvhuqsthmftwrjfwkqjqhbbcnuzubzashtx"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -340,7 +361,7 @@ fetch(url, {
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="rszwa"
+               value=""
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters.</p>
@@ -545,27 +566,27 @@ access-control-allow-origin: *
         </p>
                     </form>
 
-            <h2 id="endpoints-GETapi-fetch-gaps-events">GET api/fetch/gaps/events</h2>
+            <h2 id="endpoints-GETapi-update-gaps-events">GET api/update/gaps/events</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-fetch-gaps-events">
+<span id="example-requests-GETapi-update-gaps-events">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/fetch/gaps/events" \
+    --get "http://localhost/api/update/gaps/events" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/fetch/gaps/events"
+    "http://localhost/api/update/gaps/events"
 );
 
 const headers = {
@@ -580,7 +601,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-fetch-gaps-events">
+<span id="example-responses-GETapi-update-gaps-events">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
@@ -603,68 +624,68 @@ access-control-allow-origin: *
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-fetch-gaps-events" hidden>
+<span id="execution-results-GETapi-update-gaps-events" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-fetch-gaps-events"></span>:
+                id="execution-response-status-GETapi-update-gaps-events"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-fetch-gaps-events"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-update-gaps-events"></code></pre>
 </span>
-<span id="execution-error-GETapi-fetch-gaps-events" hidden>
+<span id="execution-error-GETapi-update-gaps-events" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-fetch-gaps-events"></code></pre>
+    <pre><code id="execution-error-message-GETapi-update-gaps-events"></code></pre>
 </span>
-<form id="form-GETapi-fetch-gaps-events" data-method="GET"
-      data-path="api/fetch/gaps/events"
+<form id="form-GETapi-update-gaps-events" data-method="GET"
+      data-path="api/update/gaps/events"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-fetch-gaps-events', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps-events', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-fetch-gaps-events"
-                    onclick="tryItOut('GETapi-fetch-gaps-events');">Try it out ⚡
+                    id="btn-tryout-GETapi-update-gaps-events"
+                    onclick="tryItOut('GETapi-update-gaps-events');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-fetch-gaps-events"
-                    onclick="cancelTryOut('GETapi-fetch-gaps-events');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-update-gaps-events"
+                    onclick="cancelTryOut('GETapi-update-gaps-events');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-fetch-gaps-events" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-update-gaps-events" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/fetch/gaps/events</code></b>
+            <b><code>api/update/gaps/events</code></b>
         </p>
                     </form>
 
-            <h2 id="endpoints-GETapi-fetch-gaps-marks">GET api/fetch/gaps/marks</h2>
+            <h2 id="endpoints-GETapi-update-gaps-marks">GET api/update/gaps/marks</h2>
 
 <p>
 </p>
 
 
 
-<span id="example-requests-GETapi-fetch-gaps-marks">
+<span id="example-requests-GETapi-update-gaps-marks">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/fetch/gaps/marks" \
+    --get "http://localhost/api/update/gaps/marks" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/fetch/gaps/marks"
+    "http://localhost/api/update/gaps/marks"
 );
 
 const headers = {
@@ -679,7 +700,7 @@ fetch(url, {
 
 </span>
 
-<span id="example-responses-GETapi-fetch-gaps-marks">
+<span id="example-responses-GETapi-update-gaps-marks">
             <blockquote>
             <p>Example response (401):</p>
         </blockquote>
@@ -702,45 +723,1213 @@ access-control-allow-origin: *
 }</code>
  </pre>
     </span>
-<span id="execution-results-GETapi-fetch-gaps-marks" hidden>
+<span id="execution-results-GETapi-update-gaps-marks" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-GETapi-fetch-gaps-marks"></span>:
+                id="execution-response-status-GETapi-update-gaps-marks"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-fetch-gaps-marks"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-update-gaps-marks"></code></pre>
 </span>
-<span id="execution-error-GETapi-fetch-gaps-marks" hidden>
+<span id="execution-error-GETapi-update-gaps-marks" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-fetch-gaps-marks"></code></pre>
+    <pre><code id="execution-error-message-GETapi-update-gaps-marks"></code></pre>
 </span>
-<form id="form-GETapi-fetch-gaps-marks" data-method="GET"
-      data-path="api/fetch/gaps/marks"
+<form id="form-GETapi-update-gaps-marks" data-method="GET"
+      data-path="api/update/gaps/marks"
       data-authed="0"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-fetch-gaps-marks', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps-marks', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-fetch-gaps-marks"
-                    onclick="tryItOut('GETapi-fetch-gaps-marks');">Try it out ⚡
+                    id="btn-tryout-GETapi-update-gaps-marks"
+                    onclick="tryItOut('GETapi-update-gaps-marks');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-fetch-gaps-marks"
-                    onclick="cancelTryOut('GETapi-fetch-gaps-marks');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-update-gaps-marks"
+                    onclick="cancelTryOut('GETapi-update-gaps-marks');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-fetch-gaps-marks" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-update-gaps-marks" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-green">GET</small>
-            <b><code>api/fetch/gaps/marks</code></b>
+            <b><code>api/update/gaps/marks</code></b>
         </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-events">Retourne un json contenant une liste des évènements. La liste correspond à l&#039;ensemble des évènements de tous les calendriers que suit l&#039;utilisateur.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-events">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/events" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/events"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-events">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-events" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-events"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-events"></code></pre>
+</span>
+<span id="execution-error-GETapi-events" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-events"></code></pre>
+</span>
+<form id="form-GETapi-events" data-method="GET"
+      data-path="api/events"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-events', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-events"
+                    onclick="tryItOut('GETapi-events');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-events"
+                    onclick="cancelTryOut('GETapi-events');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-events" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/events</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-POSTapi-events">Store a newly created resource in storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-events">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/events" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/events"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-events">
+</span>
+<span id="execution-results-POSTapi-events" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-events"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-events"></code></pre>
+</span>
+<span id="execution-error-POSTapi-events" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-events"></code></pre>
+</span>
+<form id="form-POSTapi-events" data-method="POST"
+      data-path="api/events"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-events', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-events"
+                    onclick="tryItOut('POSTapi-events');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-events"
+                    onclick="cancelTryOut('POSTapi-events');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-events" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/events</code></b>
+        </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-events--id-">Display the specified resource.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-events--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/events/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/events/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-events--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-events--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-events--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-events--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-events--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-events--id-"></code></pre>
+</span>
+<form id="form-GETapi-events--id-" data-method="GET"
+      data-path="api/events/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-events--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-events--id-"
+                    onclick="tryItOut('GETapi-events--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-events--id-"
+                    onclick="cancelTryOut('GETapi-events--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-events--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/events/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-events--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the event.</p>
+            </p>
+                    </form>
+
+            <h2 id="endpoints-PUTapi-events--id-">Update the specified resource in storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-PUTapi-events--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/api/events/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/events/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-events--id-">
+</span>
+<span id="execution-results-PUTapi-events--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-events--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-events--id-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-events--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-events--id-"></code></pre>
+</span>
+<form id="form-PUTapi-events--id-" data-method="PUT"
+      data-path="api/events/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-events--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-events--id-"
+                    onclick="tryItOut('PUTapi-events--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-events--id-"
+                    onclick="cancelTryOut('PUTapi-events--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-events--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/events/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/events/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="PUTapi-events--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the event.</p>
+            </p>
+                    </form>
+
+            <h2 id="endpoints-DELETEapi-events--id-">Remove the specified resource from storage.</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-events--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/api/events/1" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/events/1"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-events--id-">
+</span>
+<span id="execution-results-DELETEapi-events--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-events--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-events--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-events--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-events--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-events--id-" data-method="DELETE"
+      data-path="api/events/{id}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-events--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-events--id-"
+                    onclick="tryItOut('DELETEapi-events--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-events--id-"
+                    onclick="cancelTryOut('DELETEapi-events--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-events--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/events/{id}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="DELETEapi-events--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the event.</p>
+            </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-events-calendar--calendarId-">GET api/events/calendar/{calendarId}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-events-calendar--calendarId-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/events/calendar/10" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/events/calendar/10"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-events-calendar--calendarId-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-events-calendar--calendarId-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-events-calendar--calendarId-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-events-calendar--calendarId-"></code></pre>
+</span>
+<span id="execution-error-GETapi-events-calendar--calendarId-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-events-calendar--calendarId-"></code></pre>
+</span>
+<form id="form-GETapi-events-calendar--calendarId-" data-method="GET"
+      data-path="api/events/calendar/{calendarId}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-events-calendar--calendarId-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-events-calendar--calendarId-"
+                    onclick="tryItOut('GETapi-events-calendar--calendarId-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-events-calendar--calendarId-"
+                    onclick="cancelTryOut('GETapi-events-calendar--calendarId-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-events-calendar--calendarId-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/events/calendar/{calendarId}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>calendarId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="calendarId"
+               data-endpoint="GETapi-events-calendar--calendarId-"
+               value="10"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
+
+            <h2 id="endpoints-GETapi-update-gaps--token-">GET api/update/gaps/{token}</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-GETapi-update-gaps--token-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/update/gaps/VGrxhPp9xuDb947JZADe7ESdBDkwdq" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/update/gaps/VGrxhPp9xuDb947JZADe7ESdBDkwdq"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-update-gaps--token-">
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Undefined variable $marks&quot;,
+    &quot;exception&quot;: &quot;ErrorException&quot;,
+    &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Services/GapsMarksService.php&quot;,
+    &quot;line&quot;: 78,
+    &quot;trace&quot;: [
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php&quot;,
+            &quot;line&quot;: 255,
+            &quot;function&quot;: &quot;handleError&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Bootstrap\\HandleExceptions&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Services/GapsMarksService.php&quot;,
+            &quot;line&quot;: 78,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Bootstrap\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Bootstrap\\HandleExceptions&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/routes/api.php&quot;,
+            &quot;line&quot;: 54,
+            &quot;function&quot;: &quot;fetchAllNotes&quot;,
+            &quot;class&quot;: &quot;App\\Http\\Services\\GapsMarksService&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 237,
+            &quot;function&quot;: &quot;{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\RouteFileRegistrar&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 207,
+            &quot;function&quot;: &quot;runCallable&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 725,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php&quot;,
+            &quot;line&quot;: 50,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 126,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;handleRequest&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 54,
+            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 33,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\{closure}&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 34,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 726,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 703,
+            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 667,
+            &quot;function&quot;: &quot;runRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 656,
+            &quot;function&quot;: &quot;dispatchToRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 167,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php&quot;,
+            &quot;line&quot;: 31,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php&quot;,
+            &quot;line&quot;: 40,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php&quot;,
+            &quot;line&quot;: 27,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php&quot;,
+            &quot;line&quot;: 86,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php&quot;,
+            &quot;line&quot;: 62,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\HandleCors&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php&quot;,
+            &quot;line&quot;: 39,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 142,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 111,
+            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 287,
+            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 89,
+            &quot;function&quot;: &quot;makeApiCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 45,
+            &quot;function&quot;: &quot;makeResponseCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 222,
+            &quot;function&quot;: &quot;__invoke&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 179,
+            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;fetchResponses&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 123,
+            &quot;function&quot;: &quot;processRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 80,
+            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 56,
+            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php&quot;,
+            &quot;line&quot;: 55,
+            &quot;function&quot;: &quot;get&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 36,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 93,
+            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;callBoundMethod&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 651,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 136,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Command/Command.php&quot;,
+            &quot;line&quot;: 291,
+            &quot;function&quot;: &quot;execute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 121,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 989,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;doRunCommand&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;doRun&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Application.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php&quot;,
+            &quot;line&quot;: 129,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/artisan&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-update-gaps--token-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-update-gaps--token-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-update-gaps--token-"></code></pre>
+</span>
+<span id="execution-error-GETapi-update-gaps--token-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-update-gaps--token-"></code></pre>
+</span>
+<form id="form-GETapi-update-gaps--token-" data-method="GET"
+      data-path="api/update/gaps/{token}"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps--token-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-update-gaps--token-"
+                    onclick="tryItOut('GETapi-update-gaps--token-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-update-gaps--token-"
+                    onclick="cancelTryOut('GETapi-update-gaps--token-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-update-gaps--token-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/update/gaps/{token}</code></b>
+        </p>
+                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="token"
+               data-endpoint="GETapi-update-gaps--token-"
+               value="VGrxhPp9xuDb947JZADe7ESdBDkwdq"
+               data-component="url" hidden>
+    <br>
+
+            </p>
                     </form>
 
     

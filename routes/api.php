@@ -42,7 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::resource('/events', EventController::class, [
         'as' => 'api'
     ]);
-    Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents'])->name("api.getCalendarEvents");
+    //Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents'])->name("api.getCalendarEvents");
 });
 
 Route::get('/', function () {
