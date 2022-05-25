@@ -1,0 +1,283 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/login:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: sylqyarimamknczkhwnaygyvkfkukulcvwwveuaslyqjyyuvjmdubgbqwrfxzsqphiwysuprybnvqkdntrphhswviwlhmpxlobotjfokfyoznrjxtndzbucp
+                password:
+                  type: string
+                  description: 'Must be at least 5 characters.'
+                  example: z
+              required:
+                - username
+                - password
+      security: []
+  /api/register:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: vvdocnfejickroozqfeofbcyyfpjcydsazczffkuvnwofhnnymqgrxnfaawvzxcrsaxzswhyzilvvljbbxwfxxenzknwiqgziktcpmklcbcimemgmuepprgeexufkymvdbdwjdeooqhtobutmedzzvbkhiibtcnmbnbjyrjzaybkguseyikvhxtbisyjdxdlsbbdoqemmgbpoamxyechdld
+                password:
+                  type: string
+                  description: 'Must be at least 5 characters.'
+                  example: rszwa
+              required:
+                - username
+                - password
+      security: []
+  /api/me:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Endpoints
+      security: []
+  /api/logout:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Endpoints
+      security: []
+  /api/fetch/gaps/events:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Endpoints
+      security: []
+  /api/fetch/gaps/marks:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
