@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCalendarRequest;
 use App\Http\Requests\UpdateCalendarRequest;
 use App\Models\Calendar;
+use Illuminate\Http\Request;
 
 class CalendarController extends Controller
 {
@@ -13,9 +14,10 @@ class CalendarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $user = $request->user();
+        return httpSuccess('Calendars', $user->calendarsOwn);
     }
 
     /**

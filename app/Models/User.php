@@ -117,7 +117,7 @@ class User extends Authenticatable
 
     public function calendarsOwn()
     {
-        return $this->belongsToMany(Calendar::class, 'calendar_user_own', 'user_id', 'calendar_id');
+        return $this->belongsToMany(CalendarOwn::class, 'calendar_user_own', 'user_id', 'calendar_id')->orderBy('name');
     }
 
     public function classrooms()
@@ -129,8 +129,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Mark::class);
     }
-  
-    public function absencesRates(){
+
+    public function absencesRates()
+    {
         return $this->hasMany(AbsencesRate::class);
     }
 }

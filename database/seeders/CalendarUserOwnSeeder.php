@@ -15,9 +15,7 @@ class CalendarUserOwnSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('calendar_user_own')->insert([
-            "calendar_id" => 1,
-            "user_id" => 1
-        ]);
+        DB::table('calendar_user_own')->truncate();
+        \App\Models\User::find(1)->calendarsOwn()->attach(1);
     }
 }

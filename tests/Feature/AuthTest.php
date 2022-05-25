@@ -17,7 +17,7 @@ class AuthTest extends TestCase
             "Accept" => "application/json",
         ]);
 
-        $this->assertFalse($response->json()['success']);
+        $response->assertUnauthorized();
     }
 
     public function test_authenticated_user_can_access_protected_routes()
@@ -59,7 +59,7 @@ class AuthTest extends TestCase
             'password' => 'wrong-password',
         ]);
 
-        $this->assertFalse($response->json()['success']);
+        $response->assertStatus(401);
     }
 
     public function test_register()
@@ -80,7 +80,7 @@ class AuthTest extends TestCase
             'name' => 'test',
             'password' => 'password',
         ]);
-        $this->assertFalse($response->json()['success']);
+        $response->assertStatus(422);
     }
 
     public function test_register_fail_username_already_taken()
@@ -98,7 +98,7 @@ class AuthTest extends TestCase
             'password' => config('gaps.password'),
         ]);
 
-        $this->assertFalse($response->json()['success']);
+        $response->assertUnauthorized();
     }
 
     public function test_can_logout_if_logged()
@@ -120,6 +120,6 @@ class AuthTest extends TestCase
 
         $response = $this->json('GET', '/api/logout', []);
 
-        $this->assertFalse($response->json()['success']);
+        $response->assertUnauthorized();
     }
 }
