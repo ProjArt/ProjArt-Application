@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('file_user', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('file_id')->constrained('files')->onDelete('cascade')->onUpdate('cascade');
-            $table->unique(["id", "user_id", "file_id"]);
+            $table->datetime('date')->useCurrent();
+            $table->timestamps();
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_file');
+        Schema::dropIfExists('menus');
     }
 };
