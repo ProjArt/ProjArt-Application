@@ -9,6 +9,18 @@ class Mark extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'module_code',
+        'module_name',
+        'value',
+        'year_start',
+        'year_end',
+    ];
+
+    protected $with = [
+        'user',
+    ];
+
     public function student()
     {
         return $this->belongsTo(Student::class);
@@ -22,5 +34,10 @@ class Mark extends Model
     public function teacher()
     {
         return $this->belongsTo(Teacher::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

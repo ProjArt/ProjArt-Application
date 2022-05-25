@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('marks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('student_id')->constrained('students')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('student_user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('course_id')->constrained('courses')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('course_teacher_id')->constrained('teachers')->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('course_teacher_user_id')->constrained('users')->onUpdate('cascade')->onDelete('cascade');
-            $table->double('value');
-            $table->date('date');
+            $table->string('module_code');
+            $table->string('module_name');
+            $table->float('value');
+            $table->integer('year_start');
+            $table->integer('year_end');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+
             $table->timestamps();
         });
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\GapsController;
 use App\Http\Controllers\GapsEventsController;
 use App\Http\Controllers\GapsMarksController;
+use App\Http\Controllers\MarkController;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
 
@@ -44,6 +45,8 @@ Route::middleware('auth:sanctum')->group(function () {
         'as' => 'api'
     ]);
     //Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents'])->name("api.getCalendarEvents");
+
+    Route::get('/marks', [MarkController::class, 'index'])->name('api.marks.index');
 });
 
 Route::get('/', function () {

@@ -59,7 +59,7 @@ class User extends Authenticatable
 
     public function setPersonalNumber()
     {
-        if ($this->personal_number == 0) {
+        if ($this->gaps_id == 0) {
             $content = file_get_contents("https://" . $this->username . ":" . urlencode($this->password) . "@gaps.heig-vd.ch/consultation/horaires/");
             $dom = HtmlDomParser::str_get_html($content);
             $element = $dom->findOne('div.scheduleLinks span.navLink a'); // "$element" === instance of "SimpleHtmlDomInterface"
@@ -122,5 +122,10 @@ class User extends Authenticatable
     public function classrooms()
     {
         return $this->belongsToMany(Classroom::class, 'classroom_user', 'user_id', 'classroom_name', 'id', 'name');
+    }
+
+    public function marks()
+    {
+        return $this->hasMany(Mark::class);
     }
 }
