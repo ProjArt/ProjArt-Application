@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->foreignId('theme_id')->constrained('themes')->onDelete('restrict')->onUpdate('restrict');
-            $table->integer('gaps_id')->default(0);
-            $table->enum('role', User::ROLES)->default(User::ROLE_STUDENT);
-            $table->double('card_money');
+        Schema::create('menus', function (Blueprint $table) {
+            $table->id();
+            $table->date('date');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('menus');
     }
 };
