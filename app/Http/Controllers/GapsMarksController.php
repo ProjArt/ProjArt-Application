@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Services\GapsMarksService;
 use Illuminate\Http\Request;
 
+/**
+ * @group Gaps
+ *
+ * APIs pour forcer la mis à jour de toutes les données de Gaps
+ */
 class GapsMarksController extends Controller
 {
     public function fetchAll()
