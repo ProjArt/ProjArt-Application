@@ -17,6 +17,10 @@ use Illuminate\Http\Exceptions\HttpResponseException;
  */
 class EventController extends Controller
 {
+
+    public function __construct(){
+        //$this->middleware('canManageEtablissement', ['only' => ['store', 'update', 'destroy']]);
+    }
     /**
      * 
      * Obtenir tous les évènements

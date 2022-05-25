@@ -35,9 +35,11 @@ class DatabaseSeeder extends Seeder
         DB::table('classroom_user')->truncate();
         User::find(1)->classrooms()->attach('M49-1');
         $this->call(EventSeeder::class);
+        $this->call(MarkSeeder::class);
         $this->call(CalendarSeeder::class);
         $this->call(CalendarUserFollowSeeder::class);
-        $this->call(MarkSeeder::class);
+        $this->call(CalendarUserOwnSeeder::class);
+
         if (config('database.default') == "mysql") {
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         }
