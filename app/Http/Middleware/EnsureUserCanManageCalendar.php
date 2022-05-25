@@ -24,12 +24,10 @@ class EnsureUserCanManageCalendar
         $manageableCalendars = DB::table('calendar_user_own')
         ->where('user_id', '=', $userId)
         ->where('calendar_id', '=', $calendarId)
-        ->get();
+        ->first();
 
-
-       // return httpSuccess($manageableCalendars);
-
-        if($manageableCalendars != null)
+       
+        if($manageableCalendars != null )
         {
             return $next($request);
         } else {
