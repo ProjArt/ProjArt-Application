@@ -4,7 +4,7 @@ import useFetch from '../composables/useFetch';
 import { API } from '../stores/api';
 const calendar = ref({});
 const calendarNames = ref([]);
-const CURRENT_DATE = new Date()
+const TODAY = ref(new Date())
 const DAY_LABELS = ['LU', 'MA', 'ME', 'JE', 'VE', 'SA', 'DI'];
 const DAY_LABELS_ORDERS = ['DI', 'MA', 'ME', 'JE', 'VE', 'SA', 'LU'];
 const MONTH_LABELS = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
@@ -18,8 +18,9 @@ const numberOfDaysInMonth = (year, month) => {
     return new Date(year, month, 0).getDate();
 }
 
-function getAllDaysInMonth(year, month) {
-    const date = new Date(year, month, 1);
+const getAllDaysInMonth = (year, month) => {
+    const date = new Date(year, month, 1)
+    console.log({ year }, { month }, { date })
     const dates = [];
     while (date.getMonth() === month) {
         const day = new Date(date)
@@ -34,6 +35,26 @@ function getAllDaysInMonth(year, month) {
     return dates;
 }
 
+const getAllDaysInWeek = (days) => {
+    const date = typeof days == 'number'
+        ? new Date(TODAY.value.getFullYear(), TODAY.value.getMonth(), days)
+        : TODAY.value;
+    console.log({ date }, { days }, TODAY.value)
+    const dates = [];
+    const day = toSwissDay(date.getDay())
+    date.setDate(date.getDate() - day)
+    for (let i = 0; i <= 6; i++) {
+        dates.push({
+            date: date,
+            dayOfMonthNumber: date.getDate(),
+            dayOfWeekNumber: toSwissDay(date.getDay()),
+            dayOfWeekName: date.getDay(),
+        });
+        date.setDate(date.getDate() + 1)
+    }
+    console.log(dates)
+    return dates
+}
 
 async function getCalendar() {
     const response = await useFetch({
@@ -49,7 +70,9 @@ async function getCalendar() {
 
 const getMonthFormat = (year, month) => {
     const daysArray = []
-    const daysInMonth = getAllDaysInMonth(year, month);
+    const daysInMonth = year && month
+        ? getAllDaysInMonth(year, month)
+        : getAllDaysInMonth(TODAY.value.getFullYear(), TODAY.value.getMonth())
     daysInMonth.forEach((date, index) => {
         let i = 0
         if (index === 0) {
@@ -60,16 +83,20 @@ const getMonthFormat = (year, month) => {
         }
         daysArray.push(date)
     })
-    console.log(daysArray)
     return daysArray
 }
 
+const monthFormat = ((year, month) => {
+    dates.value = getMonthFormat(year, month)
+})
 
-const dates = ref(getMonthFormat(CURRENT_DATE.getFullYear(), CURRENT_DATE.getMonth()));
-console.log(dates.value)
-const today = ref(new Date())
-const selectedDate = ref(today.value)
-const currDateCursor = ref(today.value)
+const weekFormat = ((days) => {
+    dates.value = getAllDaysInWeek(days)
+})
+
+const dates = ref(getMonthFormat(TODAY.value.getFullYear(), TODAY.value.getMonth()));
+const selectedDate = ref(TODAY.value)
+const currDateCursor = ref(TODAY.value)
 const dayLabels = ref(DAY_LABELS.slice())
 
 const previousMonth = () => {
@@ -86,6 +113,7 @@ const nextMonth = () => {
     currDateCursor.value = nextDate;
     dates.value = getMonthFormat(currDateCursor.value.getFullYear(), currDateCursor.value.getMonth());
 }
+// TODO set next/previous Week on click
 </script>
 <template>
     <FormKit type="select" label="Calendrier" name="calendar" :options="calendarNames" validation="required"
@@ -95,6 +123,8 @@ const nextMonth = () => {
         <header class="calendar__header">
             <button @click="previousMonth">&lt;&lt;</button>
             <button @click="nextMonth">&gt;&gt;</button>
+            <button @click="monthFormat">Mois</button>
+            <button @click="weekFormat">Semaines</button>
         </header>
         <div class="calendar__days-names">
             <div v-for="dayLabel in dayLabels">
@@ -102,7 +132,7 @@ const nextMonth = () => {
             </div>
         </div>
         <div class="days">
-            <div v-for="(day, index) in dates" class="day">
+            <div v-for="(day, index) in dates" class="day" :class="!day.date ? 'grey' : ''">
                 <p class="day__day-number">{{ day.dayOfMonthNumber }}</p>
             </div>
         </div>
@@ -141,5 +171,9 @@ const nextMonth = () => {
     font-size: 1.5rem;
     text-align: left;
     padding: 0.5rem;
+}
+
+.grey {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 </style>
