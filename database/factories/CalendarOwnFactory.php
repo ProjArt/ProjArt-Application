@@ -5,9 +5,9 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Calendar>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\CalendarOwn>
  */
-class CalendarFactory extends Factory
+class CalendarOwnFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -17,7 +17,7 @@ class CalendarFactory extends Factory
     public function definition()
     {
         return [
-            "name" => "Calendar name",
+            //
         ];
     }
 }

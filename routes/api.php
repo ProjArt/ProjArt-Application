@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CalendarOwnController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GapsController;
 use App\Http\Controllers\GapsEventsController;
@@ -60,6 +62,11 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/menu', [MenuController::class, 'index'])->name("api.getMenu");
 
+    Route::resource('/calendars', CalendarOwnController::class, [
+        'as' => 'api'
+    ]);
+
+    Route::post('/calendars/share', [CalendarOwnController::class, 'share'])->name("api.calendars.share");
 });
 
 Route::get('/', function () {
