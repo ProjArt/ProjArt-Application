@@ -7,11 +7,9 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\GapsController;
 use App\Http\Controllers\GapsEventsController;
 use App\Http\Controllers\GapsMarksController;
-
+use App\Http\Controllers\MailController;
 use App\Http\Controllers\MarkController;
-
 use App\Http\Controllers\MenuController;
-
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
 
@@ -43,6 +41,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('/update/gaps')->group(function () {
         Route::get('/events', [GapsEventsController::class, 'fetchAll'])->name('api.fetch.gaps.events');
         Route::get('/marks', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
+    });
+
+
+    Route::prefix('/mails')->controller(MailController::class)->group(function () {
+        Route::get('/', 'index')->name('api.mails.index');
+        Route::get('/{id}', 'show')->name('api.mails.show');
+        Route::post('/send', 'send')->name('api.mails.send');
     });
 
     Route::resource('/events', EventController::class, [
