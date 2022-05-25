@@ -13,11 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('file_user', function (Blueprint $table) {
+        Schema::create('absences_rates', function (Blueprint $table) {
             $table->id();
+            $table->integer('absolute');
+            $table->integer('relative');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('file_id')->constrained('files')->onDelete('cascade')->onUpdate('cascade');
-            $table->unique(["id", "user_id", "file_id"]);
+            $table->foreignId('course_id')->constrained('courses')->onDelete('cascade')->onUpdate('cascade');
+            $table->unique(["id", "user_id", "course_id"]);
+            $table->timestamps();
         });
     }
 
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_file');
+        Schema::dropIfExists('absences_rates');
     }
 };
