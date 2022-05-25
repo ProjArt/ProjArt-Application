@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('gaps_id')->default(0);
             $table->enum('role', User::ROLES)->default(User::ROLE_STUDENT);
             $table->unique(['username'], 'user_unique');
-            $table->double('card_money');
+            $table->double('card_money')->default(0);
         });
     }
 

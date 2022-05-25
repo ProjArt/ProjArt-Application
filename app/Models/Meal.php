@@ -13,10 +13,20 @@ class Meal extends Model
         'entry',
         'plate',
         'dessert',
+        'menu_id',
     ];
 
-    public function menu(){
-        return $this->hasOne(Menu::class);
+    protected $appends = [
+        'date',
+    ];
+
+    public function getDateAttribute()
+    {
+        return $this->menu->date;
     }
 
+    public function menu()
+    {
+        return $this->belongsTo(Menu::class);
+    }
 }
