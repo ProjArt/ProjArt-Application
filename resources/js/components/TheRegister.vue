@@ -18,6 +18,7 @@ const submitHandler = async () => {
     console.log(response);
     if (response.success === true) {
         isAuthenticated.value = true;
+        console.log(response);
         localStorage.setItem('token', response.access_token);
         /* window.location.href += "signup"; */
     } else {
