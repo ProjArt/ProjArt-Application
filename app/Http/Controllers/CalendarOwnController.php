@@ -84,7 +84,9 @@ class CalendarOwnController extends Controller
     {
         $userToShare = User::find($request->user_id);
         $calendar = CalendarOwn::find($request->calendar_id);
-        $this->authorize('share', $calendar);
+
+        $this->authorize('share', $calendar);  // Check if user can share calendar
+
         if ($request->can_view) {
             $userToShare->calendarsFollow()->sync($calendar);
         }

@@ -55,7 +55,7 @@ class MailController extends Controller
         $user = $request->user();
 
         Config::set('mail.mailers.smtp.host', "smtp.heig-vd.ch");
-        Config::set('mail.mailers.smtp.username', $user->username . "@einet.ad.eivd.ch");
+        Config::set('mail.mailers.smtp.username', $user->username);
         Config::set('mail.mailers.smtp.password', $user->password);
         Config::set('mail.mailers.smtp.port', "587");
         Config::set('mail.mailers.smtp.encryption', "ssl");

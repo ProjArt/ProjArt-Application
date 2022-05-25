@@ -96,6 +96,8 @@ class CalendarTest extends TestCase
         ]);
 
         $response->assertStatus(200);
+
+        $calendar->delete();
     }
 
     public function test_cannot_update_calendar_name_if_not_own()

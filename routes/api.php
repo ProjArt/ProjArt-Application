@@ -48,7 +48,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::prefix('/mails')->controller(MailController::class)->group(function () {
         Route::get('/', 'index')->name('api.mails.index');
-        Route::get('/{id}', 'show')->name('api.mails.show');
+        Route::get('/{id}', 'show')->name('api.mails.show')->where('id', '[0-9]+');
         Route::post('/send', 'send')->name('api.mails.send');
     });
 

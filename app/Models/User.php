@@ -37,8 +37,11 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
+        'theme_id',
         'password',
         'remember_token',
+        'created_at',
+        'updated_at',
     ];
 
     /**
@@ -48,6 +51,10 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+    ];
+
+    protected $with = [
+        'theme'
     ];
 
     protected function password(): Attribute
@@ -98,7 +105,7 @@ class User extends Authenticatable
 
     public function theme()
     {
-        return $this->hasOne(Theme::class);
+        return $this->belongsTo(Theme::class);
     }
 
     public function person()

@@ -20,6 +20,12 @@ class Meal extends Model
         'date',
     ];
 
+    protected $hidden = [
+        'menu_id',
+        'created_at',
+        'updated_at',
+    ];
+
     public function getDateAttribute()
     {
         return $this->menu->date;

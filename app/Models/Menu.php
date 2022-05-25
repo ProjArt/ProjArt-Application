@@ -13,6 +13,11 @@ class Menu extends Model
         'id'
     ];
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function meals()
     {
         return $this->hasMany(Meal::class);

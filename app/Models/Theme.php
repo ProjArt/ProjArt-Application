@@ -9,13 +9,25 @@ class Theme extends Model
 {
     use HasFactory;
 
+    protected $with = [
+        'primary',
+        'secondary',
+    ];
+
+    protected $hidden = [
+        'primary_color_id',
+        'secondary_color_id',
+        'created_at',
+        'updated_at',
+    ];
+
     public function primary()
     {
-        return $this->hasOne(Color::class, 'primary_color_id', 'id');
+        return $this->belongsTo(Color::class, 'primary_color_id', 'id');
     }
 
     public function secondary()
     {
-        return $this->hasOne(Color::class, 'secondary_color_id', 'id');
+        return $this->belongsTo(Color::class, 'secondary_color_id', 'id');
     }
 }

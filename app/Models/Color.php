@@ -9,6 +9,11 @@ class Color extends Model
 {
     use HasFactory;
 
+    protected $hidden = [
+        'created_at',
+        'updated_at',
+    ];
+
     public function themes()
     {
         return $this->belongsToMany(Theme::class);
