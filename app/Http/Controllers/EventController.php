@@ -11,6 +11,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class EventController extends Controller
 {
+
+    public function __construct(){
+        //$this->middleware('canManageEtablissement', ['only' => ['store', 'update', 'destroy']]);
+    }
     /**
      * Retourne un json contenant une liste des évènements. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur.
      *

@@ -37,6 +37,7 @@ class DatabaseSeeder extends Seeder
         $this->call(EventSeeder::class);
         $this->call(CalendarSeeder::class);
         $this->call(CalendarUserFollowSeeder::class);
+        $this->call(CalendarUserOwnSeeder::class);
         if(config('database.default') == "mysql") {
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         }
