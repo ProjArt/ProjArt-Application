@@ -57,14 +57,52 @@ class EventController extends Controller
     }
     /**
      * 
-     * @hideFromAPIDocumentation
+     * 
+     * Mémorizer un évènement
+     * 
+     * Enregistre un nouvel évènement dans la BDD
+     * Succès: retourne un json contenant l'évènement créé
+     *  Fail: erreur
+     * 
+     * 
+     * À fournir dans le body de la request
+     * 
+     * title: string
+     * description: string
+     * start: date au format: 1901-01-01T00:00Z
+     * end: date au format: 1901-01-01T00:00Z
+     * calendar_id: int (il faut l'envoyer dépendamment du calendrier concerné)
+     * 
+     * 
+     * @response scenario=success [
+     *"success" => true, 
+     *"message" => "event created:", 
+     *"data" => [
+     *     "title" => "EventTitle", 
+     *      "description" => "Une belle description", 
+     *      "start" => "1901-01-01T00:00Z", 
+     *      "end" => "1901-01-03T00:00Z", 
+     *      "location" => "S149", 
+     *      "calendar_id" => 1, 
+     *      "updated_at" => "2022-05-25T13:09:40.000000Z", 
+     *      "created_at" => "2022-05-25T13:09:40.000000Z", 
+     *      "id" => 142 
+     *   ] 
+     *] 
+     *  
      *
      * @param  \App\Http\Requests\StoreEventRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreEventRequest $request)
     {
-        //
+        $userId = $request->user()->id;
+        $inputs = $request->all() + ['user_id' => $userId];
+        $calendar = Calendar::findOrFail($request->calendar_id);
+
+        $newEvent = $calendar->events()->create($inputs);
+
+        return httpSuccess('event created:', $newEvent);
     }
 
     /**
