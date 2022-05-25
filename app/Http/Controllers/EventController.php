@@ -19,7 +19,11 @@ class EventController extends Controller
     public function index(Request $request)
     {
         $events = $request->user()->calendarsFollow->map(function ($calendar) {
-            return $calendar->events;
+            return [
+                "id" => $calendar->id,
+                "name" => $calendar->name,
+                "events" => $calendar->events()->orderBy('start')->get()
+            ];
         });
 
         return httpSuccess('user', $events);
