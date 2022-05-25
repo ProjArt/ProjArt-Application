@@ -20,24 +20,22 @@ async function useFetch(params) {
         params.data,
     ];
 
+    const apiToken = localStorage.getItem("token");
+    console.log({ apiToken }, { token });
     const headers = {
         Accept: "application/json",
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${token || apiToken}`,
     };
 
     const requestOptions = {
         url: url,
         method: method,
-        config: { headers },
+        headers: headers,
         data: data,
     };
 
-    try {
-        const response = await axios(requestOptions);
-        return response.data;
-    } catch (error) {
-        console.log({ error });
-    }
+    const response = await axios(requestOptions);
+    return response.data;
 }
 
 export default useFetch;

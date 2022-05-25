@@ -10,20 +10,19 @@ console.log(window.location.href)
 const submitHandler = async () => {
     isSubmitted.value = true
     console.log(toRaw(formData.value))
-    useFetch({
+    const response = await useFetch({
         url: API.register.path(),
         method: API.register.method,
         data: toRaw(formData.value)
-    }).then((response) => {
-        console.log(response);
-        if (response.success === true) {
-            isAuthenticated.value = true;
-            localStorage.setItem('token', response.access_token);
-            /* window.location.href += "signup"; */
-        } else {
-            isAuthenticated.value = false;
-        }
-    });
+    })
+    console.log(response);
+    if (response.success === true) {
+        isAuthenticated.value = true;
+        localStorage.setItem('token', response.access_token);
+        /* window.location.href += "signup"; */
+    } else {
+        isAuthenticated.value = false;
+    }
 }
 </script>
 <template>
