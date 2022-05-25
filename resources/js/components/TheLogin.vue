@@ -2,9 +2,9 @@
 import { ref, toRaw } from "vue"
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api"
-import { useGetCookie, useSetCookie } from "../composables/useCookie";
 const isSubmitted = ref(false)
 const formData = ref({})
+const errorMessage = ref('')
 const isAuthenticated = ref(false);
 console.log(window.location.href)
 
@@ -16,21 +16,21 @@ try {
 const submitHandler = async () => {
     isSubmitted.value = true
     console.log(toRaw(formData.value))
-    useFetch({
+    const response = await useFetch({
         url: API.login.path(),
         method: API.login.method,
         data: toRaw(formData.value)
-    }).then((response) => {
-        console.log(response);
-        if (response.success === true) {
-            isAuthenticated.value = true;
-            localStorage.setItem('token', response.data.access_token);
-            useSetCookie({ token: response.data.access_token }, 1);
-            /* window.location.href += "signup"; */
-        } else {
-            isAuthenticated.value = false;
-        }
-    });
+    })
+    console.log(response);
+    if (response.success === true) {
+        isAuthenticated.value = true;
+        localStorage.setItem('token', response.data.access_token);
+        errorMessage.value = ''
+        /* window.location.href += "signup"; */
+    } else {
+        isAuthenticated.value = false;
+        errorMessage.value = response.message;
+    }
 }
 </script>
 <template>
@@ -44,6 +44,7 @@ const submitHandler = async () => {
         <div>
             <h2 v-if="isAuthenticated && isSubmitted">Connexion établie</h2>
             <h2 v-else-if="!isAuthenticated && isSubmitted">Mot de passe ou username non valid</h2>
+            <p>{{ errorMessage }}</p>
         </div>
         <a class="forgot-password" href="#">Forgot password ?</a>
     </div>

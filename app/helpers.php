@@ -7,6 +7,7 @@ if (!function_exists('httpSuccess')) {
             'success' => true,
             'message' => $message,
             'data' => $data,
+            'status' => $code,
         ], $code);
     }
 }
@@ -18,6 +19,7 @@ if (!function_exists('httpError')) {
             'success' => false,
             'message' => $message,
             'data' => $data,
-        ], $code);
+            'status' => $code,
+        ], 200);
     }
 }
