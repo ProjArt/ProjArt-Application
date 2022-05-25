@@ -201,8 +201,10 @@ class CalendarTest extends TestCase
             'can_own' => 1,
         ]);
 
+
+        $response->assertStatus(403);
+
         $userToShare->delete();
         $calendar->delete();
-        $response->assertStatus(403);
     }
 }
