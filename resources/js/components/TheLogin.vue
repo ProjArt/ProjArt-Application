@@ -2,11 +2,17 @@
 import { ref, toRaw } from "vue"
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api"
+import { useGetCookie, useSetCookie } from "../composables/useCookie";
 const isSubmitted = ref(false)
 const formData = ref({})
 const isAuthenticated = ref(false);
 console.log(window.location.href)
 
+try {
+    console.log(JSON.parse(getCookie('preferences')))
+} catch (error) {
+
+}
 const submitHandler = async () => {
     isSubmitted.value = true
     console.log(toRaw(formData.value))
@@ -18,7 +24,8 @@ const submitHandler = async () => {
         console.log(response);
         if (response.success === true) {
             isAuthenticated.value = true;
-            localStorage.setItem('token', response.access_token);
+            localStorage.setItem('token', response.data.access_token);
+            useSetCookie({ token: response.data.access_token }, 1);
             /* window.location.href += "signup"; */
         } else {
             isAuthenticated.value = false;

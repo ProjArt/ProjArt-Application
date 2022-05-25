@@ -2,8 +2,10 @@
 
 namespace Database\Seeders;
 
+use App\Models\Color;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ThemeSeeder extends Seeder
 {
@@ -14,6 +16,11 @@ class ThemeSeeder extends Seeder
      */
     public function run()
     {
-        //
+        DB::table('themes')->truncate();
+        \App\Models\Theme::factory()
+            ->create([
+                'primary_color_id' => 1,
+                'secondary_color_id' => 2,
+            ]);
     }
 }

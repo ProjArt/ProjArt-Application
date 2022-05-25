@@ -8,6 +8,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
+
+/**
+ * @group Authentication
+ *
+ * APIs pour gérer les authentifications
+ */
 class AuthController extends Controller
 {
 

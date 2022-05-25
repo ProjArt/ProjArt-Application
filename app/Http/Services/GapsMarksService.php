@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Models\Mark;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use voku\helper\HtmlDomParser;
@@ -34,47 +35,42 @@ class GapsMarksService
     {
         if ($user == null) {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-            //DB::table('notes')->truncate();
+            //DB::table('marks')->truncate();
             DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         }
 
         $users = $user != null ? [$user] : User::all();
 
         foreach ($users as $user) {
-            try {
-                $user->setPersonnalNumber();
-                $content = file_get_contents("https://" . $user->username . ":" . urlencode($user->password) . "@gaps.heig-vd.ch/consultation/notes/bulletin.php?id=" . $user->personal_number);
+            $user->setPersonalNumber();
 
-                $dom = HtmlDomParser::str_get_html($content);
+            $content = file_get_contents("https://" . $user->username . ":" . urlencode($user->password) . "@gaps.heig-vd.ch/consultation/notes/bulletin.php?id=" . $user->gaps_id);
 
-                $trs = $dom->findMulti("#record_table tr");
+            $dom = HtmlDomParser::str_get_html($content);
 
-                $marks = [];
-                foreach ($trs as $tr) {
-                    if ($tr->class == "bulletin_unit_row") {
-                        $tds = $tr->findMulti("td");
-                        $moduleCode = $tds[0]->innerText;
-                        $moduleName = $tds[1]->innerText;
-                        $note = $tds[4]->innerText;
-                        $yearStart = explode("-", $tds[3]->innerText)[0];
-                        $yearEnd = explode("-", $tds[3]->innerText)[1];
+            $trs = $dom->findMulti("#record_table tr");
 
-                        $mark = /* Note::firstOrCreate */ ([
-                            'module_code' => $moduleCode,
-                            'module_name' => $moduleName,
-                            'note' => str_replace("<br>", " ", $note),
-                            'yearStart' => $yearStart,
-                            'yearEnd' => $yearEnd,
-                            'user_id' => $user->id,
-                        ]);
+            $marks = [];
+            foreach ($trs as $tr) {
+                if ($tr->class == "bulletin_unit_row") {
+                    $tds = $tr->findMulti("td");
+                    $moduleCode = $tds[0]->innerText;
+                    $moduleName = $tds[1]->innerText;
+                    $note = $tds[4]->innerText;
+                    $yearStart = explode("-", $tds[3]->innerText)[0];
+                    $yearEnd = explode("-", $tds[3]->innerText)[1];
 
-                        $marks[] = $mark;
-                    }
+                    $mark = $user->marks()->firstOrCreate([
+                        'module_code' => $moduleCode,
+                        'module_name' => $moduleName,
+                        'value' => explode(" ", str_replace("<br>", " ", $note))[0],
+                        'year_start' => $yearStart,
+                        'year_end' => $yearEnd,
+                    ]);
+
+                    $marks[] = $mark;
                 }
-            } catch (\Exception $e) {
-                continue;
             }
         }
-        return $marks;
     }
 }

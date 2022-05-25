@@ -31,6 +31,7 @@ jobs:
         
     - name: Running migration
       env:
+        APP_KEY: ${{ secrets.APP_KEY }}
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: php artisan migrate:fresh
@@ -38,13 +39,17 @@ jobs:
       
     - name: Seeding Database
       env:
+        APP_KEY: ${{ secrets.APP_KEY }}
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+        GAPS_USERNAME: vincent.tarrit
+        GAPS_PASSWORD: ${{ secrets.GAPS_PASSWORD }}
       run: php artisan db:seed
       id: seeding
       
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
+        APP_KEY: ${{ secrets.APP_KEY }}
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
       run: vendor/bin/phpunit
@@ -56,8 +61,8 @@ jobs:
       if: ${{ failure() }}
       uses: appleboy/telegram-action@master
       with:
-        to: "-791975647"
-        token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
             ❌❌❌ A COMMIT DIDN'T PASS THE TEST IN LARAVEL ❌❌❌
             
@@ -92,8 +97,8 @@ jobs:
       if: ${{ failure() }}
       uses: appleboy/telegram-action@master
       with:
-        to: "-791975647"
-        token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
             ❌❌❌ A COMMIT DIDN'T PASS THE TEST IN VUE ❌❌❌
             
@@ -111,8 +116,8 @@ jobs:
         - name: send telegram message on push
           uses: appleboy/telegram-action@master
           with:
-            to: "-791975647"
-            token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
+            to: ${{ secrets.TELEGRAM_CHAT_ID }}
+            token: ${{ secrets.TELEGRAM_TOKEN }}
             message: |
                 ✅✅✅ A COMMIT WAS DONE. ✅✅✅
 

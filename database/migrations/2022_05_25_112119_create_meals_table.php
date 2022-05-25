@@ -13,10 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('files', function (Blueprint $table) {
+        Schema::create('meals', function (Blueprint $table) {
             $table->id();
-            $table->string('location');
-            $table->integer('size');
+            $table->string('entry');
+            $table->string('plate');
+            $table->string('dessert');
+            $table->foreignId('menu_id')->constrained('menus')->onDelete('cascade')->onUpdate('cascade');
+            $table->unique(["id", "menu_id"]);
             $table->timestamps();
         });
     }
@@ -28,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('files');
+        Schema::dropIfExists('meals');
     }
 };

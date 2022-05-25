@@ -3,9 +3,13 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\GapsController;
 use App\Http\Controllers\GapsEventsController;
 use App\Http\Controllers\GapsMarksController;
 use App\Http\Controllers\MailController;
+use App\Http\Controllers\MarkController;
+use App\Http\Controllers\MenuController;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
 
@@ -39,19 +43,28 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/marks', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
     });
 
+
     Route::prefix('/mails')->controller(MailController::class)->group(function () {
         Route::get('/', 'index')->name('api.mails.index');
         Route::get('/{id}', 'show')->name('api.mails.show');
         Route::post('/send', 'send')->name('api.mails.send');
     });
+
+    Route::resource('/events', EventController::class, [
+        'as' => 'api'
+    ]);
+    //Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents'])->name("api.getCalendarEvents");
+
+
+    Route::get('/marks', [MarkController::class, 'index'])->name('api.marks.index');
+
+    Route::get('/menu', [MenuController::class, 'index'])->name("api.getMenu");
+
 });
 
 Route::get('/', function () {
     return response()->json(['message' => 'Welcome to API']);
 });
 
-Route::get('/update/gaps/{token}', function () {
-    GapsEventsService::fetchAllHoraires();
-    GapsMarksService::fetchAllNotes();
-    return httpSuccess('All fetched');
-})->where('token', config('gaps.token'));
+
+Route::get('/update/gaps/{token}', [GapsController::class, "updateAll"])->where('token', config('gaps.token'));

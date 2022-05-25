@@ -13,8 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('personal_number')->default(0);
+        Schema::create('classrooms', function (Blueprint $table) {
+            $table->string('name')->primary();
+
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('personal_number');
-        });
+        Schema::dropIfExists('class_rooms');
     }
 };

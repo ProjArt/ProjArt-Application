@@ -17,10 +17,7 @@ class UsersSeeder extends Seeder
     public function run()
     {
         DB::table('users')->truncate();
-        \App\Models\User::factory(10)
-            ->state(new Sequence(
-                fn ($sequence) => ['username' => 'user'.$sequence->index],
-            ))
+        \App\Models\User::factory()
             ->create();
     }
 }
