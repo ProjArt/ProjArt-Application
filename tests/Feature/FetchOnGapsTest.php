@@ -19,7 +19,7 @@ class FetchOnGapsTest extends TestCase
     {
         $response = $this->json('GET', route('api.fetch.gaps.events'));
 
-        $response->assertUnauthorized();
+        $this->assertFalse($response->json()['success']);
     }
 
     public function test_fetch_on_gaps_failed_if_user_not_on_gaps()
@@ -34,7 +34,8 @@ class FetchOnGapsTest extends TestCase
 
         $response = $this->json('GET', route('api.fetch.gaps.events'));
 
-        $response->assertUnauthorized();
+        $this->assertFalse($response->json()['success']);
+
 
         $user->delete();
     }
