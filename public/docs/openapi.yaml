@@ -14,6 +14,13 @@ paths:
       parameters:
         -
           in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -28,7 +35,7 @@ paths:
             type: string
       responses: {  }
       tags:
-        - Endpoints
+        - Authentication
       requestBody:
         required: true
         content:
@@ -39,15 +46,14 @@ paths:
                 username:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: vpiyhcpkosndjmszaevyubzmjdekxdasziqagqivlxbmyvvgofwkqbifbqpihiormwzklwboklzmzkoljxegztxwmfkefghorcuxxippnpmoygsnafafwmynctrajquzomubyjvlcjfdafracsnbxdcwcyodpezskrapzk
+                  example: gaurfamcogoyvjjtuzjplxvbqucwaywbqdkfqsrzsanvbytifuqlmirhznguucflcffegxpyekgriowvbuvwbznqkusmxyfrysehigzbkqsyozdrxmxozsexblunuxaayuiwzoykwgrvwbntkbpyrlejqmanik
                 password:
                   type: string
                   description: 'Must be at least 5 characters.'
-                  example: z
+                  example: goio
               required:
                 - username
                 - password
-      security: []
   /api/register:
     post:
       summary: ''
@@ -55,6 +61,13 @@ paths:
       parameters:
         -
           in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -69,7 +82,7 @@ paths:
             type: string
       responses: {  }
       tags:
-        - Endpoints
+        - Authentication
       requestBody:
         required: true
         content:
@@ -80,15 +93,14 @@ paths:
                 username:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: lyssvujnsmydxexqfxsjttuybvkbuxvhuqsthmftwrjfwkqjqhbbcnuzubzashtx
+                  example: qfkvpdrakzilpfkdlnfedjixjnfrrbiocrpxzcrbsnfuasxhguxvejhkfhlzkntfdnkp
                 password:
                   type: string
                   description: 'Must be at least 5 characters.'
-                  example: ''
+                  example: x
               required:
                 - username
                 - password
-      security: []
   /api/me:
     get:
       summary: ''
@@ -96,6 +108,13 @@ paths:
       parameters:
         -
           in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -134,8 +153,7 @@ paths:
                     items:
                       type: string
       tags:
-        - Endpoints
-      security: []
+        - Authentication
   /api/logout:
     get:
       summary: ''
@@ -143,6 +161,13 @@ paths:
       parameters:
         -
           in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -181,8 +206,43 @@ paths:
                     items:
                       type: string
       tags:
-        - Endpoints
-      security: []
+        - Authentication
+  /api/events:
+    get:
+      summary: 'Obtenir tous les évènements'
+      description: 'Retourne un json contenant une liste des évènements. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: success
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "[\n \"id\" => 1,\n \"name\" => \"Calendrier 1\",\n \"events\" => [\n     \"id\" => 1,\n     \"title\" => \"Event 1\",\n     \"start\" => \"2020-01-01\",\n     \"end\" => \"2020-01-01\",\n     \"description\" => \"Description 1\",\n     \"location\" => \"Location 1\",\n     \"calendar_id\" => 1,\n     \"created_at\" => \"2020-01-01\",\n     \"updated_at\" => \"2020-01-01\",\n  ]\n]"
+      tags:
+        - Evènements
   /api/update/gaps/events:
     get:
       summary: ''
@@ -190,51 +250,11 @@ paths:
       parameters:
         -
           in: header
-          name: Content-Type
+          name: Authorization
           description: ''
-          example: application/json
+          example: 'Bearer {YOUR_AUTH_KEY}'
           schema:
             type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
-      tags:
-        - Endpoints
-      security: []
-  /api/update/gaps/marks:
-    get:
-      summary: ''
-      description: ''
-      parameters:
         -
           in: header
           name: Content-Type
@@ -275,238 +295,19 @@ paths:
                     items:
                       type: string
       tags:
-        - Endpoints
-      security: []
-  /api/events:
-    get:
-      summary: 'Retourne un json contenant une liste des évènements. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
-      tags:
-        - Endpoints
-      security: []
-    post:
-      summary: 'Store a newly created resource in storage.'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-  '/api/events/{id}':
-    get:
-      summary: 'Display the specified resource.'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
-      tags:
-        - Endpoints
-      security: []
-    put:
-      summary: 'Update the specified resource in storage.'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-    delete:
-      summary: 'Remove the specified resource from storage.'
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Endpoints
-      security: []
-    parameters:
-      -
-        in: path
-        name: id
-        description: 'The ID of the event.'
-        example: 1
-        required: true
-        schema:
-          type: integer
-  '/api/events/calendar/{calendarId}':
-    get:
-      summary: ''
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
-      tags:
-        - Endpoints
-      security: []
-    parameters:
-      -
-        in: path
-        name: calendarId
-        description: ''
-        example: 10
-        required: true
-        schema:
-          type: integer
+        - Gaps
   '/api/update/gaps/{token}':
     get:
       summary: ''
       description: ''
       parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
         -
           in: header
           name: Content-Type
@@ -547,21 +348,33 @@ paths:
                       class: Illuminate\Foundation\Bootstrap\HandleExceptions
                       type: '->'
                     -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/routes/api.php
-                      line: 54
+                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Controllers/GapsController.php
+                      line: 24
                       function: fetchAllNotes
                       class: App\Http\Services\GapsMarksService
                       type: '::'
                     -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php
-                      line: 237
-                      function: '{closure}'
-                      class: Illuminate\Routing\RouteFileRegistrar
+                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Controller.php
+                      line: 54
+                      function: updateAll
+                      class: App\Http\Controllers\GapsController
+                      type: '->'
+                    -
+                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php
+                      line: 45
+                      function: callAction
+                      class: Illuminate\Routing\Controller
                       type: '->'
                     -
                       file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php
-                      line: 207
-                      function: runCallable
+                      line: 261
+                      function: dispatch
+                      class: Illuminate\Routing\ControllerDispatcher
+                      type: '->'
+                    -
+                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php
+                      line: 204
+                      function: runController
                       class: Illuminate\Routing\Route
                       type: '->'
                     -
@@ -971,21 +784,33 @@ paths:
                         class: Illuminate\Foundation\Bootstrap\HandleExceptions
                         type: '->'
                       -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/routes/api.php
-                        line: 54
+                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Controllers/GapsController.php
+                        line: 24
                         function: fetchAllNotes
                         class: App\Http\Services\GapsMarksService
                         type: '::'
                       -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php
-                        line: 237
-                        function: '{closure}'
-                        class: Illuminate\Routing\RouteFileRegistrar
+                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Controller.php
+                        line: 54
+                        function: updateAll
+                        class: App\Http\Controllers\GapsController
+                        type: '->'
+                      -
+                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php
+                        line: 45
+                        function: callAction
+                        class: Illuminate\Routing\Controller
                         type: '->'
                       -
                         file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php
-                        line: 207
-                        function: runCallable
+                        line: 261
+                        function: dispatch
+                        class: Illuminate\Routing\ControllerDispatcher
+                        type: '->'
+                      -
+                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php
+                        line: 204
+                        function: runController
                         class: Illuminate\Routing\Route
                         type: '->'
                       -
@@ -1369,8 +1194,7 @@ paths:
                     items:
                       type: object
       tags:
-        - Endpoints
-      security: []
+        - Gaps
     parameters:
       -
         in: path
@@ -1380,7 +1204,75 @@ paths:
         required: true
         schema:
           type: string
+  /api/update/gaps/marks:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Gaps
 tags:
   -
-    name: Endpoints
-    description: ''
+    name: Authentication
+    description: "\nAPIs pour gérer les authentifications"
+  -
+    name: Evènements
+    description: "\nAPIs pour gérer les évènements"
+  -
+    name: Gaps
+    description: "\nAPIs pour forcer la mis à jour de toutes les données de Gaps"
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
+  -
+    default: []

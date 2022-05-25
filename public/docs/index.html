@@ -23,6 +23,7 @@
         /* starts out as display none and is replaced with js later  */
                     body .content .bash-example code { display: none; }
                     body .content .javascript-example code { display: none; }
+                    body .content .php-example code { display: none; }
             </style>
 
     <script>
@@ -36,7 +37,7 @@
 
 </head>
 
-<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;,&quot;php&quot;]">
 
 <a href="#" id="nav-button">
     <span>
@@ -49,6 +50,7 @@
             <div class="lang-selector">
                                             <button type="button" class="lang-button" data-language-name="bash">bash</button>
                                             <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                            <button type="button" class="lang-button" data-language-name="php">php</button>
                     </div>
     
     <div class="search">
@@ -70,48 +72,47 @@
                                                 </ul>
                     
                     <ul id="tocify-header-2" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="endpoints">
-                    <a href="#endpoints">Endpoints</a>
+                <li class="tocify-item level-1" data-unique="authentication">
+                    <a href="#authentication">Authentication</a>
                 </li>
-                                    <ul id="tocify-subheader-endpoints" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-login">
-                        <a href="#endpoints-POSTapi-login">POST api/login</a>
+                                    <ul id="tocify-subheader-authentication" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="authentication-POSTapi-login">
+                        <a href="#authentication-POSTapi-login">POST api/login</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-register">
-                        <a href="#endpoints-POSTapi-register">POST api/register</a>
+                                    <li class="tocify-item level-2" data-unique="authentication-POSTapi-register">
+                        <a href="#authentication-POSTapi-register">POST api/register</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-me">
-                        <a href="#endpoints-GETapi-me">GET api/me</a>
+                                    <li class="tocify-item level-2" data-unique="authentication-GETapi-me">
+                        <a href="#authentication-GETapi-me">GET api/me</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-logout">
-                        <a href="#endpoints-GETapi-logout">GET api/logout</a>
+                                    <li class="tocify-item level-2" data-unique="authentication-GETapi-logout">
+                        <a href="#authentication-GETapi-logout">GET api/logout</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-update-gaps-events">
-                        <a href="#endpoints-GETapi-update-gaps-events">GET api/update/gaps/events</a>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="evenements">
+                    <a href="#evenements">Evènements</a>
+                </li>
+                                    <ul id="tocify-subheader-evenements" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="evenements-GETapi-events">
+                        <a href="#evenements-GETapi-events">Obtenir tous les évènements</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-update-gaps-marks">
-                        <a href="#endpoints-GETapi-update-gaps-marks">GET api/update/gaps/marks</a>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="gaps">
+                    <a href="#gaps">Gaps</a>
+                </li>
+                                    <ul id="tocify-subheader-gaps" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="gaps-GETapi-update-gaps-events">
+                        <a href="#gaps-GETapi-update-gaps-events">GET api/update/gaps/events</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-events">
-                        <a href="#endpoints-GETapi-events">Retourne un json contenant une liste des évènements. La liste correspond à l&#039;ensemble des évènements de tous les calendriers que suit l&#039;utilisateur.</a>
+                                    <li class="tocify-item level-2" data-unique="gaps-GETapi-update-gaps--token-">
+                        <a href="#gaps-GETapi-update-gaps--token-">GET api/update/gaps/{token}</a>
                     </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-POSTapi-events">
-                        <a href="#endpoints-POSTapi-events">Store a newly created resource in storage.</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-events--id-">
-                        <a href="#endpoints-GETapi-events--id-">Display the specified resource.</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-PUTapi-events--id-">
-                        <a href="#endpoints-PUTapi-events--id-">Update the specified resource in storage.</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-DELETEapi-events--id-">
-                        <a href="#endpoints-DELETEapi-events--id-">Remove the specified resource from storage.</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-events-calendar--calendarId-">
-                        <a href="#endpoints-GETapi-events-calendar--calendarId-">GET api/events/calendar/{calendarId}</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="endpoints-GETapi-update-gaps--token-">
-                        <a href="#endpoints-GETapi-update-gaps--token-">GET api/update/gaps/{token}</a>
+                                    <li class="tocify-item level-2" data-unique="gaps-GETapi-update-gaps-marks">
+                        <a href="#gaps-GETapi-update-gaps-marks">GET api/update/gaps/marks</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -142,15 +143,18 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-yaml">http://localhost</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>This API is not authenticated.</p>
+<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>You can retrieve your token by asking the login route.</p>
 
-        <h1 id="endpoints">Endpoints</h1>
+        <h1 id="authentication">Authentication</h1>
 
-    
+    <p>APIs pour gérer les authentifications</p>
 
-            <h2 id="endpoints-POSTapi-login">POST api/login</h2>
+            <h2 id="authentication-POSTapi-login">POST api/login</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -162,11 +166,12 @@ You can switch the language used with the tabs at the top right (or from the nav
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://localhost/api/login" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"vpiyhcpkosndjmszaevyubzmjdekxdasziqagqivlxbmyvvgofwkqbifbqpihiormwzklwboklzmzkoljxegztxwmfkefghorcuxxippnpmoygsnafafwmynctrajquzomubyjvlcjfdafracsnbxdcwcyodpezskrapzk\",
-    \"password\": \"z\"
+    \"username\": \"gaurfamcogoyvjjtuzjplxvbqucwaywbqdkfqsrzsanvbytifuqlmirhznguucflcffegxpyekgriowvbuvwbznqkusmxyfrysehigzbkqsyozdrxmxozsexblunuxaayuiwzoykwgrvwbntkbpyrlejqmanik\",
+    \"password\": \"goio\"
 }"
 </code></pre></div>
 
@@ -177,13 +182,14 @@ You can switch the language used with the tabs at the top right (or from the nav
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "username": "vpiyhcpkosndjmszaevyubzmjdekxdasziqagqivlxbmyvvgofwkqbifbqpihiormwzklwboklzmzkoljxegztxwmfkefghorcuxxippnpmoygsnafafwmynctrajquzomubyjvlcjfdafracsnbxdcwcyodpezskrapzk",
-    "password": "z"
+    "username": "gaurfamcogoyvjjtuzjplxvbqucwaywbqdkfqsrzsanvbytifuqlmirhznguucflcffegxpyekgriowvbuvwbznqkusmxyfrysehigzbkqsyozdrxmxozsexblunuxaayuiwzoykwgrvwbntkbpyrlejqmanik",
+    "password": "goio"
 };
 
 fetch(url, {
@@ -191,6 +197,26 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/login',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'username' =&gt; 'gaurfamcogoyvjjtuzjplxvbqucwaywbqdkfqsrzsanvbytifuqlmirhznguucflcffegxpyekgriowvbuvwbznqkusmxyfrysehigzbkqsyozdrxmxozsexblunuxaayuiwzoykwgrvwbntkbpyrlejqmanik',
+            'password' =&gt; 'goio',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
@@ -208,10 +234,10 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-login" data-method="POST"
       data-path="api/login"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-login', this);">
     <h3>
@@ -235,13 +261,21 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/login</code></b>
         </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+                <p>
+            <label id="auth-POSTapi-login" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-login"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
             <b><code>username</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-login"
-               value="vpiyhcpkosndjmszaevyubzmjdekxdasziqagqivlxbmyvvgofwkqbifbqpihiormwzklwboklzmzkoljxegztxwmfkefghorcuxxippnpmoygsnafafwmynctrajquzomubyjvlcjfdafracsnbxdcwcyodpezskrapzk"
+               value="gaurfamcogoyvjjtuzjplxvbqucwaywbqdkfqsrzsanvbytifuqlmirhznguucflcffegxpyekgriowvbuvwbznqkusmxyfrysehigzbkqsyozdrxmxozsexblunuxaayuiwzoykwgrvwbntkbpyrlejqmanik"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -251,16 +285,17 @@ fetch(url, {
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="z"
+               value="goio"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters.</p>
         </p>
         </form>
 
-            <h2 id="endpoints-POSTapi-register">POST api/register</h2>
+            <h2 id="authentication-POSTapi-register">POST api/register</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -272,11 +307,12 @@ fetch(url, {
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://localhost/api/register" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"lyssvujnsmydxexqfxsjttuybvkbuxvhuqsthmftwrjfwkqjqhbbcnuzubzashtx\",
-    \"password\": \"\"
+    \"username\": \"qfkvpdrakzilpfkdlnfedjixjnfrrbiocrpxzcrbsnfuasxhguxvejhkfhlzkntfdnkp\",
+    \"password\": \"x\"
 }"
 </code></pre></div>
 
@@ -287,13 +323,14 @@ fetch(url, {
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
 
 let body = {
-    "username": "lyssvujnsmydxexqfxsjttuybvkbuxvhuqsthmftwrjfwkqjqhbbcnuzubzashtx",
-    "password": ""
+    "username": "qfkvpdrakzilpfkdlnfedjixjnfrrbiocrpxzcrbsnfuasxhguxvejhkfhlzkntfdnkp",
+    "password": "x"
 };
 
 fetch(url, {
@@ -301,6 +338,26 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/register',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'username' =&gt; 'qfkvpdrakzilpfkdlnfedjixjnfrrbiocrpxzcrbsnfuasxhguxvejhkfhlzkntfdnkp',
+            'password' =&gt; 'x',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
@@ -318,10 +375,10 @@ fetch(url, {
 </span>
 <form id="form-POSTapi-register" data-method="POST"
       data-path="api/register"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('POSTapi-register', this);">
     <h3>
@@ -345,13 +402,21 @@ fetch(url, {
             <small class="badge badge-black">POST</small>
             <b><code>api/register</code></b>
         </p>
-                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+                <p>
+            <label id="auth-POSTapi-register" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-register"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
             <b><code>username</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-register"
-               value="lyssvujnsmydxexqfxsjttuybvkbuxvhuqsthmftwrjfwkqjqhbbcnuzubzashtx"
+               value="qfkvpdrakzilpfkdlnfedjixjnfrrbiocrpxzcrbsnfuasxhguxvejhkfhlzkntfdnkp"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -361,16 +426,17 @@ fetch(url, {
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value=""
+               value="x"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters.</p>
         </p>
         </form>
 
-            <h2 id="endpoints-GETapi-me">GET api/me</h2>
+            <h2 id="authentication-GETapi-me">GET api/me</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -382,6 +448,7 @@ fetch(url, {
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "http://localhost/api/me" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -392,6 +459,7 @@ fetch(url, {
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -400,6 +468,22 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/me',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
@@ -438,10 +522,10 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-me" data-method="GET"
       data-path="api/me"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-me', this);">
     <h3>
@@ -465,11 +549,20 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/me</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-GETapi-me" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-me"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
-            <h2 id="endpoints-GETapi-logout">GET api/logout</h2>
+            <h2 id="authentication-GETapi-logout">GET api/logout</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -481,6 +574,7 @@ access-control-allow-origin: *
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "http://localhost/api/logout" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -491,6 +585,7 @@ access-control-allow-origin: *
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -499,6 +594,22 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/logout',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
@@ -537,10 +648,10 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-logout" data-method="GET"
       data-path="api/logout"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-logout', this);">
     <h3>
@@ -564,11 +675,154 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/logout</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-GETapi-logout" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-logout"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
-            <h2 id="endpoints-GETapi-update-gaps-events">GET api/update/gaps/events</h2>
+        <h1 id="evenements">Evènements</h1>
+
+    <p>APIs pour gérer les évènements</p>
+
+            <h2 id="evenements-GETapi-events">Obtenir tous les évènements</h2>
 
 <p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Retourne un json contenant une liste des évènements. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur.</p>
+
+<span id="example-requests-GETapi-events">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/events" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/events"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/events',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-events">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">[
+ &quot;id&quot; =&gt; 1,
+ &quot;name&quot; =&gt; &quot;Calendrier 1&quot;,
+ &quot;events&quot; =&gt; [
+     &quot;id&quot; =&gt; 1,
+     &quot;title&quot; =&gt; &quot;Event 1&quot;,
+     &quot;start&quot; =&gt; &quot;2020-01-01&quot;,
+     &quot;end&quot; =&gt; &quot;2020-01-01&quot;,
+     &quot;description&quot; =&gt; &quot;Description 1&quot;,
+     &quot;location&quot; =&gt; &quot;Location 1&quot;,
+     &quot;calendar_id&quot; =&gt; 1,
+     &quot;created_at&quot; =&gt; &quot;2020-01-01&quot;,
+     &quot;updated_at&quot; =&gt; &quot;2020-01-01&quot;,
+  ]
+]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-events" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-events"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-events"></code></pre>
+</span>
+<span id="execution-error-GETapi-events" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-events"></code></pre>
+</span>
+<form id="form-GETapi-events" data-method="GET"
+      data-path="api/events"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-events', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-events"
+                    onclick="tryItOut('GETapi-events');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-events"
+                    onclick="cancelTryOut('GETapi-events');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-events" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/events</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-events" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-events"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+        <h1 id="gaps">Gaps</h1>
+
+    <p>APIs pour forcer la mis à jour de toutes les données de Gaps</p>
+
+            <h2 id="gaps-GETapi-update-gaps-events">GET api/update/gaps/events</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -580,6 +834,7 @@ access-control-allow-origin: *
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "http://localhost/api/update/gaps/events" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -590,6 +845,7 @@ access-control-allow-origin: *
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -598,6 +854,22 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/update/gaps/events',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
@@ -636,10 +908,10 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-update-gaps-events" data-method="GET"
       data-path="api/update/gaps/events"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps-events', this);">
     <h3>
@@ -663,689 +935,20 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/update/gaps/events</code></b>
         </p>
-                    </form>
+                <p>
+            <label id="auth-GETapi-update-gaps-events" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-update-gaps-events"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
-            <h2 id="endpoints-GETapi-update-gaps-marks">GET api/update/gaps/marks</h2>
+            <h2 id="gaps-GETapi-update-gaps--token-">GET api/update/gaps/{token}</h2>
 
 <p>
-</p>
-
-
-
-<span id="example-requests-GETapi-update-gaps-marks">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/update/gaps/marks" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/update/gaps/marks"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-update-gaps-marks">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">{
-    &quot;success&quot;: false,
-    &quot;message&quot;: &quot;Unauthenticated&quot;,
-    &quot;data&quot;: [
-        &quot;sanctum&quot;
-    ]
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-update-gaps-marks" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-update-gaps-marks"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-update-gaps-marks"></code></pre>
-</span>
-<span id="execution-error-GETapi-update-gaps-marks" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-update-gaps-marks"></code></pre>
-</span>
-<form id="form-GETapi-update-gaps-marks" data-method="GET"
-      data-path="api/update/gaps/marks"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps-marks', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-update-gaps-marks"
-                    onclick="tryItOut('GETapi-update-gaps-marks');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-update-gaps-marks"
-                    onclick="cancelTryOut('GETapi-update-gaps-marks');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-update-gaps-marks" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/update/gaps/marks</code></b>
-        </p>
-                    </form>
-
-            <h2 id="endpoints-GETapi-events">Retourne un json contenant une liste des évènements. La liste correspond à l&#039;ensemble des évènements de tous les calendriers que suit l&#039;utilisateur.</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-events">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/events" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/events"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-events">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">{
-    &quot;success&quot;: false,
-    &quot;message&quot;: &quot;Unauthenticated&quot;,
-    &quot;data&quot;: [
-        &quot;sanctum&quot;
-    ]
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-events" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-events"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-events"></code></pre>
-</span>
-<span id="execution-error-GETapi-events" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-events"></code></pre>
-</span>
-<form id="form-GETapi-events" data-method="GET"
-      data-path="api/events"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-events', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-events"
-                    onclick="tryItOut('GETapi-events');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-events"
-                    onclick="cancelTryOut('GETapi-events');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-events" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/events</code></b>
-        </p>
-                    </form>
-
-            <h2 id="endpoints-POSTapi-events">Store a newly created resource in storage.</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-POSTapi-events">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/events" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/events"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-events">
-</span>
-<span id="execution-results-POSTapi-events" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-events"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-events"></code></pre>
-</span>
-<span id="execution-error-POSTapi-events" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-events"></code></pre>
-</span>
-<form id="form-POSTapi-events" data-method="POST"
-      data-path="api/events"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-events', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-events"
-                    onclick="tryItOut('POSTapi-events');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-events"
-                    onclick="cancelTryOut('POSTapi-events');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-events" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/events</code></b>
-        </p>
-                    </form>
-
-            <h2 id="endpoints-GETapi-events--id-">Display the specified resource.</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-events--id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/events/1" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/events/1"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-events--id-">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">{
-    &quot;success&quot;: false,
-    &quot;message&quot;: &quot;Unauthenticated&quot;,
-    &quot;data&quot;: [
-        &quot;sanctum&quot;
-    ]
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-events--id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-events--id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-events--id-"></code></pre>
-</span>
-<span id="execution-error-GETapi-events--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-events--id-"></code></pre>
-</span>
-<form id="form-GETapi-events--id-" data-method="GET"
-      data-path="api/events/{id}"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-events--id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-events--id-"
-                    onclick="tryItOut('GETapi-events--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-events--id-"
-                    onclick="cancelTryOut('GETapi-events--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-events--id-" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/events/{id}</code></b>
-        </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="id"
-               data-endpoint="GETapi-events--id-"
-               value="1"
-               data-component="url" hidden>
-    <br>
-<p>The ID of the event.</p>
-            </p>
-                    </form>
-
-            <h2 id="endpoints-PUTapi-events--id-">Update the specified resource in storage.</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-PUTapi-events--id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/api/events/1" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/events/1"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "PUT",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-PUTapi-events--id-">
-</span>
-<span id="execution-results-PUTapi-events--id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-PUTapi-events--id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-PUTapi-events--id-"></code></pre>
-</span>
-<span id="execution-error-PUTapi-events--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-PUTapi-events--id-"></code></pre>
-</span>
-<form id="form-PUTapi-events--id-" data-method="PUT"
-      data-path="api/events/{id}"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('PUTapi-events--id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-PUTapi-events--id-"
-                    onclick="tryItOut('PUTapi-events--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-PUTapi-events--id-"
-                    onclick="cancelTryOut('PUTapi-events--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-PUTapi-events--id-" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-darkblue">PUT</small>
-            <b><code>api/events/{id}</code></b>
-        </p>
-            <p>
-            <small class="badge badge-purple">PATCH</small>
-            <b><code>api/events/{id}</code></b>
-        </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="id"
-               data-endpoint="PUTapi-events--id-"
-               value="1"
-               data-component="url" hidden>
-    <br>
-<p>The ID of the event.</p>
-            </p>
-                    </form>
-
-            <h2 id="endpoints-DELETEapi-events--id-">Remove the specified resource from storage.</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-DELETEapi-events--id-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/api/events/1" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/events/1"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "DELETE",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-DELETEapi-events--id-">
-</span>
-<span id="execution-results-DELETEapi-events--id-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-DELETEapi-events--id-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-DELETEapi-events--id-"></code></pre>
-</span>
-<span id="execution-error-DELETEapi-events--id-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-DELETEapi-events--id-"></code></pre>
-</span>
-<form id="form-DELETEapi-events--id-" data-method="DELETE"
-      data-path="api/events/{id}"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-events--id-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-DELETEapi-events--id-"
-                    onclick="tryItOut('DELETEapi-events--id-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-DELETEapi-events--id-"
-                    onclick="cancelTryOut('DELETEapi-events--id-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-DELETEapi-events--id-" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-red">DELETE</small>
-            <b><code>api/events/{id}</code></b>
-        </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <p>
-                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="id"
-               data-endpoint="DELETEapi-events--id-"
-               value="1"
-               data-component="url" hidden>
-    <br>
-<p>The ID of the event.</p>
-            </p>
-                    </form>
-
-            <h2 id="endpoints-GETapi-events-calendar--calendarId-">GET api/events/calendar/{calendarId}</h2>
-
-<p>
-</p>
-
-
-
-<span id="example-requests-GETapi-events-calendar--calendarId-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/events/calendar/10" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/events/calendar/10"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-events-calendar--calendarId-">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">{
-    &quot;success&quot;: false,
-    &quot;message&quot;: &quot;Unauthenticated&quot;,
-    &quot;data&quot;: [
-        &quot;sanctum&quot;
-    ]
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-events-calendar--calendarId-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-events-calendar--calendarId-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-events-calendar--calendarId-"></code></pre>
-</span>
-<span id="execution-error-GETapi-events-calendar--calendarId-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-events-calendar--calendarId-"></code></pre>
-</span>
-<form id="form-GETapi-events-calendar--calendarId-" data-method="GET"
-      data-path="api/events/calendar/{calendarId}"
-      data-authed="0"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-events-calendar--calendarId-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-events-calendar--calendarId-"
-                    onclick="tryItOut('GETapi-events-calendar--calendarId-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-events-calendar--calendarId-"
-                    onclick="cancelTryOut('GETapi-events-calendar--calendarId-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-events-calendar--calendarId-" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/events/calendar/{calendarId}</code></b>
-        </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <p>
-                <b><code>calendarId</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
-                <input type="number"
-               name="calendarId"
-               data-endpoint="GETapi-events-calendar--calendarId-"
-               value="10"
-               data-component="url" hidden>
-    <br>
-
-            </p>
-                    </form>
-
-            <h2 id="endpoints-GETapi-update-gaps--token-">GET api/update/gaps/{token}</h2>
-
-<p>
+<small class="badge badge-darkred">requires authentication</small>
 </p>
 
 
@@ -1357,6 +960,7 @@ access-control-allow-origin: *
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "http://localhost/api/update/gaps/VGrxhPp9xuDb947JZADe7ESdBDkwdq" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -1367,6 +971,7 @@ access-control-allow-origin: *
 );
 
 const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -1375,6 +980,22 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/update/gaps/VGrxhPp9xuDb947JZADe7ESdBDkwdq',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
@@ -1415,23 +1036,37 @@ access-control-allow-origin: *
             &quot;type&quot;: &quot;-&gt;&quot;
         },
         {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/routes/api.php&quot;,
-            &quot;line&quot;: 54,
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Controllers/GapsController.php&quot;,
+            &quot;line&quot;: 24,
             &quot;function&quot;: &quot;fetchAllNotes&quot;,
             &quot;class&quot;: &quot;App\\Http\\Services\\GapsMarksService&quot;,
             &quot;type&quot;: &quot;::&quot;
         },
         {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
-            &quot;line&quot;: 237,
-            &quot;function&quot;: &quot;{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\RouteFileRegistrar&quot;,
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Controller.php&quot;,
+            &quot;line&quot;: 54,
+            &quot;function&quot;: &quot;updateAll&quot;,
+            &quot;class&quot;: &quot;App\\Http\\Controllers\\GapsController&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php&quot;,
+            &quot;line&quot;: 45,
+            &quot;function&quot;: &quot;callAction&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Controller&quot;,
             &quot;type&quot;: &quot;-&gt;&quot;
         },
         {
             &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
-            &quot;line&quot;: 207,
-            &quot;function&quot;: &quot;runCallable&quot;,
+            &quot;line&quot;: 261,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 204,
+            &quot;function&quot;: &quot;runController&quot;,
             &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
             &quot;type&quot;: &quot;-&gt;&quot;
         },
@@ -1892,10 +1527,10 @@ access-control-allow-origin: *
 </span>
 <form id="form-GETapi-update-gaps--token-" data-method="GET"
       data-path="api/update/gaps/{token}"
-      data-authed="0"
+      data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json"}'
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
       autocomplete="off"
       onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps--token-', this);">
     <h3>
@@ -1919,7 +1554,15 @@ access-control-allow-origin: *
             <small class="badge badge-green">GET</small>
             <b><code>api/update/gaps/{token}</code></b>
         </p>
-                    <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                <p>
+            <label id="auth-GETapi-update-gaps--token-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-update-gaps--token-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <p>
                 <b><code>token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
@@ -1932,6 +1575,132 @@ access-control-allow-origin: *
             </p>
                     </form>
 
+            <h2 id="gaps-GETapi-update-gaps-marks">GET api/update/gaps/marks</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-update-gaps-marks">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/update/gaps/marks" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/update/gaps/marks"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/update/gaps/marks',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-update-gaps-marks">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-update-gaps-marks" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-update-gaps-marks"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-update-gaps-marks"></code></pre>
+</span>
+<span id="execution-error-GETapi-update-gaps-marks" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-update-gaps-marks"></code></pre>
+</span>
+<form id="form-GETapi-update-gaps-marks" data-method="GET"
+      data-path="api/update/gaps/marks"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps-marks', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-update-gaps-marks"
+                    onclick="tryItOut('GETapi-update-gaps-marks');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-update-gaps-marks"
+                    onclick="cancelTryOut('GETapi-update-gaps-marks');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-update-gaps-marks" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/update/gaps/marks</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-update-gaps-marks" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-update-gaps-marks"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
     
 
         
@@ -1940,6 +1709,7 @@ access-control-allow-origin: *
                     <div class="lang-selector">
                                                         <button type="button" class="lang-button" data-language-name="bash">bash</button>
                                                         <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                                        <button type="button" class="lang-button" data-language-name="php">php</button>
                             </div>
             </div>
 </div>
