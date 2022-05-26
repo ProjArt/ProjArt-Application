@@ -24,12 +24,12 @@ class StoreEventRequest extends FormRequest
     public function rules()
     {
         return [
-        'title' => 'required|alpha_num',
-        'description',
-        'start' => 'required|date',
-        'end' => 'required|date',
-        'location' => 'required|alpha_num',
-        'calendar_id' => 'required|numeric'
+            'title' => 'required|string|max:255',
+            'description' => 'required|string|max:1000',
+            'start' => 'required|date',
+            'end' => 'required|date',
+            'location' => 'required|string|max:255',
+            'calendar_id' => 'required|exists:calendars,id'
         ];
     }
 }

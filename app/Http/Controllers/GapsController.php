@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /**
@@ -18,10 +19,11 @@ class GapsController extends Controller
      * Ne retourne rien
      * 
     */
-    public function updateAll()
+    public function updateAll(Request $request)
     {
-        GapsEventsService::fetchAllHoraires();
-        GapsMarksService::fetchAllNotes();
-        return httpSuccess('All fetched');
+        $user = $request->user();
+        GapsEventsService::fetchAllHoraires($user);
+        GapsMarksService::fetchAllNotes($user);
+        return httpSuccess('All fetched', ["user" => $user]);
     }
 }

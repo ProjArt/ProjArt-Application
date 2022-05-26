@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthUserRequest;
+use App\Http\Services\GapsEventsService;
+use App\Http\Services\GapsMarksService;
+use App\Models\Classroom;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -19,18 +22,22 @@ class AuthController extends Controller
 
     public function register(AuthUserRequest $request)
     {
-        $user = User::whereUsername($request->username)->first();
 
-        if ($user) {
+        if (User::whereUsername($request->username)->exists()) {
             return httpError("This username is already taken");
         }
 
         $user = User::create($request->all());
         $token = $user->createToken('auth_token')->plainTextToken;
 
+        if ($request->classroom_name) {
+            $user->classrooms()->sync([$request->classroom_name]);
+        }
+
         return httpSuccess("Register validated", [
             'access_token' => $token,
             'token_type' => 'Bearer',
+            'loading_url' => route('api.fetch.gaps'),
         ]);
     }
 
@@ -63,5 +70,22 @@ class AuthController extends Controller
         $request->user()->currentAccessToken()->delete();
 
         return httpSuccess("Logout succeed");
+    }
+
+    public function getClassroom()
+    {
+        $classroom = Classroom::all();
+
+        return httpSuccess("Classroom found", [
+            'classroom' => $classroom,
+        ]);
+    }
+
+    public function setClassroom(Request $request)
+    {
+        $request->user()->classroom_id = $request->classroom_id;
+        $request->user()->save();
+
+        return httpSuccess("Classroom set");
     }
 }

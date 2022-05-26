@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\SetUserClassRequest;
 use App\Http\Requests\StoreClassRoomRequest;
 use App\Http\Requests\UpdateClassRoomRequest;
-use App\Models\ClassRoom;
+use App\Models\Classroom;
+use Illuminate\Http\Request;
 
-class ClassRoomController extends Controller
+class ClassroomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,16 @@ class ClassRoomController extends Controller
      */
     public function index()
     {
-        //
+        $classrooms = Classroom::all();
+        return httpSuccess('Classroom', compact('classrooms'));
+    }
+
+    public function setUserClassroom(SetUserClassRequest $request)
+    {
+        $user = $request->user();
+        $user->classrooms()->sync($request->name);
+
+        return httpSuccess('Classroom updated', ["classrooms" => $user->classrooms]);
     }
 
     /**

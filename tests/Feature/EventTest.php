@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use App\Models\Calendar;
+use App\Models\Event;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -58,5 +60,83 @@ class EventTest extends TestCase
                 ],
             ],
         ]);
+    }
+
+    public function test_can_create_event()
+    {
+        $user  = User::findOr(1, function () {
+            return User::factory()->create();
+        });
+        Sanctum::actingAs(
+            $user
+        );
+
+        $calendar = Calendar::factory()->create();
+
+        $user->calendarsOwn()->sync($calendar);
+
+        $response = $this->json(
+            "POST",
+            route('api.events.store'),
+            [
+                'title' => 'Test Event',
+                'start' => '2020-01-01',
+                'end' => '2020-01-01',
+                'description' => 'Test Event',
+                'location' => 'Test Event',
+                'calendar_id' => $calendar->id,
+            ],
+        );
+
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('events', [
+            'title' => 'Test Event',
+            'start' => '2020-01-01',
+            'end' => '2020-01-01',
+            'description' => 'Test Event',
+            'location' => 'Test Event',
+            'calendar_id' => $calendar->id,
+        ]);
+
+        Event::where('title', 'Test Event')->delete();
+        $calendar->forceDelete();
+    }
+
+    public function test_can_update_event()
+    {
+        // return;
+        $user  = User::findOr(1, function () {
+            return User::factory()->create();
+        });
+
+        Sanctum::actingAs(
+            $user
+        );
+
+        $calendar = Calendar::factory()->create();
+
+        $user->calendarsOwn()->sync($calendar);
+
+        $event = Event::factory()->create([
+            'calendar_id' => $calendar->id,
+        ]);
+
+        $response = $this->json(
+            "PUT",
+            route('api.events.update', $event->id),
+            [
+                'title' => 'Test Event2',
+            ],
+        );
+
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('events', [
+            'title' => 'Test Event2',
+        ]);
+
+        $event->delete();
+        $calendar->forceDelete();
     }
 }

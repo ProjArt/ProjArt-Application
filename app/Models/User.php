@@ -28,7 +28,8 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
-        'card_money'
+        'card_money',
+        'gaps_id'
     ];
 
     /**
