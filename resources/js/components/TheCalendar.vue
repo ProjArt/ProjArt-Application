@@ -194,8 +194,7 @@ getCalendar()
             <button @click="currentLayout = AVAILABLE_LAYOUT.MONTH">Mois</button>
             <button @click="currentLayout = AVAILABLE_LAYOUT.WEEK">Semaines</button>
             <button @click="setDisplayedDates(0)">Aujaurd'hui</button>
-            <FormKit type="select" name="calendar" :options="calendarNames" validation="required"
-                validation-visibility="dirty" v-model="chossenClass" />
+            <FormKit type="select" name="calendar" :options="calendarNames" v-model="chossenClass" />
         </header>
         <div class="calendar__days-names">
             <div v-for="dayLabel in dayLabels">

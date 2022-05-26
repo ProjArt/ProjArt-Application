@@ -17,7 +17,7 @@ const bodyWidth = computed(() => {
 .main-body {
     display: flex;
     flex-direction: column;
-    background-color: #ba0606;
+    background-color: white;
     height: 100vh;
     margin-left: v-bind(sideMenuWidth);
     width: v-bind(bodyWidth);
