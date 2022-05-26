@@ -12,7 +12,11 @@ use Illuminate\Support\Facades\Mail;
 use PhpImap\Mailbox;
 use PhpImap\Exceptions\ConnectionException;
 
-
+/**
+ * @group Mail
+ *
+ * APIs pour gérer les mails
+ */
 class MailController extends Controller
 {
 

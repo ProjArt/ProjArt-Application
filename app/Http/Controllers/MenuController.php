@@ -7,8 +7,51 @@ use App\Models\Menu;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
+/**
+ * @group Menu de la caf
+ *
+ * APIs pour gérer les menus
+ */
 class MenuController extends Controller
 {
+    /**
+     * 
+     * Obtenir tous les menus
+     * 
+     * Retourne un json contenant une liste des menus.
+     * 
+     * @response scenario=success [
+     *  {
+     *   "2022-05-25": [
+     *     {
+     *       "id": 1,
+     *       "entry": "Crème de légumes",
+     *       "plate": "Quiche aux tomates et basilic",
+     *       "dessert": "Salade de fruits",
+     *       "date": "2022-05-25 23:32:08",
+     *       "menu": {
+     *         "id": 1529386802506784773,
+     *         "date": "2022-05-25 23:32:08"
+     *       }
+     *     },
+     *     {
+     *       "id": 2,
+     *       "entry": "Crème de légumes",
+     *       "plate": "Ailerons de poulet (CH) grillés, Sauce barbecue, Frites, Sauté de légumes de saison",
+     *       "dessert": "Salade de fruits",
+     *       "date": "2022-05-25 23:32:08",
+     *       "menu": {
+     *         "id": 1529386800858468355,
+     *         "date": "2022-05-25 23:32:08"
+     *       }
+     *     }
+     *   ],
+     * }
+     *  
+     *    
+     * @authenticated
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         //$response = Http::withBasicAuth('vincent.tarrit', 'Bc&84NC@jPDb9La6')->get('https://intra.heig-vd.ch/campus/cafeterias/Pages/cafeteria.aspx');

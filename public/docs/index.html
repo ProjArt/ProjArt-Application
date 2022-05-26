@@ -91,6 +91,31 @@
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="calendrier">
+                    <a href="#calendrier">Calendrier</a>
+                </li>
+                                    <ul id="tocify-subheader-calendrier" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="calendrier-GETapi-calendars">
+                        <a href="#calendrier-GETapi-calendars">Obtenir tous les calendrier</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="calendrier-POSTapi-calendars">
+                        <a href="#calendrier-POSTapi-calendars">Store a newly created resource in storage.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="calendrier-GETapi-calendars--id-">
+                        <a href="#calendrier-GETapi-calendars--id-">Display the specified resource.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="calendrier-PUTapi-calendars--id-">
+                        <a href="#calendrier-PUTapi-calendars--id-">Update the specified resource in storage.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="calendrier-DELETEapi-calendars--id-">
+                        <a href="#calendrier-DELETEapi-calendars--id-">Remove the specified resource from storage.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="calendrier-POSTapi-calendars-share">
+                        <a href="#calendrier-POSTapi-calendars-share">POST api/calendars/share</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="evenements">
                     <a href="#evenements">Evènements</a>
                 </li>
@@ -98,9 +123,12 @@
                                                     <li class="tocify-item level-2" data-unique="evenements-GETapi-events">
                         <a href="#evenements-GETapi-events">Obtenir tous les évènements</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="evenements-POSTapi-events">
+                        <a href="#evenements-POSTapi-events">Mémorizer un évènement</a>
+                    </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-4" class="tocify-header">
+                    <ul id="tocify-header-5" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="gaps">
                     <a href="#gaps">Gaps</a>
                 </li>
@@ -116,6 +144,42 @@
                     </li>
                                                     </ul>
                             </ul>
+                    <ul id="tocify-header-6" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="mail">
+                    <a href="#mail">Mail</a>
+                </li>
+                                    <ul id="tocify-subheader-mail" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="mail-GETapi-mails">
+                        <a href="#mail-GETapi-mails">GET api/mails</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="mail-GETapi-mails--id-">
+                        <a href="#mail-GETapi-mails--id-">GET api/mails/{id}</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="mail-POSTapi-mails-send">
+                        <a href="#mail-POSTapi-mails-send">POST api/mails/send</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-7" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="menu-de-la-caf">
+                    <a href="#menu-de-la-caf">Menu de la caf</a>
+                </li>
+                                    <ul id="tocify-subheader-menu-de-la-caf" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="menu-de-la-caf-GETapi-menu">
+                        <a href="#menu-de-la-caf-GETapi-menu">Obtenir tous les menus</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-8" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="notes">
+                    <a href="#notes">Notes</a>
+                </li>
+                                    <ul id="tocify-subheader-notes" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="notes-GETapi-marks">
+                        <a href="#notes-GETapi-marks">Obtenir les notes</a>
+                    </li>
+                                                    </ul>
+                            </ul>
         
                         
             </div>
@@ -126,7 +190,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 25 2022</li>
+        <li>Last updated: May 26 2022</li>
     </ul>
 </div>
 
@@ -143,7 +207,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-yaml">http://localhost</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by asking the login route.</p>
 
@@ -170,8 +234,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"gaurfamcogoyvjjtuzjplxvbqucwaywbqdkfqsrzsanvbytifuqlmirhznguucflcffegxpyekgriowvbuvwbznqkusmxyfrysehigzbkqsyozdrxmxozsexblunuxaayuiwzoykwgrvwbntkbpyrlejqmanik\",
-    \"password\": \"goio\"
+    \"username\": \"grpkagtjvd\",
+    \"password\": \"y\"
 }"
 </code></pre></div>
 
@@ -188,8 +252,8 @@ const headers = {
 };
 
 let body = {
-    "username": "gaurfamcogoyvjjtuzjplxvbqucwaywbqdkfqsrzsanvbytifuqlmirhznguucflcffegxpyekgriowvbuvwbznqkusmxyfrysehigzbkqsyozdrxmxozsexblunuxaayuiwzoykwgrvwbntkbpyrlejqmanik",
-    "password": "goio"
+    "username": "grpkagtjvd",
+    "password": "y"
 };
 
 fetch(url, {
@@ -210,8 +274,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'username' =&gt; 'gaurfamcogoyvjjtuzjplxvbqucwaywbqdkfqsrzsanvbytifuqlmirhznguucflcffegxpyekgriowvbuvwbznqkusmxyfrysehigzbkqsyozdrxmxozsexblunuxaayuiwzoykwgrvwbntkbpyrlejqmanik',
-            'password' =&gt; 'goio',
+            'username' =&gt; 'grpkagtjvd',
+            'password' =&gt; 'y',
         ],
     ]
 );
@@ -275,7 +339,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-login"
-               value="gaurfamcogoyvjjtuzjplxvbqucwaywbqdkfqsrzsanvbytifuqlmirhznguucflcffegxpyekgriowvbuvwbznqkusmxyfrysehigzbkqsyozdrxmxozsexblunuxaayuiwzoykwgrvwbntkbpyrlejqmanik"
+               value="grpkagtjvd"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -285,7 +349,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="goio"
+               value="y"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters.</p>
@@ -311,8 +375,8 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"qfkvpdrakzilpfkdlnfedjixjnfrrbiocrpxzcrbsnfuasxhguxvejhkfhlzkntfdnkp\",
-    \"password\": \"x\"
+    \"username\": \"oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc\",
+    \"password\": \"uz\"
 }"
 </code></pre></div>
 
@@ -329,8 +393,8 @@ const headers = {
 };
 
 let body = {
-    "username": "qfkvpdrakzilpfkdlnfedjixjnfrrbiocrpxzcrbsnfuasxhguxvejhkfhlzkntfdnkp",
-    "password": "x"
+    "username": "oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc",
+    "password": "uz"
 };
 
 fetch(url, {
@@ -351,8 +415,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'username' =&gt; 'qfkvpdrakzilpfkdlnfedjixjnfrrbiocrpxzcrbsnfuasxhguxvejhkfhlzkntfdnkp',
-            'password' =&gt; 'x',
+            'username' =&gt; 'oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc',
+            'password' =&gt; 'uz',
         ],
     ]
 );
@@ -416,7 +480,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-register"
-               value="qfkvpdrakzilpfkdlnfedjixjnfrrbiocrpxzcrbsnfuasxhguxvejhkfhlzkntfdnkp"
+               value="oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -426,7 +490,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="x"
+               value="uz"
                data-component="body" hidden>
     <br>
 <p>Must be at least 5 characters.</p>
@@ -685,6 +749,840 @@ access-control-allow-origin: *
         </p>
                 </form>
 
+        <h1 id="calendrier">Calendrier</h1>
+
+    <p>APIs pour gérer les calendrier</p>
+
+            <h2 id="calendrier-GETapi-calendars">Obtenir tous les calendrier</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Retourne un json contenant une liste des calendrier. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur.</p>
+
+<span id="example-requests-GETapi-calendars">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/calendars" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/calendars"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/calendars',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-calendars">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">[
+    {
+        &quot;id&quot;: 1,
+        &quot;name&quot;: &quot;NAME&quot;
+    }
+]</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-calendars" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-calendars"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-calendars"></code></pre>
+</span>
+<span id="execution-error-GETapi-calendars" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-calendars"></code></pre>
+</span>
+<form id="form-GETapi-calendars" data-method="GET"
+      data-path="api/calendars"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-calendars', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-calendars"
+                    onclick="tryItOut('GETapi-calendars');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-calendars"
+                    onclick="cancelTryOut('GETapi-calendars');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-calendars" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/calendars</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-calendars" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-calendars"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="calendrier-POSTapi-calendars">Store a newly created resource in storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-calendars">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/calendars" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"mwuokorfctowmbipxearejyrlwjswiqrddcuonmpcvpwhavymtolhwwnkdzdcttueigdonkpquwfsggkfnvkownaqvyyyxoyixraqlmkyydohumopqzydnwmgxzjvibrfptscbnlkzwqrwjkevxfpcwqsfbeqebvbrtleve\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/calendars"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "mwuokorfctowmbipxearejyrlwjswiqrddcuonmpcvpwhavymtolhwwnkdzdcttueigdonkpquwfsggkfnvkownaqvyyyxoyixraqlmkyydohumopqzydnwmgxzjvibrfptscbnlkzwqrwjkevxfpcwqsfbeqebvbrtleve"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/calendars',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'mwuokorfctowmbipxearejyrlwjswiqrddcuonmpcvpwhavymtolhwwnkdzdcttueigdonkpquwfsggkfnvkownaqvyyyxoyixraqlmkyydohumopqzydnwmgxzjvibrfptscbnlkzwqrwjkevxfpcwqsfbeqebvbrtleve',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-calendars">
+</span>
+<span id="execution-results-POSTapi-calendars" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-calendars"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-calendars"></code></pre>
+</span>
+<span id="execution-error-POSTapi-calendars" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-calendars"></code></pre>
+</span>
+<form id="form-POSTapi-calendars" data-method="POST"
+      data-path="api/calendars"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-calendars', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-calendars"
+                    onclick="tryItOut('POSTapi-calendars');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-calendars"
+                    onclick="cancelTryOut('POSTapi-calendars');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-calendars" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/calendars</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-calendars" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-calendars"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-calendars"
+               value="mwuokorfctowmbipxearejyrlwjswiqrddcuonmpcvpwhavymtolhwwnkdzdcttueigdonkpquwfsggkfnvkownaqvyyyxoyixraqlmkyydohumopqzydnwmgxzjvibrfptscbnlkzwqrwjkevxfpcwqsfbeqebvbrtleve"
+               data-component="body" hidden>
+    <br>
+<p>Must not be greater than 255 characters.</p>
+        </p>
+        </form>
+
+            <h2 id="calendrier-GETapi-calendars--id-">Display the specified resource.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-calendars--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/calendars/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/calendars/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/calendars/1',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-calendars--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-calendars--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-calendars--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-calendars--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-calendars--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-calendars--id-"></code></pre>
+</span>
+<form id="form-GETapi-calendars--id-" data-method="GET"
+      data-path="api/calendars/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-calendars--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-calendars--id-"
+                    onclick="tryItOut('GETapi-calendars--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-calendars--id-"
+                    onclick="cancelTryOut('GETapi-calendars--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-calendars--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/calendars/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-calendars--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-calendars--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-calendars--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the calendar.</p>
+            </p>
+                    </form>
+
+            <h2 id="calendrier-PUTapi-calendars--id-">Update the specified resource in storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-PUTapi-calendars--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/api/calendars/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"bnptegkxhshvhjy\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/calendars/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "bnptegkxhshvhjy"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://localhost/api/calendars/1',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'bnptegkxhshvhjy',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-calendars--id-">
+</span>
+<span id="execution-results-PUTapi-calendars--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-calendars--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-calendars--id-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-calendars--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-calendars--id-"></code></pre>
+</span>
+<form id="form-PUTapi-calendars--id-" data-method="PUT"
+      data-path="api/calendars/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-calendars--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-calendars--id-"
+                    onclick="tryItOut('PUTapi-calendars--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-calendars--id-"
+                    onclick="cancelTryOut('PUTapi-calendars--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-calendars--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/calendars/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/calendars/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-calendars--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-calendars--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="PUTapi-calendars--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the calendar.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="PUTapi-calendars--id-"
+               value="bnptegkxhshvhjy"
+               data-component="body" hidden>
+    <br>
+<p>Must not be greater than 255 characters.</p>
+        </p>
+        </form>
+
+            <h2 id="calendrier-DELETEapi-calendars--id-">Remove the specified resource from storage.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-DELETEapi-calendars--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/api/calendars/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/calendars/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost/api/calendars/1',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-calendars--id-">
+</span>
+<span id="execution-results-DELETEapi-calendars--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-calendars--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-calendars--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-calendars--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-calendars--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-calendars--id-" data-method="DELETE"
+      data-path="api/calendars/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-calendars--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-calendars--id-"
+                    onclick="tryItOut('DELETEapi-calendars--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-calendars--id-"
+                    onclick="cancelTryOut('DELETEapi-calendars--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-calendars--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/calendars/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-calendars--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-calendars--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="DELETEapi-calendars--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the calendar.</p>
+            </p>
+                    </form>
+
+            <h2 id="calendrier-POSTapi-calendars-share">POST api/calendars/share</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-calendars-share">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/calendars/share" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"calendar_id\": \"dolorem\",
+    \"user_id\": \"totam\",
+    \"can_own\": true,
+    \"can_view\": false
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/calendars/share"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "calendar_id": "dolorem",
+    "user_id": "totam",
+    "can_own": true,
+    "can_view": false
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/calendars/share',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'calendar_id' =&gt; 'dolorem',
+            'user_id' =&gt; 'totam',
+            'can_own' =&gt; true,
+            'can_view' =&gt; false,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-calendars-share">
+</span>
+<span id="execution-results-POSTapi-calendars-share" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-calendars-share"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-calendars-share"></code></pre>
+</span>
+<span id="execution-error-POSTapi-calendars-share" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-calendars-share"></code></pre>
+</span>
+<form id="form-POSTapi-calendars-share" data-method="POST"
+      data-path="api/calendars/share"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-calendars-share', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-calendars-share"
+                    onclick="tryItOut('POSTapi-calendars-share');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-calendars-share"
+                    onclick="cancelTryOut('POSTapi-calendars-share');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-calendars-share" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/calendars/share</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-calendars-share" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-calendars-share"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>calendar_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="calendar_id"
+               data-endpoint="POSTapi-calendars-share"
+               value="dolorem"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="user_id"
+               data-endpoint="POSTapi-calendars-share"
+               value="totam"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>can_own</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-calendars-share" hidden>
+            <input type="radio" name="can_own"
+                   value="true"
+                   data-endpoint="POSTapi-calendars-share"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-calendars-share" hidden>
+            <input type="radio" name="can_own"
+                   value="false"
+                   data-endpoint="POSTapi-calendars-share"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+        </p>
+                <p>
+            <b><code>can_view</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
+                <label data-endpoint="POSTapi-calendars-share" hidden>
+            <input type="radio" name="can_view"
+                   value="true"
+                   data-endpoint="POSTapi-calendars-share"
+                   data-component="body"
+            >
+            <code>true</code>
+        </label>
+        <label data-endpoint="POSTapi-calendars-share" hidden>
+            <input type="radio" name="can_view"
+                   value="false"
+                   data-endpoint="POSTapi-calendars-share"
+                   data-component="body"
+            >
+            <code>false</code>
+        </label>
+    <br>
+
+        </p>
+        </form>
+
         <h1 id="evenements">Evènements</h1>
 
     <p>APIs pour gérer les évènements</p>
@@ -814,6 +1712,219 @@ print_r(json_decode((string) $body));</code></pre></div>
                                                                 data-component="header"></label>
         </p>
                 </form>
+
+            <h2 id="evenements-POSTapi-events">Mémorizer un évènement</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Enregistre un nouvel évènement dans la BDD
+Succès: retourne un json contenant l'évènement créé
+Fail: erreur</p>
+
+<span id="example-requests-POSTapi-events">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/events" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"title\": \"0p4gtk6\",
+    \"start\": \"2022-05-26T05:43:09\",
+    \"end\": \"2022-05-26T05:43:09\",
+    \"location\": \"2k0xdg8\",
+    \"calendar_id\": 6.752850153
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/events"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "title": "0p4gtk6",
+    "start": "2022-05-26T05:43:09",
+    "end": "2022-05-26T05:43:09",
+    "location": "2k0xdg8",
+    "calendar_id": 6.752850153
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/events',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'title' =&gt; '0p4gtk6',
+            'start' =&gt; '2022-05-26T05:43:09',
+            'end' =&gt; '2022-05-26T05:43:09',
+            'location' =&gt; '2k0xdg8',
+            'calendar_id' =&gt; 6.752850153,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-events">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">[
+&quot;success&quot; =&gt; true,
+&quot;message&quot; =&gt; &quot;event created:&quot;,
+&quot;data&quot; =&gt; [
+    &quot;title&quot; =&gt; &quot;EventTitle&quot;,
+     &quot;description&quot; =&gt; &quot;Une belle description&quot;,
+     &quot;start&quot; =&gt; &quot;1901-01-01T00:00Z&quot;,
+     &quot;end&quot; =&gt; &quot;1901-01-03T00:00Z&quot;,
+     &quot;location&quot; =&gt; &quot;S149&quot;,
+     &quot;calendar_id&quot; =&gt; 1,
+     &quot;updated_at&quot; =&gt; &quot;2022-05-25T13:09:40.000000Z&quot;,
+     &quot;created_at&quot; =&gt; &quot;2022-05-25T13:09:40.000000Z&quot;,
+     &quot;id&quot; =&gt; 142
+  ]
+]</code>
+ </pre>
+    </span>
+<span id="execution-results-POSTapi-events" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-events"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-events"></code></pre>
+</span>
+<span id="execution-error-POSTapi-events" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-events"></code></pre>
+</span>
+<form id="form-POSTapi-events" data-method="POST"
+      data-path="api/events"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-events', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-events"
+                    onclick="tryItOut('POSTapi-events');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-events"
+                    onclick="cancelTryOut('POSTapi-events');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-events" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/events</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-events" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-events"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>title</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="title"
+               data-endpoint="POSTapi-events"
+               value="0p4gtk6"
+               data-component="body" hidden>
+    <br>
+<p>Must contain only letters and numbers.</p>
+        </p>
+                <p>
+            <b><code>0</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="0"
+               data-endpoint="POSTapi-events"
+               value=""
+               data-component="body" hidden>
+    <br>
+
+        </p>
+                <p>
+            <b><code>start</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="start"
+               data-endpoint="POSTapi-events"
+               value="2022-05-26T05:43:09"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+                <p>
+            <b><code>end</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="end"
+               data-endpoint="POSTapi-events"
+               value="2022-05-26T05:43:09"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+                <p>
+            <b><code>location</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="location"
+               data-endpoint="POSTapi-events"
+               value="2k0xdg8"
+               data-component="body" hidden>
+    <br>
+<p>Must contain only letters and numbers.</p>
+        </p>
+                <p>
+            <b><code>calendar_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
+                <input type="number"
+               name="calendar_id"
+               data-endpoint="POSTapi-events"
+               value="6.752850153"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
 
         <h1 id="gaps">Gaps</h1>
 
@@ -1001,7 +2112,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-update-gaps--token-">
             <blockquote>
-            <p>Example response (500):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
@@ -1016,502 +2127,9 @@ access-control-allow-origin: *
         </details>         <pre>
 
 <code class="language-json">{
-    &quot;message&quot;: &quot;Undefined variable $marks&quot;,
-    &quot;exception&quot;: &quot;ErrorException&quot;,
-    &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Services/GapsMarksService.php&quot;,
-    &quot;line&quot;: 78,
-    &quot;trace&quot;: [
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php&quot;,
-            &quot;line&quot;: 255,
-            &quot;function&quot;: &quot;handleError&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Bootstrap\\HandleExceptions&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Services/GapsMarksService.php&quot;,
-            &quot;line&quot;: 78,
-            &quot;function&quot;: &quot;Illuminate\\Foundation\\Bootstrap\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Bootstrap\\HandleExceptions&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Controllers/GapsController.php&quot;,
-            &quot;line&quot;: 24,
-            &quot;function&quot;: &quot;fetchAllNotes&quot;,
-            &quot;class&quot;: &quot;App\\Http\\Services\\GapsMarksService&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Controller.php&quot;,
-            &quot;line&quot;: 54,
-            &quot;function&quot;: &quot;updateAll&quot;,
-            &quot;class&quot;: &quot;App\\Http\\Controllers\\GapsController&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php&quot;,
-            &quot;line&quot;: 45,
-            &quot;function&quot;: &quot;callAction&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Controller&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
-            &quot;line&quot;: 261,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
-            &quot;line&quot;: 204,
-            &quot;function&quot;: &quot;runController&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
-            &quot;line&quot;: 725,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 141,
-            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php&quot;,
-            &quot;line&quot;: 50,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
-            &quot;line&quot;: 126,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
-            &quot;line&quot;: 102,
-            &quot;function&quot;: &quot;handleRequest&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
-            &quot;line&quot;: 54,
-            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
-            &quot;line&quot;: 33,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 141,
-            &quot;function&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\{closure}&quot;,
-            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
-            &quot;line&quot;: 34,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
-            &quot;line&quot;: 726,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
-            &quot;line&quot;: 703,
-            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
-            &quot;line&quot;: 667,
-            &quot;function&quot;: &quot;runRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
-            &quot;line&quot;: 656,
-            &quot;function&quot;: &quot;dispatchToRoute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
-            &quot;line&quot;: 167,
-            &quot;function&quot;: &quot;dispatch&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 141,
-            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php&quot;,
-            &quot;line&quot;: 31,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
-            &quot;line&quot;: 21,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php&quot;,
-            &quot;line&quot;: 40,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php&quot;,
-            &quot;line&quot;: 27,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php&quot;,
-            &quot;line&quot;: 86,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php&quot;,
-            &quot;line&quot;: 62,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\HandleCors&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php&quot;,
-            &quot;line&quot;: 39,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 180,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
-            &quot;line&quot;: 142,
-            &quot;function&quot;: &quot;then&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
-            &quot;line&quot;: 111,
-            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
-            &quot;line&quot;: 299,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
-            &quot;line&quot;: 287,
-            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
-            &quot;line&quot;: 89,
-            &quot;function&quot;: &quot;makeApiCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
-            &quot;line&quot;: 45,
-            &quot;function&quot;: &quot;makeResponseCall&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
-            &quot;line&quot;: 35,
-            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
-            &quot;line&quot;: 222,
-            &quot;function&quot;: &quot;__invoke&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
-            &quot;line&quot;: 179,
-            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
-            &quot;line&quot;: 116,
-            &quot;function&quot;: &quot;fetchResponses&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 123,
-            &quot;function&quot;: &quot;processRoute&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 80,
-            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
-            &quot;line&quot;: 56,
-            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php&quot;,
-            &quot;line&quot;: 55,
-            &quot;function&quot;: &quot;get&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
-            &quot;line&quot;: 36,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
-            &quot;line&quot;: 41,
-            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
-            &quot;line&quot;: 93,
-            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;callBoundMethod&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
-            &quot;line&quot;: 651,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
-            &quot;type&quot;: &quot;::&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
-            &quot;line&quot;: 136,
-            &quot;function&quot;: &quot;call&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Command/Command.php&quot;,
-            &quot;line&quot;: 291,
-            &quot;function&quot;: &quot;execute&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
-            &quot;line&quot;: 121,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php&quot;,
-            &quot;line&quot;: 989,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php&quot;,
-            &quot;line&quot;: 299,
-            &quot;function&quot;: &quot;doRunCommand&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php&quot;,
-            &quot;line&quot;: 171,
-            &quot;function&quot;: &quot;doRun&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Application.php&quot;,
-            &quot;line&quot;: 102,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php&quot;,
-            &quot;line&quot;: 129,
-            &quot;function&quot;: &quot;run&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        },
-        {
-            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/artisan&quot;,
-            &quot;line&quot;: 37,
-            &quot;function&quot;: &quot;handle&quot;,
-            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
-            &quot;type&quot;: &quot;-&gt;&quot;
-        }
-    ]
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;All fetched&quot;,
+    &quot;data&quot;: []
 }</code>
  </pre>
     </span>
@@ -1697,6 +2315,695 @@ access-control-allow-origin: *
                                                                 name="Authorization"
                                                                 data-prefix="Bearer "
                                                                 data-endpoint="GETapi-update-gaps-marks"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+        <h1 id="mail">Mail</h1>
+
+    <p>APIs pour gérer les mails</p>
+
+            <h2 id="mail-GETapi-mails">GET api/mails</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-mails">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/mails" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/mails"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/mails',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-mails">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-mails" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-mails"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-mails"></code></pre>
+</span>
+<span id="execution-error-GETapi-mails" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-mails"></code></pre>
+</span>
+<form id="form-GETapi-mails" data-method="GET"
+      data-path="api/mails"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-mails', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-mails"
+                    onclick="tryItOut('GETapi-mails');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-mails"
+                    onclick="cancelTryOut('GETapi-mails');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-mails" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/mails</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-mails" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-mails"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="mail-GETapi-mails--id-">GET api/mails/{id}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-mails--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/mails/906" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/mails/906"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/mails/906',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-mails--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-mails--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-mails--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-mails--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-mails--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-mails--id-"></code></pre>
+</span>
+<form id="form-GETapi-mails--id-" data-method="GET"
+      data-path="api/mails/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-mails--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-mails--id-"
+                    onclick="tryItOut('GETapi-mails--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-mails--id-"
+                    onclick="cancelTryOut('GETapi-mails--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-mails--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/mails/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-mails--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-mails--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="id"
+               data-endpoint="GETapi-mails--id-"
+               value="906"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the mail.</p>
+            </p>
+                    </form>
+
+            <h2 id="mail-POSTapi-mails-send">POST api/mails/send</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-mails-send">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/mails/send" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"to\": \"camron.goodwin@example.org\",
+    \"subject\": \"rqcizpcirtuyjvzdiaadbjptrvpcuepkpccqlgnczvirardwolklwsvwuqvhzggtesbultgfwsqflerfcxfsisfuesiyotsbtmmyqdztkkjxwcwiyvgmgqsqbcngpqqfarxwribxfajnxbkglfhjskfdxrwptgcjrldlofkkxiraxjfvxnpylkymjrcpcumvogrw\",
+    \"message\": \"voluptas\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/mails/send"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "to": "camron.goodwin@example.org",
+    "subject": "rqcizpcirtuyjvzdiaadbjptrvpcuepkpccqlgnczvirardwolklwsvwuqvhzggtesbultgfwsqflerfcxfsisfuesiyotsbtmmyqdztkkjxwcwiyvgmgqsqbcngpqqfarxwribxfajnxbkglfhjskfdxrwptgcjrldlofkkxiraxjfvxnpylkymjrcpcumvogrw",
+    "message": "voluptas"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/mails/send',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'to' =&gt; 'camron.goodwin@example.org',
+            'subject' =&gt; 'rqcizpcirtuyjvzdiaadbjptrvpcuepkpccqlgnczvirardwolklwsvwuqvhzggtesbultgfwsqflerfcxfsisfuesiyotsbtmmyqdztkkjxwcwiyvgmgqsqbcngpqqfarxwribxfajnxbkglfhjskfdxrwptgcjrldlofkkxiraxjfvxnpylkymjrcpcumvogrw',
+            'message' =&gt; 'voluptas',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-mails-send">
+</span>
+<span id="execution-results-POSTapi-mails-send" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-mails-send"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-mails-send"></code></pre>
+</span>
+<span id="execution-error-POSTapi-mails-send" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-mails-send"></code></pre>
+</span>
+<form id="form-POSTapi-mails-send" data-method="POST"
+      data-path="api/mails/send"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-mails-send', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-mails-send"
+                    onclick="tryItOut('POSTapi-mails-send');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-mails-send"
+                    onclick="cancelTryOut('POSTapi-mails-send');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-mails-send" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/mails/send</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-mails-send" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-mails-send"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>to</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="to"
+               data-endpoint="POSTapi-mails-send"
+               value="camron.goodwin@example.org"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid email address.</p>
+        </p>
+                <p>
+            <b><code>subject</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="subject"
+               data-endpoint="POSTapi-mails-send"
+               value="rqcizpcirtuyjvzdiaadbjptrvpcuepkpccqlgnczvirardwolklwsvwuqvhzggtesbultgfwsqflerfcxfsisfuesiyotsbtmmyqdztkkjxwcwiyvgmgqsqbcngpqqfarxwribxfajnxbkglfhjskfdxrwptgcjrldlofkkxiraxjfvxnpylkymjrcpcumvogrw"
+               data-component="body" hidden>
+    <br>
+<p>Must not be greater than 255 characters.</p>
+        </p>
+                <p>
+            <b><code>message</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="message"
+               data-endpoint="POSTapi-mails-send"
+               value="voluptas"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+        <h1 id="menu-de-la-caf">Menu de la caf</h1>
+
+    <p>APIs pour gérer les menus</p>
+
+            <h2 id="menu-de-la-caf-GETapi-menu">Obtenir tous les menus</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Retourne un json contenant une liste des menus.</p>
+
+<span id="example-requests-GETapi-menu">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/menu" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/menu"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/menu',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-menu">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">[
+ {
+  &quot;2022-05-25&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;entry&quot;: &quot;Cr&egrave;me de l&eacute;gumes&quot;,
+      &quot;plate&quot;: &quot;Quiche aux tomates et basilic&quot;,
+      &quot;dessert&quot;: &quot;Salade de fruits&quot;,
+      &quot;date&quot;: &quot;2022-05-25 23:32:08&quot;,
+      &quot;menu&quot;: {
+        &quot;id&quot;: 1529386802506784773,
+        &quot;date&quot;: &quot;2022-05-25 23:32:08&quot;
+      }
+    },
+    {
+      &quot;id&quot;: 2,
+      &quot;entry&quot;: &quot;Cr&egrave;me de l&eacute;gumes&quot;,
+      &quot;plate&quot;: &quot;Ailerons de poulet (CH) grill&eacute;s, Sauce barbecue, Frites, Saut&eacute; de l&eacute;gumes de saison&quot;,
+      &quot;dessert&quot;: &quot;Salade de fruits&quot;,
+      &quot;date&quot;: &quot;2022-05-25 23:32:08&quot;,
+      &quot;menu&quot;: {
+        &quot;id&quot;: 1529386800858468355,
+        &quot;date&quot;: &quot;2022-05-25 23:32:08&quot;
+      }
+    }
+  ],
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-menu" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-menu"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-menu"></code></pre>
+</span>
+<span id="execution-error-GETapi-menu" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-menu"></code></pre>
+</span>
+<form id="form-GETapi-menu" data-method="GET"
+      data-path="api/menu"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-menu', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-menu"
+                    onclick="tryItOut('GETapi-menu');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-menu"
+                    onclick="cancelTryOut('GETapi-menu');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-menu" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/menu</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-menu" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-menu"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+        <h1 id="notes">Notes</h1>
+
+    <p>APIs pour gérer les notes</p>
+
+            <h2 id="notes-GETapi-marks">Obtenir les notes</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Retourne un json contenant une liste des notes de l'utilisateur.</p>
+
+<span id="example-requests-GETapi-marks">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/marks" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/marks"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/marks',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-marks">
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json">{
+&quot;2020 - 2021&quot;: [
+  {
+    &quot;id&quot;: 1,
+    &quot;module_code&quot;: &quot;MODULE&quot;,
+    &quot;module_name&quot;: &quot;TEXT&quot;,
+    &quot;value&quot;: X,
+    &quot;year_start&quot;: X,
+    &quot;year_end&quot;: X
+  },
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-marks" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-marks"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-marks"></code></pre>
+</span>
+<span id="execution-error-GETapi-marks" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-marks"></code></pre>
+</span>
+<form id="form-GETapi-marks" data-method="GET"
+      data-path="api/marks"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-marks', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-marks"
+                    onclick="tryItOut('GETapi-marks');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-marks"
+                    onclick="cancelTryOut('GETapi-marks');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-marks" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/marks</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-marks" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-marks"
                                                                 data-component="header"></label>
         </p>
                 </form>

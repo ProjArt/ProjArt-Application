@@ -17,27 +17,24 @@ class MarkController extends Controller
 {
     /**
      * 
-     * Obtenir tous les évènements
+     * Obtenir les notes
      * 
-     * Retourne un json contenant une liste des évènements. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur.
+     * Retourne un json contenant une liste des notes de l'utilisateur.
      *
      * 
-     * @response scenario=success [
-     *  "id" => 1,
-     *  "name" => "Calendrier 1",
-     *  "events" => [
-     *      "id" => 1,
-     *      "title" => "Event 1",
-     *      "start" => "2020-01-01",
-     *      "end" => "2020-01-01",
-     *      "description" => "Description 1",
-     *      "location" => "Location 1",
-     *      "calendar_id" => 1,
-     *      "created_at" => "2020-01-01",
-     *      "updated_at" => "2020-01-01",
-     *   ]    
-     * ]
-     *  
+     * @response scenario=success 
+     * 
+     * {
+     * "2020 - 2021": [
+     *   {
+     *     "id": 1,
+     *     "module_code": "MODULE",
+     *     "module_name": "TEXT",
+     *     "value": X,
+     *     "year_start": X,
+     *     "year_end": X
+     *   },
+     * }
      *    
      * @authenticated
      * @return \Illuminate\Http\Response

@@ -23,14 +23,14 @@ endpoints:
         name: username
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: gaurfamcogoyvjjtuzjplxvbqucwaywbqdkfqsrzsanvbytifuqlmirhznguucflcffegxpyekgriowvbuvwbznqkusmxyfrysehigzbkqsyozdrxmxozsexblunuxaayuiwzoykwgrvwbntkbpyrlejqmanik
+        example: grpkagtjvd
         type: string
         custom: []
       password:
         name: password
         description: 'Must be at least 5 characters.'
         required: true
-        example: goio
+        example: 'y'
         type: string
         custom: []
     responses: []
@@ -55,14 +55,14 @@ endpoints:
         name: username
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: qfkvpdrakzilpfkdlnfedjixjnfrrbiocrpxzcrbsnfuasxhguxvejhkfhlzkntfdnkp
+        example: oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc
         type: string
         custom: []
       password:
         name: password
         description: 'Must be at least 5 characters.'
         required: true
-        example: x
+        example: uz
         type: string
         custom: []
     responses: []

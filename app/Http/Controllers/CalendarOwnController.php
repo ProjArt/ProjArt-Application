@@ -10,6 +10,11 @@ use App\Models\CalendarOwn;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+/**
+ * @group Calendrier
+ *
+ * APIs pour gérer les calendrier
+ */
 class CalendarOwnController extends Controller
 {
 
@@ -19,8 +24,21 @@ class CalendarOwnController extends Controller
     }
 
     /**
-     * Display a listing of the resource.
+     * 
+     * Obtenir tous les calendrier
+     * 
+     * Retourne un json contenant une liste des calendrier. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur.
      *
+     * 
+     * @response scenario=success [
+     *  {
+     *    "id": 1,
+     *    "name": "NAME"
+     *  }
+     * ]
+     *  
+     *    
+     * @authenticated
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
