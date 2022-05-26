@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Services\GapsAbsencesService;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
 use App\Models\User;
@@ -24,6 +25,7 @@ class GapsController extends Controller
         $user = $request->user();
         GapsEventsService::fetchAllHoraires($user);
         GapsMarksService::fetchAllNotes($user);
+        GapsAbsencesService::fetchAllAbsences($user);
         return httpSuccess('All fetched', ["user" => $user]);
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsenceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CalendarOwnController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\GapsAbsenceController;
 use App\Http\Controllers\GapsController;
 use App\Http\Controllers\GapsEventsController;
 use App\Http\Controllers\GapsMarksController;
@@ -44,6 +46,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::prefix('/update/gaps')->group(function () {
         Route::get('/events', [GapsEventsController::class, 'fetchAll'])->name('api.fetch.gaps.events');
         Route::get('/marks', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
+        Route::get('/absences', [GapsAbsenceController::class, 'fetchAll'])->name('api.fetch.gaps.absences');
         Route::get('/', [GapsController::class, 'updateAll'])->name('api.fetch.gaps');
     });
 
@@ -73,6 +76,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("/classrooms", [ClassroomController::class, 'index'])->name("api.classrooms.index");
 
     Route::post("/classrooms/setUser", [ClassroomController::class, 'setUserClassroom'])->name("api.classrooms.setUserClassroom");
+
+    Route::get("/absences", [AbsenceController::class, 'index'])->name("api.absences.index");
 });
 
 Route::get('/', function () {
