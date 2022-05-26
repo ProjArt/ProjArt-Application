@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AbsenceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
@@ -75,6 +76,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("/classrooms", [ClassroomController::class, 'index'])->name("api.classrooms.index");
 
     Route::post("/classrooms/setUser", [ClassroomController::class, 'setUserClassroom'])->name("api.classrooms.setUserClassroom");
+
+    Route::get("/absences", [AbsenceController::class, 'index'])->name("api.absences.index");
 });
 
 Route::get('/', function () {

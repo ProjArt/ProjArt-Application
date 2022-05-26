@@ -138,8 +138,8 @@ class User extends Authenticatable
         return $this->hasMany(Mark::class);
     }
 
-    public function absencesRates()
+    public function absences()
     {
-        return $this->hasMany(AbsencesRate::class);
+        return $this->hasMany(Absence::class);
     }
 }

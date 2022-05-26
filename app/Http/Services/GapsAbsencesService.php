@@ -2,6 +2,7 @@
 
 namespace App\Http\Services;
 
+use App\Models\Absence;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -88,6 +89,7 @@ class GapsAbsencesService
                 $res =  str_replace('u00e8', 'è', $res);
                 $res =  str_replace('u00f4', 'ô', $res);
                 $res =  str_replace('u00fb', 'û', $res);
+                $res =  str_replace('%', '', $res);
 
                 $res = substr_replace($res, "", -1);
 
@@ -95,25 +97,27 @@ class GapsAbsencesService
 
                 $tds = $dom->find("tr.a_r_0")[0]->findMulti("td");
 
-                $etudiant = $tds["0"]->innerText;
                 $orientation = $tds["1"]->innerText;
-                $unite = $tds["2"]->innerText;
-                $e = $tds["3"]->innerText;
-                $t1 = $tds["4"]->innerText;
-                $t2 = $tds["5"]->innerText;
-                $t3 = $tds["6"]->innerText;
-                $t4 = $tds["7"]->innerText;
-                $total = $tds["8"]->innerText;
-                $periodeRelatif = $tds["9"]->innerText;
-                $tauxRelatif = $tds["10"]->innerText;
-                $tauxHorsJustifies = $tds["11"]->innerText;
-                $periodeAbsolu = $tds["12"]->innerText;
-                $tauxAbsolu = $tds["13"]->innerText;
-                $tauxHorsJustifiesAbsolu = $tds["14"]->innerText;
+                $unity = $tds["2"]->innerText;
+                $e = (int)$tds["3"]->innerText;
+                $t1 = (int)$tds["4"]->innerText;
+                $t2 = (int)$tds["5"]->innerText;
+                $t3 = (int)$tds["6"]->innerText;
+                $t4 = (int)$tds["7"]->innerText;
+                $total = (int)$tds["8"]->innerText;
+                $relative_period = (int)$tds["9"]->innerText;
+                $relative_rate = (int)$tds["10"]->innerText;
+                $relative_rate_unjustified = (int)$tds["11"]->innerText;
+                $absolute_period = (int)$tds["12"]->innerText;
+                $absolute_rate = (int)$tds["13"]->innerText;
+                $absolute_rate_unjustified = (int)$tds["14"]->innerText;
 
-                $absence = compact('etudiant', 'orientation', 'unite', 'e', 't1', 't2', 't3', 't4', 'total', 'periodeRelatif', 'tauxRelatif', 'tauxHorsJustifies', 'periodeAbsolu', 'tauxAbsolu', 'tauxHorsJustifiesAbsolu');
+                $absence = compact('orientation', 'unity', 'e', 't1', 't2', 't3', 't4', 'total', 'relative_period', 'relative_rate', 'relative_rate_unjustified', 'absolute_period', 'absolute_rate', 'absolute_rate_unjustified');
 
-                return $absence;
+                $user->absences()->updateOrCreate(
+                    $absence
+                );
+                return $user->absences;
             } catch (\Exception $exception) {
                 return $exception->getMessage();
             }
