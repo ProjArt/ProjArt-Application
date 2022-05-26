@@ -34,7 +34,12 @@ async function useFetch(params) {
         data: data,
     };
 
-    const response = await axios(requestOptions);
+    const response = await axios(requestOptions).catch((error) => {
+        if (error.response) {
+            console.log(error.response);
+            return error.response;
+        }
+    });
     return response.data;
 }
 
