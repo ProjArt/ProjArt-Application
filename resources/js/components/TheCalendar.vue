@@ -1,13 +1,26 @@
 <script setup>
-import { ref, computed, reactive, toRaw } from "vue"
+import { ref, computed, reactive, toRaw, watch } from "vue"
 import useFetch from '../composables/useFetch';
 import { API } from '../stores/api';
-const calendar = ref({});
-const calendarNames = ref([]);
-const TODAY = ref(new Date())
+
+// local variables
+// ====================================== 
+
 const DAY_LABELS = ['LU', 'MA', 'ME', 'JE', 'VE', 'SA', 'DI'];
 const DAY_LABELS_ORDERS = ['DI', 'MA', 'ME', 'JE', 'VE', 'SA', 'LU'];
 const MONTH_LABELS = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"]
+const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, DAY: 3 };
+
+// Ref & Computed 
+// ====================================== 
+
+const calendar = ref({});
+const calendarNames = ref([]);
+const TODAY = ref(new Date())
+const currentLayout = ref(AVAILABLE_LAYOUT.MONTH);
+
+// Helpers
+// ====================================== 
 
 const toSwissDay = (day) => {
     const index = DAY_LABELS_ORDERS[day]
@@ -18,18 +31,23 @@ const numberOfDaysInMonth = (year, month) => {
     return new Date(year, month, 0).getDate();
 }
 
+const formatDayObject = (ref) => {
+    return {
+        date: ref,
+        local: ref.toLocaleDateString(),
+        class: setDayCssClass(ref),
+        dayOfMonthNumber: ref.getDate(),
+        dayOfWeekNumber: toSwissDay(ref.getDay()),
+        dayOfWeekName: ref.getDay(),
+    }
+}
+
 const getAllDaysInMonth = (year, month) => {
     const date = new Date(year, month, 1)
-    console.log({ year }, { month }, { date })
     const dates = [];
     while (date.getMonth() === month) {
         const day = new Date(date)
-        dates.push({
-            date: day,
-            dayOfMonthNumber: day.getDate(),
-            dayOfWeekNumber: toSwissDay(day.getDay()),
-            dayOfWeekName: day.getDay(),
-        });
+        dates.push(formatDayObject(day));
         date.setDate(date.getDate() + 1)
     }
     return dates;
@@ -39,22 +57,18 @@ const getAllDaysInWeek = (days) => {
     const date = typeof days == 'number'
         ? new Date(TODAY.value.getFullYear(), TODAY.value.getMonth(), days)
         : TODAY.value;
-    console.log({ date }, { days }, TODAY.value)
     const dates = [];
     const day = toSwissDay(date.getDay())
     date.setDate(date.getDate() - day)
     for (let i = 0; i <= 6; i++) {
-        dates.push({
-            date: date,
-            dayOfMonthNumber: date.getDate(),
-            dayOfWeekNumber: toSwissDay(date.getDay()),
-            dayOfWeekName: date.getDay(),
-        });
+        dates.push(formatDayObject(date));
         date.setDate(date.getDate() + 1)
     }
-    console.log(dates)
     return dates
 }
+
+// Features
+// ====================================== 
 
 async function getCalendar() {
     const response = await useFetch({
@@ -86,12 +100,52 @@ const getMonthFormat = (year, month) => {
     return daysArray
 }
 
-const monthFormat = ((year, month) => {
-    dates.value = getMonthFormat(year, month)
-})
+const setDisplayedDates = (timeInterval) => {
+    const nextDate = new Date(currDateCursor.value);
+    if (timeInterval === 0) {
+        if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
+            dates.value = getMonthFormat(TODAY.value.getFullYear(), TODAY.value.getMonth());
+        } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
+            dates.value = getAllDaysInWeek(TODAY.value.getDate());
+        }
+    } else if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
+        nextDate.setMonth(nextDate.getMonth() + parseInt(timeInterval));
+        currDateCursor.value = nextDate;
+        dates.value = getMonthFormat(currDateCursor.value.getFullYear(), currDateCursor.value.getMonth());
+    } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
+        nextDate.setDate(nextDate.getDate() + parseInt(timeInterval));
+        currDateCursor.value = nextDate;
+        dates.value = getAllDaysInWeek(currDateCursor.value.getDate());
+    }
+}
 
-const weekFormat = ((days) => {
-    dates.value = getAllDaysInWeek(days)
+const setDayCssClass = (date) => {
+    const today = new Date(TODAY.value.getFullYear(), TODAY.value.getMonth(), TODAY.value.getDate());
+    if (typeof date === 'undefined') {
+        return ''
+    } else if (today.toLocaleDateString() === date.toLocaleDateString()) {
+        return 'currentDay'
+    } else {
+        return 'white'
+    }
+}
+
+const changeLayout = (next) => {
+    if (next && currentLayout.value === AVAILABLE_LAYOUT.MONTH) setDisplayedDates(1)
+    else if (!next && currentLayout.value === AVAILABLE_LAYOUT.MONTH) setDisplayedDates(-1)
+    else if (next && currentLayout.value === AVAILABLE_LAYOUT.WEEK) setDisplayedDates(7)
+    else if (!next && currentLayout.value === AVAILABLE_LAYOUT.WEEK) setDisplayedDates(-7)
+}
+
+// Watcher(s)
+// ====================================== 
+
+watch(currentLayout, () => {
+    if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
+        dates.value = getMonthFormat(currDateCursor.value.getFullYear(), currDateCursor.value.getMonth());
+    } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
+        dates.value = getAllDaysInWeek(currDateCursor.value.getDate());
+    }
 })
 
 const dates = ref(getMonthFormat(TODAY.value.getFullYear(), TODAY.value.getMonth()));
@@ -99,21 +153,6 @@ const selectedDate = ref(TODAY.value)
 const currDateCursor = ref(TODAY.value)
 const dayLabels = ref(DAY_LABELS.slice())
 
-const previousMonth = () => {
-    const prevDate = new Date(currDateCursor.value);
-    prevDate.setMonth(prevDate.getMonth() - 1);
-    currDateCursor.value = prevDate;
-    dates.value = getMonthFormat(currDateCursor.value.getFullYear(), currDateCursor.value.getMonth());
-}
-
-const nextMonth = () => {
-    const nextDate = new Date(currDateCursor.value);
-    nextDate.setMonth(nextDate.getMonth() + 1);
-    console.log(nextDate)
-    currDateCursor.value = nextDate;
-    dates.value = getMonthFormat(currDateCursor.value.getFullYear(), currDateCursor.value.getMonth());
-}
-// TODO set next/previous Week on click
 </script>
 <template>
     <FormKit type="select" label="Calendrier" name="calendar" :options="calendarNames" validation="required"
@@ -121,10 +160,11 @@ const nextMonth = () => {
 
     <div class="calendar">
         <header class="calendar__header">
-            <button @click="previousMonth">&lt;&lt;</button>
-            <button @click="nextMonth">&gt;&gt;</button>
-            <button @click="monthFormat">Mois</button>
-            <button @click="weekFormat">Semaines</button>
+            <button @click="changeLayout(false)">&lt;&lt;</button>
+            <button @click="changeLayout(true)">&gt;&gt;</button>
+            <button @click="currentLayout = AVAILABLE_LAYOUT.MONTH">Mois</button>
+            <button @click="currentLayout = AVAILABLE_LAYOUT.WEEK">Semaines</button>
+            <button @click="setDisplayedDates(0)">Aujaurd'hui</button>
         </header>
         <div class="calendar__days-names">
             <div v-for="dayLabel in dayLabels">
@@ -132,7 +172,7 @@ const nextMonth = () => {
             </div>
         </div>
         <div class="days">
-            <div v-for="(day, index) in dates" class="day" :class="!day.date ? 'grey' : ''">
+            <div v-for="(day, index) in dates" class="day" :class="day.class">
                 <p class="day__day-number">{{ day.dayOfMonthNumber }}</p>
             </div>
         </div>
@@ -157,7 +197,7 @@ const nextMonth = () => {
     display: flex;
     flex-direction: column;
     font-size: 1.5rem;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.1);
     cursor: pointer;
 }
 
@@ -173,7 +213,11 @@ const nextMonth = () => {
     padding: 0.5rem;
 }
 
-.grey {
-    background-color: rgba(0, 0, 0, 0.1);
+.white {
+    background-color: white;
+}
+
+.currentDay {
+    background-color: lightblue;
 }
 </style>
