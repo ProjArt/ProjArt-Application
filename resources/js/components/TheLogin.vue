@@ -6,13 +6,7 @@ const isSubmitted = ref(false)
 const formData = ref({})
 const errorMessage = ref('')
 const isAuthenticated = ref(false);
-console.log(window.location.href)
 
-try {
-    console.log(JSON.parse(getCookie('preferences')))
-} catch (error) {
-
-}
 const submitHandler = async () => {
     isSubmitted.value = true
     console.log(toRaw(formData.value))

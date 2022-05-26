@@ -12,4 +12,8 @@ export const API = {
         method: "GET",
         path: () => `${API_URL}events`,
     },
+    newEvents: {
+        method: "POST",
+        path: () => `${API_URL}events`,
+    },
 };

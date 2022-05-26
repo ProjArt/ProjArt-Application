@@ -21,7 +21,6 @@ async function useFetch(params) {
     ];
 
     const apiToken = localStorage.getItem("token");
-    console.log({ apiToken }, { token });
     const headers = {
         Accept: "application/json",
         Authorization: `Bearer ${token || apiToken}`,

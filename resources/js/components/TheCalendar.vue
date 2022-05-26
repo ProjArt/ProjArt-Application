@@ -10,6 +10,8 @@ const DAY_LABELS = ['LU', 'MA', 'ME', 'JE', 'VE', 'SA', 'DI'];
 const DAY_LABELS_ORDERS = ['DI', 'MA', 'ME', 'JE', 'VE', 'SA', 'LU'];
 const DATE_OPTION = { year: 'numeric', month: 'long' }
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, DAY: 3 };
+const formData = ref({});
+const isSubmitted = ref(false);
 
 // Ref & Computed 
 // ====================================== 
@@ -18,15 +20,21 @@ const calendar = ref({});
 const calendarNames = ref([]);
 const TODAY = ref(new Date())
 const currentLayout = ref(AVAILABLE_LAYOUT.MONTH);
-const chossenClass = ref(0);
+const currentCalendarId = ref(0);
 const displayedDate = ref(new Date());
+const showPopupRef = ref('');
+const showPopup = computed({
+    get: () => showPopupRef.value,
+    set: (date) => {
+        showPopup.value !== date ? showPopupRef.value = date : showPopupRef.value = '';
+    }
+});
 
 const displayedDateManager = computed({
     get() {
         return displayedDate.value.toLocaleDateString('fr-ch', { year: 'numeric', month: 'long' });
     },
     set({ year, month }) {
-        console.log({ year, month })
         displayedDate.value = new Date(year, month);
     }
 });
@@ -52,8 +60,7 @@ const formatDayObject = (ref) => {
 }
 
 const getEvents = () => {
-    const currentCalendar = calendar.value[chossenClass.value]
-    console.log(toRaw(currentCalendar))
+    const currentCalendar = calendar.value[currentCalendarId.value]
     currentCalendar.events.forEach(event => {
         const date = new Date(event.start)
         const local = date.toLocaleDateString()
@@ -160,6 +167,33 @@ const changeLayout = (next) => {
     else if (!next && currentLayout.value === AVAILABLE_LAYOUT.WEEK) setDisplayedDates(-7)
 }
 
+async function newEvent() {
+    const [calendar_id, end, end_date, location, start, start_date, title] = [
+        formData.value.calendar_id,
+        formData.value.end,
+        formData.value.end_date,
+        formData.value.location,
+        formData.value.start,
+        formData.value.start_date,
+        formData.value.title
+    ]
+    const startDate = `${start_date}:${start}`
+    const endDate = `${end_date}:${end}`
+    const body = {
+        calendar_id,
+        startDate,
+        endDate,
+        location,
+        title
+    }
+    const response = await useFetch({
+        url: API.newEvents.path(),
+        method: API.newEvents.method,
+        data: body
+    });
+    console.log(response)
+}
+
 // Watcher(s)
 // ====================================== 
 
@@ -173,12 +207,19 @@ watch(currentLayout, () => {
     }
 })
 
-const showForm = () => {
-    console.log('clicked')
+const showForm = (index) => {
+    console.log(index)
+    selectedDate.value = index
+    showPopup.value = index;
+    start.value = index
+    end.value = index
 }
 
+
 const dates = ref(getMonthFormat(TODAY.value.getFullYear(), TODAY.value.getMonth()));
-const selectedDate = ref(TODAY.value)
+const selectedDate = ref('')
+const start = ref('...')
+const end = ref('...')
 const currDateCursor = ref(TODAY.value)
 const dayLabels = ref(DAY_LABELS.slice())
 getCalendar()
@@ -194,7 +235,7 @@ getCalendar()
             <button @click="currentLayout = AVAILABLE_LAYOUT.MONTH">Mois</button>
             <button @click="currentLayout = AVAILABLE_LAYOUT.WEEK">Semaines</button>
             <button @click="setDisplayedDates(0)">Aujaurd'hui</button>
-            <FormKit type="select" name="calendar" :options="calendarNames" v-model="chossenClass" />
+            <FormKit type="select" name="calendar" :options="calendarNames" v-model="currentCalendarId" />
         </header>
         <div class="calendar__days-names">
             <div v-for="dayLabel in dayLabels">
@@ -202,13 +243,27 @@ getCalendar()
             </div>
         </div>
         <div class="calendar__days">
-            <div v-for="(day, index) in dates" class="calendar__day" :class="day.class" :key="index" @click="showForm">
+            <div v-for="(day, index) in dates" class="calendar__day"
+                :class="day.class, selectedDate === index ? 'is-selected-day' : ''" :key="index" :date-id="day.local"
+                @click="showForm(index)">
                 <p class="calendar__day-number">{{ day.dayOfMonthNumber }}</p>
                 <div v-for="event in day.events">
                     <p class="calendar__event">{{ event.title }}</p>
                 </div>
             </div>
         </div>
+    </div>
+    <div class="popup" v-show="showPopup">
+        <FormKit type="form" v-model="formData" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Enregistrer"
+            @submit="newEvent">
+            <FormKit type="text" value="1" name="title" validation="required" label="Titre" />
+            <FormKit type="text" value="2" name="location" validation="required" label="Lieu" />
+            <FormKit type="time" name="start" label="Début" value="23:15" />
+            <FormKit type="time" name="end" label="Fin" value="23:15" />
+            <FormKit name="calendar_id" type="hidden" :value="currentCalendarId" />
+            <FormKit name="start_date" type="hidden" v-model="start" />
+            <FormKit name="end_date" type="hidden" v-model="end" />
+        </FormKit>
     </div>
 </template>
 <style lang="scss" scoped>
@@ -262,5 +317,18 @@ getCalendar()
     cursor: pointer;
     pointer-events: all;
     background-color: lightblue;
+}
+
+.is-selected-day {
+    border: 1px solid lightcoral;
+}
+
+.popup {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
 }
 </style>

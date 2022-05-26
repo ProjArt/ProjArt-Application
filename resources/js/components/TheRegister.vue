@@ -5,7 +5,6 @@ import { API } from "../stores/api"
 const isSubmitted = ref(false)
 const formData = ref({})
 const isAuthenticated = ref(false);
-console.log(window.location.href)
 
 const submitHandler = async () => {
     isSubmitted.value = true
