@@ -36,6 +36,7 @@ class FetchOnGapsTest extends TestCase
 
         $response->assertUnauthorized();
 
+
         $user->delete();
     }
 }

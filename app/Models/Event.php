@@ -22,6 +22,12 @@ class Event extends Model
         'end' => 'datetime:Y-m-d H:i:s',
     ];
 
+    protected $hidden = [
+        'calendar_id',
+        'created_at',
+        'updated_at',
+    ];
+
     public function calendar()
     {
         return $this->belongsTo(Calendar::class);

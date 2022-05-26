@@ -18,6 +18,9 @@ class UsersSeeder extends Seeder
     {
         DB::table('users')->truncate();
         \App\Models\User::factory()
-            ->create();
+            ->create([
+                'theme_id' => 1,
+                'card_money' => 10,
+            ]);
     }
 }

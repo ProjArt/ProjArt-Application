@@ -59,7 +59,7 @@ class AuthTest extends TestCase
             'password' => 'wrong-password',
         ]);
 
-        $response->assertUnauthorized();
+        $response->assertStatus(401);
     }
 
     public function test_register()

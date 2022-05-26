@@ -3,10 +3,15 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CalendarOwnController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GapsController;
 use App\Http\Controllers\GapsEventsController;
 use App\Http\Controllers\GapsMarksController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\MarkController;
+use App\Http\Controllers\MenuController;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
 
@@ -40,10 +45,28 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/marks', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
     });
 
+
+    Route::prefix('/mails')->controller(MailController::class)->group(function () {
+        Route::get('/', 'index')->name('api.mails.index');
+        Route::get('/{id}', 'show')->name('api.mails.show')->where('id', '[0-9]+');
+        Route::post('/send', 'send')->name('api.mails.send');
+    });
+
     Route::resource('/events', EventController::class, [
         'as' => 'api'
     ]);
     //Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents'])->name("api.getCalendarEvents");
+
+
+    Route::get('/marks', [MarkController::class, 'index'])->name('api.marks.index');
+
+    Route::get('/menu', [MenuController::class, 'index'])->name("api.getMenu");
+
+    Route::resource('/calendars', CalendarOwnController::class, [
+        'as' => 'api'
+    ]);
+
+    Route::post('/calendars/share', [CalendarOwnController::class, 'share'])->name("api.calendars.share");
 });
 
 Route::get('/', function () {
