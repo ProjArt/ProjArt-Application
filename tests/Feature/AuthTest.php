@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Models\Classroom;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 use App\Models\User;
+use Illuminate\Support\Str;
 
 use Laravel\Sanctum\Sanctum;
 
@@ -121,5 +123,39 @@ class AuthTest extends TestCase
         $response = $this->json('GET', '/api/logout', []);
 
         $response->assertUnauthorized();
+    }
+
+    public function test_register_with_classroom()
+    {
+        $username = Str::random(10);
+        $classroom = Classroom::firstOrCreate([
+            'name' => 'test',
+        ]);
+
+        $this->assertDatabaseHas('classrooms', [
+            'name' => $classroom->name,
+        ]);
+
+        $response = $this->json('POST', '/api/register', [
+            'username' => $username,
+            'password' => "password",
+            'classroom_name' => $classroom->name,
+        ]);
+
+
+        $response->assertSuccessful();
+
+        $this->assertDatabaseHas('users', [
+            'username' => $username,
+        ]);
+
+
+        $this->assertDatabaseHas('classroom_user', [
+            'classroom_name' => $classroom->name,
+            'user_id' => User::where('username', $username)->first()->id,
+        ]);
+
+        Classroom::whereName($classroom->name)->delete();
+        User::whereUsername($username)->delete();
     }
 }

@@ -18,8 +18,10 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 class EventController extends Controller
 {
 
-    public function __construct(){
-        $this->middleware('canManageEtablissement', ['only' => ['store', 'update', 'destroy']]);
+    public function __construct()
+    {
+        $this->authorizeResource(Event::class, 'event');
+        //$this->middleware('canManageEtablissement', ['only' => ['store', 'update', 'destroy']]);
     }
     /**
      * 
@@ -124,8 +126,6 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
-
-
         $event->update($request->all());
         return httpSuccess('Events', $event);
     }

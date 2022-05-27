@@ -18,7 +18,7 @@ class EventPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -30,7 +30,7 @@ class EventPolicy
      */
     public function view(User $user, Event $event)
     {
-        //
+        return $this->userFollowTheCalendarOfTheEvent($user, $event);
     }
 
     /**
@@ -41,7 +41,7 @@ class EventPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class EventPolicy
      */
     public function update(User $user, Event $event)
     {
-        //
+        return $this->userOwnTheCalendarOfTheEvent($user, $event);
     }
 
     /**
@@ -65,7 +65,7 @@ class EventPolicy
      */
     public function delete(User $user, Event $event)
     {
-        //
+        return $this->userOwnTheCalendarOfTheEvent($user, $event);
     }
 
     /**
@@ -77,7 +77,7 @@ class EventPolicy
      */
     public function restore(User $user, Event $event)
     {
-        //
+        return $this->userOwnTheCalendarOfTheEvent($user, $event);
     }
 
     /**
@@ -89,6 +89,16 @@ class EventPolicy
      */
     public function forceDelete(User $user, Event $event)
     {
-        //
+        return $this->userOwnTheCalendarOfTheEvent($user, $event);
+    }
+
+    private function userOwnTheCalendarOfTheEvent(User $user, Event $event)
+    {
+        return $user->calendarsOwn->map(fn ($calendar) => $calendar->id)->contains($event->calendar_id);
+    }
+
+    private function userFollowTheCalendarOfTheEvent(User $user, Event $event)
+    {
+        return $user->calendarsFollow->map(fn ($calendar) => $calendar->id)->contains($event->calendar_id);
     }
 }

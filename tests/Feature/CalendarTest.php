@@ -30,12 +30,18 @@ class CalendarTest extends TestCase
 
     public function test_can_access_specific_calendar()
     {
+        $user =  User::findOr(1, function () {
+            return User::factory()->create();
+        });
         Sanctum::actingAs(
-            User::findOr(1, function () {
-                return User::factory()->create();
-            }),
+            $user
         );
-        $response = $this->getJson('/api/calendars/1');
+
+        $calendar = Calendar::factory()->create();
+
+        $user->calendarsOwn()->sync($calendar);
+
+        $response = $this->getJson('/api/calendars/' . $calendar->id);
 
         $response->assertStatus(200);
     }
@@ -54,7 +60,7 @@ class CalendarTest extends TestCase
 
         $response->assertStatus(403);
 
-        $calendar->delete();
+        $calendar->forceDelete();
     }
 
     public function test_can_create_calendar()
@@ -74,7 +80,7 @@ class CalendarTest extends TestCase
             'name' => 'test',
         ]);
 
-        Calendar::whereName('test')->first()->delete();
+        Calendar::whereName('test')->forceDelete();
     }
 
     public function test_update_calendar_name()
@@ -89,7 +95,7 @@ class CalendarTest extends TestCase
 
         $calendar = Calendar::factory()->create();
 
-        $user->calendarsOwn()->attach($calendar);
+        $user->calendarsOwn()->sync($calendar);
 
         $response = $this->putJson('/api/calendars/' . $calendar->id, [
             'name' => 'test',
@@ -97,7 +103,7 @@ class CalendarTest extends TestCase
 
         $response->assertStatus(200);
 
-        $calendar->delete();
+        $calendar->forceDelete();
     }
 
     public function test_cannot_update_calendar_name_if_not_own()
@@ -115,7 +121,7 @@ class CalendarTest extends TestCase
         ]);
         $response->assertStatus(403);
 
-        $calendar->delete();
+        $calendar->refresh()->forceDelete();
     }
 
     public function test_can_delete_calendar()
@@ -129,13 +135,17 @@ class CalendarTest extends TestCase
 
         $calendar = Calendar::factory()->create();
 
-        $user->calendarsOwn()->attach($calendar);
+        $user->calendarsOwn()->sync($calendar);
 
         $response = $this->deleteJson('/api/calendars/' . $calendar->id);
 
+
+
         $response->assertStatus(200);
 
-        $calendar->delete();
+        $this->assertSoftDeleted('calendars', ["id" => $calendar->id]);
+
+        //$calendar->forceDelete();
     }
 
     public function test_cannot_delete_calendar_name_if_not_own()
@@ -150,7 +160,7 @@ class CalendarTest extends TestCase
         $calendar = Calendar::factory()->create();
         $response = $this->deleteJson('/api/calendars/' . $calendar->id);
         $response->assertStatus(403);
-        $calendar->delete();
+        $calendar->forceDelete();
     }
 
     public function test_can_share_calendar()
@@ -176,9 +186,11 @@ class CalendarTest extends TestCase
             'can_own' => 1,
         ]);
 
-        $userToShare->delete();
-        $calendar->delete();
         $response->assertStatus(200);
+
+
+        $userToShare->delete();
+        $calendar->forceDelete();
     }
 
     public function test_cannot_share_if_not_own()
@@ -207,6 +219,6 @@ class CalendarTest extends TestCase
         $response->assertStatus(403);
 
         $userToShare->delete();
-        $calendar->delete();
+        $calendar->forceDelete();
     }
 }

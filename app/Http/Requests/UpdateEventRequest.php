@@ -24,12 +24,11 @@ class UpdateEventRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|alpha_num',
-            'description',
-            'start' => 'required|date',
-            'end' => 'required|date',
-            'location' => 'required|alpha_num',
-            'calendar_id' => 'required|numeric'
-            ];
+            'title' => 'string|max:255',
+            'description' => 'string|max:1000',
+            'start' => 'date',
+            'end' => 'date',
+            'location' => 'string|max:255',
+        ];
     }
 }
