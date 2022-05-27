@@ -20,7 +20,7 @@ const calendar = ref({});
 const calendarNames = ref([]);
 const TODAY = ref(new Date())
 const currentLayout = ref(AVAILABLE_LAYOUT.MONTH);
-const currentCalendarId = ref(0);
+const currentCalendarId = ref(1);
 const displayedDate = ref(new Date());
 const showPopupRef = ref('');
 const showPopup = computed({
@@ -168,31 +168,55 @@ const changeLayout = (next) => {
 }
 
 async function newEvent() {
-    const [calendar_id, end, end_date, location, start, start_date, title] = [
+    const [calendar_id, end_time, end_date, location, start_time, start_date, title, description] = [
         formData.value.calendar_id,
         formData.value.end,
         formData.value.end_date,
         formData.value.location,
         formData.value.start,
         formData.value.start_date,
-        formData.value.title
+        formData.value.title,
+        formData.value.description
     ]
-    const startDate = `${start_date}:${start}`
-    const endDate = `${end_date}:${end}`
+    //  expected output: 2022-05-27 12:06:28
+    let start = `${start_date} ${start_time}:00`
+    let end = `${end_date} ${end_time}:00`
+    start = start.replace(/\//g, '-')
+    end = end.replace(/\//g, '-')
     const body = {
         calendar_id,
-        startDate,
-        endDate,
+        start,
+        end,
         location,
-        title
+        title,
+        description
     }
     const response = await useFetch({
         url: API.newEvents.path(),
         method: API.newEvents.method,
         data: body
     });
-    console.log(response)
+    if (response.success === true) {
+        try {
+            dates.value[start_date].events.push(body)
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        console.log('error')
+    }
 }
+
+/* const removeEvent = (dayId, eventId) => { */
+/*     console.log({ dayId }) */
+/*     let words = dayId.split('-') */
+/*     /1* let *1/ */
+/*     dayId = dayId.replace(/-/g, '/') */
+/*     dayId = dayId.split(' ')[0] */
+/*     console.log({ dayId }) */
+/*     console.log(dates.value[dayId]) */
+/*     /1* delete dates.value[dayId].events[eventId] *1/ */
+/* } */
 
 // Watcher(s)
 // ====================================== 
@@ -208,7 +232,6 @@ watch(currentLayout, () => {
 })
 
 const showForm = (index) => {
-    console.log(index)
     selectedDate.value = index
     showPopup.value = index;
     start.value = index
@@ -258,15 +281,29 @@ getCalendar()
             @submit="newEvent">
             <FormKit type="text" value="1" name="title" validation="required" label="Titre" />
             <FormKit type="text" value="2" name="location" validation="required" label="Lieu" />
+            <FormKit type="textarea" value="..." name="description" validation="required" label="Description" />
             <FormKit type="time" name="start" label="Début" value="23:15" />
             <FormKit type="time" name="end" label="Fin" value="23:15" />
             <FormKit name="calendar_id" type="hidden" :value="currentCalendarId" />
             <FormKit name="start_date" type="hidden" v-model="start" />
             <FormKit name="end_date" type="hidden" v-model="end" />
         </FormKit>
+
+        <div class="popup__events">
+            <ul class="popup__event" v-for="event in dates?.[selectedDate]?.events">
+                <li>
+                    {{ event.title }}
+                    <button @click="removeEvent(event.start, event.id)">supprimer</button>
+                </li>
+            </ul>
+        </div>
     </div>
 </template>
 <style lang="scss" scoped>
+.calendar {
+    margin: 2rem
+}
+
 .calendar__header {
     display: flex;
     justify-content: center;
@@ -281,6 +318,7 @@ getCalendar()
 
 .calendar__day {
     min-height: 100px;
+    max-width: 100%;
     border: 1px solid #ccc;
     display: flex;
     flex-direction: column;
@@ -288,6 +326,9 @@ getCalendar()
     background-color: rgba(0, 0, 0, 0.1);
     pointer-events: none;
     cursor: none;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis
 }
 
 .calendar__days-names {

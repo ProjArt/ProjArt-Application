@@ -15,9 +15,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
@@ -25,14 +25,21 @@ endpoints:
         name: username
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: rpffaibbbhxnfmfrbdnyirmdjvvmjrmmfsdujwovafvkubmfchybpkbktyzumytpitzczezferdzcztwsqusmryuiishfnmmbmcxliikmxrfedfdhosrbnjhgjb
+        example: csmjizowjtkpjzcikrlwrxevdqlnsheaxbqeyzvfatfcaehhjmyjecbbameioayesatlkrrmdhsctfnfojismksbkfpmlektailstpfzndogvosaqfncmxursxnirwvsfadqusxwvohciurfpqvnrjifslrmryylegktgvsqtosqcbapborqqajz
         type: string
         custom: []
       password:
         name: password
         description: 'Must be at least 5 characters.'
         required: true
-        example: nqigk
+        example: l
+        type: string
+        custom: []
+      classroom_name:
+        name: classroom_name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: lnbpbobryiqzsleepldirgewgadvpsrxqfoyqjyceauvilptoplkuzurpzwbzvcookpwjpdmbwoxmeeuxboqfyouxrhhykyciincrslrdbqsmlejgonm
         type: string
         custom: []
     responses: []
@@ -47,9 +54,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
@@ -57,14 +64,21 @@ endpoints:
         name: username
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: kxzzmhrwwflotgsifjfvxuwudpgkvjxhxgqangigbbgzgzbmjzythouinfqduywfkxknsdtouukuuoerdqhvcidzsheyiwoqz
+        example: vwexwxhsgld
         type: string
         custom: []
       password:
         name: password
         description: 'Must be at least 5 characters.'
         required: true
-        example: ''
+        example: yp
+        type: string
+        custom: []
+      classroom_name:
+        name: classroom_name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: erwfkztptnbtkqiguemgjcdezwcynyesgrygspihbssamsfzrabfmywthxgahzhceyqbmcsskwqerhuasrkfwsuklgmeocuktnnhqhvvhneciww
         type: string
         custom: []
     responses: []
@@ -79,370 +93,35 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 404
-        content: |-
-          {
-              "message": "",
-              "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
-              "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/AbstractRouteCollection.php",
-              "line": 44,
-              "trace": [
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/RouteCollection.php",
-                      "line": 162,
-                      "function": "handleMatchedRoute",
-                      "class": "Illuminate\\Routing\\AbstractRouteCollection",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 680,
-                      "function": "match",
-                      "class": "Illuminate\\Routing\\RouteCollection",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 667,
-                      "function": "findRoute",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 656,
-                      "function": "dispatchToRoute",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
-                      "line": 167,
-                      "function": "dispatch",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 141,
-                      "function": "Illuminate\\Foundation\\Http\\{closure}",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
-                      "line": 21,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
-                      "line": 31,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
-                      "line": 21,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
-                      "line": 40,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
-                      "line": 27,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
-                      "line": 86,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
-                      "line": 49,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Http\\Middleware\\HandleCors",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
-                      "line": 39,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Http\\Middleware\\TrustProxies",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 116,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
-                      "line": 142,
-                      "function": "then",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
-                      "line": 111,
-                      "function": "sendRequestThroughRouter",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 299,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 287,
-                      "function": "callLaravelOrLumenRoute",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 89,
-                      "function": "makeApiCall",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 45,
-                      "function": "makeResponseCall",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 35,
-                      "function": "makeResponseCallIfConditionsPass",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 222,
-                      "function": "__invoke",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 179,
-                      "function": "iterateThroughStrategies",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 116,
-                      "function": "fetchResponses",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 123,
-                      "function": "processRoute",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 80,
-                      "function": "extractEndpointsInfoFromLaravelApp",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 56,
-                      "function": "extractEndpointsInfoAndWriteToDisk",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php",
-                      "line": 55,
-                      "function": "get",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
-                      "line": 36,
-                      "function": "handle",
-                      "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Util.php",
-                      "line": 41,
-                      "function": "Illuminate\\Container\\{closure}",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
-                      "line": 93,
-                      "function": "unwrapIfClosure",
-                      "class": "Illuminate\\Container\\Util",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
-                      "line": 37,
-                      "function": "callBoundMethod",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Container.php",
-                      "line": 651,
-                      "function": "call",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php",
-                      "line": 136,
-                      "function": "call",
-                      "class": "Illuminate\\Container\\Container",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/symfony/console/Command/Command.php",
-                      "line": 291,
-                      "function": "execute",
-                      "class": "Illuminate\\Console\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php",
-                      "line": 121,
-                      "function": "run",
-                      "class": "Symfony\\Component\\Console\\Command\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/symfony/console/Application.php",
-                      "line": 989,
-                      "function": "run",
-                      "class": "Illuminate\\Console\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/symfony/console/Application.php",
-                      "line": 299,
-                      "function": "doRunCommand",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/symfony/console/Application.php",
-                      "line": 171,
-                      "function": "doRun",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Application.php",
-                      "line": 102,
-                      "function": "run",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php",
-                      "line": 129,
-                      "function": "run",
-                      "class": "Illuminate\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/artisan",
-                      "line": 37,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Console\\Kernel",
-                      "type": "->"
-                  }
-              ]
-          }
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+              <title>Document</title>
+              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+          </head>
+          <body>
+              <div id="app"></div>
+
+              <script src="//localhost:8080/js/app.js"></script>
+          </body>
+          </html>
         headers:
+          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          content-type: application/json
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjNMb2owcHZjYVlnbzRRZkVZTVliOUE9PSIsInZhbHVlIjoicVFMaTJIRlJJdEF6WHFJVW5CQ0ROekREaER1aWxqY2FTbEFtRWJLTGdYaXl5cWRyck1zdjdzODNDYVc1VitMU1NrLytqcWovR0hrODc3M1dzNTU1OVVMWDhSS1VOYXU1alFMRVIrOVd2elpuM1ZPTDlaYkVXYkhqdnJlWTIyMlAiLCJtYWMiOiJlNTk2Y2Q2ODZhNzY1ZjhkYzhhZjcwYTkyNTNhMTFmN2Q0MDI0YjNkNzBmOTY3ZTEwN2Y5ZTk5YWJkZDBjNGVmIiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IlVyblNubnk0WU5yM25vT3lpY0NwTGc9PSIsInZhbHVlIjoiRHluNm1WOGpsNFE3akdkQTVvSi9HWUhjQlhFMGg0MmswSGpiU1dLVnZyb0pMSXdmV21vc3h2SlVFbzloUk9TTDMrcnV0aFJib0tCcUxqcnVIUGRyd0xoUXJHNEo5YUVOMkF3Yk05anpseXFjNTFlMmk0TTB3WCswTGVaMWJXbzciLCJtYWMiOiJkY2UxMjA3ZDA1ZmJlZDcxNzNlOTZiMThmMDAxNmYwODczYzU3ZTY4MjIyODc4YThmZjhjMWJlMjg4OTg1YjBjIiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -455,369 +134,34 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 404
-        content: |-
-          {
-              "message": "",
-              "exception": "Symfony\\Component\\HttpKernel\\Exception\\NotFoundHttpException",
-              "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/AbstractRouteCollection.php",
-              "line": 44,
-              "trace": [
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/RouteCollection.php",
-                      "line": 162,
-                      "function": "handleMatchedRoute",
-                      "class": "Illuminate\\Routing\\AbstractRouteCollection",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 680,
-                      "function": "match",
-                      "class": "Illuminate\\Routing\\RouteCollection",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 667,
-                      "function": "findRoute",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php",
-                      "line": 656,
-                      "function": "dispatchToRoute",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
-                      "line": 167,
-                      "function": "dispatch",
-                      "class": "Illuminate\\Routing\\Router",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 141,
-                      "function": "Illuminate\\Foundation\\Http\\{closure}",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
-                      "line": 21,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php",
-                      "line": 31,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php",
-                      "line": 21,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php",
-                      "line": 40,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\TrimStrings",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php",
-                      "line": 27,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php",
-                      "line": 86,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php",
-                      "line": 49,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Http\\Middleware\\HandleCors",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php",
-                      "line": 39,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 180,
-                      "function": "handle",
-                      "class": "Illuminate\\Http\\Middleware\\TrustProxies",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php",
-                      "line": 116,
-                      "function": "Illuminate\\Pipeline\\{closure}",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
-                      "line": 142,
-                      "function": "then",
-                      "class": "Illuminate\\Pipeline\\Pipeline",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php",
-                      "line": 111,
-                      "function": "sendRequestThroughRouter",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 299,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Http\\Kernel",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 287,
-                      "function": "callLaravelOrLumenRoute",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 89,
-                      "function": "makeApiCall",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 45,
-                      "function": "makeResponseCall",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php",
-                      "line": 35,
-                      "function": "makeResponseCallIfConditionsPass",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 222,
-                      "function": "__invoke",
-                      "class": "Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 179,
-                      "function": "iterateThroughStrategies",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php",
-                      "line": 116,
-                      "function": "fetchResponses",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 123,
-                      "function": "processRoute",
-                      "class": "Knuckles\\Scribe\\Extracting\\Extractor",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 80,
-                      "function": "extractEndpointsInfoFromLaravelApp",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php",
-                      "line": 56,
-                      "function": "extractEndpointsInfoAndWriteToDisk",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php",
-                      "line": 55,
-                      "function": "get",
-                      "class": "Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
-                      "line": 36,
-                      "function": "handle",
-                      "class": "Knuckles\\Scribe\\Commands\\GenerateDocumentation",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Util.php",
-                      "line": 41,
-                      "function": "Illuminate\\Container\\{closure}",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
-                      "line": 93,
-                      "function": "unwrapIfClosure",
-                      "class": "Illuminate\\Container\\Util",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php",
-                      "line": 37,
-                      "function": "callBoundMethod",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Container.php",
-                      "line": 651,
-                      "function": "call",
-                      "class": "Illuminate\\Container\\BoundMethod",
-                      "type": "::"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php",
-                      "line": 136,
-                      "function": "call",
-                      "class": "Illuminate\\Container\\Container",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/symfony/console/Command/Command.php",
-                      "line": 291,
-                      "function": "execute",
-                      "class": "Illuminate\\Console\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php",
-                      "line": 121,
-                      "function": "run",
-                      "class": "Symfony\\Component\\Console\\Command\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/symfony/console/Application.php",
-                      "line": 989,
-                      "function": "run",
-                      "class": "Illuminate\\Console\\Command",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/symfony/console/Application.php",
-                      "line": 299,
-                      "function": "doRunCommand",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/symfony/console/Application.php",
-                      "line": 171,
-                      "function": "doRun",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Application.php",
-                      "line": 102,
-                      "function": "run",
-                      "class": "Symfony\\Component\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php",
-                      "line": 129,
-                      "function": "run",
-                      "class": "Illuminate\\Console\\Application",
-                      "type": "->"
-                  },
-                  {
-                      "file": "/Users/sebastientraber/Documents/Prog/ProjArt-Application/artisan",
-                      "line": 37,
-                      "function": "handle",
-                      "class": "Illuminate\\Foundation\\Console\\Kernel",
-                      "type": "->"
-                  }
-              ]
-          }
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+              <title>Document</title>
+              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+          </head>
+          <body>
+              <div id="app"></div>
+
+              <script src="//localhost:8080/js/app.js"></script>
+          </body>
+          </html>
         headers:
+          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          content-type: application/json
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlFaSWJ6Q1h4U2NHKzllem9FQjlIWHc9PSIsInZhbHVlIjoiRnU2bzFOMkRwNTVsbk11eUZMSDFFbGxwQW00M2llVFQ1elFuMjdTN3FpU01kdEttdzN3Q1o0THdjUlZSUXNnL3ZTbDBjMG1vYW1IdElMQTdBWmZ6VnhuU2JuSG05U3hudmpUaDZiaWtCeDVUend0bjhWRUtDQUdZbURXQk4xMkkiLCJtYWMiOiJiNDMwNjdkNTkzMjI1NDE1YTQ3YzQ2MWMyNjQ2YmY5MTdjMzVlNDA2ZmU1ZGIxZGY2ZDQ3MjdiZTkwMDc1Zjk5IiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IjhVQ2ZxSElRZjZIVmhuUC9GZ2VoZ1E9PSIsInZhbHVlIjoiRkp2ZHBpNTBIY3RvUTdZVUFkWVJXeXc5T1lXU2plcXd0aCtCZHNkQ3JBbUwwcGRZZlJkcXRTNi8rcEtJNFI4VG1Sb1NVTmxBYmMvc3ZOb3BQUUhjUmE3alQ4bThQZGgxZFA4bG43R2ZSQ2c1ZDRCc1M4TVZuL0hkNUp4ZXVYQm0iLCJtYWMiOiI5M2E1ZjNmNmQ2YmRkNWZiNDYzNTNiNGQxZmI4YmM2OGE1MGRjMzM3MjFmNTNkYmJhMzNmMWJlNTJlOWY0Y2Y2IiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []

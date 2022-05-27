@@ -42,34 +42,38 @@ class GapsMarksService
         $users = $user != null ? [$user] : User::all();
 
         foreach ($users as $user) {
-            $user->setPersonalNumber();
+            try {
+                $user->setPersonalNumber();
 
-            $content = file_get_contents("https://" . $user->username . ":" . urlencode($user->password) . "@gaps.heig-vd.ch/consultation/notes/bulletin.php?id=" . $user->gaps_id);
+                $content = file_get_contents("https://" . $user->username . ":" . urlencode($user->password) . "@gaps.heig-vd.ch/consultation/notes/bulletin.php?id=" . $user->gaps_id);
 
-            $dom = HtmlDomParser::str_get_html($content);
+                $dom = HtmlDomParser::str_get_html($content);
 
-            $trs = $dom->findMulti("#record_table tr");
+                $trs = $dom->findMulti("#record_table tr");
 
-            $marks = [];
-            foreach ($trs as $tr) {
-                if ($tr->class == "bulletin_unit_row") {
-                    $tds = $tr->findMulti("td");
-                    $moduleCode = $tds[0]->innerText;
-                    $moduleName = $tds[1]->innerText;
-                    $note = $tds[4]->innerText;
-                    $yearStart = explode("-", $tds[3]->innerText)[0];
-                    $yearEnd = explode("-", $tds[3]->innerText)[1];
+                $marks = [];
+                foreach ($trs as $tr) {
+                    if ($tr->class == "bulletin_unit_row") {
+                        $tds = $tr->findMulti("td");
+                        $moduleCode = $tds[0]->innerText;
+                        $moduleName = $tds[1]->innerText;
+                        $note = $tds[4]->innerText;
+                        $yearStart = explode("-", $tds[3]->innerText)[0];
+                        $yearEnd = explode("-", $tds[3]->innerText)[1];
 
-                    $mark = $user->marks()->firstOrCreate([
-                        'module_code' => $moduleCode,
-                        'module_name' => $moduleName,
-                        'value' => explode(" ", str_replace("<br>", " ", $note))[0],
-                        'year_start' => $yearStart,
-                        'year_end' => $yearEnd,
-                    ]);
+                        $mark = $user->marks()->firstOrCreate([
+                            'module_code' => $moduleCode,
+                            'module_name' => $moduleName,
+                            'value' => explode(" ", str_replace("<br>", " ", $note))[0],
+                            'year_start' => $yearStart,
+                            'year_end' => $yearEnd,
+                        ]);
 
-                    $marks[] = $mark;
+                        $marks[] = $mark;
+                    }
                 }
+            } catch (\Throwable $th) {
+                echo $th->getMessage();
             }
         }
     }
