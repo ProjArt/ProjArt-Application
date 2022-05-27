@@ -6,15 +6,21 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "defstudio/telegraph": "^1.11",
         "doctrine/dbal": "^3.3",
         "guzzlehttp/guzzle": "^7.2",
+        "johngrogg/ics-parser": "^3.1",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.7",
-        "laravel/ui": "^3.4"
+        "laravel/ui": "^3.4",
+        "php-imap/php-imap": "^2.0",
+        "voku/simple_html_dom": "^4.8",
+        "webklex/laravel-imap": "^2.4"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
+        "knuckleswtf/scribe": "^3.29",
         "laravel/sail": "^1.0.1",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^6.1",
@@ -26,7 +32,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

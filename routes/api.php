@@ -1,10 +1,22 @@
 <?php
 
+use App\Http\Controllers\AbsenceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
-
-
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CalendarOwnController;
+use App\Http\Controllers\ClassRoomController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\GapsAbsenceController;
+use App\Http\Controllers\GapsController;
+use App\Http\Controllers\GapsEventsController;
+use App\Http\Controllers\GapsMarksController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\MarkController;
+use App\Http\Controllers\MenuController;
+use App\Http\Services\GapsEventsService;
+use App\Http\Services\GapsMarksService;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,4 +43,46 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/logout', 'logout')->name("api.logout");
     });
 
+    Route::prefix('/update/gaps')->group(function () {
+        Route::get('/events', [GapsEventsController::class, 'fetchAll'])->name('api.fetch.gaps.events');
+        Route::get('/marks', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
+        Route::get('/absences', [GapsAbsenceController::class, 'fetchAll'])->name('api.fetch.gaps.absences');
+        Route::get('/', [GapsController::class, 'updateAll'])->name('api.fetch.gaps');
+    });
+
+
+    Route::prefix('/mails')->controller(MailController::class)->group(function () {
+        Route::get('/', 'index')->name('api.mails.index');
+        Route::get('/{id}', 'show')->name('api.mails.show')->where('id', '[0-9]+');
+        Route::post('/send', 'send')->name('api.mails.send');
+    });
+
+    Route::resource('/events', EventController::class, [
+        'as' => 'api'
+    ]);
+    //Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents'])->name("api.getCalendarEvents");
+
+
+    Route::get('/marks', [MarkController::class, 'index'])->name('api.marks.index');
+
+    Route::get('/menu', [MenuController::class, 'index'])->name("api.getMenu");
+
+    Route::resource('/calendars', CalendarOwnController::class, [
+        'as' => 'api'
+    ]);
+
+    Route::post('/calendars/share', [CalendarOwnController::class, 'share'])->name("api.calendars.share");
+
+    Route::get("/classrooms", [ClassroomController::class, 'index'])->name("api.classrooms.index");
+
+    Route::post("/classrooms/setUser", [ClassroomController::class, 'setUserClassroom'])->name("api.classrooms.setUserClassroom");
+
+    Route::get("/absences", [AbsenceController::class, 'index'])->name("api.absences.index");
 });
+
+Route::get('/', function () {
+    return response()->json(['message' => 'Welcome to API']);
+});
+
+
+Route::get('/update/gaps/{token}', [GapsController::class, "updateAll"])->where('token', config('gaps.token'));

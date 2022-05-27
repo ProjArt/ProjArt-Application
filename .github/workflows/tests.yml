@@ -1,4 +1,4 @@
-name: Laravel
+name: Tests
 
 on:
   push:
@@ -31,22 +31,29 @@ jobs:
         
     - name: Running migration
       env:
+        APP_KEY: ${{ secrets.APP_KEY }}
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
-      run: php artisan migrate:refresh
+      run: php artisan migrate:fresh
       id: migrations
       
     - name: Seeding Database
       env:
+        APP_KEY: ${{ secrets.APP_KEY }}
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+        GAPS_USERNAME: ${{ secrets.GAPS_USERNAME }}
+        GAPS_PASSWORD: ${{ secrets.GAPS_PASSWORD }}
       run: php artisan db:seed
       id: seeding
       
     - name: Execute tests (Unit and Feature tests) via PHPUnit
       env:
+        APP_KEY: ${{ secrets.APP_KEY }}
         DB_CONNECTION: sqlite
         DB_DATABASE: database/database.sqlite
+        GAPS_USERNAME: ${{ secrets.GAPS_USERNAME }}
+        GAPS_PASSWORD: ${{ secrets.GAPS_PASSWORD }}
       run: vendor/bin/phpunit
       id: tests
       
@@ -56,8 +63,8 @@ jobs:
       if: ${{ failure() }}
       uses: appleboy/telegram-action@master
       with:
-        to: "-791975647"
-        token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
             ❌❌❌ A COMMIT DIDN'T PASS THE TEST IN LARAVEL ❌❌❌
             
@@ -67,18 +74,13 @@ jobs:
             Repository: ${{ github.repository }}
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
-            
-            
-
-            
-            
-  Vue-test:
-
+          
+  vue-tests:
     runs-on: ubuntu-latest
-
+    needs: laravel-tests
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [16.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -88,16 +90,17 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm run test
+    #- run: npm ci
+    #- run: npm install
+    #- run: npm run build --if-present
+    #- run: npm run test
 
     - name: send telegram message on push
       if: ${{ failure() }}
       uses: appleboy/telegram-action@master
       with:
-        to: "-791975647"
-        token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
+        to: ${{ secrets.TELEGRAM_CHAT_ID }}
+        token: ${{ secrets.TELEGRAM_TOKEN }}
         message: |
             ❌❌❌ A COMMIT DIDN'T PASS THE TEST IN VUE ❌❌❌
             
@@ -108,14 +111,15 @@ jobs:
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
             
-  Confirmation:
+  confirmation:
         runs-on: ubuntu-latest
+        needs: vue-tests
         steps:
         - name: send telegram message on push
           uses: appleboy/telegram-action@master
           with:
-            to: "-791975647"
-            token: "5380754438:AAGej-NxDw9k5ynCehkcdAQgoIhdxyGBc2U"
+            to: ${{ secrets.TELEGRAM_CHAT_ID }}
+            token: ${{ secrets.TELEGRAM_TOKEN }}
             message: |
                 ✅✅✅ A COMMIT WAS DONE. ✅✅✅
 

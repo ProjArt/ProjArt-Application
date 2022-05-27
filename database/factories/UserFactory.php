@@ -18,9 +18,10 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'username' => $this->faker->userName(),
-            'password' => encrypt('password'),
+            'username' => config('gaps.username'),
+            'password' => config('gaps.password'),
             'remember_token' => Str::random(10),
+            'theme_id' => 1,
         ];
     }
 

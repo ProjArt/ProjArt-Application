@@ -26,6 +26,7 @@ class AuthUserRequest extends FormRequest
         return [
             'username' => 'required|string|max:255',
             'password' => 'required|min:5',
+            'classroom_name' => 'string|max:255|exists:classrooms,name',
         ];
     }
 }

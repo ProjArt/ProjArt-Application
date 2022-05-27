@@ -1,0 +1,39 @@
+name: Notes
+description: |-
+
+  APIs pour gérer les notes
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/marks
+    metadata:
+      title: 'Get marks'
+      description: 'Retourne un json contenant une liste des notes de l''utilisateur.'
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "2020 - 2021": [
+            {
+              "id": 1,
+              "module_code": "MODULE",
+              "module_name": "TEXT",
+              "value": X,
+              "year_start": X,
+              "year_end": X
+            },
+          }
+        headers: []
+        description: '200, success'
+    responseFields: []
