@@ -20,6 +20,16 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
 
+    /**
+     * register
+     * 
+     * Register a new user
+     * 
+     * @bodyParam username string required The Gaps username of the user.
+     * @bodyParam password string required The Gaps password of the user.
+     * @bodyParam classroom_name string required The class of the user.
+     */
+
     public function register(AuthUserRequest $request)
     {
 
@@ -41,6 +51,14 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * login
+     * 
+     * Authentication for a user
+     * 
+     * @bodyParam username string required The Gaps username of the user.
+     * @bodyParam password string required The Gaps password of the user.
+     */
     public function login(AuthUserRequest $request)
     {
         $user = User::whereUsername($request->username)->first();
@@ -58,6 +76,12 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * me
+     * 
+     * Get actual authenticate user
+     * 
+     */
     public function me(Request $request)
     {
         return httpSuccess("User found", [
@@ -65,6 +89,13 @@ class AuthController extends Controller
         ]);
     }
 
+
+    /**
+     * logout
+     * 
+     * Logout the actual authenticate user
+     * 
+     */
     public function logout(Request $request)
     {
         $request->user()->currentAccessToken()->delete();
@@ -72,6 +103,13 @@ class AuthController extends Controller
         return httpSuccess("Logout succeed");
     }
 
+    /**
+     * getClassrooms
+     * 
+     * Get all classrooms
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getClassroom()
     {
         $classroom = Classroom::all();
@@ -81,6 +119,13 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * setClassrooms
+     * 
+     * Set a classroom for the actual authenticate user
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function setClassroom(Request $request)
     {
         $request->user()->classroom_id = $request->classroom_id;

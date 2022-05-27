@@ -1,15 +1,15 @@
-name: Notes
+name: 'Menu de la caf'
 description: |-
 
-  APIs pour gérer les notes
+  APIs pour gérer les menus
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/marks
+    uri: api/menu
     metadata:
-      title: 'Obtenir les notes'
-      description: 'Retourne un json contenant une liste des notes de l''utilisateur.'
+      title: getCafMenus
+      description: 'Retourne un json contenant une liste des menus.'
       authenticated: true
       custom: []
     headers:
@@ -23,16 +23,32 @@ endpoints:
       -
         status: 200
         content: |-
-          {
-          "2020 - 2021": [
-            {
-              "id": 1,
-              "module_code": "MODULE",
-              "module_name": "TEXT",
-              "value": X,
-              "year_start": X,
-              "year_end": X
-            },
+          [
+           {
+            "2022-05-25": [
+              {
+                "id": 1,
+                "entry": "Crème de légumes",
+                "plate": "Quiche aux tomates et basilic",
+                "dessert": "Salade de fruits",
+                "date": "2022-05-25 23:32:08",
+                "menu": {
+                  "id": 1529386802506784773,
+                  "date": "2022-05-25 23:32:08"
+                }
+              },
+              {
+                "id": 2,
+                "entry": "Crème de légumes",
+                "plate": "Ailerons de poulet (CH) grillés, Sauce barbecue, Frites, Sauté de légumes de saison",
+                "dessert": "Salade de fruits",
+                "date": "2022-05-25 23:32:08",
+                "menu": {
+                  "id": 1529386800858468355,
+                  "date": "2022-05-25 23:32:08"
+                }
+              }
+            ],
           }
         headers: []
         description: '200, success'

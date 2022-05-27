@@ -16,7 +16,7 @@ class MenuController extends Controller
 {
     /**
      * 
-     * Obtenir tous les menus
+     * getCafMenus
      * 
      * Retourne un json contenant une liste des menus.
      * 

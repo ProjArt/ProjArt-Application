@@ -10,8 +10,8 @@ endpoints:
       - POST
     uri: api/login
     metadata:
-      title: ''
-      description: ''
+      title: login
+      description: 'Authentication for a user'
       authenticated: true
       custom: []
     headers:
@@ -23,16 +23,23 @@ endpoints:
     bodyParameters:
       username:
         name: username
-        description: 'Must not be greater than 255 characters.'
+        description: 'The Gaps username of the user.'
         required: true
-        example: grpkagtjvd
+        example: laboriosam
         type: string
         custom: []
       password:
         name: password
-        description: 'Must be at least 5 characters.'
+        description: 'The Gaps password of the user.'
         required: true
-        example: 'y'
+        example: eligendi
+        type: string
+        custom: []
+      classroom_name:
+        name: classroom_name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx
         type: string
         custom: []
     responses: []
@@ -42,8 +49,8 @@ endpoints:
       - POST
     uri: api/register
     metadata:
-      title: ''
-      description: ''
+      title: register
+      description: 'Register a new user'
       authenticated: true
       custom: []
     headers:
@@ -55,16 +62,23 @@ endpoints:
     bodyParameters:
       username:
         name: username
-        description: 'Must not be greater than 255 characters.'
+        description: 'The Gaps username of the user.'
         required: true
-        example: oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc
+        example: placeat
         type: string
         custom: []
       password:
         name: password
-        description: 'Must be at least 5 characters.'
+        description: 'The Gaps password of the user.'
         required: true
-        example: uz
+        example: delectus
+        type: string
+        custom: []
+      classroom_name:
+        name: classroom_name
+        description: 'The class of the user.'
+        required: true
+        example: autem
         type: string
         custom: []
     responses: []
@@ -74,8 +88,8 @@ endpoints:
       - GET
     uri: api/me
     metadata:
-      title: ''
-      description: ''
+      title: me
+      description: 'Get actual authenticate user'
       authenticated: true
       custom: []
     headers:
@@ -100,8 +114,8 @@ endpoints:
       - GET
     uri: api/logout
     metadata:
-      title: ''
-      description: ''
+      title: logout
+      description: 'Logout the actual authenticate user'
       authenticated: true
       custom: []
     headers:

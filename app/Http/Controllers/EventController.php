@@ -25,7 +25,7 @@ class EventController extends Controller
     }
     /**
      * 
-     * Obtenir tous les évènements
+     * getEvents
      * 
      * Retourne un json contenant une liste des évènements. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur.
      *
@@ -65,7 +65,7 @@ class EventController extends Controller
     /**
      * 
      * 
-     * Mémorizer un évènement
+     * storeEvent
      * 
      * Enregistre un nouvel évènement dans la BDD
      * Succès: retourne un json contenant l'évènement créé
@@ -103,7 +103,7 @@ class EventController extends Controller
     }
 
     /**
-     * @hideFromAPIDocumentation
+     * showEvent
      * 
      * Display the specified resource.
      *
@@ -116,7 +116,7 @@ class EventController extends Controller
     }
 
     /**
-     * @hideFromAPIDocumentation
+     * updateEvent
      * 
      * Update the specified resource in storage.
      *
@@ -132,7 +132,7 @@ class EventController extends Controller
 
     /**
      * 
-     * @hideFromAPIDocumentation
+     * deleteEvent
      * 
      * Remove the specified resource from storage.
      *
@@ -141,7 +141,8 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+        return httpSuccess('Event deleted');
     }
 
 

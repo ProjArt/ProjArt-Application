@@ -9,8 +9,8 @@ servers:
 paths:
   /api/login:
     post:
-      summary: ''
-      description: ''
+      summary: login
+      description: 'Authentication for a user'
       parameters:
         -
           in: header
@@ -45,19 +45,23 @@ paths:
               properties:
                 username:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: grpkagtjvd
+                  description: 'The Gaps username of the user.'
+                  example: laboriosam
                 password:
                   type: string
-                  description: 'Must be at least 5 characters.'
-                  example: 'y'
+                  description: 'The Gaps password of the user.'
+                  example: eligendi
+                classroom_name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx
               required:
                 - username
                 - password
   /api/register:
     post:
-      summary: ''
-      description: ''
+      summary: register
+      description: 'Register a new user'
       parameters:
         -
           in: header
@@ -92,19 +96,24 @@ paths:
               properties:
                 username:
                   type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc
+                  description: 'The Gaps username of the user.'
+                  example: placeat
                 password:
                   type: string
-                  description: 'Must be at least 5 characters.'
-                  example: uz
+                  description: 'The Gaps password of the user.'
+                  example: delectus
+                classroom_name:
+                  type: string
+                  description: 'The class of the user.'
+                  example: autem
               required:
                 - username
                 - password
+                - classroom_name
   /api/me:
     get:
-      summary: ''
-      description: ''
+      summary: me
+      description: 'Get actual authenticate user'
       parameters:
         -
           in: header
@@ -156,6 +165,59 @@ paths:
         - Authentication
   /api/logout:
     get:
+      summary: logout
+      description: 'Logout the actual authenticate user'
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Authentication
+  /api/update/gaps/absences:
+    get:
       summary: ''
       description: ''
       parameters:
@@ -206,10 +268,158 @@ paths:
                     items:
                       type: string
       tags:
-        - Authentication
+        - Autres
+  /api/classrooms:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Autres
+  /api/classrooms/setUser:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Autres
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq
+              required:
+                - name
+  /api/absences:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Autres
   /api/calendars:
     get:
-      summary: 'Obtenir tous les calendrier'
+      summary: getCalendars
       description: 'Retourne un json contenant une liste des calendrier. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
       parameters:
         -
@@ -286,7 +496,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: mwuokorfctowmbipxearejyrlwjswiqrddcuonmpcvpwhavymtolhwwnkdzdcttueigdonkpquwfsggkfnvkownaqvyyyxoyixraqlmkyydohumopqzydnwmgxzjvibrfptscbnlkzwqrwjkevxfpcwqsfbeqebvbrtleve
+                  example: unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl
               required:
                 - name
   '/api/calendars/{id}':
@@ -380,7 +590,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: bnptegkxhshvhjy
+                  example: kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk
               required:
                 - name
     delete:
@@ -459,11 +669,11 @@ paths:
                 calendar_id:
                   type: string
                   description: ''
-                  example: dolorem
+                  example: dolor
                 user_id:
                   type: string
                   description: ''
-                  example: totam
+                  example: quae
                 can_own:
                   type: boolean
                   description: ''
@@ -479,7 +689,7 @@ paths:
                 - can_view
   /api/events:
     get:
-      summary: 'Obtenir tous les évènements'
+      summary: getEvents
       description: 'Retourne un json contenant une liste des évènements. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
       parameters:
         -
@@ -514,7 +724,7 @@ paths:
       tags:
         - Evènements
     post:
-      summary: 'Mémorizer un évènement'
+      summary: storeEvent
       description: "Enregistre un nouvel évènement dans la BDD\nSuccès: retourne un json contenant l'évènement créé\nFail: erreur"
       parameters:
         -
@@ -557,34 +767,180 @@ paths:
               properties:
                 title:
                   type: string
-                  description: 'Must contain only letters and numbers.'
-                  example: 0p4gtk6
-                0:
+                  description: 'Must not be greater than 255 characters.'
+                  example: gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo
+                description:
                   type: string
-                  description: ''
-                  example: null
+                  description: 'Must not be greater than 1000 characters.'
+                  example: pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-26T05:43:09'
+                  example: '2022-05-27T14:21:59'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-26T05:43:09'
+                  example: '2022-05-27T14:21:59'
                 location:
                   type: string
-                  description: 'Must contain only letters and numbers.'
-                  example: 2k0xdg8
+                  description: 'Must not be greater than 255 characters.'
+                  example: ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua
                 calendar_id:
-                  type: number
+                  type: string
                   description: ''
-                  example: 6.752850153
+                  example: aut
               required:
                 - title
+                - description
                 - start
                 - end
                 - location
                 - calendar_id
+  '/api/events/{id}':
+    get:
+      summary: showEvent
+      description: 'Display the specified resource.'
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Evènements
+    put:
+      summary: updateEvent
+      description: 'Update the specified resource in storage.'
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Evènements
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: nyhqxl
+                description:
+                  type: string
+                  description: 'Must not be greater than 1000 characters.'
+                  example: burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz
+                start:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2022-05-27T14:21:59'
+                end:
+                  type: string
+                  description: 'Must be a valid date.'
+                  example: '2022-05-27T14:21:59'
+                location:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd
+    delete:
+      summary: deleteEvent
+      description: 'Remove the specified resource from storage.'
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Evènements
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the event.'
+        example: 1
+        required: true
+        schema:
+          type: integer
   /api/update/gaps/events:
     get:
       summary: ''
@@ -674,7 +1030,8 @@ paths:
                 example:
                   success: true
                   message: 'All fetched'
-                  data: []
+                  data:
+                    user: null
                 properties:
                   success:
                     type: boolean
@@ -683,8 +1040,9 @@ paths:
                     type: string
                     example: 'All fetched'
                   data:
-                    type: array
-                    example: []
+                    type: object
+                    example:
+                      user: null
       tags:
         - Gaps
     parameters:
@@ -697,6 +1055,59 @@ paths:
         schema:
           type: string
   /api/update/gaps/marks:
+    get:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Gaps
+  /api/update/gaps:
     get:
       summary: ''
       description: ''
@@ -860,7 +1271,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the mail.'
-        example: '906'
+        example: '7915'
         required: true
         schema:
           type: string
@@ -903,22 +1314,22 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: camron.goodwin@example.org
+                  example: jalyn91@example.org
                 subject:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: rqcizpcirtuyjvzdiaadbjptrvpcuepkpccqlgnczvirardwolklwsvwuqvhzggtesbultgfwsqflerfcxfsisfuesiyotsbtmmyqdztkkjxwcwiyvgmgqsqbcngpqqfarxwribxfajnxbkglfhjskfdxrwptgcjrldlofkkxiraxjfvxnpylkymjrcpcumvogrw
+                  example: eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm
                 message:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: qui
               required:
                 - to
                 - subject
                 - message
   /api/menu:
     get:
-      summary: 'Obtenir tous les menus'
+      summary: getCafMenus
       description: 'Retourne un json contenant une liste des menus.'
       parameters:
         -
@@ -954,7 +1365,7 @@ paths:
         - 'Menu de la caf'
   /api/marks:
     get:
-      summary: 'Obtenir les notes'
+      summary: getMarks
       description: 'Retourne un json contenant une liste des notes de l''utilisateur.'
       parameters:
         -
@@ -992,6 +1403,9 @@ tags:
   -
     name: Authentication
     description: "\nAPIs pour gérer les authentifications"
+  -
+    name: Autres
+    description: ''
   -
     name: Calendrier
     description: "\nAPIs pour gérer les calendrier"

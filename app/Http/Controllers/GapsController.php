@@ -19,6 +19,7 @@ class GapsController extends Controller
      *
      * Ne retourne rien
      * 
+     * 
     */
     public function updateAll(Request $request)
     {

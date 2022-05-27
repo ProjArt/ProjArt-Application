@@ -77,26 +77,45 @@
                 </li>
                                     <ul id="tocify-subheader-authentication" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="authentication-POSTapi-login">
-                        <a href="#authentication-POSTapi-login">POST api/login</a>
+                        <a href="#authentication-POSTapi-login">login</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="authentication-POSTapi-register">
-                        <a href="#authentication-POSTapi-register">POST api/register</a>
+                        <a href="#authentication-POSTapi-register">register</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="authentication-GETapi-me">
-                        <a href="#authentication-GETapi-me">GET api/me</a>
+                        <a href="#authentication-GETapi-me">me</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="authentication-GETapi-logout">
-                        <a href="#authentication-GETapi-logout">GET api/logout</a>
+                        <a href="#authentication-GETapi-logout">logout</a>
                     </li>
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-3" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="autres">
+                    <a href="#autres">Autres</a>
+                </li>
+                                    <ul id="tocify-subheader-autres" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="autres-GETapi-update-gaps-absences">
+                        <a href="#autres-GETapi-update-gaps-absences">GET api/update/gaps/absences</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="autres-GETapi-classrooms">
+                        <a href="#autres-GETapi-classrooms">Display a listing of the resource.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="autres-POSTapi-classrooms-setUser">
+                        <a href="#autres-POSTapi-classrooms-setUser">POST api/classrooms/setUser</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="autres-GETapi-absences">
+                        <a href="#autres-GETapi-absences">GET api/absences</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-4" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="calendrier">
                     <a href="#calendrier">Calendrier</a>
                 </li>
                                     <ul id="tocify-subheader-calendrier" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="calendrier-GETapi-calendars">
-                        <a href="#calendrier-GETapi-calendars">Obtenir tous les calendrier</a>
+                        <a href="#calendrier-GETapi-calendars">getCalendars</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="calendrier-POSTapi-calendars">
                         <a href="#calendrier-POSTapi-calendars">Store a newly created resource in storage.</a>
@@ -115,20 +134,29 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-4" class="tocify-header">
+                    <ul id="tocify-header-5" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="evenements">
                     <a href="#evenements">Evènements</a>
                 </li>
                                     <ul id="tocify-subheader-evenements" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="evenements-GETapi-events">
-                        <a href="#evenements-GETapi-events">Obtenir tous les évènements</a>
+                        <a href="#evenements-GETapi-events">getEvents</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="evenements-POSTapi-events">
-                        <a href="#evenements-POSTapi-events">Mémorizer un évènement</a>
+                        <a href="#evenements-POSTapi-events">storeEvent</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="evenements-GETapi-events--id-">
+                        <a href="#evenements-GETapi-events--id-">showEvent</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="evenements-PUTapi-events--id-">
+                        <a href="#evenements-PUTapi-events--id-">updateEvent</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="evenements-DELETEapi-events--id-">
+                        <a href="#evenements-DELETEapi-events--id-">deleteEvent</a>
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-5" class="tocify-header">
+                    <ul id="tocify-header-6" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="gaps">
                     <a href="#gaps">Gaps</a>
                 </li>
@@ -142,9 +170,12 @@
                                     <li class="tocify-item level-2" data-unique="gaps-GETapi-update-gaps-marks">
                         <a href="#gaps-GETapi-update-gaps-marks">GET api/update/gaps/marks</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="gaps-GETapi-update-gaps">
+                        <a href="#gaps-GETapi-update-gaps">GET api/update/gaps</a>
+                    </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-6" class="tocify-header">
+                    <ul id="tocify-header-7" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="mail">
                     <a href="#mail">Mail</a>
                 </li>
@@ -160,23 +191,23 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-7" class="tocify-header">
+                    <ul id="tocify-header-8" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="menu-de-la-caf">
                     <a href="#menu-de-la-caf">Menu de la caf</a>
                 </li>
                                     <ul id="tocify-subheader-menu-de-la-caf" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="menu-de-la-caf-GETapi-menu">
-                        <a href="#menu-de-la-caf-GETapi-menu">Obtenir tous les menus</a>
+                        <a href="#menu-de-la-caf-GETapi-menu">getCafMenus</a>
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-8" class="tocify-header">
+                    <ul id="tocify-header-9" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="notes">
                     <a href="#notes">Notes</a>
                 </li>
                                     <ul id="tocify-subheader-notes" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="notes-GETapi-marks">
-                        <a href="#notes-GETapi-marks">Obtenir les notes</a>
+                        <a href="#notes-GETapi-marks">getMarks</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -190,7 +221,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 26 2022</li>
+        <li>Last updated: May 27 2022</li>
     </ul>
 </div>
 
@@ -207,7 +238,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-yaml">http://localhost</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by asking the login route.</p>
 
@@ -215,13 +246,13 @@ You can switch the language used with the tabs at the top right (or from the nav
 
     <p>APIs pour gérer les authentifications</p>
 
-            <h2 id="authentication-POSTapi-login">POST api/login</h2>
+            <h2 id="authentication-POSTapi-login">login</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Authentication for a user</p>
 
 <span id="example-requests-POSTapi-login">
 <blockquote>Example request:</blockquote>
@@ -234,8 +265,9 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"grpkagtjvd\",
-    \"password\": \"y\"
+    \"username\": \"laboriosam\",
+    \"password\": \"eligendi\",
+    \"classroom_name\": \"rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx\"
 }"
 </code></pre></div>
 
@@ -252,8 +284,9 @@ const headers = {
 };
 
 let body = {
-    "username": "grpkagtjvd",
-    "password": "y"
+    "username": "laboriosam",
+    "password": "eligendi",
+    "classroom_name": "rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx"
 };
 
 fetch(url, {
@@ -274,8 +307,9 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'username' =&gt; 'grpkagtjvd',
-            'password' =&gt; 'y',
+            'username' =&gt; 'laboriosam',
+            'password' =&gt; 'eligendi',
+            'classroom_name' =&gt; 'rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx',
         ],
     ]
 );
@@ -339,30 +373,40 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-login"
-               value="grpkagtjvd"
+               value="laboriosam"
                data-component="body" hidden>
     <br>
-<p>Must not be greater than 255 characters.</p>
+<p>The Gaps username of the user.</p>
         </p>
                 <p>
             <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="y"
+               value="eligendi"
                data-component="body" hidden>
     <br>
-<p>Must be at least 5 characters.</p>
+<p>The Gaps password of the user.</p>
+        </p>
+                <p>
+            <b><code>classroom_name</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="classroom_name"
+               data-endpoint="POSTapi-login"
+               value="rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx"
+               data-component="body" hidden>
+    <br>
+<p>Must not be greater than 255 characters.</p>
         </p>
         </form>
 
-            <h2 id="authentication-POSTapi-register">POST api/register</h2>
+            <h2 id="authentication-POSTapi-register">register</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Register a new user</p>
 
 <span id="example-requests-POSTapi-register">
 <blockquote>Example request:</blockquote>
@@ -375,8 +419,9 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc\",
-    \"password\": \"uz\"
+    \"username\": \"placeat\",
+    \"password\": \"delectus\",
+    \"classroom_name\": \"autem\"
 }"
 </code></pre></div>
 
@@ -393,8 +438,9 @@ const headers = {
 };
 
 let body = {
-    "username": "oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc",
-    "password": "uz"
+    "username": "placeat",
+    "password": "delectus",
+    "classroom_name": "autem"
 };
 
 fetch(url, {
@@ -415,8 +461,9 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'username' =&gt; 'oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc',
-            'password' =&gt; 'uz',
+            'username' =&gt; 'placeat',
+            'password' =&gt; 'delectus',
+            'classroom_name' =&gt; 'autem',
         ],
     ]
 );
@@ -480,30 +527,40 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-register"
-               value="oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc"
+               value="placeat"
                data-component="body" hidden>
     <br>
-<p>Must not be greater than 255 characters.</p>
+<p>The Gaps username of the user.</p>
         </p>
                 <p>
             <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="uz"
+               value="delectus"
                data-component="body" hidden>
     <br>
-<p>Must be at least 5 characters.</p>
+<p>The Gaps password of the user.</p>
+        </p>
+                <p>
+            <b><code>classroom_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="classroom_name"
+               data-endpoint="POSTapi-register"
+               value="autem"
+               data-component="body" hidden>
+    <br>
+<p>The class of the user.</p>
         </p>
         </form>
 
-            <h2 id="authentication-GETapi-me">GET api/me</h2>
+            <h2 id="authentication-GETapi-me">me</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Get actual authenticate user</p>
 
 <span id="example-requests-GETapi-me">
 <blockquote>Example request:</blockquote>
@@ -623,13 +680,13 @@ access-control-allow-origin: *
         </p>
                 </form>
 
-            <h2 id="authentication-GETapi-logout">GET api/logout</h2>
+            <h2 id="authentication-GETapi-logout">logout</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Logout the actual authenticate user</p>
 
 <span id="example-requests-GETapi-logout">
 <blockquote>Example request:</blockquote>
@@ -749,11 +806,521 @@ access-control-allow-origin: *
         </p>
                 </form>
 
+        <h1 id="autres">Autres</h1>
+
+    
+
+            <h2 id="autres-GETapi-update-gaps-absences">GET api/update/gaps/absences</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-update-gaps-absences">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/update/gaps/absences" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/update/gaps/absences"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/update/gaps/absences',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-update-gaps-absences">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-update-gaps-absences" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-update-gaps-absences"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-update-gaps-absences"></code></pre>
+</span>
+<span id="execution-error-GETapi-update-gaps-absences" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-update-gaps-absences"></code></pre>
+</span>
+<form id="form-GETapi-update-gaps-absences" data-method="GET"
+      data-path="api/update/gaps/absences"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps-absences', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-update-gaps-absences"
+                    onclick="tryItOut('GETapi-update-gaps-absences');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-update-gaps-absences"
+                    onclick="cancelTryOut('GETapi-update-gaps-absences');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-update-gaps-absences" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/update/gaps/absences</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-update-gaps-absences" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-update-gaps-absences"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="autres-GETapi-classrooms">Display a listing of the resource.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-classrooms">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/classrooms" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/classrooms"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/classrooms',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-classrooms">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-classrooms" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-classrooms"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-classrooms"></code></pre>
+</span>
+<span id="execution-error-GETapi-classrooms" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-classrooms"></code></pre>
+</span>
+<form id="form-GETapi-classrooms" data-method="GET"
+      data-path="api/classrooms"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-classrooms', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-classrooms"
+                    onclick="tryItOut('GETapi-classrooms');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-classrooms"
+                    onclick="cancelTryOut('GETapi-classrooms');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-classrooms" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/classrooms</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-classrooms" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-classrooms"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="autres-POSTapi-classrooms-setUser">POST api/classrooms/setUser</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-classrooms-setUser">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost/api/classrooms/setUser" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"name\": \"pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/classrooms/setUser"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq"
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost/api/classrooms/setUser',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-classrooms-setUser">
+</span>
+<span id="execution-results-POSTapi-classrooms-setUser" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-classrooms-setUser"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-classrooms-setUser"></code></pre>
+</span>
+<span id="execution-error-POSTapi-classrooms-setUser" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-classrooms-setUser"></code></pre>
+</span>
+<form id="form-POSTapi-classrooms-setUser" data-method="POST"
+      data-path="api/classrooms/setUser"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-classrooms-setUser', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-classrooms-setUser"
+                    onclick="tryItOut('POSTapi-classrooms-setUser');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-classrooms-setUser"
+                    onclick="cancelTryOut('POSTapi-classrooms-setUser');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-classrooms-setUser" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/classrooms/setUser</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-classrooms-setUser" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-classrooms-setUser"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="name"
+               data-endpoint="POSTapi-classrooms-setUser"
+               value="pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq"
+               data-component="body" hidden>
+    <br>
+<p>Must not be greater than 255 characters.</p>
+        </p>
+        </form>
+
+            <h2 id="autres-GETapi-absences">GET api/absences</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-absences">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/absences" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/absences"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/absences',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-absences">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-absences" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-absences"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-absences"></code></pre>
+</span>
+<span id="execution-error-GETapi-absences" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-absences"></code></pre>
+</span>
+<form id="form-GETapi-absences" data-method="GET"
+      data-path="api/absences"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-absences', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-absences"
+                    onclick="tryItOut('GETapi-absences');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-absences"
+                    onclick="cancelTryOut('GETapi-absences');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-absences" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/absences</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-absences" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-absences"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
         <h1 id="calendrier">Calendrier</h1>
 
     <p>APIs pour gérer les calendrier</p>
 
-            <h2 id="calendrier-GETapi-calendars">Obtenir tous les calendrier</h2>
+            <h2 id="calendrier-GETapi-calendars">getCalendars</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -889,7 +1456,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"mwuokorfctowmbipxearejyrlwjswiqrddcuonmpcvpwhavymtolhwwnkdzdcttueigdonkpquwfsggkfnvkownaqvyyyxoyixraqlmkyydohumopqzydnwmgxzjvibrfptscbnlkzwqrwjkevxfpcwqsfbeqebvbrtleve\"
+    \"name\": \"unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl\"
 }"
 </code></pre></div>
 
@@ -906,7 +1473,7 @@ const headers = {
 };
 
 let body = {
-    "name": "mwuokorfctowmbipxearejyrlwjswiqrddcuonmpcvpwhavymtolhwwnkdzdcttueigdonkpquwfsggkfnvkownaqvyyyxoyixraqlmkyydohumopqzydnwmgxzjvibrfptscbnlkzwqrwjkevxfpcwqsfbeqebvbrtleve"
+    "name": "unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl"
 };
 
 fetch(url, {
@@ -927,7 +1494,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'mwuokorfctowmbipxearejyrlwjswiqrddcuonmpcvpwhavymtolhwwnkdzdcttueigdonkpquwfsggkfnvkownaqvyyyxoyixraqlmkyydohumopqzydnwmgxzjvibrfptscbnlkzwqrwjkevxfpcwqsfbeqebvbrtleve',
+            'name' =&gt; 'unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl',
         ],
     ]
 );
@@ -991,7 +1558,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-calendars"
-               value="mwuokorfctowmbipxearejyrlwjswiqrddcuonmpcvpwhavymtolhwwnkdzdcttueigdonkpquwfsggkfnvkownaqvyyyxoyixraqlmkyydohumopqzydnwmgxzjvibrfptscbnlkzwqrwjkevxfpcwqsfbeqebvbrtleve"
+               value="unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1154,7 +1721,7 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"bnptegkxhshvhjy\"
+    \"name\": \"kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk\"
 }"
 </code></pre></div>
 
@@ -1171,7 +1738,7 @@ const headers = {
 };
 
 let body = {
-    "name": "bnptegkxhshvhjy"
+    "name": "kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk"
 };
 
 fetch(url, {
@@ -1192,7 +1759,7 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'bnptegkxhshvhjy',
+            'name' =&gt; 'kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk',
         ],
     ]
 );
@@ -1271,7 +1838,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="PUTapi-calendars--id-"
-               value="bnptegkxhshvhjy"
+               value="kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1413,8 +1980,8 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"calendar_id\": \"dolorem\",
-    \"user_id\": \"totam\",
+    \"calendar_id\": \"dolor\",
+    \"user_id\": \"quae\",
     \"can_own\": true,
     \"can_view\": false
 }"
@@ -1433,8 +2000,8 @@ const headers = {
 };
 
 let body = {
-    "calendar_id": "dolorem",
-    "user_id": "totam",
+    "calendar_id": "dolor",
+    "user_id": "quae",
     "can_own": true,
     "can_view": false
 };
@@ -1457,8 +2024,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'calendar_id' =&gt; 'dolorem',
-            'user_id' =&gt; 'totam',
+            'calendar_id' =&gt; 'dolor',
+            'user_id' =&gt; 'quae',
             'can_own' =&gt; true,
             'can_view' =&gt; false,
         ],
@@ -1524,7 +2091,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="calendar_id"
                data-endpoint="POSTapi-calendars-share"
-               value="dolorem"
+               value="dolor"
                data-component="body" hidden>
     <br>
 
@@ -1534,7 +2101,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="user_id"
                data-endpoint="POSTapi-calendars-share"
-               value="totam"
+               value="quae"
                data-component="body" hidden>
     <br>
 
@@ -1587,7 +2154,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
     <p>APIs pour gérer les évènements</p>
 
-            <h2 id="evenements-GETapi-events">Obtenir tous les évènements</h2>
+            <h2 id="evenements-GETapi-events">getEvents</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -1713,7 +2280,7 @@ print_r(json_decode((string) $body));</code></pre></div>
         </p>
                 </form>
 
-            <h2 id="evenements-POSTapi-events">Mémorizer un évènement</h2>
+            <h2 id="evenements-POSTapi-events">storeEvent</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -1734,11 +2301,12 @@ Fail: erreur</p>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"title\": \"0p4gtk6\",
-    \"start\": \"2022-05-26T05:43:09\",
-    \"end\": \"2022-05-26T05:43:09\",
-    \"location\": \"2k0xdg8\",
-    \"calendar_id\": 6.752850153
+    \"title\": \"gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo\",
+    \"description\": \"pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp\",
+    \"start\": \"2022-05-27T14:21:59\",
+    \"end\": \"2022-05-27T14:21:59\",
+    \"location\": \"ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua\",
+    \"calendar_id\": \"aut\"
 }"
 </code></pre></div>
 
@@ -1755,11 +2323,12 @@ const headers = {
 };
 
 let body = {
-    "title": "0p4gtk6",
-    "start": "2022-05-26T05:43:09",
-    "end": "2022-05-26T05:43:09",
-    "location": "2k0xdg8",
-    "calendar_id": 6.752850153
+    "title": "gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo",
+    "description": "pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp",
+    "start": "2022-05-27T14:21:59",
+    "end": "2022-05-27T14:21:59",
+    "location": "ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua",
+    "calendar_id": "aut"
 };
 
 fetch(url, {
@@ -1780,11 +2349,12 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'title' =&gt; '0p4gtk6',
-            'start' =&gt; '2022-05-26T05:43:09',
-            'end' =&gt; '2022-05-26T05:43:09',
-            'location' =&gt; '2k0xdg8',
-            'calendar_id' =&gt; 6.752850153,
+            'title' =&gt; 'gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo',
+            'description' =&gt; 'pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp',
+            'start' =&gt; '2022-05-27T14:21:59',
+            'end' =&gt; '2022-05-27T14:21:59',
+            'location' =&gt; 'ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua',
+            'calendar_id' =&gt; 'aut',
         ],
     ]
 );
@@ -1869,27 +2439,27 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="title"
                data-endpoint="POSTapi-events"
-               value="0p4gtk6"
+               value="gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo"
                data-component="body" hidden>
     <br>
-<p>Must contain only letters and numbers.</p>
+<p>Must not be greater than 255 characters.</p>
         </p>
                 <p>
-            <b><code>0</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+            <b><code>description</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
-               name="0"
+               name="description"
                data-endpoint="POSTapi-events"
-               value=""
+               value="pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp"
                data-component="body" hidden>
     <br>
-
+<p>Must not be greater than 1000 characters.</p>
         </p>
                 <p>
             <b><code>start</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
                 <input type="text"
                name="start"
                data-endpoint="POSTapi-events"
-               value="2022-05-26T05:43:09"
+               value="2022-05-27T14:21:59"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -1899,7 +2469,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="end"
                data-endpoint="POSTapi-events"
-               value="2022-05-26T05:43:09"
+               value="2022-05-27T14:21:59"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -1909,22 +2479,470 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="location"
                data-endpoint="POSTapi-events"
-               value="2k0xdg8"
+               value="ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua"
                data-component="body" hidden>
     <br>
-<p>Must contain only letters and numbers.</p>
+<p>Must not be greater than 255 characters.</p>
         </p>
                 <p>
-            <b><code>calendar_id</code></b>&nbsp;&nbsp;<small>number</small>  &nbsp;
-                <input type="number"
+            <b><code>calendar_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
                name="calendar_id"
                data-endpoint="POSTapi-events"
-               value="6.752850153"
+               value="aut"
                data-component="body" hidden>
     <br>
 
         </p>
         </form>
+
+            <h2 id="evenements-GETapi-events--id-">showEvent</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Display the specified resource.</p>
+
+<span id="example-requests-GETapi-events--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/events/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/events/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/events/1',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-events--id-">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-events--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-events--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-events--id-"></code></pre>
+</span>
+<span id="execution-error-GETapi-events--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-events--id-"></code></pre>
+</span>
+<form id="form-GETapi-events--id-" data-method="GET"
+      data-path="api/events/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-events--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-events--id-"
+                    onclick="tryItOut('GETapi-events--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-events--id-"
+                    onclick="cancelTryOut('GETapi-events--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-events--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/events/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-events--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-events--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="GETapi-events--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the event.</p>
+            </p>
+                    </form>
+
+            <h2 id="evenements-PUTapi-events--id-">updateEvent</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Update the specified resource in storage.</p>
+
+<span id="example-requests-PUTapi-events--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request PUT \
+    "http://localhost/api/events/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{
+    \"title\": \"nyhqxl\",
+    \"description\": \"burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz\",
+    \"start\": \"2022-05-27T14:21:59\",
+    \"end\": \"2022-05-27T14:21:59\",
+    \"location\": \"nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd\"
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/events/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "title": "nyhqxl",
+    "description": "burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz",
+    "start": "2022-05-27T14:21:59",
+    "end": "2022-05-27T14:21:59",
+    "location": "nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd"
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://localhost/api/events/1',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'title' =&gt; 'nyhqxl',
+            'description' =&gt; 'burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz',
+            'start' =&gt; '2022-05-27T14:21:59',
+            'end' =&gt; '2022-05-27T14:21:59',
+            'location' =&gt; 'nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-PUTapi-events--id-">
+</span>
+<span id="execution-results-PUTapi-events--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-events--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-events--id-"></code></pre>
+</span>
+<span id="execution-error-PUTapi-events--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-events--id-"></code></pre>
+</span>
+<form id="form-PUTapi-events--id-" data-method="PUT"
+      data-path="api/events/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-events--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-events--id-"
+                    onclick="tryItOut('PUTapi-events--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-events--id-"
+                    onclick="cancelTryOut('PUTapi-events--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-events--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/events/{id}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/events/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-events--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-events--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="PUTapi-events--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the event.</p>
+            </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>title</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="title"
+               data-endpoint="PUTapi-events--id-"
+               value="nyhqxl"
+               data-component="body" hidden>
+    <br>
+<p>Must not be greater than 255 characters.</p>
+        </p>
+                <p>
+            <b><code>description</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="description"
+               data-endpoint="PUTapi-events--id-"
+               value="burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz"
+               data-component="body" hidden>
+    <br>
+<p>Must not be greater than 1000 characters.</p>
+        </p>
+                <p>
+            <b><code>start</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="start"
+               data-endpoint="PUTapi-events--id-"
+               value="2022-05-27T14:21:59"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+                <p>
+            <b><code>end</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="end"
+               data-endpoint="PUTapi-events--id-"
+               value="2022-05-27T14:21:59"
+               data-component="body" hidden>
+    <br>
+<p>Must be a valid date.</p>
+        </p>
+                <p>
+            <b><code>location</code></b>&nbsp;&nbsp;<small>string</small>     <i>optional</i> &nbsp;
+                <input type="text"
+               name="location"
+               data-endpoint="PUTapi-events--id-"
+               value="nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd"
+               data-component="body" hidden>
+    <br>
+<p>Must not be greater than 255 characters.</p>
+        </p>
+        </form>
+
+            <h2 id="evenements-DELETEapi-events--id-">deleteEvent</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Remove the specified resource from storage.</p>
+
+<span id="example-requests-DELETEapi-events--id-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request DELETE \
+    "http://localhost/api/events/1" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/events/1"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost/api/events/1',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-DELETEapi-events--id-">
+</span>
+<span id="execution-results-DELETEapi-events--id-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-events--id-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-events--id-"></code></pre>
+</span>
+<span id="execution-error-DELETEapi-events--id-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-events--id-"></code></pre>
+</span>
+<form id="form-DELETEapi-events--id-" data-method="DELETE"
+      data-path="api/events/{id}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-events--id-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-events--id-"
+                    onclick="tryItOut('DELETEapi-events--id-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-events--id-"
+                    onclick="cancelTryOut('DELETEapi-events--id-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-events--id-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/events/{id}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-events--id-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-events--id-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="id"
+               data-endpoint="DELETEapi-events--id-"
+               value="1"
+               data-component="url" hidden>
+    <br>
+<p>The ID of the event.</p>
+            </p>
+                    </form>
 
         <h1 id="gaps">Gaps</h1>
 
@@ -2121,7 +3139,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
+x-ratelimit-remaining: 58
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -2129,7 +3147,9 @@ access-control-allow-origin: *
 <code class="language-json">{
     &quot;success&quot;: true,
     &quot;message&quot;: &quot;All fetched&quot;,
-    &quot;data&quot;: []
+    &quot;data&quot;: {
+        &quot;user&quot;: null
+    }
 }</code>
  </pre>
     </span>
@@ -2319,6 +3339,132 @@ access-control-allow-origin: *
         </p>
                 </form>
 
+            <h2 id="gaps-GETapi-update-gaps">GET api/update/gaps</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-update-gaps">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost/api/update/gaps" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost/api/update/gaps"
+);
+
+const headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost/api/update/gaps',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-update-gaps">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-update-gaps" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-update-gaps"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-update-gaps"></code></pre>
+</span>
+<span id="execution-error-GETapi-update-gaps" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-update-gaps"></code></pre>
+</span>
+<form id="form-GETapi-update-gaps" data-method="GET"
+      data-path="api/update/gaps"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Content-Type":"application\/json","Accept":"application\/json"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-update-gaps"
+                    onclick="tryItOut('GETapi-update-gaps');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-update-gaps"
+                    onclick="cancelTryOut('GETapi-update-gaps');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-update-gaps" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/update/gaps</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-update-gaps" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-update-gaps"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
         <h1 id="mail">Mail</h1>
 
     <p>APIs pour gérer les mails</p>
@@ -2463,7 +3609,7 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/mails/906" \
+    --get "http://localhost/api/mails/7915" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -2471,7 +3617,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/mails/906"
+    "http://localhost/api/mails/7915"
 );
 
 const headers = {
@@ -2489,7 +3635,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/mails/906',
+    'http://localhost/api/mails/7915',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
@@ -2579,7 +3725,7 @@ access-control-allow-origin: *
                 <input type="text"
                name="id"
                data-endpoint="GETapi-mails--id-"
-               value="906"
+               value="7915"
                data-component="url" hidden>
     <br>
 <p>The ID of the mail.</p>
@@ -2605,9 +3751,9 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"to\": \"camron.goodwin@example.org\",
-    \"subject\": \"rqcizpcirtuyjvzdiaadbjptrvpcuepkpccqlgnczvirardwolklwsvwuqvhzggtesbultgfwsqflerfcxfsisfuesiyotsbtmmyqdztkkjxwcwiyvgmgqsqbcngpqqfarxwribxfajnxbkglfhjskfdxrwptgcjrldlofkkxiraxjfvxnpylkymjrcpcumvogrw\",
-    \"message\": \"voluptas\"
+    \"to\": \"jalyn91@example.org\",
+    \"subject\": \"eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm\",
+    \"message\": \"qui\"
 }"
 </code></pre></div>
 
@@ -2624,9 +3770,9 @@ const headers = {
 };
 
 let body = {
-    "to": "camron.goodwin@example.org",
-    "subject": "rqcizpcirtuyjvzdiaadbjptrvpcuepkpccqlgnczvirardwolklwsvwuqvhzggtesbultgfwsqflerfcxfsisfuesiyotsbtmmyqdztkkjxwcwiyvgmgqsqbcngpqqfarxwribxfajnxbkglfhjskfdxrwptgcjrldlofkkxiraxjfvxnpylkymjrcpcumvogrw",
-    "message": "voluptas"
+    "to": "jalyn91@example.org",
+    "subject": "eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm",
+    "message": "qui"
 };
 
 fetch(url, {
@@ -2647,9 +3793,9 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'to' =&gt; 'camron.goodwin@example.org',
-            'subject' =&gt; 'rqcizpcirtuyjvzdiaadbjptrvpcuepkpccqlgnczvirardwolklwsvwuqvhzggtesbultgfwsqflerfcxfsisfuesiyotsbtmmyqdztkkjxwcwiyvgmgqsqbcngpqqfarxwribxfajnxbkglfhjskfdxrwptgcjrldlofkkxiraxjfvxnpylkymjrcpcumvogrw',
-            'message' =&gt; 'voluptas',
+            'to' =&gt; 'jalyn91@example.org',
+            'subject' =&gt; 'eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm',
+            'message' =&gt; 'qui',
         ],
     ]
 );
@@ -2713,7 +3859,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="to"
                data-endpoint="POSTapi-mails-send"
-               value="camron.goodwin@example.org"
+               value="jalyn91@example.org"
                data-component="body" hidden>
     <br>
 <p>Must be a valid email address.</p>
@@ -2723,7 +3869,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="subject"
                data-endpoint="POSTapi-mails-send"
-               value="rqcizpcirtuyjvzdiaadbjptrvpcuepkpccqlgnczvirardwolklwsvwuqvhzggtesbultgfwsqflerfcxfsisfuesiyotsbtmmyqdztkkjxwcwiyvgmgqsqbcngpqqfarxwribxfajnxbkglfhjskfdxrwptgcjrldlofkkxiraxjfvxnpylkymjrcpcumvogrw"
+               value="eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2733,7 +3879,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="message"
                data-endpoint="POSTapi-mails-send"
-               value="voluptas"
+               value="qui"
                data-component="body" hidden>
     <br>
 
@@ -2744,7 +3890,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
     <p>APIs pour gérer les menus</p>
 
-            <h2 id="menu-de-la-caf-GETapi-menu">Obtenir tous les menus</h2>
+            <h2 id="menu-de-la-caf-GETapi-menu">getCafMenus</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2886,7 +4032,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
     <p>APIs pour gérer les notes</p>
 
-            <h2 id="notes-GETapi-marks">Obtenir les notes</h2>
+            <h2 id="notes-GETapi-marks">getMarks</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>

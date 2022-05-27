@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "b33a4f43-0a09-4b09-8b82-76c1575262b5",
+        "_postman_id": "721e040e-a56e-42cc-bfe4-985cefbd5d7b",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -20,7 +20,7 @@
             "description": "\nAPIs pour g\u00e9rer les authentifications",
             "item": [
                 {
-                    "name": "api\/login",
+                    "name": "login",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -41,14 +41,14 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"grpkagtjvd\",\"password\":\"y\"}"
+                            "raw": "{\"username\":\"laboriosam\",\"password\":\"eligendi\",\"classroom_name\":\"rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx\"}"
                         },
-                        "description": ""
+                        "description": "Authentication for a user"
                     },
                     "response": []
                 },
                 {
-                    "name": "api\/register",
+                    "name": "register",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -69,20 +69,116 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"oohlwwjlgtjicdalergadrhgnswkchhspjqgfhaquiinyovjvpikyudazjyeknlvxxliwignqkgulgedaswbsiczyfpppmvtlsisgpnwvmfqqcxnktfmdrhbripjqnwpsgdlxhhudwofpzpkmlkjgnrndvmmknttvuddewwleohjxggdqazjgzylpmodigoprfsbvlzztmxckitdxbffjndggfpkginezlykrptnjc\",\"password\":\"uz\"}"
+                            "raw": "{\"username\":\"placeat\",\"password\":\"delectus\",\"classroom_name\":\"autem\"}"
                         },
-                        "description": ""
+                        "description": "Register a new user"
                     },
                     "response": []
                 },
                 {
-                    "name": "api\/me",
+                    "name": "me",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
                             "path": "api\/me",
                             "query": [],
                             "raw": "{{baseUrl}}\/api\/me"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Get actual authenticate user"
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "logout",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/logout",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/logout"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Logout the actual authenticate user"
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Autres",
+            "description": "",
+            "item": [
+                {
+                    "name": "api\/update\/gaps\/absences",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/update\/gaps\/absences",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/update\/gaps\/absences"
                         },
                         "method": "GET",
                         "header": [
@@ -121,13 +217,86 @@
                     ]
                 },
                 {
-                    "name": "api\/logout",
+                    "name": "Display a listing of the resource.",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/logout",
+                            "path": "api\/classrooms",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/logout"
+                            "raw": "{{baseUrl}}\/api\/classrooms"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "api\/classrooms\/setUser",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/classrooms\/setUser",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/classrooms\/setUser"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "api\/absences",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/absences",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/absences"
                         },
                         "method": "GET",
                         "header": [
@@ -172,7 +341,7 @@
             "description": "\nAPIs pour g\u00e9rer les calendrier",
             "item": [
                 {
-                    "name": "Obtenir tous les calendrier",
+                    "name": "getCalendars",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -225,7 +394,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"mwuokorfctowmbipxearejyrlwjswiqrddcuonmpcvpwhavymtolhwwnkdzdcttueigdonkpquwfsggkfnvkownaqvyyyxoyixraqlmkyydohumopqzydnwmgxzjvibrfptscbnlkzwqrwjkevxfpcwqsfbeqebvbrtleve\"}"
+                            "raw": "{\"name\":\"unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl\"}"
                         },
                         "description": ""
                     },
@@ -314,7 +483,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"bnptegkxhshvhjy\"}"
+                            "raw": "{\"name\":\"kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk\"}"
                         },
                         "description": ""
                     },
@@ -375,7 +544,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"calendar_id\":\"dolorem\",\"user_id\":\"totam\",\"can_own\":true,\"can_view\":false}"
+                            "raw": "{\"calendar_id\":\"dolor\",\"user_id\":\"quae\",\"can_own\":true,\"can_view\":false}"
                         },
                         "description": ""
                     },
@@ -388,7 +557,7 @@
             "description": "\nAPIs pour g\u00e9rer les \u00e9v\u00e8nements",
             "item": [
                 {
-                    "name": "Obtenir tous les \u00e9v\u00e8nements",
+                    "name": "getEvents",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -420,7 +589,7 @@
                     ]
                 },
                 {
-                    "name": "M\u00e9morizer un \u00e9v\u00e8nement",
+                    "name": "storeEvent",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -441,7 +610,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"0p4gtk6\",\"start\":\"2022-05-26T05:43:09\",\"end\":\"2022-05-26T05:43:09\",\"location\":\"2k0xdg8\",\"calendar_id\":6.752850153}"
+                            "raw": "{\"title\":\"gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo\",\"description\":\"pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp\",\"start\":\"2022-05-27T14:21:59\",\"end\":\"2022-05-27T14:21:59\",\"location\":\"ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua\",\"calendar_id\":\"aut\"}"
                         },
                         "description": "Enregistre un nouvel \u00e9v\u00e8nement dans la BDD\nSucc\u00e8s: retourne un json contenant l'\u00e9v\u00e8nement cr\u00e9\u00e9\nFail: erreur"
                     },
@@ -453,6 +622,128 @@
                             "name": "success"
                         }
                     ]
+                },
+                {
+                    "name": "showEvent",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Display the specified resource."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "updateEvent",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"title\":\"nyhqxl\",\"description\":\"burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz\",\"start\":\"2022-05-27T14:21:59\",\"end\":\"2022-05-27T14:21:59\",\"location\":\"nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd\"}"
+                        },
+                        "description": "Update the specified resource in storage."
+                    },
+                    "response": []
+                },
+                {
+                    "name": "deleteEvent",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/events\/:id",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/events\/:id",
+                            "variable": [
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "The ID of the event."
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Remove the specified resource from storage."
+                    },
+                    "response": []
                 }
             ]
         },
@@ -553,7 +844,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "59"
+                                    "value": "58"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -561,7 +852,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"success\":true,\"message\":\"All fetched\",\"data\":[]}",
+                            "body": "{\"success\":true,\"message\":\"All fetched\",\"data\":{\"user\":null}}",
                             "name": ""
                         }
                     ]
@@ -574,6 +865,51 @@
                             "path": "api\/update\/gaps\/marks",
                             "query": [],
                             "raw": "{{baseUrl}}\/api\/update\/gaps\/marks"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "name": ""
+                        }
+                    ]
+                },
+                {
+                    "name": "api\/update\/gaps",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/update\/gaps",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/update\/gaps"
                         },
                         "method": "GET",
                         "header": [
@@ -674,7 +1010,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "906",
+                                    "value": "7915",
                                     "description": "The ID of the mail."
                                 }
                             ]
@@ -737,7 +1073,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"camron.goodwin@example.org\",\"subject\":\"rqcizpcirtuyjvzdiaadbjptrvpcuepkpccqlgnczvirardwolklwsvwuqvhzggtesbultgfwsqflerfcxfsisfuesiyotsbtmmyqdztkkjxwcwiyvgmgqsqbcngpqqfarxwribxfajnxbkglfhjskfdxrwptgcjrldlofkkxiraxjfvxnpylkymjrcpcumvogrw\",\"message\":\"voluptas\"}"
+                            "raw": "{\"to\":\"jalyn91@example.org\",\"subject\":\"eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm\",\"message\":\"qui\"}"
                         },
                         "description": ""
                     },
@@ -750,7 +1086,7 @@
             "description": "\nAPIs pour g\u00e9rer les menus",
             "item": [
                 {
-                    "name": "Obtenir tous les menus",
+                    "name": "getCafMenus",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -788,7 +1124,7 @@
             "description": "\nAPIs pour g\u00e9rer les notes",
             "item": [
                 {
-                    "name": "Obtenir les notes",
+                    "name": "getMarks",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",

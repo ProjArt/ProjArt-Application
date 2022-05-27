@@ -16,7 +16,7 @@ class CalendarController extends Controller
 {
     /**
      * 
-     * Obtenir tous les calendrier
+     * getCalendars
      * 
      * Retourne un json contenant une liste des calendrier. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur.
      *
