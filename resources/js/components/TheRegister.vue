@@ -19,21 +19,21 @@ const submitHandler = async () => {
         isAuthenticated.value = true;
         console.log(response);
         localStorage.setItem('token', response.access_token);
-        /* window.location.href += "signup"; */
+        window.location.href += "/calendar";
     } else {
         isAuthenticated.value = false;
     }
 }
 </script>
 <template>
-    <div>
+    <div class="wrapper">
         <FormKit type="form" v-model="formData" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Enregistrer"
             @submit="submitHandler">
             <h2>Création de compte</h2>
             <FormKit type="text" name="username" placeholder="unsername" validation="required" label="UserName" />
             <FormKit type="password" name="password" placeholder="password" validation="required" label="Password" />
-            <FormKit type="password" name="password_confirm" label="Confirm password" help="Confirm your new password"
-                validation="required|confirm" validation-visibility="live" validation-label="Password confirmation" />
+            <FormKit type="password" name="password_confirm" placeholder="password" label="Confirm password"
+                validation="required|confirm" validation-label="Password confirmation" />
         </FormKit>
         <div>
             <h2 v-if="isAuthenticated && isSubmitted">Compte crée</h2>
@@ -41,5 +41,17 @@ const submitHandler = async () => {
         </div>
     </div>
 </template>
-<style>
+<style scoped lang="scss">
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+:deep(.formkit-form) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 </style>

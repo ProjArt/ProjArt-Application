@@ -20,7 +20,7 @@ const submitHandler = async () => {
         isAuthenticated.value = true;
         localStorage.setItem('token', response.data.access_token);
         errorMessage.value = ''
-        /* window.location.href += "signup"; */
+        window.location.href += "calendar";
     } else {
         isAuthenticated.value = false;
         errorMessage.value = response.message;
@@ -28,7 +28,7 @@ const submitHandler = async () => {
 }
 </script>
 <template>
-    <div>
+    <div class="wrapper">
         <FormKit type="form" v-model="formData" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Login"
             @submit="submitHandler">
             <h2>Connexion</h2>
@@ -43,5 +43,17 @@ const submitHandler = async () => {
         <a class="forgot-password" href="#">Forgot password ?</a>
     </div>
 </template>
-<style>
+<style scoped lang="scss">
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+:deep(.formkit-form) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 </style>

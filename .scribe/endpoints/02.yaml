@@ -64,7 +64,7 @@ endpoints:
         name: title
         description: 'Must contain only letters and numbers.'
         required: true
-        example: 0p4gtk6
+        example: 8r2muq3
         type: string
         custom: []
       0:
@@ -78,28 +78,28 @@ endpoints:
         name: start
         description: 'Must be a valid date.'
         required: true
-        example: '2022-05-26T05:43:09'
+        example: '2022-05-27T08:14:14'
         type: string
         custom: []
       end:
         name: end
         description: 'Must be a valid date.'
         required: true
-        example: '2022-05-26T05:43:09'
+        example: '2022-05-27T08:14:14'
         type: string
         custom: []
       location:
         name: location
         description: 'Must contain only letters and numbers.'
         required: true
-        example: 2k0xdg8
+        example: 9b2xuq8
         type: string
         custom: []
       calendar_id:
         name: calendar_id
         description: ''
         required: true
-        example: 6.752850153
+        example: 1314.81999597
         type: number
         custom: []
     responses:
