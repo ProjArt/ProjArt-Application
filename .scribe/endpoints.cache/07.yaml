@@ -10,7 +10,7 @@ endpoints:
       - GET
     uri: api/marks
     metadata:
-      title: getMarks
+      title: 'Get marks'
       description: 'Retourne un json contenant une liste des notes de l''utilisateur.'
       authenticated: true
       custom: []

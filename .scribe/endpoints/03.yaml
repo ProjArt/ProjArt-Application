@@ -8,7 +8,7 @@ endpoints:
       - GET
     uri: api/events
     metadata:
-      title: getEvents
+      title: 'Get events'
       description: 'Retourne un json contenant une liste des évènements. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
       authenticated: true
       custom: []
@@ -46,7 +46,7 @@ endpoints:
       - POST
     uri: api/events
     metadata:
-      title: storeEvent
+      title: 'Store event'
       description: |-
         Enregistre un nouvel évènement dans la BDD
         Succès: retourne un json contenant l'évènement créé
@@ -64,42 +64,42 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo
+        example: yugriwwpoxkgpadenlslltsdwfmfdlwqouhghwayuaodhwxhmkwnrusggutaqaocziuildtfwxurvyfrjgugduniamkwlsjzfpspfqjnqpzratrkhutjadbbqhxgzstvulmadddirhdjipcyyrxbetfwmssizfwdzybvjdxhkoeyqtulczlggxnxuhuhinwmqrakhsdvvvcysqbqjloabtgdhtgzoepjskdypmhovsxelfenbzwjvutycstlqmu
         type: string
         custom: []
       description:
         name: description
         description: 'Must not be greater than 1000 characters.'
         required: true
-        example: pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp
+        example: pwdaddefpaymbtruodbhcdthhtgfdoflikymbsjiawpwvpsuqgmukfbzapowabjmncysxtdxmtgyfisiybvoctzldtifatiwtzndftsqkvllosqypbbnjijfgziqhqmnxqpsnyjsyybilqazoyuonelsrqacwyawqzuylxgckderatosvjjxltwzmlkriudpzfrtejkbzgtacblebxazjknmwfpnfdwwibvuellqajdfaozifkoazvbboovvdtkilttpimhcsffllqthcglhvtozcidtjggbterjvfrlpinvtstahmljybkoltrucvvfufadjgbwjtpyodxypghquzcwctzbqzujglqzctlxuncllnivbnbrhprkuigfmbucybdmcmzrngazyippulrshkvizxoambxkyxhwkxiwrqgmxbhgimubrzcqghbvikkgyfsvrptdvuqvdknqvzwatglxxtewyvafuudjodrdzndwoxwhzaxvbwxhslqjfrtwozkfwwogqseiyqxetrrcjrkyjwzwlkxvjkhckogxpgeabieuhequkgcppoaupgcqebxvqnwlhfpvqayknbezawnftkwjomtsxvecacopbvvwhbn
         type: string
         custom: []
       start:
         name: start
         description: 'Must be a valid date.'
         required: true
-        example: '2022-05-27T14:21:59'
+        example: '2022-05-27T14:40:06'
         type: string
         custom: []
       end:
         name: end
         description: 'Must be a valid date.'
         required: true
-        example: '2022-05-27T14:21:59'
+        example: '2022-05-27T14:40:06'
         type: string
         custom: []
       location:
         name: location
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua
+        example: tzjarfmimzdyoabpzffswclekzgjstv
         type: string
         custom: []
       calendar_id:
         name: calendar_id
         description: ''
         required: true
-        example: aut
+        example: eos
         type: string
         custom: []
     responses:
@@ -129,7 +129,7 @@ endpoints:
       - GET
     uri: 'api/events/{id}'
     metadata:
-      title: showEvent
+      title: 'Show event'
       description: 'Display the specified resource.'
       authenticated: true
       custom: []
@@ -163,7 +163,7 @@ endpoints:
       - PATCH
     uri: 'api/events/{id}'
     metadata:
-      title: updateEvent
+      title: 'Update event'
       description: 'Update the specified resource in storage.'
       authenticated: true
       custom: []
@@ -185,35 +185,35 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: nyhqxl
+        example: psbazskrkwpopdhhienprrlickntr
         type: string
         custom: []
       description:
         name: description
         description: 'Must not be greater than 1000 characters.'
         required: false
-        example: burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz
+        example: fyjtsybwqvdjkrveeeaswcpztbopoghrfstdcxmjcypfkamksfbtiwlasupqfssttvzxubddyaekzitrfxydhlwwsdxfyhzcvydfefbpnvyttgbrrtfrfbmnnyhyuudqfqxtolojepvokmsabhmkhvjxsuyrrtjlvodrmymrpvmhpaujlqkumptmpsvkyyulwhpfdqdflceetsdikrjmmviwruhxxkipuutytxayvzuhbkixtuyghabhhslhxucyzqiktvhsbieetsjjrgrdcpxadqlryedsjdnliegoehmjqxnmsqbncaxiuvlibfrqyxkhgejghcksilxodwpvahvgglkxlonpcrgnxyxqbfbbojmhnzjkaaguqbjdhjgrqsvtecshknrlsfhfukftgtksoittgxmuabfcujhkqxpevvprxgijwzfxbkzxiylxdbbdgrfijizapmwnhdoawanmpdpahtaxubpqkfycjupskphsmnftydwgdsifxytvajpqvfxcfzbjhfsajgpvsbzajazedyyvgpcjetnwwrfinodvwaegnzdeiijmhiffbybxvaaixmmvjhevcauftblazxkrvymxyyhxntahkxqwnxlgyzzolfjsntsghryhbruksqwvzdyqhwywupxdhwrqgfzufxspsffvpqzrldvoonzpmdjzgusyyfzzcxqqyfptghsevcnebrweqpohjjjrvupsrjfavrxiiuebmuhocuzwmqzecnuuwasqcacffqotrmkbzrjmvfnuu
         type: string
         custom: []
       start:
         name: start
         description: 'Must be a valid date.'
         required: false
-        example: '2022-05-27T14:21:59'
+        example: '2022-05-27T14:40:06'
         type: string
         custom: []
       end:
         name: end
         description: 'Must be a valid date.'
         required: false
-        example: '2022-05-27T14:21:59'
+        example: '2022-05-27T14:40:06'
         type: string
         custom: []
       location:
         name: location
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd
+        example: niuwvlyxnqxjrhazilkfxuctbdggdbaemwjzufqnjkwpohwromskxdjlgzwvwvrwyrmokhxosohytcngmezofceheyivnzhkxwjdmjjpjdxxmopjivjecpdafhwbnpoyadoognlgrcqhrkaslowovhpihdisislaeqvpmhimfunxjrmdby
         type: string
         custom: []
     responses: []
@@ -223,7 +223,7 @@ endpoints:
       - DELETE
     uri: 'api/events/{id}'
     metadata:
-      title: deleteEvent
+      title: 'Delete event'
       description: 'Remove the specified resource from storage.'
       authenticated: true
       custom: []

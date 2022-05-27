@@ -16,7 +16,7 @@ class MenuController extends Controller
 {
     /**
      * 
-     * getCafMenus
+     * Get cafeteria menu
      * 
      * Retourne un json contenant une liste des menus.
      * 

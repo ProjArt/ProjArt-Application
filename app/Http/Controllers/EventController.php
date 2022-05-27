@@ -25,7 +25,7 @@ class EventController extends Controller
     }
     /**
      * 
-     * getEvents
+     * Get events
      * 
      * Retourne un json contenant une liste des évènements. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur.
      *
@@ -65,7 +65,7 @@ class EventController extends Controller
     /**
      * 
      * 
-     * storeEvent
+     * Store event
      * 
      * Enregistre un nouvel évènement dans la BDD
      * Succès: retourne un json contenant l'évènement créé
@@ -103,7 +103,7 @@ class EventController extends Controller
     }
 
     /**
-     * showEvent
+     * Show event
      * 
      * Display the specified resource.
      *
@@ -116,7 +116,7 @@ class EventController extends Controller
     }
 
     /**
-     * updateEvent
+     * Update event
      * 
      * Update the specified resource in storage.
      *
@@ -132,7 +132,7 @@ class EventController extends Controller
 
     /**
      * 
-     * deleteEvent
+     * Delete event
      * 
      * Remove the specified resource from storage.
      *

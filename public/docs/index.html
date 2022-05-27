@@ -115,22 +115,22 @@
                 </li>
                                     <ul id="tocify-subheader-calendrier" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="calendrier-GETapi-calendars">
-                        <a href="#calendrier-GETapi-calendars">getCalendars</a>
+                        <a href="#calendrier-GETapi-calendars">Get calendars</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="calendrier-POSTapi-calendars">
-                        <a href="#calendrier-POSTapi-calendars">Store a newly created resource in storage.</a>
+                        <a href="#calendrier-POSTapi-calendars">Store calendar</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="calendrier-GETapi-calendars--id-">
-                        <a href="#calendrier-GETapi-calendars--id-">Display the specified resource.</a>
+                        <a href="#calendrier-GETapi-calendars--id-">Show calendar</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="calendrier-PUTapi-calendars--id-">
-                        <a href="#calendrier-PUTapi-calendars--id-">Update the specified resource in storage.</a>
+                        <a href="#calendrier-PUTapi-calendars--id-">Update calendar</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="calendrier-DELETEapi-calendars--id-">
-                        <a href="#calendrier-DELETEapi-calendars--id-">Remove the specified resource from storage.</a>
+                        <a href="#calendrier-DELETEapi-calendars--id-">Delete calendar</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="calendrier-POSTapi-calendars-share">
-                        <a href="#calendrier-POSTapi-calendars-share">POST api/calendars/share</a>
+                        <a href="#calendrier-POSTapi-calendars-share">Share calendar</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -140,19 +140,19 @@
                 </li>
                                     <ul id="tocify-subheader-evenements" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="evenements-GETapi-events">
-                        <a href="#evenements-GETapi-events">getEvents</a>
+                        <a href="#evenements-GETapi-events">Get events</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="evenements-POSTapi-events">
-                        <a href="#evenements-POSTapi-events">storeEvent</a>
+                        <a href="#evenements-POSTapi-events">Store event</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="evenements-GETapi-events--id-">
-                        <a href="#evenements-GETapi-events--id-">showEvent</a>
+                        <a href="#evenements-GETapi-events--id-">Show event</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="evenements-PUTapi-events--id-">
-                        <a href="#evenements-PUTapi-events--id-">updateEvent</a>
+                        <a href="#evenements-PUTapi-events--id-">Update event</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="evenements-DELETEapi-events--id-">
-                        <a href="#evenements-DELETEapi-events--id-">deleteEvent</a>
+                        <a href="#evenements-DELETEapi-events--id-">Delete event</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -197,7 +197,7 @@
                 </li>
                                     <ul id="tocify-subheader-menu-de-la-caf" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="menu-de-la-caf-GETapi-menu">
-                        <a href="#menu-de-la-caf-GETapi-menu">getCafMenus</a>
+                        <a href="#menu-de-la-caf-GETapi-menu">Get cafeteria menu</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -207,7 +207,7 @@
                 </li>
                                     <ul id="tocify-subheader-notes" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="notes-GETapi-marks">
-                        <a href="#notes-GETapi-marks">getMarks</a>
+                        <a href="#notes-GETapi-marks">Get marks</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -238,7 +238,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 <pre><code class="language-yaml">http://localhost</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>Authenticate requests to this API's endpoints by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
 <p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
 <p>You can retrieve your token by asking the login route.</p>
 
@@ -265,9 +265,9 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"laboriosam\",
-    \"password\": \"eligendi\",
-    \"classroom_name\": \"rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx\"
+    \"username\": \"exercitationem\",
+    \"password\": \"et\",
+    \"classroom_name\": \"abazkbxhhsvsgrd\"
 }"
 </code></pre></div>
 
@@ -284,9 +284,9 @@ const headers = {
 };
 
 let body = {
-    "username": "laboriosam",
-    "password": "eligendi",
-    "classroom_name": "rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx"
+    "username": "exercitationem",
+    "password": "et",
+    "classroom_name": "abazkbxhhsvsgrd"
 };
 
 fetch(url, {
@@ -307,9 +307,9 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'username' =&gt; 'laboriosam',
-            'password' =&gt; 'eligendi',
-            'classroom_name' =&gt; 'rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx',
+            'username' =&gt; 'exercitationem',
+            'password' =&gt; 'et',
+            'classroom_name' =&gt; 'abazkbxhhsvsgrd',
         ],
     ]
 );
@@ -373,7 +373,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-login"
-               value="laboriosam"
+               value="exercitationem"
                data-component="body" hidden>
     <br>
 <p>The Gaps username of the user.</p>
@@ -383,7 +383,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="eligendi"
+               value="et"
                data-component="body" hidden>
     <br>
 <p>The Gaps password of the user.</p>
@@ -393,7 +393,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="classroom_name"
                data-endpoint="POSTapi-login"
-               value="rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx"
+               value="abazkbxhhsvsgrd"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -419,9 +419,9 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"username\": \"placeat\",
-    \"password\": \"delectus\",
-    \"classroom_name\": \"autem\"
+    \"username\": \"et\",
+    \"password\": \"temporibus\",
+    \"classroom_name\": \"et\"
 }"
 </code></pre></div>
 
@@ -438,9 +438,9 @@ const headers = {
 };
 
 let body = {
-    "username": "placeat",
-    "password": "delectus",
-    "classroom_name": "autem"
+    "username": "et",
+    "password": "temporibus",
+    "classroom_name": "et"
 };
 
 fetch(url, {
@@ -461,9 +461,9 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'username' =&gt; 'placeat',
-            'password' =&gt; 'delectus',
-            'classroom_name' =&gt; 'autem',
+            'username' =&gt; 'et',
+            'password' =&gt; 'temporibus',
+            'classroom_name' =&gt; 'et',
         ],
     ]
 );
@@ -527,7 +527,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-register"
-               value="placeat"
+               value="et"
                data-component="body" hidden>
     <br>
 <p>The Gaps username of the user.</p>
@@ -537,7 +537,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="delectus"
+               value="temporibus"
                data-component="body" hidden>
     <br>
 <p>The Gaps password of the user.</p>
@@ -547,7 +547,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="classroom_name"
                data-endpoint="POSTapi-register"
-               value="autem"
+               value="et"
                data-component="body" hidden>
     <br>
 <p>The class of the user.</p>
@@ -1081,7 +1081,7 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq\"
+    \"name\": \"oumhxidfpytljuonoqdsxfwcjzreixsmzufguvwybntzihtycxsvzqxdsqqxakgkperesytpdvugxpzbgnprmkctfwmwwphizcwwbbmwuinxewezgrdlsirenvhimuvhgtssvfkcibutpeknjfuwbnjxgrbviyavczpdoitsxlxmalbiiosakcdsdzbbqouyfhecjazushqovmyfuduzhcmnrytqbmfntfcqcsakw\"
 }"
 </code></pre></div>
 
@@ -1098,7 +1098,7 @@ const headers = {
 };
 
 let body = {
-    "name": "pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq"
+    "name": "oumhxidfpytljuonoqdsxfwcjzreixsmzufguvwybntzihtycxsvzqxdsqqxakgkperesytpdvugxpzbgnprmkctfwmwwphizcwwbbmwuinxewezgrdlsirenvhimuvhgtssvfkcibutpeknjfuwbnjxgrbviyavczpdoitsxlxmalbiiosakcdsdzbbqouyfhecjazushqovmyfuduzhcmnrytqbmfntfcqcsakw"
 };
 
 fetch(url, {
@@ -1119,7 +1119,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq',
+            'name' =&gt; 'oumhxidfpytljuonoqdsxfwcjzreixsmzufguvwybntzihtycxsvzqxdsqqxakgkperesytpdvugxpzbgnprmkctfwmwwphizcwwbbmwuinxewezgrdlsirenvhimuvhgtssvfkcibutpeknjfuwbnjxgrbviyavczpdoitsxlxmalbiiosakcdsdzbbqouyfhecjazushqovmyfuduzhcmnrytqbmfntfcqcsakw',
         ],
     ]
 );
@@ -1183,7 +1183,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-classrooms-setUser"
-               value="pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq"
+               value="oumhxidfpytljuonoqdsxfwcjzreixsmzufguvwybntzihtycxsvzqxdsqqxakgkperesytpdvugxpzbgnprmkctfwmwwphizcwwbbmwuinxewezgrdlsirenvhimuvhgtssvfkcibutpeknjfuwbnjxgrbviyavczpdoitsxlxmalbiiosakcdsdzbbqouyfhecjazushqovmyfuduzhcmnrytqbmfntfcqcsakw"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1320,7 +1320,7 @@ access-control-allow-origin: *
 
     <p>APIs pour gérer les calendrier</p>
 
-            <h2 id="calendrier-GETapi-calendars">getCalendars</h2>
+            <h2 id="calendrier-GETapi-calendars">Get calendars</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -1437,13 +1437,13 @@ print_r(json_decode((string) $body));</code></pre></div>
         </p>
                 </form>
 
-            <h2 id="calendrier-POSTapi-calendars">Store a newly created resource in storage.</h2>
+            <h2 id="calendrier-POSTapi-calendars">Store calendar</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Crée un calendrier.</p>
 
 <span id="example-requests-POSTapi-calendars">
 <blockquote>Example request:</blockquote>
@@ -1456,7 +1456,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl\"
+    \"name\": \"zqsuqtdbgeicmkzfdfdfgmsguiygnxrkuizwdnkdtlbqigltumiyxnnvtwicnfrqbhhcyymexdjsggkysqevgtnmnpsvuqlwxcpgjubqcqnojidcwit\"
 }"
 </code></pre></div>
 
@@ -1473,7 +1473,7 @@ const headers = {
 };
 
 let body = {
-    "name": "unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl"
+    "name": "zqsuqtdbgeicmkzfdfdfgmsguiygnxrkuizwdnkdtlbqigltumiyxnnvtwicnfrqbhhcyymexdjsggkysqevgtnmnpsvuqlwxcpgjubqcqnojidcwit"
 };
 
 fetch(url, {
@@ -1494,7 +1494,7 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl',
+            'name' =&gt; 'zqsuqtdbgeicmkzfdfdfgmsguiygnxrkuizwdnkdtlbqigltumiyxnnvtwicnfrqbhhcyymexdjsggkysqevgtnmnpsvuqlwxcpgjubqcqnojidcwit',
         ],
     ]
 );
@@ -1558,20 +1558,20 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-calendars"
-               value="unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl"
+               value="zqsuqtdbgeicmkzfdfdfgmsguiygnxrkuizwdnkdtlbqigltumiyxnnvtwicnfrqbhhcyymexdjsggkysqevgtnmnpsvuqlwxcpgjubqcqnojidcwit"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
         </p>
         </form>
 
-            <h2 id="calendrier-GETapi-calendars--id-">Display the specified resource.</h2>
+            <h2 id="calendrier-GETapi-calendars--id-">Show calendar</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Retourne un json contenant un calendrier.</p>
 
 <span id="example-requests-GETapi-calendars--id-">
 <blockquote>Example request:</blockquote>
@@ -1702,13 +1702,13 @@ access-control-allow-origin: *
             </p>
                     </form>
 
-            <h2 id="calendrier-PUTapi-calendars--id-">Update the specified resource in storage.</h2>
+            <h2 id="calendrier-PUTapi-calendars--id-">Update calendar</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Update the specified resource in storage.</p>
 
 <span id="example-requests-PUTapi-calendars--id-">
 <blockquote>Example request:</blockquote>
@@ -1721,7 +1721,7 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"name\": \"kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk\"
+    \"name\": \"evf\"
 }"
 </code></pre></div>
 
@@ -1738,7 +1738,7 @@ const headers = {
 };
 
 let body = {
-    "name": "kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk"
+    "name": "evf"
 };
 
 fetch(url, {
@@ -1759,7 +1759,7 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'name' =&gt; 'kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk',
+            'name' =&gt; 'evf',
         ],
     ]
 );
@@ -1838,20 +1838,20 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="PUTapi-calendars--id-"
-               value="kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk"
+               value="evf"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
         </p>
         </form>
 
-            <h2 id="calendrier-DELETEapi-calendars--id-">Remove the specified resource from storage.</h2>
+            <h2 id="calendrier-DELETEapi-calendars--id-">Delete calendar</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Remove the specified resource from storage.</p>
 
 <span id="example-requests-DELETEapi-calendars--id-">
 <blockquote>Example request:</blockquote>
@@ -1961,13 +1961,13 @@ print_r(json_decode((string) $body));</code></pre></div>
             </p>
                     </form>
 
-            <h2 id="calendrier-POSTapi-calendars-share">POST api/calendars/share</h2>
+            <h2 id="calendrier-POSTapi-calendars-share">Share calendar</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-
+<p>Partage un calendrier avec un autre utilisateur.</p>
 
 <span id="example-requests-POSTapi-calendars-share">
 <blockquote>Example request:</blockquote>
@@ -1980,9 +1980,9 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"calendar_id\": \"dolor\",
-    \"user_id\": \"quae\",
-    \"can_own\": true,
+    \"calendar_id\": 15,
+    \"user_id\": 16,
+    \"can_own\": false,
     \"can_view\": false
 }"
 </code></pre></div>
@@ -2000,9 +2000,9 @@ const headers = {
 };
 
 let body = {
-    "calendar_id": "dolor",
-    "user_id": "quae",
-    "can_own": true,
+    "calendar_id": 15,
+    "user_id": 16,
+    "can_own": false,
     "can_view": false
 };
 
@@ -2024,9 +2024,9 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'calendar_id' =&gt; 'dolor',
-            'user_id' =&gt; 'quae',
-            'can_own' =&gt; true,
+            'calendar_id' =&gt; 15,
+            'user_id' =&gt; 16,
+            'can_own' =&gt; false,
             'can_view' =&gt; false,
         ],
     ]
@@ -2087,24 +2087,24 @@ print_r(json_decode((string) $body));</code></pre></div>
         </p>
                         <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
         <p>
-            <b><code>calendar_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
+            <b><code>calendar_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
                name="calendar_id"
                data-endpoint="POSTapi-calendars-share"
-               value="dolor"
+               value="15"
                data-component="body" hidden>
     <br>
-
+<p>ID du calendrier à partager.</p>
         </p>
                 <p>
-            <b><code>user_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
+            <b><code>user_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
                name="user_id"
                data-endpoint="POSTapi-calendars-share"
-               value="quae"
+               value="16"
                data-component="body" hidden>
     <br>
-
+<p>ID de l'utilisateur à qui partager le calendrier.</p>
         </p>
                 <p>
             <b><code>can_own</code></b>&nbsp;&nbsp;<small>boolean</small>  &nbsp;
@@ -2154,7 +2154,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
     <p>APIs pour gérer les évènements</p>
 
-            <h2 id="evenements-GETapi-events">getEvents</h2>
+            <h2 id="evenements-GETapi-events">Get events</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2280,7 +2280,7 @@ print_r(json_decode((string) $body));</code></pre></div>
         </p>
                 </form>
 
-            <h2 id="evenements-POSTapi-events">storeEvent</h2>
+            <h2 id="evenements-POSTapi-events">Store event</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2301,12 +2301,12 @@ Fail: erreur</p>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"title\": \"gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo\",
-    \"description\": \"pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp\",
-    \"start\": \"2022-05-27T14:21:59\",
-    \"end\": \"2022-05-27T14:21:59\",
-    \"location\": \"ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua\",
-    \"calendar_id\": \"aut\"
+    \"title\": \"yugriwwpoxkgpadenlslltsdwfmfdlwqouhghwayuaodhwxhmkwnrusggutaqaocziuildtfwxurvyfrjgugduniamkwlsjzfpspfqjnqpzratrkhutjadbbqhxgzstvulmadddirhdjipcyyrxbetfwmssizfwdzybvjdxhkoeyqtulczlggxnxuhuhinwmqrakhsdvvvcysqbqjloabtgdhtgzoepjskdypmhovsxelfenbzwjvutycstlqmu\",
+    \"description\": \"pwdaddefpaymbtruodbhcdthhtgfdoflikymbsjiawpwvpsuqgmukfbzapowabjmncysxtdxmtgyfisiybvoctzldtifatiwtzndftsqkvllosqypbbnjijfgziqhqmnxqpsnyjsyybilqazoyuonelsrqacwyawqzuylxgckderatosvjjxltwzmlkriudpzfrtejkbzgtacblebxazjknmwfpnfdwwibvuellqajdfaozifkoazvbboovvdtkilttpimhcsffllqthcglhvtozcidtjggbterjvfrlpinvtstahmljybkoltrucvvfufadjgbwjtpyodxypghquzcwctzbqzujglqzctlxuncllnivbnbrhprkuigfmbucybdmcmzrngazyippulrshkvizxoambxkyxhwkxiwrqgmxbhgimubrzcqghbvikkgyfsvrptdvuqvdknqvzwatglxxtewyvafuudjodrdzndwoxwhzaxvbwxhslqjfrtwozkfwwogqseiyqxetrrcjrkyjwzwlkxvjkhckogxpgeabieuhequkgcppoaupgcqebxvqnwlhfpvqayknbezawnftkwjomtsxvecacopbvvwhbn\",
+    \"start\": \"2022-05-27T14:40:06\",
+    \"end\": \"2022-05-27T14:40:06\",
+    \"location\": \"tzjarfmimzdyoabpzffswclekzgjstv\",
+    \"calendar_id\": \"eos\"
 }"
 </code></pre></div>
 
@@ -2323,12 +2323,12 @@ const headers = {
 };
 
 let body = {
-    "title": "gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo",
-    "description": "pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp",
-    "start": "2022-05-27T14:21:59",
-    "end": "2022-05-27T14:21:59",
-    "location": "ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua",
-    "calendar_id": "aut"
+    "title": "yugriwwpoxkgpadenlslltsdwfmfdlwqouhghwayuaodhwxhmkwnrusggutaqaocziuildtfwxurvyfrjgugduniamkwlsjzfpspfqjnqpzratrkhutjadbbqhxgzstvulmadddirhdjipcyyrxbetfwmssizfwdzybvjdxhkoeyqtulczlggxnxuhuhinwmqrakhsdvvvcysqbqjloabtgdhtgzoepjskdypmhovsxelfenbzwjvutycstlqmu",
+    "description": "pwdaddefpaymbtruodbhcdthhtgfdoflikymbsjiawpwvpsuqgmukfbzapowabjmncysxtdxmtgyfisiybvoctzldtifatiwtzndftsqkvllosqypbbnjijfgziqhqmnxqpsnyjsyybilqazoyuonelsrqacwyawqzuylxgckderatosvjjxltwzmlkriudpzfrtejkbzgtacblebxazjknmwfpnfdwwibvuellqajdfaozifkoazvbboovvdtkilttpimhcsffllqthcglhvtozcidtjggbterjvfrlpinvtstahmljybkoltrucvvfufadjgbwjtpyodxypghquzcwctzbqzujglqzctlxuncllnivbnbrhprkuigfmbucybdmcmzrngazyippulrshkvizxoambxkyxhwkxiwrqgmxbhgimubrzcqghbvikkgyfsvrptdvuqvdknqvzwatglxxtewyvafuudjodrdzndwoxwhzaxvbwxhslqjfrtwozkfwwogqseiyqxetrrcjrkyjwzwlkxvjkhckogxpgeabieuhequkgcppoaupgcqebxvqnwlhfpvqayknbezawnftkwjomtsxvecacopbvvwhbn",
+    "start": "2022-05-27T14:40:06",
+    "end": "2022-05-27T14:40:06",
+    "location": "tzjarfmimzdyoabpzffswclekzgjstv",
+    "calendar_id": "eos"
 };
 
 fetch(url, {
@@ -2349,12 +2349,12 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'title' =&gt; 'gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo',
-            'description' =&gt; 'pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp',
-            'start' =&gt; '2022-05-27T14:21:59',
-            'end' =&gt; '2022-05-27T14:21:59',
-            'location' =&gt; 'ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua',
-            'calendar_id' =&gt; 'aut',
+            'title' =&gt; 'yugriwwpoxkgpadenlslltsdwfmfdlwqouhghwayuaodhwxhmkwnrusggutaqaocziuildtfwxurvyfrjgugduniamkwlsjzfpspfqjnqpzratrkhutjadbbqhxgzstvulmadddirhdjipcyyrxbetfwmssizfwdzybvjdxhkoeyqtulczlggxnxuhuhinwmqrakhsdvvvcysqbqjloabtgdhtgzoepjskdypmhovsxelfenbzwjvutycstlqmu',
+            'description' =&gt; 'pwdaddefpaymbtruodbhcdthhtgfdoflikymbsjiawpwvpsuqgmukfbzapowabjmncysxtdxmtgyfisiybvoctzldtifatiwtzndftsqkvllosqypbbnjijfgziqhqmnxqpsnyjsyybilqazoyuonelsrqacwyawqzuylxgckderatosvjjxltwzmlkriudpzfrtejkbzgtacblebxazjknmwfpnfdwwibvuellqajdfaozifkoazvbboovvdtkilttpimhcsffllqthcglhvtozcidtjggbterjvfrlpinvtstahmljybkoltrucvvfufadjgbwjtpyodxypghquzcwctzbqzujglqzctlxuncllnivbnbrhprkuigfmbucybdmcmzrngazyippulrshkvizxoambxkyxhwkxiwrqgmxbhgimubrzcqghbvikkgyfsvrptdvuqvdknqvzwatglxxtewyvafuudjodrdzndwoxwhzaxvbwxhslqjfrtwozkfwwogqseiyqxetrrcjrkyjwzwlkxvjkhckogxpgeabieuhequkgcppoaupgcqebxvqnwlhfpvqayknbezawnftkwjomtsxvecacopbvvwhbn',
+            'start' =&gt; '2022-05-27T14:40:06',
+            'end' =&gt; '2022-05-27T14:40:06',
+            'location' =&gt; 'tzjarfmimzdyoabpzffswclekzgjstv',
+            'calendar_id' =&gt; 'eos',
         ],
     ]
 );
@@ -2439,7 +2439,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="title"
                data-endpoint="POSTapi-events"
-               value="gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo"
+               value="yugriwwpoxkgpadenlslltsdwfmfdlwqouhghwayuaodhwxhmkwnrusggutaqaocziuildtfwxurvyfrjgugduniamkwlsjzfpspfqjnqpzratrkhutjadbbqhxgzstvulmadddirhdjipcyyrxbetfwmssizfwdzybvjdxhkoeyqtulczlggxnxuhuhinwmqrakhsdvvvcysqbqjloabtgdhtgzoepjskdypmhovsxelfenbzwjvutycstlqmu"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2449,7 +2449,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="description"
                data-endpoint="POSTapi-events"
-               value="pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp"
+               value="pwdaddefpaymbtruodbhcdthhtgfdoflikymbsjiawpwvpsuqgmukfbzapowabjmncysxtdxmtgyfisiybvoctzldtifatiwtzndftsqkvllosqypbbnjijfgziqhqmnxqpsnyjsyybilqazoyuonelsrqacwyawqzuylxgckderatosvjjxltwzmlkriudpzfrtejkbzgtacblebxazjknmwfpnfdwwibvuellqajdfaozifkoazvbboovvdtkilttpimhcsffllqthcglhvtozcidtjggbterjvfrlpinvtstahmljybkoltrucvvfufadjgbwjtpyodxypghquzcwctzbqzujglqzctlxuncllnivbnbrhprkuigfmbucybdmcmzrngazyippulrshkvizxoambxkyxhwkxiwrqgmxbhgimubrzcqghbvikkgyfsvrptdvuqvdknqvzwatglxxtewyvafuudjodrdzndwoxwhzaxvbwxhslqjfrtwozkfwwogqseiyqxetrrcjrkyjwzwlkxvjkhckogxpgeabieuhequkgcppoaupgcqebxvqnwlhfpvqayknbezawnftkwjomtsxvecacopbvvwhbn"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 1000 characters.</p>
@@ -2459,7 +2459,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="start"
                data-endpoint="POSTapi-events"
-               value="2022-05-27T14:21:59"
+               value="2022-05-27T14:40:06"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -2469,7 +2469,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="end"
                data-endpoint="POSTapi-events"
-               value="2022-05-27T14:21:59"
+               value="2022-05-27T14:40:06"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -2479,7 +2479,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="location"
                data-endpoint="POSTapi-events"
-               value="ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua"
+               value="tzjarfmimzdyoabpzffswclekzgjstv"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2489,14 +2489,14 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="calendar_id"
                data-endpoint="POSTapi-events"
-               value="aut"
+               value="eos"
                data-component="body" hidden>
     <br>
 
         </p>
         </form>
 
-            <h2 id="evenements-GETapi-events--id-">showEvent</h2>
+            <h2 id="evenements-GETapi-events--id-">Show event</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2633,7 +2633,7 @@ access-control-allow-origin: *
             </p>
                     </form>
 
-            <h2 id="evenements-PUTapi-events--id-">updateEvent</h2>
+            <h2 id="evenements-PUTapi-events--id-">Update event</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -2652,11 +2652,11 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"title\": \"nyhqxl\",
-    \"description\": \"burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz\",
-    \"start\": \"2022-05-27T14:21:59\",
-    \"end\": \"2022-05-27T14:21:59\",
-    \"location\": \"nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd\"
+    \"title\": \"psbazskrkwpopdhhienprrlickntr\",
+    \"description\": \"fyjtsybwqvdjkrveeeaswcpztbopoghrfstdcxmjcypfkamksfbtiwlasupqfssttvzxubddyaekzitrfxydhlwwsdxfyhzcvydfefbpnvyttgbrrtfrfbmnnyhyuudqfqxtolojepvokmsabhmkhvjxsuyrrtjlvodrmymrpvmhpaujlqkumptmpsvkyyulwhpfdqdflceetsdikrjmmviwruhxxkipuutytxayvzuhbkixtuyghabhhslhxucyzqiktvhsbieetsjjrgrdcpxadqlryedsjdnliegoehmjqxnmsqbncaxiuvlibfrqyxkhgejghcksilxodwpvahvgglkxlonpcrgnxyxqbfbbojmhnzjkaaguqbjdhjgrqsvtecshknrlsfhfukftgtksoittgxmuabfcujhkqxpevvprxgijwzfxbkzxiylxdbbdgrfijizapmwnhdoawanmpdpahtaxubpqkfycjupskphsmnftydwgdsifxytvajpqvfxcfzbjhfsajgpvsbzajazedyyvgpcjetnwwrfinodvwaegnzdeiijmhiffbybxvaaixmmvjhevcauftblazxkrvymxyyhxntahkxqwnxlgyzzolfjsntsghryhbruksqwvzdyqhwywupxdhwrqgfzufxspsffvpqzrldvoonzpmdjzgusyyfzzcxqqyfptghsevcnebrweqpohjjjrvupsrjfavrxiiuebmuhocuzwmqzecnuuwasqcacffqotrmkbzrjmvfnuu\",
+    \"start\": \"2022-05-27T14:40:06\",
+    \"end\": \"2022-05-27T14:40:06\",
+    \"location\": \"niuwvlyxnqxjrhazilkfxuctbdggdbaemwjzufqnjkwpohwromskxdjlgzwvwvrwyrmokhxosohytcngmezofceheyivnzhkxwjdmjjpjdxxmopjivjecpdafhwbnpoyadoognlgrcqhrkaslowovhpihdisislaeqvpmhimfunxjrmdby\"
 }"
 </code></pre></div>
 
@@ -2673,11 +2673,11 @@ const headers = {
 };
 
 let body = {
-    "title": "nyhqxl",
-    "description": "burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz",
-    "start": "2022-05-27T14:21:59",
-    "end": "2022-05-27T14:21:59",
-    "location": "nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd"
+    "title": "psbazskrkwpopdhhienprrlickntr",
+    "description": "fyjtsybwqvdjkrveeeaswcpztbopoghrfstdcxmjcypfkamksfbtiwlasupqfssttvzxubddyaekzitrfxydhlwwsdxfyhzcvydfefbpnvyttgbrrtfrfbmnnyhyuudqfqxtolojepvokmsabhmkhvjxsuyrrtjlvodrmymrpvmhpaujlqkumptmpsvkyyulwhpfdqdflceetsdikrjmmviwruhxxkipuutytxayvzuhbkixtuyghabhhslhxucyzqiktvhsbieetsjjrgrdcpxadqlryedsjdnliegoehmjqxnmsqbncaxiuvlibfrqyxkhgejghcksilxodwpvahvgglkxlonpcrgnxyxqbfbbojmhnzjkaaguqbjdhjgrqsvtecshknrlsfhfukftgtksoittgxmuabfcujhkqxpevvprxgijwzfxbkzxiylxdbbdgrfijizapmwnhdoawanmpdpahtaxubpqkfycjupskphsmnftydwgdsifxytvajpqvfxcfzbjhfsajgpvsbzajazedyyvgpcjetnwwrfinodvwaegnzdeiijmhiffbybxvaaixmmvjhevcauftblazxkrvymxyyhxntahkxqwnxlgyzzolfjsntsghryhbruksqwvzdyqhwywupxdhwrqgfzufxspsffvpqzrldvoonzpmdjzgusyyfzzcxqqyfptghsevcnebrweqpohjjjrvupsrjfavrxiiuebmuhocuzwmqzecnuuwasqcacffqotrmkbzrjmvfnuu",
+    "start": "2022-05-27T14:40:06",
+    "end": "2022-05-27T14:40:06",
+    "location": "niuwvlyxnqxjrhazilkfxuctbdggdbaemwjzufqnjkwpohwromskxdjlgzwvwvrwyrmokhxosohytcngmezofceheyivnzhkxwjdmjjpjdxxmopjivjecpdafhwbnpoyadoognlgrcqhrkaslowovhpihdisislaeqvpmhimfunxjrmdby"
 };
 
 fetch(url, {
@@ -2698,11 +2698,11 @@ $response = $client-&gt;put(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'title' =&gt; 'nyhqxl',
-            'description' =&gt; 'burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz',
-            'start' =&gt; '2022-05-27T14:21:59',
-            'end' =&gt; '2022-05-27T14:21:59',
-            'location' =&gt; 'nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd',
+            'title' =&gt; 'psbazskrkwpopdhhienprrlickntr',
+            'description' =&gt; 'fyjtsybwqvdjkrveeeaswcpztbopoghrfstdcxmjcypfkamksfbtiwlasupqfssttvzxubddyaekzitrfxydhlwwsdxfyhzcvydfefbpnvyttgbrrtfrfbmnnyhyuudqfqxtolojepvokmsabhmkhvjxsuyrrtjlvodrmymrpvmhpaujlqkumptmpsvkyyulwhpfdqdflceetsdikrjmmviwruhxxkipuutytxayvzuhbkixtuyghabhhslhxucyzqiktvhsbieetsjjrgrdcpxadqlryedsjdnliegoehmjqxnmsqbncaxiuvlibfrqyxkhgejghcksilxodwpvahvgglkxlonpcrgnxyxqbfbbojmhnzjkaaguqbjdhjgrqsvtecshknrlsfhfukftgtksoittgxmuabfcujhkqxpevvprxgijwzfxbkzxiylxdbbdgrfijizapmwnhdoawanmpdpahtaxubpqkfycjupskphsmnftydwgdsifxytvajpqvfxcfzbjhfsajgpvsbzajazedyyvgpcjetnwwrfinodvwaegnzdeiijmhiffbybxvaaixmmvjhevcauftblazxkrvymxyyhxntahkxqwnxlgyzzolfjsntsghryhbruksqwvzdyqhwywupxdhwrqgfzufxspsffvpqzrldvoonzpmdjzgusyyfzzcxqqyfptghsevcnebrweqpohjjjrvupsrjfavrxiiuebmuhocuzwmqzecnuuwasqcacffqotrmkbzrjmvfnuu',
+            'start' =&gt; '2022-05-27T14:40:06',
+            'end' =&gt; '2022-05-27T14:40:06',
+            'location' =&gt; 'niuwvlyxnqxjrhazilkfxuctbdggdbaemwjzufqnjkwpohwromskxdjlgzwvwvrwyrmokhxosohytcngmezofceheyivnzhkxwjdmjjpjdxxmopjivjecpdafhwbnpoyadoognlgrcqhrkaslowovhpihdisislaeqvpmhimfunxjrmdby',
         ],
     ]
 );
@@ -2781,7 +2781,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="title"
                data-endpoint="PUTapi-events--id-"
-               value="nyhqxl"
+               value="psbazskrkwpopdhhienprrlickntr"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2791,7 +2791,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="description"
                data-endpoint="PUTapi-events--id-"
-               value="burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz"
+               value="fyjtsybwqvdjkrveeeaswcpztbopoghrfstdcxmjcypfkamksfbtiwlasupqfssttvzxubddyaekzitrfxydhlwwsdxfyhzcvydfefbpnvyttgbrrtfrfbmnnyhyuudqfqxtolojepvokmsabhmkhvjxsuyrrtjlvodrmymrpvmhpaujlqkumptmpsvkyyulwhpfdqdflceetsdikrjmmviwruhxxkipuutytxayvzuhbkixtuyghabhhslhxucyzqiktvhsbieetsjjrgrdcpxadqlryedsjdnliegoehmjqxnmsqbncaxiuvlibfrqyxkhgejghcksilxodwpvahvgglkxlonpcrgnxyxqbfbbojmhnzjkaaguqbjdhjgrqsvtecshknrlsfhfukftgtksoittgxmuabfcujhkqxpevvprxgijwzfxbkzxiylxdbbdgrfijizapmwnhdoawanmpdpahtaxubpqkfycjupskphsmnftydwgdsifxytvajpqvfxcfzbjhfsajgpvsbzajazedyyvgpcjetnwwrfinodvwaegnzdeiijmhiffbybxvaaixmmvjhevcauftblazxkrvymxyyhxntahkxqwnxlgyzzolfjsntsghryhbruksqwvzdyqhwywupxdhwrqgfzufxspsffvpqzrldvoonzpmdjzgusyyfzzcxqqyfptghsevcnebrweqpohjjjrvupsrjfavrxiiuebmuhocuzwmqzecnuuwasqcacffqotrmkbzrjmvfnuu"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 1000 characters.</p>
@@ -2801,7 +2801,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="start"
                data-endpoint="PUTapi-events--id-"
-               value="2022-05-27T14:21:59"
+               value="2022-05-27T14:40:06"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -2811,7 +2811,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="end"
                data-endpoint="PUTapi-events--id-"
-               value="2022-05-27T14:21:59"
+               value="2022-05-27T14:40:06"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -2821,14 +2821,14 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="location"
                data-endpoint="PUTapi-events--id-"
-               value="nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd"
+               value="niuwvlyxnqxjrhazilkfxuctbdggdbaemwjzufqnjkwpohwromskxdjlgzwvwvrwyrmokhxosohytcngmezofceheyivnzhkxwjdmjjpjdxxmopjivjecpdafhwbnpoyadoognlgrcqhrkaslowovhpihdisislaeqvpmhimfunxjrmdby"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
         </p>
         </form>
 
-            <h2 id="evenements-DELETEapi-events--id-">deleteEvent</h2>
+            <h2 id="evenements-DELETEapi-events--id-">Delete event</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -3609,7 +3609,7 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/mails/7915" \
+    --get "http://localhost/api/mails/07" \
     --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
@@ -3617,7 +3617,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/mails/7915"
+    "http://localhost/api/mails/07"
 );
 
 const headers = {
@@ -3635,7 +3635,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/api/mails/7915',
+    'http://localhost/api/mails/07',
     [
         'headers' =&gt; [
             'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
@@ -3725,7 +3725,7 @@ access-control-allow-origin: *
                 <input type="text"
                name="id"
                data-endpoint="GETapi-mails--id-"
-               value="7915"
+               value="07"
                data-component="url" hidden>
     <br>
 <p>The ID of the mail.</p>
@@ -3751,9 +3751,9 @@ access-control-allow-origin: *
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"to\": \"jalyn91@example.org\",
-    \"subject\": \"eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm\",
-    \"message\": \"qui\"
+    \"to\": \"duncan.schuster@example.com\",
+    \"subject\": \"tpbjsosfnzivfatijjiqfmojftmidwzrcqfcztvqlfrmrgybzayrqfnstammsbejfyydknfokfeijymbwofdgfpjfoxhwpttyzmufdcsnghzxzifioiuidehtolmnnafzhqzvddsojpjykjnfteanwrdjojgfgkpcwuisprhspmhdlkemsgkyvjrmglbvzxnagmdfjffowmjxveaxyuebfksjyxwheqafkchyywfboxnpexhhbhuyhtjlq\",
+    \"message\": \"alias\"
 }"
 </code></pre></div>
 
@@ -3770,9 +3770,9 @@ const headers = {
 };
 
 let body = {
-    "to": "jalyn91@example.org",
-    "subject": "eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm",
-    "message": "qui"
+    "to": "duncan.schuster@example.com",
+    "subject": "tpbjsosfnzivfatijjiqfmojftmidwzrcqfcztvqlfrmrgybzayrqfnstammsbejfyydknfokfeijymbwofdgfpjfoxhwpttyzmufdcsnghzxzifioiuidehtolmnnafzhqzvddsojpjykjnfteanwrdjojgfgkpcwuisprhspmhdlkemsgkyvjrmglbvzxnagmdfjffowmjxveaxyuebfksjyxwheqafkchyywfboxnpexhhbhuyhtjlq",
+    "message": "alias"
 };
 
 fetch(url, {
@@ -3793,9 +3793,9 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'to' =&gt; 'jalyn91@example.org',
-            'subject' =&gt; 'eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm',
-            'message' =&gt; 'qui',
+            'to' =&gt; 'duncan.schuster@example.com',
+            'subject' =&gt; 'tpbjsosfnzivfatijjiqfmojftmidwzrcqfcztvqlfrmrgybzayrqfnstammsbejfyydknfokfeijymbwofdgfpjfoxhwpttyzmufdcsnghzxzifioiuidehtolmnnafzhqzvddsojpjykjnfteanwrdjojgfgkpcwuisprhspmhdlkemsgkyvjrmglbvzxnagmdfjffowmjxveaxyuebfksjyxwheqafkchyywfboxnpexhhbhuyhtjlq',
+            'message' =&gt; 'alias',
         ],
     ]
 );
@@ -3859,7 +3859,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="to"
                data-endpoint="POSTapi-mails-send"
-               value="jalyn91@example.org"
+               value="duncan.schuster@example.com"
                data-component="body" hidden>
     <br>
 <p>Must be a valid email address.</p>
@@ -3869,7 +3869,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="subject"
                data-endpoint="POSTapi-mails-send"
-               value="eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm"
+               value="tpbjsosfnzivfatijjiqfmojftmidwzrcqfcztvqlfrmrgybzayrqfnstammsbejfyydknfokfeijymbwofdgfpjfoxhwpttyzmufdcsnghzxzifioiuidehtolmnnafzhqzvddsojpjykjnfteanwrdjojgfgkpcwuisprhspmhdlkemsgkyvjrmglbvzxnagmdfjffowmjxveaxyuebfksjyxwheqafkchyywfboxnpexhhbhuyhtjlq"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -3879,7 +3879,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="message"
                data-endpoint="POSTapi-mails-send"
-               value="qui"
+               value="alias"
                data-component="body" hidden>
     <br>
 
@@ -3890,7 +3890,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
     <p>APIs pour gérer les menus</p>
 
-            <h2 id="menu-de-la-caf-GETapi-menu">getCafMenus</h2>
+            <h2 id="menu-de-la-caf-GETapi-menu">Get cafeteria menu</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
@@ -4032,7 +4032,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
     <p>APIs pour gérer les notes</p>
 
-            <h2 id="notes-GETapi-marks">getMarks</h2>
+            <h2 id="notes-GETapi-marks">Get marks</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>

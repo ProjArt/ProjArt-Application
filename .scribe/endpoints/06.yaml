@@ -8,7 +8,7 @@ endpoints:
       - GET
     uri: api/menu
     metadata:
-      title: getCafMenus
+      title: 'Get cafeteria menu'
       description: 'Retourne un json contenant une liste des menus.'
       authenticated: true
       custom: []

@@ -46,15 +46,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: laboriosam
+                  example: exercitationem
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: eligendi
+                  example: et
                 classroom_name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx
+                  example: abazkbxhhsvsgrd
               required:
                 - username
                 - password
@@ -97,15 +97,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: placeat
+                  example: et
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: delectus
+                  example: temporibus
                 classroom_name:
                   type: string
                   description: 'The class of the user.'
-                  example: autem
+                  example: et
               required:
                 - username
                 - password
@@ -361,7 +361,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq
+                  example: oumhxidfpytljuonoqdsxfwcjzreixsmzufguvwybntzihtycxsvzqxdsqqxakgkperesytpdvugxpzbgnprmkctfwmwwphizcwwbbmwuinxewezgrdlsirenvhimuvhgtssvfkcibutpeknjfuwbnjxgrbviyavczpdoitsxlxmalbiiosakcdsdzbbqouyfhecjazushqovmyfuduzhcmnrytqbmfntfcqcsakw
               required:
                 - name
   /api/absences:
@@ -419,7 +419,7 @@ paths:
         - Autres
   /api/calendars:
     get:
-      summary: getCalendars
+      summary: 'Get calendars'
       description: 'Retourne un json contenant une liste des calendrier. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
       parameters:
         -
@@ -459,8 +459,8 @@ paths:
       tags:
         - Calendrier
     post:
-      summary: 'Store a newly created resource in storage.'
-      description: ''
+      summary: 'Store calendar'
+      description: 'Crée un calendrier.'
       parameters:
         -
           in: header
@@ -496,13 +496,13 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl
+                  example: zqsuqtdbgeicmkzfdfdfgmsguiygnxrkuizwdnkdtlbqigltumiyxnnvtwicnfrqbhhcyymexdjsggkysqevgtnmnpsvuqlwxcpgjubqcqnojidcwit
               required:
                 - name
   '/api/calendars/{id}':
     get:
-      summary: 'Display the specified resource.'
-      description: ''
+      summary: 'Show calendar'
+      description: 'Retourne un json contenant un calendrier.'
       parameters:
         -
           in: header
@@ -553,8 +553,8 @@ paths:
       tags:
         - Calendrier
     put:
-      summary: 'Update the specified resource in storage.'
-      description: ''
+      summary: 'Update calendar'
+      description: 'Update the specified resource in storage.'
       parameters:
         -
           in: header
@@ -590,12 +590,12 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk
+                  example: evf
               required:
                 - name
     delete:
-      summary: 'Remove the specified resource from storage.'
-      description: ''
+      summary: 'Delete calendar'
+      description: 'Remove the specified resource from storage.'
       parameters:
         -
           in: header
@@ -632,8 +632,8 @@ paths:
           type: integer
   /api/calendars/share:
     post:
-      summary: ''
-      description: ''
+      summary: 'Share calendar'
+      description: 'Partage un calendrier avec un autre utilisateur.'
       parameters:
         -
           in: header
@@ -667,17 +667,17 @@ paths:
               type: object
               properties:
                 calendar_id:
-                  type: string
-                  description: ''
-                  example: dolor
+                  type: integer
+                  description: 'ID du calendrier à partager.'
+                  example: 15
                 user_id:
-                  type: string
-                  description: ''
-                  example: quae
+                  type: integer
+                  description: 'ID de l''utilisateur à qui partager le calendrier.'
+                  example: 16
                 can_own:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
                 can_view:
                   type: boolean
                   description: ''
@@ -689,7 +689,7 @@ paths:
                 - can_view
   /api/events:
     get:
-      summary: getEvents
+      summary: 'Get events'
       description: 'Retourne un json contenant une liste des évènements. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
       parameters:
         -
@@ -724,7 +724,7 @@ paths:
       tags:
         - Evènements
     post:
-      summary: storeEvent
+      summary: 'Store event'
       description: "Enregistre un nouvel évènement dans la BDD\nSuccès: retourne un json contenant l'évènement créé\nFail: erreur"
       parameters:
         -
@@ -768,27 +768,27 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo
+                  example: yugriwwpoxkgpadenlslltsdwfmfdlwqouhghwayuaodhwxhmkwnrusggutaqaocziuildtfwxurvyfrjgugduniamkwlsjzfpspfqjnqpzratrkhutjadbbqhxgzstvulmadddirhdjipcyyrxbetfwmssizfwdzybvjdxhkoeyqtulczlggxnxuhuhinwmqrakhsdvvvcysqbqjloabtgdhtgzoepjskdypmhovsxelfenbzwjvutycstlqmu
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp
+                  example: pwdaddefpaymbtruodbhcdthhtgfdoflikymbsjiawpwvpsuqgmukfbzapowabjmncysxtdxmtgyfisiybvoctzldtifatiwtzndftsqkvllosqypbbnjijfgziqhqmnxqpsnyjsyybilqazoyuonelsrqacwyawqzuylxgckderatosvjjxltwzmlkriudpzfrtejkbzgtacblebxazjknmwfpnfdwwibvuellqajdfaozifkoazvbboovvdtkilttpimhcsffllqthcglhvtozcidtjggbterjvfrlpinvtstahmljybkoltrucvvfufadjgbwjtpyodxypghquzcwctzbqzujglqzctlxuncllnivbnbrhprkuigfmbucybdmcmzrngazyippulrshkvizxoambxkyxhwkxiwrqgmxbhgimubrzcqghbvikkgyfsvrptdvuqvdknqvzwatglxxtewyvafuudjodrdzndwoxwhzaxvbwxhslqjfrtwozkfwwogqseiyqxetrrcjrkyjwzwlkxvjkhckogxpgeabieuhequkgcppoaupgcqebxvqnwlhfpvqayknbezawnftkwjomtsxvecacopbvvwhbn
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-27T14:21:59'
+                  example: '2022-05-27T14:40:06'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-27T14:21:59'
+                  example: '2022-05-27T14:40:06'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua
+                  example: tzjarfmimzdyoabpzffswclekzgjstv
                 calendar_id:
                   type: string
                   description: ''
-                  example: aut
+                  example: eos
               required:
                 - title
                 - description
@@ -798,7 +798,7 @@ paths:
                 - calendar_id
   '/api/events/{id}':
     get:
-      summary: showEvent
+      summary: 'Show event'
       description: 'Display the specified resource.'
       parameters:
         -
@@ -850,7 +850,7 @@ paths:
       tags:
         - Evènements
     put:
-      summary: updateEvent
+      summary: 'Update event'
       description: 'Update the specified resource in storage.'
       parameters:
         -
@@ -887,25 +887,25 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: nyhqxl
+                  example: psbazskrkwpopdhhienprrlickntr
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz
+                  example: fyjtsybwqvdjkrveeeaswcpztbopoghrfstdcxmjcypfkamksfbtiwlasupqfssttvzxubddyaekzitrfxydhlwwsdxfyhzcvydfefbpnvyttgbrrtfrfbmnnyhyuudqfqxtolojepvokmsabhmkhvjxsuyrrtjlvodrmymrpvmhpaujlqkumptmpsvkyyulwhpfdqdflceetsdikrjmmviwruhxxkipuutytxayvzuhbkixtuyghabhhslhxucyzqiktvhsbieetsjjrgrdcpxadqlryedsjdnliegoehmjqxnmsqbncaxiuvlibfrqyxkhgejghcksilxodwpvahvgglkxlonpcrgnxyxqbfbbojmhnzjkaaguqbjdhjgrqsvtecshknrlsfhfukftgtksoittgxmuabfcujhkqxpevvprxgijwzfxbkzxiylxdbbdgrfijizapmwnhdoawanmpdpahtaxubpqkfycjupskphsmnftydwgdsifxytvajpqvfxcfzbjhfsajgpvsbzajazedyyvgpcjetnwwrfinodvwaegnzdeiijmhiffbybxvaaixmmvjhevcauftblazxkrvymxyyhxntahkxqwnxlgyzzolfjsntsghryhbruksqwvzdyqhwywupxdhwrqgfzufxspsffvpqzrldvoonzpmdjzgusyyfzzcxqqyfptghsevcnebrweqpohjjjrvupsrjfavrxiiuebmuhocuzwmqzecnuuwasqcacffqotrmkbzrjmvfnuu
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-27T14:21:59'
+                  example: '2022-05-27T14:40:06'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-27T14:21:59'
+                  example: '2022-05-27T14:40:06'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd
+                  example: niuwvlyxnqxjrhazilkfxuctbdggdbaemwjzufqnjkwpohwromskxdjlgzwvwvrwyrmokhxosohytcngmezofceheyivnzhkxwjdmjjpjdxxmopjivjecpdafhwbnpoyadoognlgrcqhrkaslowovhpihdisislaeqvpmhimfunxjrmdby
     delete:
-      summary: deleteEvent
+      summary: 'Delete event'
       description: 'Remove the specified resource from storage.'
       parameters:
         -
@@ -1271,7 +1271,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the mail.'
-        example: '7915'
+        example: '07'
         required: true
         schema:
           type: string
@@ -1314,22 +1314,22 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: jalyn91@example.org
+                  example: duncan.schuster@example.com
                 subject:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm
+                  example: tpbjsosfnzivfatijjiqfmojftmidwzrcqfcztvqlfrmrgybzayrqfnstammsbejfyydknfokfeijymbwofdgfpjfoxhwpttyzmufdcsnghzxzifioiuidehtolmnnafzhqzvddsojpjykjnfteanwrdjojgfgkpcwuisprhspmhdlkemsgkyvjrmglbvzxnagmdfjffowmjxveaxyuebfksjyxwheqafkchyywfboxnpexhhbhuyhtjlq
                 message:
                   type: string
                   description: ''
-                  example: qui
+                  example: alias
               required:
                 - to
                 - subject
                 - message
   /api/menu:
     get:
-      summary: getCafMenus
+      summary: 'Get cafeteria menu'
       description: 'Retourne un json contenant une liste des menus.'
       parameters:
         -
@@ -1365,7 +1365,7 @@ paths:
         - 'Menu de la caf'
   /api/marks:
     get:
-      summary: getMarks
+      summary: 'Get marks'
       description: 'Retourne un json contenant une liste des notes de l''utilisateur.'
       parameters:
         -

@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "721e040e-a56e-42cc-bfe4-985cefbd5d7b",
+        "_postman_id": "5f011564-3376-433c-8440-4c76c7a0309f",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"laboriosam\",\"password\":\"eligendi\",\"classroom_name\":\"rtxppgsenqbisprsabzvimkafhfdezifctmtnbbqfugtmbrworeemvuojivqwhjlpqvuogspvrvrmzjekocogiizmhfqkaychwoteasrcvjzcuktlsmfelhmlbgmcmitvzemzebfisfxbeebrutvtrnycgnsrdwhpskzudhdnlcxrttotidsewwnhx\"}"
+                            "raw": "{\"username\":\"exercitationem\",\"password\":\"et\",\"classroom_name\":\"abazkbxhhsvsgrd\"}"
                         },
                         "description": "Authentication for a user"
                     },
@@ -69,7 +69,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"placeat\",\"password\":\"delectus\",\"classroom_name\":\"autem\"}"
+                            "raw": "{\"username\":\"et\",\"password\":\"temporibus\",\"classroom_name\":\"et\"}"
                         },
                         "description": "Register a new user"
                     },
@@ -283,7 +283,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"pvgommhsvniitewsltijlrmezsedgdbcwvdjnpjkzweggxlssllingflitijaxfripjzlqtcuifbnkuwxbclclagbysaeohmgnterrgexgdjddtrsgxufxwgikwijholeaezjqkqbeemecimzaqmqvkszhuzahrgvmadcvgeezhfnwhdadlllmbtghebxkcxppetlbjumjbjspuspdkwvlmwwuexucxpbuiqeayyxldpqdq\"}"
+                            "raw": "{\"name\":\"oumhxidfpytljuonoqdsxfwcjzreixsmzufguvwybntzihtycxsvzqxdsqqxakgkperesytpdvugxpzbgnprmkctfwmwwphizcwwbbmwuinxewezgrdlsirenvhimuvhgtssvfkcibutpeknjfuwbnjxgrbviyavczpdoitsxlxmalbiiosakcdsdzbbqouyfhecjazushqovmyfuduzhcmnrytqbmfntfcqcsakw\"}"
                         },
                         "description": ""
                     },
@@ -341,7 +341,7 @@
             "description": "\nAPIs pour g\u00e9rer les calendrier",
             "item": [
                 {
-                    "name": "getCalendars",
+                    "name": "Get calendars",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -373,7 +373,7 @@
                     ]
                 },
                 {
-                    "name": "Store a newly created resource in storage.",
+                    "name": "Store calendar",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -394,14 +394,14 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"unplgvnfnsjlltliyfarcnuotoxwalebylcgtncbqbhgillayxkvtebqfgcjlwmyxlbhkgxbpqlwahfxkrnwhuhetiibpubffzxmavsmxdqxyvvwrsjqaghgijjrvemlelvlavjrejxyqcbqjxlifgtbfzsvqqjrzhsaqadlqmlxcpzczvswviynueoahkdnmplkyfl\"}"
+                            "raw": "{\"name\":\"zqsuqtdbgeicmkzfdfdfgmsguiygnxrkuizwdnkdtlbqigltumiyxnnvtwicnfrqbhhcyymexdjsggkysqevgtnmnpsvuqlwxcpgjubqcqnojidcwit\"}"
                         },
-                        "description": ""
+                        "description": "Cr\u00e9e un calendrier."
                     },
                     "response": []
                 },
                 {
-                    "name": "Display the specified resource.",
+                    "name": "Show calendar",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -429,7 +429,7 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
+                        "description": "Retourne un json contenant un calendrier."
                     },
                     "response": [
                         {
@@ -454,7 +454,7 @@
                     ]
                 },
                 {
-                    "name": "Update the specified resource in storage.",
+                    "name": "Update calendar",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -483,14 +483,14 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"kptkzeljkkzssdlejwnfnyuvuskwxtvrnukxyndegtvgnpjsxrhorckpjtbodgilxoelzfuejroeatdfldhalzithvmodejbcwaervaprimuzzxnabqeowkjdtybzrnuclndksoerftaxk\"}"
+                            "raw": "{\"name\":\"evf\"}"
                         },
-                        "description": ""
+                        "description": "Update the specified resource in storage."
                     },
                     "response": []
                 },
                 {
-                    "name": "Remove the specified resource from storage.",
+                    "name": "Delete calendar",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -518,12 +518,12 @@
                             }
                         ],
                         "body": null,
-                        "description": ""
+                        "description": "Remove the specified resource from storage."
                     },
                     "response": []
                 },
                 {
-                    "name": "api\/calendars\/share",
+                    "name": "Share calendar",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -544,9 +544,9 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"calendar_id\":\"dolor\",\"user_id\":\"quae\",\"can_own\":true,\"can_view\":false}"
+                            "raw": "{\"calendar_id\":15,\"user_id\":16,\"can_own\":false,\"can_view\":false}"
                         },
-                        "description": ""
+                        "description": "Partage un calendrier avec un autre utilisateur."
                     },
                     "response": []
                 }
@@ -557,7 +557,7 @@
             "description": "\nAPIs pour g\u00e9rer les \u00e9v\u00e8nements",
             "item": [
                 {
-                    "name": "getEvents",
+                    "name": "Get events",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -589,7 +589,7 @@
                     ]
                 },
                 {
-                    "name": "storeEvent",
+                    "name": "Store event",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -610,7 +610,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"gkcmtyypllsygnwdbieajcirhosocsqkvgliojicremigunegmrmmkwetlsxkvfqsbvkopycgqbavvddpcrguyhvscwrnucnmztxwedvmocidqqtkcovlaosxfcufuctbhtarrjoizwnxpllzo\",\"description\":\"pccopjacnyjnqgajhvncsjpjbkkrharggapokbwemiinaoklxwrrvcowxyihqlqgfocnqutazogzabepwcvkhyuxumvlqjhkowuyjsjogaeodbnrjjqjhlkwqmjesukyfqzqqksgkyhxfvnehoeqbmtlkygddeahhkoqwpsrkvlpcbyifqzavkxocgezjiomfkngghnrzzeskgmyuluywiirxebccmhgomcbkdinatdjetsjwduwqzdkrnnxwmmisuyxanakzqxjfatboqjscghesjortrqenkzpwyihukvrxbprayasrpbqfbseyxkrwcsrpylhfcefrtfwwkeuhvckdtzaxlkrdkgacdlejfpbmdwipltkuktiloumdadxuprfahhmcuqcrcjhmmykglmmtbglkvorfzuebjgjujlpnccsqrslipuovneykruscexmwguztuhamukasjhhyxljpiwyyrnopqcllfsgosmahpzmzmquphlienbccvxizppxebqtwkyytaertzavqbycnobroekmukyuqgyzyolnsbsvnnybannarynwuktkajfnerehkjatvljwihevvqdrprwtkmqgunsxygbegnvvyyxyznrsrgkdfsmxlfcbfhhqhbltjvsuhwhnfgfwmggsgpmgfxnyrxqeplkoxzpmqenzagqpzuxlngrjgflxybamoheiepoplidnfabxsmxikbtrulplqsgekhcxxcmlwvwcpsfvxzhqignwzyfrrquqdknghsiwfghcmnydwkmasgvjqshruwrwljyqrqtwuxjloipbbyuxrrneixbtfydovcsgssiseditfdsirexibxzhuelzhnjttmxjfvsfrjdswvgqqwhkaxufksvyocvchpwkwdvnxsuqxtxfjcwosbsioyptggxbzukgaxmuwqbodlierfjyvsrelvmqidp\",\"start\":\"2022-05-27T14:21:59\",\"end\":\"2022-05-27T14:21:59\",\"location\":\"ymxkfqetqrnbqnjfhrllfwtmsncewpwguslutvgvrdlua\",\"calendar_id\":\"aut\"}"
+                            "raw": "{\"title\":\"yugriwwpoxkgpadenlslltsdwfmfdlwqouhghwayuaodhwxhmkwnrusggutaqaocziuildtfwxurvyfrjgugduniamkwlsjzfpspfqjnqpzratrkhutjadbbqhxgzstvulmadddirhdjipcyyrxbetfwmssizfwdzybvjdxhkoeyqtulczlggxnxuhuhinwmqrakhsdvvvcysqbqjloabtgdhtgzoepjskdypmhovsxelfenbzwjvutycstlqmu\",\"description\":\"pwdaddefpaymbtruodbhcdthhtgfdoflikymbsjiawpwvpsuqgmukfbzapowabjmncysxtdxmtgyfisiybvoctzldtifatiwtzndftsqkvllosqypbbnjijfgziqhqmnxqpsnyjsyybilqazoyuonelsrqacwyawqzuylxgckderatosvjjxltwzmlkriudpzfrtejkbzgtacblebxazjknmwfpnfdwwibvuellqajdfaozifkoazvbboovvdtkilttpimhcsffllqthcglhvtozcidtjggbterjvfrlpinvtstahmljybkoltrucvvfufadjgbwjtpyodxypghquzcwctzbqzujglqzctlxuncllnivbnbrhprkuigfmbucybdmcmzrngazyippulrshkvizxoambxkyxhwkxiwrqgmxbhgimubrzcqghbvikkgyfsvrptdvuqvdknqvzwatglxxtewyvafuudjodrdzndwoxwhzaxvbwxhslqjfrtwozkfwwogqseiyqxetrrcjrkyjwzwlkxvjkhckogxpgeabieuhequkgcppoaupgcqebxvqnwlhfpvqayknbezawnftkwjomtsxvecacopbvvwhbn\",\"start\":\"2022-05-27T14:40:06\",\"end\":\"2022-05-27T14:40:06\",\"location\":\"tzjarfmimzdyoabpzffswclekzgjstv\",\"calendar_id\":\"eos\"}"
                         },
                         "description": "Enregistre un nouvel \u00e9v\u00e8nement dans la BDD\nSucc\u00e8s: retourne un json contenant l'\u00e9v\u00e8nement cr\u00e9\u00e9\nFail: erreur"
                     },
@@ -624,7 +624,7 @@
                     ]
                 },
                 {
-                    "name": "showEvent",
+                    "name": "Show event",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -677,7 +677,7 @@
                     ]
                 },
                 {
-                    "name": "updateEvent",
+                    "name": "Update event",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -706,14 +706,14 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"nyhqxl\",\"description\":\"burzjporalnqlpxjafsnpeaberqfeuhkhjrscxdhyyzseqtrqhhvbxlhzahsxldwjrdkpovjyievcqlzncmajhrgvxtaiailuornklxhkxtmcyftubrnsqmthtfturxiaqbtdhbyihqpwdnopjkgmnztlncsitxrkyctyuajlbdmtjtoukbenprlbhagjuaoyqjzjskebmqisfbtaaozurauljsusdkqxzuowkpyavlwtnsoxbilwunmwcjblhjyjohbheymjqjmnvyhhvpfylhzgyrkigcdgxefksxjijzvsdedjtebkhmntwvyiozywyxdvigcofzizhvpjfcdkciawuiejfuluslweonxtvwptfafytdatwvgkleifgatvcczlgtxlsdhshpymaaoibecyosunvuakcyypjdjtbtsqqzesnvptpneeagebxppkqykibvynmfuthiolmntwmvkrgqrshlsnfdbanqbkcgmjbzyhojixhahoakrqgtewsawqzgifhvbobockieggipdptwgyjjcsjcdhuexacpcxipcfbtysbwwmjdebfromtrtdyaexbmxfoiyzvszpzfnljolwtmhqmkclepagdyfktwsxttddz\",\"start\":\"2022-05-27T14:21:59\",\"end\":\"2022-05-27T14:21:59\",\"location\":\"nvjgaalptegyrojehlgocorfarmrccnqftgfkqojdwdelrzrmqmrgeydkhwjutgqvjeflixqdwfeefdfgtwotmxaiecinxcldjtvscetytqaxkbfnbrswgltxzlnpyrmjhpoezdrijxwpgdtvnbuzkkxhxiqaxykcrrmkfsxjoiffsocgcjtxwnekd\"}"
+                            "raw": "{\"title\":\"psbazskrkwpopdhhienprrlickntr\",\"description\":\"fyjtsybwqvdjkrveeeaswcpztbopoghrfstdcxmjcypfkamksfbtiwlasupqfssttvzxubddyaekzitrfxydhlwwsdxfyhzcvydfefbpnvyttgbrrtfrfbmnnyhyuudqfqxtolojepvokmsabhmkhvjxsuyrrtjlvodrmymrpvmhpaujlqkumptmpsvkyyulwhpfdqdflceetsdikrjmmviwruhxxkipuutytxayvzuhbkixtuyghabhhslhxucyzqiktvhsbieetsjjrgrdcpxadqlryedsjdnliegoehmjqxnmsqbncaxiuvlibfrqyxkhgejghcksilxodwpvahvgglkxlonpcrgnxyxqbfbbojmhnzjkaaguqbjdhjgrqsvtecshknrlsfhfukftgtksoittgxmuabfcujhkqxpevvprxgijwzfxbkzxiylxdbbdgrfijizapmwnhdoawanmpdpahtaxubpqkfycjupskphsmnftydwgdsifxytvajpqvfxcfzbjhfsajgpvsbzajazedyyvgpcjetnwwrfinodvwaegnzdeiijmhiffbybxvaaixmmvjhevcauftblazxkrvymxyyhxntahkxqwnxlgyzzolfjsntsghryhbruksqwvzdyqhwywupxdhwrqgfzufxspsffvpqzrldvoonzpmdjzgusyyfzzcxqqyfptghsevcnebrweqpohjjjrvupsrjfavrxiiuebmuhocuzwmqzecnuuwasqcacffqotrmkbzrjmvfnuu\",\"start\":\"2022-05-27T14:40:06\",\"end\":\"2022-05-27T14:40:06\",\"location\":\"niuwvlyxnqxjrhazilkfxuctbdggdbaemwjzufqnjkwpohwromskxdjlgzwvwvrwyrmokhxosohytcngmezofceheyivnzhkxwjdmjjpjdxxmopjivjecpdafhwbnpoyadoognlgrcqhrkaslowovhpihdisislaeqvpmhimfunxjrmdby\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
                     "response": []
                 },
                 {
-                    "name": "deleteEvent",
+                    "name": "Delete event",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1010,7 +1010,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7915",
+                                    "value": "07",
                                     "description": "The ID of the mail."
                                 }
                             ]
@@ -1073,7 +1073,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"jalyn91@example.org\",\"subject\":\"eatbkdjuluioglrjrpqhdmiplaplbggojawipsnxbweqdgeongpeatvaxewksboytwwkjgfsifdgepzanrzktnltiwyswkhqzrbgaifqgidoagcbhnqzlhcblrgfnulycrufbtifcatfhafysjpjfjukktszzcmngcpxwswppdgvorzkiaqrfkottlhyfjvpm\",\"message\":\"qui\"}"
+                            "raw": "{\"to\":\"duncan.schuster@example.com\",\"subject\":\"tpbjsosfnzivfatijjiqfmojftmidwzrcqfcztvqlfrmrgybzayrqfnstammsbejfyydknfokfeijymbwofdgfpjfoxhwpttyzmufdcsnghzxzifioiuidehtolmnnafzhqzvddsojpjykjnfteanwrdjojgfgkpcwuisprhspmhdlkemsgkyvjrmglbvzxnagmdfjffowmjxveaxyuebfksjyxwheqafkchyywfboxnpexhhbhuyhtjlq\",\"message\":\"alias\"}"
                         },
                         "description": ""
                     },
@@ -1086,7 +1086,7 @@
             "description": "\nAPIs pour g\u00e9rer les menus",
             "item": [
                 {
-                    "name": "getCafMenus",
+                    "name": "Get cafeteria menu",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
@@ -1124,7 +1124,7 @@
             "description": "\nAPIs pour g\u00e9rer les notes",
             "item": [
                 {
-                    "name": "getMarks",
+                    "name": "Get marks",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
