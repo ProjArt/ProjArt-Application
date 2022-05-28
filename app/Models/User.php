@@ -118,14 +118,9 @@ class User extends Authenticatable
         }
     }
 
-    public function calendarsFollow()
+    public function calendars()
     {
-        return $this->belongsToMany(Calendar::class, 'calendar_user_follow', 'user_id', 'calendar_id');
-    }
-
-    public function calendarsOwn()
-    {
-        return $this->belongsToMany(CalendarOwn::class, 'calendar_user_own', 'user_id', 'calendar_id')->orderBy('name');
+        return $this->belongsToMany(Calendar::class)->withPivot(['rights'])->orderBy('name');
     }
 
     public function classrooms()

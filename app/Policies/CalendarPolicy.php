@@ -18,7 +18,7 @@ class CalendarPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user != null;
     }
 
     /**
@@ -30,7 +30,7 @@ class CalendarPolicy
      */
     public function view(User $user, Calendar $calendar)
     {
-        //
+        return $this->isFollower($user, $calendar);
     }
 
     /**
@@ -41,7 +41,7 @@ class CalendarPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user != null;
     }
 
     /**
@@ -53,7 +53,7 @@ class CalendarPolicy
      */
     public function update(User $user, Calendar $calendar)
     {
-        //
+        return $this->isOwner($user, $calendar);
     }
 
     /**
@@ -65,7 +65,7 @@ class CalendarPolicy
      */
     public function delete(User $user, Calendar $calendar)
     {
-        //
+        return $this->isOwner($user, $calendar);
     }
 
     /**
@@ -77,7 +77,7 @@ class CalendarPolicy
      */
     public function restore(User $user, Calendar $calendar)
     {
-        //
+        return $this->isOwner($user, $calendar);
     }
 
     /**
@@ -89,6 +89,27 @@ class CalendarPolicy
      */
     public function forceDelete(User $user, Calendar $calendar)
     {
-        //
+        return $this->isOwner($user, $calendar);
+    }
+
+    public function share(User $user, Calendar $calendar)
+    {
+        return $this->isOwner($user, $calendar);
+    }
+
+    private function isOwner(User $user, Calendar $calendar)
+    {
+        return $this->checkRightsOnCalendar($user, $calendar, Calendar::EDIT_RIGHT);
+    }
+
+    private function isFollower(User $user, Calendar $calendar)
+    {
+        return $this->checkRightsOnCalendar($user, $calendar, Calendar::READ_RIGHT) || $this->isOwner($user, $calendar);
+    }
+
+    private function checkRightsOnCalendar(User $user, Calendar $calendar, $rights)
+    {
+        $c =  $user->calendars()->whereId($calendar->id)->first();
+        return $c != null && $c->pivot->rights == $rights;
     }
 }
