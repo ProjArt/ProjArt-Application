@@ -10,6 +10,6 @@ class TelegramChat extends BaseModel
 
     public function gapsUsers()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class, 'telegraph_chat_user', 'telegraph_chat_id', 'user_id');
     }
 }
