@@ -74,29 +74,20 @@ class TelegramController extends Controller
 
     private function gaps()
     {
-        $gaps = $this->chat->users()->first();
-        if (!$gaps) {
-            $this->chat->users()->create();
+        $user = $this->chat->users()->first();
+        if (!$user) {
+            //$this->chat->users()->create();
             return $this->chat->html("Veuillez entrer votre nom d'utilisateur GAPS : (avec la commande /gaps p.ex : /gaps john.doe)");
         }
 
         if ($this->params) {
-            if (strlen($gaps->username) < 1) {
+            /* if (strlen($gaps->username) < 1) {
                 $gaps->username = $this->params[0];
                 $gaps->save();
                 return $this->chat->html("Votre nom d'utilisateur GAPS a été enregistré. Veuillez entrer votre mot de passe : (avec la commande /gaps p.ex : /gaps password)");
-            }
-            if (strlen($gaps->password) < 1) {
-                $gaps->password = $this->params[0];
-                $gaps->save();
-                $this->chat->html("Veuillez patienter nous téléchargeons le nécessaire.")->send();
-                try {
-                    GapsEventsService::fetchAllHoraires($gaps);
-                    GapsMarksService::fetchAllNotes($gaps);
-                } catch (\Exception $e) {
-                    $this->supprimer();
-                    return $this->chat->html("Une erreur est survenue\n\nVeuillez réessayer avec la commande /gaps.");
-                }
+            } */
+            if ($user->password != $this->params[0]) {
+                return $this->chat->html("Les données entrées sont incorrects");
             }
         }
         return $this->chat->html("Vous pouvez à présent utiliser Gaps avec les commandes:\n/prochain\n/prochains 3\n/notes\n/moi\n/supprimer");
