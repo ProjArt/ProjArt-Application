@@ -50,6 +50,7 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
+        //$events = $user->events()->with('calendar')->get()->groupBy('calendar_id');
         $calendars = $request->user()->calendars->map(function ($calendar) {
             return [
                 "id" => $calendar->id,
