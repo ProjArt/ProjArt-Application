@@ -55,7 +55,6 @@ class MenuController extends Controller
      */
     public function index()
     {
-        GapsMenuService::fetchMenus();
         $meals = Meal::with('menu')
             ->get()
             ->groupBy(function ($meal) {
