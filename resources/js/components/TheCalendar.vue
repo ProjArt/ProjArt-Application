@@ -23,13 +23,14 @@ const currentCalendarId = ref(1);
 const displayedDate = ref(new Date());
 const newEventPopupRef = ref([]);
 const showNewEventPopupRef = ref('');
-const showEditEventsPopupRef = ref('');
+const showCurrentEventsPopupRef = ref('');
 const newEventForm = ref({});
 const formUpdate = ref({});
 const isSubmitted = ref(false);
 const selectedDate = ref('')
 const start = ref('...')
 const end = ref('...')
+const indexUnderEdition = ref('')
 const currDateCursor = ref(TODAY)
 const dayLabels = ref(DAY_LABELS.slice())
 
@@ -53,9 +54,9 @@ const newEventPopup = computed({
     }
 });
 
-const showEditEventsPopup = computed({
-    get() { return showEditEventsPopupRef.value; },
-    set(events) { showEditEventsPopupRef.value = events; }
+const showCurrentEventsPopup = computed({
+    get() { return showCurrentEventsPopupRef.value; },
+    set(events) { showCurrentEventsPopupRef.value = events; }
 });
 
 // Helpers
@@ -79,9 +80,11 @@ function formatDayObject(ref) {
 function setEvents() {
     const currentCalendar = allCalendars.value[currentCalendarId.value]
     currentCalendar.events.forEach(event => {
+        const newEvent = toRaw(event)
         const date = new Date(event.start)
         const local = date.toLocaleDateString()
-        dates.value?.[local]?.events.push(event)
+        newEvent['local'] = local
+        dates.value?.[local]?.events.push(newEvent)
     })
 }
 
@@ -190,17 +193,11 @@ function changeLayout(next) {
 }
 
 async function newEvent() {
-    //  expected output: 2022-05-27 12:06:28
-    const form = toRaw(newEventForm.value)
+    let form = toRaw(newEventForm.value)
     const date = form.start_date
-    const dateParts = date.split('/')
-    const newDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`
-    const start = `${newDate} ${form.start}:00`
-    const end = `${newDate} ${form.end}:00`
-    form.start = start
-    form.end = end
-    delete form.end_date
-    delete form.start_date
+    form = prepareFormBeforeSending(form)
+    console.log(form)
+    console.log(date)
     const response = await useFetch({
         url: API.newEvents.path(),
         method: API.newEvents.method,
@@ -226,19 +223,62 @@ function sortEvents(date) {
     })
 }
 
-function removeEvent(dayId, eventId) {
+async function handleRemoveEvent(dayId, eventId) {
     const date = toChDate(dayId)
-    try {
-        const events = toRaw(dates.value[date].events)
-        const newEvents = events.filter((event, key) => {
-            if (key !== eventId) {
-                return event
-            }
-        })
-        dates.value[date].events = newEvents
-        // TODO call to api to remove event
-    } catch (error) {
-        console.log(error)
+    const events = toRaw(dates.value[date].events)
+    const newEvents = events.filter((event, key) => {
+        if (key !== eventId) {
+            return event
+        }
+    })
+    const response = await useFetch({
+        url: API.removeEvent.path(),
+        method: API.removeEvent.method,
+    });
+    if (response.success === true) {
+        try {
+            dates.value[date].events = newEvents
+            sortEvents(date)
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        console.log('error')
+    }
+}
+
+function prepareFormBeforeSending(rawForm) {
+    //  expected output: 2022-05-27 12:06:28
+    const date = rawForm.start_date
+    const dateParts = date.split('/')
+    const newDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`
+    const start = `${newDate} ${rawForm.start}:00`
+    const end = `${newDate} ${rawForm.end}:00`
+    rawForm.start = start
+    rawForm.end = end
+    delete rawForm.end_date
+    delete rawForm.start_date
+    return rawForm
+}
+
+async function updateEvent() {
+    let form = toRaw(formUpdate.value)
+    const date = form.start_date
+    form = prepareFormBeforeSending(form)
+    const response = await useFetch({
+        url: API.editEvent.path(),
+        method: API.editEvent.method,
+        data: form
+    });
+    if (response.success === true) {
+        try {
+            dates.value[date].events.push(form)
+            sortEvents(date)
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        console.log('error')
     }
 }
 
@@ -247,7 +287,7 @@ function hideNewEventForm() {
 }
 
 function hideEditEventsForm() {
-    showEditEventsPopup.value = '';
+    showCurrentEventsPopup.value = '';
 }
 
 function showNewEventForm(event) {
@@ -270,24 +310,41 @@ function showNewEventForm(event) {
     }
 }
 
-function showEditEventsForm(index) {
+function showCurrentEvent(index) {
     hideNewEventForm()
     selectedDate.value = index
-    showEditEventsPopup.value = index;
-    const newEvents = toRaw(dates.value[index].events)
+    showCurrentEventsPopup.value = index;
+}
 
-    formUpdate.value = {}
-    newEvents.forEach((event, key) => {
-        formUpdate.value['title-' + event.id] = newEvents[key].title;
-        formUpdate.value['location-' + event.id] = newEvents[key].location;
-        formUpdate.value['description-' + event.id] = newEvents[key].description;
-        formUpdate.value['start_date-' + event.id] = index;
-        formUpdate.value['end_date-' + event.id] = index;
-        formUpdate.value['calendar_id-' + event.id] = currentCalendarId.value;
-        formUpdate.value['start-' + event.id] = newEvents[key].start;
-        formUpdate.value['end-' + event.id] = newEvents[key].end;
+const handleShowEventEditForm = (index, id) => {
+    indexUnderEdition.value = id !== indexUnderEdition.value ? id : undefined
+    let newEvent = toRaw(dates.value[index].events)
+    newEvent = newEvent.filter((event, key) => {
+        if (event.id === id) return event
     })
-    console.log(toRaw(formUpdate.value))
+    let start;
+    let end;
+    try {
+        start = newEvent[0].start.split(' ')[1].split(':')
+        start = `${start[0]}:${start[1]}`
+        end = newEvent[0].end.split(' ')[1].split(':')
+        end = `${end[0]}:${end[1]}`
+    } catch (error) {
+        start = ''
+        end = ''
+    }
+    console.log(newEvent)
+    console.log({ start }, { end })
+    formUpdate.value = {
+        title: newEvent[0].title,
+        location: newEvent[0].location,
+        description: newEvent[0].description,
+        start: start,
+        end: end,
+        start_date: index,
+        end_date: index,
+        calendar_id: currentCalendarId.value
+    }
 }
 
 // Watcher(s)
@@ -336,7 +393,7 @@ setCalendars()
         </div>
         <!--====  Calendar days  ====-->
         <div class="calendar__days">
-            <div v-for="(day, index) in dates" class="calendar__day" @click="showEditEventsForm(index)"
+            <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(index)"
                 :class="day.class, selectedDate === index ? 'is-selected-day' : ''" :key="index" :date-id="day.local">
                 <p class="calendar__day-number">{{ day.dayOfMonthNumber }}</p>
                 <div v-for="event in day.events">
@@ -364,24 +421,26 @@ setCalendars()
         </FormKit>
     </div>
     <!--====  Popup edit event  ====-->
-    <div class="popup popup--edit-events" v-show="showEditEventsPopup">
+    <div class="popup popup--edit-events" v-show="showCurrentEventsPopup">
         <h2>Current Events</h2>
-        <!-- 
-        <FormKit type="form" v-model="formUpdate" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Enregistrer"
-            @submit="newEvent">
-            <article class="popup__event" v-for="(event, index) in newEventPopup">
-                <button @click="removeEvent(event.start, index)">supprimer</button>
-                <FormKit type="text" :name="'title-' + event.id" validation="required" label="Titre" />
-                <FormKit type="text" :name="'location-' + event.id" validation="required" label="Lieu" />
-                <FormKit type="textarea" :name="'description-' + event.id" validation="required" label="Description" />
-                <FormKit type="time" :name="'start-' + event.id" label="Début" />
-                <FormKit type="time" :name="'end-' + event.id" label="Fin" />
-                <FormKit :name="'calendar_id-' + event.id" type="hidden" />
-                <FormKit :name="'start_date-' + event.id" type="hidden" />
-                <FormKit :name="'end_date-' + event.id" type="hidden" />
-            </article>
-        </FormKit>
-        -->
+        <article class="popup__event" v-for="(event, index) in newEventPopup">
+            <div class="event">
+                <p>{{ event.title }}</p>
+                <button @click="handleRemoveEvent(event.start, index)">supprimer</button>
+                <button @click="handleShowEventEditForm(event.local, event.id)">editer</button>
+                <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
+                    v-if="indexUnderEdition === event.id" :key="event.id">
+                    <FormKit type="text" name="title" validation="required" :label="'Titre ' + event.id" />
+                    <FormKit type="text" name="location" validation="required" label="Lieu" />
+                    <FormKit type="textarea" name="description" validation="required" label="Description" />
+                    <FormKit type="time" name="start" label="Début" />
+                    <FormKit type="time" name="end" label="Fin" />
+                    <FormKit name="calendar_id" type="hidden" />
+                    <FormKit name="start_date" type="hidden" />
+                    <FormKit name="end_date" type="hidden" />
+                </FormKit>
+            </div>
+        </article>
     </div>
 
 </template>
@@ -473,6 +532,14 @@ setCalendars()
 
 .popup--new-event {}
 
+.event {
+    display: flex;
+    background-color: lightgray;
+    width: 100%;
+    margin: 2px 0;
+    box-sizing: content-box;
+}
+
 .popup--edit-events,
 :deep(.formkit-form) {
     display: flex;
@@ -481,6 +548,7 @@ setCalendars()
 }
 
 .popup__event {
-    list-style: none;
+    width: 100%;
+    margin: 0 1rem;
 }
 </style>
