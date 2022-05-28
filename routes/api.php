@@ -14,6 +14,7 @@ use App\Http\Controllers\GapsMarksController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\TelegramController;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
 
