@@ -5,14 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use voku\helper\HtmlDomParser;
+use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRelationships;
+
 
     const ROLE_STUDENT = 'student';
     const ROLE_TEACHER = 'teacher';
@@ -140,6 +143,6 @@ class User extends Authenticatable
 
     public function events()
     {
-        return $this->hasManyThrough(Event::class, Calendar::class);
+        return $this->hasManyDeep(Event::class, ['calendar_user', Calendar::class]);
     }
 }
