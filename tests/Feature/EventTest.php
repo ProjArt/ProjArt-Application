@@ -73,7 +73,7 @@ class EventTest extends TestCase
 
         $calendar = Calendar::factory()->create();
 
-        $user->calendarsOwn()->sync($calendar);
+        $user->calendars()->attach($calendar->id, ['rights' => Calendar::EDIT_RIGHT]);
 
         $response = $this->json(
             "POST",
@@ -116,7 +116,7 @@ class EventTest extends TestCase
 
         $calendar = Calendar::factory()->create();
 
-        $user->calendarsOwn()->sync($calendar);
+        $user->calendars()->attach($calendar->id, ['rights' => Calendar::EDIT_RIGHT]);
 
         $event = Event::factory()->create([
             'calendar_id' => $calendar->id,
@@ -137,6 +137,6 @@ class EventTest extends TestCase
         ]);
 
         $event->delete();
-        $calendar->forceDelete();
+        Calendar::whereName("Calendar name")->forceDelete();
     }
 }
