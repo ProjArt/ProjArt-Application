@@ -28,6 +28,7 @@ class GapsMenuService
             $menu = Menu::firstOrCreate([
                 'id' => $tweet["id"],
             ]);
+
             $menuDatas = explode("*", $tweet["text"]);
             $menuDatas = [
                 "entry" => trim($menuDatas[0]),
