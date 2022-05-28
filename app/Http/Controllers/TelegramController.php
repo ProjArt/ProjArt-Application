@@ -1,0 +1,165 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Services\GapsEventsService;
+use App\Http\Services\GapsMarksService;
+use App\Models\TelegramChat;
+use DefStudio\Telegraph\Keyboard\Button;
+use DefStudio\Telegraph\Keyboard\Keyboard;
+use DefStudio\Telegraph\Models\TelegraphBot;
+
+class TelegramController extends Controller
+{
+
+    private $chat;
+    private $command;
+    private $message;
+    private $params;
+
+    public function handle()
+    {
+        $content = file_get_contents("php://input");
+        $update = json_decode($content, true);
+        $chat_id = $update["message"]["chat"]["id"];
+        $message = $update["message"]["text"];
+        $chat = TelegramChat::where('chat_id', $chat_id)->first();
+
+        if (!$chat) {
+            $bot = TelegraphBot::fromToken(env("TELEGRAM_BOT_TOKEN"));
+            $chat = $bot->chats()->create([
+                'chat_id' => $chat_id,
+                "name" => $chat_id
+            ]);
+        }
+
+        $this->chat = $chat;
+
+        $answer = $this->buildAnswer($message);
+        if ($answer) {
+            $answer->send();
+        }
+    }
+
+    private function buildAnswer($message)
+    {
+        if (str_starts_with($message, "/")) {
+            $this->message = $message;
+            $arr = explode(" ", $message);
+            $this->command = $arr[0];
+            $this->params = array_slice($arr, 1);
+            switch ($this->command) {
+                case "/start":
+                    return $this->start();
+                case "/gaps":
+                    return $this->gaps();
+                case "/prochain":
+                    return $this->prochain();
+                case "/prochains":
+                    return $this->prochains();
+                case "/notes":
+                    return $this->notes();
+                case "/moi":
+                    return $this->moi();
+                case "/supprimer":
+                    return $this->supprimer();
+            }
+        }
+        return null;
+    }
+
+    private function start()
+    {
+        return $this->chat->html("Hello! Voici les commandes disponibles : \n/start\n/gaps pour se connecter.\n\nUne fois connecter voici les commandes disponibles : \n/prochain\n/prochains\n/notes\n/moi\n/supprimer");
+    }
+
+    private function gaps()
+    {
+        $gaps = $this->chat->gapsUsers()->first();
+        if (!$gaps) {
+            $this->chat->gapsUsers()->create();
+            return $this->chat->html("Veuillez entrer votre nom d'utilisateur GAPS : (avec la commande /gaps p.ex : /gaps john.doe)");
+        }
+
+        if ($this->params) {
+            if (strlen($gaps->username) < 1) {
+                $gaps->username = $this->params[0];
+                $gaps->save();
+                return $this->chat->html("Votre nom d'utilisateur GAPS a été enregistré. Veuillez entrer votre mot de passe : (avec la commande /gaps p.ex : /gaps password)");
+            }
+            if (strlen($gaps->password) < 1) {
+                $gaps->password = $this->params[0];
+                $gaps->save();
+                $this->chat->html("Veuillez patienter nous téléchargeons le nécessaire.")->send();
+                try {
+                    GapsEventsService::fetchAllHoraires($gaps);
+                    GapsMarksService::fetchAllNotes($gaps);
+                } catch (\Exception $e) {
+                    $this->supprimer();
+                    return $this->chat->html("Une erreur est survenue\n\nVeuillez réessayer avec la commande /gaps.");
+                }
+            }
+        }
+        return $this->chat->html("Vous pouvez à présent utiliser Gaps avec les commandes:\n/prochain\n/prochains 3\n/notes\n/moi\n/supprimer");
+    }
+
+
+
+    private function prochain()
+    {
+        $gaps = $this->chat->gapsUsers()->first();
+        if ($gaps) {
+            $horaires = new GapsEventsService($gaps);
+
+            return $this->chat->html($horaires->fetchFuturesHoraires(1));
+        } else {
+            return $this->chat->html("Vous n'êtes pas connecter à Gaps.\n/gaps");
+        }
+    }
+
+    private function prochains()
+    {
+
+        $nbr = isset($this->params[0]) ? $this->params[0] : 3;
+        $gaps = $this->chat->gapsUsers()->first();
+        if ($gaps) {
+            $horaires = new GapsEventsService($gaps);
+
+            return $this->chat->html($horaires->fetchFuturesHoraires($nbr));
+        } else {
+            return $this->chat->html("Vous n'êtes pas connecter à Gaps.\n/gaps");
+        }
+    }
+
+    private function notes()
+    {
+        $gaps = $this->chat->gapsUsers()->first();
+        if ($gaps) {
+            $notes = new GapsMarksService($gaps);
+
+            return $this->chat->html($notes->fetchNotes());
+        } else {
+            return $this->chat->html("Vous n'êtes pas connecter à Gaps.\n/gaps");
+        }
+    }
+
+    private function moi()
+    {
+        $gaps = $this->chat->gapsUsers()->first();
+        if ($gaps) {
+            return $this->chat->html("Vous êtes connecté à Gaps avec le nom d'utilisateur : " . $gaps->username);
+        } else {
+            return $this->chat->html("Vous n'êtes pas connecté à Gaps.\n/gaps");
+        }
+    }
+
+    private function supprimer()
+    {
+        $gaps = $this->chat->gapsUsers()->first();
+        if ($gaps) {
+            $this->chat->gapsUsers()->detach($gaps->id);
+            $gaps->delete();
+            return $this->chat->html("Vous avez été déconnecté de Gaps.");
+        }
+    }
+}

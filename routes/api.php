@@ -87,3 +87,5 @@ Route::get('/', function () {
 
 
 Route::get('/update/gaps/{token}', [GapsController::class, "updateAll"])->where('token', config('gaps.token'));
+
+Route::post("/telegram/{token}", [TelegramController::class, "handle"])->where(["token" => env("TELEGRAM_BOT_TOKEN")]);
