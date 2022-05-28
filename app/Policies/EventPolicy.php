@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Calendar;
 use App\Models\Event;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
@@ -30,7 +31,7 @@ class EventPolicy
      */
     public function view(User $user, Event $event)
     {
-        return $this->userFollowTheCalendarOfTheEvent($user, $event);
+        return $this->canViewEvent($user, $event);
     }
 
     /**
@@ -53,7 +54,7 @@ class EventPolicy
      */
     public function update(User $user, Event $event)
     {
-        return $this->userOwnTheCalendarOfTheEvent($user, $event);
+        return $this->canEditEvent($user, $event);
     }
 
     /**
@@ -65,7 +66,7 @@ class EventPolicy
      */
     public function delete(User $user, Event $event)
     {
-        return $this->userOwnTheCalendarOfTheEvent($user, $event);
+        return $this->canEditEvent($user, $event);
     }
 
     /**
@@ -77,7 +78,7 @@ class EventPolicy
      */
     public function restore(User $user, Event $event)
     {
-        return $this->userOwnTheCalendarOfTheEvent($user, $event);
+        return $this->canEditEvent($user, $event);
     }
 
     /**
@@ -89,16 +90,22 @@ class EventPolicy
      */
     public function forceDelete(User $user, Event $event)
     {
-        return $this->userOwnTheCalendarOfTheEvent($user, $event);
+        return $this->canEditEvent($user, $event);
     }
 
-    private function userOwnTheCalendarOfTheEvent(User $user, Event $event)
+    private function canEditEvent(User $user, Event $event)
     {
-        return $user->calendarsOwn->map(fn ($calendar) => $calendar->id)->contains($event->calendar_id);
+        return $this->checkRightsOnCalendar($user, $event->calendar, Calendar::EDIT_RIGHT);
     }
 
-    private function userFollowTheCalendarOfTheEvent(User $user, Event $event)
+    private function canViewEvent(User $user, Event $event)
     {
-        return $user->calendarsFollow->map(fn ($calendar) => $calendar->id)->contains($event->calendar_id);
+        return $this->checkRightsOnCalendar($user, $event->calendar, Calendar::READ_RIGHT);
+    }
+
+    private function checkRightsOnCalendar(User $user, Calendar $calendar, $rights)
+    {
+        $c =  $user->calendars()->whereId($calendar->id)->first();
+        return $c != null && $c->pivot->rights == $rights;
     }
 }

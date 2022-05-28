@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShareCalendarRequest;
 use App\Http\Requests\StoreCalendarRequest;
 use App\Http\Requests\UpdateCalendarRequest;
 use App\Models\Calendar;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 /**
@@ -14,6 +16,12 @@ use Illuminate\Http\Request;
  */
 class CalendarController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->authorizeResource(Calendar::class, 'calendar');
+    }
+
     /**
      * 
      * getCalendars
@@ -44,51 +52,88 @@ class CalendarController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        return httpSuccess('Calendars', $user->calendarsOwn);
+        return httpSuccess('Calendars', $user->calendars);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store calendar
+     * 
+     * Crée un calendrier.
      *
-     * @param  \App\Http\Requests\StoreCalendarRequest  $request
+     * @param  \App\Http\Requests\StoreCalendarOwnRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(StoreCalendarRequest $request)
     {
-        //
+        $user = $request->user();
+        $calendar = Calendar::create($request->validated());
+        $user->calendars()->attach($calendar);
+        return httpSuccess('Calendar added', $user->calendars, 201);
     }
 
     /**
-     * Display the specified resource.
+     * Show calendar
+     * 
+     * Retourne un json contenant un calendrier.
      *
-     * @param  \App\Models\Calendar  $calendar
+     * @param  \App\Models\CalendarOwn  $calendarOwn
      * @return \Illuminate\Http\Response
      */
     public function show(Calendar $calendar)
     {
-        //
+        return httpSuccess('Calendar', $calendar);
     }
 
     /**
+     * Update calendar
+     * 
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateCalendarRequest  $request
-     * @param  \App\Models\Calendar  $calendar
+     * @param  \App\Http\Requests\UpdateCalendarOwnRequest  $request
+     * @param  \App\Models\CalendarOwn  $calendarOwn
      * @return \Illuminate\Http\Response
      */
     public function update(UpdateCalendarRequest $request, Calendar $calendar)
     {
-        //
+        $user = $request->user();
+        $calendar->update($request->validated());
+        return httpSuccess('Calendar updated', $user->calendars);
     }
 
     /**
+     * Delete calendar
+     * 
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Calendar  $calendar
+     * @param  \App\Models\CalendarOwn  $calendarOwn
      * @return \Illuminate\Http\Response
      */
     public function destroy(Calendar $calendar)
     {
-        //
+        $calendar->delete();
+        return httpSuccess('Calendar deleted');
+    }
+
+    /**
+     * Share calendar
+     * 
+     * Partage un calendrier avec un autre utilisateur.
+     *
+     * @bodyParam user_id int required ID de l'utilisateur à qui partager le calendrier.
+     * @bodyParam calendar_id int required ID du calendrier à partager.           
+     */
+    public function share(ShareCalendarRequest $request)
+    {
+        $userToShare = User::find($request->user_id);
+        $calendar = Calendar::find($request->calendar_id);
+
+        $this->authorize('share', $calendar);  // Check if user can share calendar
+
+        $userToShare->calendars()
+            ->sync([$calendar->id => [
+                'rights' => $request->can_own ? Calendar::EDIT_RIGHT : Calendar::READ_RIGHT
+            ]], false);
+
+        return httpSuccess('Calendar shared');
     }
 }

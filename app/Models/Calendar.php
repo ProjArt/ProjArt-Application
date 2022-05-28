@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Calendar extends Model
 {
+    const READ_RIGHT = 1;
+    const EDIT_RIGHT = 2;
+
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
@@ -19,13 +23,8 @@ class Calendar extends Model
         return $this->hasMany(Event::class);
     }
 
-    public function usersOwn()
+    public function users()
     {
-        return $this->belongsToMany(User::class, 'calendar_user_own', 'calendar_id', 'user_id');
-    }
-
-    public function usersFollow()
-    {
-        return $this->belongsToMany(User::class, 'calendar_user_follow', 'calendar_id', 'user_id');
+        return $this->belongsToMany(User::class)->withPivot(["rights"]);
     }
 }
