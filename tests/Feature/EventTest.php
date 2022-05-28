@@ -45,8 +45,8 @@ class EventTest extends TestCase
             'data' => [
                 '*' => [
                     'id',
-                    'events',
                     'name',
+                    'can_edit',
                     'events' => [
                         '*' => [
                             'id',

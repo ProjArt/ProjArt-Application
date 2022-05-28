@@ -54,8 +54,8 @@ class EventController extends Controller
             return [
                 "id" => $calendar->id,
                 "name" => $calendar->name,
-                "events" => $calendar->events()->orderBy('start')->get(),
                 "can_edit" => $calendar->pivot->rights == Calendar::EDIT_RIGHT,
+                "events" => $calendar->events,
             ];
         });
 
