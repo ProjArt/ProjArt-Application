@@ -85,9 +85,7 @@ class TelegramController extends Controller
             if (!($u != null && $passwordCorrect)) {
                 return $this->chat->html("Les données entrées sont incorrects");
             }
-            $this->chat->users()->create([
-                "user_id" => $u->id,
-            ]);
+            $this->chat->users()->attach($u->id);
         } else if (!$user) {
             return $this->chat->html("Veuillez entrer votre nom d'utilisateur GAPS et votre mot de passe : (avec la commande /gaps p.ex : /gaps john.doe password)");
         }
