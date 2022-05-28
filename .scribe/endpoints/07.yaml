@@ -8,14 +8,14 @@ endpoints:
       - GET
     uri: api/marks
     metadata:
-      title: 'Obtenir les notes'
-      description: "Retourne un json contenant une liste des notes de l'utilisateur."
+      title: 'Get marks'
+      description: 'Retourne un json contenant une liste des notes de l''utilisateur.'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []

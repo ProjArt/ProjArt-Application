@@ -15,35 +15,20 @@ endpoints:
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-          </html>
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImhLZ292NVN2NEpaMzdsTDdHWlZvV1E9PSIsInZhbHVlIjoiVFgzL1pLbXkwRGMvK0czU2Z6V0tRWnllL3lnN0R4YmRaeHJ5SGltUlptakFIc0VtK2lRZzhzRjBUbHVsblpITm1LYVJGK0dzRU1Ud2FRWHN3ZFdhdGZlaUFrVTJiSWNROHdVa2R6dSt6L21Oc2JRdDkvRWJQcG80eU5oMFBuQWgiLCJtYWMiOiI4YzcyNmVjZTVhNDE3Y2MzZWI1ODM1ZGYzNjkwMWIxMzM0MWUyZTdiYzEyY2UxOGNhMzQ2MWE5Yzk4NDY0YWY2IiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Img1VVZ4dG5uWXNrT0JVNUNNSVdBVFE9PSIsInZhbHVlIjoiaFdvb2p3b1RUNkJUK2ltbFRoME4zMGc3ZGdhd3c0YW5ITTFXZWd1MW5iY1RmaWpmbTl1UktlZWRsODVHbjlCVVpuY3RlNTNvc3hETkJkamN5RVFVY0tjRHVHaDV5c3BEVTcvMGozb1BaZWxnaG9JcEdXWmNmcGp5YTNYMit4d20iLCJtYWMiOiJhNWVhM2FlN2E0ZGI4OGMwZTMwMmRkNjBkMjAxNDBhZDJhY2VmZDIwYWJkZWM5ODM2ZGY2Y2UyOGJlMDQzMDg2IiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          access-control-allow-origin: '*'
         description: null
     responseFields: []
   -
@@ -56,15 +41,15 @@ endpoints:
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters:
       token:
         name: token
         description: ''
         required: true
-        example: secret
+        example: VGrxhPp9xuDb947JZADe7ESdBDkwdq
         type: string
         custom: []
     queryParameters: []
@@ -72,26 +57,13 @@ endpoints:
     responses:
       -
         status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-          </html>
+        content: '{"success":true,"message":"All fetched","data":{"user":null}}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjNOSmg3T2JTVE5qTXBIeGZ4US9vR0E9PSIsInZhbHVlIjoielg2V28xR3J4OHpjbWFIU2tjMzhUQ1BJZlFzWEkzcnpyQWZ5UVFZekRNc2J4anJlQlNrRjZRRTJsb2tIbERKakxwMjdwYUZjNnpYeS9QMG1SaGdZZ1l5WUpFWVJqai9JNytsUkdxQmxvRTByYU9vZ2EvalR1VFpRNkxRdHRXeGgiLCJtYWMiOiI2NTFkYjcwNjdjMzA3ZGVhNGE4MWIzNWZlMGU0MDU0Y2E2ZGUyMjZjYzA5Nzc3M2E5NDM4N2MwOGViNTM4NTAyIiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Ikl2Tm5IMDNqREM0UUduYVRsYjR2QlE9PSIsInZhbHVlIjoiSk42OUxXUVc4aW5Ta00zS2phQ3ovUVZRM3o5U2Fob2t0dVhXdlZEdmJEcFFuUnFUQlFONWxTQWhuRlpXQ0lPTXhXbjJQMnhsN2syNllyWnFVRUlKNzJQK2N1b3p2TE45K0haaUJTUW9KVE9QOFBDZ2tXdW0rUUJLRndvcTlqV1UiLCJtYWMiOiIwZDM0ODMxMmJiYThkNzFhNzQ1YjJhODNlMGYwNmEyOGU0OGJmZjZlMjEzN2RmMGM2ZTJmMGQxZTM2ZjY3YjJhIiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
         description: null
     responseFields: []
   -
@@ -104,35 +76,20 @@ endpoints:
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-          </html>
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkJvRjNEUzBOQ3RINlFMRWJsZDhFUVE9PSIsInZhbHVlIjoiYkZHMHREUkRpdXVjaHZ4THJJU2hEenFiSWZrSHh1ek5RbWxLNWxIUmhMZjY2b0JCa3J1SkVkY01KUmE5MkRnRUYzOGloeTFuc0I5eHJPMHhLbjBtRjB3c0xyMmFjMmRJckQ5OHllWGNuSlQ3VVNJVW5YQ05IVHVWMjlpUnhnUC8iLCJtYWMiOiIxMGZlODU3ZTZkZTk3YzRlOGJmZmIwYzcyOTY2MWVjM2Q5NTZhNWYwNjc1ZTU3YTc4YjQzMDM5ZjhlNjY4MmQyIiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6ImkxSDk0Ym4vdTdoSm9qdTBBK0pUUHc9PSIsInZhbHVlIjoidjgzWnM1akIwZ2ZxSkhqL1RWTlBqOU5acEZtaGI0ajF1cnFvMGx6aTRDNy9KcGFldXNFWTdwSTczS1lNakNxcWJYREljU2lsb3N5Uklua0FGb2tvWWpCSjN0K1MrN3pDWXJGZzBwb2w5L0R2TzhlNVM2QndhcU5oM01sRlU1clQiLCJtYWMiOiIzMjBkMTYyNDY2ODUwYTk0ZjJkOTI3ZDhiMzI5ZjI3MmQ2NzVhMzc2N2ViNDU3OGFjMGYxOGIzNDU1NDYyNzg4IiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          access-control-allow-origin: '*'
         description: null
     responseFields: []
   -
@@ -145,34 +102,19 @@ endpoints:
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-          </html>
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjlMazA4YjZVR1pMeGpvK0RZTmtyd2c9PSIsInZhbHVlIjoiK1g2YXF3REU2dFVRWFZYVXlyUVJBWG1UVVJkQ3J4UWdJUVkrNlU1c0lwNmNnSFF3dWhPTnBHTnVuVy95UnN0Ym5MRzdFR0E1cnNuR1JrUWx6WnVQeStxMjllanpRZjVmSFBKL3Q1VFE2OFc0NnJBTG1CZ0ZST3o0MDdIZFhNQ3YiLCJtYWMiOiJmOTI3ZjgwNzc4ODk1OTBlODlhNmY1MTU1NTM1ZTQ0NjgyYmM3ZTk4MjZkYjQwZjliODYxYTAzNGZmNjQwNmVlIiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IlF1VlZ5Y1duTFNHUkVwWTZrZUpaV2c9PSIsInZhbHVlIjoiUzVabmxhbHBzVlE0YTFuZlROR1NDa3prQmhkYmhQc3dhSHNpTGNEb1RSYUlWWVloTFBWSWwyY2phS051Nk5TZEFlajBLcGZsY2E1WUpnWHZKOXdlQWFib3NPR0JROFNRTlRsN2FHaSt6UFNtbkRQQUpGSG5PSitMdG55M25YR2QiLCJtYWMiOiJmNDdiNDY0ZTk2YjE1MDlmNTQ3ODQ5MDIwY2M3ZWYxZDQ0ZThkMjJjNzIyZWEwZmE2NDkxYzAxM2JhNjY3Mjc1IiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          access-control-allow-origin: '*'
         description: null
     responseFields: []

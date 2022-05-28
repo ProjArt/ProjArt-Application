@@ -8,36 +8,36 @@ endpoints:
       - POST
     uri: api/login
     metadata:
-      title: ''
-      description: ''
+      title: login
+      description: 'Authentication for a user'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
       username:
         name: username
-        description: 'Must not be greater than 255 characters.'
+        description: 'The Gaps username of the user.'
         required: true
-        example: csmjizowjtkpjzcikrlwrxevdqlnsheaxbqeyzvfatfcaehhjmyjecbbameioayesatlkrrmdhsctfnfojismksbkfpmlektailstpfzndogvosaqfncmxursxnirwvsfadqusxwvohciurfpqvnrjifslrmryylegktgvsqtosqcbapborqqajz
+        example: exercitationem
         type: string
         custom: []
       password:
         name: password
-        description: 'Must be at least 5 characters.'
+        description: 'The Gaps password of the user.'
         required: true
-        example: l
+        example: et
         type: string
         custom: []
       classroom_name:
         name: classroom_name
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: lnbpbobryiqzsleepldirgewgadvpsrxqfoyqjyceauvilptoplkuzurpzwbzvcookpwjpdmbwoxmeeuxboqfyouxrhhykyciincrslrdbqsmlejgonm
+        example: abazkbxhhsvsgrd
         type: string
         custom: []
     responses: []
@@ -47,36 +47,36 @@ endpoints:
       - POST
     uri: api/register
     metadata:
-      title: ''
-      description: ''
+      title: register
+      description: 'Register a new user'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
       username:
         name: username
-        description: 'Must not be greater than 255 characters.'
+        description: 'The Gaps username of the user.'
         required: true
-        example: vwexwxhsgld
+        example: et
         type: string
         custom: []
       password:
         name: password
-        description: 'Must be at least 5 characters.'
+        description: 'The Gaps password of the user.'
         required: true
-        example: yp
+        example: temporibus
         type: string
         custom: []
       classroom_name:
         name: classroom_name
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: erwfkztptnbtkqiguemgjcdezwcynyesgrygspihbssamsfzrabfmywthxgahzhceyqbmcsskwqerhuasrkfwsuklgmeocuktnnhqhvvhneciww
+        description: 'The class of the user.'
+        required: true
+        example: et
         type: string
         custom: []
     responses: []
@@ -86,40 +86,25 @@ endpoints:
       - GET
     uri: api/me
     metadata:
-      title: ''
-      description: ''
+      title: me
+      description: 'Get actual authenticate user'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-          </html>
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjNMb2owcHZjYVlnbzRRZkVZTVliOUE9PSIsInZhbHVlIjoicVFMaTJIRlJJdEF6WHFJVW5CQ0ROekREaER1aWxqY2FTbEFtRWJLTGdYaXl5cWRyck1zdjdzODNDYVc1VitMU1NrLytqcWovR0hrODc3M1dzNTU1OVVMWDhSS1VOYXU1alFMRVIrOVd2elpuM1ZPTDlaYkVXYkhqdnJlWTIyMlAiLCJtYWMiOiJlNTk2Y2Q2ODZhNzY1ZjhkYzhhZjcwYTkyNTNhMTFmN2Q0MDI0YjNkNzBmOTY3ZTEwN2Y5ZTk5YWJkZDBjNGVmIiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IlVyblNubnk0WU5yM25vT3lpY0NwTGc9PSIsInZhbHVlIjoiRHluNm1WOGpsNFE3akdkQTVvSi9HWUhjQlhFMGg0MmswSGpiU1dLVnZyb0pMSXdmV21vc3h2SlVFbzloUk9TTDMrcnV0aFJib0tCcUxqcnVIUGRyd0xoUXJHNEo5YUVOMkF3Yk05anpseXFjNTFlMmk0TTB3WCswTGVaMWJXbzciLCJtYWMiOiJkY2UxMjA3ZDA1ZmJlZDcxNzNlOTZiMThmMDAxNmYwODczYzU3ZTY4MjIyODc4YThmZjhjMWJlMjg4OTg1YjBjIiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          access-control-allow-origin: '*'
         description: null
     responseFields: []
   -
@@ -127,39 +112,24 @@ endpoints:
       - GET
     uri: api/logout
     metadata:
-      title: ''
-      description: ''
+      title: logout
+      description: 'Logout the actual authenticate user'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-          </html>
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlFaSWJ6Q1h4U2NHKzllem9FQjlIWHc9PSIsInZhbHVlIjoiRnU2bzFOMkRwNTVsbk11eUZMSDFFbGxwQW00M2llVFQ1elFuMjdTN3FpU01kdEttdzN3Q1o0THdjUlZSUXNnL3ZTbDBjMG1vYW1IdElMQTdBWmZ6VnhuU2JuSG05U3hudmpUaDZiaWtCeDVUend0bjhWRUtDQUdZbURXQk4xMkkiLCJtYWMiOiJiNDMwNjdkNTkzMjI1NDE1YTQ3YzQ2MWMyNjQ2YmY5MTdjMzVlNDA2ZmU1ZGIxZGY2ZDQ3MjdiZTkwMDc1Zjk5IiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IjhVQ2ZxSElRZjZIVmhuUC9GZ2VoZ1E9PSIsInZhbHVlIjoiRkp2ZHBpNTBIY3RvUTdZVUFkWVJXeXc5T1lXU2plcXd0aCtCZHNkQ3JBbUwwcGRZZlJkcXRTNi8rcEtJNFI4VG1Sb1NVTmxBYmMvc3ZOb3BQUUhjUmE3alQ4bThQZGgxZFA4bG43R2ZSQ2c1ZDRCc1M4TVZuL0hkNUp4ZXVYQm0iLCJtYWMiOiI5M2E1ZjNmNmQ2YmRkNWZiNDYzNTNiNGQxZmI4YmM2OGE1MGRjMzM3MjFmNTNkYmJhMzNmMWJlNTJlOWY0Y2Y2IiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          access-control-allow-origin: '*'
         description: null
     responseFields: []

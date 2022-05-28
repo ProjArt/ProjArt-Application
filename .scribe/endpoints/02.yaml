@@ -8,14 +8,14 @@ endpoints:
       - GET
     uri: api/calendars
     metadata:
-      title: 'Obtenir tous les calendrier'
-      description: "Retourne un json contenant une liste des calendrier. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur."
+      title: 'Get calendars'
+      description: 'Retourne un json contenant une liste des calendrier. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
@@ -37,14 +37,14 @@ endpoints:
       - POST
     uri: api/calendars
     metadata:
-      title: 'Store a newly created resource in storage.'
-      description: ''
+      title: 'Store calendar'
+      description: 'Crée un calendrier.'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
@@ -52,7 +52,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: jyfwrwwydprogyzzxxjmximhvpdffgtjkpgpzhwhkhfalsuaxpemun
+        example: zqsuqtdbgeicmkzfdfdfgmsguiygnxrkuizwdnkdtlbqigltumiyxnnvtwicnfrqbhhcyymexdjsggkysqevgtnmnpsvuqlwxcpgjubqcqnojidcwit
         type: string
         custom: []
     responses: []
@@ -62,47 +62,32 @@ endpoints:
       - GET
     uri: 'api/calendars/{id}'
     metadata:
-      title: 'Display the specified resource.'
-      description: ''
+      title: 'Show calendar'
+      description: 'Retourne un json contenant un calendrier.'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters:
       id:
         name: id
         description: 'The ID of the calendar.'
         required: true
-        example: 7
+        example: 1
         type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-          </html>
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImFaQjJBQ2dYdjA5Yit5U1UzNzhOeXc9PSIsInZhbHVlIjoiZE14aVRCUGtCRGlpR3I1a096RWl6dkxLMVE2M1lEZGpYN2lkK2h1VFNiWXJ3TEE5S09KOHRkMmdHTUd6cFVYK0grWWxFN2RERFB4VXFVTlRvUDYra0RveG8zMklPUVYydklQZFFUa1poTVRXZVZTUnduWHF5R2RnU09NYnF2L28iLCJtYWMiOiI1ZjU5Nzk3NmFkNGNmOGUxM2I0OTQzYmYyYzNjMzYxNjQ4MjVmZGU5ODgyMTRkNDg1NTkwN2ZiZjI0MjI3OWJkIiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Im8yV3NMeGMzSHVPaTV3SElSSW1MRUE9PSIsInZhbHVlIjoiaTE5VUF4YnF4Q1IrQW56RGsvODlXUlhmbXJ0ZDhyWmlwV2lCMEJYeERScnU1SU9XZHp2N0w5ZjY2WkcvQkRSMGp1ajJSdm4welhuamU5djdERVdnNVlOOHhuMWpGbzMrVEZzSThBN2p6SlV5VjkyT3JZTy9LZXQyc1l1NFZUa0EiLCJtYWMiOiJjN2U3MmQzOTlhOTdjNjQzNmIyYmM2OTgzMDZkZWUwYzFiYWEwNjdkYmJjYjQ3NDg5MjkwMDQxYjdiOGFjMWZlIiwidGFnIjoiIn0%3D; expires=Fri, 27 May 2022 14:06:28 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          access-control-allow-origin: '*'
         description: null
     responseFields: []
   -
@@ -111,20 +96,20 @@ endpoints:
       - PATCH
     uri: 'api/calendars/{id}'
     metadata:
-      title: 'Update the specified resource in storage.'
-      description: ''
+      title: 'Update calendar'
+      description: 'Update the specified resource in storage.'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters:
       id:
         name: id
         description: 'The ID of the calendar.'
         required: true
-        example: 6
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -133,7 +118,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: gualgguaqwomtvnmnlltcwpufhbzqlkpycqcikinwpqwtgnlntdgxqbrgpruqkkookngottqbcstpgzkdrymsrtmtrvbngoejrmuejfwwdhaawzbovgrzexhaxfahjuoxokzafazjmehvakoqkqxdhjsslpekdmitlbjxjchavstpnpmsbdexmpqolryookjnbajmwl
+        example: evf
         type: string
         custom: []
     responses: []
@@ -143,20 +128,20 @@ endpoints:
       - DELETE
     uri: 'api/calendars/{id}'
     metadata:
-      title: 'Remove the specified resource from storage.'
-      description: ''
+      title: 'Delete calendar'
+      description: 'Remove the specified resource from storage.'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters:
       id:
         name: id
         description: 'The ID of the calendar.'
         required: true
-        example: 15
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -168,43 +153,43 @@ endpoints:
       - POST
     uri: api/calendars/share
     metadata:
-      title: ''
-      description: ''
+      title: 'Share calendar'
+      description: 'Partage un calendrier avec un autre utilisateur.'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
       calendar_id:
         name: calendar_id
-        description: ''
+        description: 'ID du calendrier à partager.'
         required: true
-        example: autem
-        type: string
+        example: 15
+        type: integer
         custom: []
       user_id:
         name: user_id
-        description: ''
+        description: 'ID de l''utilisateur à qui partager le calendrier.'
         required: true
-        example: sed
-        type: string
+        example: 16
+        type: integer
         custom: []
       can_own:
         name: can_own
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         custom: []
       can_view:
         name: can_view
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         custom: []
     responses: []

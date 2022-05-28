@@ -8,14 +8,14 @@ endpoints:
       - GET
     uri: api/menu
     metadata:
-      title: 'Obtenir tous les menus'
+      title: 'Get cafeteria menu'
       description: 'Retourne un json contenant une liste des menus.'
       authenticated: true
       custom: []
     headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
-      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []

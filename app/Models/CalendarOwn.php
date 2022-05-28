@@ -24,6 +24,11 @@ class CalendarOwn extends Model
         'updated_at',
     ];
 
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'calendar_id', 'id');
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'calendar_user_own', 'calendar_id', 'user_id');

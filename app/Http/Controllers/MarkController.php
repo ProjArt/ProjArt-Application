@@ -17,7 +17,7 @@ class MarkController extends Controller
 {
     /**
      * 
-     * Obtenir les notes
+     * Get marks
      * 
      * Retourne un json contenant une liste des notes de l'utilisateur.
      *

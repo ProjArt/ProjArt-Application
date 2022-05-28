@@ -25,7 +25,7 @@ class CalendarOwnController extends Controller
 
     /**
      * 
-     * Obtenir tous les calendrier
+     * Get calendars
      * 
      * Retourne un json contenant une liste des calendrier. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur.
      *
@@ -48,7 +48,9 @@ class CalendarOwnController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store calendar
+     * 
+     * Crée un calendrier.
      *
      * @param  \App\Http\Requests\StoreCalendarOwnRequest  $request
      * @return \Illuminate\Http\Response
@@ -62,7 +64,9 @@ class CalendarOwnController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Show calendar
+     * 
+     * Retourne un json contenant un calendrier.
      *
      * @param  \App\Models\CalendarOwn  $calendarOwn
      * @return \Illuminate\Http\Response
@@ -73,6 +77,8 @@ class CalendarOwnController extends Controller
     }
 
     /**
+     * Update calendar
+     * 
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateCalendarOwnRequest  $request
@@ -87,6 +93,8 @@ class CalendarOwnController extends Controller
     }
 
     /**
+     * Delete calendar
+     * 
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\CalendarOwn  $calendarOwn
@@ -98,6 +106,14 @@ class CalendarOwnController extends Controller
         return httpSuccess('Calendar deleted');
     }
 
+    /**
+     * Share calendar
+     * 
+     * Partage un calendrier avec un autre utilisateur.
+     *
+     * @bodyParam user_id int required ID de l'utilisateur à qui partager le calendrier.
+     * @bodyParam calendar_id int required ID du calendrier à partager.           
+     */
     public function share(ShareCalendarRequest $request)
     {
         $userToShare = User::find($request->user_id);
