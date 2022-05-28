@@ -17,7 +17,7 @@ class GapsMarksService
 
     public function fetchNotes()
     {
-        $notes = $this->user->notes()->where('yearEnd', "=", now()->year)->orWhere('yearStart', "=", now()->year)->orderBy('module_code')->get();
+        $notes = $this->user->marks()->where('yearEnd', "=", now()->year)->orWhere('yearStart', "=", now()->year)->orderBy('module_code')->get();
         return $this->displayNotes($notes);
     }
 

@@ -59,6 +59,10 @@ class TelegramController extends Controller
                     return $this->prochains();
                 case "/notes":
                     return $this->notes();
+                case "/menu":
+                    return $this->menu();
+                case "/absences":
+                    return $this->absences();
                 case "/moi":
                     return $this->moi();
                 case "/supprimer":
@@ -151,4 +155,23 @@ class TelegramController extends Controller
             return $this->chat->html("Vous avez été déconnecté de Gaps.");
         }
     }
-}
+
+    private function menu() {
+        $user = $this->chat->users()->first();
+
+
+        if ($gaps) {
+            $meals = Meal::with('menu')->whereDate('menu.date', Carbon::today())->get();
+
+            $s = "";
+
+            foreach ($meals as $meal) {
+                $s .= $meal->entry."\n";
+                $s .= $meal->plate."\n";
+                $s .= $meal->dessert."\n";
+            }
+
+            return $this->chat->html($s);
+        }
+
+    }
