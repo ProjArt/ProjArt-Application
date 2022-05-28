@@ -137,4 +137,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Absence::class);
     }
+
+    public function events()
+    {
+        return $this->hasManyThrough(Event::class, Calendar::class);
+    }
 }
