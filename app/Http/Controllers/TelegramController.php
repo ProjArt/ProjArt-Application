@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
 use App\Models\TelegramChat;
+use App\Models\User;
 use DefStudio\Telegraph\Keyboard\Button;
 use DefStudio\Telegraph\Keyboard\Keyboard;
 use DefStudio\Telegraph\Models\TelegraphBot;
@@ -75,20 +76,19 @@ class TelegramController extends Controller
     private function gaps()
     {
         $user = $this->chat->users()->first();
-        if (!$user) {
-            //$this->chat->users()->create();
-            return $this->chat->html("Veuillez entrer votre nom d'utilisateur GAPS : (avec la commande /gaps p.ex : /gaps john.doe)");
-        }
 
         if ($this->params) {
-            /* if (strlen($gaps->username) < 1) {
-                $gaps->username = $this->params[0];
-                $gaps->save();
-                return $this->chat->html("Votre nom d'utilisateur GAPS a été enregistré. Veuillez entrer votre mot de passe : (avec la commande /gaps p.ex : /gaps password)");
-            } */
-            if ($user->password != $this->params[0]) {
+            $username = $this->params[0];
+            $password = $this->params[1];
+            $exist = User::whereUsername($username)->exists();
+            $passwordCorrect = $exist ? User::whereUsername($username)->first()->password == $password : false;
+            if (!($exist && $passwordCorrect)) {
                 return $this->chat->html("Les données entrées sont incorrects");
             }
+        }
+
+        if (!$user) {
+            return $this->chat->html("Veuillez entrer votre nom d'utilisateur GAPS et votre mot de passe : (avec la commande /gaps p.ex : /gaps john.doe password)");
         }
         return $this->chat->html("Vous pouvez à présent utiliser Gaps avec les commandes:\n/prochain\n/prochains 3\n/notes\n/moi\n/supprimer");
     }
