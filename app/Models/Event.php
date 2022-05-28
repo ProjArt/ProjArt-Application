@@ -32,4 +32,9 @@ class Event extends Model
     {
         return $this->belongsTo(Calendar::class);
     }
+
+    public function scopeNexts($query, $items)
+    {
+        return $query->where('end', '>=', now()->format('Y-m-d H:i:s'))->orderBy('start', 'asc')->take($items);
+    }
 }
