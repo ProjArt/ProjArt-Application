@@ -67,7 +67,7 @@ class CalendarController extends Controller
     {
         $user = $request->user();
         $calendar = Calendar::create($request->validated());
-        $user->calendars()->attach($calendar);
+        $user->calendars()->attach($calendar, ["rights" => Calendar::EDIT_RIGHT]);
         return httpSuccess('Calendar added', $user->calendars, 201);
     }
 
