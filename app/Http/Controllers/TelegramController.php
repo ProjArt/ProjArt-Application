@@ -80,13 +80,13 @@ class TelegramController extends Controller
         if ($this->params) {
             $username = $this->params[0];
             $password = $this->params[1];
-            $exist = User::whereUsername($username)->exists();
-            $passwordCorrect = User::whereUsername($username)->first()?->password == $password;
-            if (!($exist && $passwordCorrect)) {
+            $u = User::whereUsername($username)->first();
+            $passwordCorrect = $u?->password == $password;
+            if (!($u != null && $passwordCorrect)) {
                 return $this->chat->html("Les données entrées sont incorrects");
             }
             $this->chat->users()->create([
-                "user_id" => User::whereUsername($username)->first()->id,
+                "user_id" => $u->id,
             ]);
         } else if (!$user) {
             return $this->chat->html("Veuillez entrer votre nom d'utilisateur GAPS et votre mot de passe : (avec la commande /gaps p.ex : /gaps john.doe password)");
