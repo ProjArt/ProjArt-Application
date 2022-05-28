@@ -9,13 +9,11 @@ const isAuthenticated = ref(false);
 
 const submitHandler = async () => {
     isSubmitted.value = true
-    console.log(toRaw(formData.value))
     const response = await useFetch({
         url: API.login.path(),
         method: API.login.method,
         data: toRaw(formData.value)
     })
-    console.log(response);
     if (response.success === true) {
         isAuthenticated.value = true;
         localStorage.setItem('token', response.data.access_token);

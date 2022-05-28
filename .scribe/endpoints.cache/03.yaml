@@ -11,13 +11,13 @@ endpoints:
     uri: api/events
     metadata:
       title: 'Get events'
-      description: 'Retourne un json contenant une liste des évènements. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
+      description: "Retourne un json contenant une liste des évènements. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur."
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
@@ -56,9 +56,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
@@ -66,42 +66,42 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: yugriwwpoxkgpadenlslltsdwfmfdlwqouhghwayuaodhwxhmkwnrusggutaqaocziuildtfwxurvyfrjgugduniamkwlsjzfpspfqjnqpzratrkhutjadbbqhxgzstvulmadddirhdjipcyyrxbetfwmssizfwdzybvjdxhkoeyqtulczlggxnxuhuhinwmqrakhsdvvvcysqbqjloabtgdhtgzoepjskdypmhovsxelfenbzwjvutycstlqmu
+        example: txmhdvijqdyyunqhbjizxevvofealevmqtmaooxpbv
         type: string
         custom: []
       description:
         name: description
         description: 'Must not be greater than 1000 characters.'
         required: true
-        example: pwdaddefpaymbtruodbhcdthhtgfdoflikymbsjiawpwvpsuqgmukfbzapowabjmncysxtdxmtgyfisiybvoctzldtifatiwtzndftsqkvllosqypbbnjijfgziqhqmnxqpsnyjsyybilqazoyuonelsrqacwyawqzuylxgckderatosvjjxltwzmlkriudpzfrtejkbzgtacblebxazjknmwfpnfdwwibvuellqajdfaozifkoazvbboovvdtkilttpimhcsffllqthcglhvtozcidtjggbterjvfrlpinvtstahmljybkoltrucvvfufadjgbwjtpyodxypghquzcwctzbqzujglqzctlxuncllnivbnbrhprkuigfmbucybdmcmzrngazyippulrshkvizxoambxkyxhwkxiwrqgmxbhgimubrzcqghbvikkgyfsvrptdvuqvdknqvzwatglxxtewyvafuudjodrdzndwoxwhzaxvbwxhslqjfrtwozkfwwogqseiyqxetrrcjrkyjwzwlkxvjkhckogxpgeabieuhequkgcppoaupgcqebxvqnwlhfpvqayknbezawnftkwjomtsxvecacopbvvwhbn
+        example: rmpnlwlxqwlsehyvwtdaxnlppczckqkcydwerkoiicatjrdkmxeskdysonphwljiasdstjwbxkpsctqkputkunrcgwdhfrssebrcuauuqlwpuozaztbmjjyqbavhmrttfpaxlfqkaefsyphqxspxrhvckfacwqlzjdmvqsayjoxqvdkiyosxjmovwrhtfxygsivuwsfgsgitfvuubmftnsiixdvaajqoqihqcvhzprdjreadzluwaadpmbarkmbjunlxlzeopwzvgwioutwyzaljftqikdifyylnfbehmrnrbftzfobihrmxpusohdlclekqxotudmpdasdmipggmandfqfssbopumfhdfbtpjpmbytutlqbvzghfxuhgwbwkltocnpsimtghhlagrvxxifewsmqzewckigegwvbkqziaqsyvhoqzdupgdhzdgrtahddtsaoaiygtqgrsrrkcafkdrqrxdcimvibrohfwvoiljcrcfhyunisvxoupvumjbyty
         type: string
         custom: []
       start:
         name: start
         description: 'Must be a valid date.'
         required: true
-        example: '2022-05-27T14:40:06'
+        example: '2022-05-28T18:27:17'
         type: string
         custom: []
       end:
         name: end
         description: 'Must be a valid date.'
         required: true
-        example: '2022-05-27T14:40:06'
+        example: '2022-05-28T18:27:17'
         type: string
         custom: []
       location:
         name: location
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: tzjarfmimzdyoabpzffswclekzgjstv
+        example: cffejbkzgwxvxehmiuuflnkzdabyrwapyamfdlyvotlwhkltcppawwrihfuumeeyktbpwbwqsdjxozwvroetwwgkvwlmbpswhagealrsxfllfsmlaagpdruryfnkoiomysclojblmwcydqjfgnxmiojxnriizjstjwegaifeqwjurkirumstknjznepgrulrqgogsyobeibocgcyaaemkxqs
         type: string
         custom: []
       calendar_id:
         name: calendar_id
         description: ''
         required: true
-        example: eos
+        example: vel
         type: string
         custom: []
     responses:
@@ -136,9 +136,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters:
       id:
         name: id
@@ -151,12 +151,27 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+              <title>Document</title>
+              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+          </head>
+          <body>
+              <div id="app"></div>
+
+              <script src="//localhost:8080/js/app.js"></script>
+          </body>
+          </html>
         headers:
+          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjBQOURWUERaQUQ4aml3eUc5QWNlTHc9PSIsInZhbHVlIjoiaDRTT3gwUDg2ejFNWXJvaXN0dmN0dWFDTFlMMXJPK3N6MnVRZFR3YVZud3pTcmdxZkxzRkRyTDFiN3NWai9xR1NRSmgrVkpCUFJzWlFoL2tYbFVJUEtpODg1R0V1QTVwNVVxai9nVjQyekljZ2YrNlpoR3B6eTd4aUdzbFp2TDMiLCJtYWMiOiI0YWRlYWYwMTlhNDAxODg4NWEyOGQwOTc4NWRlZWI5ZWM5ZDAzODcyZjllM2M3ZGRkM2ZjNjI0NGNiMmRhOWVlIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6ImUyTlRocnBVQktNNFh1TERqdGRuRHc9PSIsInZhbHVlIjoiM0ZJR3hzL3JoMXRjL1diV3dCS3VKUFdFUXU5RjVIcU16eWg3NTB0aW9Od3AwaFlkckVKY3F6OThkTmF0a2dBaTlzR3pYWUVQTGw4cWRWa3VYNzIvakVyT0plMTV3RFQ3alNGVm1mOFRCY0w3NDRvbTdhTWc3akVndkdTalRLdisiLCJtYWMiOiI5NmJmN2U4YmI5MzE2MWQzY2ZkNThlYmMyZDQxYzViZjEwMzlkM2JlMjQ0ZTZhOTIzNGM3OTRhNGQ2NmU5YTI2IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -170,9 +185,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters:
       id:
         name: id
@@ -187,35 +202,35 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: psbazskrkwpopdhhienprrlickntr
+        example: bivxhdyjwluemrrzotgsdtydwjxqgdbkejlisssapbebrvvgxbgcslfmbdckieeyxxfdk
         type: string
         custom: []
       description:
         name: description
         description: 'Must not be greater than 1000 characters.'
         required: false
-        example: fyjtsybwqvdjkrveeeaswcpztbopoghrfstdcxmjcypfkamksfbtiwlasupqfssttvzxubddyaekzitrfxydhlwwsdxfyhzcvydfefbpnvyttgbrrtfrfbmnnyhyuudqfqxtolojepvokmsabhmkhvjxsuyrrtjlvodrmymrpvmhpaujlqkumptmpsvkyyulwhpfdqdflceetsdikrjmmviwruhxxkipuutytxayvzuhbkixtuyghabhhslhxucyzqiktvhsbieetsjjrgrdcpxadqlryedsjdnliegoehmjqxnmsqbncaxiuvlibfrqyxkhgejghcksilxodwpvahvgglkxlonpcrgnxyxqbfbbojmhnzjkaaguqbjdhjgrqsvtecshknrlsfhfukftgtksoittgxmuabfcujhkqxpevvprxgijwzfxbkzxiylxdbbdgrfijizapmwnhdoawanmpdpahtaxubpqkfycjupskphsmnftydwgdsifxytvajpqvfxcfzbjhfsajgpvsbzajazedyyvgpcjetnwwrfinodvwaegnzdeiijmhiffbybxvaaixmmvjhevcauftblazxkrvymxyyhxntahkxqwnxlgyzzolfjsntsghryhbruksqwvzdyqhwywupxdhwrqgfzufxspsffvpqzrldvoonzpmdjzgusyyfzzcxqqyfptghsevcnebrweqpohjjjrvupsrjfavrxiiuebmuhocuzwmqzecnuuwasqcacffqotrmkbzrjmvfnuu
+        example: asgvimcclgnnvrtvolcesidaukuzmuwtiynjrrzfviwkqgoyzxvumcfxjyuzagipaatyzezeaeawdnwtjxafztqvxmkhtdeboybsuvrvbimswglrehuielotdyuyaymgswzstdhryhuprvjyitiweehkvjcpuyjppgougrqizqfkbirbtvcnzdwrdrivwbdggmnudqokiftcunbndqsnnpbufbdfjvyxnbtujlaptikrbvclmwyyivvhgizvspeykodwmxyjydymyzpyrzkgqmjpvfudekogiatbxbndqcjuamqryqkinujojrsnkztmziaquifoaakmjtkqxihvxqjzhdzkxbaroyxwutrpxtnqdwwnjexjardijpglgwqkqyqmvsncvncqqcbmjqujyaajnrvvjgozpagmojvltcsgovcpvxdqppfbpyqilwxzajnucubywpttayfdwlfhpwwvczouiydtziidvqpvmbbjjzssiqboaqihwboalkxelhhdgpdajifyhnlzcyifuwmutwwhidfgnehibxumwroftsnkxunijckuiuhmlygjnltynznzrtsqzaokhqmvwohiqhrrzopnbcowinetdltvzlrmlkryvbcqloutgapaqtjkmaxjltkqimielgftxjgahvhcxonkgxrvazlrxfkczhymxqpgxmsrokusvwjmukvwdmjfdyyqumxninwtepetycbppgjouefqwboqlkkenazlkousiepedwenlsgkfbbipxjiahxvitgnzzzbpnnhsgjifanbnxyillekgypvwvqzxxeydwmifxijnrczdltievqawjkindcfniqqdznfodajtutrverkiplxxcljedshypjkihhvaclwictqezulgsbnkakeqfkvlicsexfqqzkkzjaaesxkvimqflgoycjarcbxrreok
         type: string
         custom: []
       start:
         name: start
         description: 'Must be a valid date.'
         required: false
-        example: '2022-05-27T14:40:06'
+        example: '2022-05-28T18:27:17'
         type: string
         custom: []
       end:
         name: end
         description: 'Must be a valid date.'
         required: false
-        example: '2022-05-27T14:40:06'
+        example: '2022-05-28T18:27:17'
         type: string
         custom: []
       location:
         name: location
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: niuwvlyxnqxjrhazilkfxuctbdggdbaemwjzufqnjkwpohwromskxdjlgzwvwvrwyrmokhxosohytcngmezofceheyivnzhkxwjdmjjpjdxxmopjivjecpdafhwbnpoyadoognlgrcqhrkaslowovhpihdisislaeqvpmhimfunxjrmdby
+        example: zyfuoxhlprtalhsvggqtfghdpq
         type: string
         custom: []
     responses: []
@@ -230,9 +245,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters:
       id:
         name: id

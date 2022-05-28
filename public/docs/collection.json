@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost"
+            "value": "http:\/\/localhost\/8000"
         }
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "5f011564-3376-433c-8440-4c76c7a0309f",
+        "_postman_id": "9b14bd94-fdb5-4833-8d53-449dd305ca73",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -37,11 +37,15 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"exercitationem\",\"password\":\"et\",\"classroom_name\":\"abazkbxhhsvsgrd\"}"
+                            "raw": "{\"username\":\"id\",\"password\":\"corporis\",\"classroom_name\":\"semvppxfuidisxxeuyheojlheiivglhxunzdyigdhtfwwfoljecjwpijfmghvxjtyobnnzvszxztaexkvilnrchfxdlmivguqdhuwqfeoemrahnlnpbwgnnhvpzwxswdpjasxknuwbylmxuklxzucadygqyohsqkczkvgpslienvnwsarqoeabgaaosspamgplgftxjlgkwyduovbzvycmubhocszjvds\"}"
                         },
                         "description": "Authentication for a user"
                     },
@@ -65,11 +69,15 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"et\",\"password\":\"temporibus\",\"classroom_name\":\"et\"}"
+                            "raw": "{\"username\":\"nihil\",\"password\":\"aliquid\",\"classroom_name\":\"quae\"}"
                         },
                         "description": "Register a new user"
                     },
@@ -93,6 +101,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -102,20 +114,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6InVSSTFKSlNDT0o5WlpEbGV4MFozN1E9PSIsInZhbHVlIjoiRDlBdjRXTzdGY2hYbVFLejhpTGkzZStqT29UeFBDY1Z5NjVySzFlY0QyZW1ZYVlSN0V0R1c2aksxaDlPcEJrazl6QkhRbVByT1BoS2s3Y1NnRlhKLzRhZndFZkJIZ2t6Uk5ZdkZsR29mS0NheXFVUndDaGsyVStFUUlUNzl6d0MiLCJtYWMiOiJmNTFmMGViYjg2YmYzNzBhZWRkNWY5ZGQ5MTdiNWRkODE4OWIwODYzY2M5MGVjYTA1ZjkzNDI3YWI4NWNkZmZiIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IktoZ3RwcGdHOXhGSk16Sm5hWWRIL2c9PSIsInZhbHVlIjoiWUlwclFCVWdwVU4xcVdlWnNDS0thSVBRNHplVEZodnpIYUVuUGVjT3l4d1NLUUJsMnoycTVkRW43WFdlWStLZmJMSVdXQW9mdmltaVBkcUNlY2F6R28zM0lSMnFuK010TnpURTJ5bzlySWdrZmhHQXZzTjNGRHFYNllrQXhvMWMiLCJtYWMiOiI2OWQ5ZjQ0MmIzZmRmM2Q3NjhlOGY3ZmU1ZmNmNjRmOGViMDA2ZmIwZmMwMjEzNWE0Zjg4ZWUwMWJkNTczMzUxIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -138,6 +150,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -147,20 +163,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6IlRzL0dYbHlrTldMc0xMZ1pENm40cUE9PSIsInZhbHVlIjoiUFFDajVIRjF5U3lhbUNoaG5reEJacnhsTk1MMDB3K21OcEp5SHZVREQySmNtVHFmb2pBWFZyMTk0QkNxTWlzK3hPSFdnYm9yTWdvdnRpc1puUnFlWEFpNjNOQ1FOWCt6bnhJeCtnaUhDOW9taEtLaW5saWVFSUNaQlV6anZDOHgiLCJtYWMiOiI1OGY4NGQ2NjUyZDcxMTk5MmQ0YzAwNjMyMTA2NzAzNjM0ZDUyMDIyZDE3MzI4OTM2MzIzZDg3NzkwMDFjOGJjIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6Im10UGd6VTMwZmhISHR3SWYvWVA5VWc9PSIsInZhbHVlIjoiVnFndGUvYkN0ZjVmZWNIVHViY2ViRUc4T1ZpWFR1Y05IMS9BMVlxUWkzeGZEbkZGZnJVRThyY29XaExEaXpLK3BHdzMwcmlVWFBlQ1h4MDRWRlFkL3dDMVV5WXVzSnhYdXFSdHprYjdEcXFPOFFYRlQ3cXBTZ1haRmd4bTZuOFIiLCJtYWMiOiJmODViOGRkY2ZjZjdiNzg5MmU0ZTY0NTU3NmM2MzZkOWE3ZmZhYWU5ZjdlNzIwNjllNmIwNDAxZjRkMDg0YzZlIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -189,6 +205,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -198,20 +218,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6IkNmditlZ0o1Y05xanMzTFBTUWswckE9PSIsInZhbHVlIjoiSmcyc0FWSG9heWpHQkkxRHZZN01ENm5NVml2cHRxVDUxNnhVNnd0OWx1dTdqakE0SXd0SFBnK0hzNnE0dUxJejd5bDVKdFhYWGx6VHhZalFHQzV3RDcycC9FZEsvRmdPUlNuRlNIVUpOTXVFV2c5eXJDdnZmQ2FTSjYwNkw3UTkiLCJtYWMiOiI5N2Y0YmM2ZDczMTU0YmM1MzYzMTJkZGUwYmI4ZWI1ZDk5NTAxODEwMjcyODk4MTAzZGZiNTc5ZjEzMTc4MmNhIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6InBYWWk2QXNKRjNMVVozd1NRaUdlTkE9PSIsInZhbHVlIjoiMkRIcWpsdDV1ckVPVmMrUFE0WG1hT2xjL2MzNWRmemFndWlKM0ozbFZtcEFBTTBMZk5mS3NHdUl3T001WmVSaVQ1Z2RTNTA0MTBYRkd4STR6SFkwY2NBa0tiOFAzNGxzMzQ2Tk1KMEIxaUx3eEdDVjcxbTRWZkovZ3JSSjhVK3giLCJtYWMiOiJkYTEzMjdmNWVkM2I5M2JjNGNiNDVlMDE2NmMwNTY2YzY1ODQzOGE0ZjJiMDIxNWZkZjRiMzk0NjRjZjdlNTkzIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -234,6 +254,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -243,20 +267,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6IkJKN05VcXlCNlhXek5wclNMcXM1WXc9PSIsInZhbHVlIjoiWFNwcEhEYk43SWNRQTJJcHRIR2pFcURIWE45eGZQZEVHdkRVRUp4OElwRE4rOUlhUUUwZUI0aTVkaDhKQlYvbkdGYlJHOXY3VnJxdDUvUWVHQ2I2T0x4eU5IWGpaYTZlZ3pTK0pBWUlwWTd1NWlKVndrQmpUMzUzNUFPVGp2eVkiLCJtYWMiOiI3Y2Y2NDU3YzA3NWM3MzY2YWYwMTk5ZTE2OGM0YjVmZTY0NTAwOTMzZDgyNTJjM2M4YzQzOTZjMzc4OTRlZjU5IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IndWQXkxV2ZLMEswMHViNzFLcXI2SEE9PSIsInZhbHVlIjoiK09mWXlZWXlJN0VUSWRoeitiWFBlZEw5SVpwQkhieEMyQzQzVXdxRFRLRGtDZC9jK0c1UnMrMFZDN2pOMjMwaWlaNXVtdEV6RUxFSW5Hc2kxSHlDRXVTZ1M0dUV4UEZJMEpOM1M2dzF4ZTR2amIvZVdUTVJyOWw1TlI2emxVMFIiLCJtYWMiOiI3YWVjMzc0MDdmOTNiNDFlZWJkOTJlMDQ0MTI0MDQ4NzE5NTVjMTE0YTk2MDUzNmVlYjA2ZTk5MTE4MzI1NDI1IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -279,11 +303,15 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"oumhxidfpytljuonoqdsxfwcjzreixsmzufguvwybntzihtycxsvzqxdsqqxakgkperesytpdvugxpzbgnprmkctfwmwwphizcwwbbmwuinxewezgrdlsirenvhimuvhgtssvfkcibutpeknjfuwbnjxgrbviyavczpdoitsxlxmalbiiosakcdsdzbbqouyfhecjazushqovmyfuduzhcmnrytqbmfntfcqcsakw\"}"
+                            "raw": "{\"name\":\"spqlydyxxhnecdgckmmxckonmmdzcvtsrjlfdlatkzpmnaxvuewavsudkdlemusssglhnfjwilottggqgtbhvyoauxzbqigiwhdtbqzg\"}"
                         },
                         "description": ""
                     },
@@ -307,6 +335,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -316,20 +348,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6Im9XUjdwMDNhY2tTRVArZ3BVOWZnS2c9PSIsInZhbHVlIjoiMnRSbWE1NXozaVQvYVRLZWhmQXJlOVlLQlNkU2l4YWE1Y2FmQjR5V2Y4cDVKWkZMSTFnK1cvSFVybWw1bDZBOFhXVGpYc05Cd0NPQ0VvR2NuejRPaGVQdkFyWnpJN2dVa0pRR0V4SWNkeUFCWjhRQXlCK21iZ0FsaVRrR3dnOVAiLCJtYWMiOiIxMzY3MzJkYzU1YmRmZjI1YWQ4MzA2ZjA0NmVhNDA1ODliYmFlZDhiM2ZiODZiMDMyMzcxZDAwN2YwMWExYTYyIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IklHdWllc2Z1dUlBMUZESFB4R3c4Vmc9PSIsInZhbHVlIjoiaDdTVHdST0crR3JwQ21UcVF1ZENNaHVJam5yVEdUaEFJUkwrdkl2bmxmMGxMSThlY0pURDlkWVV1VHdqaTBmeXlvNy9lSFJLTkhuZFZGYnJmZisvUXVwQ0FSUGhsUG95VUJxMlo2NG9rVFF2eEZqc2NVUHNvcnRRTnRnUWVNNWQiLCJtYWMiOiI4NDllODhhOGM1ZWY0ZjkyMDJiMDA5ODM5MzNkMDZiZmFiOWIyNGY5YTgyZGJmMWM3MjJiMjhiYThlOTFhMTBjIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -358,6 +390,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -390,11 +426,15 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"zqsuqtdbgeicmkzfdfdfgmsguiygnxrkuizwdnkdtlbqigltumiyxnnvtwicnfrqbhhcyymexdjsggkysqevgtnmnpsvuqlwxcpgjubqcqnojidcwit\"}"
+                            "raw": "{\"name\":\"lrubydrmjcchazjrnywdofvmazubotouwapgseoxpxeoiuunnnjvcljagov\"}"
                         },
                         "description": "Cr\u00e9e un calendrier."
                     },
@@ -426,6 +466,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -435,20 +479,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6IkE0d1haOE1pbjNvbzVnZjhlWDBnSXc9PSIsInZhbHVlIjoiU3BSeElsYWdzM1hGczR1WCtEYko0NDhCSklvZmMyWDJXTk5wNmFBOVJSZ01ZZklWZm5hdXdkcDU1QkNRVDNVdlpMR3Z2NVg3VUoyTXFyRmovNzNmc2JDS3ZVdnF3YXZrSXg3WFRpdHZoTFBXUHozemQ1bmlHVVRUN05jQW9GdHEiLCJtYWMiOiI3NzJhMjhkMGMwOWVmZWU5NjgxMzBjYjY2MDdjMWZiZDE4Y2I1YjYwMWNmYzU2YmRjZGExODBiZjFlYWE1ZmUxIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IktNN2dTYmxScXJta25IZFRQbkVkTFE9PSIsInZhbHVlIjoiV2xtbVpVZHFNSHF6cGFPaTAvYjh5WGxacStOem9SWWdLQTZDb3o3N0YvUG5GZFVYbnRDaWNmSHIwYjRTTkhkOHlOZFRLanpObm5XdkxaRUxFY1JIQmdRNEY3THo4SDZKSWI5czdiVUFOUHdzNWpmOTg3Zjl0dDBLK05nSjRpdjciLCJtYWMiOiI3ZmUyNzRjNWEwNTE1NDhjZmYzZDRhOTk0YzcwZDVmZDBiMmMzYjA3ZTUxNjUxMTRiYTVjMWJiYmZjNWM0NGRkIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -479,11 +523,15 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"evf\"}"
+                            "raw": "{\"name\":\"sfhzqmofifxdabwnfgfvptmlqhqtivwavmoxiwxqfbzlmldmhqlrqdxjuehykfraryppegivmlydbochcbbragemfuixecqosxkyirqgwyqsbyyilcqqgdtndkofwpncfvjflgkkizuezdabkrsbpycrpesw\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -515,6 +563,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -540,11 +592,15 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"calendar_id\":15,\"user_id\":16,\"can_own\":false,\"can_view\":false}"
+                            "raw": "{\"calendar_id\":8,\"user_id\":15,\"can_own\":true,\"can_view\":true}"
                         },
                         "description": "Partage un calendrier avec un autre utilisateur."
                     },
@@ -574,6 +630,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -606,11 +666,15 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"yugriwwpoxkgpadenlslltsdwfmfdlwqouhghwayuaodhwxhmkwnrusggutaqaocziuildtfwxurvyfrjgugduniamkwlsjzfpspfqjnqpzratrkhutjadbbqhxgzstvulmadddirhdjipcyyrxbetfwmssizfwdzybvjdxhkoeyqtulczlggxnxuhuhinwmqrakhsdvvvcysqbqjloabtgdhtgzoepjskdypmhovsxelfenbzwjvutycstlqmu\",\"description\":\"pwdaddefpaymbtruodbhcdthhtgfdoflikymbsjiawpwvpsuqgmukfbzapowabjmncysxtdxmtgyfisiybvoctzldtifatiwtzndftsqkvllosqypbbnjijfgziqhqmnxqpsnyjsyybilqazoyuonelsrqacwyawqzuylxgckderatosvjjxltwzmlkriudpzfrtejkbzgtacblebxazjknmwfpnfdwwibvuellqajdfaozifkoazvbboovvdtkilttpimhcsffllqthcglhvtozcidtjggbterjvfrlpinvtstahmljybkoltrucvvfufadjgbwjtpyodxypghquzcwctzbqzujglqzctlxuncllnivbnbrhprkuigfmbucybdmcmzrngazyippulrshkvizxoambxkyxhwkxiwrqgmxbhgimubrzcqghbvikkgyfsvrptdvuqvdknqvzwatglxxtewyvafuudjodrdzndwoxwhzaxvbwxhslqjfrtwozkfwwogqseiyqxetrrcjrkyjwzwlkxvjkhckogxpgeabieuhequkgcppoaupgcqebxvqnwlhfpvqayknbezawnftkwjomtsxvecacopbvvwhbn\",\"start\":\"2022-05-27T14:40:06\",\"end\":\"2022-05-27T14:40:06\",\"location\":\"tzjarfmimzdyoabpzffswclekzgjstv\",\"calendar_id\":\"eos\"}"
+                            "raw": "{\"title\":\"txmhdvijqdyyunqhbjizxevvofealevmqtmaooxpbv\",\"description\":\"rmpnlwlxqwlsehyvwtdaxnlppczckqkcydwerkoiicatjrdkmxeskdysonphwljiasdstjwbxkpsctqkputkunrcgwdhfrssebrcuauuqlwpuozaztbmjjyqbavhmrttfpaxlfqkaefsyphqxspxrhvckfacwqlzjdmvqsayjoxqvdkiyosxjmovwrhtfxygsivuwsfgsgitfvuubmftnsiixdvaajqoqihqcvhzprdjreadzluwaadpmbarkmbjunlxlzeopwzvgwioutwyzaljftqikdifyylnfbehmrnrbftzfobihrmxpusohdlclekqxotudmpdasdmipggmandfqfssbopumfhdfbtpjpmbytutlqbvzghfxuhgwbwkltocnpsimtghhlagrvxxifewsmqzewckigegwvbkqziaqsyvhoqzdupgdhzdgrtahddtsaoaiygtqgrsrrkcafkdrqrxdcimvibrohfwvoiljcrcfhyunisvxoupvumjbyty\",\"start\":\"2022-05-28T18:27:17\",\"end\":\"2022-05-28T18:27:17\",\"location\":\"cffejbkzgwxvxehmiuuflnkzdabyrwapyamfdlyvotlwhkltcppawwrihfuumeeyktbpwbwqsdjxozwvroetwwgkvwlmbpswhagealrsxfllfsmlaagpdruryfnkoiomysclojblmwcydqjfgnxmiojxnriizjstjwegaifeqwjurkirumstknjznepgrulrqgogsyobeibocgcyaaemkxqs\",\"calendar_id\":\"vel\"}"
                         },
                         "description": "Enregistre un nouvel \u00e9v\u00e8nement dans la BDD\nSucc\u00e8s: retourne un json contenant l'\u00e9v\u00e8nement cr\u00e9\u00e9\nFail: erreur"
                     },
@@ -649,6 +713,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -658,20 +726,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6IjBQOURWUERaQUQ4aml3eUc5QWNlTHc9PSIsInZhbHVlIjoiaDRTT3gwUDg2ejFNWXJvaXN0dmN0dWFDTFlMMXJPK3N6MnVRZFR3YVZud3pTcmdxZkxzRkRyTDFiN3NWai9xR1NRSmgrVkpCUFJzWlFoL2tYbFVJUEtpODg1R0V1QTVwNVVxai9nVjQyekljZ2YrNlpoR3B6eTd4aUdzbFp2TDMiLCJtYWMiOiI0YWRlYWYwMTlhNDAxODg4NWEyOGQwOTc4NWRlZWI5ZWM5ZDAzODcyZjllM2M3ZGRkM2ZjNjI0NGNiMmRhOWVlIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6ImUyTlRocnBVQktNNFh1TERqdGRuRHc9PSIsInZhbHVlIjoiM0ZJR3hzL3JoMXRjL1diV3dCS3VKUFdFUXU5RjVIcU16eWg3NTB0aW9Od3AwaFlkckVKY3F6OThkTmF0a2dBaTlzR3pYWUVQTGw4cWRWa3VYNzIvakVyT0plMTV3RFQ3alNGVm1mOFRCY0w3NDRvbTdhTWc3akVndkdTalRLdisiLCJtYWMiOiI5NmJmN2U4YmI5MzE2MWQzY2ZkNThlYmMyZDQxYzViZjEwMzlkM2JlMjQ0ZTZhOTIzNGM3OTRhNGQ2NmU5YTI2IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -702,11 +770,15 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"psbazskrkwpopdhhienprrlickntr\",\"description\":\"fyjtsybwqvdjkrveeeaswcpztbopoghrfstdcxmjcypfkamksfbtiwlasupqfssttvzxubddyaekzitrfxydhlwwsdxfyhzcvydfefbpnvyttgbrrtfrfbmnnyhyuudqfqxtolojepvokmsabhmkhvjxsuyrrtjlvodrmymrpvmhpaujlqkumptmpsvkyyulwhpfdqdflceetsdikrjmmviwruhxxkipuutytxayvzuhbkixtuyghabhhslhxucyzqiktvhsbieetsjjrgrdcpxadqlryedsjdnliegoehmjqxnmsqbncaxiuvlibfrqyxkhgejghcksilxodwpvahvgglkxlonpcrgnxyxqbfbbojmhnzjkaaguqbjdhjgrqsvtecshknrlsfhfukftgtksoittgxmuabfcujhkqxpevvprxgijwzfxbkzxiylxdbbdgrfijizapmwnhdoawanmpdpahtaxubpqkfycjupskphsmnftydwgdsifxytvajpqvfxcfzbjhfsajgpvsbzajazedyyvgpcjetnwwrfinodvwaegnzdeiijmhiffbybxvaaixmmvjhevcauftblazxkrvymxyyhxntahkxqwnxlgyzzolfjsntsghryhbruksqwvzdyqhwywupxdhwrqgfzufxspsffvpqzrldvoonzpmdjzgusyyfzzcxqqyfptghsevcnebrweqpohjjjrvupsrjfavrxiiuebmuhocuzwmqzecnuuwasqcacffqotrmkbzrjmvfnuu\",\"start\":\"2022-05-27T14:40:06\",\"end\":\"2022-05-27T14:40:06\",\"location\":\"niuwvlyxnqxjrhazilkfxuctbdggdbaemwjzufqnjkwpohwromskxdjlgzwvwvrwyrmokhxosohytcngmezofceheyivnzhkxwjdmjjpjdxxmopjivjecpdafhwbnpoyadoognlgrcqhrkaslowovhpihdisislaeqvpmhimfunxjrmdby\"}"
+                            "raw": "{\"title\":\"bivxhdyjwluemrrzotgsdtydwjxqgdbkejlisssapbebrvvgxbgcslfmbdckieeyxxfdk\",\"description\":\"asgvimcclgnnvrtvolcesidaukuzmuwtiynjrrzfviwkqgoyzxvumcfxjyuzagipaatyzezeaeawdnwtjxafztqvxmkhtdeboybsuvrvbimswglrehuielotdyuyaymgswzstdhryhuprvjyitiweehkvjcpuyjppgougrqizqfkbirbtvcnzdwrdrivwbdggmnudqokiftcunbndqsnnpbufbdfjvyxnbtujlaptikrbvclmwyyivvhgizvspeykodwmxyjydymyzpyrzkgqmjpvfudekogiatbxbndqcjuamqryqkinujojrsnkztmziaquifoaakmjtkqxihvxqjzhdzkxbaroyxwutrpxtnqdwwnjexjardijpglgwqkqyqmvsncvncqqcbmjqujyaajnrvvjgozpagmojvltcsgovcpvxdqppfbpyqilwxzajnucubywpttayfdwlfhpwwvczouiydtziidvqpvmbbjjzssiqboaqihwboalkxelhhdgpdajifyhnlzcyifuwmutwwhidfgnehibxumwroftsnkxunijckuiuhmlygjnltynznzrtsqzaokhqmvwohiqhrrzopnbcowinetdltvzlrmlkryvbcqloutgapaqtjkmaxjltkqimielgftxjgahvhcxonkgxrvazlrxfkczhymxqpgxmsrokusvwjmukvwdmjfdyyqumxninwtepetycbppgjouefqwboqlkkenazlkousiepedwenlsgkfbbipxjiahxvitgnzzzbpnnhsgjifanbnxyillekgypvwvqzxxeydwmifxijnrczdltievqawjkindcfniqqdznfodajtutrverkiplxxcljedshypjkihhvaclwictqezulgsbnkakeqfkvlicsexfqqzkkzjaaesxkvimqflgoycjarcbxrreok\",\"start\":\"2022-05-28T18:27:17\",\"end\":\"2022-05-28T18:27:17\",\"location\":\"zyfuoxhlprtalhsvggqtfghdpq\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -738,6 +810,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -769,6 +845,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -778,20 +858,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6Ik5VVlBuSjZKMmwzOHhRNVNVZWZqWFE9PSIsInZhbHVlIjoibW83ZWpMdU1KVW1TVHZpaWRlNXpKYk1MNlkreVdXcCsrWEJ2Qk5WTUtFYnNzQ1d1YkhKR0k4TnNWQ2ozaVFjMUhJdUdFazREKy9wTjQzazhVV1h0cHNyNGtJRFdXelhVcWl1T1dvVXdLcTlvaWxkd1BDem5HWmlGK01NVmtsMUYiLCJtYWMiOiJiMTgwNWU1NGNkMjA0Y2JhNjRkNjIyYWYxYzk0YWZmZjViZjJkZjIwN2Q3MzRkNTI4ZWVmOGNlYzQzN2NjMzc2IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6ImhJZUo1eXFMRDB4L25wdDJzcEdpZGc9PSIsInZhbHVlIjoiTEwxck9xKzdwUm5tZGltZ3dBRTdWNjg0bzZlVVZiQ1R3aDBDT1pvMkNKUkREUzNYQVU4TDJUc2h0eUt4dVNoZWQwUUFhRnBBRlBEY3JYL2VFWktIVHNuc1Y0TWZoazZuYU4wVkpQWi9OeVY1akF6SzExR05ad29yWUQ2L1VvaWMiLCJtYWMiOiIyYWUzYWM0OWRhMjBiNThhYmYwNDZjYWYxZTAzYjlmOTFkM2NjZjg1ZmY0MjBjZDgzMjNkYmZjZmFlZTk4MWU2IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -808,7 +888,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "VGrxhPp9xuDb947JZADe7ESdBDkwdq",
+                                    "value": "secret",
                                     "description": ""
                                 }
                             ]
@@ -822,6 +902,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -831,28 +915,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "x-ratelimit-limit",
-                                    "value": "60"
-                                },
-                                {
-                                    "key": "x-ratelimit-remaining",
-                                    "value": "58"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6IjVtWDJEWnArekhlLy9hUWZNdkU5TlE9PSIsInZhbHVlIjoiWnJoVHIvdHlDeVFrTUtQNFliV1podjhpcGV3cU5NR29iWmR3QzRXd0tKR2U2RVNEbEhBb1IzTE5rVEtCM2lYeHg4TmxCU3ZUbWx2cFplSVgwYlZhaXJZMkdYUE9yMkFFN2tQUXhBMENabFhSelJVNVVidW83alpRV0Q3dzhYeXUiLCJtYWMiOiIxY2MxY2U2MzYwNzdjMTZjYWI0YzUxNDgyYjE4NTJjNWZhNGU1ZTNlMTAwZjliZTgwMjIzYWQ0ZWVjNTliMmExIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkxuYlhuQzJQRExjT0ZnUHZHa1BXUXc9PSIsInZhbHVlIjoia0NSdk9vbTZSVGVwL2hyWUIvRmFvdjdjMVhKT0FwNDh3U1BCQzBENllxZHk0NDQ4WGNEQUwwNytJN3ByV1ZRNTVaVTEyUURVOGFFUlJXTFNvRlI1WkcrdTFNQUpBK0tYTlNTWjZBS2x1N1N3ZytDQWpDMGZyS1dSdVgyZGN1MzYiLCJtYWMiOiIxODg3ODljNjRjZWQ4ODI0MmJlOGU1YzJmZmE1OWQyMTAwZDQxZGU0MmRiN2I4MDI3ZGVhYzViNWQ0MDVkNDhhIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"success\":true,\"message\":\"All fetched\",\"data\":{\"user\":null}}",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -875,6 +951,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -884,20 +964,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6Inpza2dEdTdtS3FRajBscU1rcHc0aEE9PSIsInZhbHVlIjoiVWplUi9wY0NHdEFaZG5Vb1hCczFwR2tRZ1EySkE5MzJ0OHZpbmZTUEFQSG1WZ24vMVcwcWhaWERpUldvYVhkQ2NHSFJtdnR3NU1GWlh3V1FTeEtTY09GMGRjZEY0NGxNaDQzck40cVJwMFRVUTBpWlYxMnV3RW1pcWVmWUFnanciLCJtYWMiOiJjZTI1YmI2ODYzMzhmOTBiZjQ5MzVmNmQzNTliMWFmNDRhOTliNWQ5ZDgxMmNhNzlmZWEyY2FlNmVlNjMzMTkzIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6Im5ocnVKR1M2S2tGOW9FL0tlU0poT0E9PSIsInZhbHVlIjoiSmJKYjh5Y3N2Vm1ZaTNLbkk5V2FuNDlncEx4N2VGeTJmYUphTWxzdzVmand4WkE3N1JoQ29pdHpqdE42L0taSkZSbmxFMGdIZm9qcDU3T2MvNWJOdi9ORzdFTXhvOXlnQWtuazJvTFl3YVB6eUlkTnlKSlNQYUtsbm8rUGZyaVgiLCJtYWMiOiI2NzIzNDNiM2U0Y2Q2YzQ3M2ZlM2NlZmVlMmIyY2RjYjVkNWVhYTE0YzIyM2MwNmRhZWZkYWVlODkxNDZlN2VjIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -920,6 +1000,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -929,23 +1013,66 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6Imc1TFdwSDI5NzVVTnFsTVppZmVGT1E9PSIsInZhbHVlIjoidjUxNHFhMFA0UmwyK0pYdHpBVy9ucElON3RWS1gzREFWczErM2VUWWNkSFNHVDhHVk80U2krRTc3U0tyV0s3Skpkdit5eGNjcnNRd1hmaHM3WHZjVGlkZDlDM01QazRrcmhZVEkyZ3JMNzJEYmxDeHFkaEYvc1hnMUloWjArM1MiLCJtYWMiOiIwM2MzODg0YWRkZjk4YzZkMWZhZWE1Yzc3MDhjODJhYTdjMDhhZWVhYjZlN2NjZGQ0M2IyZDZjMDk1NDJjZmMwIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6ImVJSm12VUM1eWtVU2RGNHZwTE5tYlE9PSIsInZhbHVlIjoibnpyNGxlU0tocHdjVDNidVFsUExVSWE1T2ovYTg0YTBxeGtreGxWUmVwcmpQS1Q1UWl0M1luZC9ZQVIvN3ZBSHMyQ0tOYzhMR3pJOVlRdmV3VzREU3djSjk0bnA5eW9TTVphWnIyOVdQL251Z1QrdnY5VTVDdGhqaW5yQXdUck0iLCJtYWMiOiIzNTA3Yzk3NTdjNjQ5OWE0YmI2MDZkZjA0ZTUxMmUwYTFjOGY5ZTgyZTA2ODkwZTRiMTQzZWQzMmFjZDdkNmRmIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
+                },
+                {
+                    "name": "api\/calendars\/import",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/calendars\/import",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/calendars\/import"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "multipart\/form-data"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "formdata",
+                            "formdata": [
+                                {
+                                    "key": "name",
+                                    "value": "omemeghrbqapqslrni",
+                                    "type": "text"
+                                },
+                                {
+                                    "key": "ics",
+                                    "src": [],
+                                    "type": "file"
+                                }
+                            ]
+                        },
+                        "description": ""
+                    },
+                    "response": []
                 }
             ]
         },
@@ -971,6 +1098,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -980,20 +1111,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6IkpSd1lvZzMwclVGZnhsbXRsMVBLamc9PSIsInZhbHVlIjoidGg4WERnMmVaaVlnWWU5Z1RYZnF5TVVpKzE4YkN3OFdEaGxiQnZ4bDhLY2Q5RVNDcFpFOWx4OXVOYVJnMk9SQ21UK0cyY2p0VUI5UXI2M0UxbUNwTVZzcklkR01uZXhLeHh0ZzNXblowbkY3Q0xaU0Q3bXRLU0x3TDBONTJBcmwiLCJtYWMiOiI2ZDdkMTdkYjBkZGQ5NDhjZTM3MzVlMTRmNjgxZjdhMTk1MGFjZWRlYTliZDYxNGFhZDJmYmRiYWNkOGNmYjZkIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6Ilo1czFCOVRlUk1CbDlvMmJpWG9HZXc9PSIsInZhbHVlIjoiNGpJZklvOS9hY083ZGp3eFYyUG5CdkVZSE9kbVNic2tSNElhakNYVEloRFY3bjVrSUptMTZSSjlhRVB1TzRwYUtXWDFGL2pPWnd5dEpZZHVXbUN2emVNcGh2Nm8vTzJKY0Q4S3NUU2UyekhQSi9aZE4vWWgxZkFWOEx6UmcvcXQiLCJtYWMiOiIzZTIwYjllMTNjM2FlZDdjNDg3YTg0MjFmZTIxNDZjYmY0MGM3M2I5YzE1ZTljMDdlMGZlNDI0YTMxZmJmMzU0IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -1010,7 +1141,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "07",
+                                    "value": "7",
                                     "description": "The ID of the mail."
                                 }
                             ]
@@ -1024,6 +1155,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -1033,20 +1168,20 @@
                         {
                             "header": [
                                 {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6IjFVb0JsMC9JL1N6Rko1WUIrdlIyWFE9PSIsInZhbHVlIjoic3ljTFNvdk1ELzUyREY2ZjdWOThFOXFwY3JPZU4xSzF3ajhqMTRCdjQwbENVMkpWNnVSdmNRWDkrb0ovUUJ4TkZ1VVJPaUpLNnFsVHRtU21aekdGK3d1RjQ5MUFGVGx3VFUvaTFja2ZxbXhxQnJKSjRjNzE2eGRXOTkya24veksiLCJtYWMiOiIwMGIzMjYzYTE0MTNmY2NjYmZhZDdjYWY1ZmIwOWZlMDYwNDEyYTc0ODBhOTkwODA2MThmOTE4MTgxNGZhNDQwIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6Ik0yRGRYYjc5ZjBOMkhQUUp0WXlxNmc9PSIsInZhbHVlIjoieENXRmx6NWdjUWNBWE5ZdzBRdElVOEgramg1cGcxR3E0NnNyUzluK2NRRW4vMlMwby85R0tYSUlkd1lMN25Iazk5Rm5TZkJKcHM3ZitseU8xRXhPNVBMb0lBVWllVkRDOWlFclAySFJUNG85WUNIQytFZEJnbUMwSEdGNnc1WEwiLCJtYWMiOiJmOTljMGRhOTY1ODNhZWE1ZThjYjE4MWEzNjc3ODQyZTFkNzNkZWUzZGE4YTIxNmYwNDYyNTRmZTk3Y2YyMzdkIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -1069,11 +1204,15 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"duncan.schuster@example.com\",\"subject\":\"tpbjsosfnzivfatijjiqfmojftmidwzrcqfcztvqlfrmrgybzayrqfnstammsbejfyydknfokfeijymbwofdgfpjfoxhwpttyzmufdcsnghzxzifioiuidehtolmnnafzhqzvddsojpjykjnfteanwrdjojgfgkpcwuisprhspmhdlkemsgkyvjrmglbvzxnagmdfjffowmjxveaxyuebfksjyxwheqafkchyywfboxnpexhhbhuyhtjlq\",\"message\":\"alias\"}"
+                            "raw": "{\"to\":\"amraz@example.com\",\"subject\":\"rifxrjiqpnnsrqbhuklzkqdsiuivqcsllqcswprnjapysxlpcmvjhxszmfqiprqedorvoibcurhgzbmhilghycfoamyikslcwjqmiejyexbwtrgpdxsplhzeisquupollqnbadpmgyxeglozehqxbvswfqxabkeqsdftrvbzpubqwfqubskwbqgbqnkfsacpnpwzsnqzjkmdhvrconzfxpjuuftdvxhhnyar\",\"message\":\"possimus\"}"
                         },
                         "description": ""
                     },
@@ -1103,6 +1242,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -1141,6 +1284,10 @@
                             {
                                 "key": "Accept",
                                 "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
                             }
                         ],
                         "body": null,
@@ -1159,6 +1306,6 @@
         }
     ],
     "auth": {
-        "type": "bearer"
+        "type": "noauth"
     }
 }

@@ -15,9 +15,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
@@ -25,21 +25,21 @@ endpoints:
         name: username
         description: 'The Gaps username of the user.'
         required: true
-        example: exercitationem
+        example: id
         type: string
         custom: []
       password:
         name: password
         description: 'The Gaps password of the user.'
         required: true
-        example: et
+        example: corporis
         type: string
         custom: []
       classroom_name:
         name: classroom_name
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: abazkbxhhsvsgrd
+        example: semvppxfuidisxxeuyheojlheiivglhxunzdyigdhtfwwfoljecjwpijfmghvxjtyobnnzvszxztaexkvilnrchfxdlmivguqdhuwqfeoemrahnlnpbwgnnhvpzwxswdpjasxknuwbylmxuklxzucadygqyohsqkczkvgpslienvnwsarqoeabgaaosspamgplgftxjlgkwyduovbzvycmubhocszjvds
         type: string
         custom: []
     responses: []
@@ -54,9 +54,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
@@ -64,21 +64,21 @@ endpoints:
         name: username
         description: 'The Gaps username of the user.'
         required: true
-        example: et
+        example: nihil
         type: string
         custom: []
       password:
         name: password
         description: 'The Gaps password of the user.'
         required: true
-        example: temporibus
+        example: aliquid
         type: string
         custom: []
       classroom_name:
         name: classroom_name
         description: 'The class of the user.'
         required: true
-        example: et
+        example: quae
         type: string
         custom: []
     responses: []
@@ -93,20 +93,35 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+              <title>Document</title>
+              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+          </head>
+          <body>
+              <div id="app"></div>
+
+              <script src="//localhost:8080/js/app.js"></script>
+          </body>
+          </html>
         headers:
+          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6InVSSTFKSlNDT0o5WlpEbGV4MFozN1E9PSIsInZhbHVlIjoiRDlBdjRXTzdGY2hYbVFLejhpTGkzZStqT29UeFBDY1Z5NjVySzFlY0QyZW1ZYVlSN0V0R1c2aksxaDlPcEJrazl6QkhRbVByT1BoS2s3Y1NnRlhKLzRhZndFZkJIZ2t6Uk5ZdkZsR29mS0NheXFVUndDaGsyVStFUUlUNzl6d0MiLCJtYWMiOiJmNTFmMGViYjg2YmYzNzBhZWRkNWY5ZGQ5MTdiNWRkODE4OWIwODYzY2M5MGVjYTA1ZjkzNDI3YWI4NWNkZmZiIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IktoZ3RwcGdHOXhGSk16Sm5hWWRIL2c9PSIsInZhbHVlIjoiWUlwclFCVWdwVU4xcVdlWnNDS0thSVBRNHplVEZodnpIYUVuUGVjT3l4d1NLUUJsMnoycTVkRW43WFdlWStLZmJMSVdXQW9mdmltaVBkcUNlY2F6R28zM0lSMnFuK010TnpURTJ5bzlySWdrZmhHQXZzTjNGRHFYNllrQXhvMWMiLCJtYWMiOiI2OWQ5ZjQ0MmIzZmRmM2Q3NjhlOGY3ZmU1ZmNmNjRmOGViMDA2ZmIwZmMwMjEzNWE0Zjg4ZWUwMWJkNTczMzUxIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -119,19 +134,34 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+              <title>Document</title>
+              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+          </head>
+          <body>
+              <div id="app"></div>
+
+              <script src="//localhost:8080/js/app.js"></script>
+          </body>
+          </html>
         headers:
+          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlRzL0dYbHlrTldMc0xMZ1pENm40cUE9PSIsInZhbHVlIjoiUFFDajVIRjF5U3lhbUNoaG5reEJacnhsTk1MMDB3K21OcEp5SHZVREQySmNtVHFmb2pBWFZyMTk0QkNxTWlzK3hPSFdnYm9yTWdvdnRpc1puUnFlWEFpNjNOQ1FOWCt6bnhJeCtnaUhDOW9taEtLaW5saWVFSUNaQlV6anZDOHgiLCJtYWMiOiI1OGY4NGQ2NjUyZDcxMTk5MmQ0YzAwNjMyMTA2NzAzNjM0ZDUyMDIyZDE3MzI4OTM2MzIzZDg3NzkwMDFjOGJjIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Im10UGd6VTMwZmhISHR3SWYvWVA5VWc9PSIsInZhbHVlIjoiVnFndGUvYkN0ZjVmZWNIVHViY2ViRUc4T1ZpWFR1Y05IMS9BMVlxUWkzeGZEbkZGZnJVRThyY29XaExEaXpLK3BHdzMwcmlVWFBlQ1h4MDRWRlFkL3dDMVV5WXVzSnhYdXFSdHprYjdEcXFPOFFYRlQ3cXBTZ1haRmd4bTZuOFIiLCJtYWMiOiJmODViOGRkY2ZjZjdiNzg5MmU0ZTY0NTU3NmM2MzZkOWE3ZmZhYWU5ZjdlNzIwNjllNmIwNDAxZjRkMDg0YzZlIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []

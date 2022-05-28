@@ -5,20 +5,13 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost'
+    url: 'http://localhost/8000'
 paths:
   /api/login:
     post:
       summary: login
       description: 'Authentication for a user'
       parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
         -
           in: header
           name: Content-Type
@@ -31,6 +24,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses: {  }
@@ -46,15 +46,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: exercitationem
+                  example: id
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: et
+                  example: corporis
                 classroom_name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: abazkbxhhsvsgrd
+                  example: semvppxfuidisxxeuyheojlheiivglhxunzdyigdhtfwwfoljecjwpijfmghvxjtyobnnzvszxztaexkvilnrchfxdlmivguqdhuwqfeoemrahnlnpbwgnnhvpzwxswdpjasxknuwbylmxuklxzucadygqyohsqkczkvgpslienvnwsarqoeabgaaosspamgplgftxjlgkwyduovbzvycmubhocszjvds
               required:
                 - username
                 - password
@@ -65,13 +65,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -82,6 +75,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses: {  }
@@ -97,15 +97,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: et
+                  example: nihil
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: temporibus
+                  example: aliquid
                 classroom_name:
                   type: string
                   description: 'The class of the user.'
-                  example: et
+                  example: quae
               required:
                 - username
                 - password
@@ -117,13 +117,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -136,31 +129,21 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Authentication
   /api/logout:
@@ -170,13 +153,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -189,31 +165,21 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Authentication
   /api/update/gaps/absences:
@@ -223,13 +189,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -242,31 +201,21 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Autres
   /api/classrooms:
@@ -276,13 +225,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -295,31 +237,21 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Autres
   /api/classrooms/setUser:
@@ -329,13 +261,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -346,6 +271,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses: {  }
@@ -361,7 +293,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: oumhxidfpytljuonoqdsxfwcjzreixsmzufguvwybntzihtycxsvzqxdsqqxakgkperesytpdvugxpzbgnprmkctfwmwwphizcwwbbmwuinxewezgrdlsirenvhimuvhgtssvfkcibutpeknjfuwbnjxgrbviyavczpdoitsxlxmalbiiosakcdsdzbbqouyfhecjazushqovmyfuduzhcmnrytqbmfntfcqcsakw
+                  example: spqlydyxxhnecdgckmmxckonmmdzcvtsrjlfdlatkzpmnaxvuewavsudkdlemusssglhnfjwilottggqgtbhvyoauxzbqigiwhdtbqzg
               required:
                 - name
   /api/absences:
@@ -371,13 +303,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -390,45 +315,28 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Autres
   /api/calendars:
     get:
       summary: 'Get calendars'
-      description: 'Retourne un json contenant une liste des calendrier. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
+      description: "Retourne un json contenant une liste des calendrier. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur."
       parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
         -
           in: header
           name: Content-Type
@@ -441,6 +349,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses:
@@ -464,13 +379,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -481,6 +389,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses: {  }
@@ -496,7 +411,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: zqsuqtdbgeicmkzfdfdfgmsguiygnxrkuizwdnkdtlbqigltumiyxnnvtwicnfrqbhhcyymexdjsggkysqevgtnmnpsvuqlwxcpgjubqcqnojidcwit
+                  example: lrubydrmjcchazjrnywdofvmazubotouwapgseoxpxeoiuunnnjvcljagov
               required:
                 - name
   '/api/calendars/{id}':
@@ -506,13 +421,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -525,31 +433,21 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Calendrier
     put:
@@ -558,13 +456,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -575,6 +466,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses: {  }
@@ -590,20 +488,13 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: evf
+                  example: sfhzqmofifxdabwnfgfvptmlqhqtivwavmoxiwxqfbzlmldmhqlrqdxjuehykfraryppegivmlydbochcbbragemfuixecqosxkyirqgwyqsbyyilcqqgdtndkofwpncfvjflgkkizuezdabkrsbpycrpesw
               required:
                 - name
     delete:
       summary: 'Delete calendar'
       description: 'Remove the specified resource from storage.'
       parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
         -
           in: header
           name: Content-Type
@@ -616,6 +507,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses: {  }
@@ -637,13 +535,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -654,6 +545,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses: {  }
@@ -669,19 +567,19 @@ paths:
                 calendar_id:
                   type: integer
                   description: 'ID du calendrier à partager.'
-                  example: 15
+                  example: 8
                 user_id:
                   type: integer
-                  description: 'ID de l''utilisateur à qui partager le calendrier.'
-                  example: 16
+                  description: "ID de l'utilisateur à qui partager le calendrier."
+                  example: 15
                 can_own:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                 can_view:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
               required:
                 - calendar_id
                 - user_id
@@ -690,15 +588,8 @@ paths:
   /api/events:
     get:
       summary: 'Get events'
-      description: 'Retourne un json contenant une liste des évènements. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
+      description: "Retourne un json contenant une liste des évènements. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur."
       parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
         -
           in: header
           name: Content-Type
@@ -711,6 +602,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses:
@@ -729,13 +627,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -746,6 +637,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses:
@@ -768,27 +666,27 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: yugriwwpoxkgpadenlslltsdwfmfdlwqouhghwayuaodhwxhmkwnrusggutaqaocziuildtfwxurvyfrjgugduniamkwlsjzfpspfqjnqpzratrkhutjadbbqhxgzstvulmadddirhdjipcyyrxbetfwmssizfwdzybvjdxhkoeyqtulczlggxnxuhuhinwmqrakhsdvvvcysqbqjloabtgdhtgzoepjskdypmhovsxelfenbzwjvutycstlqmu
+                  example: txmhdvijqdyyunqhbjizxevvofealevmqtmaooxpbv
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: pwdaddefpaymbtruodbhcdthhtgfdoflikymbsjiawpwvpsuqgmukfbzapowabjmncysxtdxmtgyfisiybvoctzldtifatiwtzndftsqkvllosqypbbnjijfgziqhqmnxqpsnyjsyybilqazoyuonelsrqacwyawqzuylxgckderatosvjjxltwzmlkriudpzfrtejkbzgtacblebxazjknmwfpnfdwwibvuellqajdfaozifkoazvbboovvdtkilttpimhcsffllqthcglhvtozcidtjggbterjvfrlpinvtstahmljybkoltrucvvfufadjgbwjtpyodxypghquzcwctzbqzujglqzctlxuncllnivbnbrhprkuigfmbucybdmcmzrngazyippulrshkvizxoambxkyxhwkxiwrqgmxbhgimubrzcqghbvikkgyfsvrptdvuqvdknqvzwatglxxtewyvafuudjodrdzndwoxwhzaxvbwxhslqjfrtwozkfwwogqseiyqxetrrcjrkyjwzwlkxvjkhckogxpgeabieuhequkgcppoaupgcqebxvqnwlhfpvqayknbezawnftkwjomtsxvecacopbvvwhbn
+                  example: rmpnlwlxqwlsehyvwtdaxnlppczckqkcydwerkoiicatjrdkmxeskdysonphwljiasdstjwbxkpsctqkputkunrcgwdhfrssebrcuauuqlwpuozaztbmjjyqbavhmrttfpaxlfqkaefsyphqxspxrhvckfacwqlzjdmvqsayjoxqvdkiyosxjmovwrhtfxygsivuwsfgsgitfvuubmftnsiixdvaajqoqihqcvhzprdjreadzluwaadpmbarkmbjunlxlzeopwzvgwioutwyzaljftqikdifyylnfbehmrnrbftzfobihrmxpusohdlclekqxotudmpdasdmipggmandfqfssbopumfhdfbtpjpmbytutlqbvzghfxuhgwbwkltocnpsimtghhlagrvxxifewsmqzewckigegwvbkqziaqsyvhoqzdupgdhzdgrtahddtsaoaiygtqgrsrrkcafkdrqrxdcimvibrohfwvoiljcrcfhyunisvxoupvumjbyty
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-27T14:40:06'
+                  example: '2022-05-28T18:27:17'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-27T14:40:06'
+                  example: '2022-05-28T18:27:17'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: tzjarfmimzdyoabpzffswclekzgjstv
+                  example: cffejbkzgwxvxehmiuuflnkzdabyrwapyamfdlyvotlwhkltcppawwrihfuumeeyktbpwbwqsdjxozwvroetwwgkvwlmbpswhagealrsxfllfsmlaagpdruryfnkoiomysclojblmwcydqjfgnxmiojxnriizjstjwegaifeqwjurkirumstknjznepgrulrqgogsyobeibocgcyaaemkxqs
                 calendar_id:
                   type: string
                   description: ''
-                  example: eos
+                  example: vel
               required:
                 - title
                 - description
@@ -803,13 +701,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -822,31 +713,21 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Evènements
     put:
@@ -855,13 +736,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -872,6 +746,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses: {  }
@@ -887,34 +768,27 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: psbazskrkwpopdhhienprrlickntr
+                  example: bivxhdyjwluemrrzotgsdtydwjxqgdbkejlisssapbebrvvgxbgcslfmbdckieeyxxfdk
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: fyjtsybwqvdjkrveeeaswcpztbopoghrfstdcxmjcypfkamksfbtiwlasupqfssttvzxubddyaekzitrfxydhlwwsdxfyhzcvydfefbpnvyttgbrrtfrfbmnnyhyuudqfqxtolojepvokmsabhmkhvjxsuyrrtjlvodrmymrpvmhpaujlqkumptmpsvkyyulwhpfdqdflceetsdikrjmmviwruhxxkipuutytxayvzuhbkixtuyghabhhslhxucyzqiktvhsbieetsjjrgrdcpxadqlryedsjdnliegoehmjqxnmsqbncaxiuvlibfrqyxkhgejghcksilxodwpvahvgglkxlonpcrgnxyxqbfbbojmhnzjkaaguqbjdhjgrqsvtecshknrlsfhfukftgtksoittgxmuabfcujhkqxpevvprxgijwzfxbkzxiylxdbbdgrfijizapmwnhdoawanmpdpahtaxubpqkfycjupskphsmnftydwgdsifxytvajpqvfxcfzbjhfsajgpvsbzajazedyyvgpcjetnwwrfinodvwaegnzdeiijmhiffbybxvaaixmmvjhevcauftblazxkrvymxyyhxntahkxqwnxlgyzzolfjsntsghryhbruksqwvzdyqhwywupxdhwrqgfzufxspsffvpqzrldvoonzpmdjzgusyyfzzcxqqyfptghsevcnebrweqpohjjjrvupsrjfavrxiiuebmuhocuzwmqzecnuuwasqcacffqotrmkbzrjmvfnuu
+                  example: asgvimcclgnnvrtvolcesidaukuzmuwtiynjrrzfviwkqgoyzxvumcfxjyuzagipaatyzezeaeawdnwtjxafztqvxmkhtdeboybsuvrvbimswglrehuielotdyuyaymgswzstdhryhuprvjyitiweehkvjcpuyjppgougrqizqfkbirbtvcnzdwrdrivwbdggmnudqokiftcunbndqsnnpbufbdfjvyxnbtujlaptikrbvclmwyyivvhgizvspeykodwmxyjydymyzpyrzkgqmjpvfudekogiatbxbndqcjuamqryqkinujojrsnkztmziaquifoaakmjtkqxihvxqjzhdzkxbaroyxwutrpxtnqdwwnjexjardijpglgwqkqyqmvsncvncqqcbmjqujyaajnrvvjgozpagmojvltcsgovcpvxdqppfbpyqilwxzajnucubywpttayfdwlfhpwwvczouiydtziidvqpvmbbjjzssiqboaqihwboalkxelhhdgpdajifyhnlzcyifuwmutwwhidfgnehibxumwroftsnkxunijckuiuhmlygjnltynznzrtsqzaokhqmvwohiqhrrzopnbcowinetdltvzlrmlkryvbcqloutgapaqtjkmaxjltkqimielgftxjgahvhcxonkgxrvazlrxfkczhymxqpgxmsrokusvwjmukvwdmjfdyyqumxninwtepetycbppgjouefqwboqlkkenazlkousiepedwenlsgkfbbipxjiahxvitgnzzzbpnnhsgjifanbnxyillekgypvwvqzxxeydwmifxijnrczdltievqawjkindcfniqqdznfodajtutrverkiplxxcljedshypjkihhvaclwictqezulgsbnkakeqfkvlicsexfqqzkkzjaaesxkvimqflgoycjarcbxrreok
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-27T14:40:06'
+                  example: '2022-05-28T18:27:17'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-27T14:40:06'
+                  example: '2022-05-28T18:27:17'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: niuwvlyxnqxjrhazilkfxuctbdggdbaemwjzufqnjkwpohwromskxdjlgzwvwvrwyrmokhxosohytcngmezofceheyivnzhkxwjdmjjpjdxxmopjivjecpdafhwbnpoyadoognlgrcqhrkaslowovhpihdisislaeqvpmhimfunxjrmdby
+                  example: zyfuoxhlprtalhsvggqtfghdpq
     delete:
       summary: 'Delete event'
       description: 'Remove the specified resource from storage.'
       parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
         -
           in: header
           name: Content-Type
@@ -927,6 +801,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses: {  }
@@ -948,13 +829,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -967,31 +841,21 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Gaps
   '/api/update/gaps/{token}':
@@ -1001,13 +865,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -1020,29 +877,21 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
         200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: true
-                  message: 'All fetched'
-                  data:
-                    user: null
-                properties:
-                  success:
-                    type: boolean
-                    example: true
-                  message:
-                    type: string
-                    example: 'All fetched'
-                  data:
-                    type: object
-                    example:
-                      user: null
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Gaps
     parameters:
@@ -1050,7 +899,7 @@ paths:
         in: path
         name: token
         description: ''
-        example: VGrxhPp9xuDb947JZADe7ESdBDkwdq
+        example: secret
         required: true
         schema:
           type: string
@@ -1061,13 +910,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -1080,31 +922,21 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Gaps
   /api/update/gaps:
@@ -1114,13 +946,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -1133,33 +958,70 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Gaps
+  /api/calendars/import:
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: multipart/form-data
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Gaps
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: omemeghrbqapqslrni
+                ics:
+                  type: string
+                  format: binary
+                  description: 'Must be a file.'
+              required:
+                - name
+                - ics
   /api/mails:
     get:
       summary: ''
@@ -1167,13 +1029,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -1186,31 +1041,21 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Mail
   '/api/mails/{id}':
@@ -1220,13 +1065,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -1239,31 +1077,21 @@ paths:
           example: application/json
           schema:
             type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
       responses:
-        401:
+        200:
           description: ''
           content:
-            application/json:
+            text/plain:
               schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
+                type: string
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
       tags:
         - Mail
     parameters:
@@ -1271,7 +1099,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the mail.'
-        example: '07'
+        example: '7'
         required: true
         schema:
           type: string
@@ -1282,13 +1110,6 @@ paths:
       parameters:
         -
           in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
-        -
-          in: header
           name: Content-Type
           description: ''
           example: application/json
@@ -1299,6 +1120,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses: {  }
@@ -1314,15 +1142,15 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: duncan.schuster@example.com
+                  example: amraz@example.com
                 subject:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: tpbjsosfnzivfatijjiqfmojftmidwzrcqfcztvqlfrmrgybzayrqfnstammsbejfyydknfokfeijymbwofdgfpjfoxhwpttyzmufdcsnghzxzifioiuidehtolmnnafzhqzvddsojpjykjnfteanwrdjojgfgkpcwuisprhspmhdlkemsgkyvjrmglbvzxnagmdfjffowmjxveaxyuebfksjyxwheqafkchyywfboxnpexhhbhuyhtjlq
+                  example: rifxrjiqpnnsrqbhuklzkqdsiuivqcsllqcswprnjapysxlpcmvjhxszmfqiprqedorvoibcurhgzbmhilghycfoamyikslcwjqmiejyexbwtrgpdxsplhzeisquupollqnbadpmgyxeglozehqxbvswfqxabkeqsdftrvbzpubqwfqubskwbqgbqnkfsacpnpwzsnqzjkmdhvrconzfxpjuuftdvxhhnyar
                 message:
                   type: string
                   description: ''
-                  example: alias
+                  example: possimus
               required:
                 - to
                 - subject
@@ -1332,13 +1160,6 @@ paths:
       summary: 'Get cafeteria menu'
       description: 'Retourne un json contenant une liste des menus.'
       parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
         -
           in: header
           name: Content-Type
@@ -1351,6 +1172,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses:
@@ -1366,15 +1194,8 @@ paths:
   /api/marks:
     get:
       summary: 'Get marks'
-      description: 'Retourne un json contenant une liste des notes de l''utilisateur.'
+      description: "Retourne un json contenant une liste des notes de l'utilisateur."
       parameters:
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {YOUR_AUTH_KEY}'
-          schema:
-            type: string
         -
           in: header
           name: Content-Type
@@ -1387,6 +1208,13 @@ paths:
           name: Accept
           description: ''
           example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
           schema:
             type: string
       responses:
@@ -1424,12 +1252,3 @@ tags:
   -
     name: Notes
     description: "\nAPIs pour gérer les notes"
-components:
-  securitySchemes:
-    default:
-      type: http
-      scheme: bearer
-      description: ''
-security:
-  -
-    default: []

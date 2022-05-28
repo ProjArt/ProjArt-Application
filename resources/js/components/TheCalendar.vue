@@ -1,12 +1,12 @@
 <script setup>
-import { ref, computed, reactive, toRaw, watch } from "vue"
+import { ref, computed, toRaw, watch } from "vue"
 import useFetch from '../composables/useFetch';
 import { API } from '../stores/api';
-// TODO order events by date
 
-// local variables
+// Constants
 // ====================================== 
 
+const TODAY = new Date()
 const DAY_LABELS = ['LU', 'MA', 'ME', 'JE', 'VE', 'SA', 'DI'];
 const DAY_LABELS_ORDERS = ['DI', 'MA', 'ME', 'JE', 'VE', 'SA', 'LU'];
 const DATE_OPTION = { year: 'numeric', month: 'long' }
@@ -15,7 +15,6 @@ const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, DAY: 3 };
 // Ref
 // ====================================== 
 
-const TODAY = new Date()
 const allCalendars = ref({});
 const calendarsNames = ref([]);
 const currentLayout = ref(AVAILABLE_LAYOUT.MONTH);
@@ -118,22 +117,127 @@ function toChDate(date) {
     return date
 }
 
-// Features
+function prepareFormBeforeSending(rawForm) {
+    //  expected output: 2022-05-27 12:06:28
+    const date = rawForm.start_date
+    const dateParts = date.split('/')
+    const newDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`
+    const start = `${newDate} ${rawForm.start}:00`
+    const end = `${newDate} ${rawForm.end}:00`
+    rawForm.start = start
+    rawForm.end = end
+    delete rawForm.end_date
+    delete rawForm.start_date
+    return rawForm
+}
+
+function sortEvents(date) {
+    dates.value[date].events.sort((a, b) => {
+        const dateA = new Date(a['start'])
+        const dateB = new Date(b['start'])
+        return dateA - dateB
+    })
+}
+
+function hideNewEventForm() {
+    showNewEventPopup.value = '';
+}
+
+function hideEditEventsForm() {
+    showCurrentEventsPopup.value = '';
+}
+
+// CRUD operations on API
 // ====================================== 
+
+async function storeEvent() {
+    let form = toRaw(newEventForm.value)
+    const date = form.start_date
+    form = prepareFormBeforeSending(form)
+    const response = await useFetch({
+        url: API.storeEvent.path(),
+        method: API.storeEvent.method,
+        data: form
+    });
+    if (response.success === true) {
+        try {
+            form['id'] = response.data.id
+            dates.value[date].events.push(form)
+            sortEvents(date)
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        console.log('error')
+    }
+}
+
+async function deleteEvent(dayId, eventId) {
+    const date = toChDate(dayId)
+    const events = toRaw(dates.value[date].events)
+    const newEvents = events.filter((event) => event.id !== eventId)
+    const response = await useFetch({
+        url: API.deleteEvent.path(eventId),
+        method: API.deleteEvent.method,
+    });
+    if (response.success === true) {
+        try {
+            dates.value[date].events = newEvents
+            sortEvents(date)
+            newEventPopup.value = newEventPopup.value.filter((event) => event.id !== eventId)
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        console.log('error')
+    }
+}
+
+async function updateEvent(eventId) {
+    let form = toRaw(formUpdate.value)
+    const date = form.start_date
+    form = prepareFormBeforeSending(form)
+    const events = toRaw(dates.value[date].events)
+    let newEvents = events.filter((event) => event.id !== eventId)
+    newEvents.push(form)
+    console.log({ newEvents })
+    const response = await useFetch({
+        url: API.updateEvent.path(eventId),
+        method: API.updateEvent.method,
+        data: form
+    });
+    if (response.success === true) {
+        try {
+            dates.value[date].events = newEvents
+            sortEvents(date)
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        console.log('error')
+    }
+}
 
 async function setCalendars() {
     const response = await useFetch({
-        url: API.events.path(),
-        method: API.events.method,
+        url: API.getEvents.path(),
+        method: API.getEvents.method,
     });
-    const calendars = []
-    response.data.forEach((calendar) => {
-        calendars.push({ label: calendar.name, value: calendar.key })
-    })
-    calendarsNames.value = calendars;
-    allCalendars.value = response.data
-    setEvents()
+    if (response.success === true) {
+        const calendars = []
+        response.data.forEach((calendar) => {
+            calendars.push({ label: calendar.name, value: calendar.key })
+        })
+        calendarsNames.value = calendars;
+        allCalendars.value = response.data
+        setEvents()
+    } else {
+        console.log(response, 'error')
+    }
 }
+
+// Features
+// ====================================== 
 
 function getMonthCalendarFormat(year, month) {
     const days = {}
@@ -177,7 +281,6 @@ function setDisplayedDates(timeInterval) {
     showNewEventPopupRef.value = ''
 }
 
-
 function setDayCssClass(date) {
     const today = new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate());
     if (typeof date === 'undefined') return ''
@@ -190,104 +293,6 @@ function changeLayout(next) {
     else if (!next && currentLayout.value === AVAILABLE_LAYOUT.MONTH) setDisplayedDates(-1)
     else if (next && currentLayout.value === AVAILABLE_LAYOUT.WEEK) setDisplayedDates(7)
     else if (!next && currentLayout.value === AVAILABLE_LAYOUT.WEEK) setDisplayedDates(-7)
-}
-
-async function newEvent() {
-    let form = toRaw(newEventForm.value)
-    const date = form.start_date
-    form = prepareFormBeforeSending(form)
-    console.log(form)
-    console.log(date)
-    const response = await useFetch({
-        url: API.newEvents.path(),
-        method: API.newEvents.method,
-        data: form
-    });
-    if (response.success === true) {
-        try {
-            dates.value[date].events.push(form)
-            sortEvents(date)
-        } catch (error) {
-            console.log(error)
-        }
-    } else {
-        console.log('error')
-    }
-}
-
-function sortEvents(date) {
-    dates.value[date].events.sort((a, b) => {
-        const dateA = new Date(a['start'])
-        const dateB = new Date(b['start'])
-        return dateA - dateB
-    })
-}
-
-async function handleRemoveEvent(dayId, eventId) {
-    const date = toChDate(dayId)
-    const events = toRaw(dates.value[date].events)
-    const newEvents = events.filter((event, key) => {
-        if (key !== eventId) {
-            return event
-        }
-    })
-    const response = await useFetch({
-        url: API.removeEvent.path(),
-        method: API.removeEvent.method,
-    });
-    if (response.success === true) {
-        try {
-            dates.value[date].events = newEvents
-            sortEvents(date)
-        } catch (error) {
-            console.log(error)
-        }
-    } else {
-        console.log('error')
-    }
-}
-
-function prepareFormBeforeSending(rawForm) {
-    //  expected output: 2022-05-27 12:06:28
-    const date = rawForm.start_date
-    const dateParts = date.split('/')
-    const newDate = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`
-    const start = `${newDate} ${rawForm.start}:00`
-    const end = `${newDate} ${rawForm.end}:00`
-    rawForm.start = start
-    rawForm.end = end
-    delete rawForm.end_date
-    delete rawForm.start_date
-    return rawForm
-}
-
-async function updateEvent() {
-    let form = toRaw(formUpdate.value)
-    const date = form.start_date
-    form = prepareFormBeforeSending(form)
-    const response = await useFetch({
-        url: API.editEvent.path(),
-        method: API.editEvent.method,
-        data: form
-    });
-    if (response.success === true) {
-        try {
-            dates.value[date].events.push(form)
-            sortEvents(date)
-        } catch (error) {
-            console.log(error)
-        }
-    } else {
-        console.log('error')
-    }
-}
-
-function hideNewEventForm() {
-    showNewEventPopup.value = '';
-}
-
-function hideEditEventsForm() {
-    showCurrentEventsPopup.value = '';
 }
 
 function showNewEventForm(event) {
@@ -316,7 +321,7 @@ function showCurrentEvent(index) {
     showCurrentEventsPopup.value = index;
 }
 
-const handleShowEventEditForm = (index, id) => {
+function showEventEditForm(index, id) {
     indexUnderEdition.value = id !== indexUnderEdition.value ? id : undefined
     let newEvent = toRaw(dates.value[index].events)
     newEvent = newEvent.filter((event, key) => {
@@ -333,8 +338,6 @@ const handleShowEventEditForm = (index, id) => {
         start = ''
         end = ''
     }
-    console.log(newEvent)
-    console.log({ start }, { end })
     formUpdate.value = {
         title: newEvent[0].title,
         location: newEvent[0].location,
@@ -407,7 +410,7 @@ setCalendars()
     <!--====  Popup new event  ====-->
     <div class="popup popup--new-event" v-show="showNewEventPopup">
         <FormKit type="form" v-model="newEventForm" :form-class="isSubmitted ? 'hide' : 'show'"
-            submit-label="Enregistrer" @submit="newEvent">
+            submit-label="Enregistrer" @submit="storeEvent">
             <h2>Add Event</h2>
             <p>{{ selectedDate }}</p>
             <FormKit type="text" name="title" validation="required" label="Titre" />
@@ -425,10 +428,11 @@ setCalendars()
         <h2>Current Events</h2>
         <article class="popup__event" v-for="(event, index) in newEventPopup">
             <div class="event">
-                <p>{{ event.title }}</p>
-                <button @click="handleRemoveEvent(event.start, index)">supprimer</button>
-                <button @click="handleShowEventEditForm(event.local, event.id)">editer</button>
-                <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
+                <p>titre: {{ event.title }}</p><br />
+                <p>id: {{ event.id }}</p>
+                <button @click="deleteEvent(event.start, event.id)">supprimer</button>
+                <button @click="showEventEditForm(event.local, event.id)">editer</button>
+                <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent(event.id)"
                     v-if="indexUnderEdition === event.id" :key="event.id">
                     <FormKit type="text" name="title" validation="required" :label="'Titre ' + event.id" />
                     <FormKit type="text" name="location" validation="required" label="Lieu" />

@@ -7,11 +7,10 @@ import { ref, toRaw } from "vue";
 const isAuthenticated = ref(false);
 (async function checkAuth() {
     const response = await useFetch({
-        url: API['api/me'].path(),
-        method: API['api/me'].method,
+        url: API.me.path(),
+        method: API.me.method,
         data: {}
     });
-    console.log(response)
     if (response.success === true) {
         isAuthenticated.value = true;
         window.location.href += "/calendar";

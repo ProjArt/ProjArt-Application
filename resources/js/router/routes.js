@@ -14,7 +14,6 @@ const router = createRouter({
 
 router.beforeEach(async (to, from) => {
     const isAuthenticated = localStorage.getItem("token");
-    console.log(isAuthenticated);
     if (!isAuthenticated && to.name !== "home") {
         return { name: "home" };
     }

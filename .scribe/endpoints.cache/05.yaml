@@ -15,20 +15,35 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+              <title>Document</title>
+              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+          </head>
+          <body>
+              <div id="app"></div>
+
+              <script src="//localhost:8080/js/app.js"></script>
+          </body>
+          </html>
         headers:
+          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkpSd1lvZzMwclVGZnhsbXRsMVBLamc9PSIsInZhbHVlIjoidGg4WERnMmVaaVlnWWU5Z1RYZnF5TVVpKzE4YkN3OFdEaGxiQnZ4bDhLY2Q5RVNDcFpFOWx4OXVOYVJnMk9SQ21UK0cyY2p0VUI5UXI2M0UxbUNwTVZzcklkR01uZXhLeHh0ZzNXblowbkY3Q0xaU0Q3bXRLU0x3TDBONTJBcmwiLCJtYWMiOiI2ZDdkMTdkYjBkZGQ5NDhjZTM3MzVlMTRmNjgxZjdhMTk1MGFjZWRlYTliZDYxNGFhZDJmYmRiYWNkOGNmYjZkIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Ilo1czFCOVRlUk1CbDlvMmJpWG9HZXc9PSIsInZhbHVlIjoiNGpJZklvOS9hY083ZGp3eFYyUG5CdkVZSE9kbVNic2tSNElhakNYVEloRFY3bjVrSUptMTZSSjlhRVB1TzRwYUtXWDFGL2pPWnd5dEpZZHVXbUN2emVNcGh2Nm8vTzJKY0Q4S3NUU2UyekhQSi9aZE4vWWgxZkFWOEx6UmcvcXQiLCJtYWMiOiIzZTIwYjllMTNjM2FlZDdjNDg3YTg0MjFmZTIxNDZjYmY0MGM3M2I5YzE1ZTljMDdlMGZlNDI0YTMxZmJmMzU0IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -41,27 +56,42 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters:
       id:
         name: id
         description: 'The ID of the mail.'
         required: true
-        example: '07'
+        example: '7'
         type: string
         custom: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+              <title>Document</title>
+              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+          </head>
+          <body>
+              <div id="app"></div>
+
+              <script src="//localhost:8080/js/app.js"></script>
+          </body>
+          </html>
         headers:
+          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjFVb0JsMC9JL1N6Rko1WUIrdlIyWFE9PSIsInZhbHVlIjoic3ljTFNvdk1ELzUyREY2ZjdWOThFOXFwY3JPZU4xSzF3ajhqMTRCdjQwbENVMkpWNnVSdmNRWDkrb0ovUUJ4TkZ1VVJPaUpLNnFsVHRtU21aekdGK3d1RjQ5MUFGVGx3VFUvaTFja2ZxbXhxQnJKSjRjNzE2eGRXOTkya24veksiLCJtYWMiOiIwMGIzMjYzYTE0MTNmY2NjYmZhZDdjYWY1ZmIwOWZlMDYwNDEyYTc0ODBhOTkwODA2MThmOTE4MTgxNGZhNDQwIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Ik0yRGRYYjc5ZjBOMkhQUUp0WXlxNmc9PSIsInZhbHVlIjoieENXRmx6NWdjUWNBWE5ZdzBRdElVOEgramg1cGcxR3E0NnNyUzluK2NRRW4vMlMwby85R0tYSUlkd1lMN25Iazk5Rm5TZkJKcHM3ZitseU8xRXhPNVBMb0lBVWllVkRDOWlFclAySFJUNG85WUNIQytFZEJnbUMwSEdGNnc1WEwiLCJtYWMiOiJmOTljMGRhOTY1ODNhZWE1ZThjYjE4MWEzNjc3ODQyZTFkNzNkZWUzZGE4YTIxNmYwNDYyNTRmZTk3Y2YyMzdkIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -74,9 +104,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
@@ -84,21 +114,21 @@ endpoints:
         name: to
         description: 'Must be a valid email address.'
         required: true
-        example: duncan.schuster@example.com
+        example: amraz@example.com
         type: string
         custom: []
       subject:
         name: subject
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: tpbjsosfnzivfatijjiqfmojftmidwzrcqfcztvqlfrmrgybzayrqfnstammsbejfyydknfokfeijymbwofdgfpjfoxhwpttyzmufdcsnghzxzifioiuidehtolmnnafzhqzvddsojpjykjnfteanwrdjojgfgkpcwuisprhspmhdlkemsgkyvjrmglbvzxnagmdfjffowmjxveaxyuebfksjyxwheqafkchyywfboxnpexhhbhuyhtjlq
+        example: rifxrjiqpnnsrqbhuklzkqdsiuivqcsllqcswprnjapysxlpcmvjhxszmfqiprqedorvoibcurhgzbmhilghycfoamyikslcwjqmiejyexbwtrgpdxsplhzeisquupollqnbadpmgyxeglozehqxbvswfqxabkeqsdftrvbzpubqwfqubskwbqgbqnkfsacpnpwzsnqzjkmdhvrconzfxpjuuftdvxhhnyar
         type: string
         custom: []
       message:
         name: message
         description: ''
         required: true
-        example: alias
+        example: possimus
         type: string
         custom: []
     responses: []

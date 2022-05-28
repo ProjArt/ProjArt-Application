@@ -11,13 +11,13 @@ endpoints:
     uri: api/calendars
     metadata:
       title: 'Get calendars'
-      description: 'Retourne un json contenant une liste des calendrier. La liste correspond à l''ensemble des évènements de tous les calendriers que suit l''utilisateur.'
+      description: "Retourne un json contenant une liste des calendrier. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur."
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters: []
@@ -44,9 +44,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
@@ -54,7 +54,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: zqsuqtdbgeicmkzfdfdfgmsguiygnxrkuizwdnkdtlbqigltumiyxnnvtwicnfrqbhhcyymexdjsggkysqevgtnmnpsvuqlwxcpgjubqcqnojidcwit
+        example: lrubydrmjcchazjrnywdofvmazubotouwapgseoxpxeoiuunnnjvcljagov
         type: string
         custom: []
     responses: []
@@ -69,9 +69,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters:
       id:
         name: id
@@ -84,12 +84,27 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 401
-        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+              <title>Document</title>
+              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+          </head>
+          <body>
+              <div id="app"></div>
+
+              <script src="//localhost:8080/js/app.js"></script>
+          </body>
+          </html>
         headers:
+          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          content-type: application/json
-          access-control-allow-origin: '*'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkE0d1haOE1pbjNvbzVnZjhlWDBnSXc9PSIsInZhbHVlIjoiU3BSeElsYWdzM1hGczR1WCtEYko0NDhCSklvZmMyWDJXTk5wNmFBOVJSZ01ZZklWZm5hdXdkcDU1QkNRVDNVdlpMR3Z2NVg3VUoyTXFyRmovNzNmc2JDS3ZVdnF3YXZrSXg3WFRpdHZoTFBXUHozemQ1bmlHVVRUN05jQW9GdHEiLCJtYWMiOiI3NzJhMjhkMGMwOWVmZWU5NjgxMzBjYjY2MDdjMWZiZDE4Y2I1YjYwMWNmYzU2YmRjZGExODBiZjFlYWE1ZmUxIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IktNN2dTYmxScXJta25IZFRQbkVkTFE9PSIsInZhbHVlIjoiV2xtbVpVZHFNSHF6cGFPaTAvYjh5WGxacStOem9SWWdLQTZDb3o3N0YvUG5GZFVYbnRDaWNmSHIwYjRTTkhkOHlOZFRLanpObm5XdkxaRUxFY1JIQmdRNEY3THo4SDZKSWI5czdiVUFOUHdzNWpmOTg3Zjl0dDBLK05nSjRpdjciLCJtYWMiOiI3ZmUyNzRjNWEwNTE1NDhjZmYzZDRhOTk0YzcwZDVmZDBiMmMzYjA3ZTUxNjUxMTRiYTVjMWJiYmZjNWM0NGRkIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -103,9 +118,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters:
       id:
         name: id
@@ -120,7 +135,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: evf
+        example: sfhzqmofifxdabwnfgfvptmlqhqtivwavmoxiwxqfbzlmldmhqlrqdxjuehykfraryppegivmlydbochcbbragemfuixecqosxkyirqgwyqsbyyilcqqgdtndkofwpncfvjflgkkizuezdabkrsbpycrpesw
         type: string
         custom: []
     responses: []
@@ -135,9 +150,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters:
       id:
         name: id
@@ -160,9 +175,9 @@ endpoints:
       authenticated: true
       custom: []
     headers:
-      Authorization: 'Bearer {YOUR_AUTH_KEY}'
       Content-Type: application/json
       Accept: application/json
+      Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
     bodyParameters:
@@ -170,28 +185,28 @@ endpoints:
         name: calendar_id
         description: 'ID du calendrier à partager.'
         required: true
-        example: 15
+        example: 8
         type: integer
         custom: []
       user_id:
         name: user_id
-        description: 'ID de l''utilisateur à qui partager le calendrier.'
+        description: "ID de l'utilisateur à qui partager le calendrier."
         required: true
-        example: 16
+        example: 15
         type: integer
         custom: []
       can_own:
         name: can_own
         description: ''
         required: true
-        example: false
+        example: true
         type: boolean
         custom: []
       can_view:
         name: can_view
         description: ''
         required: true
-        example: false
+        example: true
         type: boolean
         custom: []
     responses: []

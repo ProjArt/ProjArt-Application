@@ -11,24 +11,7 @@ const baseUrl = "http://localhost:8000/";
  * Routes'names and documentation is available at http://localhost:8000/docs/
  * @example  Get Calendar => getCalendar
  */
-export const API = {
-    register: {
-        method: "POST",
-        path: () => `${API_URL}register`,
-    },
-    login: {
-        method: "POST",
-        path: () => `${API_URL}login`,
-    },
-    events: {
-        method: "GET",
-        path: () => `${API_URL}events`,
-    },
-    newEvents: {
-        method: "POST",
-        path: () => `${API_URL}events`,
-    },
-};
+export const API = {};
 
 /**
  * It takes a route string, splits it into parts, and returns a function that takes
@@ -71,3 +54,4 @@ const createFunction = (route) => {
         });
     });
 })();
+console.log({ API });
