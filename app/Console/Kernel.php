@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             GapsMenuService::fetchMenus();
-        })->dailyAt('11:02');
+        })->dailyAt('23:35');
     }
 
     /**
