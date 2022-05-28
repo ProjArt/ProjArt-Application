@@ -71,6 +71,8 @@ Route::middleware('auth:sanctum')->group(function () {
         'as' => 'api'
     ]);
 
+    Route::post("/calendars/import", [GapsEventsController::class, 'importCalendarICS'])->name("api.calendar.import");
+
     Route::post('/calendars/share', [CalendarOwnController::class, 'share'])->name("api.calendars.share");
 
     Route::get("/classrooms", [ClassroomController::class, 'index'])->name("api.classrooms.index");

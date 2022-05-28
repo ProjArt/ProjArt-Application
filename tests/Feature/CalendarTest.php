@@ -3,9 +3,11 @@
 namespace Tests\Feature;
 
 use App\Models\Calendar;
+use App\Models\Event;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
@@ -220,5 +222,25 @@ class CalendarTest extends TestCase
 
         $userToShare->delete();
         $calendar->forceDelete();
+    }
+
+    public function test_can_import_ics()
+    {
+        $user = User::findOr(1, function () {
+            return User::factory()->create();
+        });
+
+        Sanctum::actingAs(
+            $user
+        );
+
+        $eventCount = Event::count();
+
+        $file = Storage::get('tests/test.ics');
+
+        /* $response = $this->postJson('/api/calendars/import', [
+            'name' => "testImport",
+            'ics' => $file
+        ]); */
     }
 }
