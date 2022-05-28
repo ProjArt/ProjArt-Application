@@ -164,7 +164,7 @@ class TelegramController extends Controller
 
 
         if ($user) {
-            $meals = Meal::with('menu')->get();
+            $meals = Meal::today()->get();
 
             $s = "";
 
@@ -172,6 +172,7 @@ class TelegramController extends Controller
                 $s .= $meal->entry . "\n";
                 $s .= $meal->plate . "\n";
                 $s .= $meal->dessert . "\n";
+                $s .= "\n";
             }
 
             return $this->chat->html($s);
