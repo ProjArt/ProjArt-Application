@@ -22,7 +22,7 @@ class GapsEventsService
 
     public function fetchFuturesHoraires($items = 1)
     {
-        $events = $this->user->horaires()->nexts($items)->get();
+        $events = $this->user->events()->nexts($items)->get();
         return $this->displayHoraires($events);
     }
 
