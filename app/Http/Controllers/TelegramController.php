@@ -164,7 +164,7 @@ class TelegramController extends Controller
 
 
         if ($user) {
-            $meals = Meal::with('menu')->whereDate('menu.date', Carbon::today())->get();
+            $meals = Meal::with('menu')->get();
 
             $s = "";
 
