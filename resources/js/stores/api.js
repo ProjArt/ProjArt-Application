@@ -7,7 +7,9 @@ const baseUrl = "http://localhost:8000/";
  * @attribute method {string} The method of the route (GET, POST, PUT, etc.)
  * @attribute path {function} Function that returns the path of the route, can take arguments
  *
- * @hint Routes documentation is available at http://localhost:8000/docs/
+ * @hint every route object name is a camelCase version of the route name
+ * Routes'names and documentation is available at http://localhost:8000/docs/
+ * @example  Get Calendar => getCalendar
  */
 export const API = {
     register: {
