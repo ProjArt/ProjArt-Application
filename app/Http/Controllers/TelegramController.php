@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
+use App\Models\Meal;
 use App\Models\TelegramChat;
 use App\Models\User;
+use Carbon\Carbon;
 use DefStudio\Telegraph\Keyboard\Button;
 use DefStudio\Telegraph\Keyboard\Keyboard;
 use DefStudio\Telegraph\Models\TelegraphBot;
@@ -156,22 +158,23 @@ class TelegramController extends Controller
         }
     }
 
-    private function menu() {
+    private function menu()
+    {
         $user = $this->chat->users()->first();
 
 
-        if ($gaps) {
+        if ($user) {
             $meals = Meal::with('menu')->whereDate('menu.date', Carbon::today())->get();
 
             $s = "";
 
             foreach ($meals as $meal) {
-                $s .= $meal->entry."\n";
-                $s .= $meal->plate."\n";
-                $s .= $meal->dessert."\n";
+                $s .= $meal->entry . "\n";
+                $s .= $meal->plate . "\n";
+                $s .= $meal->dessert . "\n";
             }
 
             return $this->chat->html($s);
         }
-
     }
+}
