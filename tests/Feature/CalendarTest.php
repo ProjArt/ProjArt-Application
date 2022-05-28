@@ -235,9 +235,9 @@ class CalendarTest extends TestCase
         Calendar::whereName("Calendar name")->forceDelete();
     }
 
-    public function test_can_import_ics()
+    /*  public function test_can_import_ics()
     {
-        $user = User::findOr(1, function () {
+        /$user = User::findOr(1, function () {
             return User::factory()->create();
         });
 
@@ -250,13 +250,13 @@ class CalendarTest extends TestCase
         $filename = Storage::path('tests/test.ics');
         $file = new UploadedFile($filename, 'test.ics', 'text/calendar', filesize($filename), 0, true);
 
+ 
 
-
-        /*   $response = $this->postJson('/api/calendars/import', [
+          $response = $this->postJson('/api/calendars/import', [
             'name' => "testImport",
             'ics' => $file,
         ]);
 
-        dd($response->json()); */
-    }
+        dd($response->json()); 
+    } */
 }
