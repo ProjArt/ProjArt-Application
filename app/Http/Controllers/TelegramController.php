@@ -14,7 +14,6 @@ class TelegramController extends Controller
 
     private $chat;
     private $command;
-    private $message;
     private $params;
 
     public function handle()
@@ -75,9 +74,9 @@ class TelegramController extends Controller
 
     private function gaps()
     {
-        $gaps = $this->chat->gapsUsers()->first();
+        $gaps = $this->chat->users()->first();
         if (!$gaps) {
-            $this->chat->gapsUsers()->create();
+            $this->chat->users()->create();
             return $this->chat->html("Veuillez entrer votre nom d'utilisateur GAPS : (avec la commande /gaps p.ex : /gaps john.doe)");
         }
 
@@ -107,7 +106,7 @@ class TelegramController extends Controller
 
     private function prochain()
     {
-        $gaps = $this->chat->gapsUsers()->first();
+        $gaps = $this->chat->users()->first();
         if ($gaps) {
             $horaires = new GapsEventsService($gaps);
 
@@ -121,7 +120,7 @@ class TelegramController extends Controller
     {
 
         $nbr = isset($this->params[0]) ? $this->params[0] : 3;
-        $gaps = $this->chat->gapsUsers()->first();
+        $gaps = $this->chat->users()->first();
         if ($gaps) {
             $horaires = new GapsEventsService($gaps);
 
@@ -133,7 +132,7 @@ class TelegramController extends Controller
 
     private function notes()
     {
-        $gaps = $this->chat->gapsUsers()->first();
+        $gaps = $this->chat->users()->first();
         if ($gaps) {
             $notes = new GapsMarksService($gaps);
 
@@ -145,7 +144,7 @@ class TelegramController extends Controller
 
     private function moi()
     {
-        $gaps = $this->chat->gapsUsers()->first();
+        $gaps = $this->chat->users()->first();
         if ($gaps) {
             return $this->chat->html("Vous êtes connecté à Gaps avec le nom d'utilisateur : " . $gaps->username);
         } else {
@@ -155,9 +154,9 @@ class TelegramController extends Controller
 
     private function supprimer()
     {
-        $gaps = $this->chat->gapsUsers()->first();
+        $gaps = $this->chat->users()->first();
         if ($gaps) {
-            $this->chat->gapsUsers()->detach($gaps->id);
+            $this->chat->users()->detach($gaps->id);
             $gaps->delete();
             return $this->chat->html("Vous avez été déconnecté de Gaps.");
         }
