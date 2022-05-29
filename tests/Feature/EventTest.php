@@ -139,4 +139,65 @@ class EventTest extends TestCase
         $event->delete();
         Calendar::whereName("Calendar name")->forceDelete();
     }
+
+    public function test_cannot_update_event_if_not_own()
+    {
+        $user  = User::findOr(1, function () {
+            return User::factory()->create();
+        });
+
+        Sanctum::actingAs($user);
+
+        $calendar = Calendar::factory()->create();
+
+        $user->calendars()->attach($calendar->id, ['rights' => Calendar::READ_RIGHT]);
+
+        $event = Event::factory()->create([
+            'calendar_id' => $calendar->id,
+        ]);
+
+        $response = $this->json(
+            "PUT",
+            route('api.events.update', $event->id),
+            [
+                'title' => 'Test Event2',
+            ],
+        );
+
+
+        $response->assertForbidden();
+
+        $event->delete();
+        Calendar::whereName("Calendar name")->forceDelete();
+    }
+
+    public function test_cannot_add_event_if_calendar_not_own()
+    {
+        $user  = User::findOr(1, function () {
+            return User::factory()->create();
+        });
+
+        Sanctum::actingAs($user);
+
+        $calendar = Calendar::factory()->create();
+
+        $user->calendars()->attach($calendar->id, ['rights' => Calendar::READ_RIGHT]);
+
+        $response = $this->json(
+            "POST",
+            route('api.events.store'),
+            [
+                'title' => 'Test Event NOT ACCEPTABLE',
+                'start' => '2020-01-01',
+                'end' => '2020-01-01',
+                'description' => 'Test Event',
+                'location' => 'Test Event',
+                'calendar_id' => $calendar->id,
+            ],
+        );
+
+
+        $response->assertForbidden();
+        Calendar::whereName("Calendar name")->forceDelete();
+    }
 }

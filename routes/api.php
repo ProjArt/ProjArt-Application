@@ -34,6 +34,7 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('/register',  'register')->name('api.register');
 });
 
+Route::get("/classrooms", [ClassroomController::class, 'index'])->name("api.classrooms.index");
 
 //Auth routes
 Route::middleware('auth:sanctum')->group(function () {
@@ -75,7 +76,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/calendars/share', [CalendarController::class, 'share'])->name("api.calendars.share");
 
-    Route::get("/classrooms", [ClassroomController::class, 'index'])->name("api.classrooms.index");
 
     Route::post("/classrooms/setUser", [ClassroomController::class, 'setUserClassroom'])->name("api.classrooms.setUserClassroom");
 

@@ -139,9 +139,8 @@ class AuthTest extends TestCase
         $response = $this->json('POST', '/api/register', [
             'username' => $username,
             'password' => "password",
-            'classroom_name' => $classroom->name,
+            'classroom_name' => "test",
         ]);
-
 
         $response->assertSuccessful();
 

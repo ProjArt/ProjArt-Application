@@ -46,6 +46,18 @@ class EventPolicy
     }
 
     /**
+     * Determine whether the user can store the model.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function store(User $user, Calendar $calendar)
+    {
+        return $this->checkRightsOnCalendar($user, $calendar, Calendar::EDIT_RIGHT);
+    }
+
+
+    /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
