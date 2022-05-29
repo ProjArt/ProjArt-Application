@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\AbsenceController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\ClassRoomController;
+use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GapsAbsenceController;
 use App\Http\Controllers\GapsController;
@@ -15,8 +14,6 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\TelegramController;
-use App\Http\Services\GapsEventsService;
-use App\Http\Services\GapsMarksService;
 
 /*
 |--------------------------------------------------------------------------
