@@ -80,6 +80,7 @@ class GapsEventsService
                 ));
                 $ical->initUrl($user->getActualHoraireLink());
 
+                $calendar->events()->delete();
 
                 foreach ($ical->events() as $event) {
                     $event = $calendar->events()->create([

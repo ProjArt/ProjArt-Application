@@ -61,9 +61,6 @@ class GapsEventsController extends Controller
 
         $user->calendars()->attach($calendar->id, ['rights' => Calendar::EDIT_RIGHT]);
 
-        $calendar->events()->delete();
-
-
         foreach ($ical->events() as $event) {
             $calendar->events()->create([
                 'calendar_id' => $calendar->id,
