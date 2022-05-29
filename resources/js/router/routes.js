@@ -3,8 +3,8 @@ import home from "./HomeRoute.vue";
 import calendar from "./CalendarRoute.vue";
 
 const routes = [
-    { name: "home", path: "/", component: home },
-    { name: "calendar", path: "/calendar", component: calendar },
+    { name: "home", path: process.env.MIX_BASE_URL + "/", component: home },
+    { name: "calendar", path: process.env.MIX_BASE_URL + "/calendar", component: calendar },
 ];
 
 export const routesNames = (() => {
@@ -20,7 +20,7 @@ const router = createRouter({
     routes,
 });
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async(to, from) => {
     const isAuthenticated = localStorage.getItem("token");
     if (!isAuthenticated && to.name !== "home") {
         return { name: "home" };
