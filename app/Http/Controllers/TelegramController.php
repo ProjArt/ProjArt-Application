@@ -183,6 +183,8 @@ class TelegramController extends Controller
 
             return $this->chat->html($s);
         }
+
+        return $this->chat->html("Vous n'êtes pas connecté à Gaps.\n/gaps");
     }
 
     private function absences()
