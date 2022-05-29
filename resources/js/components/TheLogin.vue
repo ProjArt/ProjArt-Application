@@ -2,31 +2,24 @@
 import { ref, toRaw } from "vue"
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api"
+import { routesNames } from "../router/routes";
 const isSubmitted = ref(false)
 const formData = ref({})
 const errorMessage = ref('')
 const isAuthenticated = ref(false);
-console.log(window.location.href)
 
-try {
-    console.log(JSON.parse(getCookie('preferences')))
-} catch (error) {
-
-}
 const submitHandler = async () => {
     isSubmitted.value = true
-    console.log(toRaw(formData.value))
     const response = await useFetch({
         url: API.login.path(),
         method: API.login.method,
         data: toRaw(formData.value)
     })
-    console.log(response);
     if (response.success === true) {
         isAuthenticated.value = true;
         localStorage.setItem('token', response.data.access_token);
         errorMessage.value = ''
-        /* window.location.href += "signup"; */
+        window.location.href += routesNames.calendar.replace('/', '');
     } else {
         isAuthenticated.value = false;
         errorMessage.value = response.message;
@@ -34,7 +27,7 @@ const submitHandler = async () => {
 }
 </script>
 <template>
-    <div>
+    <div class="wrapper">
         <FormKit type="form" v-model="formData" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Login"
             @submit="submitHandler">
             <h2>Connexion</h2>
@@ -49,5 +42,17 @@ const submitHandler = async () => {
         <a class="forgot-password" href="#">Forgot password ?</a>
     </div>
 </template>
-<style>
+<style scoped lang="scss">
+.wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+:deep(.formkit-form) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 </style>
