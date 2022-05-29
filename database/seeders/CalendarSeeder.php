@@ -17,12 +17,12 @@ class CalendarSeeder extends Seeder
      */
     public function run()
     {
-        /* $calendar = Calendar::create([
+        $calendar = Calendar::create([
             'name' => 'Calendar Owner'
         ]);
 
-        $user = User::find(1);
+        $user = User::where('username', config('gaps.username'))->first();
 
-        $user->calendars()->attach($calendar->id, ['rights' => Calendar::EDIT_RIGHT]); */
+        $user->calendars()->attach($calendar->id, ['rights' => Calendar::EDIT_RIGHT]);
     }
 }
