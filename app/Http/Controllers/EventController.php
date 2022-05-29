@@ -93,9 +93,11 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
-        $userId = $request->user()->id;
-        $inputs = $request->all() + ['user_id' => $userId];
+        $user = $request->user();
+        $inputs = $request->all() + ['user_id' => $user->id];
         $calendar = Calendar::findOrFail($request->calendar_id);
+
+        $this->authorize('store', [Event::class, $calendar]);
 
         $newEvent = $calendar->events()->create($inputs);
 

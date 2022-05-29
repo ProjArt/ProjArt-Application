@@ -19,9 +19,8 @@ class DatabaseSeeder extends Seeder
     {
         $all = 1;
         if (config('database.default') == "mysql") {
-            $all = $this->command->choice('Voulez-vous seeder toutes les tables pour tester (1) ou que le nécessaire au fonctionnement ? (0) ', ['1' => "Toutes les tables", '0' => "Que le nécessaire"], 1);
+            $all = $this->command->choice('Voulez-vous seeder toutes les tables pour tester (1) ou que le nécessaire au fonctionnement ? (0) ', ['1', '0'], 1);
         }
-
 
         if (config('database.default') == "mysql") {
             DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -46,9 +45,8 @@ class DatabaseSeeder extends Seeder
             $this->call(EventSeeder::class);
             $this->call(MarkSeeder::class);
             $this->call(CalendarSeeder::class);
-
-            /*  $this->call(CalendarUserFollowSeeder::class);
-            $this->call(CalendarUserOwnSeeder::class); */
+            $this->call(AbsencesSeeder::class);
+            $this->call(MenuSeeder::class);
         }
 
 

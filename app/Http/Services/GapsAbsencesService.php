@@ -54,13 +54,6 @@ class GapsAbsencesService
 
     public static function fetchAllAbsences($user = null)
     {
-
-        if ($user == null) {
-            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-            //DB::table('horaires')->truncate();
-            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        }
-
         $users = $user != null ? [$user] : User::all();
 
         foreach ($users as $user) {
