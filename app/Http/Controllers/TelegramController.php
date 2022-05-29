@@ -18,6 +18,7 @@ class TelegramController extends Controller
 
     private $chat;
     private $command;
+    private $message;
     private $params;
 
     public function handle()
