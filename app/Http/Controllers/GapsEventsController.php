@@ -53,13 +53,15 @@ class GapsEventsController extends Controller
         ));
         $ical->initFile($request->file('ics'));
 
-        $calendar = Calendar::create(
+        $calendar = Calendar::firstOrCreate(
             [
                 'name' => $request->name,
             ]
         );
 
         $user->calendars()->attach($calendar->id, ['rights' => Calendar::EDIT_RIGHT]);
+
+        $calendar->events()->delete();
 
 
         foreach ($ical->events() as $event) {
