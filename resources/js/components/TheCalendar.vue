@@ -18,7 +18,7 @@ const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, DAY: 3 };
 const allCalendars = ref({});
 const calendarsNames = ref([]);
 const currentLayout = ref(AVAILABLE_LAYOUT.MONTH);
-const currentCalendarId = ref(1);
+const currentCalendarId = ref(0);
 const displayedDate = ref(new Date());
 const newEventPopupRef = ref([]);
 const showNewEventPopupRef = ref('');
@@ -32,6 +32,7 @@ const end = ref('...')
 const indexUnderEdition = ref('')
 const currDateCursor = ref(TODAY)
 const dayLabels = ref(DAY_LABELS.slice())
+const canEditCalendar = ref(false)
 
 // Computed 
 // ====================================== 
@@ -77,8 +78,9 @@ function formatDayObject(ref) {
 }
 
 function setEvents() {
-    const currentCalendar = allCalendars.value[currentCalendarId.value]
-    currentCalendar.events.forEach(event => {
+    const currentCalendar = allCalendars.value.filter(calendar => calendar.id === currentCalendarId.value)
+    console.log(currentCalendar)
+    currentCalendar[0].events.forEach(event => {
         const newEvent = toRaw(event)
         const date = new Date(event.start)
         const local = date.toLocaleDateString()
@@ -149,6 +151,19 @@ function hideEditEventsForm() {
 
 // CRUD operations on API
 // ====================================== 
+
+async function getEvents() {
+    const response = await useFetch({
+        url: API.getEvents.path(),
+        method: API.getEvents.method,
+    });
+    if (response.success === true) {
+        allCalendars.value = response.data
+        setEvents()
+    } else {
+        console.log(response, 'error')
+    }
+}
 
 async function storeEvent(form) {
     const date = form.start_date
@@ -225,11 +240,11 @@ async function setCalendars() {
     if (response.success === true) {
         const calendars = []
         response.data.forEach((calendar) => {
-            calendars.push({ label: calendar.name, value: calendar.key })
+            calendars.push({ name: calendar.name, id: calendar.id, canEdit: calendar.can_edit })
         })
         calendarsNames.value = calendars;
-        console.log(toRaw(calendarsNames))
         allCalendars.value = response.data
+        currentCalendarId.value = calendars[0].id
         setEvents()
     } else {
         console.log(response, 'error')
@@ -368,11 +383,21 @@ watch(selectedDate, (index) => {
     newEventPopup.value = toRaw(dates.value[index].events)
 })
 
+watch(currentCalendarId, (id) => {
+    console.log({ id })
+    const editable = allCalendars.value.filter(calendar => {
+        console.log({ calendar })
+        return (calendar.id === id)
+    })[0].can_edit
+    canEditCalendar.value = editable
+})
+
 // At startup
 // ====================================== 
 
 const dates = ref(getMonthCalendarFormat(TODAY.getFullYear(), TODAY.getMonth()));
 setCalendars()
+/* getCalendars() */
 
 </script>
 <template>
@@ -386,7 +411,15 @@ setCalendars()
             <button @click="currentLayout = AVAILABLE_LAYOUT.MONTH">Mois</button>
             <button @click="currentLayout = AVAILABLE_LAYOUT.WEEK">Semaines</button>
             <button @click="setDisplayedDates(0)">Aujaurd'hui</button>
-            <FormKit type="select" name="calendar" :options="calendarsNames" v-model="currentCalendarId" />
+            <FormKit type="select" name="calendar" v-model="currentCalendarId">
+                <option v-for="(name, index) in calendarsNames" :value="name.id">{{ name.name }}</option>
+            </FormKit>
+            <p>
+                calendrier editable: <span :style="{ 'color': canEditCalendar ? 'blue' : 'red' }">
+                    {{ canEditCalendar }}
+                </span>
+            </p>
+
         </header>
         <!--====  Calendar days names  ====-->
         <div class="calendar__days-names">
@@ -403,7 +436,7 @@ setCalendars()
                     <p class="calendar__event">{{ event.title }}</p>
                 </div>
                 <button :value="index" @click="showNewEventForm" class="button--add-event"
-                    v-show="index.includes('/')">+</button>
+                    v-show="index.includes('/') && canEditCalendar">+</button>
             </div>
         </div>
     </div>
@@ -436,8 +469,8 @@ setCalendars()
                     <p>début: {{ event.start }}</p>
                     <p>fin: {{ event.end }}</p>
                 </div>
-                <button @click="deleteEvent(event.start, event.id)">supprimer</button>
-                <button @click="showEventEditForm(event.local, event.id)">editer</button>
+                <button v-show="canEditCalendar" @click="deleteEvent(event.start, event.id)">supprimer</button>
+                <button v-show="canEditCalendar" @click="showEventEditForm(event.local, event.id)">editer</button>
                 <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
                     v-if="indexUnderEdition === event.id" :key="event.id">
                     <FormKit type="text" name="title" validation="required" :label="'Titre ' + event.id" />

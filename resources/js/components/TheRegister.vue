@@ -34,6 +34,7 @@ const submitHandler = async () => {
             <FormKit type="password" name="password" placeholder="password" validation="required" label="Password" />
             <FormKit type="password" name="password_confirm" placeholder="password" label="Confirm password"
                 validation="required|confirm" validation-label="Password confirmation" />
+            <FormKit type="text" name="classroom_name" placeholder="class" validation="required" label="Classe" />
         </FormKit>
         <div>
             <h2 v-if="isAuthenticated && isSubmitted">Compte crée</h2>
