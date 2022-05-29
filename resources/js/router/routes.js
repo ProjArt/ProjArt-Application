@@ -4,7 +4,7 @@ import calendar from "./CalendarRoute.vue";
 
 const routes = [
     { name: "home", path: process.env.MIX_BASE_URL + "/", component: home },
-    { name: "calendar", path: process.env.MIX_BASE_URL + "/calendar", component: calendar },
+    { name: "calendar", path: "/calendar", component: calendar },
 ];
 
 export const routesNames = (() => {
