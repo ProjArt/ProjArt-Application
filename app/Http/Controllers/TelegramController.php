@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
+use App\Models\Absence;
 use App\Models\Meal;
 use App\Models\TelegramChat;
 use App\Models\User;
@@ -166,12 +167,39 @@ class TelegramController extends Controller
         if ($user) {
             $meals = Meal::today()->get();
 
+            if (!$meals) {
+                return $this->chat->html("Aucun repas n'est prévu aujourd'hui.");
+            }
+
             $s = "";
 
             foreach ($meals as $meal) {
                 $s .= $meal->entry . "\n";
                 $s .= $meal->plate . "\n";
                 $s .= $meal->dessert . "\n";
+                $s .= "\n";
+            }
+
+            return $this->chat->html($s);
+        }
+    }
+
+    private function absences()
+    {
+        $user = $this->chat->users()->first();
+
+        if ($user) {
+            $absences = $user->absences;
+
+            if (!$absences) {
+                return $this->chat->html("Vous n'avez pas d'absence.");
+            }
+
+            $s = "";
+
+            foreach ($absences as $absence) {
+                $s .= $absence->unity . "\n";
+                $s .= $absence->absolute_rate . " %" . "\n";
                 $s .= "\n";
             }
 
