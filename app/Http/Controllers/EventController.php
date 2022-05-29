@@ -4,11 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use App\Models\Calendar;
-use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreEventRequest;
 use App\Http\Requests\UpdateEventRequest;
-use Symfony\Component\HttpFoundation\Request;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Request;
 
 /**
  * @group Evènements
@@ -52,11 +50,13 @@ class EventController extends Controller
      */
     public function index(Request $request)
     {
-        $calendars = $request->user()->calendarsFollow->map(function ($calendar) {
+        //$events = $user->events()->with('calendar')->get()->groupBy('calendar_id');
+        $calendars = $request->user()->calendars->map(function ($calendar) {
             return [
                 "id" => $calendar->id,
                 "name" => $calendar->name,
-                "events" => $calendar->events()->orderBy('start')->get()
+                "can_edit" => $calendar->pivot->rights == Calendar::EDIT_RIGHT,
+                "events" => $calendar->events,
             ];
         });
 

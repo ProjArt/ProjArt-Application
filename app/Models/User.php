@@ -5,14 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use voku\helper\HtmlDomParser;
+use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRelationships;
+
 
     const ROLE_STUDENT = 'student';
     const ROLE_TEACHER = 'teacher';
@@ -118,14 +121,9 @@ class User extends Authenticatable
         }
     }
 
-    public function calendarsFollow()
+    public function calendars()
     {
-        return $this->belongsToMany(Calendar::class, 'calendar_user_follow', 'user_id', 'calendar_id');
-    }
-
-    public function calendarsOwn()
-    {
-        return $this->belongsToMany(CalendarOwn::class, 'calendar_user_own', 'user_id', 'calendar_id')->orderBy('name');
+        return $this->belongsToMany(Calendar::class)->withPivot(['rights'])->orderBy('name');
     }
 
     public function classrooms()
@@ -141,5 +139,10 @@ class User extends Authenticatable
     public function absences()
     {
         return $this->hasMany(Absence::class);
+    }
+
+    public function events()
+    {
+        return $this->hasManyDeep(Event::class, ['calendar_user', Calendar::class]);
     }
 }

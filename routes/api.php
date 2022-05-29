@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\CalendarOwnController;
 use App\Http\Controllers\ClassRoomController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GapsAbsenceController;
@@ -15,6 +14,7 @@ use App\Http\Controllers\GapsMarksController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\TelegramController;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
 
@@ -67,13 +67,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/menu', [MenuController::class, 'index'])->name("api.getMenu");
 
-    Route::resource('/calendars', CalendarOwnController::class, [
+    Route::resource('/calendars', CalendarController::class, [
         'as' => 'api'
     ]);
 
     Route::post("/calendars/import", [GapsEventsController::class, 'importCalendarICS'])->name("api.calendar.import");
 
-    Route::post('/calendars/share', [CalendarOwnController::class, 'share'])->name("api.calendars.share");
+    Route::post('/calendars/share', [CalendarController::class, 'share'])->name("api.calendars.share");
 
     Route::get("/classrooms", [ClassroomController::class, 'index'])->name("api.classrooms.index");
 
@@ -88,3 +88,5 @@ Route::get('/', function () {
 
 
 Route::get('/update/gaps/{token}', [GapsController::class, "updateAll"])->where('token', config('gaps.token'));
+
+Route::post("/telegram/{token}", [TelegramController::class, "handle"])->where(["token" => env("TELEGRAM_BOT_TOKEN")]);

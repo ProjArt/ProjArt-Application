@@ -37,15 +37,18 @@ class DatabaseSeeder extends Seeder
         $this->call(ColorSeeder::class);
         $this->call(ThemeSeeder::class);
         $this->call(ClassroomSeeder::class);
-        if ($all) {
+        if ($all == 1) {
             $this->call(UsersSeeder::class);
             DB::table('classroom_user')->truncate();
             User::find(1)->classrooms()->attach('M49-1');
+            DB::table('calendars')->truncate();
+            DB::table('calendar_user')->truncate();
             $this->call(EventSeeder::class);
             $this->call(MarkSeeder::class);
             $this->call(CalendarSeeder::class);
-            $this->call(CalendarUserFollowSeeder::class);
-            $this->call(CalendarUserOwnSeeder::class);
+
+            /*  $this->call(CalendarUserFollowSeeder::class);
+            $this->call(CalendarUserOwnSeeder::class); */
         }
 
 

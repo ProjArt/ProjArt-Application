@@ -5,8 +5,7 @@ namespace Tests\Feature;
 use App\Models\Calendar;
 use App\Models\Event;
 use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
@@ -41,11 +40,11 @@ class CalendarTest extends TestCase
 
         $calendar = Calendar::factory()->create();
 
-        $user->calendarsOwn()->sync($calendar);
+        $user->calendars()->attach($calendar->id, ["rights" => Calendar::EDIT_RIGHT]);
 
         $response = $this->getJson('/api/calendars/' . $calendar->id);
 
-        $response->assertStatus(200);
+        $response->assertSuccessful();
     }
 
     public function test_cannot_access_calendar_if_not_own()
@@ -97,7 +96,7 @@ class CalendarTest extends TestCase
 
         $calendar = Calendar::factory()->create();
 
-        $user->calendarsOwn()->sync($calendar);
+        $user->calendars()->attach($calendar->id, ["rights" => Calendar::EDIT_RIGHT]);
 
         $response = $this->putJson('/api/calendars/' . $calendar->id, [
             'name' => 'test',
@@ -137,7 +136,7 @@ class CalendarTest extends TestCase
 
         $calendar = Calendar::factory()->create();
 
-        $user->calendarsOwn()->sync($calendar);
+        $user->calendars()->attach($calendar->id, ["rights" => Calendar::EDIT_RIGHT]);
 
         $response = $this->deleteJson('/api/calendars/' . $calendar->id);
 
@@ -175,11 +174,17 @@ class CalendarTest extends TestCase
             $user
         );
         $calendar = Calendar::factory()->create();
-        $user->calendarsOwn()->attach($calendar);
+        $user->calendars()->attach($calendar->id, ["rights" => Calendar::EDIT_RIGHT]);
 
-        $userToShare = User::factory()->create([
-            'username' => "test"
-        ]);
+        $userToShare = User::firstOrCreate(
+            [
+                'username' => 'test',
+            ],
+            [
+                "password" => "password",
+                "theme_id" => 1
+            ]
+        );
 
         $response = $this->postJson('/api/calendars/share', [
             'calendar_id' => $calendar->id,
@@ -206,9 +211,15 @@ class CalendarTest extends TestCase
         );
         $calendar = Calendar::factory()->create();
 
-        $userToShare = User::factory()->create([
-            'username' => "test"
-        ]);
+        $userToShare = User::firstOrCreate(
+            [
+                'username' => 'test',
+            ],
+            [
+                "password" => "password",
+                "theme_id" => 1
+            ]
+        );
 
         $response = $this->postJson('/api/calendars/share', [
             'calendar_id' => $calendar->id,
@@ -221,12 +232,12 @@ class CalendarTest extends TestCase
         $response->assertStatus(403);
 
         $userToShare->delete();
-        $calendar->forceDelete();
+        Calendar::whereName("Calendar name")->forceDelete();
     }
 
-    public function test_can_import_ics()
+    /*  public function test_can_import_ics()
     {
-        $user = User::findOr(1, function () {
+        /$user = User::findOr(1, function () {
             return User::factory()->create();
         });
 
@@ -236,11 +247,16 @@ class CalendarTest extends TestCase
 
         $eventCount = Event::count();
 
-        $file = Storage::get('tests/test.ics');
+        $filename = Storage::path('tests/test.ics');
+        $file = new UploadedFile($filename, 'test.ics', 'text/calendar', filesize($filename), 0, true);
 
-        /* $response = $this->postJson('/api/calendars/import', [
+ 
+
+          $response = $this->postJson('/api/calendars/import', [
             'name' => "testImport",
-            'ics' => $file
-        ]); */
-    }
+            'ics' => $file,
+        ]);
+
+        dd($response->json()); 
+    } */
 }

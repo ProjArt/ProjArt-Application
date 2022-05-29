@@ -22,7 +22,7 @@ class GapsEventsService
 
     public function fetchFuturesHoraires($items = 1)
     {
-        $events = $this->user->horaires()->nexts($items)->get();
+        $events = $this->user->events()->nexts($items)->get();
         return $this->displayHoraires($events);
     }
 
@@ -64,7 +64,7 @@ class GapsEventsService
         $users = $user != null ? [$user] : User::all();
 
         foreach ($users as $user) {
-            $calendar = $user->calendarsFollow()->firstOrCreate([
+            $calendar = $user->calendars()->firstOrCreate([
                 'name' => $user->classrooms()->latest()->first()->name
             ]);
             try {
@@ -80,10 +80,10 @@ class GapsEventsService
                 ));
                 $ical->initUrl($user->getActualHoraireLink());
 
+                $calendar->events()->delete();
 
                 foreach ($ical->events() as $event) {
                     $event = $calendar->events()->create([
-                        'calendar_id' => $calendar->id,
                         'title' => $event->summary,
                         'description' => $event->description,
                         'start' => $event->dtstart,
