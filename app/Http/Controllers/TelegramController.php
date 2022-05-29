@@ -12,6 +12,7 @@ use Carbon\Carbon;
 use DefStudio\Telegraph\Keyboard\Button;
 use DefStudio\Telegraph\Keyboard\Keyboard;
 use DefStudio\Telegraph\Models\TelegraphBot;
+use Illuminate\Support\Facades\Log;
 
 class TelegramController extends Controller
 {
@@ -25,6 +26,7 @@ class TelegramController extends Controller
     {
         $content = file_get_contents("php://input");
         $update = json_decode($content, true);
+        Log::info($update);
         $chat_id = $update["message"]["chat"]["id"];
         $message = $update["message"]["text"];
         $chat = TelegramChat::where('chat_id', $chat_id)->first();
