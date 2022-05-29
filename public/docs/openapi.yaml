@@ -46,15 +46,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: id
+                  example: excepturi
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: corporis
+                  example: sunt
                 classroom_name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: semvppxfuidisxxeuyheojlheiivglhxunzdyigdhtfwwfoljecjwpijfmghvxjtyobnnzvszxztaexkvilnrchfxdlmivguqdhuwqfeoemrahnlnpbwgnnhvpzwxswdpjasxknuwbylmxuklxzucadygqyohsqkczkvgpslienvnwsarqoeabgaaosspamgplgftxjlgkwyduovbzvycmubhocszjvds
+                  example: wbvfrfwtldnywecwbhchysxlbfllzukbuhxmkmnjrhsanerbahpddrbjrlwfsvlvnhrutqinztlfvlyc
               required:
                 - username
                 - password
@@ -97,15 +97,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: nihil
+                  example: dolorem
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: aliquid
+                  example: est
                 classroom_name:
                   type: string
                   description: 'The class of the user.'
-                  example: quae
+                  example: possimus
               required:
                 - username
                 - password
@@ -143,7 +143,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Authentication
   /api/logout:
@@ -179,7 +179,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Authentication
   /api/update/gaps/absences:
@@ -215,7 +215,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Autres
   /api/classrooms:
@@ -251,7 +251,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Autres
   /api/classrooms/setUser:
@@ -293,7 +293,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: spqlydyxxhnecdgckmmxckonmmdzcvtsrjlfdlatkzpmnaxvuewavsudkdlemusssglhnfjwilottggqgtbhvyoauxzbqigiwhdtbqzg
+                  example: eutrittijosgskwfpczczbmhdignfmygcumcegkwefcjxtuclmqebzyzhpelimuldgvkhvumpywm
               required:
                 - name
   /api/absences:
@@ -329,12 +329,50 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Autres
+  '/api/telegram/{token}':
+    post:
+      summary: ''
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Autres
+    parameters:
+      -
+        in: path
+        name: token
+        description: ''
+        example: nobis
+        required: true
+        schema:
+          type: string
   /api/calendars:
     get:
-      summary: 'Get calendars'
+      summary: getCalendars
       description: "Retourne un json contenant une liste des calendrier. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur."
       parameters:
         -
@@ -362,15 +400,10 @@ paths:
         200:
           description: success
           content:
-            application/json:
+            text/plain:
               schema:
-                type: array
-                items:
-                  type: object
-                example:
-                  -
-                    id: 1
-                    name: NAME
+                type: string
+                example: "[\n \"id\" => 1,\n \"name\" => \"Calendrier 1\",\n \"events\" => [\n     \"id\" => 1,\n     \"title\" => \"Event 1\",\n     \"start\" => \"2020-01-01\",\n     \"end\" => \"2020-01-01\",\n     \"description\" => \"Description 1\",\n     \"location\" => \"Location 1\",\n     \"calendar_id\" => 1,\n     \"created_at\" => \"2020-01-01\",\n     \"updated_at\" => \"2020-01-01\",\n  ]\n]"
       tags:
         - Calendrier
     post:
@@ -411,7 +444,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: lrubydrmjcchazjrnywdofvmazubotouwapgseoxpxeoiuunnnjvcljagov
+                  example: nzqqbqxbtrlzcq
               required:
                 - name
   '/api/calendars/{id}':
@@ -447,7 +480,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Calendrier
     put:
@@ -488,7 +521,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: sfhzqmofifxdabwnfgfvptmlqhqtivwavmoxiwxqfbzlmldmhqlrqdxjuehykfraryppegivmlydbochcbbragemfuixecqosxkyirqgwyqsbyyilcqqgdtndkofwpncfvjflgkkizuezdabkrsbpycrpesw
+                  example: gwxanbaowussdfgthbehengztoboljpmaigmfsfutbxyunyvuxllwckisqzdunomvp
               required:
                 - name
     delete:
@@ -567,11 +600,11 @@ paths:
                 calendar_id:
                   type: integer
                   description: 'ID du calendrier à partager.'
-                  example: 8
+                  example: 3
                 user_id:
                   type: integer
                   description: "ID de l'utilisateur à qui partager le calendrier."
-                  example: 15
+                  example: 6
                 can_own:
                   type: boolean
                   description: ''
@@ -666,27 +699,27 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: txmhdvijqdyyunqhbjizxevvofealevmqtmaooxpbv
+                  example: wgmtszmfnggoxiidorkouvncrvphnuqjzamrusepulzytpzalfpohraymzohkcovpozynkiwbecmfhvshkkriyxmtwrmzdvqgkbfjshioljjetkxugfkvf
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: rmpnlwlxqwlsehyvwtdaxnlppczckqkcydwerkoiicatjrdkmxeskdysonphwljiasdstjwbxkpsctqkputkunrcgwdhfrssebrcuauuqlwpuozaztbmjjyqbavhmrttfpaxlfqkaefsyphqxspxrhvckfacwqlzjdmvqsayjoxqvdkiyosxjmovwrhtfxygsivuwsfgsgitfvuubmftnsiixdvaajqoqihqcvhzprdjreadzluwaadpmbarkmbjunlxlzeopwzvgwioutwyzaljftqikdifyylnfbehmrnrbftzfobihrmxpusohdlclekqxotudmpdasdmipggmandfqfssbopumfhdfbtpjpmbytutlqbvzghfxuhgwbwkltocnpsimtghhlagrvxxifewsmqzewckigegwvbkqziaqsyvhoqzdupgdhzdgrtahddtsaoaiygtqgrsrrkcafkdrqrxdcimvibrohfwvoiljcrcfhyunisvxoupvumjbyty
+                  example: atvzjvbemrupdesmjjqoindiscgevzufpyksihxyrwvfxxzrpiosadpkdmsimornnearrkedxfkfcgfjnliynfvzzcrylxudkxqlftpxwyftzpcioaxunupyjckokscnzfxyzygayrjuxwltmldkfmzjjqzdiibxkwdakaxosupfxamnbozhlaixxjocjexvenybasobvmtkfxbszibmhcjxgwxeksiwyjgyxxeeyriskzeuxoynbxegkmjhjoewhlhxxbfrnldfgjbljhjuoyzqgdcyeqwauznqtnyuysgwvytiswfffimclzkrdqtirsccpzxnlrldysbhjkepgfyhjjqqzuntzmexbchnglinvituzqeuwyvgxxvijpentdy
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-28T18:27:17'
+                  example: '2022-05-29T15:05:13'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-28T18:27:17'
+                  example: '2022-05-29T15:05:13'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: cffejbkzgwxvxehmiuuflnkzdabyrwapyamfdlyvotlwhkltcppawwrihfuumeeyktbpwbwqsdjxozwvroetwwgkvwlmbpswhagealrsxfllfsmlaagpdruryfnkoiomysclojblmwcydqjfgnxmiojxnriizjstjwegaifeqwjurkirumstknjznepgrulrqgogsyobeibocgcyaaemkxqs
+                  example: vxmttatqoxxvfpkafgkwbdermdipcnuyyhkukyfpuphvrmqnweinaj
                 calendar_id:
                   type: string
                   description: ''
-                  example: vel
+                  example: voluptas
               required:
                 - title
                 - description
@@ -727,7 +760,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Evènements
     put:
@@ -768,23 +801,23 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: bivxhdyjwluemrrzotgsdtydwjxqgdbkejlisssapbebrvvgxbgcslfmbdckieeyxxfdk
+                  example: qpltlujhbfuklhpmponenpzryjrtqphovakewixcybbtryqzjdznevtifsfvztfancwfbwgdjbqxvrigswjnbhkphlnijrbvzihwmezypsudvesxyebjftulnlgeqcthbqbyidpdktlftzxbytstyddvbiulvnipcetsrwciawjoxvfwrpfzcwoqxaxobkvugonupzgbuohgldzbdcrznsggbxufnnanosxafsuocdpmktburspllddx
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: asgvimcclgnnvrtvolcesidaukuzmuwtiynjrrzfviwkqgoyzxvumcfxjyuzagipaatyzezeaeawdnwtjxafztqvxmkhtdeboybsuvrvbimswglrehuielotdyuyaymgswzstdhryhuprvjyitiweehkvjcpuyjppgougrqizqfkbirbtvcnzdwrdrivwbdggmnudqokiftcunbndqsnnpbufbdfjvyxnbtujlaptikrbvclmwyyivvhgizvspeykodwmxyjydymyzpyrzkgqmjpvfudekogiatbxbndqcjuamqryqkinujojrsnkztmziaquifoaakmjtkqxihvxqjzhdzkxbaroyxwutrpxtnqdwwnjexjardijpglgwqkqyqmvsncvncqqcbmjqujyaajnrvvjgozpagmojvltcsgovcpvxdqppfbpyqilwxzajnucubywpttayfdwlfhpwwvczouiydtziidvqpvmbbjjzssiqboaqihwboalkxelhhdgpdajifyhnlzcyifuwmutwwhidfgnehibxumwroftsnkxunijckuiuhmlygjnltynznzrtsqzaokhqmvwohiqhrrzopnbcowinetdltvzlrmlkryvbcqloutgapaqtjkmaxjltkqimielgftxjgahvhcxonkgxrvazlrxfkczhymxqpgxmsrokusvwjmukvwdmjfdyyqumxninwtepetycbppgjouefqwboqlkkenazlkousiepedwenlsgkfbbipxjiahxvitgnzzzbpnnhsgjifanbnxyillekgypvwvqzxxeydwmifxijnrczdltievqawjkindcfniqqdznfodajtutrverkiplxxcljedshypjkihhvaclwictqezulgsbnkakeqfkvlicsexfqqzkkzjaaesxkvimqflgoycjarcbxrreok
+                  example: mnbjnpbjocwwgspqlmozzdfhxfmzndkcguxcbmxkpzidtghndjyhcqtzgppaprydggdntfbqbbhdpylydmqydcydxachfsxbhxmunfegqtmboxrhqhnifcwyapgfglhyvdxzmoybmtortheiphhfegnvkyyajdxnpqcntovskcbzzngopgsagmoravubuneuhlwjbzllditqkbsflekseekhwiolmnxxbaowpokhfmnchemymcpepbndbvpkbslimrodignndyefyuvqcnxuuzhukhjzfppkxediadhlreakpvylkefhsngieeyrwyxixmfrssngtaedkgevyzcxffxwrddloulxsymiuivfttgxevnirrqlkcqotunnrpwxaadioelfajzaktuhiknrerqdsxxifhsbcnjvpteiisjbptbmsntzauzrxraecljmzprnhtlphosejwexyzwnvvralrikuttkjfewpqchl
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-28T18:27:17'
+                  example: '2022-05-29T15:05:13'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-28T18:27:17'
+                  example: '2022-05-29T15:05:13'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: zyfuoxhlprtalhsvggqtfghdpq
+                  example: bqfkylijihldnweghvgtslomrrerrbeftoxxjpumaqhhvghtmvuijn
     delete:
       summary: 'Delete event'
       description: 'Remove the specified resource from storage.'
@@ -855,7 +888,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Gaps
   '/api/update/gaps/{token}':
@@ -891,7 +924,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Gaps
     parameters:
@@ -936,7 +969,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Gaps
   /api/update/gaps:
@@ -972,7 +1005,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Gaps
   /api/calendars/import:
@@ -1014,7 +1047,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: omemeghrbqapqslrni
+                  example: aepahpjhckbinkooumfcbnfrdvpnzbkyhskuxuluwrxasfqdchkdqehbfpoabtsintkuifgixmowlnbqmjqkldzbykrdmdnvacmpsxetayivysjawrqwzf
                 ics:
                   type: string
                   format: binary
@@ -1055,7 +1088,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Mail
   '/api/mails/{id}':
@@ -1091,7 +1124,7 @@ paths:
             text/plain:
               schema:
                 type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n</html>\n"
+                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
       tags:
         - Mail
     parameters:
@@ -1099,7 +1132,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the mail.'
-        example: '7'
+        example: '9'
         required: true
         schema:
           type: string
@@ -1142,15 +1175,15 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: amraz@example.com
+                  example: jade.yost@example.com
                 subject:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: rifxrjiqpnnsrqbhuklzkqdsiuivqcsllqcswprnjapysxlpcmvjhxszmfqiprqedorvoibcurhgzbmhilghycfoamyikslcwjqmiejyexbwtrgpdxsplhzeisquupollqnbadpmgyxeglozehqxbvswfqxabkeqsdftrvbzpubqwfqubskwbqgbqnkfsacpnpwzsnqzjkmdhvrconzfxpjuuftdvxhhnyar
+                  example: nxwdidawlsoqfaollunuyzxcntkfcqprcgiltvvgrskqmdopufxhzeuwllgfbutsykszkkhpkydftpqwvnxpexllrttqgvobyrrsqrxiqmhdnngzrzajnvvrcyzojhfvxhuscnuivvxq
                 message:
                   type: string
                   description: ''
-                  example: possimus
+                  example: sit
               required:
                 - to
                 - subject

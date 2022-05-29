@@ -79,7 +79,6 @@ function formatDayObject(ref) {
 
 function setEvents() {
     const currentCalendar = allCalendars.value.filter(calendar => calendar.id === currentCalendarId.value)
-    console.log(currentCalendar)
     currentCalendar[0].events.forEach(event => {
         const newEvent = toRaw(event)
         const date = new Date(event.start)
@@ -101,8 +100,15 @@ function getAllDaysInMonth(year, month) {
     return dates;
 }
 
+function getMonday(d) {
+    d = new Date(d);
+    const day = d.getDay();
+    const diff = d.getDate() - day + (day == 0 ? -6 : 1);
+    return new Date(d.setDate(diff));
+}
+
 function getAllDaysInWeek(choosenDate) {
-    const monday = new Date(choosenDate.getFullYear(), choosenDate.getMonth(), choosenDate.getDate() - choosenDate.getDay() + 1)
+    const monday = getMonday(choosenDate)
     const dates = {}
     for (let i = 0; i <= 6; i++) {
         const date = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + i)
@@ -223,7 +229,6 @@ async function updateEvent(form) {
             dates.value[date].events = newEvents
             sortEvents(date)
             newEventPopup.value = newEvents
-            console.log({ newEvents })
         } catch (error) {
             console.log(error)
         }
@@ -384,11 +389,7 @@ watch(selectedDate, (index) => {
 })
 
 watch(currentCalendarId, (id) => {
-    console.log({ id })
-    const editable = allCalendars.value.filter(calendar => {
-        console.log({ calendar })
-        return (calendar.id === id)
-    })[0].can_edit
+    const editable = allCalendars.value.filter(calendar => (calendar.id === id))[0].can_edit
     canEditCalendar.value = editable
 })
 

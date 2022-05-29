@@ -4,6 +4,7 @@ import TheRegister from '../components/TheRegister.vue';
 import { API } from "../stores/api";
 import useFetch from "../composables/useFetch";
 import { ref, toRaw } from "vue";
+import { routesNames } from './routes';
 const isAuthenticated = ref(false);
 (async function checkAuth() {
     const response = await useFetch({
@@ -13,7 +14,8 @@ const isAuthenticated = ref(false);
     });
     if (response.success === true) {
         isAuthenticated.value = true;
-        window.location.href += "/calendar";
+        console.log(routesNames);
+        window.location.href += routesNames.calendar.replace('/', '');
     } else {
         isAuthenticated.value = false;
     }

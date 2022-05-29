@@ -25,6 +25,7 @@ endpoints:
         content: |
           <!DOCTYPE html>
           <html lang="en">
+
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,16 +33,18 @@ endpoints:
               <title>Document</title>
               <link rel="stylesheet" href="//localhost:8080/css/app.css">
           </head>
+
           <body>
               <div id="app"></div>
 
               <script src="//localhost:8080/js/app.js"></script>
           </body>
+
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkNmditlZ0o1Y05xanMzTFBTUWswckE9PSIsInZhbHVlIjoiSmcyc0FWSG9heWpHQkkxRHZZN01ENm5NVml2cHRxVDUxNnhVNnd0OWx1dTdqakE0SXd0SFBnK0hzNnE0dUxJejd5bDVKdFhYWGx6VHhZalFHQzV3RDcycC9FZEsvRmdPUlNuRlNIVUpOTXVFV2c5eXJDdnZmQ2FTSjYwNkw3UTkiLCJtYWMiOiI5N2Y0YmM2ZDczMTU0YmM1MzYzMTJkZGUwYmI4ZWI1ZDk5NTAxODEwMjcyODk4MTAzZGZiNTc5ZjEzMTc4MmNhIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6InBYWWk2QXNKRjNMVVozd1NRaUdlTkE9PSIsInZhbHVlIjoiMkRIcWpsdDV1ckVPVmMrUFE0WG1hT2xjL2MzNWRmemFndWlKM0ozbFZtcEFBTTBMZk5mS3NHdUl3T001WmVSaVQ1Z2RTNTA0MTBYRkd4STR6SFkwY2NBa0tiOFAzNGxzMzQ2Tk1KMEIxaUx3eEdDVjcxbTRWZkovZ3JSSjhVK3giLCJtYWMiOiJkYTEzMjdmNWVkM2I5M2JjNGNiNDVlMDE2NmMwNTY2YzY1ODQzOGE0ZjJiMDIxNWZkZjRiMzk0NjRjZjdlNTkzIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlhLOFNXdHpFZWx0YTdibWtqWWI1aHc9PSIsInZhbHVlIjoibVZIenpmSUp2Z1Jja1ZMUEJhWCtGRkM5a2hJdExkYTFsbFN5NHNTY2x3VEJ6MjJ2STY4Y242aHhIKzNKVnQzaGhqQmc0Z00vUklNTHJVR1BuM3hGb3lHUTBsZ1FQN0VCSHYvQndWYUd2MFdOVDUvWHllTzNBYlkxRnVqNWpzZTkiLCJtYWMiOiJmMzAyZmIwY2VmNThiOGFkMDk1OTgzMjQ2YjQwNjE3YmIyMzNmNTdlY2NiM2ExNjliOWQ4OWQ0ZWVhZjdmZDE1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkJvVmltMnVMNEplOUZTWFRHOWFkM2c9PSIsInZhbHVlIjoiT0RBclhrR01rSGt2d2M3MlcvaWwyZUY3SmNuRjlFZFBqN1JSb3FjcnZKQkR2T3RpYnMxVXBmUmh6RndVdy9ybU5lUVFVejVrNDJ4S094Q0JyTmtHRERmNy9yWXkxM0lCWGtXdFlGY1RMNXhtUWRncHlCR1FhbHZqMms1MnM4TUsiLCJtYWMiOiJmYTRkNmJmOTNmZjVkZDE0NGMxNDFmMDA1ZjNkZDBkYWMyMjZkOTA5ZGZiZDgwN2QxNzJiODBmZjZmZjRhNGU3IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -66,6 +69,7 @@ endpoints:
         content: |
           <!DOCTYPE html>
           <html lang="en">
+
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -73,16 +77,18 @@ endpoints:
               <title>Document</title>
               <link rel="stylesheet" href="//localhost:8080/css/app.css">
           </head>
+
           <body>
               <div id="app"></div>
 
               <script src="//localhost:8080/js/app.js"></script>
           </body>
+
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkJKN05VcXlCNlhXek5wclNMcXM1WXc9PSIsInZhbHVlIjoiWFNwcEhEYk43SWNRQTJJcHRIR2pFcURIWE45eGZQZEVHdkRVRUp4OElwRE4rOUlhUUUwZUI0aTVkaDhKQlYvbkdGYlJHOXY3VnJxdDUvUWVHQ2I2T0x4eU5IWGpaYTZlZ3pTK0pBWUlwWTd1NWlKVndrQmpUMzUzNUFPVGp2eVkiLCJtYWMiOiI3Y2Y2NDU3YzA3NWM3MzY2YWYwMTk5ZTE2OGM0YjVmZTY0NTAwOTMzZDgyNTJjM2M4YzQzOTZjMzc4OTRlZjU5IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IndWQXkxV2ZLMEswMHViNzFLcXI2SEE9PSIsInZhbHVlIjoiK09mWXlZWXlJN0VUSWRoeitiWFBlZEw5SVpwQkhieEMyQzQzVXdxRFRLRGtDZC9jK0c1UnMrMFZDN2pOMjMwaWlaNXVtdEV6RUxFSW5Hc2kxSHlDRXVTZ1M0dUV4UEZJMEpOM1M2dzF4ZTR2amIvZVdUTVJyOWw1TlI2emxVMFIiLCJtYWMiOiI3YWVjMzc0MDdmOTNiNDFlZWJkOTJlMDQ0MTI0MDQ4NzE5NTVjMTE0YTk2MDUzNmVlYjA2ZTk5MTE4MzI1NDI1IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImpsWGEzSEUzN0VhdW14OTRxQ2w2MVE9PSIsInZhbHVlIjoiV2NWb1ZoZmtnQnFuZG1xakcrbzRlYU1OTC9UOUpWSlRONlc5RW9hM1NBblFXNXlXYWlaelVZb3dlaWd6eWVjSVZIWGRpZ3BxUkdISm9jU1pWOGxvNzFtSkxrVi9XRFJqT3ZhT0ZoZnNCOTluUkE4Qk5LbE02cXYzNHJvWGFEWkgiLCJtYWMiOiJiNzQyMTY1MTEyZWNmNGNhMDhjMTkzODJlNTJkYzE2MWRjMDA5MDM3YjBhMzE0MTVmNTZkOWRkZDY1NTgwYjkxIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6ImphZzdjOFU3WHpVSDlhS25tMWN5Q2c9PSIsInZhbHVlIjoiRUlKajNsa0VkeloxL25sTTVCdFJDZUI2WnltcWxjMDhCNjBWaXVqZUVIejc0SHAzOXRnazR3QUROM1ExL2VZL0k2SlZYeVVweHdyRkV6VEx0K2VkSW01VkVWaXp6MGNNbUdLNjlRYlMvd1MwbGFWODFBZmc1MTdrZzZzdldUUzEiLCJtYWMiOiI2Y2M5OWNiODFlMzI5ZjM4NmI4NzQ3ZjY4MWFmOGU4MzQwOTI5ZDdjZjlhMzUzZTM2ZTM4ZGZjNmFhNDE3YjkzIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -105,7 +111,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: spqlydyxxhnecdgckmmxckonmmdzcvtsrjlfdlatkzpmnaxvuewavsudkdlemusssglhnfjwilottggqgtbhvyoauxzbqigiwhdtbqzg
+        example: eutrittijosgskwfpczczbmhdignfmygcumcegkwefcjxtuclmqebzyzhpelimuldgvkhvumpywm
         type: string
         custom: []
     responses: []
@@ -132,6 +138,7 @@ endpoints:
         content: |
           <!DOCTYPE html>
           <html lang="en">
+
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -139,15 +146,42 @@ endpoints:
               <title>Document</title>
               <link rel="stylesheet" href="//localhost:8080/css/app.css">
           </head>
+
           <body>
               <div id="app"></div>
 
               <script src="//localhost:8080/js/app.js"></script>
           </body>
+
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6Im9XUjdwMDNhY2tTRVArZ3BVOWZnS2c9PSIsInZhbHVlIjoiMnRSbWE1NXozaVQvYVRLZWhmQXJlOVlLQlNkU2l4YWE1Y2FmQjR5V2Y4cDVKWkZMSTFnK1cvSFVybWw1bDZBOFhXVGpYc05Cd0NPQ0VvR2NuejRPaGVQdkFyWnpJN2dVa0pRR0V4SWNkeUFCWjhRQXlCK21iZ0FsaVRrR3dnOVAiLCJtYWMiOiIxMzY3MzJkYzU1YmRmZjI1YWQ4MzA2ZjA0NmVhNDA1ODliYmFlZDhiM2ZiODZiMDMyMzcxZDAwN2YwMWExYTYyIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IklHdWllc2Z1dUlBMUZESFB4R3c4Vmc9PSIsInZhbHVlIjoiaDdTVHdST0crR3JwQ21UcVF1ZENNaHVJam5yVEdUaEFJUkwrdkl2bmxmMGxMSThlY0pURDlkWVV1VHdqaTBmeXlvNy9lSFJLTkhuZFZGYnJmZisvUXVwQ0FSUGhsUG95VUJxMlo2NG9rVFF2eEZqc2NVUHNvcnRRTnRnUWVNNWQiLCJtYWMiOiI4NDllODhhOGM1ZWY0ZjkyMDJiMDA5ODM5MzNkMDZiZmFiOWIyNGY5YTgyZGJmMWM3MjJiMjhiYThlOTFhMTBjIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6Ing1bW90U1F0dlYrVitoaVFncTVjU1E9PSIsInZhbHVlIjoiQ2Q3aG9YV0g2bE1kK3E5Q25RcnF4dnJRSFhNNVFtRjFiVWU3L0U3dEpqUXQ0NWRVZFNENGZnZ2hrMW0yS1NzS1k1aEZFRDNPaWJURStkcEJTVjEyaGk5RGJ6cTJ1eXJHd0t5VlRGcHVZRkdTT0VzdVdzdDJZblZqQlhxV2NzTmoiLCJtYWMiOiJjYjE1MGRlYjQxNjJhYjJmZjc4MmYxZmYwYmU4YmNiMTJiZjQ5YjQwYmI5ODRjMzA4ZjFjZTVmNjU5ZTRlMTYwIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Img2N2RmcFRadUxDM2ZCTktvKzV6U0E9PSIsInZhbHVlIjoiNk02S2s1cVNKZ05SdXNQK2tQbVg5YjUzUDAzc3hId1NrbVBnbnJSUGZIdlh5VnBuZFFscFdVa050Z2NEMU04cVFHMHB6SEkyT0J5YXNHK2NVT2lRUTRIZnVWUmZ3NDJQdFI3U2xMNmZXdzUzb0RoTTI0YS9scUw3dXVTQjFwM0QiLCJtYWMiOiI1YWUxYmMxNTAyMzEwMzVjNmIxYTllMjIyMjhkN2JiM2NiNjk1OGEzMDgxZWQxYTZmMjAwZmZhNDE3MTg1OTljIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: 'api/telegram/{token}'
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters:
+      token:
+        name: token
+        description: ''
+        required: true
+        example: nobis
+        type: string
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
     responseFields: []

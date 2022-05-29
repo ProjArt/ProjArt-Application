@@ -27,6 +27,7 @@ endpoints:
         content: |
           <!DOCTYPE html>
           <html lang="en">
+
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,16 +35,18 @@ endpoints:
               <title>Document</title>
               <link rel="stylesheet" href="//localhost:8080/css/app.css">
           </head>
+
           <body>
               <div id="app"></div>
 
               <script src="//localhost:8080/js/app.js"></script>
           </body>
+
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6Ik5VVlBuSjZKMmwzOHhRNVNVZWZqWFE9PSIsInZhbHVlIjoibW83ZWpMdU1KVW1TVHZpaWRlNXpKYk1MNlkreVdXcCsrWEJ2Qk5WTUtFYnNzQ1d1YkhKR0k4TnNWQ2ozaVFjMUhJdUdFazREKy9wTjQzazhVV1h0cHNyNGtJRFdXelhVcWl1T1dvVXdLcTlvaWxkd1BDem5HWmlGK01NVmtsMUYiLCJtYWMiOiJiMTgwNWU1NGNkMjA0Y2JhNjRkNjIyYWYxYzk0YWZmZjViZjJkZjIwN2Q3MzRkNTI4ZWVmOGNlYzQzN2NjMzc2IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6ImhJZUo1eXFMRDB4L25wdDJzcEdpZGc9PSIsInZhbHVlIjoiTEwxck9xKzdwUm5tZGltZ3dBRTdWNjg0bzZlVVZiQ1R3aDBDT1pvMkNKUkREUzNYQVU4TDJUc2h0eUt4dVNoZWQwUUFhRnBBRlBEY3JYL2VFWktIVHNuc1Y0TWZoazZuYU4wVkpQWi9OeVY1akF6SzExR05ad29yWUQ2L1VvaWMiLCJtYWMiOiIyYWUzYWM0OWRhMjBiNThhYmYwNDZjYWYxZTAzYjlmOTFkM2NjZjg1ZmY0MjBjZDgzMjNkYmZjZmFlZTk4MWU2IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IncvVkx5bG56NDl6cXhDeUdEakNWVlE9PSIsInZhbHVlIjoiTmowTWpFd3pjaDIzemZsWHZjM3FydUZhNVZ4dFo3VDRGWFIrc1dFQisxSDBWU2NJK1M4cDZiNk9UaGNBdGliZ2xlSnZYNlNNSFNwdjRuZklLN0ZaMmFEZlJlZ1pmQmt3d2VMYVE4MUNxelh5cVpHdnJJV2ZXT1JaRkxGUGg1R3QiLCJtYWMiOiJlNzZjMTg2M2Q1YjJjOTJlYjc4ZTk2MzhiMGZkNWJlNDhkNjVmN2NlOTUzN2I3YzAyNGQzN2NiZjRlMDdjMjIxIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Im50RjJmNDJVK3NFdnpMeGNiWWlPN3c9PSIsInZhbHVlIjoiUGQ4M25oTWE4VmE1NnBPU2tnOGlKR0g5V3dGdnFBOCs0UTFjTm5Kc3pBVi95VnBucGdLRlA5UlpQV0hueHRrVElyQ0Q4MVdlMk5mNzJtSXA2MDVDeU5VTHJZRFFldWVVRjNqYkFVNDd6NjFqM3FvbnUvSEtQemozZGVPVkZ6c3YiLCJtYWMiOiI0ZmQ4NmVhYjk3ZjUxNzBkMWVmYmJlMmIxOGVjNzhiY2ZmZjVhYTBkNzc2NDc0ZWQ4M2JlZjNiNTNhZGEzNzU0IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -75,6 +78,7 @@ endpoints:
         content: |
           <!DOCTYPE html>
           <html lang="en">
+
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,16 +86,18 @@ endpoints:
               <title>Document</title>
               <link rel="stylesheet" href="//localhost:8080/css/app.css">
           </head>
+
           <body>
               <div id="app"></div>
 
               <script src="//localhost:8080/js/app.js"></script>
           </body>
+
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjVtWDJEWnArekhlLy9hUWZNdkU5TlE9PSIsInZhbHVlIjoiWnJoVHIvdHlDeVFrTUtQNFliV1podjhpcGV3cU5NR29iWmR3QzRXd0tKR2U2RVNEbEhBb1IzTE5rVEtCM2lYeHg4TmxCU3ZUbWx2cFplSVgwYlZhaXJZMkdYUE9yMkFFN2tQUXhBMENabFhSelJVNVVidW83alpRV0Q3dzhYeXUiLCJtYWMiOiIxY2MxY2U2MzYwNzdjMTZjYWI0YzUxNDgyYjE4NTJjNWZhNGU1ZTNlMTAwZjliZTgwMjIzYWQ0ZWVjNTliMmExIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkxuYlhuQzJQRExjT0ZnUHZHa1BXUXc9PSIsInZhbHVlIjoia0NSdk9vbTZSVGVwL2hyWUIvRmFvdjdjMVhKT0FwNDh3U1BCQzBENllxZHk0NDQ4WGNEQUwwNytJN3ByV1ZRNTVaVTEyUURVOGFFUlJXTFNvRlI1WkcrdTFNQUpBK0tYTlNTWjZBS2x1N1N3ZytDQWpDMGZyS1dSdVgyZGN1MzYiLCJtYWMiOiIxODg3ODljNjRjZWQ4ODI0MmJlOGU1YzJmZmE1OWQyMTAwZDQxZGU0MmRiN2I4MDI3ZGVhYzViNWQ0MDVkNDhhIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlYvemY4YXJmaEthd0w3RTVNWGkyTGc9PSIsInZhbHVlIjoib2Zjak1WQjZJZFNNUDd1cmptZEp5Z0hpNzUzSDRKU3Q3a2RNQ3hlempMemhhZWYvUTdmRWh0cFN1bjBQWFpsdXBnVDJackh3SHZOb0p3Qm8rK2k3ZWpveUFLbTN2NEM2SXVEYTh3QzRNSXdROUxkNFU2ekhPUU5xTWp6RGgzVkgiLCJtYWMiOiJiZjM0NDY2ZDE4MmFkMThiYzQ3YWMzMDUxOTI1NzM3NzZhYzkxNGMxNDQ0NzRkYTRiZDJlYTRmZjc0YzJhZWFmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IlFpOTNjdzNSZlpOc1pWRXZkR1phYlE9PSIsInZhbHVlIjoiNVVwNVdxNHdmb0ptcW9rcUg0Mk5KUDZUNG9uWVMwT1NUNnErRFJJdzFOR3V2aWVubG5GWVZGNVNzMmhSZW9jeHA0QmpMeUtINXBqOXRvSys0UThLYTJQRnpFdStYSXBwRmpZSDZ1cFE1cUJBNXRwWnIzSnZkZ2dSQkpQSWp4MG8iLCJtYWMiOiJkM2JiZWEzNzU2MTI4NzliOGY0NDUxODhjNjFlNDE3NGEzMGM5MzA4MWY1NjQ0ZmZkZGFkOGQ3NDIwOWU0YTIzIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -116,6 +122,7 @@ endpoints:
         content: |
           <!DOCTYPE html>
           <html lang="en">
+
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -123,16 +130,18 @@ endpoints:
               <title>Document</title>
               <link rel="stylesheet" href="//localhost:8080/css/app.css">
           </head>
+
           <body>
               <div id="app"></div>
 
               <script src="//localhost:8080/js/app.js"></script>
           </body>
+
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6Inpza2dEdTdtS3FRajBscU1rcHc0aEE9PSIsInZhbHVlIjoiVWplUi9wY0NHdEFaZG5Vb1hCczFwR2tRZ1EySkE5MzJ0OHZpbmZTUEFQSG1WZ24vMVcwcWhaWERpUldvYVhkQ2NHSFJtdnR3NU1GWlh3V1FTeEtTY09GMGRjZEY0NGxNaDQzck40cVJwMFRVUTBpWlYxMnV3RW1pcWVmWUFnanciLCJtYWMiOiJjZTI1YmI2ODYzMzhmOTBiZjQ5MzVmNmQzNTliMWFmNDRhOTliNWQ5ZDgxMmNhNzlmZWEyY2FlNmVlNjMzMTkzIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Im5ocnVKR1M2S2tGOW9FL0tlU0poT0E9PSIsInZhbHVlIjoiSmJKYjh5Y3N2Vm1ZaTNLbkk5V2FuNDlncEx4N2VGeTJmYUphTWxzdzVmand4WkE3N1JoQ29pdHpqdE42L0taSkZSbmxFMGdIZm9qcDU3T2MvNWJOdi9ORzdFTXhvOXlnQWtuazJvTFl3YVB6eUlkTnlKSlNQYUtsbm8rUGZyaVgiLCJtYWMiOiI2NzIzNDNiM2U0Y2Q2YzQ3M2ZlM2NlZmVlMmIyY2RjYjVkNWVhYTE0YzIyM2MwNmRhZWZkYWVlODkxNDZlN2VjIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlBPTnJzNlhrT2Nqck4rcElkVWV1YUE9PSIsInZhbHVlIjoicTBNTzh3SnF3azFENFp1clczdnVpQWQ5SURSZEg0UHUxN3RMNE0vbXRKbm4zdTFKWktEamZXUGkzQlI3TXlsakR2clRNd3pSaWVzdmJQZ3lBaStMdmxFM0x2K1hkUXVmUzBiWUdJRHVTb0J1VC9URGZnQXVNYmxlazN6TC85MFkiLCJtYWMiOiJlODc4MWYxN2FjMmUwYTY1MzdiMjQ3NjEwOGNjNjBhYTNhZGQzZWFkZDg4ZWY4ZTNmNDk2MThiYTA4NDQ2M2YxIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IjVGT05DQllzTlRhOUR5U1l3UkF1Z1E9PSIsInZhbHVlIjoiUFpPMzAvbjNBUmhTVHBhQzhLR3oxN3diajU5UXVqVFZFUGV4eUJHb3RvOTVuWHpVSnFiY1Iwdmg0SE5jc2RQK0djeWZ6RitZYUdTenk5SkU4UWIxVHpFakFOZ3VaVUJFMDBVM1BQM001ODNXbytPTUFjcDd2aVRUZkxBeGR1b3giLCJtYWMiOiI2ODVkZGU0MWI0YjE0ZWJmZjc2M2U1YTIxYWJhODZjMDhkNDY3YTBhMzVhM2IyOWY2NzNkNzk4NGRiMmY0YWMwIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -157,6 +166,7 @@ endpoints:
         content: |
           <!DOCTYPE html>
           <html lang="en">
+
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -164,16 +174,18 @@ endpoints:
               <title>Document</title>
               <link rel="stylesheet" href="//localhost:8080/css/app.css">
           </head>
+
           <body>
               <div id="app"></div>
 
               <script src="//localhost:8080/js/app.js"></script>
           </body>
+
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6Imc1TFdwSDI5NzVVTnFsTVppZmVGT1E9PSIsInZhbHVlIjoidjUxNHFhMFA0UmwyK0pYdHpBVy9ucElON3RWS1gzREFWczErM2VUWWNkSFNHVDhHVk80U2krRTc3U0tyV0s3Skpkdit5eGNjcnNRd1hmaHM3WHZjVGlkZDlDM01QazRrcmhZVEkyZ3JMNzJEYmxDeHFkaEYvc1hnMUloWjArM1MiLCJtYWMiOiIwM2MzODg0YWRkZjk4YzZkMWZhZWE1Yzc3MDhjODJhYTdjMDhhZWVhYjZlN2NjZGQ0M2IyZDZjMDk1NDJjZmMwIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6ImVJSm12VUM1eWtVU2RGNHZwTE5tYlE9PSIsInZhbHVlIjoibnpyNGxlU0tocHdjVDNidVFsUExVSWE1T2ovYTg0YTBxeGtreGxWUmVwcmpQS1Q1UWl0M1luZC9ZQVIvN3ZBSHMyQ0tOYzhMR3pJOVlRdmV3VzREU3djSjk0bnA5eW9TTVphWnIyOVdQL251Z1QrdnY5VTVDdGhqaW5yQXdUck0iLCJtYWMiOiIzNTA3Yzk3NTdjNjQ5OWE0YmI2MDZkZjA0ZTUxMmUwYTFjOGY5ZTgyZTA2ODkwZTRiMTQzZWQzMmFjZDdkNmRmIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkNrOXR1b0VCbDRGYVVhSWppMElIaFE9PSIsInZhbHVlIjoiTzBqMVhPTlVmZXZLT1Y5bU5xd21HZml4OEErVEo0cTdMaFN0dWk0bld2c05pTjVMZGE0cy9hQjU3NjN6bVRDblVHMk5HMWg1aU5NSmhrQ2ZRd0k3RUxXbnBmTEk0R2IxdWNCRkk3eEpxd3BDMjlmb3NWc1hBei9PTmQ3WUxtdFQiLCJtYWMiOiJhN2M3ODEyODMwNTZmMjU5MjUwMWUzNTdjOGRhZjAxNWMwYjQyZWMzYjEzN2QzMDgwNzNmOGMzY2FkZGU0NGE5IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Ilgxclp1ZGpEeTZqaXpSdzBKbndwN1E9PSIsInZhbHVlIjoiRFJWNUZaTGQ2clVGSGdRcDA4M0RzdzVCYXY3ZXVBZmNLUFFMcVlyL0FCM1hQUU5KeFdmUS9pQjhGUWxrSlFFVC9wLy9CalRDSUxGcXVDTkQzRnJCbkFRWHB0bEV5bkpOVXpXN3pOemdQcDlnZCtEVDdIZ001b0JNbVN0ZWFPTWUiLCJtYWMiOiI5MTQ0NzRhYTgzMTEzOTE0MDJhZjc1YWE5OGJiOWUwYWM4ZWQ3MTU0ZWE1NGQwZGEyYzc1ZDBjMGYxODY3NjY0IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -196,7 +208,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: omemeghrbqapqslrni
+        example: aepahpjhckbinkooumfcbnfrdvpnzbkyhskuxuluwrxasfqdchkdqehbfpoabtsintkuifgixmowlnbqmjqkldzbykrdmdnvacmpsxetayivysjawrqwzf
         type: string
         custom: []
       ics:

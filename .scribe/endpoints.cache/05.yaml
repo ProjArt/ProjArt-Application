@@ -27,6 +27,7 @@ endpoints:
         content: |
           <!DOCTYPE html>
           <html lang="en">
+
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,16 +35,18 @@ endpoints:
               <title>Document</title>
               <link rel="stylesheet" href="//localhost:8080/css/app.css">
           </head>
+
           <body>
               <div id="app"></div>
 
               <script src="//localhost:8080/js/app.js"></script>
           </body>
+
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkpSd1lvZzMwclVGZnhsbXRsMVBLamc9PSIsInZhbHVlIjoidGg4WERnMmVaaVlnWWU5Z1RYZnF5TVVpKzE4YkN3OFdEaGxiQnZ4bDhLY2Q5RVNDcFpFOWx4OXVOYVJnMk9SQ21UK0cyY2p0VUI5UXI2M0UxbUNwTVZzcklkR01uZXhLeHh0ZzNXblowbkY3Q0xaU0Q3bXRLU0x3TDBONTJBcmwiLCJtYWMiOiI2ZDdkMTdkYjBkZGQ5NDhjZTM3MzVlMTRmNjgxZjdhMTk1MGFjZWRlYTliZDYxNGFhZDJmYmRiYWNkOGNmYjZkIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Ilo1czFCOVRlUk1CbDlvMmJpWG9HZXc9PSIsInZhbHVlIjoiNGpJZklvOS9hY083ZGp3eFYyUG5CdkVZSE9kbVNic2tSNElhakNYVEloRFY3bjVrSUptMTZSSjlhRVB1TzRwYUtXWDFGL2pPWnd5dEpZZHVXbUN2emVNcGh2Nm8vTzJKY0Q4S3NUU2UyekhQSi9aZE4vWWgxZkFWOEx6UmcvcXQiLCJtYWMiOiIzZTIwYjllMTNjM2FlZDdjNDg3YTg0MjFmZTIxNDZjYmY0MGM3M2I5YzE1ZTljMDdlMGZlNDI0YTMxZmJmMzU0IiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6Ik1JL2swa2RsTXBXOWJoK25vVGJBN2c9PSIsInZhbHVlIjoiMldIMmcxWFJsd3JnQXc4Tmt0WGc3VThVU3VndTRYdjdZMWxRZGdxemdSY2w5clBrR2VCLzdUekp6NEJwRUpBaUc2ZEtJMW15NDJzbHlFaGFqbk5vOFRNb0ROU2RDY1d0elR0T3VlZ0grM013VEJlSHAyMzBEb2dSOS9lb0p5elYiLCJtYWMiOiI2Y2I0NmJiMWM3ZWYxMWZhY2ZkMzNlM2QzM2JhNTNkOTc3MjU1Mzk1N2ZlYjNmOGE3Yzk5YWFlMThjNjRlZTVhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IlFJUnh3RUFsNmlsRkUzdkdabVUvdWc9PSIsInZhbHVlIjoiOWVJSHdIU2t6T21QUGowUjIvVEJXd0dldUUwd3NQTXpsUW9uenlzUEFxUVcyU2dpL2lYa3BSN1EwbXQ4Y1FOVlA4em50MWNuS1FIVlgxaDF0aEwzcUhzN0k1V1ZFVkxyMTFCUjBod3Y1eG1pUjUwNEgyNDcweFN3YVAzcnM5M0EiLCJtYWMiOiJiNzExYmU4NDE4NGQ4ODUyNjgyYWE3MjI5MzYwNTRkZWZlNTNkOTZjZDk4ZTM2ZjE4MjE4NzJlYzE0NWRmOTM3IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -64,7 +67,7 @@ endpoints:
         name: id
         description: 'The ID of the mail.'
         required: true
-        example: '7'
+        example: '9'
         type: string
         custom: []
     queryParameters: []
@@ -75,6 +78,7 @@ endpoints:
         content: |
           <!DOCTYPE html>
           <html lang="en">
+
           <head>
               <meta charset="UTF-8">
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -82,16 +86,18 @@ endpoints:
               <title>Document</title>
               <link rel="stylesheet" href="//localhost:8080/css/app.css">
           </head>
+
           <body>
               <div id="app"></div>
 
               <script src="//localhost:8080/js/app.js"></script>
           </body>
+
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjFVb0JsMC9JL1N6Rko1WUIrdlIyWFE9PSIsInZhbHVlIjoic3ljTFNvdk1ELzUyREY2ZjdWOThFOXFwY3JPZU4xSzF3ajhqMTRCdjQwbENVMkpWNnVSdmNRWDkrb0ovUUJ4TkZ1VVJPaUpLNnFsVHRtU21aekdGK3d1RjQ5MUFGVGx3VFUvaTFja2ZxbXhxQnJKSjRjNzE2eGRXOTkya24veksiLCJtYWMiOiIwMGIzMjYzYTE0MTNmY2NjYmZhZDdjYWY1ZmIwOWZlMDYwNDEyYTc0ODBhOTkwODA2MThmOTE4MTgxNGZhNDQwIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Ik0yRGRYYjc5ZjBOMkhQUUp0WXlxNmc9PSIsInZhbHVlIjoieENXRmx6NWdjUWNBWE5ZdzBRdElVOEgramg1cGcxR3E0NnNyUzluK2NRRW4vMlMwby85R0tYSUlkd1lMN25Iazk5Rm5TZkJKcHM3ZitseU8xRXhPNVBMb0lBVWllVkRDOWlFclAySFJUNG85WUNIQytFZEJnbUMwSEdGNnc1WEwiLCJtYWMiOiJmOTljMGRhOTY1ODNhZWE1ZThjYjE4MWEzNjc3ODQyZTFkNzNkZWUzZGE4YTIxNmYwNDYyNTRmZTk3Y2YyMzdkIiwidGFnIjoiIn0%3D; expires=Sat, 28 May 2022 20:27:17 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImR4cDhMamlleHV5cndEazRZcHFYclE9PSIsInZhbHVlIjoiQkNPelJ4dW04b3VQNXIzR1NhRnVENGdTWDVrVkpTdm1TbDhHS2pNZzQ5bFF4alhHYXNuSm5zWDVNd1puclpmNXlDUDcxcHVBcmZLODZOb0M3UlhqRk9abVF1NmhmSEptTUpIcGZSMkV2akl6QjdGRldSczgxTmhEcGNRVHlKM2EiLCJtYWMiOiJiMWMwN2ZjYjg0ZjI2MmNjYjMxODAwNTc4MTkyZDVjNGJjYzRmNTk0OTM2MDJhODFhMzBkM2VjNzllMjY3NDkwIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IndxZTRxdmM2Yy9NZEdHWlA3amVtaUE9PSIsInZhbHVlIjoiU2plcUR6NWlLZkV3TVdFT2QzZDJueEEweEx3di8rQWRrNXFMV1FsaU13S3F6ckQvRWlZaUdNc2xVeVNzRFZXSS9pY1Vyd0Z0ZTVnV1R5VHBmbWpDbUZpbFlrRWZ6Tm9DKzZwY1VWTWtDVGMyS2M0NEoxd2VNaEhCc1RFbFlXK0MiLCJtYWMiOiI5ZjI2ZmYwYzY0MDJlMDVkMjkyNzMyNzRiMTk4ZTk5YmI2YjZiYmIxNDI1NGVkOGUzNThhYjVjNDQzNDI4ZjI3IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -114,21 +120,21 @@ endpoints:
         name: to
         description: 'Must be a valid email address.'
         required: true
-        example: amraz@example.com
+        example: jade.yost@example.com
         type: string
         custom: []
       subject:
         name: subject
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: rifxrjiqpnnsrqbhuklzkqdsiuivqcsllqcswprnjapysxlpcmvjhxszmfqiprqedorvoibcurhgzbmhilghycfoamyikslcwjqmiejyexbwtrgpdxsplhzeisquupollqnbadpmgyxeglozehqxbvswfqxabkeqsdftrvbzpubqwfqubskwbqgbqnkfsacpnpwzsnqzjkmdhvrconzfxpjuuftdvxhhnyar
+        example: nxwdidawlsoqfaollunuyzxcntkfcqprcgiltvvgrskqmdopufxhzeuwllgfbutsykszkkhpkydftpqwvnxpexllrttqgvobyrrsqrxiqmhdnngzrzajnvvrcyzojhfvxhuscnuivvxq
         type: string
         custom: []
       message:
         name: message
         description: ''
         required: true
-        example: possimus
+        example: sit
         type: string
         custom: []
     responses: []

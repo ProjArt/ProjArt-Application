@@ -7,6 +7,14 @@ const routes = [
     { name: "calendar", path: "/calendar", component: calendar },
 ];
 
+export const routesNames = (() => {
+    const obj = {};
+    routes.forEach((route) => {
+        obj[route.name] = route.path;
+    });
+    return obj;
+})();
+
 const router = createRouter({
     history: createWebHistory(),
     routes,

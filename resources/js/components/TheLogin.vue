@@ -2,6 +2,7 @@
 import { ref, toRaw } from "vue"
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api"
+import { routesNames } from "../router/routes";
 const isSubmitted = ref(false)
 const formData = ref({})
 const errorMessage = ref('')
@@ -18,7 +19,7 @@ const submitHandler = async () => {
         isAuthenticated.value = true;
         localStorage.setItem('token', response.data.access_token);
         errorMessage.value = ''
-        window.location.href += "calendar";
+        window.location.href += routesNames.calendar.replace('/', '');
     } else {
         isAuthenticated.value = false;
         errorMessage.value = response.message;
