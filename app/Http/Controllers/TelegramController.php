@@ -26,8 +26,8 @@ class TelegramController extends Controller
     {
         $content = file_get_contents("php://input");
         $update = json_decode($content, true);
-        $chat_id = $update["message"]["chat"]["id"];
-        $message = $update["message"]["text"];
+        $chat_id = $update->message->chat->id;
+        $message = $update->message->text;
         $chat = TelegramChat::where('chat_id', $chat_id)->first();
 
         if (!$chat) {
