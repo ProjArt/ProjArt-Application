@@ -44,7 +44,7 @@ endpoints:
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6Ik1JL2swa2RsTXBXOWJoK25vVGJBN2c9PSIsInZhbHVlIjoiMldIMmcxWFJsd3JnQXc4Tmt0WGc3VThVU3VndTRYdjdZMWxRZGdxemdSY2w5clBrR2VCLzdUekp6NEJwRUpBaUc2ZEtJMW15NDJzbHlFaGFqbk5vOFRNb0ROU2RDY1d0elR0T3VlZ0grM013VEJlSHAyMzBEb2dSOS9lb0p5elYiLCJtYWMiOiI2Y2I0NmJiMWM3ZWYxMWZhY2ZkMzNlM2QzM2JhNTNkOTc3MjU1Mzk1N2ZlYjNmOGE3Yzk5YWFlMThjNjRlZTVhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IlFJUnh3RUFsNmlsRkUzdkdabVUvdWc9PSIsInZhbHVlIjoiOWVJSHdIU2t6T21QUGowUjIvVEJXd0dldUUwd3NQTXpsUW9uenlzUEFxUVcyU2dpL2lYa3BSN1EwbXQ4Y1FOVlA4em50MWNuS1FIVlgxaDF0aEwzcUhzN0k1V1ZFVkxyMTFCUjBod3Y1eG1pUjUwNEgyNDcweFN3YVAzcnM5M0EiLCJtYWMiOiJiNzExYmU4NDE4NGQ4ODUyNjgyYWE3MjI5MzYwNTRkZWZlNTNkOTZjZDk4ZTM2ZjE4MjE4NzJlYzE0NWRmOTM3IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjFnQ2VoZUl4L3hoeHhZNkduSDBHSVE9PSIsInZhbHVlIjoiNlB6SWUrVitCZGZQdWcxSUZDSkxWL0xqR1V3SDVwMUtlVjFua0Qwc0RZeUpMd2Fqck9tYW90cVBOMVV1dVJreWdJOGxzQk1vTmhMaGlodmsyUmlpdDFhQ1pYUnVRZXdaSnBJQTYzTUQ5MUZ3bGRXWndnWWYxdm5ZZVlWSGN5QUsiLCJtYWMiOiJiZWMxM2ZhZGYzYTBjZWVmZTJlZTRhODUxYjcwZTdjMDVhZmZhOGJmM2E4YTgyMzNiNTZlYTBmYzYyNzRlZTcyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkllQ0t3QXRHSTBQUzE5ZGVUUXcxeGc9PSIsInZhbHVlIjoiVzJ5VU1FSUVqY2VFNmVMV2U1cE5oNFNESlkvY0tWak84VGw0d21FN2VjKzArazVLSDFhZHF3aFZuYUQxb2lEQ1hCaGlBTXZIWHNUN3p2WXl0Qjl6c09tWm94REFGZXBOcU5PK2M2NCs1UDFYZkdFZ1R1Z1NSR1RtMlBrTU9aNUQiLCJtYWMiOiI1M2E4NjA4ZTE1ODJkNzM1ZTkwYmVhOTZjZDFlM2UzZTFiMDFkNDM5MmJhMDU1ZGM5MmM3YzU0MWYzODg2Yzc1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -65,7 +65,7 @@ endpoints:
         name: id
         description: 'The ID of the mail.'
         required: true
-        example: '9'
+        example: '7'
         type: string
         custom: []
     queryParameters: []
@@ -95,7 +95,7 @@ endpoints:
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImR4cDhMamlleHV5cndEazRZcHFYclE9PSIsInZhbHVlIjoiQkNPelJ4dW04b3VQNXIzR1NhRnVENGdTWDVrVkpTdm1TbDhHS2pNZzQ5bFF4alhHYXNuSm5zWDVNd1puclpmNXlDUDcxcHVBcmZLODZOb0M3UlhqRk9abVF1NmhmSEptTUpIcGZSMkV2akl6QjdGRldSczgxTmhEcGNRVHlKM2EiLCJtYWMiOiJiMWMwN2ZjYjg0ZjI2MmNjYjMxODAwNTc4MTkyZDVjNGJjYzRmNTk0OTM2MDJhODFhMzBkM2VjNzllMjY3NDkwIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IndxZTRxdmM2Yy9NZEdHWlA3amVtaUE9PSIsInZhbHVlIjoiU2plcUR6NWlLZkV3TVdFT2QzZDJueEEweEx3di8rQWRrNXFMV1FsaU13S3F6ckQvRWlZaUdNc2xVeVNzRFZXSS9pY1Vyd0Z0ZTVnV1R5VHBmbWpDbUZpbFlrRWZ6Tm9DKzZwY1VWTWtDVGMyS2M0NEoxd2VNaEhCc1RFbFlXK0MiLCJtYWMiOiI5ZjI2ZmYwYzY0MDJlMDVkMjkyNzMyNzRiMTk4ZTk5YmI2YjZiYmIxNDI1NGVkOGUzNThhYjVjNDQzNDI4ZjI3IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6Im9EYm5uMTk2TGo3a1I0djlBM2FkVWc9PSIsInZhbHVlIjoiSGdWT3ZrejZTWHlNbmdzbWZ6aXFLT2QwTEVHcFlQdlpKRnlvRXpLdmFYdGpoSGhlOFp2K00vTE43WmZLZDJCY0xVOWphV0k2Y2s3eG52MSs4QzhYOGxBMWF0eG91azl6YzdlSWViSjhRMUIyRVJOY0ZyZG42T0ZSbUcrd0JhMEIiLCJtYWMiOiJjY2QwNDZlNDE1ODFmNDMyYTliZjRjYTRlZmY2ZGNlNWUyZDI1YjUxODhkNmU0OTdjZTQ4MDk4YzlhMzdhNmFhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkpXVGtyeXQwVkpzaitxaGplY3IyekE9PSIsInZhbHVlIjoiN3cxdHcvcW5sdW4waG9XZUFyOUZMM2xTNnNHTkRlbVMrbzJhSnhOdFQ2ZXRxdEN2S1hlSExoZlFJSEpzYTJERDRwQUVXbnVjYTdHN292eiswNDVlKzZQS2xTOXB3RDdiN1dQWlVPZ01rVlhlTDVjQXJCUXE2V0o0SFNPMlVPVWMiLCJtYWMiOiIwZTAyYTQ1NzQzNGI0NzZmOWQ1YTQ4YmY2NDE4MTRkYzg5ZWEzNGJmOTk0MWI1NDZmY2Q1MThlMjNlMjljOTZjIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -118,21 +118,21 @@ endpoints:
         name: to
         description: 'Must be a valid email address.'
         required: true
-        example: jade.yost@example.com
+        example: missouri10@example.com
         type: string
         custom: []
       subject:
         name: subject
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: nxwdidawlsoqfaollunuyzxcntkfcqprcgiltvvgrskqmdopufxhzeuwllgfbutsykszkkhpkydftpqwvnxpexllrttqgvobyrrsqrxiqmhdnngzrzajnvvrcyzojhfvxhuscnuivvxq
+        example: ncdnjequaltnivdkldlkruhvrqnehjbwisduuttafzlkqpvhypivikavyawpvigbofqkfbzssmiexlymnrpalkwxatstxqiccaohntlzvvmqycuuhgzsufkocygkvxfpuaaeuodvrpfbhiedtsfcpcnpwkmercphldlvpizynrxdgvcqakyslvqgzdxdtmbpzbrjyppmqtaeoijlyfuozagnjidksljwzyeloamjmfviypkrgscganr
         type: string
         custom: []
       message:
         name: message
         description: ''
         required: true
-        example: sit
+        example: velit
         type: string
         custom: []
     responses: []

@@ -46,15 +46,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: excepturi
+                  example: quam
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: sunt
+                  example: quam
                 classroom_name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: wbvfrfwtldnywecwbhchysxlbfllzukbuhxmkmnjrhsanerbahpddrbjrlwfsvlvnhrutqinztlfvlyc
+                  example: xehfyicneoqaiotoeiifigvxfvctaicvyriaqxkhpmhcynraihssvvlya
               required:
                 - username
                 - password
@@ -97,15 +97,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: dolorem
+                  example: natus
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: est
+                  example: nihil
                 classroom_name:
                   type: string
                   description: 'The class of the user.'
-                  example: possimus
+                  example: sit
               required:
                 - username
                 - password
@@ -293,7 +293,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: eutrittijosgskwfpczczbmhdignfmygcumcegkwefcjxtuclmqebzyzhpelimuldgvkhvumpywm
+                  example: rfvfvjzrpvpqsrivdwtoyegntqttvvmojofjfmprdtvysm
               required:
                 - name
   /api/absences:
@@ -366,7 +366,7 @@ paths:
         in: path
         name: token
         description: ''
-        example: nobis
+        example: suscipit
         required: true
         schema:
           type: string
@@ -444,7 +444,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: nzqqbqxbtrlzcq
+                  example: sfjolxvjlwoysvlhhjprpfamvhmwfvhcgnejqcikwvlfmielgqhbelbddaudmxbqyaiwuqivymssjnockquenpyczxknsnpyzaulwiophlmlxosvkjeddncwemcsavukf
               required:
                 - name
   '/api/calendars/{id}':
@@ -521,7 +521,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: gwxanbaowussdfgthbehengztoboljpmaigmfsfutbxyunyvuxllwckisqzdunomvp
+                  example: icgczfxaiylpahrqguypfszuukxijhjwcpnsandnuxndkyyhwfxlnuffppkscsokaevmpqibvxumumfdzwdtbkjkdcdiqcsqonuevdwdefdymnutqrvzjcoapgkkbpxvqpdrwthxaliywwgdvfeisqpqszoreiulddopkbojfwfguedmiadayfnbeeuqsrjkgtvjwbfkb
               required:
                 - name
     delete:
@@ -600,15 +600,15 @@ paths:
                 calendar_id:
                   type: integer
                   description: 'ID du calendrier à partager.'
-                  example: 3
+                  example: 4
                 user_id:
                   type: integer
                   description: "ID de l'utilisateur à qui partager le calendrier."
-                  example: 6
+                  example: 20
                 can_own:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
                 can_view:
                   type: boolean
                   description: ''
@@ -699,27 +699,27 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: wgmtszmfnggoxiidorkouvncrvphnuqjzamrusepulzytpzalfpohraymzohkcovpozynkiwbecmfhvshkkriyxmtwrmzdvqgkbfjshioljjetkxugfkvf
+                  example: gvxkoirqqqo
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: atvzjvbemrupdesmjjqoindiscgevzufpyksihxyrwvfxxzrpiosadpkdmsimornnearrkedxfkfcgfjnliynfvzzcrylxudkxqlftpxwyftzpcioaxunupyjckokscnzfxyzygayrjuxwltmldkfmzjjqzdiibxkwdakaxosupfxamnbozhlaixxjocjexvenybasobvmtkfxbszibmhcjxgwxeksiwyjgyxxeeyriskzeuxoynbxegkmjhjoewhlhxxbfrnldfgjbljhjuoyzqgdcyeqwauznqtnyuysgwvytiswfffimclzkrdqtirsccpzxnlrldysbhjkepgfyhjjqqzuntzmexbchnglinvituzqeuwyvgxxvijpentdy
+                  example: frstbqpmltxtrblocjwylfkvhqnfqqxelsvsubydxkbnshyvbswvalgiluyxtbfgrlkdgedpiptookmdmojefllfkxohztyqwzgcmzvgeebfnzqptdzzlpzdxreclvdvaamgenraalbenvywryxjtvlbhetsnzsmvrwzowgjzfpwklbgwwbgwobgeyndadrssveniquufgshwaixhfgblrikvxuzuqcbvqztlfzfiywmygzhkvczxvkdkvwtdoqxcgplorsfrmhcduaurjvjjmonqfvuvnvxnkpinmhljcapxukhdbirfmadsaztaexrrvzvnffatzdrglfjfaadswxjhnjbddbioxfghbtklpjjviwkpxgzjkvgzfxintgcteyeisgfvhvgtpjsxkfzfdnoqpfcuxcsoilkrowrbcjhynbzjd
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-29T15:05:13'
+                  example: '2022-05-29T17:37:37'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-29T15:05:13'
+                  example: '2022-05-29T17:37:37'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: vxmttatqoxxvfpkafgkwbdermdipcnuyyhkukyfpuphvrmqnweinaj
+                  example: snvxgqsmdxjdbssejzqylufajwhlcetspfvqgheitvhhgqxneseuifncsoercnpytzbbqsynpyuvwfgkckvvppihjqltydulkijizjpoclgtowdlspvuafadu
                 calendar_id:
                   type: string
                   description: ''
-                  example: voluptas
+                  example: natus
               required:
                 - title
                 - description
@@ -801,23 +801,23 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: qpltlujhbfuklhpmponenpzryjrtqphovakewixcybbtryqzjdznevtifsfvztfancwfbwgdjbqxvrigswjnbhkphlnijrbvzihwmezypsudvesxyebjftulnlgeqcthbqbyidpdktlftzxbytstyddvbiulvnipcetsrwciawjoxvfwrpfzcwoqxaxobkvugonupzgbuohgldzbdcrznsggbxufnnanosxafsuocdpmktburspllddx
+                  example: cliclcqxujmmgfttxfscvcguzmfhwgqgtygvrlxztwluueetrhsnguhtxlrgsnakbzwpzfdzdraxunnmzcmnenoojeomzdghlbylarckudibsmpuijivwgwrfwmfjqqlgub
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: mnbjnpbjocwwgspqlmozzdfhxfmzndkcguxcbmxkpzidtghndjyhcqtzgppaprydggdntfbqbbhdpylydmqydcydxachfsxbhxmunfegqtmboxrhqhnifcwyapgfglhyvdxzmoybmtortheiphhfegnvkyyajdxnpqcntovskcbzzngopgsagmoravubuneuhlwjbzllditqkbsflekseekhwiolmnxxbaowpokhfmnchemymcpepbndbvpkbslimrodignndyefyuvqcnxuuzhukhjzfppkxediadhlreakpvylkefhsngieeyrwyxixmfrssngtaedkgevyzcxffxwrddloulxsymiuivfttgxevnirrqlkcqotunnrpwxaadioelfajzaktuhiknrerqdsxxifhsbcnjvpteiisjbptbmsntzauzrxraecljmzprnhtlphosejwexyzwnvvralrikuttkjfewpqchl
+                  example: ibsppqahlnfgabnrieuovebzrsazigjlvytljfrfnpuaajnhfimnxsrnbgkwjlqqyiizg
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-29T15:05:13'
+                  example: '2022-05-29T17:37:37'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-29T15:05:13'
+                  example: '2022-05-29T17:37:37'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: bqfkylijihldnweghvgtslomrrerrbeftoxxjpumaqhhvghtmvuijn
+                  example: gdgsgmqqpxhhsptzgdocnjewobskzlffyotfsfgjjcetuxzzvpouotzippleuwalrvnjlhyfipmmhsmuzlfcqbwlsflrulycwdjgcbduosrbfdemlvmlpngunxcvvkbbmotwaecodjbwkcwffxpngfgosebbvtohoyenrnjfraylifjhbrrvkwmmqktfuupidoempbcwlusfttayvhlpnwzdtwciwvtrhyaraxxlotmfxehbiziwtr
     delete:
       summary: 'Delete event'
       description: 'Remove the specified resource from storage.'
@@ -1047,7 +1047,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: aepahpjhckbinkooumfcbnfrdvpnzbkyhskuxuluwrxasfqdchkdqehbfpoabtsintkuifgixmowlnbqmjqkldzbykrdmdnvacmpsxetayivysjawrqwzf
+                  example: zqawsckqvavzfqgurgqecdubaitbvrchpevqlbxrgsbxydhqusdgstchilfovo
                 ics:
                   type: string
                   format: binary
@@ -1132,7 +1132,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the mail.'
-        example: '9'
+        example: '7'
         required: true
         schema:
           type: string
@@ -1175,15 +1175,15 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: jade.yost@example.com
+                  example: missouri10@example.com
                 subject:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: nxwdidawlsoqfaollunuyzxcntkfcqprcgiltvvgrskqmdopufxhzeuwllgfbutsykszkkhpkydftpqwvnxpexllrttqgvobyrrsqrxiqmhdnngzrzajnvvrcyzojhfvxhuscnuivvxq
+                  example: ncdnjequaltnivdkldlkruhvrqnehjbwisduuttafzlkqpvhypivikavyawpvigbofqkfbzssmiexlymnrpalkwxatstxqiccaohntlzvvmqycuuhgzsufkocygkvxfpuaaeuodvrpfbhiedtsfcpcnpwkmercphldlvpizynrxdgvcqakyslvqgzdxdtmbpzbrjyppmqtaeoijlyfuozagnjidksljwzyeloamjmfviypkrgscganr
                 message:
                   type: string
                   description: ''
-                  example: sit
+                  example: velit
               required:
                 - to
                 - subject

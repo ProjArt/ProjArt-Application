@@ -6,17 +6,21 @@ import { routesNames } from "../router/routes";
 const isSubmitted = ref(false)
 const formData = ref({})
 const isAuthenticated = ref(false);
+const allClasses = ref([]);
 
 (async function getClasses() {
     const response = await useFetch({
-        url: API.classes.path(),
-        method: API.classes.method,
-        data: {}
+        url: API['displayAListingOfTheResource.'].path(),
+        method: API['displayAListingOfTheResource.'].method,
     });
     if (response.success === true) {
-        return response.data;
+        const retrieveClasses = []
+        response.data.classrooms.forEach(element => {
+            retrieveClasses.push(element.name)
+        });
+        allClasses.value = retrieveClasses
     } else {
-        return [];
+        console.log(response.message);
     }
 })()
 
@@ -48,11 +52,9 @@ const submitHandler = async () => {
             <FormKit type="password" name="password" placeholder="password" validation="required" label="Password" />
             <FormKit type="password" name="password_confirm" placeholder="password" label="Confirm password"
                 validation="required|confirm" validation-label="Password confirmation" />
-            <!--
-            <FormKit type="select" name="classroom_name" placeholder="class" validation="required" label="Classe" >
-                <option v-for="(class, index) in classes" :value="name.id">{{ name.name }}</option>
+            <FormKit type="select" name="classroom_name" placeholder="class" validation="required" label="Classe">
+                <option v-for="(aClass) in allClasses" :value="aClass">{{ aClass }}</option>
             </FormKit>
-            -->
         </FormKit>
         <div>
             <h2 v-if="isAuthenticated && isSubmitted">Compte crée</h2>

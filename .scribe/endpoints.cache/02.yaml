@@ -63,7 +63,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: nzqqbqxbtrlzcq
+        example: sfjolxvjlwoysvlhhjprpfamvhmwfvhcgnejqcikwvlfmielgqhbelbddaudmxbqyaiwuqivymssjnockquenpyczxknsnpyzaulwiophlmlxosvkjeddncwemcsavukf
         type: string
         custom: []
     responses: []
@@ -116,7 +116,7 @@ endpoints:
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjYvQkpLYjZWc3RXSnRXSXhVQTBFSlE9PSIsInZhbHVlIjoidmIzZFZhU1JRUlRzZ2ozMENFWnFWUkx3R2ZJclJKWU9ETVNRUkhXenVUVGxWMlFBUE02L0J3dFpwZU4xenlzRWdDekJYbnFHN1JYSCs4Q3pKbkE5b3ZQVkthY0FCZitNa0pTQXpPcHFWTDFaVmRxMlYxUEE2dmEyRVRsQ2VyYmsiLCJtYWMiOiJhMmNjYWFmOWNiYzI2YjE1YzJlNGE0NTkwN2QyOTYzM2IwMTE1MjY5NDEzNWQxMDU3NDI1NjlkNTQ5MTdlOTdhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IjlVNnpmdUwrcm1zN1praVVtQmFndGc9PSIsInZhbHVlIjoiQWRaSjVZTGk0eFQzZit3WFN3bEtYNUxCT05HWDhtWjF4UkZ3a1puZ2MrWnl4YTBvYnV5TlJ0dzU1YTJHQzBlYU1UOVl6bFZpTU0zSTRtZWlmTDhITklQVFR3eEdtQWZSdGlZWERXRHVoZUx2OGRwNGRLN0Z3NUVjQVJDME82Z3EiLCJtYWMiOiJlMjkzMzQ4ZmRmMDc1ZDQ0YjVmODkzNWMyYWFiZjExMDAwZDZhOTM2YjgxNjAwNDc1OTJmYzUwMjUyMzA0M2YyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImZqbExYVmlRUHE4ZjgxTnFRQmprSVE9PSIsInZhbHVlIjoiUUVKZUUrc2tUSzlPY1RwTDkwUnN6eTNkU3FuOGFyOW56alRCOGNtZVVUYVd5N2ExRitEVjdmRmlyenFEVDc3cjVpLzZEZkt4TW9pTVRYNWJ5TWZLTmZpQ1dwdWtrZG8rM3RPV25MZzZUbDF5a01mUi9xT0hoNFM0L0tBRDAzV3IiLCJtYWMiOiJmYjg3Yzc0NzBhOGQwMDFmYWQ3ZmI1YmViYTNmOGNhMzY0MDgyODkyYjk0N2Y3NWNhZGQxYWZiNTFmY2Y1OTA4IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkVGSzZlbDR2bzVpSDN3bFVWQU9mSHc9PSIsInZhbHVlIjoickxJZGIwaU1mUFQvK250VWdzYW1XR3RSMk9yWlZCTWw1dS9NeUVpbXROcmd5dkdDTmlJZWhRaW9WRUVabFY2Z1hGNlQyMXRINzFQcjdDTElQYVdJYlVOczFuSW1tTisxR3J4R0xpOVFVdTl2cXZVbUxQV3JqU0Y4OW5CYW9mY0YiLCJtYWMiOiJlOTY1MWI4MjI4ZWMwMTVkMjM4ZDA4MGExZjhjODNhOWRhYWIyMjhmMmRlZTY3NWY4OTk5ZjY3Zjg2YWYwOTBjIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -147,7 +147,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: gwxanbaowussdfgthbehengztoboljpmaigmfsfutbxyunyvuxllwckisqzdunomvp
+        example: icgczfxaiylpahrqguypfszuukxijhjwcpnsandnuxndkyyhwfxlnuffppkscsokaevmpqibvxumumfdzwdtbkjkdcdiqcsqonuevdwdefdymnutqrvzjcoapgkkbpxvqpdrwthxaliywwgdvfeisqpqszoreiulddopkbojfwfguedmiadayfnbeeuqsrjkgtvjwbfkb
         type: string
         custom: []
     responses: []
@@ -197,21 +197,21 @@ endpoints:
         name: calendar_id
         description: 'ID du calendrier à partager.'
         required: true
-        example: 3
+        example: 4
         type: integer
         custom: []
       user_id:
         name: user_id
         description: "ID de l'utilisateur à qui partager le calendrier."
         required: true
-        example: 6
+        example: 20
         type: integer
         custom: []
       can_own:
         name: can_own
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         custom: []
       can_view:

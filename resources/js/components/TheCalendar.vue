@@ -78,7 +78,7 @@ function formatDayObject(ref) {
 }
 
 function setEvents() {
-    const currentCalendar = allCalendars.value.filter(calendar => calendar.id === currentCalendarId.value)
+    const currentCalendar = allCalendars.value.filter(calendar => calendar.id === parseInt(currentCalendarId.value))
     currentCalendar[0].events.forEach(event => {
         const newEvent = toRaw(event)
         const date = new Date(event.start)
@@ -341,9 +341,16 @@ function showCurrentEvent(index) {
     showCurrentEventsPopup.value = index;
 }
 
-function showEventEditForm(index, id) {
+function showEventEditForm(startDate, id) {
+    const date = toChDate(startDate)
+    // TODO: index n'est pas toujours transmis
     indexUnderEdition.value = id !== indexUnderEdition.value ? id : undefined
-    let newEvent = toRaw(dates.value[index].events)
+    console.log({ startDate })
+    console.log({ date })
+    console.log(dates.value)
+    console.log(dates.value[date])
+    let newEvent = toRaw(dates.value[date].events)
+    console.log({ newEvent })
     newEvent = newEvent.filter((event, key) => {
         if (event.id === id) return event
     })
@@ -364,8 +371,8 @@ function showEventEditForm(index, id) {
         description: newEvent[0].description,
         start: start,
         end: end,
-        start_date: index,
-        end_date: index,
+        start_date: date,
+        end_date: date,
         calendar_id: currentCalendarId.value
     }
 }
@@ -389,8 +396,11 @@ watch(selectedDate, (index) => {
 })
 
 watch(currentCalendarId, (id) => {
-    const editable = allCalendars.value.filter(calendar => (calendar.id === id))[0].can_edit
+    const editable = allCalendars.value.filter(calendar => {
+        return calendar.id === parseInt(id)
+    })[0].can_edit
     canEditCalendar.value = editable
+    setDisplayedDates(0)
 })
 
 // At startup
@@ -471,9 +481,9 @@ setCalendars()
                     <p>fin: {{ event.end }}</p>
                 </div>
                 <button v-show="canEditCalendar" @click="deleteEvent(event.start, event.id)">supprimer</button>
-                <button v-show="canEditCalendar" @click="showEventEditForm(event.local, event.id)">editer</button>
+                <button v-show="canEditCalendar" @click="showEventEditForm(event.start, event.id)">editer</button>
                 <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
-                    v-if="indexUnderEdition === event.id" :key="event.id">
+                    v-if="indexUnderEdition === event.id && canEditCalendar" :key="event.id">
                     <FormKit type="text" name="title" validation="required" :label="'Titre ' + event.id" />
                     <FormKit type="text" name="location" validation="required" label="Lieu" />
                     <FormKit type="textarea" name="description" validation="required" label="Description" />

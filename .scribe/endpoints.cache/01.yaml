@@ -44,7 +44,7 @@ endpoints:
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlhLOFNXdHpFZWx0YTdibWtqWWI1aHc9PSIsInZhbHVlIjoibVZIenpmSUp2Z1Jja1ZMUEJhWCtGRkM5a2hJdExkYTFsbFN5NHNTY2x3VEJ6MjJ2STY4Y242aHhIKzNKVnQzaGhqQmc0Z00vUklNTHJVR1BuM3hGb3lHUTBsZ1FQN0VCSHYvQndWYUd2MFdOVDUvWHllTzNBYlkxRnVqNWpzZTkiLCJtYWMiOiJmMzAyZmIwY2VmNThiOGFkMDk1OTgzMjQ2YjQwNjE3YmIyMzNmNTdlY2NiM2ExNjliOWQ4OWQ0ZWVhZjdmZDE1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkJvVmltMnVMNEplOUZTWFRHOWFkM2c9PSIsInZhbHVlIjoiT0RBclhrR01rSGt2d2M3MlcvaWwyZUY3SmNuRjlFZFBqN1JSb3FjcnZKQkR2T3RpYnMxVXBmUmh6RndVdy9ybU5lUVFVejVrNDJ4S094Q0JyTmtHRERmNy9yWXkxM0lCWGtXdFlGY1RMNXhtUWRncHlCR1FhbHZqMms1MnM4TUsiLCJtYWMiOiJmYTRkNmJmOTNmZjVkZDE0NGMxNDFmMDA1ZjNkZDBkYWMyMjZkOTA5ZGZiZDgwN2QxNzJiODBmZjZmZjRhNGU3IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImVRTjAvQkxrZGViOFJEUnhPclp0cHc9PSIsInZhbHVlIjoiUjIrOSt3aU92Z2NBci9ITjNDYmI0RTRtMTM0Y3JkLyszT21rQ3ZMWmtSdTNqVGVUd1RPRjBOMEtmb0FTakZ3WFhWNEdkbXJ4TllrRGQ0TjBhZzhCTzVBZlJPZFJ3TXgxdlFUYlVWSTAxbUpvNmhublc1L1FTUTZFUy8vblNoSCsiLCJtYWMiOiI3Zjc5ZGE1ZDIwNGJiZjNmMTM4NjhiZDlkODE0NjAxOWE2ZWQzNGFmMTMzYzgzZGJkZDZkMDA4N2VjMTkxMDc0IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkxXOHBLaE1uVHRxMko4ZnNnM3VyelE9PSIsInZhbHVlIjoieXBpOW5sYnBPZ0JRYXBPalVKaVdyYlZGdGhQak10YkhtV0s5VXhKTFFhcm5zMm5XcUhab1JRZVlJRmc3RUgwaDdSbnUyTFJSUlFERzRhWlhCZE9qUmQyL3FqYW1FdXhPeEFzRmpaaHZHdXlVWUIyK0pSNlhWSU44RWNoL1JxMVIiLCJtYWMiOiJiMzcwMzVjM2JlODkwNjM3NTAyZDI3YzQ3YzZhZTU4ODNkYzM5ODhmN2NmYzk3YzNiZmQ5ODI2Yzk1MzQ3NDAwIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -88,7 +88,7 @@ endpoints:
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImpsWGEzSEUzN0VhdW14OTRxQ2w2MVE9PSIsInZhbHVlIjoiV2NWb1ZoZmtnQnFuZG1xakcrbzRlYU1OTC9UOUpWSlRONlc5RW9hM1NBblFXNXlXYWlaelVZb3dlaWd6eWVjSVZIWGRpZ3BxUkdISm9jU1pWOGxvNzFtSkxrVi9XRFJqT3ZhT0ZoZnNCOTluUkE4Qk5LbE02cXYzNHJvWGFEWkgiLCJtYWMiOiJiNzQyMTY1MTEyZWNmNGNhMDhjMTkzODJlNTJkYzE2MWRjMDA5MDM3YjBhMzE0MTVmNTZkOWRkZDY1NTgwYjkxIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6ImphZzdjOFU3WHpVSDlhS25tMWN5Q2c9PSIsInZhbHVlIjoiRUlKajNsa0VkeloxL25sTTVCdFJDZUI2WnltcWxjMDhCNjBWaXVqZUVIejc0SHAzOXRnazR3QUROM1ExL2VZL0k2SlZYeVVweHdyRkV6VEx0K2VkSW01VkVWaXp6MGNNbUdLNjlRYlMvd1MwbGFWODFBZmc1MTdrZzZzdldUUzEiLCJtYWMiOiI2Y2M5OWNiODFlMzI5ZjM4NmI4NzQ3ZjY4MWFmOGU4MzQwOTI5ZDdjZjlhMzUzZTM2ZTM4ZGZjNmFhNDE3YjkzIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6InEzZEhBRzZ6WlJ4RnVad01OOTFtdnc9PSIsInZhbHVlIjoiTWlyMlBqNW9SenpaRHBwWjhIUzRRdkxtTnRUd2ZvUS84cVFBcTlGMlJWcHZqNkRVOWlrK2F3dlduQVFOZTJhVGw5R3YrQzFHbElnMzRLMmg0RFlMTGp2QUZXNmZOZWZOYUFnTGRSMUtVYk4rOFZPeEhHakx5eGZudnZhVTlLdmgiLCJtYWMiOiI0ODViMjNkMzRhNGNmM2VkNTgwNGViNjg3MDM2ZTZjYWE1NGQ5Y2NhYzVjNDIyOTJkM2ExMWNiNjFkOWJmMTA4IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Ijd0VDN0N2F5RnRhZXlFVHJTbG9KYWc9PSIsInZhbHVlIjoiVS9aT1htUFF1cmx1eG9zM2hUTUp5VVpSN2diY3JpUWJPK0hzYStFUjlTMVZCTE00WVhBdGRWQ1psOTdNcTl2MERJK1Q5WFV3R2wzL1hTeEo2TUdJb2poVGE3M2JyZ3hwL0N0Zlp3TGY0dmcvYXJKdkVmZ2pBa1YvQVpRZzB3alIiLCJtYWMiOiJiOTY1ZDFkNDU5MWY1YTA0ZTJiMDVlZGY5YjNlZTA5MWQwNjE3NjJiM2ZlYWEyZDgzYmJmYWQ4MjhlNTQxMDZmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -111,7 +111,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: eutrittijosgskwfpczczbmhdignfmygcumcegkwefcjxtuclmqebzyzhpelimuldgvkhvumpywm
+        example: rfvfvjzrpvpqsrivdwtoyegntqttvvmojofjfmprdtvysm
         type: string
         custom: []
     responses: []
@@ -157,7 +157,7 @@ endpoints:
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6Ing1bW90U1F0dlYrVitoaVFncTVjU1E9PSIsInZhbHVlIjoiQ2Q3aG9YV0g2bE1kK3E5Q25RcnF4dnJRSFhNNVFtRjFiVWU3L0U3dEpqUXQ0NWRVZFNENGZnZ2hrMW0yS1NzS1k1aEZFRDNPaWJURStkcEJTVjEyaGk5RGJ6cTJ1eXJHd0t5VlRGcHVZRkdTT0VzdVdzdDJZblZqQlhxV2NzTmoiLCJtYWMiOiJjYjE1MGRlYjQxNjJhYjJmZjc4MmYxZmYwYmU4YmNiMTJiZjQ5YjQwYmI5ODRjMzA4ZjFjZTVmNjU5ZTRlMTYwIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Img2N2RmcFRadUxDM2ZCTktvKzV6U0E9PSIsInZhbHVlIjoiNk02S2s1cVNKZ05SdXNQK2tQbVg5YjUzUDAzc3hId1NrbVBnbnJSUGZIdlh5VnBuZFFscFdVa050Z2NEMU04cVFHMHB6SEkyT0J5YXNHK2NVT2lRUTRIZnVWUmZ3NDJQdFI3U2xMNmZXdzUzb0RoTTI0YS9scUw3dXVTQjFwM0QiLCJtYWMiOiI1YWUxYmMxNTAyMzEwMzVjNmIxYTllMjIyMjhkN2JiM2NiNjk1OGEzMDgxZWQxYTZmMjAwZmZhNDE3MTg1OTljIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 15:05:13 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IktmV3VLMlZKTjB2cVVjMk9VcVBUOXc9PSIsInZhbHVlIjoiaUZzZi9meXl2akYvNE1XekVGK3kvQWVzeVJuSHVCWVovS1c1di9KYWZMdzVKYjlLQ3kyTVg1YThhUDhPaFVqaE9VYWhuYkM3VlVXNUl1RmQxRFZhcUN6OGE0QnhQT0lUZklicE8yQThmc3V5QXdQK3I0Z1ZoRzBTOFQ3OC81Z2kiLCJtYWMiOiJlMDBlYzM1YjY2NWYwOTMyMDA1MzdlOTBmYzc3MjkzMmQxOTFlNTE4OTIyYmI4OTc1OWM4NmFlYzQwNGYwZTgxIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IlZIYjU0NmYxTEt1ZXJML2s2UmpJdFE9PSIsInZhbHVlIjoiWndldlliUTVRWDRGeFluQlhXaEJQdjgyallGdmI1bi93NWNLNXhKWE0wK2N2TXJnOUI1TG16WEdkdkRweVFVTy93T2pQMkNacUpkbUdiK0YvWklNeVdWOEYwcUR3QkZaK0RSUEIwUUk5eGdFTlJwb3E4c1pkRDlFQ2ZzVXhnWTAiLCJtYWMiOiJhMmU2YTE2YjE1ZTA2NTIwY2FlNmQ0ZDJmNjQ2YzNhMzc2MThkMDE3ZWUwNDM1YjczZWY1NjY1NmYzZjhmNjc3IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
@@ -178,7 +178,7 @@ endpoints:
         name: token
         description: ''
         required: true
-        example: nobis
+        example: suscipit
         type: string
         custom: []
     queryParameters: []
