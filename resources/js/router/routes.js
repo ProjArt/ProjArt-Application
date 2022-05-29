@@ -3,7 +3,7 @@ import home from "./HomeRoute.vue";
 import calendar from "./CalendarRoute.vue";
 
 const routes = [
-    { name: "home", path: process.env.MIX_BASE_URL + "/", component: home },
+    { name: "home", path: "/", component: home },
     { name: "calendar", path: "/calendar", component: calendar },
 ];
 
