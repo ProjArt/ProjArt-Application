@@ -46,6 +46,7 @@ jobs:
         DB_DATABASE: database/database.sqlite
         GAPS_USERNAME: ${{ secrets.GAPS_USERNAME }}
         GAPS_PASSWORD: ${{ secrets.GAPS_PASSWORD }}
+        TWITTER_TOKEN: ${{ secrets.TWITTER_TOKEN }}
       run: php artisan db:seed
       id: seeding
       
