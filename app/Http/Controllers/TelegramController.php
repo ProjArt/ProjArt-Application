@@ -66,6 +66,8 @@ class TelegramController extends Controller
                     return $this->notes();
                 case "/absences":
                     return $this->absences();
+                case "/cafeteria":
+                    return $this->cafeteria();
                 case "/menu":
                     return $this->menu();
                 case "/moi":
@@ -162,6 +164,30 @@ class TelegramController extends Controller
     }
 
     private function menu()
+    {
+        $user = $this->chat->users()->first();
+        if ($user) {
+            $meals = Meal::today()->get();
+
+            if (!$meals) {
+                return $this->chat->html("Aucun repas n'est prévu aujourd'hui.");
+            }
+
+            $s = "";
+
+            foreach ($meals as $meal) {
+                $s .= $meal->entry . "\n";
+                $s .= $meal->plate . "\n";
+                $s .= $meal->dessert . "\n";
+                $s .= "\n";
+            }
+
+            return $this->chat->html($s);
+        }
+        return $this->chat->html("Vous n'êtes pas connecté à Gaps.\n/gaps");
+    }
+
+    private function cafeteria()
     {
         $user = $this->chat->users()->first();
         if ($user) {
