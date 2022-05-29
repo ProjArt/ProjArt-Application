@@ -7,6 +7,19 @@ const isSubmitted = ref(false)
 const formData = ref({})
 const isAuthenticated = ref(false);
 
+(async function getClasses() {
+    const response = await useFetch({
+        url: API.classes.path(),
+        method: API.classes.method,
+        data: {}
+    });
+    if (response.success === true) {
+        return response.data;
+    } else {
+        return [];
+    }
+})()
+
 const submitHandler = async () => {
     isSubmitted.value = true
     console.log(toRaw(formData.value))
@@ -35,7 +48,11 @@ const submitHandler = async () => {
             <FormKit type="password" name="password" placeholder="password" validation="required" label="Password" />
             <FormKit type="password" name="password_confirm" placeholder="password" label="Confirm password"
                 validation="required|confirm" validation-label="Password confirmation" />
-            <FormKit type="text" name="classroom_name" placeholder="class" validation="required" label="Classe" />
+            <!--
+            <FormKit type="select" name="classroom_name" placeholder="class" validation="required" label="Classe" >
+                <option v-for="(class, index) in classes" :value="name.id">{{ name.name }}</option>
+            </FormKit>
+            -->
         </FormKit>
         <div>
             <h2 v-if="isAuthenticated && isSubmitted">Compte crée</h2>

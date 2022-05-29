@@ -33,7 +33,6 @@ const submitHandler = async () => {
             <h2>Connexion</h2>
             <FormKit type="text" name="username" placeholder="unsername" validation="required" label="UserName" />
             <FormKit type="password" name="password" placeholder="password" validation="required" label="Password" />
-            <FormKit type="text" name="classroom_name" placeholder="class" label="Classe" />
         </FormKit>
         <div>
             <h2 v-if="isAuthenticated && isSubmitted">Connexion établie</h2>
