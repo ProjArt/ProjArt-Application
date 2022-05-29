@@ -1,17 +1,39 @@
 import api from "../../../public/docs/collection.json";
-const API_URL = "http://localhost:8000/api/";
-const baseUrl = "http://localhost:8000/";
+// const API_URL = "http://localhost:8000/api/";
+// const BASE_URL = "http://localhost:8000/";
 
 /**
- * Contain every routes of the API each route is an object with the following properties:
+ * API contain every routes of the API each route is an object with the following properties:
  * @attribute method {string} The method of the route (GET, POST, PUT, etc.)
  * @attribute path {function} Function that returns the path of the route, can take arguments
  *
  * @hint every route object name is a camelCase version of the route name
  * Routes'names and documentation is available at http://localhost:8000/docs/
- * @example  Get Calendar => getCalendar
+ * @example  Get Calendar => API.getCalendar.path(param1, param2, ...)
  */
 export const API = {};
+const API_URL = getUrl() + "api/";
+const BASE_URL = getUrl();
+// console.log({ api_url, base_url });
+
+/**
+ * Get and transform the api url to an usable url
+ * @returns {string} the app url
+ */
+function getUrl() {
+    const url = api.variable[0].value;
+    const urlParts = url.split("/");
+    const newUrl = urlParts.map((part, key) => {
+        if (key === urlParts.length - 1) {
+            return `:${part}/`;
+        } else if (key === urlParts.length - 2) {
+            return part;
+        } else {
+            return part + "/";
+        }
+    });
+    return newUrl.join("");
+}
 
 /**
  * It takes a route string, splits it into parts, and returns a function that takes
@@ -19,7 +41,7 @@ export const API = {};
  * @param route {string} The route you want to create a function for.
  * @returns A function that returns a string.
  */
-const createFunction = (route) => {
+function createFunction(route) {
     const urlParts = route.split("/");
     const params = [];
     let pathString = "";
@@ -32,10 +54,10 @@ const createFunction = (route) => {
         }
     });
     pathString = pathString.slice(0, -1) + "";
-    let returnement = "return `" + baseUrl + pathString + "`";
+    let returnement = "return `" + BASE_URL + pathString + "`";
     const path = new Function(...params, returnement);
     return path;
-};
+}
 
 (function addRoutesToApiObject() {
     api.item.forEach((group) => {

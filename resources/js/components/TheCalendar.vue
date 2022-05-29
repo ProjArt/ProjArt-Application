@@ -150,8 +150,7 @@ function hideEditEventsForm() {
 // CRUD operations on API
 // ====================================== 
 
-async function storeEvent() {
-    let form = toRaw(newEventForm.value)
+async function storeEvent(form) {
     const date = form.start_date
     form = prepareFormBeforeSending(form)
     const response = await useFetch({
@@ -193,16 +192,14 @@ async function deleteEvent(dayId, eventId) {
     }
 }
 
-async function updateEvent(eventId) {
-    let form = toRaw(formUpdate.value)
+async function updateEvent(form) {
     const date = form.start_date
     form = prepareFormBeforeSending(form)
     const events = toRaw(dates.value[date].events)
-    let newEvents = events.filter((event) => event.id !== eventId)
+    let newEvents = events.filter((event) => event.id !== form.id)
     newEvents.push(form)
-    console.log({ newEvents })
     const response = await useFetch({
-        url: API.updateEvent.path(eventId),
+        url: API.updateEvent.path(form.id),
         method: API.updateEvent.method,
         data: form
     });
@@ -210,6 +207,8 @@ async function updateEvent(eventId) {
         try {
             dates.value[date].events = newEvents
             sortEvents(date)
+            newEventPopup.value = newEvents
+            console.log({ newEvents })
         } catch (error) {
             console.log(error)
         }
@@ -229,6 +228,7 @@ async function setCalendars() {
             calendars.push({ label: calendar.name, value: calendar.key })
         })
         calendarsNames.value = calendars;
+        console.log(toRaw(calendarsNames))
         allCalendars.value = response.data
         setEvents()
     } else {
@@ -428,20 +428,27 @@ setCalendars()
         <h2>Current Events</h2>
         <article class="popup__event" v-for="(event, index) in newEventPopup">
             <div class="event">
-                <p>titre: {{ event.title }}</p><br />
-                <p>id: {{ event.id }}</p>
+                <div class="event__infos">
+                    <p>id: {{ event.id }}</p>
+                    <p>titre: {{ event.title }}</p>
+                    <p>lieu: {{ event.location }}</p>
+                    <p>description: {{ event.description }}</p>
+                    <p>début: {{ event.start }}</p>
+                    <p>fin: {{ event.end }}</p>
+                </div>
                 <button @click="deleteEvent(event.start, event.id)">supprimer</button>
                 <button @click="showEventEditForm(event.local, event.id)">editer</button>
-                <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent(event.id)"
+                <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
                     v-if="indexUnderEdition === event.id" :key="event.id">
                     <FormKit type="text" name="title" validation="required" :label="'Titre ' + event.id" />
                     <FormKit type="text" name="location" validation="required" label="Lieu" />
                     <FormKit type="textarea" name="description" validation="required" label="Description" />
                     <FormKit type="time" name="start" label="Début" />
                     <FormKit type="time" name="end" label="Fin" />
-                    <FormKit name="calendar_id" type="hidden" />
-                    <FormKit name="start_date" type="hidden" />
-                    <FormKit name="end_date" type="hidden" />
+                    <FormKit name="calendar_id" type="hidden" :value="currentCalendarId" />
+                    <FormKit name="start_date" type="hidden" :value="event.local" />
+                    <FormKit name="end_date" type="hidden" :value="event.local" />
+                    <FormKit name="id" type="hidden" :value="event.id" />
                 </FormKit>
             </div>
         </article>
@@ -542,6 +549,12 @@ setCalendars()
     width: 100%;
     margin: 2px 0;
     box-sizing: content-box;
+}
+
+.event__infos {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
 }
 
 .popup--edit-events,
