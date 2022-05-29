@@ -26,7 +26,6 @@ class TelegramController extends Controller
     {
         $content = file_get_contents("php://input");
         $update = json_decode($content, true);
-        Log::info($update);
         $chat_id = $update["message"]["chat"]["id"];
         $message = $update["message"]["text"];
         $chat = TelegramChat::where('chat_id', $chat_id)->first();
@@ -65,10 +64,10 @@ class TelegramController extends Controller
                     return $this->prochains();
                 case "/notes":
                     return $this->notes();
-                case "/menu":
-                    return $this->menu();
                 case "/absences":
                     return $this->absences();
+                case "/menu":
+                    return $this->menu();
                 case "/moi":
                     return $this->moi();
                 case "/supprimer":
@@ -165,8 +164,6 @@ class TelegramController extends Controller
     private function menu()
     {
         $user = $this->chat->users()->first();
-
-
         if ($user) {
             $meals = Meal::today()->get();
 
@@ -185,7 +182,6 @@ class TelegramController extends Controller
 
             return $this->chat->html($s);
         }
-
         return $this->chat->html("Vous n'êtes pas connecté à Gaps.\n/gaps");
     }
 
