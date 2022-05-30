@@ -1,10 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
 import home from "./HomeRoute.vue";
 import calendar from "./CalendarRoute.vue";
+import absences from "./AbsencesRoute.vue";
+import marks from "./MarksRoute.vue";
 
 const routes = [
     { name: "home", path: "/", component: home },
     { name: "calendar", path: "/calendar", component: calendar },
+    { name: "absences", path: "/absences", component: absences },
+    { name: "marks", path: "/marks", component: marks },
+
 ];
 
 export const routesNames = (() => {
