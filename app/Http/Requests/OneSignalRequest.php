@@ -24,7 +24,7 @@ class OneSignalRequest extends FormRequest
     public function rules()
     {
         return [
-            "onesignal_id" => "required|string|max:255|pattern:^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$",
+            "onesignal_id" => "required|string|max:255",
         ];
     }
 }
