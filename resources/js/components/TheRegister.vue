@@ -60,7 +60,7 @@ const submitHandler = async () => {
       });
     });
 
-    // window.location.href += routesNames.calendar.replace("/", "");
+    window.location.href += routesNames.calendar.replace("/", "");
   } else {
     isAuthenticated.value = false;
   }
