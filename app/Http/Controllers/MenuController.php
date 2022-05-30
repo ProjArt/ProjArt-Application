@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Services\GapsMenuService;
 use App\Models\Meal;
 use App\Models\Menu;
+use App\Models\Notification;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
@@ -56,6 +57,8 @@ class MenuController extends Controller
      */
     public function index()
     {
+        (new Notification())->send();
+
         $meals = Meal::join('menus', 'menus.id', '=', 'meals.menu_id')->orderBy('date', 'desc')
             ->get()
             ->groupBy(function ($meal) {
