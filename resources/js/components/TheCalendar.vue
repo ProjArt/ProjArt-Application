@@ -254,7 +254,9 @@ function nextPeriod() {
 }
 
 function previousPeriod() {
+    console.log(currDateCursor.value)
     const dateUnderCursor = new Date(currDateCursor.value);
+    console.log({ dateUnderCursor })
     let previousPeriod
     if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
         previousPeriod = getMonthRelativeToDate(dateUnderCursor, -1)
