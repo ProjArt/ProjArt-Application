@@ -38,12 +38,12 @@ const submitHandler = async () => {
     console.log("Successfully registered");
     console.log(API.updateAllGaps.path(""));
 
-    isLoading.value = true;
+    /* isLoading.value = true;
     const r = await useFetch({
       url: API.updateAllGaps.path(),
       method: API.updateAllGaps.method,
     });
-    isLoading.value = false;
+    isLoading.value = false; */
     window.location.href += routesNames.calendar.replace("/", "");
   } else {
     isAuthenticated.value = false;
@@ -89,7 +89,7 @@ const submitHandler = async () => {
         validation="required"
         label="Classe"
       >
-        <option v-for="aClass in allClasses" :value="aClass">
+        <option v-for="aClass in allClasses" :key="aClass" :value="aClass">
           {{ aClass }}
         </option>
       </FormKit>
