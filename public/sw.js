@@ -1,3 +1,5 @@
+const CACHE_VERSION = '1';
+
 self.addEventListener('install', event => {
     caches.open(CACHE_VERSION).then(cache => {
         cache.addAll(CACHE_FILES);
