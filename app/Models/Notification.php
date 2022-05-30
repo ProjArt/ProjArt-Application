@@ -18,15 +18,17 @@ class Notification extends Model
 
     public function send()
     {
-        $response = Http::withHeaders([
+        Http::withHeaders([
             'Accept' => 'application/json',
-            'Authorization' => 'Basic YOUR_REST_API_KEY',
+            'Authorization' => 'Basic ' . config("services.onesignal.rest_api_key"),
             'Content-Type' => 'application/json',
         ])->post('https://onesignal.com/api/v1/notifications', [
-            'body' => '{"included_segments":["Subscribed Users"],"name":"INTERNAL_CAMPAIGN_NAME"}',
+            'app_id' => config("services.onesignal.app_id"),
+            "included_segments" => ["Subscribed Users"],
+            "name" => "INTERNAL_CAMPAIGN_NAME",
+            "contents" => [
+                "en" => "COUCOU",
+            ],
         ]);
-
-        Log::info($response->body());
-        return $response->json();
     }
 }
