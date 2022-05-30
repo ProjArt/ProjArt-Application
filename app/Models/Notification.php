@@ -21,7 +21,7 @@ class Notification extends Model
 
         $to = $toUser ? ["include_player_ids" => $to] : ["included_segments" => $to];
 
-        Http::withHeaders([
+        $response =  Http::withHeaders([
             'Accept' => 'application/json',
             'Authorization' => 'Basic ' . config("services.onesignal.rest_api_key"),
             'Content-Type' => 'application/json',
@@ -35,5 +35,7 @@ class Notification extends Model
                 ],
             ] + $to
         );
+
+        Log::info($response->json());
     }
 }
