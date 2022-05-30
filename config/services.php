@@ -36,4 +36,9 @@ return [
         'rest_api_key' => env('ONESIGNAL_REST_API_KEY')
     ],
 
+    'pusher' => [
+        'beams_instance_id' => env('PUSHER_APP_ID'),
+        'beams_secret_key' => env('PUSHER_APP_KEY'),
+    ],
+
 ];
