@@ -57,8 +57,6 @@ class MenuController extends Controller
      */
     public function index()
     {
-        (new Notification())->send();
-
         $meals = Meal::join('menus', 'menus.id', '=', 'meals.menu_id')->orderBy('date', 'desc')
             ->get()
             ->groupBy(function ($meal) {
