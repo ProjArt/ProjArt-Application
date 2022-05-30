@@ -18,18 +18,8 @@ const BASE_URL = getUrl();
  * @returns {string} the app url
  */
 function getUrl() {
-    const url = api.variable[0].value;
-    const urlParts = url.split("/");
-    const newUrl = urlParts.map((part, key) => {
-        if (key === urlParts.length - 1) {
-            return `:${part}/`;
-        } else if (key === urlParts.length - 2) {
-            return part;
-        } else {
-            return part + "/";
-        }
-    });
-    return newUrl.join("");
+    console.log(api.variable[0].value + "/");
+    return api.variable[0].value + "/";
 }
 
 /**

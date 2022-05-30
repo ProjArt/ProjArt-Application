@@ -23,30 +23,12 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-
-          </html>
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjFnQ2VoZUl4L3hoeHhZNkduSDBHSVE9PSIsInZhbHVlIjoiNlB6SWUrVitCZGZQdWcxSUZDSkxWL0xqR1V3SDVwMUtlVjFua0Qwc0RZeUpMd2Fqck9tYW90cVBOMVV1dVJreWdJOGxzQk1vTmhMaGlodmsyUmlpdDFhQ1pYUnVRZXdaSnBJQTYzTUQ5MUZ3bGRXWndnWWYxdm5ZZVlWSGN5QUsiLCJtYWMiOiJiZWMxM2ZhZGYzYTBjZWVmZTJlZTRhODUxYjcwZTdjMDVhZmZhOGJmM2E4YTgyMzNiNTZlYTBmYzYyNzRlZTcyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkllQ0t3QXRHSTBQUzE5ZGVUUXcxeGc9PSIsInZhbHVlIjoiVzJ5VU1FSUVqY2VFNmVMV2U1cE5oNFNESlkvY0tWak84VGw0d21FN2VjKzArazVLSDFhZHF3aFZuYUQxb2lEQ1hCaGlBTXZIWHNUN3p2WXl0Qjl6c09tWm94REFGZXBOcU5PK2M2NCs1UDFYZkdFZ1R1Z1NSR1RtMlBrTU9aNUQiLCJtYWMiOiI1M2E4NjA4ZTE1ODJkNzM1ZTkwYmVhOTZjZDFlM2UzZTFiMDFkNDM5MmJhMDU1ZGM5MmM3YzU0MWYzODg2Yzc1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          access-control-allow-origin: '*'
         description: null
     responseFields: []
   -
@@ -67,37 +49,19 @@ endpoints:
         name: id
         description: 'The ID of the mail.'
         required: true
-        example: '7'
+        example: '25'
         type: string
         custom: []
     queryParameters: []
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-
-          </html>
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6Im9EYm5uMTk2TGo3a1I0djlBM2FkVWc9PSIsInZhbHVlIjoiSGdWT3ZrejZTWHlNbmdzbWZ6aXFLT2QwTEVHcFlQdlpKRnlvRXpLdmFYdGpoSGhlOFp2K00vTE43WmZLZDJCY0xVOWphV0k2Y2s3eG52MSs4QzhYOGxBMWF0eG91azl6YzdlSWViSjhRMUIyRVJOY0ZyZG42T0ZSbUcrd0JhMEIiLCJtYWMiOiJjY2QwNDZlNDE1ODFmNDMyYTliZjRjYTRlZmY2ZGNlNWUyZDI1YjUxODhkNmU0OTdjZTQ4MDk4YzlhMzdhNmFhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkpXVGtyeXQwVkpzaitxaGplY3IyekE9PSIsInZhbHVlIjoiN3cxdHcvcW5sdW4waG9XZUFyOUZMM2xTNnNHTkRlbVMrbzJhSnhOdFQ2ZXRxdEN2S1hlSExoZlFJSEpzYTJERDRwQUVXbnVjYTdHN292eiswNDVlKzZQS2xTOXB3RDdiN1dQWlVPZ01rVlhlTDVjQXJCUXE2V0o0SFNPMlVPVWMiLCJtYWMiOiIwZTAyYTQ1NzQzNGI0NzZmOWQ1YTQ4YmY2NDE4MTRkYzg5ZWEzNGJmOTk0MWI1NDZmY2Q1MThlMjNlMjljOTZjIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          access-control-allow-origin: '*'
         description: null
     responseFields: []
   -
@@ -120,21 +84,21 @@ endpoints:
         name: to
         description: 'Must be a valid email address.'
         required: true
-        example: missouri10@example.com
+        example: rleffler@example.net
         type: string
         custom: []
       subject:
         name: subject
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: ncdnjequaltnivdkldlkruhvrqnehjbwisduuttafzlkqpvhypivikavyawpvigbofqkfbzssmiexlymnrpalkwxatstxqiccaohntlzvvmqycuuhgzsufkocygkvxfpuaaeuodvrpfbhiedtsfcpcnpwkmercphldlvpizynrxdgvcqakyslvqgzdxdtmbpzbrjyppmqtaeoijlyfuozagnjidksljwzyeloamjmfviypkrgscganr
+        example: rmuhoisgmnniyfcmyszpfvooviowiaoqmihunrdcqapqqtwudzhsnpfwnscfbbqtkkytvbitrmluwpktoqxobfacdvinboxocgpwmlzonezvvtbnhwxuomakgitddcrbhwmydqwbvdbqswebsiwroldfmjiubmxvculykhoybovlqrqyngfhspfmthkdixkzpqwyxeaoiqpbhecqzkfhujaazqsygpprypmrxlndjxcma
         type: string
         custom: []
       message:
         name: message
         description: ''
         required: true
-        example: velit
+        example: perferendis
         type: string
         custom: []
     responses: []

@@ -9,7 +9,7 @@ import { API } from '../stores/api';
 const TODAY = new Date()
 const DAY_LABELS = ['LU', 'MA', 'ME', 'JE', 'VE', 'SA', 'DI'];
 const DAY_LABELS_ORDERS = ['DI', 'MA', 'ME', 'JE', 'VE', 'SA', 'LU'];
-const DATE_OPTION = { year: 'numeric', month: 'long' }
+const DATE_OPTION = ['fr-ch', { year: 'numeric', month: 'long' }]
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, DAY: 3 };
 
 const CSS = {
@@ -25,7 +25,7 @@ const allCalendars = ref({});
 const calendarsNames = ref([]);
 const currentLayout = ref(AVAILABLE_LAYOUT.MONTH);
 const currentCalendarId = ref(0);
-const displayedDate = ref(new Date());
+const displayedDate = ref(new Date().toLocaleDateString(...DATE_OPTION));
 const newEventPopupRef = ref([]);
 const showNewEventPopupRef = ref('');
 const showCurrentEventsPopupRef = ref('');
@@ -43,6 +43,27 @@ const canEditCalendar = ref(false)
 // Computed 
 // ====================================== 
 
+const displayedDateManager = computed({
+    get() { return displayedDate.value },
+    set({ year, month, year2, month2 }) {
+        if (typeof year2 === 'undefined' && typeof month2 === 'undefined') {
+            const date = new Date(year, month);
+            displayedDate.value = date.toLocaleDateString(...DATE_OPTION);
+        } else {
+            let date1 = new Date(year, month);
+            let date2 = new Date(year2, month2);
+            if (year === year2) {
+                const month = date1.toLocaleString('fr-ch', { month: 'long' });
+                date2 = date2.toLocaleDateString(...DATE_OPTION);
+                displayedDate.value = `${month} - ${date2}`;
+            } else {
+                date1 = date1.toLocaleDateString(...DATE_OPTION);
+                date2 = date2.toLocaleDateString(...DATE_OPTION);
+                displayedDate.value = `${date1} - ${date2}`;
+            }
+        }
+    }
+});
 
 // Helpers
 // ====================================== 
@@ -96,11 +117,18 @@ function getAllDaysInMonth(year, month) {
     return dates;
 }
 
-function getMonday(d) {
-    d = new Date(d);
-    const day = d.getDay();
-    const diff = d.getDate() - day + (day == 0 ? -6 : 1);
-    return new Date(d.setDate(diff));
+function getMonday(date) {
+    date = new Date(date);
+    const day = date.getDay();
+    const diff = date.getDate() - day + (day == 0 ? -6 : 1);
+    return new Date(date.setDate(diff));
+}
+
+function getSunday(date) {
+    date = new Date(date);
+    const day = date.getDay();
+    const diff = date.getDate() - day + (day == 0 ? -6 : 1);
+    return new Date(date.setDate(diff + 6));
 }
 
 /* function getAllDaysInWeek(choosenDate) { */
@@ -190,7 +218,6 @@ async function setCalendars(calendars) {
 }
 
 
-
 // Features
 // ====================================== 
 
@@ -199,7 +226,6 @@ function getAllDaysInMonthAndBeginning(year, month) {
     const daysInMonth = year && month
         ? getAllDaysInMonth(year, month)
         : getAllDaysInMonth(TODAY.getFullYear(), TODAY.getMonth())
-    console.log({ daysInMonth })
     for (const [index, date] of Object.entries(daysInMonth)) {
         let i = 0
         if (index === Object.keys(daysInMonth)[0]) {
@@ -215,6 +241,7 @@ function getAllDaysInMonthAndBeginning(year, month) {
 
 function getAllDaysInWeek(choosenDate) {
     const monday = getMonday(choosenDate)
+    console.log({ monday, choosenDate })
     const dates = {}
     for (let i = 0; i <= 6; i++) {
         const date = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + i)
@@ -244,37 +271,55 @@ function nextPeriod() {
     const dateUnderCursor = new Date(currDateCursor.value);
     let nextPeriod
     if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-        nextPeriod = getMonthRelativeToDate(dateUnderCursor, 1)
+        nextPeriod = new Date(getMonthRelativeToDate(dateUnderCursor, 1))
+        dates.value = getAllDaysInMonthAndBeginning(nextPeriod.getFullYear(), nextPeriod.getMonth());
     } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-        nextPeriod = getWeekRelativeToDate(dateUnderCursor, 7)
-        dates.value = getAllDaysInWeek(previousPeriod);
+        nextPeriod = new Date(getWeekRelativeToDate(dateUnderCursor, 7))
+        dates.value = getAllDaysInWeek(nextPeriod);
     }
     currDateCursor.value = nextPeriod;
-    displayedDateManager.value = { year: nextPeriod.getFullYear(), month: nextPeriod.getMonth() };
+    formatCurrentDateForDisplay(nextPeriod);
+}
+
+function checkIfBothDatesAreInSameMonth(date1, date2) {
+    const date1Month = date1.getMonth()
+    const date2Month = date2.getMonth()
+    return date1Month === date2Month
 }
 
 function previousPeriod() {
-    console.log(currDateCursor.value)
     const dateUnderCursor = new Date(currDateCursor.value);
-    console.log({ dateUnderCursor })
     let previousPeriod
     if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-        previousPeriod = getMonthRelativeToDate(dateUnderCursor, -1)
+        previousPeriod = new Date(getMonthRelativeToDate(dateUnderCursor, -1))
         dates.value = getAllDaysInMonthAndBeginning(previousPeriod.getFullYear(), previousPeriod.getMonth());
     } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-        previousPeriod = getWeekRelativeToDate(dateUnderCursor, -7)
+        previousPeriod = new Date(getWeekRelativeToDate(dateUnderCursor, -7))
         dates.value = getAllDaysInWeek(previousPeriod);
     }
     currDateCursor.value = previousPeriod;
-    displayedDateManager.value = { year: previousPeriod.getFullYear(), month: previousPeriod.getMonth() };
+    formatCurrentDateForDisplay(previousPeriod);
+}
+
+function formatCurrentDateForDisplay(date) {
+    if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
+        displayedDateManager.value = { year: date.getFullYear(), month: date.getMonth() }
+    } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
+        const monday = getMonday(date)
+        const sunday = getSunday(date)
+        console.log({ monday, sunday })
+        checkIfBothDatesAreInSameMonth(monday, sunday)
+            ? displayedDateManager.value = { year: date.getFullYear(), month: date.getMonth() }
+            : displayedDateManager.value = { year: monday.getFullYear(), month: monday.getMonth(), year2: sunday.getFullYear(), month2: sunday.getMonth() }
+    }
 }
 
 function getWeekRelativeToDate(date, numberOfDays) {
-    return date.setDate(nextDate.getDate() + parseInt(numberOfDays));
+    return date.setDate(date.getDate() + parseInt(numberOfDays));
 }
 
 function getMonthRelativeToDate(date, numberOfMonths) {
-    return date.setMonth(nextDate.getMonth() + parseInt(numberOfMonths));
+    return date.setMonth(date.getMonth() + parseInt(numberOfMonths));
 }
 
 
@@ -309,7 +354,6 @@ function getMonthRelativeToDate(date, numberOfMonths) {
     const calendars = await getCalendars()
     await setCalendars(calendars)
     dates.value = getAllDaysInMonthAndBeginning(TODAY.getFullYear(), TODAY.getMonth());
-    consoleRef([{ name: 'dates', value: dates }])
     /* setEvents() */
 })()
 
@@ -322,7 +366,6 @@ watch(currentLayout, () => {
     } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
         dates.value = getAllDaysInWeek(currDateCursor.value);
     }
-    console.log(dates.value)
     /* setEvents() */
     /* showNewEventPopupRef.value = '' */
 })
@@ -332,6 +375,7 @@ watch(currentLayout, () => {
 
     <div class="calendar">
         <!--====  Calendar Header  ====-->
+        <h3>{{ displayedDateManager }}</h3>
         <header class="calendar__header">
             <button @click="previousPeriod">&lt;&lt;</button>
             <button @click="nextPeriod">&gt;&gt;</button>

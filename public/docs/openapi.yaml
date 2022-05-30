@@ -5,7 +5,7 @@ info:
   version: 1.0.0
 servers:
   -
-    url: 'http://localhost/8000'
+    url: 'http://localhost:8000'
 paths:
   /api/login:
     post:
@@ -46,15 +46,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: quam
+                  example: architecto
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: quam
+                  example: voluptatem
                 classroom_name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: xehfyicneoqaiotoeiifigvxfvctaicvyriaqxkhpmhcynraihssvvlya
+                  example: xnkgrftzghofvetyksbvngjcmikumnwjvrcqrtlethydvavkbrfqlhxhioaphaslapnffkhluxkmbgzpgjtmlvvuwtugyshjbeoxqthbrqsaqaribcjcofkvatuspkjlnhoyhimygwqfecpwmum
               required:
                 - username
                 - password
@@ -97,15 +97,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: natus
+                  example: commodi
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: nihil
+                  example: quos
                 classroom_name:
                   type: string
                   description: 'The class of the user.'
-                  example: sit
+                  example: facere
               required:
                 - username
                 - password
@@ -137,13 +137,30 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
       tags:
         - Authentication
   /api/logout:
@@ -173,13 +190,30 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
       tags:
         - Authentication
   /api/update/gaps/absences:
@@ -209,13 +243,30 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
       tags:
         - Autres
   /api/classrooms:
@@ -248,10 +299,33 @@ paths:
         200:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: true
+                  message: Classroom
+                  data:
+                    classrooms:
+                      -
+                        name: M49-1
+                        total_persons: 0
+                        users: []
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: Classroom
+                  data:
+                    type: object
+                    example:
+                      classrooms:
+                        -
+                          name: M49-1
+                          total_persons: 0
+                          users: []
       tags:
         - Autres
   /api/classrooms/setUser:
@@ -293,7 +367,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: rfvfvjzrpvpqsrivdwtoyegntqttvvmojofjfmprdtvysm
+                  example: sckkciiqblftpxvsavuebyqzcbqsouckrvlfcaagzurxezbffnexegrdqlppxrwgvbtqephitpldcjbqvyztbizgnodvkhckobadxilstanrfmmmoerpkyyxzczvxoyfllmzlmwqwhzjotdbnozfyevsvukragrhsejlizkaprovztfrhxu
               required:
                 - name
   /api/absences:
@@ -323,13 +397,30 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
       tags:
         - Autres
   '/api/telegram/{token}':
@@ -366,7 +457,7 @@ paths:
         in: path
         name: token
         description: ''
-        example: suscipit
+        example: sed
         required: true
         schema:
           type: string
@@ -444,7 +535,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: sfjolxvjlwoysvlhhjprpfamvhmwfvhcgnejqcikwvlfmielgqhbelbddaudmxbqyaiwuqivymssjnockquenpyczxknsnpyzaulwiophlmlxosvkjeddncwemcsavukf
+                  example: qeiimxffqdb
               required:
                 - name
   '/api/calendars/{id}':
@@ -474,13 +565,30 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
       tags:
         - Calendrier
     put:
@@ -521,7 +629,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: icgczfxaiylpahrqguypfszuukxijhjwcpnsandnuxndkyyhwfxlnuffppkscsokaevmpqibvxumumfdzwdtbkjkdcdiqcsqonuevdwdefdymnutqrvzjcoapgkkbpxvqpdrwthxaliywwgdvfeisqpqszoreiulddopkbojfwfguedmiadayfnbeeuqsrjkgtvjwbfkb
+                  example: gkhccfbhbqzzwvajyomocjxwgofqejbsyjeexeuomytmauauwdbioosbthuloeatiotbebmmbctjyqymxtagxisqpqbahtqqrrxbotmesvpuhiorcnrdeyymxsawkrcitutntfqjboqkjaqwanjsrnubrnaqridhocrttacmcbpqcpzmsyy
               required:
                 - name
     delete:
@@ -600,15 +708,15 @@ paths:
                 calendar_id:
                   type: integer
                   description: 'ID du calendrier à partager.'
-                  example: 4
+                  example: 3
                 user_id:
                   type: integer
                   description: "ID de l'utilisateur à qui partager le calendrier."
-                  example: 20
+                  example: 8
                 can_own:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                 can_view:
                   type: boolean
                   description: ''
@@ -699,27 +807,27 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: gvxkoirqqqo
+                  example: bopztlkmpuoepzcstjfyprnvdbpjdxerkbblefshoqgiljqgnsukoymlgzuzhoqyhfuaimlwhyvhgatcvzxqbngnrooqsqargwebdejqibhxxdooesdourncgbzdwgndzrnpzloaltxeportclrwyxhplefnuyltquobjcoynohgkntyrlsg
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: frstbqpmltxtrblocjwylfkvhqnfqqxelsvsubydxkbnshyvbswvalgiluyxtbfgrlkdgedpiptookmdmojefllfkxohztyqwzgcmzvgeebfnzqptdzzlpzdxreclvdvaamgenraalbenvywryxjtvlbhetsnzsmvrwzowgjzfpwklbgwwbgwobgeyndadrssveniquufgshwaixhfgblrikvxuzuqcbvqztlfzfiywmygzhkvczxvkdkvwtdoqxcgplorsfrmhcduaurjvjjmonqfvuvnvxnkpinmhljcapxukhdbirfmadsaztaexrrvzvnffatzdrglfjfaadswxjhnjbddbioxfghbtklpjjviwkpxgzjkvgzfxintgcteyeisgfvhvgtpjsxkfzfdnoqpfcuxcsoilkrowrbcjhynbzjd
+                  example: kmyxpflylyxkdklcpenmfqvkxbbqllvgvxdtwfksxwjjealfpmmouhjoplydlvucsbpgqblmhghgxmiykcjovnevlbwcpvbykbyovqjfjjzwsxjvktngnlrlolljqspmzdkrcpzogdykpqvplhlncpjdashuijiklzmyubsprykyaybxyruffmohclmwhywxqtujfncnmakdhkdjqapzlcimieqhzgouzngvpodaxjifdkceiorgjbuiyjqwedppvgstqxfidojalintpkkergouyj
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-29T17:37:37'
+                  example: '2022-05-30T11:36:01'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-29T17:37:37'
+                  example: '2022-05-30T11:36:01'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: snvxgqsmdxjdbssejzqylufajwhlcetspfvqgheitvhhgqxneseuifncsoercnpytzbbqsynpyuvwfgkckvvppihjqltydulkijizjpoclgtowdlspvuafadu
+                  example: oelfydacmyfrvqrydhhrwioqhtkcrcsjdtqfxqkjbowcilleuiazwwdavyqanpcdzkdensbozwaalnzyygysjsxfcnfesvwarndgxlauffcqilkxawzhuxjyyvuyjtyotkujmegnuqnxhfkpeurlrxnpzaevshelrzomghtmgtoakxleccdokdjacqrcxroskewbsltngbpmcdrnqtjbjqhuxxnhtdhzunqbqklodupsoxkskanr
                 calendar_id:
                   type: string
                   description: ''
-                  example: natus
+                  example: odit
               required:
                 - title
                 - description
@@ -754,13 +862,30 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
       tags:
         - Evènements
     put:
@@ -801,23 +926,23 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: cliclcqxujmmgfttxfscvcguzmfhwgqgtygvrlxztwluueetrhsnguhtxlrgsnakbzwpzfdzdraxunnmzcmnenoojeomzdghlbylarckudibsmpuijivwgwrfwmfjqqlgub
+                  example: byiausktwhzqerpsjrdgadnesemkceeonpnoniollghmjyvejvdxgervfbatbzcktvvxkwourwdlrxrsshdgplupihkenzbxduoewczkzywisqjkhdbcdqhvqjronggdcxiscehdkbzuzbblbnarrqraazhrokvlwbpckzzpikrocoqfzflwaeysiimxtnxkxdittqkvrvo
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: ibsppqahlnfgabnrieuovebzrsazigjlvytljfrfnpuaajnhfimnxsrnbgkwjlqqyiizg
+                  example: csskhxqplfbknnbjzntygkztbbckrlvurfgasphzpfddrxzuyvoriogrorbehujodfokveodymncmfvmodlvolantaihwopkestlobfanvnzjnkpbhhrasidgjxpkwkzjinyksvvpbdubhcbpqjuclfsjfiqofirajylxalgoqygfifzkneplyjeazbshmldojgtvazkxiskyjfdyrcqerkcuenjsajwuvhtpdisxtzomsmaehbvqbhgfabtsfrhidheisaesfzxilxwbgmcczcogqmknqrgtndzeownpwttozrmifbrjcmmdqespndxoirvbxkeirdainmllsmgtvtzwbzrvqbmynrwexjlwgfbjxvjdmlvqcppkctwvuapzmgbhwyvuvjxvxdmnwdvcaadafqbvrbkukqgxcrlwtiijnhvxfdpvrkrkriijheogpmsqwyyahsqpmzpzeuhkepaudhzfuuboiwgshdkqtvqmfpnkmqdoyqnymibawqryrzekpbrswvnsdxmuolckzeazxdocmvvwqhrboacdtkkimdnsavyykbrgygyuivbhifpddblyqwvkxkhpmigkuwbirbcpxumnfedsoxyymacvdzcxirppfumxybbjqyjtvxkmwuhkkhfdxrfwhosobnwqzpnhjqvbhljckmoqavcctcbblhizedtttrjyhzzqvukjynhtzdxzcaskdifdgmgrmqglxwtnuiikfkhibndgqfcfuhmppvhcqdqjwtuqfsawcfuxtgsiukicxvsivqwfdpnodezljaqddakltwtrotbiixxscqnbdcvxjktjywmlwcorcaqicedsmyiqamtojzwxjfckneotjbcovvrtzbjdcakdgpqlrwbjgqzgcntuqhjyhospgmvabshotqtkftncjymupvkwutavaszdprmxuvatnjbvxycpgsdmpzlrbzuuypufdustzjexyedgsbgqugndosgqumb
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-29T17:37:37'
+                  example: '2022-05-30T11:36:01'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-29T17:37:37'
+                  example: '2022-05-30T11:36:01'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: gdgsgmqqpxhhsptzgdocnjewobskzlffyotfsfgjjcetuxzzvpouotzippleuwalrvnjlhyfipmmhsmuzlfcqbwlsflrulycwdjgcbduosrbfdemlvmlpngunxcvvkbbmotwaecodjbwkcwffxpngfgosebbvtohoyenrnjfraylifjhbrrvkwmmqktfuupidoempbcwlusfttayvhlpnwzdtwciwvtrhyaraxxlotmfxehbiziwtr
+                  example: hmvgyzvcfunxtyjrdnxfvxbsrvyidfbauywojeijrldcltxauxalyjzvgraxyhdlcjskgcalzksmiwqlbywrcpaeoajqyox
     delete:
       summary: 'Delete event'
       description: 'Remove the specified resource from storage.'
@@ -882,13 +1007,30 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
       tags:
         - Gaps
   '/api/update/gaps/{token}':
@@ -921,10 +1063,25 @@ paths:
         200:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: true
+                  message: 'All fetched'
+                  data:
+                    user: null
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'All fetched'
+                  data:
+                    type: object
+                    example:
+                      user: null
       tags:
         - Gaps
     parameters:
@@ -963,13 +1120,30 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
       tags:
         - Gaps
   /api/update/gaps:
@@ -999,13 +1173,30 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
       tags:
         - Gaps
   /api/calendars/import:
@@ -1047,7 +1238,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: zqawsckqvavzfqgurgqecdubaitbvrchpevqlbxrgsbxydhqusdgstchilfovo
+                  example: uqtgihecbcjhlubbhncrkypxodbbijdzhjsebxxxtipoddhavxganqddwiqgkcuqlgznkkitwtfvhqabxrwzjmxwdjehepdogjcyelwjsfntcamthvcvgxjleqijcwaxcbxyazyaeirhoxivcawoqusdrgudmfigtciwuts
                 ics:
                   type: string
                   format: binary
@@ -1082,13 +1273,30 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
       tags:
         - Mail
   '/api/mails/{id}':
@@ -1118,13 +1326,30 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        401:
           description: ''
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
-                example: "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document</title>\n    <link rel=\"stylesheet\" href=\"//localhost:8080/css/app.css\">\n</head>\n\n<body>\n    <div id=\"app\"></div>\n\n    <script src=\"//localhost:8080/js/app.js\"></script>\n</body>\n\n</html>\n"
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
       tags:
         - Mail
     parameters:
@@ -1132,7 +1357,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the mail.'
-        example: '7'
+        example: '25'
         required: true
         schema:
           type: string
@@ -1175,15 +1400,15 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: missouri10@example.com
+                  example: rleffler@example.net
                 subject:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ncdnjequaltnivdkldlkruhvrqnehjbwisduuttafzlkqpvhypivikavyawpvigbofqkfbzssmiexlymnrpalkwxatstxqiccaohntlzvvmqycuuhgzsufkocygkvxfpuaaeuodvrpfbhiedtsfcpcnpwkmercphldlvpizynrxdgvcqakyslvqgzdxdtmbpzbrjyppmqtaeoijlyfuozagnjidksljwzyeloamjmfviypkrgscganr
+                  example: rmuhoisgmnniyfcmyszpfvooviowiaoqmihunrdcqapqqtwudzhsnpfwnscfbbqtkkytvbitrmluwpktoqxobfacdvinboxocgpwmlzonezvvtbnhwxuomakgitddcrbhwmydqwbvdbqswebsiwroldfmjiubmxvculykhoybovlqrqyngfhspfmthkdixkzpqwyxeaoiqpbhecqzkfhujaazqsygpprypmrxlndjxcma
                 message:
                   type: string
                   description: ''
-                  example: velit
+                  example: perferendis
               required:
                 - to
                 - subject
