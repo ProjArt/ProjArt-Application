@@ -8,6 +8,17 @@
     <title>Document</title>
     <base href="{{ env('MIX_BASE_URL') }}">
     <link rel="stylesheet" href="{{ config('app.url') }}{{ mix('css/app.css') }}">
+
+    {{-- ONE SIGNAL --}}
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script>
+        window.OneSignal = window.OneSignal || [];
+        OneSignal.push(function() {
+            OneSignal.init({
+                appId: "5786d114-d551-43c0-9705-d79e26fb9461",
+            });
+        });
+    </script>
 </head>
 
 <body>
