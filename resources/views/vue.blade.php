@@ -32,7 +32,7 @@
 
     <script>
         const beamsClient = new PusherPushNotifications.Client({
-            instanceId: {{ config('broadcasting.connections.pusher.app_id') }},
+            instanceId: '{{ config('broadcasting.connections.pusher.app_id') }}',
         });
 
         beamsClient.start()
