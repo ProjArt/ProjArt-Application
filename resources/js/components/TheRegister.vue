@@ -49,13 +49,14 @@ const submitHandler = async () => {
       OneSignal.getUserId(async function (userId) {
         console.log("OneSignal User ID:", userId);
 
-        await useFetch({
+        const r = await useFetch({
           url: API.setOnesignalUserId.path(),
           method: API.setOnesignalUserId.method,
           data: {
             onesignal_id: userId,
           },
         });
+        console.log(r);
       });
     });
 
