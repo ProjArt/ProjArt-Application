@@ -22,7 +22,13 @@
 
 
     {{-- PUSHER --}}
-    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+    @production
+        <script src="{{ asset('js/pusher-prod.js') }}"></script>
+    @else
+        <script src="{{ asset('js/pusher.js') }}"></script>
+    @endproduction
+
+
 
     <script>
         const beamsClient = new PusherPushNotifications.Client({
