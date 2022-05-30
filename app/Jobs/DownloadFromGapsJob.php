@@ -39,6 +39,6 @@ class DownloadFromGapsJob implements ShouldQueue
         GapsMarksService::fetchAllNotes($this->user);
         GapsAbsencesService::fetchAllAbsences($this->user);
 
-        Notification::send($this->user, new OneSignal());
+        $this->user->sendNotification();
     }
 }
