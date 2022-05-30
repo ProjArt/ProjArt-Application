@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <base href="{{ env('MIX_BASE_URL') }}">
-    <link rel="stylesheet" href="{{-- {{ config('app.url') }} --}}{{ mix('css/app.css') }}">
+    <link rel="stylesheet" href="{{ config('app.url') }}{{ mix('css/app.css') }}">
 </head>
 
 <body>
     <div id="app"></div>
 
-    <script src="{{-- {{ config('app.url') }} --}}{{ mix('js/app.js') }}"></script>
+    <script src="{{ config('app.url') }}{{ mix('js/app.js') }}"></script>
 </body>
 
 </html>
