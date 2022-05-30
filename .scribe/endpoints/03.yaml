@@ -1,15 +1,15 @@
-name: Evènements
+name: Calendrier
 description: |-
 
-  APIs pour gérer les évènements
+  APIs pour gérer les calendrier
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/events
+    uri: api/calendars
     metadata:
-      title: 'Get events'
-      description: "Retourne un json contenant une liste des évènements. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur."
+      title: getCalendars
+      description: "Retourne un json contenant une liste des calendrier. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur."
       authenticated: true
       custom: []
     headers:
@@ -44,13 +44,10 @@ endpoints:
   -
     httpMethods:
       - POST
-    uri: api/events
+    uri: api/calendars
     metadata:
-      title: 'Store event'
-      description: |-
-        Enregistre un nouvel évènement dans la BDD
-        Succès: retourne un json contenant l'évènement créé
-        Fail: erreur
+      title: 'Store calendar'
+      description: 'Crée un calendrier.'
       authenticated: true
       custom: []
     headers:
@@ -60,77 +57,22 @@ endpoints:
     urlParameters: []
     queryParameters: []
     bodyParameters:
-      title:
-        name: title
+      name:
+        name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: gvxkoirqqqo
+        example: sfhelsicurxcvlwrgthvuixoynhsfuiibztfogcwyengqyevxyakubbnkcscqqrajmoajezuopqgrhhnpkga
         type: string
         custom: []
-      description:
-        name: description
-        description: 'Must not be greater than 1000 characters.'
-        required: true
-        example: frstbqpmltxtrblocjwylfkvhqnfqqxelsvsubydxkbnshyvbswvalgiluyxtbfgrlkdgedpiptookmdmojefllfkxohztyqwzgcmzvgeebfnzqptdzzlpzdxreclvdvaamgenraalbenvywryxjtvlbhetsnzsmvrwzowgjzfpwklbgwwbgwobgeyndadrssveniquufgshwaixhfgblrikvxuzuqcbvqztlfzfiywmygzhkvczxvkdkvwtdoqxcgplorsfrmhcduaurjvjjmonqfvuvnvxnkpinmhljcapxukhdbirfmadsaztaexrrvzvnffatzdrglfjfaadswxjhnjbddbioxfghbtklpjjviwkpxgzjkvgzfxintgcteyeisgfvhvgtpjsxkfzfdnoqpfcuxcsoilkrowrbcjhynbzjd
-        type: string
-        custom: []
-      start:
-        name: start
-        description: 'Must be a valid date.'
-        required: true
-        example: '2022-05-29T17:37:37'
-        type: string
-        custom: []
-      end:
-        name: end
-        description: 'Must be a valid date.'
-        required: true
-        example: '2022-05-29T17:37:37'
-        type: string
-        custom: []
-      location:
-        name: location
-        description: 'Must not be greater than 255 characters.'
-        required: true
-        example: snvxgqsmdxjdbssejzqylufajwhlcetspfvqgheitvhhgqxneseuifncsoercnpytzbbqsynpyuvwfgkckvvppihjqltydulkijizjpoclgtowdlspvuafadu
-        type: string
-        custom: []
-      calendar_id:
-        name: calendar_id
-        description: ''
-        required: true
-        example: natus
-        type: string
-        custom: []
-    responses:
-      -
-        status: 200
-        content: |-
-          [
-          "success" => true,
-          "message" => "event created:",
-          "data" => [
-              "title" => "EventTitle",
-               "description" => "Une belle description",
-               "start" => "1901-01-01T00:00Z",
-               "end" => "1901-01-03T00:00Z",
-               "location" => "S149",
-               "calendar_id" => 1,
-               "updated_at" => "2022-05-25T13:09:40.000000Z",
-               "created_at" => "2022-05-25T13:09:40.000000Z",
-               "id" => 142
-            ]
-          ]
-        headers: []
-        description: '200, success'
+    responses: []
     responseFields: []
   -
     httpMethods:
       - GET
-    uri: 'api/events/{id}'
+    uri: 'api/calendars/{id}'
     metadata:
-      title: 'Show event'
-      description: 'Display the specified resource.'
+      title: 'Show calendar'
+      description: 'Retourne un json contenant un calendrier.'
       authenticated: true
       custom: []
     headers:
@@ -140,7 +82,7 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the event.'
+        description: 'The ID of the calendar.'
         required: true
         example: 1
         type: integer
@@ -159,29 +101,30 @@ endpoints:
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <meta http-equiv="X-UA-Compatible" content="ie=edge">
               <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+              <base href="/">
+              <link rel="stylesheet" href="http://localhost/8000/css/app.css">
           </head>
 
           <body>
               <div id="app"></div>
 
-              <script src="//localhost:8080/js/app.js"></script>
+              <script src="http://localhost/8000/js/app.js"></script>
           </body>
 
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkV6QzI1UzJ1QjJrcENyQ1Q3NGdFU3c9PSIsInZhbHVlIjoiTDdzWHVuTVFXY3R3Vml5QWRudTNCWHV4ckM4alp2MTRaYWtLc2RIS2JYZktENmRNOEJpNEZseEFDR3pwNi9pWVdZVlA4eGkvYWpSOHk4SUlJUmFaTUJGNEEyOHVHT3FoTXNNajYvNGZjV3g1dnV2V1VSME1Ub2I0ODZLZWhkRm0iLCJtYWMiOiI5NDk0ZjU5MzllMzdkNzA4M2Q4MDFiZjJiMTQ2MGIxNThmYmMxYTYyN2UxODJjMTE5ZGIxMGNmMjU4OThmZjc2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6InVIWTdtbkpxUytyOTVvVktlekQ4cXc9PSIsInZhbHVlIjoiMzZMSm84NkdOdFJNSXE1bmJYNU5XZDhWQXRyWk9LMTIvR2h2VU1BVVgzSEREdjU0YUVMRjJOdmhLeFBEMVlFSmU3ZFN6YkkyZksyUmVMaEQ1d3hUOHorTThUMlpOVDQ2QmF5dTJrZVppdytDTGN0RXo1a3hzbnpEUERSc3ZQdU8iLCJtYWMiOiI1MDM2YjI1M2NmMzUzMmZlYTNjZGZkMjA4NGI5YTA0MzI2NjMyZjkzMjBhOWFhYWUyZDY5ZmJiOGEwYjg0YWJmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6Imx4N3NmN0c0YU0rSFp0WWZzTkFxVXc9PSIsInZhbHVlIjoiM1BpTDRqVGxSN29kQWp3ODRMaVdsRTVFTW9zcE1XUDllc2VMMThVak5SdTBxWXdCV2RzSlBLaHdLdlNrUndlcnJud1ZIdnkxb1VSWjJDLzdULy94L1g3bE1TWDRWZTMzOTFjSjhDZklERk1SSFFzRlZmcEppQWorbUxPalgyMWYiLCJtYWMiOiI4YWQ1Njk4ZGU3NWQ1Y2Q0NzljYzI1YjYwOTNhY2VkMjRjNjY4YzJjYWIzMzgzNTRkNWRlOTVmZmNmYzg1NjdhIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6ImtrYm12dVJJS1dTV2NwMlI0MnhWNlE9PSIsInZhbHVlIjoiOHU1ekkvMHc5OWF1MXVwSHc4bExrQ1ZKQ2pESDRzbks1Z2VTVkdNdVcyelVzcmxjd2poWTQwTmtrQ3hSejBqTjRkL290cmVFSnFkZytwd0ZLZVlodTh5SFY2K0I4YlFLLzRIcHFxRmNRWVUzRmpNVDVNZk9YU0RLemE1UmlBdEoiLCJtYWMiOiJmNzljN2NkZjQ1YzRmNTVmNmI4MGYzNmU3ZjMzNGEyNzM1NDUyZGQ2ZjVmZjA3NTFkYTJlMDhhMDZkYTBhYzg4IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
     httpMethods:
       - PUT
       - PATCH
-    uri: 'api/events/{id}'
+    uri: 'api/calendars/{id}'
     metadata:
-      title: 'Update event'
+      title: 'Update calendar'
       description: 'Update the specified resource in storage.'
       authenticated: true
       custom: []
@@ -192,46 +135,18 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the event.'
+        description: 'The ID of the calendar.'
         required: true
         example: 1
         type: integer
         custom: []
     queryParameters: []
     bodyParameters:
-      title:
-        name: title
+      name:
+        name: name
         description: 'Must not be greater than 255 characters.'
-        required: false
-        example: cliclcqxujmmgfttxfscvcguzmfhwgqgtygvrlxztwluueetrhsnguhtxlrgsnakbzwpzfdzdraxunnmzcmnenoojeomzdghlbylarckudibsmpuijivwgwrfwmfjqqlgub
-        type: string
-        custom: []
-      description:
-        name: description
-        description: 'Must not be greater than 1000 characters.'
-        required: false
-        example: ibsppqahlnfgabnrieuovebzrsazigjlvytljfrfnpuaajnhfimnxsrnbgkwjlqqyiizg
-        type: string
-        custom: []
-      start:
-        name: start
-        description: 'Must be a valid date.'
-        required: false
-        example: '2022-05-29T17:37:37'
-        type: string
-        custom: []
-      end:
-        name: end
-        description: 'Must be a valid date.'
-        required: false
-        example: '2022-05-29T17:37:37'
-        type: string
-        custom: []
-      location:
-        name: location
-        description: 'Must not be greater than 255 characters.'
-        required: false
-        example: gdgsgmqqpxhhsptzgdocnjewobskzlffyotfsfgjjcetuxzzvpouotzippleuwalrvnjlhyfipmmhsmuzlfcqbwlsflrulycwdjgcbduosrbfdemlvmlpngunxcvvkbbmotwaecodjbwkcwffxpngfgosebbvtohoyenrnjfraylifjhbrrvkwmmqktfuupidoempbcwlusfttayvhlpnwzdtwciwvtrhyaraxxlotmfxehbiziwtr
+        required: true
+        example: qxqwhylmnirhxagkmztbddgaeazruznczjxgfalcaugqslyqeuzqfikjjdrewuilxsomoxewwhctfpinrrzbymdsvwrgfqnfuuniekahhhrfhlaslpisghdxoatwnpjvohughsegpxacrnqhwixulzbjpttxvduwtoksbekkanqwwpafypnktnldjvvocwuxypxrfrh
         type: string
         custom: []
     responses: []
@@ -239,9 +154,9 @@ endpoints:
   -
     httpMethods:
       - DELETE
-    uri: 'api/events/{id}'
+    uri: 'api/calendars/{id}'
     metadata:
-      title: 'Delete event'
+      title: 'Delete calendar'
       description: 'Remove the specified resource from storage.'
       authenticated: true
       custom: []
@@ -252,12 +167,58 @@ endpoints:
     urlParameters:
       id:
         name: id
-        description: 'The ID of the event.'
+        description: 'The ID of the calendar.'
         required: true
         example: 1
         type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/calendars/share
+    metadata:
+      title: 'Share calendar'
+      description: 'Partage un calendrier avec un autre utilisateur.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      calendar_id:
+        name: calendar_id
+        description: 'ID du calendrier à partager.'
+        required: true
+        example: 17
+        type: integer
+        custom: []
+      user_id:
+        name: user_id
+        description: "ID de l'utilisateur à qui partager le calendrier."
+        required: true
+        example: 8
+        type: integer
+        custom: []
+      can_own:
+        name: can_own
+        description: ''
+        required: true
+        example: true
+        type: boolean
+        custom: []
+      can_view:
+        name: can_view
+        description: ''
+        required: true
+        example: false
+        type: boolean
+        custom: []
     responses: []
     responseFields: []

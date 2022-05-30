@@ -10,11 +10,66 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "fb2d001b-b016-4222-98b4-c400a09aa500",
+        "_postman_id": "c8ca99c1-7b96-41c2-a05f-8d56630f8dd4",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
+        {
+            "name": "Absences",
+            "description": "\nAPIs pour g\u00e9rer les absences",
+            "item": [
+                {
+                    "name": "Get absences",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/absences",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/absences"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retourne un json contenant une liste des absences."
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "content-type",
+                                    "value": "text\/html; charset=UTF-8"
+                                },
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "set-cookie",
+                                    "value": "XSRF-TOKEN=eyJpdiI6IkJUVlpKblduTTZHRWtRVk1FTzF3bHc9PSIsInZhbHVlIjoiYWozS1FKSEZSdzY2ZittWUV3K3BXTjAzcGlCV3JzdVRxeGwwZzVaZFJHOVU2YXdJeHlRQmF3ejRLaHVZTHJnOGYrT2dONEwzM3RGSDB3R1FiMUtrUnFLSTA3YjFrWW9hdUhpZGZWelhoYUppNW9vNXB4dTEyNXlHeE9NZjJDNEUiLCJtYWMiOiIzODEzNGI4ZWE1NTY2OGYwMjhkMmI4OTQ0MjE1Nzg1ZWUxMGY2MDU4YjllYzNkOGY1NmJlMmZmYTM0ZGRmMTBmIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6Im1iam9PekVtbk9GdHhjeDQ1L3I2bXc9PSIsInZhbHVlIjoiTDVTdWwxZnRmcHVUUC9DUnJGZ3g0U1ZlcURxay9BU29uOEdNYmNwOTJKSnlxSHJZejV6SDJCZnpUbllGQmkwUTU1NzZ1eEhJaGVTUlRGa0tDZ0haOWU2Mm5HUWRTbU94QkZjRTlEYUl2dzlncGdNTDMxbVJ5Y0Q2bXAyemhobWUiLCJtYWMiOiJlYjQyZWFhNzQ5MDE0ODliY2Q5NTkzNjAyYzE3MzJhZGQwMzNhOGRhMmI4NmQ2OWFhZTU0ZjFjOWRiNWRiMzUwIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                }
+                            ],
+                            "code": 200,
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
         {
             "name": "Authentication",
             "description": "\nAPIs pour g\u00e9rer les authentifications",
@@ -45,7 +100,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"quam\",\"password\":\"quam\",\"classroom_name\":\"xehfyicneoqaiotoeiifigvxfvctaicvyriaqxkhpmhcynraihssvvlya\"}"
+                            "raw": "{\"username\":\"voluptates\",\"password\":\"qui\",\"classroom_name\":\"rgduysxhvwszaqkdpldzscpeftmeqijctrrlpmeaynldojfhwckdyyoikfthdiakiomtcqqigohmgojpntpvmryxygngjdhurhamyapfpkqwlrgxkicjdsfgntxan\"}"
                         },
                         "description": "Authentication for a user"
                     },
@@ -77,7 +132,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"natus\",\"password\":\"nihil\",\"classroom_name\":\"sit\"}"
+                            "raw": "{\"username\":\"cupiditate\",\"password\":\"maxime\",\"classroom_name\":\"ut\"}"
                         },
                         "description": "Register a new user"
                     },
@@ -123,11 +178,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6Imw5RkVjNzN3a1dFamNZbjdKQUloMmc9PSIsInZhbHVlIjoiNTByMXFpUXNDTjBTQ0FYWUpEL09aUWlkNy9yQ29YbXhaZzh2ZFM1UE1tOWoyVWpaaitCdHFub2ZpM01TbG9iRU01V2dIdWtuU3Uvckw3Mk5SR3dYVmNQeUdZUk9WSVRNZGJHVmpMUmZKbDNJVW91SmlBUFlJR0Z4WHFMMk5UMFkiLCJtYWMiOiJkMWZiNWMxNWQ5NzA0NDBmNDU5MGQwYjUwNWIxYTA3YTNjYjJhNDQ0ZTY1MzYyZmEwOWVhNTRjMzkyNzRjNTNkIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6Ii9Tck13L0pYUHlFcUpnWUduaU9hVUE9PSIsInZhbHVlIjoiK0tlVFQwR1FVS3g3U2hKeStmbUIvdkRZQnU5bjJqZjdoc25BTUdETDRqRWF5eW5NSU9WSm9mQS9Ua25OcDFwamt6OXh4cmVmUTc1WTNLUmN3YStCR2U2VDV5WUtTUkJFSUcrOXdXT0xDNUZySzRiNlF0WG9aZTA2bVVNRUlxaXEiLCJtYWMiOiJmMTg0ZTRkZjg1MTI5OWM3YWY2NThkNzYwZTBkNGIxMGM1ZDc0YmMzOTQ4YTkzNTI3ZmRmOTAyZWRkMzc5ZDZhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6ImFjUHZiNW56MG4xVW1zZ0J2STByeUE9PSIsInZhbHVlIjoiOVdZWTcrRVdSTHg0dlhHaVdoN2diSkVLQjY4M3lDY3Rpa0NUanFZYy8zamlBT0I3a1BJQ2Y2QitXQTRHTEZ5a0pXUHg0Vy9ET2RSMHlhc3dOUWo5UGZsWFJnVFgxM1ZNL3hVSXY0OHFHWUw0YmkxaHJNTU1tVEIveUFRclRpK1UiLCJtYWMiOiJlY2EyNzY1MzE5Y2Y0YTYzYjBmZTM4NjU0YjI0YjEzNzU4YzEzYjQwYWM0ZDUzYmI5NTAyMDJkMGY3YTY3NTFkIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IktKOW1Nb1M4d0J6SVA2bHBoek1waEE9PSIsInZhbHVlIjoiK0N3Q1BFOVNKVU1KK2I5QXp4TkVoLzNVOFlHSFM5TTUzeHYwQTBzNmdwZE5xcU9JS3ZjNEFEakVqMUxkZHgwc2NIY0VjNmtQUUZCSDYzVHBYdU1ERW1XaFZLY2VmbmtURHRtcWwvcmxJV2xySnVFbmVQNVFlMkVJNnlBL3k3aWIiLCJtYWMiOiJjY2NjYTM4NWIyNTJjZTA2Y2FkOTcyYjNiMDcwZjQwNjJjYTI1Yjk0MTE5MjIxZjA2MDMyMmM3NjcwODRmYTlmIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -172,11 +227,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6InhoRDBLOEx1Mm1PVWp6R1RieWtON2c9PSIsInZhbHVlIjoiZ2VLb1J3OFB1OEdkTW4vcFFlSjNabHhVcjU4d1J5eUg0UldtZmcrbVRjbFlBZDY4WS91USswMjFRbkNmeWJjSFFtL2NMcCtUQ2VyTVJoRFBlQTZSUGVyMGZmUkVGbHkxdGdPVWt0N3ZRcHgyaStlbkFLV2MwZzZvSnJjM0ZrdG8iLCJtYWMiOiI4ODM5MmJiMzkzNDkwZmRhNzdjODdlY2JlZGY2YzNmYmY3N2Y5NjM0MzEzYjFiZDJiM2UzMDA3NTFhNTgwNzVmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6InpKQUdqbS9GbjZvK2pNVURjZ2xYR2c9PSIsInZhbHVlIjoidlhURkg0VFF2MVBhRDZjU3piazc5ZldhTDlRSlJBTlpQaElsNVE4WVFHWjFMazAvbUt4ekJRU2xsdjRsNUZXRjdEeHpaVFJxYm9zeUQwNnRpRUxtendLWGN5VmRyYlBZeDBuUWgvMjY2bzhUdHBwSExzcjNlR09LaXlPOTQ5ZlMiLCJtYWMiOiJmNWI3Yzk0MDBmNDZmNTAyODc0ZTVmNzRjNGFlOWRmZWI1MDMyNGIxZmQzYWJkNGZmMzY5YmNkYzgwZTI0YzRlIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6Imt1cnlVcWI4NFdsU25wNFd6Y29GdkE9PSIsInZhbHVlIjoiRndUc3orTHRVQkVWbG5ENmZKVUJuNGxQYUszQjU2MVhvanlHV3RpLzZ0bjlCTEdVaktINFN4TnJSaUt2NFF5aFVsUEtqeStSWWVjL2RreXhvMFdsUjMvd29MNk54czhkQmFLOUw3S3JrNUlaLzZlbjZ4VXY0TDVPQ25MSmc2N1YiLCJtYWMiOiIzMGM2NTQ2OWMyYzkzNTI3ZGQ0YzM1ZDM4NWVlYzkyMjQxNDNiYzk5OTBmMzQwNTVmNzJjMmQ0OGI4NmEzZDM1IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IjUrZ0E5UWlHM09KdVN1UU5YME5NM1E9PSIsInZhbHVlIjoiOVAxVVVDUUpLS3JaelQ4NkhrQUJ2M0NRWkxqK2JGZFI3RHdsUUYwdTg2VkJzelhGdG45ZnZWV3RlR1lkOFpVdEIrN3BhN05PR0xsbFc3OERGYSs0VklqUkRUNHc4SWFydnRqR2pVR1pzWFBQem1iUGlReC9WcFgyYTNXdXphLzciLCJtYWMiOiJlZWM0MzliNDE0MzJmZjg1YmFmZTBlNmQ4ODJmMzRiYTU0ZGJkZjhlZDU4ODNlZmZhYTNjYmE4MWJmNGE2ZGQwIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -227,11 +282,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6ImVRTjAvQkxrZGViOFJEUnhPclp0cHc9PSIsInZhbHVlIjoiUjIrOSt3aU92Z2NBci9ITjNDYmI0RTRtMTM0Y3JkLyszT21rQ3ZMWmtSdTNqVGVUd1RPRjBOMEtmb0FTakZ3WFhWNEdkbXJ4TllrRGQ0TjBhZzhCTzVBZlJPZFJ3TXgxdlFUYlVWSTAxbUpvNmhublc1L1FTUTZFUy8vblNoSCsiLCJtYWMiOiI3Zjc5ZGE1ZDIwNGJiZjNmMTM4NjhiZDlkODE0NjAxOWE2ZWQzNGFmMTMzYzgzZGJkZDZkMDA4N2VjMTkxMDc0IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkxXOHBLaE1uVHRxMko4ZnNnM3VyelE9PSIsInZhbHVlIjoieXBpOW5sYnBPZ0JRYXBPalVKaVdyYlZGdGhQak10YkhtV0s5VXhKTFFhcm5zMm5XcUhab1JRZVlJRmc3RUgwaDdSbnUyTFJSUlFERzRhWlhCZE9qUmQyL3FqYW1FdXhPeEFzRmpaaHZHdXlVWUIyK0pSNlhWSU44RWNoL1JxMVIiLCJtYWMiOiJiMzcwMzVjM2JlODkwNjM3NTAyZDI3YzQ3YzZhZTU4ODNkYzM5ODhmN2NmYzk3YzNiZmQ5ODI2Yzk1MzQ3NDAwIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6Ind0WXBGU3hkTExKUUZrdDF0eWtUQWc9PSIsInZhbHVlIjoiV1h4d0Q3a01HQm91b25MdVl1NVRlbjNibUltWSs2R1YybEF2ZUFhRUZLb0UwdzYyWXRkU1VXencvTUtwRlpRV2tiTURySkRoclFCTjZRSWUxekNOVU9VMEQrZTRpR0tpWUp0czJqUkdCTmdnSzlJWnZIdWwyYUxhMW16T2ZNeTIiLCJtYWMiOiJhZmUyYzdhNDVjZGZhOTA5MjY5YTg5YmMxZTRmYjJlYWJmZjdkMGVlZDZlYTk3YWMzNmQwN2IwY2VkMzg3NDFiIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IldGLy8yTFFSaGcvTWhOTTJyUUZ3TWc9PSIsInZhbHVlIjoidWR2VElxb3FxU1Q1TmlCbFhBQUpyUnJ4RzJpY0c2RC9JZHdlQjh0SDJJdE5tc0JBN0h3VFNDUklCUFo2WHZxWTVyWHg0WVRTWEQ0Vmh6NUkwTDM5d3BUNHpjbnNlci9GWm5CeDNjN3BYaWk0cTYzQm9Day92Z3IwalhlWkdDR2giLCJtYWMiOiIzYmRiOTBkMjEyNDg1NGI0MDcwZjkwMWVkYjM3ODAxNWYzOTNmOGRiNGYwMGM4MzIzMTBmMTE4M2Q1Y2EyYWE5IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -276,11 +331,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6InEzZEhBRzZ6WlJ4RnVad01OOTFtdnc9PSIsInZhbHVlIjoiTWlyMlBqNW9SenpaRHBwWjhIUzRRdkxtTnRUd2ZvUS84cVFBcTlGMlJWcHZqNkRVOWlrK2F3dlduQVFOZTJhVGw5R3YrQzFHbElnMzRLMmg0RFlMTGp2QUZXNmZOZWZOYUFnTGRSMUtVYk4rOFZPeEhHakx5eGZudnZhVTlLdmgiLCJtYWMiOiI0ODViMjNkMzRhNGNmM2VkNTgwNGViNjg3MDM2ZTZjYWE1NGQ5Y2NhYzVjNDIyOTJkM2ExMWNiNjFkOWJmMTA4IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6Ijd0VDN0N2F5RnRhZXlFVHJTbG9KYWc9PSIsInZhbHVlIjoiVS9aT1htUFF1cmx1eG9zM2hUTUp5VVpSN2diY3JpUWJPK0hzYStFUjlTMVZCTE00WVhBdGRWQ1psOTdNcTl2MERJK1Q5WFV3R2wzL1hTeEo2TUdJb2poVGE3M2JyZ3hwL0N0Zlp3TGY0dmcvYXJKdkVmZ2pBa1YvQVpRZzB3alIiLCJtYWMiOiJiOTY1ZDFkNDU5MWY1YTA0ZTJiMDVlZGY5YjNlZTA5MWQwNjE3NjJiM2ZlYWEyZDgzYmJmYWQ4MjhlNTQxMDZmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6ImNmZ0hXSXQ1LzVnempZZFROVk5GQUE9PSIsInZhbHVlIjoiUm1SOStsdnJTOXAwdjRSMmEwVEQvK2tZN2lPdWlKeC8zWVhNSTF4SExYUUpVZnJpSlBkbWFEdDQycFR2Qm9EdStNUzR6SkVmUStITE5oNE1wWm14azF4WURFRWMwR2xVendaYWpycXR6UHQwcXpNa0EweGxMcm82ekQ5M0RyOXAiLCJtYWMiOiI2ODVkZTllMmU0ODZlNjJmNWMzNTc5NGZjYWE3OGMyYjQ3ZDk4OWVjMjA0NTllNDE0YTc1OWQ4OTY1ODkyMGExIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IktwZndSbldCdUxVSzBFeUk1enByV1E9PSIsInZhbHVlIjoiVElCcFJSU3NlNjVaallrUEtqUTBqUGZsQ2Z0NDl2eEIwT25JM0lRcUZ6NFg2OFpETnpuT0lWdUFUSlA1N3AvcFpJMUVFSXlQbWZMN0JzTlcwM0YxdmdUR2ZWU2o3NkxtaC9keGF1VnBIZVludEFYelJCTTZwVDFkT2JZUU9YMzAiLCJtYWMiOiJhZGQ4MWExZWM5NmNjZDBlODYxNDEyMTY1Mjk5YmIyYjk1NTJhN2I4ODUwYjFhNzJkZGJlYTJmMjllNzE0NDFlIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -311,60 +366,11 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"rfvfvjzrpvpqsrivdwtoyegntqttvvmojofjfmprdtvysm\"}"
+                            "raw": "{\"name\":\"swyfywrywliboxnlgvasetbpghirncbextpsdwvojxzriizjkw\"}"
                         },
                         "description": ""
                     },
                     "response": []
-                },
-                {
-                    "name": "api\/absences",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/absences",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/absences"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer {{token}}"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6IktmV3VLMlZKTjB2cVVjMk9VcVBUOXc9PSIsInZhbHVlIjoiaUZzZi9meXl2akYvNE1XekVGK3kvQWVzeVJuSHVCWVovS1c1di9KYWZMdzVKYjlLQ3kyTVg1YThhUDhPaFVqaE9VYWhuYkM3VlVXNUl1RmQxRFZhcUN6OGE0QnhQT0lUZklicE8yQThmc3V5QXdQK3I0Z1ZoRzBTOFQ3OC81Z2kiLCJtYWMiOiJlMDBlYzM1YjY2NWYwOTMyMDA1MzdlOTBmYzc3MjkzMmQxOTFlNTE4OTIyYmI4OTc1OWM4NmFlYzQwNGYwZTgxIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IlZIYjU0NmYxTEt1ZXJML2s2UmpJdFE9PSIsInZhbHVlIjoiWndldlliUTVRWDRGeFluQlhXaEJQdjgyallGdmI1bi93NWNLNXhKWE0wK2N2TXJnOUI1TG16WEdkdkRweVFVTy93T2pQMkNacUpkbUdiK0YvWklNeVdWOEYwcUR3QkZaK0RSUEIwUUk5eGdFTlJwb3E4c1pkRDlFQ2ZzVXhnWTAiLCJtYWMiOiJhMmU2YTE2YjE1ZTA2NTIwY2FlNmQ0ZDJmNjQ2YzNhMzc2MThkMDE3ZWUwNDM1YjczZWY1NjY1NmYzZjhmNjc3IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
-                                }
-                            ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
-                            "name": ""
-                        }
-                    ]
                 },
                 {
                     "name": "api\/telegram\/{token}",
@@ -378,7 +384,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "suscipit",
+                                    "value": "5531545475%3AAAFTPbgpcDrRrKnBOf_hYhibJK_HKqW_ED4",
                                     "description": ""
                                 }
                             ]
@@ -471,7 +477,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"sfjolxvjlwoysvlhhjprpfamvhmwfvhcgnejqcikwvlfmielgqhbelbddaudmxbqyaiwuqivymssjnockquenpyczxknsnpyzaulwiophlmlxosvkjeddncwemcsavukf\"}"
+                            "raw": "{\"name\":\"sfhelsicurxcvlwrgthvuixoynhsfuiibztfogcwyengqyevxyakubbnkcscqqrajmoajezuopqgrhhnpkga\"}"
                         },
                         "description": "Cr\u00e9e un calendrier."
                     },
@@ -525,11 +531,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6ImZqbExYVmlRUHE4ZjgxTnFRQmprSVE9PSIsInZhbHVlIjoiUUVKZUUrc2tUSzlPY1RwTDkwUnN6eTNkU3FuOGFyOW56alRCOGNtZVVUYVd5N2ExRitEVjdmRmlyenFEVDc3cjVpLzZEZkt4TW9pTVRYNWJ5TWZLTmZpQ1dwdWtrZG8rM3RPV25MZzZUbDF5a01mUi9xT0hoNFM0L0tBRDAzV3IiLCJtYWMiOiJmYjg3Yzc0NzBhOGQwMDFmYWQ3ZmI1YmViYTNmOGNhMzY0MDgyODkyYjk0N2Y3NWNhZGQxYWZiNTFmY2Y1OTA4IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkVGSzZlbDR2bzVpSDN3bFVWQU9mSHc9PSIsInZhbHVlIjoickxJZGIwaU1mUFQvK250VWdzYW1XR3RSMk9yWlZCTWw1dS9NeUVpbXROcmd5dkdDTmlJZWhRaW9WRUVabFY2Z1hGNlQyMXRINzFQcjdDTElQYVdJYlVOczFuSW1tTisxR3J4R0xpOVFVdTl2cXZVbUxQV3JqU0Y4OW5CYW9mY0YiLCJtYWMiOiJlOTY1MWI4MjI4ZWMwMTVkMjM4ZDA4MGExZjhjODNhOWRhYWIyMjhmMmRlZTY3NWY4OTk5ZjY3Zjg2YWYwOTBjIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6Imx4N3NmN0c0YU0rSFp0WWZzTkFxVXc9PSIsInZhbHVlIjoiM1BpTDRqVGxSN29kQWp3ODRMaVdsRTVFTW9zcE1XUDllc2VMMThVak5SdTBxWXdCV2RzSlBLaHdLdlNrUndlcnJud1ZIdnkxb1VSWjJDLzdULy94L1g3bE1TWDRWZTMzOTFjSjhDZklERk1SSFFzRlZmcEppQWorbUxPalgyMWYiLCJtYWMiOiI4YWQ1Njk4ZGU3NWQ1Y2Q0NzljYzI1YjYwOTNhY2VkMjRjNjY4YzJjYWIzMzgzNTRkNWRlOTVmZmNmYzg1NjdhIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6ImtrYm12dVJJS1dTV2NwMlI0MnhWNlE9PSIsInZhbHVlIjoiOHU1ekkvMHc5OWF1MXVwSHc4bExrQ1ZKQ2pESDRzbks1Z2VTVkdNdVcyelVzcmxjd2poWTQwTmtrQ3hSejBqTjRkL290cmVFSnFkZytwd0ZLZVlodTh5SFY2K0I4YlFLLzRIcHFxRmNRWVUzRmpNVDVNZk9YU0RLemE1UmlBdEoiLCJtYWMiOiJmNzljN2NkZjQ1YzRmNTVmNmI4MGYzNmU3ZjMzNGEyNzM1NDUyZGQ2ZjVmZjA3NTFkYTJlMDhhMDZkYTBhYzg4IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -568,7 +574,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"icgczfxaiylpahrqguypfszuukxijhjwcpnsandnuxndkyyhwfxlnuffppkscsokaevmpqibvxumumfdzwdtbkjkdcdiqcsqonuevdwdefdymnutqrvzjcoapgkkbpxvqpdrwthxaliywwgdvfeisqpqszoreiulddopkbojfwfguedmiadayfnbeeuqsrjkgtvjwbfkb\"}"
+                            "raw": "{\"name\":\"qxqwhylmnirhxagkmztbddgaeazruznczjxgfalcaugqslyqeuzqfikjjdrewuilxsomoxewwhctfpinrrzbymdsvwrgfqnfuuniekahhhrfhlaslpisghdxoatwnpjvohughsegpxacrnqhwixulzbjpttxvduwtoksbekkanqwwpafypnktnldjvvocwuxypxrfrh\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -637,7 +643,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"calendar_id\":4,\"user_id\":20,\"can_own\":false,\"can_view\":true}"
+                            "raw": "{\"calendar_id\":17,\"user_id\":8,\"can_own\":true,\"can_view\":false}"
                         },
                         "description": "Partage un calendrier avec un autre utilisateur."
                     },
@@ -711,7 +717,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"gvxkoirqqqo\",\"description\":\"frstbqpmltxtrblocjwylfkvhqnfqqxelsvsubydxkbnshyvbswvalgiluyxtbfgrlkdgedpiptookmdmojefllfkxohztyqwzgcmzvgeebfnzqptdzzlpzdxreclvdvaamgenraalbenvywryxjtvlbhetsnzsmvrwzowgjzfpwklbgwwbgwobgeyndadrssveniquufgshwaixhfgblrikvxuzuqcbvqztlfzfiywmygzhkvczxvkdkvwtdoqxcgplorsfrmhcduaurjvjjmonqfvuvnvxnkpinmhljcapxukhdbirfmadsaztaexrrvzvnffatzdrglfjfaadswxjhnjbddbioxfghbtklpjjviwkpxgzjkvgzfxintgcteyeisgfvhvgtpjsxkfzfdnoqpfcuxcsoilkrowrbcjhynbzjd\",\"start\":\"2022-05-29T17:37:37\",\"end\":\"2022-05-29T17:37:37\",\"location\":\"snvxgqsmdxjdbssejzqylufajwhlcetspfvqgheitvhhgqxneseuifncsoercnpytzbbqsynpyuvwfgkckvvppihjqltydulkijizjpoclgtowdlspvuafadu\",\"calendar_id\":\"natus\"}"
+                            "raw": "{\"title\":\"kcjgookywdnghsszvcueodocjxbyiqplhwkrdsewfyaxnndhxyghahbyssifolntckyldaptxkculsgpygeumhwddijcambimfcyxsbnglnxoqsaiyjuhmnyvwjpuljjklprfhxwuztsegshoevmusvjggfqpsyuvdvfpcuqinfbzjrhiy\",\"description\":\"fwhnvjgwbluyurxgnkouwdbnjilgomefaykmempmnograkjdkdcpnopjnrzbcgrloocfnvvynlawibhzxcvrvbbfcdwwougrbwowogqtchwguynzyqtnkjahshldcyzegultbktzobxmyqvrxgjbegcojllcasqxecmlkfdyxoftwgmtuzgimjzrzrhqsxkrchcsfaijzpsincxhnbbkktasocicfuhgcbnudguqjforcossybkisptauopzrikwdarhgpbiceqaffnyblqftetkwhymgyjyuhbqycthgtdrmdljxrzvnmvbtocmtdqkwkwzwmkmdbncahzunhmfnzshjbdcynzxkdrtgxbgzimikrkrkfrcmxeucmfnriobaduhssotbnzvulvfiwhlefjftmghgllvikhqborixbizbjiyryznwobifxghymytnlbmpqsccvmqldzcexvwktcbzodlfcvhgaboyiimzejrfwjoyqlgwfudanoioccbrovunkjsvxfspqqphfaiptgdxqpefjzyhtwkojonnogsqfiygblpkf\",\"start\":\"2022-05-30T11:12:20\",\"end\":\"2022-05-30T11:12:20\",\"location\":\"kwssazgecwnloqgwnctj\",\"calendar_id\":\"deserunt\"}"
                         },
                         "description": "Enregistre un nouvel \u00e9v\u00e8nement dans la BDD\nSucc\u00e8s: retourne un json contenant l'\u00e9v\u00e8nement cr\u00e9\u00e9\nFail: erreur"
                     },
@@ -772,11 +778,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6IkV6QzI1UzJ1QjJrcENyQ1Q3NGdFU3c9PSIsInZhbHVlIjoiTDdzWHVuTVFXY3R3Vml5QWRudTNCWHV4ckM4alp2MTRaYWtLc2RIS2JYZktENmRNOEJpNEZseEFDR3pwNi9pWVdZVlA4eGkvYWpSOHk4SUlJUmFaTUJGNEEyOHVHT3FoTXNNajYvNGZjV3g1dnV2V1VSME1Ub2I0ODZLZWhkRm0iLCJtYWMiOiI5NDk0ZjU5MzllMzdkNzA4M2Q4MDFiZjJiMTQ2MGIxNThmYmMxYTYyN2UxODJjMTE5ZGIxMGNmMjU4OThmZjc2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6InVIWTdtbkpxUytyOTVvVktlekQ4cXc9PSIsInZhbHVlIjoiMzZMSm84NkdOdFJNSXE1bmJYNU5XZDhWQXRyWk9LMTIvR2h2VU1BVVgzSEREdjU0YUVMRjJOdmhLeFBEMVlFSmU3ZFN6YkkyZksyUmVMaEQ1d3hUOHorTThUMlpOVDQ2QmF5dTJrZVppdytDTGN0RXo1a3hzbnpEUERSc3ZQdU8iLCJtYWMiOiI1MDM2YjI1M2NmMzUzMmZlYTNjZGZkMjA4NGI5YTA0MzI2NjMyZjkzMjBhOWFhYWUyZDY5ZmJiOGEwYjg0YWJmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6ImF1cFZhQW4yY0N1dlhKajdQaEJ4cmc9PSIsInZhbHVlIjoiT05UZ2djVkVtUmZoL1BQeHIvSTd5SXVQUWJTTHhNWWlseEhtWmtvYkR4elM5RTB3a3VvVjdKdDEzZWVRcE5CTkFBZHVicEs3YkhVNmFsMDRNQzh0UE9uL0VmYXhVMG9jNEJhOVViblloMVNCV2ZQNHlPZG1rTnRDUEU2WlJXSGMiLCJtYWMiOiJkZjlmYzM5NDllZDU2ZTdhMmZkODQwM2I5YjE2NTU0NjcxZGM2NGZjYzAwZjkyN2ZiMGYzZGE0MDJlYTUzZjc1IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6InpMRDBiQlNpRFpJSWFLZnJJQk40OUE9PSIsInZhbHVlIjoiVmVwNExMdzBIWFhjQ3FXVGlJcUtjeHppemdQZGlaYlpTVEl1T1NZYytlRmNiMi81L3lhOUJ1aGxVbW40ODhXeURrd1QxOXl4UHNFTlFXZ1NJUGVLQm96dlowRVNPWG1sYTZkVTA2QUxQNEd5ZFBmck81bXd0UmtzRzlaMFZ0TisiLCJtYWMiOiIwNTI3ZGNkZWFmYzg3NTQ2YjE2YzA5MTI3YjVjYjE2ZmQ1YjBmNzQ0NDZjZDVkNmNkNzViZThjYTI3ZGQyMDg2IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -815,7 +821,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"cliclcqxujmmgfttxfscvcguzmfhwgqgtygvrlxztwluueetrhsnguhtxlrgsnakbzwpzfdzdraxunnmzcmnenoojeomzdghlbylarckudibsmpuijivwgwrfwmfjqqlgub\",\"description\":\"ibsppqahlnfgabnrieuovebzrsazigjlvytljfrfnpuaajnhfimnxsrnbgkwjlqqyiizg\",\"start\":\"2022-05-29T17:37:37\",\"end\":\"2022-05-29T17:37:37\",\"location\":\"gdgsgmqqpxhhsptzgdocnjewobskzlffyotfsfgjjcetuxzzvpouotzippleuwalrvnjlhyfipmmhsmuzlfcqbwlsflrulycwdjgcbduosrbfdemlvmlpngunxcvvkbbmotwaecodjbwkcwffxpngfgosebbvtohoyenrnjfraylifjhbrrvkwmmqktfuupidoempbcwlusfttayvhlpnwzdtwciwvtrhyaraxxlotmfxehbiziwtr\"}"
+                            "raw": "{\"title\":\"vxdicrylzxwxtvsawybcvnhtctztahqextxlszaoiwyhcadpmnxacsihujzubmqnoouvgmkfjkuhibepkmqdorbepnsxgtgigjsownqwpjvprjriahkwhcodkdcodqjvgmtthqsefwhgmyhsqswxmpbiwdglilawjckxbyganfqncacobdv\",\"description\":\"fgphwuoglkxrawpnyaffymwwhlmongubzzdslogtczqlupmqxnujooytxjynwrkpojlynabzypinfnvbxrclcnrkpzakasotpajrfjedagggyompkxvpjmybhsndaktpcgzymbasjdpimtsgpykeblvyptsixqfqzaqxwpkppffwpwbkqcnpmjfshfltqhjyuusfolnwlqadgzizdjqmmobuouexfpzizeibnxiqbwnvtkhezjpkotqajkhqqsilkhwbrasxuopybpgudyfjqzdicoecajdiuvtahkiphepermkffrxovcynmzzlxyaavy\",\"start\":\"2022-05-30T11:12:20\",\"end\":\"2022-05-30T11:12:20\",\"location\":\"yzqfwntssbfozucwfafxdqnmbvdjretuqozcshkaiuecnrkrcebhpmfukkdbbdppuwmtyfeebasclmvxmxzjcscmqnhsfjecrtmphbuvaugtzlxvvvylmudrdyqyvdnytpkvsqcjieifftlopuuewjmmpyzgvwqwbmdpbjkmifxupozbcchaeozhzbzwovixufouxiqpevqpzmfxwrmlvawqxropqvritsobzdvsychasjprbxwewyrs\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -904,11 +910,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6ImNONUtWUDlPSTBHVjlIb3d0L1VxL2c9PSIsInZhbHVlIjoiZDdZQm1IN1dvdVZwTmdYMFBXb0RaRjFjdEhFcnE3QXpkemIyNU0rSmVoR0pTYUhDVHcvQXRlWDhYM2NGbGJISHozNEhSY3JqK3V2R2JWNWE0TW8yb3NKSEdndU5iWWgzK2VOUmdLUUhkYW9uVlhwN2MxNFBwOWpKM2pkSlNJbG4iLCJtYWMiOiJjZmIyNzJjZWNjZDM1NzFjNTFhNjhlMmE3ZjhkNmJkMzFkNTk3YTMxYmI4MjAxYWZjOTllNjFlNDdmYzE1YjA5IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IjU4V2RPZGdpWXlZWklRNitDZlRkdUE9PSIsInZhbHVlIjoidEdaNEMxNE9MRDQxVjY3dnpHVTF3bENnblFNSkdQZmFjM2x4ajEvanFhK2tQcnFRY0R0TVZLdk4zUCsyUVdscFdsTk9mUVVlWlNTYys4TEVGV2ppbVlrRU5waVAyMXphNTQxMnZ1b3BCTHUxNDFLc3dNeWgwVFVzbEFJbU80KzEiLCJtYWMiOiI4ZDUwNmNiNGRlN2UyMWE5ZDNiMjIxNzI4MjI0ZDY0NGRhN2QzMzYxZmRlNzZlNGQ3YWQ1ODZhNmMwYTMwZDUyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6InBsS0JCbU9wY05SMnpzNlAraEJxblE9PSIsInZhbHVlIjoiTVNxNjZjbkJ5cVhUU2RNV0d1SmgwdEVoRGpCWXJkbHZ6L280em52aUhqSEUzdGlYbDJFSlFPWk1MWlB0N0h6Y21jNS9TSU8wZEhkR2MzQXBtSmUwdG5CMmVhVWFTR2JBUmx6MUlkL0JhcFp6Q2ZrVXBVU21zQmhiRHpaWEZFSXQiLCJtYWMiOiIwMDJkOTA3MWUzMDAyY2Y0ZWZmOGU2OGRkY2U2ZWM2MzJjZjI0ODA3ZmZmOWI4ODgzMjA0Mjc5MGI1NGRiOTI0IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IlVCcGJ5aVRaaGFMS09kQkhyMEd3VXc9PSIsInZhbHVlIjoid25hc0RJRGpNd0ZHcno1dSt6TmlTTndoN0dIbk13NytzZkpZTTZzRUtVWWxaRkJiMVNNV3RvTGZGc0NJenQ2VURZS3VIWktDUjBKN1Vyd0Ivck56RitHMjY1aHNNUm1jdUZoRHd6ZURwdFRUb1Bsc1NwdXVlazBrbjBmWGdTNHgiLCJtYWMiOiIzNjJjNDczYmE3MmM1ZTNkY2YyOTgzOGMwOGJhZTcxM2M1YWRkYmQwMDBmMDk3N2Y4ZWI4ZDhkNjcyMWY3M2U5IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -925,7 +931,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "secret",
+                                    "value": "VGrxhPp9xuDb947JZADe7ESdBDkwdq",
                                     "description": ""
                                 }
                             ]
@@ -961,11 +967,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6Inpib0MvQUF4ZWwvVUFRSEZ5S09WOHc9PSIsInZhbHVlIjoiNmdxQy96d3I3b25kQkgzZGVoTFl1VVVudENaS09RV1g4MW5IRnRMdlZacDU4UC9Vc3JBdXFnY0FSOVpiQ2FWU3ZtNC9zbkdtbmtIcWlJL1k1Ulpub1M5VGRiUkRVdzhBZCtydy9laEV5Q3RBM2hZSUMzcnhzWld3L0tlVGlxZ3MiLCJtYWMiOiI2NWVlY2YwNmUzZTI1Y2QxZjAxNmYwNDdkN2U1MWRhMDg5ZTkxOGM0OGY1MTRlNmVkOGY4ODQ1ODQ5YTllOGI2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkNYZVdZOTlVMHd6UzNMbVpsVm9MVEE9PSIsInZhbHVlIjoiNHJyZ1V4eHRJUlZLMld1ZHNmOGRmU3RhMW5rclJjakFpQUFmNjFoTFpMVmM2Q1Jkay9mQmF4b2JFTmR0ZHlKMjI2YXZkR0hFckY1MTI3VUFwNGdxS0RNMm9zUCttSnhiOHNDOXJQWXhpWnpVakY1TkhON3FxMlMrdDRYcDUwT3AiLCJtYWMiOiJhNGE3N2IxNTJkMjhmMmJmZjUzZWNiMDA3ZjY2ZWVhZjVkMDI4ODA2YWNiNWU4YjkyYWZlOTBiNTRmM2RiYzg5IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6IkloNkN0UHlzejBNbWVLLzBNcFM5QWc9PSIsInZhbHVlIjoiamo3OThOY2IyRSs0Vi81SHZuUjZRUzlNVWhqU29QYTFPNlFtWFRXZkVzMmZ2VWxRYVYyTmllWWQxVnYzMlNYdmlRUlJVcEZWWExNSS9kY3RGUk1YRXVucVJ5ak53VXhWYU1nd2haNDZPbXNOd0RkcXArYkVHTEx3WURteGt0R2IiLCJtYWMiOiI1YmRlYWI2ZDU5ODM4Yzg0ZDgxNjBjMWUwNzE4ZTJkZThlOGExNjYxYWI4NGUxMDY5MjYyMTlkNTdiZGJkNmFhIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6InB6SDQvK25UMzRxaHJXZ0ZRdldUNnc9PSIsInZhbHVlIjoiQU0ya0xxRXJxZ1ZxQ3E1dlY5WVVMUkJlWGZLKzhGVkhOWU5CYThDdGVwaVRMbEhHa1lUSXZpL2ZXNkVSOWVXSGZVTmZQNUFOY2UyeVVsOVNkeGMydytPbStvNFNhcVlPdzlmYXlTelJEa2d3eWIyTjN6aldURWtSRmxJRXNlU0giLCJtYWMiOiI0OTg2ZDM4NmE1NGI3MzE5YmZjNWQxZDEwNzZjZDY3YmM1YzllZDRmZWIxYmI3NTE1MTZlNGUzMWQ4ODdjOTliIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -1010,11 +1016,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6ImUvQk40VTRqZDNqamNhckhGaGNvc0E9PSIsInZhbHVlIjoiWEhKalNST2haN3ZSNVBzMVovTUVwQjhvcmpiMk9GWW4xOHZuQUJOWWlvSEoxLzRUb2IvVGQ5ZS9MdzNlSU5BOEhibjdkTTU3RUpyQXpZcjNYYUhlUjlYTllSVjVsN0ljb2VvNW9YMWI3cHl1d3RQTEZpOHFsNjMxbG40WHp4UXUiLCJtYWMiOiI3MDM2ODQxZDI2NDAzMDIwMTk1ODU2Y2JkYjM1N2FjOTQwOTgxOTI5YzJkM2Q4N2E0NTgxOTQyYzVlNDJkZGUyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6ImZPUXM5eWs3SVdMUTdITlNXRDhVVlE9PSIsInZhbHVlIjoiK2RsVVFHL0hPdDhCWUl1Zjk0bGdNTmVWcStXb0MyRENvY1pvTHZCMmRHQjBLRmhXYWsrQ1A3US9FT0FVakw1Z05NWWU2VSt6cUMvRFhCaU84dXJTVm5hU3JCYlpYSk92c2RZZUZlUW1YdVkxa2t6NU9mMmwxQUU0RnBqRElDdTEiLCJtYWMiOiIwMmFmODE0NzBiNmY1Yzc5ZTQ0OTAyMDY2OWNkNmJhYmZmM2E2MTUzMmFhOTY5OTI3NDE2NjlhZjBhZmI4YWE1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6InB1YkRCMFVLQnlIUmN4bmMvcmdNWXc9PSIsInZhbHVlIjoiY29WbEJBR0ppQ2hjaXBSVUZKZ1duN293Z25vc0MzZnQ3UTdHMDVMU0dkY2MwbVNzYkV1eGZLYTVHRGRqdHdYaVRQM3p2Qk1Gc1U3MkRDcHZSSFpITDE4QXk0Zmg3UFI2Yk1SUUs0enQzYzZtRUtsdmQzUWtPbk9QUTR4SXExVVciLCJtYWMiOiJiYmVlMGFkMDU3MjEwOGQwZDk1ZjkxYzI2OWE4NTI1NGQ2OWVkZWI5NGUzZDlmMDhmMDA4OGJjN2MxM2RkYTgxIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6Ik1RRnVZUVhHQ1NtMElQZjJ6NEl4QXc9PSIsInZhbHVlIjoibk5sdlEzVk41ZEQ4aFhFRVBVdk5TbUIwMkVwd1k4Kyt2Wk53dzQzbEo0S21RRUdHS05HUFlaWmF6VDY3TE8xRmRqdU82QnRDNE5ENlJWS3BKdE1EN0hDU3I3eStOVU5aSmRGVktXaDZPREg4N01odGVkWkdNOCsybGNjVjhMNDkiLCJtYWMiOiJhNjkzYTMxNGUyNGQ5NDZmYTI3MzI5OGI1MmUzYTkxZmU3NTY3MDU0N2E0NWU2MTYxZDE1NjJkMTYyYzlmOWE2IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -1059,11 +1065,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6IlhGSlYvemcraHZHMUJrMll1NzVlSFE9PSIsInZhbHVlIjoiaFVqclBzcmVMVW9qNk5tREk5RG1QWnEyUTl1d1F1MTBuQWJIcHltTmNWTmpDMzFqUExFSzk2U1dmelFaVHQxQVlBOHVQWmtyOTBaZlJ2d3VDcFVhL0tZSEdXckdDMm5kNkpmUmF3WVFLb3huNU5pVWNlT3NadWJNTmtkcitOTWciLCJtYWMiOiIyZWU4OGQwYzk0MzdlZGMyMWY5NzU5NzZkNmE5MzQ4MzIwNGVlMGI2Y2RmYWQyMTE3MzU1Y2FkMWZkOGRkODg2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6InVoUGh6azVCVWtmK0prTWJGcDBieGc9PSIsInZhbHVlIjoib3NteGpuUXdubmRHVWNhVGRxK2dMa3J2R1ZoYmFGZWpSZXdRRFN0ZVBWU2Jqb20vMzV3a3JMRmVNL0tkKy9HbEdZeXFwWWlxd2h5Ykc2c1QrTy9Ramp3eEtEeG1Fd1U1cHBsOHgwb1U4emlkM1NoVWwrdjJsZVhUTjUwdkt5NjIiLCJtYWMiOiJmMGFiNzYwMGUxYTgwMmVkNzBjZGRjMTRlMTFiMTFmY2I1YTc3Njk0YWEwNDU2NDgyNzE2YmVjMWNlYWQyODBhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6ImdsU2hBRmM0d0FxR0RtQ1lBVFlIUGc9PSIsInZhbHVlIjoiVFFSOXVnOWlYVHBPcjUrYWxuYnZBNkRPZVVkZFU0YzBKMEJFQzNya2NFRjhsRWFtalFUVUM5U08xc0RNSjA1K2FFZG5GZjNqVkNXU3JHRVRkSEs2WkFCWnF4K04rTkNXUUtTbGRwV2tmQUphZUVjSlZ0TnMxTnZ1bjZkcEYrN1MiLCJtYWMiOiJkYmZjYzVkNDAyMTU3MWNmNTYxYjBmZGUzNTMzNDlkOTExZGFhNTNmN2NkNTFmYmRhZmYxNWE0MmZiYTI5Y2IzIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkZKNTZWbmFQVjljNlgrbnJmRFNlc3c9PSIsInZhbHVlIjoibXF5MThLQ3RQMTJqSkg0U29VSU4wUUF4VVg4RjhLNzFmL2R5TzduVlFYaWd1RHN4U0ZEbXNQTmhPMmt1eUZjb0x2ZlR3dDVXc2lNTWR0SFh5cjQ3WHRIbE1hMXBYcGk1VFJzMVFsU3hKdjBsV3lmWTR3Q2dLT3RzdzlMRXpDVXAiLCJtYWMiOiIwMzFhNmFjNmU5YjFiOTg1ZDVjZWQ3NWY5ZjhiNzFiZThjYTZkNTk5NDlhNGJlYjNjOGJmYzgxYjI3OTdjNTFhIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -1097,7 +1103,7 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "zqawsckqvavzfqgurgqecdubaitbvrchpevqlbxrgsbxydhqusdgstchilfovo",
+                                    "value": "utcrunipyihcgpgqiqhezxifebyjdusdycewlnmwnqrxskaqzjxbceastzhghamjiczyondtsosxuryrkhnbpyfuzvcjsbpzpmdamsaetgugdidsbvsveiexexhlpjqasdqeeqkxwkvozieshjcnkcqtcsp",
                                     "type": "text"
                                 },
                                 {
@@ -1157,11 +1163,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6IjFnQ2VoZUl4L3hoeHhZNkduSDBHSVE9PSIsInZhbHVlIjoiNlB6SWUrVitCZGZQdWcxSUZDSkxWL0xqR1V3SDVwMUtlVjFua0Qwc0RZeUpMd2Fqck9tYW90cVBOMVV1dVJreWdJOGxzQk1vTmhMaGlodmsyUmlpdDFhQ1pYUnVRZXdaSnBJQTYzTUQ5MUZ3bGRXWndnWWYxdm5ZZVlWSGN5QUsiLCJtYWMiOiJiZWMxM2ZhZGYzYTBjZWVmZTJlZTRhODUxYjcwZTdjMDVhZmZhOGJmM2E4YTgyMzNiNTZlYTBmYzYyNzRlZTcyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkllQ0t3QXRHSTBQUzE5ZGVUUXcxeGc9PSIsInZhbHVlIjoiVzJ5VU1FSUVqY2VFNmVMV2U1cE5oNFNESlkvY0tWak84VGw0d21FN2VjKzArazVLSDFhZHF3aFZuYUQxb2lEQ1hCaGlBTXZIWHNUN3p2WXl0Qjl6c09tWm94REFGZXBOcU5PK2M2NCs1UDFYZkdFZ1R1Z1NSR1RtMlBrTU9aNUQiLCJtYWMiOiI1M2E4NjA4ZTE1ODJkNzM1ZTkwYmVhOTZjZDFlM2UzZTFiMDFkNDM5MmJhMDU1ZGM5MmM3YzU0MWYzODg2Yzc1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6ImRMMnAvL1c5UHZhSFlFV0pNa0lXOHc9PSIsInZhbHVlIjoiTTNVQnA0b0tnQ1ZUR2E1UWd3SnhrUkg0OVNwa2MyRm50ekUzUGNoM2NzRkIzUTl4YkRYVE0vdU9rWUtMU0xVM2E3WDByVXlGMWZPY2hXQk1NbHM1NGxrQys1T2I5K250VjJOdzRBUGhlL1hyUVVBc1FXT0pvVy8zU3NOSGJyQ1YiLCJtYWMiOiJkY2UwMTBjZTljNDFjN2RlOWIxMzk4YzVmNTRlZDU1ZmNhOTVmN2I1ZmE5ZjFjMDQwNjBmMzg4ODJiNGViMGJlIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IlhJQTJTVUQ0Z3VjaFBaV2pvdWJVV1E9PSIsInZhbHVlIjoiS1BTNzJSK1lOcUNWV0JJd3JacjkzYXFHYld3bkEzdU5ER0lraEpya0VoWGkxNWd6N1Z3SXdHN3o0dlJ0MHR4Z041Y1VaakpBTmlONEJneDVWQzIydSsyWnRXZFRHK3hmc0tlV3ZvU1VQY3RjdnhKMFdZeW51N2I5aUNDakJxMXkiLCJtYWMiOiJjNTFjODIxZDI0YTg0MTc5ODdkMmY1MGE5ZjFhN2UyYzQ0YWI0YzQxOWVhMzQ0MDM0YWIwMjMzMTkyNmJjMmUyIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -1178,7 +1184,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "49",
                                     "description": "The ID of the mail."
                                 }
                             ]
@@ -1214,11 +1220,11 @@
                                 },
                                 {
                                     "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6Im9EYm5uMTk2TGo3a1I0djlBM2FkVWc9PSIsInZhbHVlIjoiSGdWT3ZrejZTWHlNbmdzbWZ6aXFLT2QwTEVHcFlQdlpKRnlvRXpLdmFYdGpoSGhlOFp2K00vTE43WmZLZDJCY0xVOWphV0k2Y2s3eG52MSs4QzhYOGxBMWF0eG91azl6YzdlSWViSjhRMUIyRVJOY0ZyZG42T0ZSbUcrd0JhMEIiLCJtYWMiOiJjY2QwNDZlNDE1ODFmNDMyYTliZjRjYTRlZmY2ZGNlNWUyZDI1YjUxODhkNmU0OTdjZTQ4MDk4YzlhMzdhNmFhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkpXVGtyeXQwVkpzaitxaGplY3IyekE9PSIsInZhbHVlIjoiN3cxdHcvcW5sdW4waG9XZUFyOUZMM2xTNnNHTkRlbVMrbzJhSnhOdFQ2ZXRxdEN2S1hlSExoZlFJSEpzYTJERDRwQUVXbnVjYTdHN292eiswNDVlKzZQS2xTOXB3RDdiN1dQWlVPZ01rVlhlTDVjQXJCUXE2V0o0SFNPMlVPVWMiLCJtYWMiOiIwZTAyYTQ1NzQzNGI0NzZmOWQ1YTQ4YmY2NDE4MTRkYzg5ZWEzNGJmOTk0MWI1NDZmY2Q1MThlMjNlMjljOTZjIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "value": "XSRF-TOKEN=eyJpdiI6IlNtWlYrYyttZm5ZbmI3RUxsSW9ZZ1E9PSIsInZhbHVlIjoiVUI5Y0QwZm9meE43Qk5ObWxXaVdEOENPclAzclJqcHhpVU8xL0d6ZVovckhOUHYzZStGazlDd1B4cU80czYxdFEzalBsMzFWWUFxS212QkkyMVJzU0xiMlBRQTFidE0zK3pqaTY3K1pLeXZhRHh0LzdwakdwWlZab0wxRTNFWWoiLCJtYWMiOiI2MGViZmU0OTdiOWI0MTBlNjRmMDA3ZTgyYTEyNTE4NWM1ODU3MDI5NzkxNmIzNDhkNThmZTIxOTIxMmE0MmYzIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkJORVhXbWtJcUhna3hzQzF5eThJQ3c9PSIsInZhbHVlIjoiVWpJZy9ZaDN6alF3V2JVbDRVdE1ZdEhadXphbnRaMUsrS1UyRHdqQnJmK2ZXS3pDUjJoVzc5RUsrUnIreExFYlNFV2lxL29UWVQvWEIzYWdnbjNsVStmNWk4S0tOZW5DcE5PaUk2NU4zb2wyTUhhVWlyVUQ4NkFaRmNXUklRZW8iLCJtYWMiOiI2NzA5ZTg1NzZkZDg4YmVjNjU3MjRkZTI2Zjg1N2VhMmNiYTkzZjAxNjg5YjRmMTY5Yzg4M2I1ODg2NTZjNzUwIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <base href=\"\/\">\n    <link rel=\"stylesheet\" href=\"http:\/\/localhost\/8000\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"http:\/\/localhost\/8000\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
                             "name": ""
                         }
                     ]
@@ -1249,7 +1255,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"missouri10@example.com\",\"subject\":\"ncdnjequaltnivdkldlkruhvrqnehjbwisduuttafzlkqpvhypivikavyawpvigbofqkfbzssmiexlymnrpalkwxatstxqiccaohntlzvvmqycuuhgzsufkocygkvxfpuaaeuodvrpfbhiedtsfcpcnpwkmercphldlvpizynrxdgvcqakyslvqgzdxdtmbpzbrjyppmqtaeoijlyfuozagnjidksljwzyeloamjmfviypkrgscganr\",\"message\":\"velit\"}"
+                            "raw": "{\"to\":\"victoria.lang@example.com\",\"subject\":\"segjhmbtedrxzilkdwoiluulkddrutconxedqlekjgkqunoijcbwygthevbsrhocztyoxxxkpdcnjwhjcfbwhmlvpxbndtgylncwgkqcifcndkuzuhxqogchovmyakktoeweuzvgvtbqrzklaqesyfupyhrnrnoenwcnnsfsmu\",\"message\":\"nihil\"}"
                         },
                         "description": ""
                     },

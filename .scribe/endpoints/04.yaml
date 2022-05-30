@@ -1,15 +1,15 @@
-name: Gaps
+name: Evènements
 description: |-
 
-  APIs pour forcer la mis à jour de toutes les données de Gaps
+  APIs pour gérer les évènements
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/update/gaps/events
+    uri: api/events
     metadata:
-      title: ''
-      description: ''
+      title: 'Get events'
+      description: "Retourne un json contenant une liste des évènements. La liste correspond à l'ensemble des évènements de tous les calendriers que suit l'utilisateur."
       authenticated: true
       custom: []
     headers:
@@ -22,38 +22,115 @@ endpoints:
     responses:
       -
         status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-
-          </html>
-        headers:
-          content-type: 'text/html; charset=UTF-8'
-          cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImNONUtWUDlPSTBHVjlIb3d0L1VxL2c9PSIsInZhbHVlIjoiZDdZQm1IN1dvdVZwTmdYMFBXb0RaRjFjdEhFcnE3QXpkemIyNU0rSmVoR0pTYUhDVHcvQXRlWDhYM2NGbGJISHozNEhSY3JqK3V2R2JWNWE0TW8yb3NKSEdndU5iWWgzK2VOUmdLUUhkYW9uVlhwN2MxNFBwOWpKM2pkSlNJbG4iLCJtYWMiOiJjZmIyNzJjZWNjZDM1NzFjNTFhNjhlMmE3ZjhkNmJkMzFkNTk3YTMxYmI4MjAxYWZjOTllNjFlNDdmYzE1YjA5IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IjU4V2RPZGdpWXlZWklRNitDZlRkdUE9PSIsInZhbHVlIjoidEdaNEMxNE9MRDQxVjY3dnpHVTF3bENnblFNSkdQZmFjM2x4ajEvanFhK2tQcnFRY0R0TVZLdk4zUCsyUVdscFdsTk9mUVVlWlNTYys4TEVGV2ppbVlrRU5waVAyMXphNTQxMnZ1b3BCTHUxNDFLc3dNeWgwVFVzbEFJbU80KzEiLCJtYWMiOiI4ZDUwNmNiNGRlN2UyMWE5ZDNiMjIxNzI4MjI0ZDY0NGRhN2QzMzYxZmRlNzZlNGQ3YWQ1ODZhNmMwYTMwZDUyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
-        description: null
+        content: |-
+          [
+           "id" => 1,
+           "name" => "Calendrier 1",
+           "events" => [
+               "id" => 1,
+               "title" => "Event 1",
+               "start" => "2020-01-01",
+               "end" => "2020-01-01",
+               "description" => "Description 1",
+               "location" => "Location 1",
+               "calendar_id" => 1,
+               "created_at" => "2020-01-01",
+               "updated_at" => "2020-01-01",
+            ]
+          ]
+        headers: []
+        description: '200, success'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/events
+    metadata:
+      title: 'Store event'
+      description: |-
+        Enregistre un nouvel évènement dans la BDD
+        Succès: retourne un json contenant l'évènement créé
+        Fail: erreur
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: kcjgookywdnghsszvcueodocjxbyiqplhwkrdsewfyaxnndhxyghahbyssifolntckyldaptxkculsgpygeumhwddijcambimfcyxsbnglnxoqsaiyjuhmnyvwjpuljjklprfhxwuztsegshoevmusvjggfqpsyuvdvfpcuqinfbzjrhiy
+        type: string
+        custom: []
+      description:
+        name: description
+        description: 'Must not be greater than 1000 characters.'
+        required: true
+        example: fwhnvjgwbluyurxgnkouwdbnjilgomefaykmempmnograkjdkdcpnopjnrzbcgrloocfnvvynlawibhzxcvrvbbfcdwwougrbwowogqtchwguynzyqtnkjahshldcyzegultbktzobxmyqvrxgjbegcojllcasqxecmlkfdyxoftwgmtuzgimjzrzrhqsxkrchcsfaijzpsincxhnbbkktasocicfuhgcbnudguqjforcossybkisptauopzrikwdarhgpbiceqaffnyblqftetkwhymgyjyuhbqycthgtdrmdljxrzvnmvbtocmtdqkwkwzwmkmdbncahzunhmfnzshjbdcynzxkdrtgxbgzimikrkrkfrcmxeucmfnriobaduhssotbnzvulvfiwhlefjftmghgllvikhqborixbizbjiyryznwobifxghymytnlbmpqsccvmqldzcexvwktcbzodlfcvhgaboyiimzejrfwjoyqlgwfudanoioccbrovunkjsvxfspqqphfaiptgdxqpefjzyhtwkojonnogsqfiygblpkf
+        type: string
+        custom: []
+      start:
+        name: start
+        description: 'Must be a valid date.'
+        required: true
+        example: '2022-05-30T11:12:20'
+        type: string
+        custom: []
+      end:
+        name: end
+        description: 'Must be a valid date.'
+        required: true
+        example: '2022-05-30T11:12:20'
+        type: string
+        custom: []
+      location:
+        name: location
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: kwssazgecwnloqgwnctj
+        type: string
+        custom: []
+      calendar_id:
+        name: calendar_id
+        description: ''
+        required: true
+        example: deserunt
+        type: string
+        custom: []
+    responses:
+      -
+        status: 200
+        content: |-
+          [
+          "success" => true,
+          "message" => "event created:",
+          "data" => [
+              "title" => "EventTitle",
+               "description" => "Une belle description",
+               "start" => "1901-01-01T00:00Z",
+               "end" => "1901-01-03T00:00Z",
+               "location" => "S149",
+               "calendar_id" => 1,
+               "updated_at" => "2022-05-25T13:09:40.000000Z",
+               "created_at" => "2022-05-25T13:09:40.000000Z",
+               "id" => 142
+            ]
+          ]
+        headers: []
+        description: '200, success'
     responseFields: []
   -
     httpMethods:
       - GET
-    uri: 'api/update/gaps/{token}'
+    uri: 'api/events/{id}'
     metadata:
-      title: ''
-      description: ''
+      title: 'Show event'
+      description: 'Display the specified resource.'
       authenticated: true
       custom: []
     headers:
@@ -61,12 +138,12 @@ endpoints:
       Accept: application/json
       Authorization: 'Bearer {{token}}'
     urlParameters:
-      token:
-        name: token
-        description: ''
+      id:
+        name: id
+        description: 'The ID of the event.'
         required: true
-        example: secret
-        type: string
+        example: 1
+        type: integer
         custom: []
     queryParameters: []
     bodyParameters: []
@@ -82,139 +159,106 @@ endpoints:
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <meta http-equiv="X-UA-Compatible" content="ie=edge">
               <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+              <base href="/">
+              <link rel="stylesheet" href="http://localhost/8000/css/app.css">
           </head>
 
           <body>
               <div id="app"></div>
 
-              <script src="//localhost:8080/js/app.js"></script>
+              <script src="http://localhost/8000/js/app.js"></script>
           </body>
 
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6Inpib0MvQUF4ZWwvVUFRSEZ5S09WOHc9PSIsInZhbHVlIjoiNmdxQy96d3I3b25kQkgzZGVoTFl1VVVudENaS09RV1g4MW5IRnRMdlZacDU4UC9Vc3JBdXFnY0FSOVpiQ2FWU3ZtNC9zbkdtbmtIcWlJL1k1Ulpub1M5VGRiUkRVdzhBZCtydy9laEV5Q3RBM2hZSUMzcnhzWld3L0tlVGlxZ3MiLCJtYWMiOiI2NWVlY2YwNmUzZTI1Y2QxZjAxNmYwNDdkN2U1MWRhMDg5ZTkxOGM0OGY1MTRlNmVkOGY4ODQ1ODQ5YTllOGI2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkNYZVdZOTlVMHd6UzNMbVpsVm9MVEE9PSIsInZhbHVlIjoiNHJyZ1V4eHRJUlZLMld1ZHNmOGRmU3RhMW5rclJjakFpQUFmNjFoTFpMVmM2Q1Jkay9mQmF4b2JFTmR0ZHlKMjI2YXZkR0hFckY1MTI3VUFwNGdxS0RNMm9zUCttSnhiOHNDOXJQWXhpWnpVakY1TkhON3FxMlMrdDRYcDUwT3AiLCJtYWMiOiJhNGE3N2IxNTJkMjhmMmJmZjUzZWNiMDA3ZjY2ZWVhZjVkMDI4ODA2YWNiNWU4YjkyYWZlOTBiNTRmM2RiYzg5IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImF1cFZhQW4yY0N1dlhKajdQaEJ4cmc9PSIsInZhbHVlIjoiT05UZ2djVkVtUmZoL1BQeHIvSTd5SXVQUWJTTHhNWWlseEhtWmtvYkR4elM5RTB3a3VvVjdKdDEzZWVRcE5CTkFBZHVicEs3YkhVNmFsMDRNQzh0UE9uL0VmYXhVMG9jNEJhOVViblloMVNCV2ZQNHlPZG1rTnRDUEU2WlJXSGMiLCJtYWMiOiJkZjlmYzM5NDllZDU2ZTdhMmZkODQwM2I5YjE2NTU0NjcxZGM2NGZjYzAwZjkyN2ZiMGYzZGE0MDJlYTUzZjc1IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6InpMRDBiQlNpRFpJSWFLZnJJQk40OUE9PSIsInZhbHVlIjoiVmVwNExMdzBIWFhjQ3FXVGlJcUtjeHppemdQZGlaYlpTVEl1T1NZYytlRmNiMi81L3lhOUJ1aGxVbW40ODhXeURrd1QxOXl4UHNFTlFXZ1NJUGVLQm96dlowRVNPWG1sYTZkVTA2QUxQNEd5ZFBmck81bXd0UmtzRzlaMFZ0TisiLCJtYWMiOiIwNTI3ZGNkZWFmYzg3NTQ2YjE2YzA5MTI3YjVjYjE2ZmQ1YjBmNzQ0NDZjZDVkNmNkNzViZThjYTI3ZGQyMDg2IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
     httpMethods:
-      - GET
-    uri: api/update/gaps/marks
+      - PUT
+      - PATCH
+    uri: 'api/events/{id}'
     metadata:
-      title: ''
-      description: ''
+      title: 'Update event'
+      description: 'Update the specified resource in storage.'
       authenticated: true
       custom: []
     headers:
       Content-Type: application/json
       Accept: application/json
       Authorization: 'Bearer {{token}}'
-    urlParameters: []
-    queryParameters: []
-    bodyParameters: []
-    responses:
-      -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-
-          </html>
-        headers:
-          content-type: 'text/html; charset=UTF-8'
-          cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImUvQk40VTRqZDNqamNhckhGaGNvc0E9PSIsInZhbHVlIjoiWEhKalNST2haN3ZSNVBzMVovTUVwQjhvcmpiMk9GWW4xOHZuQUJOWWlvSEoxLzRUb2IvVGQ5ZS9MdzNlSU5BOEhibjdkTTU3RUpyQXpZcjNYYUhlUjlYTllSVjVsN0ljb2VvNW9YMWI3cHl1d3RQTEZpOHFsNjMxbG40WHp4UXUiLCJtYWMiOiI3MDM2ODQxZDI2NDAzMDIwMTk1ODU2Y2JkYjM1N2FjOTQwOTgxOTI5YzJkM2Q4N2E0NTgxOTQyYzVlNDJkZGUyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6ImZPUXM5eWs3SVdMUTdITlNXRDhVVlE9PSIsInZhbHVlIjoiK2RsVVFHL0hPdDhCWUl1Zjk0bGdNTmVWcStXb0MyRENvY1pvTHZCMmRHQjBLRmhXYWsrQ1A3US9FT0FVakw1Z05NWWU2VSt6cUMvRFhCaU84dXJTVm5hU3JCYlpYSk92c2RZZUZlUW1YdVkxa2t6NU9mMmwxQUU0RnBqRElDdTEiLCJtYWMiOiIwMmFmODE0NzBiNmY1Yzc5ZTQ0OTAyMDY2OWNkNmJhYmZmM2E2MTUzMmFhOTY5OTI3NDE2NjlhZjBhZmI4YWE1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
-        description: null
-    responseFields: []
-  -
-    httpMethods:
-      - GET
-    uri: api/update/gaps
-    metadata:
-      title: ''
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-      Authorization: 'Bearer {{token}}'
-    urlParameters: []
-    queryParameters: []
-    bodyParameters: []
-    responses:
-      -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-
-          </html>
-        headers:
-          content-type: 'text/html; charset=UTF-8'
-          cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IlhGSlYvemcraHZHMUJrMll1NzVlSFE9PSIsInZhbHVlIjoiaFVqclBzcmVMVW9qNk5tREk5RG1QWnEyUTl1d1F1MTBuQWJIcHltTmNWTmpDMzFqUExFSzk2U1dmelFaVHQxQVlBOHVQWmtyOTBaZlJ2d3VDcFVhL0tZSEdXckdDMm5kNkpmUmF3WVFLb3huNU5pVWNlT3NadWJNTmtkcitOTWciLCJtYWMiOiIyZWU4OGQwYzk0MzdlZGMyMWY5NzU5NzZkNmE5MzQ4MzIwNGVlMGI2Y2RmYWQyMTE3MzU1Y2FkMWZkOGRkODg2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6InVoUGh6azVCVWtmK0prTWJGcDBieGc9PSIsInZhbHVlIjoib3NteGpuUXdubmRHVWNhVGRxK2dMa3J2R1ZoYmFGZWpSZXdRRFN0ZVBWU2Jqb20vMzV3a3JMRmVNL0tkKy9HbEdZeXFwWWlxd2h5Ykc2c1QrTy9Ramp3eEtEeG1Fd1U1cHBsOHgwb1U4emlkM1NoVWwrdjJsZVhUTjUwdkt5NjIiLCJtYWMiOiJmMGFiNzYwMGUxYTgwMmVkNzBjZGRjMTRlMTFiMTFmY2I1YTc3Njk0YWEwNDU2NDgyNzE2YmVjMWNlYWQyODBhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
-        description: null
-    responseFields: []
-  -
-    httpMethods:
-      - POST
-    uri: api/calendars/import
-    metadata:
-      title: ''
-      description: ''
-      authenticated: true
-      custom: []
-    headers:
-      Content-Type: multipart/form-data
-      Accept: application/json
-      Authorization: 'Bearer {{token}}'
-    urlParameters: []
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
     queryParameters: []
     bodyParameters:
-      name:
-        name: name
+      title:
+        name: title
         description: 'Must not be greater than 255 characters.'
-        required: true
-        example: zqawsckqvavzfqgurgqecdubaitbvrchpevqlbxrgsbxydhqusdgstchilfovo
+        required: false
+        example: vxdicrylzxwxtvsawybcvnhtctztahqextxlszaoiwyhcadpmnxacsihujzubmqnoouvgmkfjkuhibepkmqdorbepnsxgtgigjsownqwpjvprjriahkwhcodkdcodqjvgmtthqsefwhgmyhsqswxmpbiwdglilawjckxbyganfqncacobdv
         type: string
         custom: []
-      ics:
-        name: ics
-        description: 'Must be a file.'
-        required: true
-        example: null
-        type: file
+      description:
+        name: description
+        description: 'Must not be greater than 1000 characters.'
+        required: false
+        example: fgphwuoglkxrawpnyaffymwwhlmongubzzdslogtczqlupmqxnujooytxjynwrkpojlynabzypinfnvbxrclcnrkpzakasotpajrfjedagggyompkxvpjmybhsndaktpcgzymbasjdpimtsgpykeblvyptsixqfqzaqxwpkppffwpwbkqcnpmjfshfltqhjyuusfolnwlqadgzizdjqmmobuouexfpzizeibnxiqbwnvtkhezjpkotqajkhqqsilkhwbrasxuopybpgudyfjqzdicoecajdiuvtahkiphepermkffrxovcynmzzlxyaavy
+        type: string
         custom: []
+      start:
+        name: start
+        description: 'Must be a valid date.'
+        required: false
+        example: '2022-05-30T11:12:20'
+        type: string
+        custom: []
+      end:
+        name: end
+        description: 'Must be a valid date.'
+        required: false
+        example: '2022-05-30T11:12:20'
+        type: string
+        custom: []
+      location:
+        name: location
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: yzqfwntssbfozucwfafxdqnmbvdjretuqozcshkaiuecnrkrcebhpmfukkdbbdppuwmtyfeebasclmvxmxzjcscmqnhsfjecrtmphbuvaugtzlxvvvylmudrdyqyvdnytpkvsqcjieifftlopuuewjmmpyzgvwqwbmdpbjkmifxupozbcchaeozhzbzwovixufouxiqpevqpzmfxwrmlvawqxropqvritsobzdvsychasjprbxwewyrs
+        type: string
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/events/{id}'
+    metadata:
+      title: 'Delete event'
+      description: 'Remove the specified resource from storage.'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the event.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
     responses: []
     responseFields: []

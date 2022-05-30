@@ -1,12 +1,12 @@
-name: Mail
+name: Gaps
 description: |-
 
-  APIs pour gérer les mails
+  APIs pour forcer la mis à jour de toutes les données de Gaps
 endpoints:
   -
     httpMethods:
       - GET
-    uri: api/mails
+    uri: api/update/gaps/events
     metadata:
       title: ''
       description: ''
@@ -31,26 +31,27 @@ endpoints:
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <meta http-equiv="X-UA-Compatible" content="ie=edge">
               <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+              <base href="/">
+              <link rel="stylesheet" href="http://localhost/8000/css/app.css">
           </head>
 
           <body>
               <div id="app"></div>
 
-              <script src="//localhost:8080/js/app.js"></script>
+              <script src="http://localhost/8000/js/app.js"></script>
           </body>
 
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IjFnQ2VoZUl4L3hoeHhZNkduSDBHSVE9PSIsInZhbHVlIjoiNlB6SWUrVitCZGZQdWcxSUZDSkxWL0xqR1V3SDVwMUtlVjFua0Qwc0RZeUpMd2Fqck9tYW90cVBOMVV1dVJreWdJOGxzQk1vTmhMaGlodmsyUmlpdDFhQ1pYUnVRZXdaSnBJQTYzTUQ5MUZ3bGRXWndnWWYxdm5ZZVlWSGN5QUsiLCJtYWMiOiJiZWMxM2ZhZGYzYTBjZWVmZTJlZTRhODUxYjcwZTdjMDVhZmZhOGJmM2E4YTgyMzNiNTZlYTBmYzYyNzRlZTcyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkllQ0t3QXRHSTBQUzE5ZGVUUXcxeGc9PSIsInZhbHVlIjoiVzJ5VU1FSUVqY2VFNmVMV2U1cE5oNFNESlkvY0tWak84VGw0d21FN2VjKzArazVLSDFhZHF3aFZuYUQxb2lEQ1hCaGlBTXZIWHNUN3p2WXl0Qjl6c09tWm94REFGZXBOcU5PK2M2NCs1UDFYZkdFZ1R1Z1NSR1RtMlBrTU9aNUQiLCJtYWMiOiI1M2E4NjA4ZTE1ODJkNzM1ZTkwYmVhOTZjZDFlM2UzZTFiMDFkNDM5MmJhMDU1ZGM5MmM3YzU0MWYzODg2Yzc1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6InBsS0JCbU9wY05SMnpzNlAraEJxblE9PSIsInZhbHVlIjoiTVNxNjZjbkJ5cVhUU2RNV0d1SmgwdEVoRGpCWXJkbHZ6L280em52aUhqSEUzdGlYbDJFSlFPWk1MWlB0N0h6Y21jNS9TSU8wZEhkR2MzQXBtSmUwdG5CMmVhVWFTR2JBUmx6MUlkL0JhcFp6Q2ZrVXBVU21zQmhiRHpaWEZFSXQiLCJtYWMiOiIwMDJkOTA3MWUzMDAyY2Y0ZWZmOGU2OGRkY2U2ZWM2MzJjZjI0ODA3ZmZmOWI4ODgzMjA0Mjc5MGI1NGRiOTI0IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IlVCcGJ5aVRaaGFMS09kQkhyMEd3VXc9PSIsInZhbHVlIjoid25hc0RJRGpNd0ZHcno1dSt6TmlTTndoN0dIbk13NytzZkpZTTZzRUtVWWxaRkJiMVNNV3RvTGZGc0NJenQ2VURZS3VIWktDUjBKN1Vyd0Ivck56RitHMjY1aHNNUm1jdUZoRHd6ZURwdFRUb1Bsc1NwdXVlazBrbjBmWGdTNHgiLCJtYWMiOiIzNjJjNDczYmE3MmM1ZTNkY2YyOTgzOGMwOGJhZTcxM2M1YWRkYmQwMDBmMDk3N2Y4ZWI4ZDhkNjcyMWY3M2U5IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
     httpMethods:
       - GET
-    uri: 'api/mails/{id}'
+    uri: 'api/update/gaps/{token}'
     metadata:
       title: ''
       description: ''
@@ -61,11 +62,11 @@ endpoints:
       Accept: application/json
       Authorization: 'Bearer {{token}}'
     urlParameters:
-      id:
-        name: id
-        description: 'The ID of the mail.'
+      token:
+        name: token
+        description: ''
         required: true
-        example: '7'
+        example: VGrxhPp9xuDb947JZADe7ESdBDkwdq
         type: string
         custom: []
     queryParameters: []
@@ -82,26 +83,27 @@ endpoints:
               <meta name="viewport" content="width=device-width, initial-scale=1.0">
               <meta http-equiv="X-UA-Compatible" content="ie=edge">
               <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
+              <base href="/">
+              <link rel="stylesheet" href="http://localhost/8000/css/app.css">
           </head>
 
           <body>
               <div id="app"></div>
 
-              <script src="//localhost:8080/js/app.js"></script>
+              <script src="http://localhost/8000/js/app.js"></script>
           </body>
 
           </html>
         headers:
           content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6Im9EYm5uMTk2TGo3a1I0djlBM2FkVWc9PSIsInZhbHVlIjoiSGdWT3ZrejZTWHlNbmdzbWZ6aXFLT2QwTEVHcFlQdlpKRnlvRXpLdmFYdGpoSGhlOFp2K00vTE43WmZLZDJCY0xVOWphV0k2Y2s3eG52MSs4QzhYOGxBMWF0eG91azl6YzdlSWViSjhRMUIyRVJOY0ZyZG42T0ZSbUcrd0JhMEIiLCJtYWMiOiJjY2QwNDZlNDE1ODFmNDMyYTliZjRjYTRlZmY2ZGNlNWUyZDI1YjUxODhkNmU0OTdjZTQ4MDk4YzlhMzdhNmFhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkpXVGtyeXQwVkpzaitxaGplY3IyekE9PSIsInZhbHVlIjoiN3cxdHcvcW5sdW4waG9XZUFyOUZMM2xTNnNHTkRlbVMrbzJhSnhOdFQ2ZXRxdEN2S1hlSExoZlFJSEpzYTJERDRwQUVXbnVjYTdHN292eiswNDVlKzZQS2xTOXB3RDdiN1dQWlVPZ01rVlhlTDVjQXJCUXE2V0o0SFNPMlVPVWMiLCJtYWMiOiIwZTAyYTQ1NzQzNGI0NzZmOWQ1YTQ4YmY2NDE4MTRkYzg5ZWEzNGJmOTk0MWI1NDZmY2Q1MThlMjNlMjljOTZjIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkloNkN0UHlzejBNbWVLLzBNcFM5QWc9PSIsInZhbHVlIjoiamo3OThOY2IyRSs0Vi81SHZuUjZRUzlNVWhqU29QYTFPNlFtWFRXZkVzMmZ2VWxRYVYyTmllWWQxVnYzMlNYdmlRUlJVcEZWWExNSS9kY3RGUk1YRXVucVJ5ak53VXhWYU1nd2haNDZPbXNOd0RkcXArYkVHTEx3WURteGt0R2IiLCJtYWMiOiI1YmRlYWI2ZDU5ODM4Yzg0ZDgxNjBjMWUwNzE4ZTJkZThlOGExNjYxYWI4NGUxMDY5MjYyMTlkNTdiZGJkNmFhIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6InB6SDQvK25UMzRxaHJXZ0ZRdldUNnc9PSIsInZhbHVlIjoiQU0ya0xxRXJxZ1ZxQ3E1dlY5WVVMUkJlWGZLKzhGVkhOWU5CYThDdGVwaVRMbEhHa1lUSXZpL2ZXNkVSOWVXSGZVTmZQNUFOY2UyeVVsOVNkeGMydytPbStvNFNhcVlPdzlmYXlTelJEa2d3eWIyTjN6aldURWtSRmxJRXNlU0giLCJtYWMiOiI0OTg2ZDM4NmE1NGI3MzE5YmZjNWQxZDEwNzZjZDY3YmM1YzllZDRmZWIxYmI3NTE1MTZlNGUzMWQ4ODdjOTliIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
         description: null
     responseFields: []
   -
     httpMethods:
-      - POST
-    uri: api/mails/send
+      - GET
+    uri: api/update/gaps/marks
     metadata:
       title: ''
       description: ''
@@ -113,27 +115,110 @@ endpoints:
       Authorization: 'Bearer {{token}}'
     urlParameters: []
     queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+              <title>Document</title>
+              <base href="/">
+              <link rel="stylesheet" href="http://localhost/8000/css/app.css">
+          </head>
+
+          <body>
+              <div id="app"></div>
+
+              <script src="http://localhost/8000/js/app.js"></script>
+          </body>
+
+          </html>
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6InB1YkRCMFVLQnlIUmN4bmMvcmdNWXc9PSIsInZhbHVlIjoiY29WbEJBR0ppQ2hjaXBSVUZKZ1duN293Z25vc0MzZnQ3UTdHMDVMU0dkY2MwbVNzYkV1eGZLYTVHRGRqdHdYaVRQM3p2Qk1Gc1U3MkRDcHZSSFpITDE4QXk0Zmg3UFI2Yk1SUUs0enQzYzZtRUtsdmQzUWtPbk9QUTR4SXExVVciLCJtYWMiOiJiYmVlMGFkMDU3MjEwOGQwZDk1ZjkxYzI2OWE4NTI1NGQ2OWVkZWI5NGUzZDlmMDhmMDA4OGJjN2MxM2RkYTgxIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Ik1RRnVZUVhHQ1NtMElQZjJ6NEl4QXc9PSIsInZhbHVlIjoibk5sdlEzVk41ZEQ4aFhFRVBVdk5TbUIwMkVwd1k4Kyt2Wk53dzQzbEo0S21RRUdHS05HUFlaWmF6VDY3TE8xRmRqdU82QnRDNE5ENlJWS3BKdE1EN0hDU3I3eStOVU5aSmRGVktXaDZPREg4N01odGVkWkdNOCsybGNjVjhMNDkiLCJtYWMiOiJhNjkzYTMxNGUyNGQ5NDZmYTI3MzI5OGI1MmUzYTkxZmU3NTY3MDU0N2E0NWU2MTYxZDE1NjJkMTYyYzlmOWE2IiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/update/gaps
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |
+          <!DOCTYPE html>
+          <html lang="en">
+
+          <head>
+              <meta charset="UTF-8">
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <meta http-equiv="X-UA-Compatible" content="ie=edge">
+              <title>Document</title>
+              <base href="/">
+              <link rel="stylesheet" href="http://localhost/8000/css/app.css">
+          </head>
+
+          <body>
+              <div id="app"></div>
+
+              <script src="http://localhost/8000/js/app.js"></script>
+          </body>
+
+          </html>
+        headers:
+          content-type: 'text/html; charset=UTF-8'
+          cache-control: 'no-cache, private'
+          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImdsU2hBRmM0d0FxR0RtQ1lBVFlIUGc9PSIsInZhbHVlIjoiVFFSOXVnOWlYVHBPcjUrYWxuYnZBNkRPZVVkZFU0YzBKMEJFQzNya2NFRjhsRWFtalFUVUM5U08xc0RNSjA1K2FFZG5GZjNqVkNXU3JHRVRkSEs2WkFCWnF4K04rTkNXUUtTbGRwV2tmQUphZUVjSlZ0TnMxTnZ1bjZkcEYrN1MiLCJtYWMiOiJkYmZjYzVkNDAyMTU3MWNmNTYxYjBmZGUzNTMzNDlkOTExZGFhNTNmN2NkNTFmYmRhZmYxNWE0MmZiYTI5Y2IzIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkZKNTZWbmFQVjljNlgrbnJmRFNlc3c9PSIsInZhbHVlIjoibXF5MThLQ3RQMTJqSkg0U29VSU4wUUF4VVg4RjhLNzFmL2R5TzduVlFYaWd1RHN4U0ZEbXNQTmhPMmt1eUZjb0x2ZlR3dDVXc2lNTWR0SFh5cjQ3WHRIbE1hMXBYcGk1VFJzMVFsU3hKdjBsV3lmWTR3Q2dLT3RzdzlMRXpDVXAiLCJtYWMiOiIwMzFhNmFjNmU5YjFiOTg1ZDVjZWQ3NWY5ZjhiNzFiZThjYTZkNTk5NDlhNGJlYjNjOGJmYzgxYjI3OTdjNTFhIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:19 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/calendars/import
+    metadata:
+      title: ''
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: multipart/form-data
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
     bodyParameters:
-      to:
-        name: to
-        description: 'Must be a valid email address.'
-        required: true
-        example: missouri10@example.com
-        type: string
-        custom: []
-      subject:
-        name: subject
+      name:
+        name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: ncdnjequaltnivdkldlkruhvrqnehjbwisduuttafzlkqpvhypivikavyawpvigbofqkfbzssmiexlymnrpalkwxatstxqiccaohntlzvvmqycuuhgzsufkocygkvxfpuaaeuodvrpfbhiedtsfcpcnpwkmercphldlvpizynrxdgvcqakyslvqgzdxdtmbpzbrjyppmqtaeoijlyfuozagnjidksljwzyeloamjmfviypkrgscganr
+        example: utcrunipyihcgpgqiqhezxifebyjdusdycewlnmwnqrxskaqzjxbceastzhghamjiczyondtsosxuryrkhnbpyfuzvcjsbpzpmdamsaetgugdidsbvsveiexexhlpjqasdqeeqkxwkvozieshjcnkcqtcsp
         type: string
         custom: []
-      message:
-        name: message
-        description: ''
+      ics:
+        name: ics
+        description: 'Must be a file.'
         required: true
-        example: velit
-        type: string
+        example: null
+        type: file
         custom: []
     responses: []
     responseFields: []
