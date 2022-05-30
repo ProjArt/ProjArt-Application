@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost\/8000"
+            "value": "http:\/\/localhost:8000"
         }
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "fb2d001b-b016-4222-98b4-c400a09aa500",
+        "_postman_id": "450d50a4-f026-4252-a8cb-85d0db143b52",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -45,7 +45,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"quam\",\"password\":\"quam\",\"classroom_name\":\"xehfyicneoqaiotoeiifigvxfvctaicvyriaqxkhpmhcynraihssvvlya\"}"
+                            "raw": "{\"username\":\"aut\",\"password\":\"nesciunt\",\"classroom_name\":\"njfngoovvkoxajghbawvwwptdtcdzsqjscputikvaofufaenxckzzutxuahzpbymqfkpbpwnhhqyyrcztrleoifztnodmkegodj\"}"
                         },
                         "description": "Authentication for a user"
                     },
@@ -77,7 +77,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"natus\",\"password\":\"nihil\",\"classroom_name\":\"sit\"}"
+                            "raw": "{\"username\":\"veritatis\",\"password\":\"dolorem\",\"classroom_name\":\"repudiandae\"}"
                         },
                         "description": "Register a new user"
                     },
@@ -114,20 +114,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6Imw5RkVjNzN3a1dFamNZbjdKQUloMmc9PSIsInZhbHVlIjoiNTByMXFpUXNDTjBTQ0FYWUpEL09aUWlkNy9yQ29YbXhaZzh2ZFM1UE1tOWoyVWpaaitCdHFub2ZpM01TbG9iRU01V2dIdWtuU3Uvckw3Mk5SR3dYVmNQeUdZUk9WSVRNZGJHVmpMUmZKbDNJVW91SmlBUFlJR0Z4WHFMMk5UMFkiLCJtYWMiOiJkMWZiNWMxNWQ5NzA0NDBmNDU5MGQwYjUwNWIxYTA3YTNjYjJhNDQ0ZTY1MzYyZmEwOWVhNTRjMzkyNzRjNTNkIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6Ii9Tck13L0pYUHlFcUpnWUduaU9hVUE9PSIsInZhbHVlIjoiK0tlVFQwR1FVS3g3U2hKeStmbUIvdkRZQnU5bjJqZjdoc25BTUdETDRqRWF5eW5NSU9WSm9mQS9Ua25OcDFwamt6OXh4cmVmUTc1WTNLUmN3YStCR2U2VDV5WUtTUkJFSUcrOXdXT0xDNUZySzRiNlF0WG9aZTA2bVVNRUlxaXEiLCJtYWMiOiJmMTg0ZTRkZjg1MTI5OWM3YWY2NThkNzYwZTBkNGIxMGM1ZDc0YmMzOTQ4YTkzNTI3ZmRmOTAyZWRkMzc5ZDZhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
                             "name": ""
                         }
                     ]
@@ -163,20 +163,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6InhoRDBLOEx1Mm1PVWp6R1RieWtON2c9PSIsInZhbHVlIjoiZ2VLb1J3OFB1OEdkTW4vcFFlSjNabHhVcjU4d1J5eUg0UldtZmcrbVRjbFlBZDY4WS91USswMjFRbkNmeWJjSFFtL2NMcCtUQ2VyTVJoRFBlQTZSUGVyMGZmUkVGbHkxdGdPVWt0N3ZRcHgyaStlbkFLV2MwZzZvSnJjM0ZrdG8iLCJtYWMiOiI4ODM5MmJiMzkzNDkwZmRhNzdjODdlY2JlZGY2YzNmYmY3N2Y5NjM0MzEzYjFiZDJiM2UzMDA3NTFhNTgwNzVmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6InpKQUdqbS9GbjZvK2pNVURjZ2xYR2c9PSIsInZhbHVlIjoidlhURkg0VFF2MVBhRDZjU3piazc5ZldhTDlRSlJBTlpQaElsNVE4WVFHWjFMazAvbUt4ekJRU2xsdjRsNUZXRjdEeHpaVFJxYm9zeUQwNnRpRUxtendLWGN5VmRyYlBZeDBuUWgvMjY2bzhUdHBwSExzcjNlR09LaXlPOTQ5ZlMiLCJtYWMiOiJmNWI3Yzk0MDBmNDZmNTAyODc0ZTVmNzRjNGFlOWRmZWI1MDMyNGIxZmQzYWJkNGZmMzY5YmNkYzgwZTI0YzRlIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
                             "name": ""
                         }
                     ]
@@ -218,20 +218,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6ImVRTjAvQkxrZGViOFJEUnhPclp0cHc9PSIsInZhbHVlIjoiUjIrOSt3aU92Z2NBci9ITjNDYmI0RTRtMTM0Y3JkLyszT21rQ3ZMWmtSdTNqVGVUd1RPRjBOMEtmb0FTakZ3WFhWNEdkbXJ4TllrRGQ0TjBhZzhCTzVBZlJPZFJ3TXgxdlFUYlVWSTAxbUpvNmhublc1L1FTUTZFUy8vblNoSCsiLCJtYWMiOiI3Zjc5ZGE1ZDIwNGJiZjNmMTM4NjhiZDlkODE0NjAxOWE2ZWQzNGFmMTMzYzgzZGJkZDZkMDA4N2VjMTkxMDc0IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkxXOHBLaE1uVHRxMko4ZnNnM3VyelE9PSIsInZhbHVlIjoieXBpOW5sYnBPZ0JRYXBPalVKaVdyYlZGdGhQak10YkhtV0s5VXhKTFFhcm5zMm5XcUhab1JRZVlJRmc3RUgwaDdSbnUyTFJSUlFERzRhWlhCZE9qUmQyL3FqYW1FdXhPeEFzRmpaaHZHdXlVWUIyK0pSNlhWSU44RWNoL1JxMVIiLCJtYWMiOiJiMzcwMzVjM2JlODkwNjM3NTAyZDI3YzQ3YzZhZTU4ODNkYzM5ODhmN2NmYzk3YzNiZmQ5ODI2Yzk1MzQ3NDAwIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
                             "name": ""
                         }
                     ]
@@ -267,20 +267,28 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6InEzZEhBRzZ6WlJ4RnVad01OOTFtdnc9PSIsInZhbHVlIjoiTWlyMlBqNW9SenpaRHBwWjhIUzRRdkxtTnRUd2ZvUS84cVFBcTlGMlJWcHZqNkRVOWlrK2F3dlduQVFOZTJhVGw5R3YrQzFHbElnMzRLMmg0RFlMTGp2QUZXNmZOZWZOYUFnTGRSMUtVYk4rOFZPeEhHakx5eGZudnZhVTlLdmgiLCJtYWMiOiI0ODViMjNkMzRhNGNmM2VkNTgwNGViNjg3MDM2ZTZjYWE1NGQ5Y2NhYzVjNDIyOTJkM2ExMWNiNjFkOWJmMTA4IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6Ijd0VDN0N2F5RnRhZXlFVHJTbG9KYWc9PSIsInZhbHVlIjoiVS9aT1htUFF1cmx1eG9zM2hUTUp5VVpSN2diY3JpUWJPK0hzYStFUjlTMVZCTE00WVhBdGRWQ1psOTdNcTl2MERJK1Q5WFV3R2wzL1hTeEo2TUdJb2poVGE3M2JyZ3hwL0N0Zlp3TGY0dmcvYXJKdkVmZ2pBa1YvQVpRZzB3alIiLCJtYWMiOiJiOTY1ZDFkNDU5MWY1YTA0ZTJiMDVlZGY5YjNlZTA5MWQwNjE3NjJiM2ZlYWEyZDgzYmJmYWQ4MjhlNTQxMDZmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "58"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "{\"success\":true,\"message\":\"Classroom\",\"data\":{\"classrooms\":[{\"name\":\"M49-1\",\"total_persons\":0,\"users\":[]}]}}",
                             "name": ""
                         }
                     ]
@@ -311,7 +319,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"rfvfvjzrpvpqsrivdwtoyegntqttvvmojofjfmprdtvysm\"}"
+                            "raw": "{\"name\":\"qfbmqzsuthbrggjleiqypaicvsxasbhqwexgbkjfhmownpvjfbhqakeklneeefwrkgdyfjmgycaioiuhmgskzcuafyvgycp\"}"
                         },
                         "description": ""
                     },
@@ -348,20 +356,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6IktmV3VLMlZKTjB2cVVjMk9VcVBUOXc9PSIsInZhbHVlIjoiaUZzZi9meXl2akYvNE1XekVGK3kvQWVzeVJuSHVCWVovS1c1di9KYWZMdzVKYjlLQ3kyTVg1YThhUDhPaFVqaE9VYWhuYkM3VlVXNUl1RmQxRFZhcUN6OGE0QnhQT0lUZklicE8yQThmc3V5QXdQK3I0Z1ZoRzBTOFQ3OC81Z2kiLCJtYWMiOiJlMDBlYzM1YjY2NWYwOTMyMDA1MzdlOTBmYzc3MjkzMmQxOTFlNTE4OTIyYmI4OTc1OWM4NmFlYzQwNGYwZTgxIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IlZIYjU0NmYxTEt1ZXJML2s2UmpJdFE9PSIsInZhbHVlIjoiWndldlliUTVRWDRGeFluQlhXaEJQdjgyallGdmI1bi93NWNLNXhKWE0wK2N2TXJnOUI1TG16WEdkdkRweVFVTy93T2pQMkNacUpkbUdiK0YvWklNeVdWOEYwcUR3QkZaK0RSUEIwUUk5eGdFTlJwb3E4c1pkRDlFQ2ZzVXhnWTAiLCJtYWMiOiJhMmU2YTE2YjE1ZTA2NTIwY2FlNmQ0ZDJmNjQ2YzNhMzc2MThkMDE3ZWUwNDM1YjczZWY1NjY1NmYzZjhmNjc3IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
                             "name": ""
                         }
                     ]
@@ -378,7 +386,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "suscipit",
+                                    "value": "maiores",
                                     "description": ""
                                 }
                             ]
@@ -471,7 +479,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"sfjolxvjlwoysvlhhjprpfamvhmwfvhcgnejqcikwvlfmielgqhbelbddaudmxbqyaiwuqivymssjnockquenpyczxknsnpyzaulwiophlmlxosvkjeddncwemcsavukf\"}"
+                            "raw": "{\"name\":\"zqjvrtdmimmhcdwmzmstauyowzvqrjnbfvfyiusrfxzdiqozmfqudlygtlkvwegbatsditgkmqqgtfjqgavuamtuykncxfyyhnpyzpspnorhfjunuabvutlghhfeyskmzuvicseuxfvcwyrsmpsszsrrinzelwluzmtlyegfdxzlycbcwgmyhupkcwzjdnzftmfzjmebxytyuzbdtrjoweigufzplhraobocnnurhrsnlgrpcruadgjmaltalbh\"}"
                         },
                         "description": "Cr\u00e9e un calendrier."
                     },
@@ -516,20 +524,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6ImZqbExYVmlRUHE4ZjgxTnFRQmprSVE9PSIsInZhbHVlIjoiUUVKZUUrc2tUSzlPY1RwTDkwUnN6eTNkU3FuOGFyOW56alRCOGNtZVVUYVd5N2ExRitEVjdmRmlyenFEVDc3cjVpLzZEZkt4TW9pTVRYNWJ5TWZLTmZpQ1dwdWtrZG8rM3RPV25MZzZUbDF5a01mUi9xT0hoNFM0L0tBRDAzV3IiLCJtYWMiOiJmYjg3Yzc0NzBhOGQwMDFmYWQ3ZmI1YmViYTNmOGNhMzY0MDgyODkyYjk0N2Y3NWNhZGQxYWZiNTFmY2Y1OTA4IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkVGSzZlbDR2bzVpSDN3bFVWQU9mSHc9PSIsInZhbHVlIjoickxJZGIwaU1mUFQvK250VWdzYW1XR3RSMk9yWlZCTWw1dS9NeUVpbXROcmd5dkdDTmlJZWhRaW9WRUVabFY2Z1hGNlQyMXRINzFQcjdDTElQYVdJYlVOczFuSW1tTisxR3J4R0xpOVFVdTl2cXZVbUxQV3JqU0Y4OW5CYW9mY0YiLCJtYWMiOiJlOTY1MWI4MjI4ZWMwMTVkMjM4ZDA4MGExZjhjODNhOWRhYWIyMjhmMmRlZTY3NWY4OTk5ZjY3Zjg2YWYwOTBjIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
                             "name": ""
                         }
                     ]
@@ -568,7 +576,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"icgczfxaiylpahrqguypfszuukxijhjwcpnsandnuxndkyyhwfxlnuffppkscsokaevmpqibvxumumfdzwdtbkjkdcdiqcsqonuevdwdefdymnutqrvzjcoapgkkbpxvqpdrwthxaliywwgdvfeisqpqszoreiulddopkbojfwfguedmiadayfnbeeuqsrjkgtvjwbfkb\"}"
+                            "raw": "{\"name\":\"ojzyurxbcuomz\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -637,7 +645,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"calendar_id\":4,\"user_id\":20,\"can_own\":false,\"can_view\":true}"
+                            "raw": "{\"calendar_id\":2,\"user_id\":20,\"can_own\":true,\"can_view\":false}"
                         },
                         "description": "Partage un calendrier avec un autre utilisateur."
                     },
@@ -711,7 +719,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"gvxkoirqqqo\",\"description\":\"frstbqpmltxtrblocjwylfkvhqnfqqxelsvsubydxkbnshyvbswvalgiluyxtbfgrlkdgedpiptookmdmojefllfkxohztyqwzgcmzvgeebfnzqptdzzlpzdxreclvdvaamgenraalbenvywryxjtvlbhetsnzsmvrwzowgjzfpwklbgwwbgwobgeyndadrssveniquufgshwaixhfgblrikvxuzuqcbvqztlfzfiywmygzhkvczxvkdkvwtdoqxcgplorsfrmhcduaurjvjjmonqfvuvnvxnkpinmhljcapxukhdbirfmadsaztaexrrvzvnffatzdrglfjfaadswxjhnjbddbioxfghbtklpjjviwkpxgzjkvgzfxintgcteyeisgfvhvgtpjsxkfzfdnoqpfcuxcsoilkrowrbcjhynbzjd\",\"start\":\"2022-05-29T17:37:37\",\"end\":\"2022-05-29T17:37:37\",\"location\":\"snvxgqsmdxjdbssejzqylufajwhlcetspfvqgheitvhhgqxneseuifncsoercnpytzbbqsynpyuvwfgkckvvppihjqltydulkijizjpoclgtowdlspvuafadu\",\"calendar_id\":\"natus\"}"
+                            "raw": "{\"title\":\"fvnzvfbprsowrfmegfdeierzxhjoydktxhvomxybjt\",\"description\":\"inntvsgwqpmgopsgajcplruooqdeoqcwhoitjugwpwxuyubachefzfipysklbdiyvfshgckraplbvcdgnkeskxcdmtmrxjqqvfsqujkoahtjhgivkkbiaeomrxshenpqffkxcigaseqqtqbfrhoshrhtgaqorngtyfacivvxhmexskjnlpvqsklunwxobnrkrnnqsejfsszowlqftphjuzukmxbafmllpinshqtlrrhvneymqegjbqxmpeqnlhfplepzuqaoqitfhrkwlwinegjpudpvbpkafhdlcznwhwkipjljjkgovondulzyzdmoqeemfzjhhzxroenryhfmsbirssxuxaflecdjrxkjnqmnicsrgfvxvobuxpfcufdwkyfkpcvdvesxdljwywfnymugpnzgvfoswktxiyqclpqowfyvzxupxvymdjrnqxqitjtyzshdukaqybxlgqswwsyqphwqxgjshtgstlxxawzaszuvsjtlbbpcrvjrqemnedlbfmdzbmietdbqbfrsiojkmlmdrizxrpumuiqirzzjpehbbozjcrioatjtomruquxfkwvxyfrlhsrfxdqbuxawutqipunwzranpajbhlhjliowsxeoaefntrlvpeqbxpjwuwzzkdzzrzdqhckdgadhqblqotfsllflngkmnprbybbuydxbaoikmjarluvdqjcfjktszdhigbcgaxzbaekhlobacndhllbiqzbtfcwcbbctk\",\"start\":\"2022-05-30T11:15:27\",\"end\":\"2022-05-30T11:15:27\",\"location\":\"dbqnvafqqhbzabxwvhwpfnkoqyadrwxxgexxicbmjnqyfuzjakwtjkeuvhsyblbxvickdlsejlkhzwbmfvzzzurwrhiocrrislpoqdsnnnmrfgbjrwtnuqozauaeqccupvjxqnhulvubqpfqisbuj\",\"calendar_id\":\"ab\"}"
                         },
                         "description": "Enregistre un nouvel \u00e9v\u00e8nement dans la BDD\nSucc\u00e8s: retourne un json contenant l'\u00e9v\u00e8nement cr\u00e9\u00e9\nFail: erreur"
                     },
@@ -763,20 +771,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6IkV6QzI1UzJ1QjJrcENyQ1Q3NGdFU3c9PSIsInZhbHVlIjoiTDdzWHVuTVFXY3R3Vml5QWRudTNCWHV4ckM4alp2MTRaYWtLc2RIS2JYZktENmRNOEJpNEZseEFDR3pwNi9pWVdZVlA4eGkvYWpSOHk4SUlJUmFaTUJGNEEyOHVHT3FoTXNNajYvNGZjV3g1dnV2V1VSME1Ub2I0ODZLZWhkRm0iLCJtYWMiOiI5NDk0ZjU5MzllMzdkNzA4M2Q4MDFiZjJiMTQ2MGIxNThmYmMxYTYyN2UxODJjMTE5ZGIxMGNmMjU4OThmZjc2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6InVIWTdtbkpxUytyOTVvVktlekQ4cXc9PSIsInZhbHVlIjoiMzZMSm84NkdOdFJNSXE1bmJYNU5XZDhWQXRyWk9LMTIvR2h2VU1BVVgzSEREdjU0YUVMRjJOdmhLeFBEMVlFSmU3ZFN6YkkyZksyUmVMaEQ1d3hUOHorTThUMlpOVDQ2QmF5dTJrZVppdytDTGN0RXo1a3hzbnpEUERSc3ZQdU8iLCJtYWMiOiI1MDM2YjI1M2NmMzUzMmZlYTNjZGZkMjA4NGI5YTA0MzI2NjMyZjkzMjBhOWFhYWUyZDY5ZmJiOGEwYjg0YWJmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
                             "name": ""
                         }
                     ]
@@ -815,7 +823,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"cliclcqxujmmgfttxfscvcguzmfhwgqgtygvrlxztwluueetrhsnguhtxlrgsnakbzwpzfdzdraxunnmzcmnenoojeomzdghlbylarckudibsmpuijivwgwrfwmfjqqlgub\",\"description\":\"ibsppqahlnfgabnrieuovebzrsazigjlvytljfrfnpuaajnhfimnxsrnbgkwjlqqyiizg\",\"start\":\"2022-05-29T17:37:37\",\"end\":\"2022-05-29T17:37:37\",\"location\":\"gdgsgmqqpxhhsptzgdocnjewobskzlffyotfsfgjjcetuxzzvpouotzippleuwalrvnjlhyfipmmhsmuzlfcqbwlsflrulycwdjgcbduosrbfdemlvmlpngunxcvvkbbmotwaecodjbwkcwffxpngfgosebbvtohoyenrnjfraylifjhbrrvkwmmqktfuupidoempbcwlusfttayvhlpnwzdtwciwvtrhyaraxxlotmfxehbiziwtr\"}"
+                            "raw": "{\"title\":\"nwpbrkwczkepsijmkmdjlsoxqoqktanycsivgjwfsvpgdegizvkuajudtdevtieimnwdrsahyyvigcwxjsuvhkuqykefnx\",\"description\":\"wzgstycmkeckdhrfrcigvjvvcoqmmnxonzycneqvjqglccgzskankvmjelmvaambmqspgfeirqfnrcscdmaippeabuauknbyylotxqufvntzioizrpvljpeisvssubrjggbbdvodrpksuqhnsiwsojxkltabyudtzilfbcereuzymarjizxpcappzjzusbzchnxrrivszvuugwhvosksuoccgcwqlwinplwfocwlnqrnr\",\"start\":\"2022-05-30T11:15:27\",\"end\":\"2022-05-30T11:15:27\",\"location\":\"lvhrobkaybhofgjvguvcxuicpxssauzcaebldcmzjpoqhjikcqnrqjrpqobdctmrjydakmejzxbmcjykfkkelhbhoeekkgspnmbhrcunnlgaatyzhpatwkwvjbsrmlfgpchwoftkdn\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -895,20 +903,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6ImNONUtWUDlPSTBHVjlIb3d0L1VxL2c9PSIsInZhbHVlIjoiZDdZQm1IN1dvdVZwTmdYMFBXb0RaRjFjdEhFcnE3QXpkemIyNU0rSmVoR0pTYUhDVHcvQXRlWDhYM2NGbGJISHozNEhSY3JqK3V2R2JWNWE0TW8yb3NKSEdndU5iWWgzK2VOUmdLUUhkYW9uVlhwN2MxNFBwOWpKM2pkSlNJbG4iLCJtYWMiOiJjZmIyNzJjZWNjZDM1NzFjNTFhNjhlMmE3ZjhkNmJkMzFkNTk3YTMxYmI4MjAxYWZjOTllNjFlNDdmYzE1YjA5IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IjU4V2RPZGdpWXlZWklRNitDZlRkdUE9PSIsInZhbHVlIjoidEdaNEMxNE9MRDQxVjY3dnpHVTF3bENnblFNSkdQZmFjM2x4ajEvanFhK2tQcnFRY0R0TVZLdk4zUCsyUVdscFdsTk9mUVVlWlNTYys4TEVGV2ppbVlrRU5waVAyMXphNTQxMnZ1b3BCTHUxNDFLc3dNeWgwVFVzbEFJbU80KzEiLCJtYWMiOiI4ZDUwNmNiNGRlN2UyMWE5ZDNiMjIxNzI4MjI0ZDY0NGRhN2QzMzYxZmRlNzZlNGQ3YWQ1ODZhNmMwYTMwZDUyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
                             "name": ""
                         }
                     ]
@@ -952,20 +960,28 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6Inpib0MvQUF4ZWwvVUFRSEZ5S09WOHc9PSIsInZhbHVlIjoiNmdxQy96d3I3b25kQkgzZGVoTFl1VVVudENaS09RV1g4MW5IRnRMdlZacDU4UC9Vc3JBdXFnY0FSOVpiQ2FWU3ZtNC9zbkdtbmtIcWlJL1k1Ulpub1M5VGRiUkRVdzhBZCtydy9laEV5Q3RBM2hZSUMzcnhzWld3L0tlVGlxZ3MiLCJtYWMiOiI2NWVlY2YwNmUzZTI1Y2QxZjAxNmYwNDdkN2U1MWRhMDg5ZTkxOGM0OGY1MTRlNmVkOGY4ODQ1ODQ5YTllOGI2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkNYZVdZOTlVMHd6UzNMbVpsVm9MVEE9PSIsInZhbHVlIjoiNHJyZ1V4eHRJUlZLMld1ZHNmOGRmU3RhMW5rclJjakFpQUFmNjFoTFpMVmM2Q1Jkay9mQmF4b2JFTmR0ZHlKMjI2YXZkR0hFckY1MTI3VUFwNGdxS0RNMm9zUCttSnhiOHNDOXJQWXhpWnpVakY1TkhON3FxMlMrdDRYcDUwT3AiLCJtYWMiOiJhNGE3N2IxNTJkMjhmMmJmZjUzZWNiMDA3ZjY2ZWVhZjVkMDI4ODA2YWNiNWU4YjkyYWZlOTBiNTRmM2RiYzg5IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "x-ratelimit-limit",
+                                    "value": "60"
+                                },
+                                {
+                                    "key": "x-ratelimit-remaining",
+                                    "value": "57"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
                             "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "body": "{\"success\":true,\"message\":\"All fetched\",\"data\":{\"user\":null}}",
                             "name": ""
                         }
                     ]
@@ -1001,20 +1017,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6ImUvQk40VTRqZDNqamNhckhGaGNvc0E9PSIsInZhbHVlIjoiWEhKalNST2haN3ZSNVBzMVovTUVwQjhvcmpiMk9GWW4xOHZuQUJOWWlvSEoxLzRUb2IvVGQ5ZS9MdzNlSU5BOEhibjdkTTU3RUpyQXpZcjNYYUhlUjlYTllSVjVsN0ljb2VvNW9YMWI3cHl1d3RQTEZpOHFsNjMxbG40WHp4UXUiLCJtYWMiOiI3MDM2ODQxZDI2NDAzMDIwMTk1ODU2Y2JkYjM1N2FjOTQwOTgxOTI5YzJkM2Q4N2E0NTgxOTQyYzVlNDJkZGUyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6ImZPUXM5eWs3SVdMUTdITlNXRDhVVlE9PSIsInZhbHVlIjoiK2RsVVFHL0hPdDhCWUl1Zjk0bGdNTmVWcStXb0MyRENvY1pvTHZCMmRHQjBLRmhXYWsrQ1A3US9FT0FVakw1Z05NWWU2VSt6cUMvRFhCaU84dXJTVm5hU3JCYlpYSk92c2RZZUZlUW1YdVkxa2t6NU9mMmwxQUU0RnBqRElDdTEiLCJtYWMiOiIwMmFmODE0NzBiNmY1Yzc5ZTQ0OTAyMDY2OWNkNmJhYmZmM2E2MTUzMmFhOTY5OTI3NDE2NjlhZjBhZmI4YWE1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
                             "name": ""
                         }
                     ]
@@ -1050,20 +1066,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6IlhGSlYvemcraHZHMUJrMll1NzVlSFE9PSIsInZhbHVlIjoiaFVqclBzcmVMVW9qNk5tREk5RG1QWnEyUTl1d1F1MTBuQWJIcHltTmNWTmpDMzFqUExFSzk2U1dmelFaVHQxQVlBOHVQWmtyOTBaZlJ2d3VDcFVhL0tZSEdXckdDMm5kNkpmUmF3WVFLb3huNU5pVWNlT3NadWJNTmtkcitOTWciLCJtYWMiOiIyZWU4OGQwYzk0MzdlZGMyMWY5NzU5NzZkNmE5MzQ4MzIwNGVlMGI2Y2RmYWQyMTE3MzU1Y2FkMWZkOGRkODg2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6InVoUGh6azVCVWtmK0prTWJGcDBieGc9PSIsInZhbHVlIjoib3NteGpuUXdubmRHVWNhVGRxK2dMa3J2R1ZoYmFGZWpSZXdRRFN0ZVBWU2Jqb20vMzV3a3JMRmVNL0tkKy9HbEdZeXFwWWlxd2h5Ykc2c1QrTy9Ramp3eEtEeG1Fd1U1cHBsOHgwb1U4emlkM1NoVWwrdjJsZVhUTjUwdkt5NjIiLCJtYWMiOiJmMGFiNzYwMGUxYTgwMmVkNzBjZGRjMTRlMTFiMTFmY2I1YTc3Njk0YWEwNDU2NDgyNzE2YmVjMWNlYWQyODBhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
                             "name": ""
                         }
                     ]
@@ -1097,7 +1113,7 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "zqawsckqvavzfqgurgqecdubaitbvrchpevqlbxrgsbxydhqusdgstchilfovo",
+                                    "value": "fgjwujrbkoupapxwcdskoxlrdidcffkxodqxgojnbepvkbzivxwpnsrwzevsqolujqvzkreledoazdeuxgwckvkzummzsgopxektbaosirobggblmvqyplojklgkkxzgxfbpobegltjygeuvigeunwfkkavrgeptheplfsniilczdxxzhijkdkvyziqnhatpqvz",
                                     "type": "text"
                                 },
                                 {
@@ -1148,20 +1164,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6IjFnQ2VoZUl4L3hoeHhZNkduSDBHSVE9PSIsInZhbHVlIjoiNlB6SWUrVitCZGZQdWcxSUZDSkxWL0xqR1V3SDVwMUtlVjFua0Qwc0RZeUpMd2Fqck9tYW90cVBOMVV1dVJreWdJOGxzQk1vTmhMaGlodmsyUmlpdDFhQ1pYUnVRZXdaSnBJQTYzTUQ5MUZ3bGRXWndnWWYxdm5ZZVlWSGN5QUsiLCJtYWMiOiJiZWMxM2ZhZGYzYTBjZWVmZTJlZTRhODUxYjcwZTdjMDVhZmZhOGJmM2E4YTgyMzNiNTZlYTBmYzYyNzRlZTcyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkllQ0t3QXRHSTBQUzE5ZGVUUXcxeGc9PSIsInZhbHVlIjoiVzJ5VU1FSUVqY2VFNmVMV2U1cE5oNFNESlkvY0tWak84VGw0d21FN2VjKzArazVLSDFhZHF3aFZuYUQxb2lEQ1hCaGlBTXZIWHNUN3p2WXl0Qjl6c09tWm94REFGZXBOcU5PK2M2NCs1UDFYZkdFZ1R1Z1NSR1RtMlBrTU9aNUQiLCJtYWMiOiI1M2E4NjA4ZTE1ODJkNzM1ZTkwYmVhOTZjZDFlM2UzZTFiMDFkNDM5MmJhMDU1ZGM5MmM3YzU0MWYzODg2Yzc1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
                             "name": ""
                         }
                     ]
@@ -1178,7 +1194,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "6",
                                     "description": "The ID of the mail."
                                 }
                             ]
@@ -1205,20 +1221,20 @@
                         {
                             "header": [
                                 {
-                                    "key": "content-type",
-                                    "value": "text\/html; charset=UTF-8"
-                                },
-                                {
                                     "key": "cache-control",
                                     "value": "no-cache, private"
                                 },
                                 {
-                                    "key": "set-cookie",
-                                    "value": "XSRF-TOKEN=eyJpdiI6Im9EYm5uMTk2TGo3a1I0djlBM2FkVWc9PSIsInZhbHVlIjoiSGdWT3ZrejZTWHlNbmdzbWZ6aXFLT2QwTEVHcFlQdlpKRnlvRXpLdmFYdGpoSGhlOFp2K00vTE43WmZLZDJCY0xVOWphV0k2Y2s3eG52MSs4QzhYOGxBMWF0eG91azl6YzdlSWViSjhRMUIyRVJOY0ZyZG42T0ZSbUcrd0JhMEIiLCJtYWMiOiJjY2QwNDZlNDE1ODFmNDMyYTliZjRjYTRlZmY2ZGNlNWUyZDI1YjUxODhkNmU0OTdjZTQ4MDk4YzlhMzdhNmFhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; samesite=lax; laravel_session=eyJpdiI6IkpXVGtyeXQwVkpzaitxaGplY3IyekE9PSIsInZhbHVlIjoiN3cxdHcvcW5sdW4waG9XZUFyOUZMM2xTNnNHTkRlbVMrbzJhSnhOdFQ2ZXRxdEN2S1hlSExoZlFJSEpzYTJERDRwQUVXbnVjYTdHN292eiswNDVlKzZQS2xTOXB3RDdiN1dQWlVPZ01rVlhlTDVjQXJCUXE2V0o0SFNPMlVPVWMiLCJtYWMiOiIwZTAyYTQ1NzQzNGI0NzZmOWQ1YTQ4YmY2NDE4MTRkYzg5ZWEzNGJmOTk0MWI1NDZmY2Q1MThlMjNlMjljOTZjIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=\/; httponly; samesite=lax"
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
                                 }
                             ],
-                            "code": 200,
-                            "body": "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">\n    <title>Document<\/title>\n    <link rel=\"stylesheet\" href=\"\/\/localhost:8080\/css\/app.css\">\n<\/head>\n\n<body>\n    <div id=\"app\"><\/div>\n\n    <script src=\"\/\/localhost:8080\/js\/app.js\"><\/script>\n<\/body>\n\n<\/html>\n",
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
                             "name": ""
                         }
                     ]
@@ -1249,7 +1265,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"missouri10@example.com\",\"subject\":\"ncdnjequaltnivdkldlkruhvrqnehjbwisduuttafzlkqpvhypivikavyawpvigbofqkfbzssmiexlymnrpalkwxatstxqiccaohntlzvvmqycuuhgzsufkocygkvxfpuaaeuodvrpfbhiedtsfcpcnpwkmercphldlvpizynrxdgvcqakyslvqgzdxdtmbpzbrjyppmqtaeoijlyfuozagnjidksljwzyeloamjmfviypkrgscganr\",\"message\":\"velit\"}"
+                            "raw": "{\"to\":\"weber.marco@example.org\",\"subject\":\"ybcojeuproivzvnnfiiovvudbatbdgbczgkveucjjziomxqzgnggpqb\",\"message\":\"non\"}"
                         },
                         "description": ""
                     },
