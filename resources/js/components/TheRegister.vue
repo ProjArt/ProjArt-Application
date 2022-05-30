@@ -45,8 +45,8 @@ const submitHandler = async () => {
     });
     isLoading.value = false; */
 
-    OneSignal.push(function () {
-      OneSignal.getUserId(async function (userId) {
+    await OneSignal.push(async function () {
+      await OneSignal.getUserId(async function (userId) {
         console.log("OneSignal User ID:", userId);
 
         const r = await useFetch({
