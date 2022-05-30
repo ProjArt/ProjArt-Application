@@ -33,7 +33,8 @@ class User extends Authenticatable
         'email',
         'password',
         'card_money',
-        'gaps_id'
+        'gaps_id',
+        'onesignal_id',
     ];
 
     /**
@@ -145,15 +146,5 @@ class User extends Authenticatable
     public function events()
     {
         return $this->hasManyDeep(Event::class, ['calendar_user', Calendar::class]);
-    }
-
-
-
-
-    // NOTIFICATIONS
-
-    public function sendNotification()
-    {
-        $this->notify(new OneSignal()); //Pass the model data to the OneSignal Notificator
     }
 }
