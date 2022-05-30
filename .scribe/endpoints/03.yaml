@@ -64,42 +64,42 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: gvxkoirqqqo
+        example: fvnzvfbprsowrfmegfdeierzxhjoydktxhvomxybjt
         type: string
         custom: []
       description:
         name: description
         description: 'Must not be greater than 1000 characters.'
         required: true
-        example: frstbqpmltxtrblocjwylfkvhqnfqqxelsvsubydxkbnshyvbswvalgiluyxtbfgrlkdgedpiptookmdmojefllfkxohztyqwzgcmzvgeebfnzqptdzzlpzdxreclvdvaamgenraalbenvywryxjtvlbhetsnzsmvrwzowgjzfpwklbgwwbgwobgeyndadrssveniquufgshwaixhfgblrikvxuzuqcbvqztlfzfiywmygzhkvczxvkdkvwtdoqxcgplorsfrmhcduaurjvjjmonqfvuvnvxnkpinmhljcapxukhdbirfmadsaztaexrrvzvnffatzdrglfjfaadswxjhnjbddbioxfghbtklpjjviwkpxgzjkvgzfxintgcteyeisgfvhvgtpjsxkfzfdnoqpfcuxcsoilkrowrbcjhynbzjd
+        example: inntvsgwqpmgopsgajcplruooqdeoqcwhoitjugwpwxuyubachefzfipysklbdiyvfshgckraplbvcdgnkeskxcdmtmrxjqqvfsqujkoahtjhgivkkbiaeomrxshenpqffkxcigaseqqtqbfrhoshrhtgaqorngtyfacivvxhmexskjnlpvqsklunwxobnrkrnnqsejfsszowlqftphjuzukmxbafmllpinshqtlrrhvneymqegjbqxmpeqnlhfplepzuqaoqitfhrkwlwinegjpudpvbpkafhdlcznwhwkipjljjkgovondulzyzdmoqeemfzjhhzxroenryhfmsbirssxuxaflecdjrxkjnqmnicsrgfvxvobuxpfcufdwkyfkpcvdvesxdljwywfnymugpnzgvfoswktxiyqclpqowfyvzxupxvymdjrnqxqitjtyzshdukaqybxlgqswwsyqphwqxgjshtgstlxxawzaszuvsjtlbbpcrvjrqemnedlbfmdzbmietdbqbfrsiojkmlmdrizxrpumuiqirzzjpehbbozjcrioatjtomruquxfkwvxyfrlhsrfxdqbuxawutqipunwzranpajbhlhjliowsxeoaefntrlvpeqbxpjwuwzzkdzzrzdqhckdgadhqblqotfsllflngkmnprbybbuydxbaoikmjarluvdqjcfjktszdhigbcgaxzbaekhlobacndhllbiqzbtfcwcbbctk
         type: string
         custom: []
       start:
         name: start
         description: 'Must be a valid date.'
         required: true
-        example: '2022-05-29T17:37:37'
+        example: '2022-05-30T11:15:27'
         type: string
         custom: []
       end:
         name: end
         description: 'Must be a valid date.'
         required: true
-        example: '2022-05-29T17:37:37'
+        example: '2022-05-30T11:15:27'
         type: string
         custom: []
       location:
         name: location
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: snvxgqsmdxjdbssejzqylufajwhlcetspfvqgheitvhhgqxneseuifncsoercnpytzbbqsynpyuvwfgkckvvppihjqltydulkijizjpoclgtowdlspvuafadu
+        example: dbqnvafqqhbzabxwvhwpfnkoqyadrwxxgexxicbmjnqyfuzjakwtjkeuvhsyblbxvickdlsejlkhzwbmfvzzzurwrhiocrrislpoqdsnnnmrfgbjrwtnuqozauaeqccupvjxqnhulvubqpfqisbuj
         type: string
         custom: []
       calendar_id:
         name: calendar_id
         description: ''
         required: true
-        example: natus
+        example: ab
         type: string
         custom: []
     responses:
@@ -149,30 +149,12 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-
-          </html>
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IkV6QzI1UzJ1QjJrcENyQ1Q3NGdFU3c9PSIsInZhbHVlIjoiTDdzWHVuTVFXY3R3Vml5QWRudTNCWHV4ckM4alp2MTRaYWtLc2RIS2JYZktENmRNOEJpNEZseEFDR3pwNi9pWVdZVlA4eGkvYWpSOHk4SUlJUmFaTUJGNEEyOHVHT3FoTXNNajYvNGZjV3g1dnV2V1VSME1Ub2I0ODZLZWhkRm0iLCJtYWMiOiI5NDk0ZjU5MzllMzdkNzA4M2Q4MDFiZjJiMTQ2MGIxNThmYmMxYTYyN2UxODJjMTE5ZGIxMGNmMjU4OThmZjc2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6InVIWTdtbkpxUytyOTVvVktlekQ4cXc9PSIsInZhbHVlIjoiMzZMSm84NkdOdFJNSXE1bmJYNU5XZDhWQXRyWk9LMTIvR2h2VU1BVVgzSEREdjU0YUVMRjJOdmhLeFBEMVlFSmU3ZFN6YkkyZksyUmVMaEQ1d3hUOHorTThUMlpOVDQ2QmF5dTJrZVppdytDTGN0RXo1a3hzbnpEUERSc3ZQdU8iLCJtYWMiOiI1MDM2YjI1M2NmMzUzMmZlYTNjZGZkMjA4NGI5YTA0MzI2NjMyZjkzMjBhOWFhYWUyZDY5ZmJiOGEwYjg0YWJmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          access-control-allow-origin: '*'
         description: null
     responseFields: []
   -
@@ -203,35 +185,35 @@ endpoints:
         name: title
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: cliclcqxujmmgfttxfscvcguzmfhwgqgtygvrlxztwluueetrhsnguhtxlrgsnakbzwpzfdzdraxunnmzcmnenoojeomzdghlbylarckudibsmpuijivwgwrfwmfjqqlgub
+        example: nwpbrkwczkepsijmkmdjlsoxqoqktanycsivgjwfsvpgdegizvkuajudtdevtieimnwdrsahyyvigcwxjsuvhkuqykefnx
         type: string
         custom: []
       description:
         name: description
         description: 'Must not be greater than 1000 characters.'
         required: false
-        example: ibsppqahlnfgabnrieuovebzrsazigjlvytljfrfnpuaajnhfimnxsrnbgkwjlqqyiizg
+        example: wzgstycmkeckdhrfrcigvjvvcoqmmnxonzycneqvjqglccgzskankvmjelmvaambmqspgfeirqfnrcscdmaippeabuauknbyylotxqufvntzioizrpvljpeisvssubrjggbbdvodrpksuqhnsiwsojxkltabyudtzilfbcereuzymarjizxpcappzjzusbzchnxrrivszvuugwhvosksuoccgcwqlwinplwfocwlnqrnr
         type: string
         custom: []
       start:
         name: start
         description: 'Must be a valid date.'
         required: false
-        example: '2022-05-29T17:37:37'
+        example: '2022-05-30T11:15:27'
         type: string
         custom: []
       end:
         name: end
         description: 'Must be a valid date.'
         required: false
-        example: '2022-05-29T17:37:37'
+        example: '2022-05-30T11:15:27'
         type: string
         custom: []
       location:
         name: location
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: gdgsgmqqpxhhsptzgdocnjewobskzlffyotfsfgjjcetuxzzvpouotzippleuwalrvnjlhyfipmmhsmuzlfcqbwlsflrulycwdjgcbduosrbfdemlvmlpngunxcvvkbbmotwaecodjbwkcwffxpngfgosebbvtohoyenrnjfraylifjhbrrvkwmmqktfuupidoempbcwlusfttayvhlpnwzdtwciwvtrhyaraxxlotmfxehbiziwtr
+        example: lvhrobkaybhofgjvguvcxuicpxssauzcaebldcmzjpoqhjikcqnrqjrpqobdctmrjydakmejzxbmcjykfkkelhbhoeekkgspnmbhrcunnlgaatyzhpatwkwvjbsrmlfgpchwoftkdn
         type: string
         custom: []
     responses: []

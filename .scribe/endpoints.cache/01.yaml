@@ -21,30 +21,12 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-
-          </html>
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6ImVRTjAvQkxrZGViOFJEUnhPclp0cHc9PSIsInZhbHVlIjoiUjIrOSt3aU92Z2NBci9ITjNDYmI0RTRtMTM0Y3JkLyszT21rQ3ZMWmtSdTNqVGVUd1RPRjBOMEtmb0FTakZ3WFhWNEdkbXJ4TllrRGQ0TjBhZzhCTzVBZlJPZFJ3TXgxdlFUYlVWSTAxbUpvNmhublc1L1FTUTZFUy8vblNoSCsiLCJtYWMiOiI3Zjc5ZGE1ZDIwNGJiZjNmMTM4NjhiZDlkODE0NjAxOWE2ZWQzNGFmMTMzYzgzZGJkZDZkMDA4N2VjMTkxMDc0IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkxXOHBLaE1uVHRxMko4ZnNnM3VyelE9PSIsInZhbHVlIjoieXBpOW5sYnBPZ0JRYXBPalVKaVdyYlZGdGhQak10YkhtV0s5VXhKTFFhcm5zMm5XcUhab1JRZVlJRmc3RUgwaDdSbnUyTFJSUlFERzRhWlhCZE9qUmQyL3FqYW1FdXhPeEFzRmpaaHZHdXlVWUIyK0pSNlhWSU44RWNoL1JxMVIiLCJtYWMiOiJiMzcwMzVjM2JlODkwNjM3NTAyZDI3YzQ3YzZhZTU4ODNkYzM5ODhmN2NmYzk3YzNiZmQ5ODI2Yzk1MzQ3NDAwIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          access-control-allow-origin: '*'
         description: null
     responseFields: []
   -
@@ -66,29 +48,13 @@ endpoints:
     responses:
       -
         status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-
-          </html>
+        content: '{"success":true,"message":"Classroom","data":{"classrooms":[{"name":"M49-1","total_persons":0,"users":[]}]}}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6InEzZEhBRzZ6WlJ4RnVad01OOTFtdnc9PSIsInZhbHVlIjoiTWlyMlBqNW9SenpaRHBwWjhIUzRRdkxtTnRUd2ZvUS84cVFBcTlGMlJWcHZqNkRVOWlrK2F3dlduQVFOZTJhVGw5R3YrQzFHbElnMzRLMmg0RFlMTGp2QUZXNmZOZWZOYUFnTGRSMUtVYk4rOFZPeEhHakx5eGZudnZhVTlLdmgiLCJtYWMiOiI0ODViMjNkMzRhNGNmM2VkNTgwNGViNjg3MDM2ZTZjYWE1NGQ5Y2NhYzVjNDIyOTJkM2ExMWNiNjFkOWJmMTA4IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Ijd0VDN0N2F5RnRhZXlFVHJTbG9KYWc9PSIsInZhbHVlIjoiVS9aT1htUFF1cmx1eG9zM2hUTUp5VVpSN2diY3JpUWJPK0hzYStFUjlTMVZCTE00WVhBdGRWQ1psOTdNcTl2MERJK1Q5WFV3R2wzL1hTeEo2TUdJb2poVGE3M2JyZ3hwL0N0Zlp3TGY0dmcvYXJKdkVmZ2pBa1YvQVpRZzB3alIiLCJtYWMiOiJiOTY1ZDFkNDU5MWY1YTA0ZTJiMDVlZGY5YjNlZTA5MWQwNjE3NjJiM2ZlYWEyZDgzYmJmYWQ4MjhlNTQxMDZmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          x-ratelimit-limit: '60'
+          x-ratelimit-remaining: '58'
+          access-control-allow-origin: '*'
         description: null
     responseFields: []
   -
@@ -111,7 +77,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: rfvfvjzrpvpqsrivdwtoyegntqttvvmojofjfmprdtvysm
+        example: qfbmqzsuthbrggjleiqypaicvsxasbhqwexgbkjfhmownpvjfbhqakeklneeefwrkgdyfjmgycaioiuhmgskzcuafyvgycp
         type: string
         custom: []
     responses: []
@@ -134,30 +100,12 @@ endpoints:
     bodyParameters: []
     responses:
       -
-        status: 200
-        content: |
-          <!DOCTYPE html>
-          <html lang="en">
-
-          <head>
-              <meta charset="UTF-8">
-              <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <meta http-equiv="X-UA-Compatible" content="ie=edge">
-              <title>Document</title>
-              <link rel="stylesheet" href="//localhost:8080/css/app.css">
-          </head>
-
-          <body>
-              <div id="app"></div>
-
-              <script src="//localhost:8080/js/app.js"></script>
-          </body>
-
-          </html>
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
-          set-cookie: 'XSRF-TOKEN=eyJpdiI6IktmV3VLMlZKTjB2cVVjMk9VcVBUOXc9PSIsInZhbHVlIjoiaUZzZi9meXl2akYvNE1XekVGK3kvQWVzeVJuSHVCWVovS1c1di9KYWZMdzVKYjlLQ3kyTVg1YThhUDhPaFVqaE9VYWhuYkM3VlVXNUl1RmQxRFZhcUN6OGE0QnhQT0lUZklicE8yQThmc3V5QXdQK3I0Z1ZoRzBTOFQ3OC81Z2kiLCJtYWMiOiJlMDBlYzM1YjY2NWYwOTMyMDA1MzdlOTBmYzc3MjkzMmQxOTFlNTE4OTIyYmI4OTc1OWM4NmFlYzQwNGYwZTgxIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IlZIYjU0NmYxTEt1ZXJML2s2UmpJdFE9PSIsInZhbHVlIjoiWndldlliUTVRWDRGeFluQlhXaEJQdjgyallGdmI1bi93NWNLNXhKWE0wK2N2TXJnOUI1TG16WEdkdkRweVFVTy93T2pQMkNacUpkbUdiK0YvWklNeVdWOEYwcUR3QkZaK0RSUEIwUUk5eGdFTlJwb3E4c1pkRDlFQ2ZzVXhnWTAiLCJtYWMiOiJhMmU2YTE2YjE1ZTA2NTIwY2FlNmQ0ZDJmNjQ2YzNhMzc2MThkMDE3ZWUwNDM1YjczZWY1NjY1NmYzZjhmNjc3IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+          content-type: application/json
+          access-control-allow-origin: '*'
         description: null
     responseFields: []
   -
@@ -178,7 +126,7 @@ endpoints:
         name: token
         description: ''
         required: true
-        example: suscipit
+        example: maiores
         type: string
         custom: []
     queryParameters: []
