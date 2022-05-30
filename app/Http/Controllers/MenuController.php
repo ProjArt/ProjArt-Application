@@ -56,7 +56,7 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $meals = Meal::with('menu')
+        $meals = Meal::join('menus', 'menus.id', '=', 'meals.menu_id')->orderBy('date', 'desc')
             ->get()
             ->groupBy(function ($meal) {
                 return \Carbon\Carbon::parse($meal->date)->format("Y-m-d");

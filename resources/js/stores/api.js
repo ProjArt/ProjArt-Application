@@ -1,6 +1,4 @@
 import api from "../../../public/docs/collection.json";
-// const API_URL = "http://localhost:8000/api/";
-// const BASE_URL = "http://localhost:8000/";
 
 /**
  * API contain every routes of the API each route is an object with the following properties:
@@ -14,25 +12,14 @@ import api from "../../../public/docs/collection.json";
 export const API = {};
 const API_URL = getUrl() + "api/";
 const BASE_URL = getUrl();
-// console.log({ api_url, base_url });
 
 /**
  * Get and transform the api url to an usable url
  * @returns {string} the app url
  */
 function getUrl() {
-    const url = api.variable[0].value;
-    const urlParts = url.split("/");
-    const newUrl = urlParts.map((part, key) => {
-        if (key === urlParts.length - 1) {
-            return `:${part}/`;
-        } else if (key === urlParts.length - 2) {
-            return part;
-        } else {
-            return part + "/";
-        }
-    });
-    return newUrl.join("");
+    console.log(api.variable[0].value + "/");
+    return api.variable[0].value + "/";
 }
 
 /**
@@ -64,9 +51,9 @@ function createFunction(route) {
         group.item.forEach((route) => {
             let name = route.name.split(" ").map((word, index) => {
                 word = word.toLowerCase();
-                return index === 0
-                    ? word
-                    : word.charAt(0).toUpperCase() + word.slice(1);
+                return index === 0 ?
+                    word :
+                    word.charAt(0).toUpperCase() + word.slice(1);
             });
             name = name.join("");
             API[name] = {

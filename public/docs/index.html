@@ -27,7 +27,7 @@
             </style>
 
     <script>
-        var baseUrl = "http://localhost/8000";
+        var baseUrl = "http://localhost:8000";
         var useCsrf = Boolean();
         var csrfUrl = "/sanctum/csrf-cookie";
     </script>
@@ -72,6 +72,16 @@
                                                 </ul>
                     
                     <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="absences">
+                    <a href="#absences">Absences</a>
+                </li>
+                                    <ul id="tocify-subheader-absences" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="absences-GETapi-absences">
+                        <a href="#absences-GETapi-absences">Get absences</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="authentication">
                     <a href="#authentication">Authentication</a>
                 </li>
@@ -90,29 +100,26 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-3" class="tocify-header">
+                    <ul id="tocify-header-4" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="autres">
                     <a href="#autres">Autres</a>
                 </li>
                                     <ul id="tocify-subheader-autres" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="autres-GETapi-update-gaps-absences">
-                        <a href="#autres-GETapi-update-gaps-absences">GET api/update/gaps/absences</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="autres-GETapi-classrooms">
+                                                    <li class="tocify-item level-2" data-unique="autres-GETapi-classrooms">
                         <a href="#autres-GETapi-classrooms">Display a listing of the resource.</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="autres-GETapi-update-gaps-absences">
+                        <a href="#autres-GETapi-update-gaps-absences">GET api/update/gaps/absences</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="autres-POSTapi-classrooms-setUser">
                         <a href="#autres-POSTapi-classrooms-setUser">POST api/classrooms/setUser</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="autres-GETapi-absences">
-                        <a href="#autres-GETapi-absences">GET api/absences</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="autres-POSTapi-telegram--token-">
                         <a href="#autres-POSTapi-telegram--token-">POST api/telegram/{token}</a>
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-4" class="tocify-header">
+                    <ul id="tocify-header-5" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="calendrier">
                     <a href="#calendrier">Calendrier</a>
                 </li>
@@ -137,7 +144,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-5" class="tocify-header">
+                    <ul id="tocify-header-6" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="evenements">
                     <a href="#evenements">Evènements</a>
                 </li>
@@ -159,16 +166,13 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-6" class="tocify-header">
+                    <ul id="tocify-header-7" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="gaps">
                     <a href="#gaps">Gaps</a>
                 </li>
                                     <ul id="tocify-subheader-gaps" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="gaps-GETapi-update-gaps-events">
                         <a href="#gaps-GETapi-update-gaps-events">GET api/update/gaps/events</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="gaps-GETapi-update-gaps--token-">
-                        <a href="#gaps-GETapi-update-gaps--token-">GET api/update/gaps/{token}</a>
                     </li>
                                     <li class="tocify-item level-2" data-unique="gaps-GETapi-update-gaps-marks">
                         <a href="#gaps-GETapi-update-gaps-marks">GET api/update/gaps/marks</a>
@@ -179,9 +183,12 @@
                                     <li class="tocify-item level-2" data-unique="gaps-POSTapi-calendars-import">
                         <a href="#gaps-POSTapi-calendars-import">POST api/calendars/import</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="gaps-GETapi-update-gaps--token-">
+                        <a href="#gaps-GETapi-update-gaps--token-">GET api/update/gaps/{token}</a>
+                    </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-7" class="tocify-header">
+                    <ul id="tocify-header-8" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="mail">
                     <a href="#mail">Mail</a>
                 </li>
@@ -197,7 +204,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-8" class="tocify-header">
+                    <ul id="tocify-header-9" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="menu-de-la-caf">
                     <a href="#menu-de-la-caf">Menu de la caf</a>
                 </li>
@@ -207,7 +214,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-9" class="tocify-header">
+                    <ul id="tocify-header-10" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="notes">
                     <a href="#notes">Notes</a>
                 </li>
@@ -227,7 +234,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 29 2022</li>
+        <li>Last updated: May 30 2022</li>
     </ul>
 </div>
 
@@ -241,10 +248,140 @@ You can switch the language used with the tabs at the top right (or from the nav
 <blockquote>
 <p>Base URL</p>
 </blockquote>
-<pre><code class="language-yaml">http://localhost/8000</code></pre>
+<pre><code class="language-yaml">http://localhost:8000</code></pre>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
+
+        <h1 id="absences">Absences</h1>
+
+    <p>APIs pour gérer les absences</p>
+
+            <h2 id="absences-GETapi-absences">Get absences</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Retourne un json contenant une liste des absences.</p>
+
+<span id="example-requests-GETapi-absences">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/absences" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer {{token}}"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/absences"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {{token}}",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/absences',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+            'Authorization' =&gt; 'Bearer {{token}}',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-absences">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-absences" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-absences"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-absences"></code></pre>
+</span>
+<span id="execution-error-GETapi-absences" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-absences"></code></pre>
+</span>
+<form id="form-GETapi-absences" data-method="GET"
+      data-path="api/absences"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-absences', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-absences"
+                    onclick="tryItOut('GETapi-absences');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-absences"
+                    onclick="cancelTryOut('GETapi-absences');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-absences" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/absences</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-absences" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-absences"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
         <h1 id="authentication">Authentication</h1>
 
@@ -264,21 +401,21 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/8000/api/login" \
+    "http://localhost:8000/api/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"username\": \"quam\",
-    \"password\": \"quam\",
-    \"classroom_name\": \"xehfyicneoqaiotoeiifigvxfvctaicvyriaqxkhpmhcynraihssvvlya\"
+    \"username\": \"at\",
+    \"password\": \"consequatur\",
+    \"classroom_name\": \"ljhfhjxdsloqhmtsjnycdfnhzsbvvqbyycbcur\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/login"
+    "http://localhost:8000/api/login"
 );
 
 const headers = {
@@ -288,9 +425,9 @@ const headers = {
 };
 
 let body = {
-    "username": "quam",
-    "password": "quam",
-    "classroom_name": "xehfyicneoqaiotoeiifigvxfvctaicvyriaqxkhpmhcynraihssvvlya"
+    "username": "at",
+    "password": "consequatur",
+    "classroom_name": "ljhfhjxdsloqhmtsjnycdfnhzsbvvqbyycbcur"
 };
 
 fetch(url, {
@@ -303,7 +440,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://localhost/8000/api/login',
+    'http://localhost:8000/api/login',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -311,9 +448,9 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'username' =&gt; 'quam',
-            'password' =&gt; 'quam',
-            'classroom_name' =&gt; 'xehfyicneoqaiotoeiifigvxfvctaicvyriaqxkhpmhcynraihssvvlya',
+            'username' =&gt; 'at',
+            'password' =&gt; 'consequatur',
+            'classroom_name' =&gt; 'ljhfhjxdsloqhmtsjnycdfnhzsbvvqbyycbcur',
         ],
     ]
 );
@@ -377,7 +514,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-login"
-               value="quam"
+               value="at"
                data-component="body" hidden>
     <br>
 <p>The Gaps username of the user.</p>
@@ -387,7 +524,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="quam"
+               value="consequatur"
                data-component="body" hidden>
     <br>
 <p>The Gaps password of the user.</p>
@@ -397,7 +534,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="classroom_name"
                data-endpoint="POSTapi-login"
-               value="xehfyicneoqaiotoeiifigvxfvctaicvyriaqxkhpmhcynraihssvvlya"
+               value="ljhfhjxdsloqhmtsjnycdfnhzsbvvqbyycbcur"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -418,21 +555,21 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/8000/api/register" \
+    "http://localhost:8000/api/register" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"username\": \"natus\",
-    \"password\": \"nihil\",
-    \"classroom_name\": \"sit\"
+    \"username\": \"sed\",
+    \"password\": \"eum\",
+    \"classroom_name\": \"qui\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/register"
+    "http://localhost:8000/api/register"
 );
 
 const headers = {
@@ -442,9 +579,9 @@ const headers = {
 };
 
 let body = {
-    "username": "natus",
-    "password": "nihil",
-    "classroom_name": "sit"
+    "username": "sed",
+    "password": "eum",
+    "classroom_name": "qui"
 };
 
 fetch(url, {
@@ -457,7 +594,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://localhost/8000/api/register',
+    'http://localhost:8000/api/register',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -465,9 +602,9 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'username' =&gt; 'natus',
-            'password' =&gt; 'nihil',
-            'classroom_name' =&gt; 'sit',
+            'username' =&gt; 'sed',
+            'password' =&gt; 'eum',
+            'classroom_name' =&gt; 'qui',
         ],
     ]
 );
@@ -531,7 +668,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-register"
-               value="natus"
+               value="sed"
                data-component="body" hidden>
     <br>
 <p>The Gaps username of the user.</p>
@@ -541,7 +678,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="nihil"
+               value="eum"
                data-component="body" hidden>
     <br>
 <p>The Gaps password of the user.</p>
@@ -551,7 +688,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="classroom_name"
                data-endpoint="POSTapi-register"
-               value="sit"
+               value="qui"
                data-component="body" hidden>
     <br>
 <p>The class of the user.</p>
@@ -572,7 +709,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/me" \
+    --get "http://localhost:8000/api/me" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -580,7 +717,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/me"
+    "http://localhost:8000/api/me"
 );
 
 const headers = {
@@ -598,7 +735,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/me',
+    'http://localhost:8000/api/me',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -614,37 +751,25 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-me">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6Imw5RkVjNzN3a1dFamNZbjdKQUloMmc9PSIsInZhbHVlIjoiNTByMXFpUXNDTjBTQ0FYWUpEL09aUWlkNy9yQ29YbXhaZzh2ZFM1UE1tOWoyVWpaaitCdHFub2ZpM01TbG9iRU01V2dIdWtuU3Uvckw3Mk5SR3dYVmNQeUdZUk9WSVRNZGJHVmpMUmZKbDNJVW91SmlBUFlJR0Z4WHFMMk5UMFkiLCJtYWMiOiJkMWZiNWMxNWQ5NzA0NDBmNDU5MGQwYjUwNWIxYTA3YTNjYjJhNDQ0ZTY1MzYyZmEwOWVhNTRjMzkyNzRjNTNkIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Ii9Tck13L0pYUHlFcUpnWUduaU9hVUE9PSIsInZhbHVlIjoiK0tlVFQwR1FVS3g3U2hKeStmbUIvdkRZQnU5bjJqZjdoc25BTUdETDRqRWF5eW5NSU9WSm9mQS9Ua25OcDFwamt6OXh4cmVmUTc1WTNLUmN3YStCR2U2VDV5WUtTUkJFSUcrOXdXT0xDNUZySzRiNlF0WG9aZTA2bVVNRUlxaXEiLCJtYWMiOiJmMTg0ZTRkZjg1MTI5OWM3YWY2NThkNzYwZTBkNGIxMGM1ZDc0YmMzOTQ4YTkzNTI3ZmRmOTAyZWRkMzc5ZDZhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-me" hidden>
@@ -710,7 +835,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Imw5RkVjNzN3a1dFamNZbjdKQUloMmc9PSIsInZhbHVlIjoiN
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/logout" \
+    --get "http://localhost:8000/api/logout" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -718,7 +843,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Imw5RkVjNzN3a1dFamNZbjdKQUloMmc9PSIsInZhbHVlIjoiN
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/logout"
+    "http://localhost:8000/api/logout"
 );
 
 const headers = {
@@ -736,7 +861,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/logout',
+    'http://localhost:8000/api/logout',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -752,37 +877,25 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-logout">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6InhoRDBLOEx1Mm1PVWp6R1RieWtON2c9PSIsInZhbHVlIjoiZ2VLb1J3OFB1OEdkTW4vcFFlSjNabHhVcjU4d1J5eUg0UldtZmcrbVRjbFlBZDY4WS91USswMjFRbkNmeWJjSFFtL2NMcCtUQ2VyTVJoRFBlQTZSUGVyMGZmUkVGbHkxdGdPVWt0N3ZRcHgyaStlbkFLV2MwZzZvSnJjM0ZrdG8iLCJtYWMiOiI4ODM5MmJiMzkzNDkwZmRhNzdjODdlY2JlZGY2YzNmYmY3N2Y5NjM0MzEzYjFiZDJiM2UzMDA3NTFhNTgwNzVmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6InpKQUdqbS9GbjZvK2pNVURjZ2xYR2c9PSIsInZhbHVlIjoidlhURkg0VFF2MVBhRDZjU3piazc5ZldhTDlRSlJBTlpQaElsNVE4WVFHWjFMazAvbUt4ekJRU2xsdjRsNUZXRjdEeHpaVFJxYm9zeUQwNnRpRUxtendLWGN5VmRyYlBZeDBuUWgvMjY2bzhUdHBwSExzcjNlR09LaXlPOTQ5ZlMiLCJtYWMiOiJmNWI3Yzk0MDBmNDZmNTAyODc0ZTVmNzRjNGFlOWRmZWI1MDMyNGIxZmQzYWJkNGZmMzY5YmNkYzgwZTI0YzRlIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-logout" hidden>
@@ -838,144 +951,6 @@ set-cookie: XSRF-TOKEN=eyJpdiI6InhoRDBLOEx1Mm1PVWp6R1RieWtON2c9PSIsInZhbHVlIjoiZ
 
     
 
-            <h2 id="autres-GETapi-update-gaps-absences">GET api/update/gaps/absences</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-update-gaps-absences">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/update/gaps/absences" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer {{token}}"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/update/gaps/absences"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer {{token}}",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;get(
-    'http://localhost/8000/api/update/gaps/absences',
-    [
-        'headers' =&gt; [
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-            'Authorization' =&gt; 'Bearer {{token}}',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-update-gaps-absences">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6ImVRTjAvQkxrZGViOFJEUnhPclp0cHc9PSIsInZhbHVlIjoiUjIrOSt3aU92Z2NBci9ITjNDYmI0RTRtMTM0Y3JkLyszT21rQ3ZMWmtSdTNqVGVUd1RPRjBOMEtmb0FTakZ3WFhWNEdkbXJ4TllrRGQ0TjBhZzhCTzVBZlJPZFJ3TXgxdlFUYlVWSTAxbUpvNmhublc1L1FTUTZFUy8vblNoSCsiLCJtYWMiOiI3Zjc5ZGE1ZDIwNGJiZjNmMTM4NjhiZDlkODE0NjAxOWE2ZWQzNGFmMTMzYzgzZGJkZDZkMDA4N2VjMTkxMDc0IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkxXOHBLaE1uVHRxMko4ZnNnM3VyelE9PSIsInZhbHVlIjoieXBpOW5sYnBPZ0JRYXBPalVKaVdyYlZGdGhQak10YkhtV0s5VXhKTFFhcm5zMm5XcUhab1JRZVlJRmc3RUgwaDdSbnUyTFJSUlFERzRhWlhCZE9qUmQyL3FqYW1FdXhPeEFzRmpaaHZHdXlVWUIyK0pSNlhWSU44RWNoL1JxMVIiLCJtYWMiOiJiMzcwMzVjM2JlODkwNjM3NTAyZDI3YzQ3YzZhZTU4ODNkYzM5ODhmN2NmYzk3YzNiZmQ5ODI2Yzk1MzQ3NDAwIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-update-gaps-absences" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-update-gaps-absences"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-update-gaps-absences"></code></pre>
-</span>
-<span id="execution-error-GETapi-update-gaps-absences" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-update-gaps-absences"></code></pre>
-</span>
-<form id="form-GETapi-update-gaps-absences" data-method="GET"
-      data-path="api/update/gaps/absences"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps-absences', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-update-gaps-absences"
-                    onclick="tryItOut('GETapi-update-gaps-absences');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-update-gaps-absences"
-                    onclick="cancelTryOut('GETapi-update-gaps-absences');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-update-gaps-absences" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/update/gaps/absences</code></b>
-        </p>
-                <p>
-            <label id="auth-GETapi-update-gaps-absences" hidden>Authorization header:
-                <b><code>Bearer </code></b><input type="text"
-                                                                name="Authorization"
-                                                                data-prefix="Bearer "
-                                                                data-endpoint="GETapi-update-gaps-absences"
-                                                                data-component="header"></label>
-        </p>
-                </form>
-
             <h2 id="autres-GETapi-classrooms">Display a listing of the resource.</h2>
 
 <p>
@@ -990,7 +965,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6ImVRTjAvQkxrZGViOFJEUnhPclp0cHc9PSIsInZhbHVlIjoiU
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/classrooms" \
+    --get "http://localhost:8000/api/classrooms" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -998,7 +973,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6ImVRTjAvQkxrZGViOFJEUnhPclp0cHc9PSIsInZhbHVlIjoiU
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/classrooms"
+    "http://localhost:8000/api/classrooms"
 );
 
 const headers = {
@@ -1016,7 +991,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/classrooms',
+    'http://localhost:8000/api/classrooms',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1038,31 +1013,21 @@ print_r(json_decode((string) $body));</code></pre></div>
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6InEzZEhBRzZ6WlJ4RnVad01OOTFtdnc9PSIsInZhbHVlIjoiTWlyMlBqNW9SenpaRHBwWjhIUzRRdkxtTnRUd2ZvUS84cVFBcTlGMlJWcHZqNkRVOWlrK2F3dlduQVFOZTJhVGw5R3YrQzFHbElnMzRLMmg0RFlMTGp2QUZXNmZOZWZOYUFnTGRSMUtVYk4rOFZPeEhHakx5eGZudnZhVTlLdmgiLCJtYWMiOiI0ODViMjNkMzRhNGNmM2VkNTgwNGViNjg3MDM2ZTZjYWE1NGQ5Y2NhYzVjNDIyOTJkM2ExMWNiNjFkOWJmMTA4IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Ijd0VDN0N2F5RnRhZXlFVHJTbG9KYWc9PSIsInZhbHVlIjoiVS9aT1htUFF1cmx1eG9zM2hUTUp5VVpSN2diY3JpUWJPK0hzYStFUjlTMVZCTE00WVhBdGRWQ1psOTdNcTl2MERJK1Q5WFV3R2wzL1hTeEo2TUdJb2poVGE3M2JyZ3hwL0N0Zlp3TGY0dmcvYXJKdkVmZ2pBa1YvQVpRZzB3alIiLCJtYWMiOiJiOTY1ZDFkNDU5MWY1YTA0ZTJiMDVlZGY5YjNlZTA5MWQwNjE3NjJiM2ZlYWEyZDgzYmJmYWQ4MjhlNTQxMDZmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 59
+access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
+<code class="language-json">{
+    &quot;success&quot;: true,
+    &quot;message&quot;: &quot;Classroom&quot;,
+    &quot;data&quot;: {
+        &quot;classrooms&quot;: []
+    }
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-classrooms" hidden>
@@ -1114,6 +1079,132 @@ set-cookie: XSRF-TOKEN=eyJpdiI6InEzZEhBRzZ6WlJ4RnVad01OOTFtdnc9PSIsInZhbHVlIjoiT
         </p>
                 </form>
 
+            <h2 id="autres-GETapi-update-gaps-absences">GET api/update/gaps/absences</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-update-gaps-absences">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/update/gaps/absences" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer {{token}}"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/update/gaps/absences"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {{token}}",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/update/gaps/absences',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+            'Authorization' =&gt; 'Bearer {{token}}',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-update-gaps-absences">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-update-gaps-absences" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-update-gaps-absences"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-update-gaps-absences"></code></pre>
+</span>
+<span id="execution-error-GETapi-update-gaps-absences" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-update-gaps-absences"></code></pre>
+</span>
+<form id="form-GETapi-update-gaps-absences" data-method="GET"
+      data-path="api/update/gaps/absences"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps-absences', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-update-gaps-absences"
+                    onclick="tryItOut('GETapi-update-gaps-absences');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-update-gaps-absences"
+                    onclick="cancelTryOut('GETapi-update-gaps-absences');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-update-gaps-absences" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/update/gaps/absences</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-update-gaps-absences" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-update-gaps-absences"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
             <h2 id="autres-POSTapi-classrooms-setUser">POST api/classrooms/setUser</h2>
 
 <p>
@@ -1128,19 +1219,19 @@ set-cookie: XSRF-TOKEN=eyJpdiI6InEzZEhBRzZ6WlJ4RnVad01OOTFtdnc9PSIsInZhbHVlIjoiT
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/8000/api/classrooms/setUser" \
+    "http://localhost:8000/api/classrooms/setUser" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"name\": \"rfvfvjzrpvpqsrivdwtoyegntqttvvmojofjfmprdtvysm\"
+    \"name\": \"mzerffgizpukzvljwzbsrqrhxslircuirvyogaxjdfxidubsijzrcmniyydmitsvowtvmhnqabndefkcygamohktrjigqrmpzktlrrifossnnnybawvkphiixrdmlvmkxapnmrwkwl\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/classrooms/setUser"
+    "http://localhost:8000/api/classrooms/setUser"
 );
 
 const headers = {
@@ -1150,7 +1241,7 @@ const headers = {
 };
 
 let body = {
-    "name": "rfvfvjzrpvpqsrivdwtoyegntqttvvmojofjfmprdtvysm"
+    "name": "mzerffgizpukzvljwzbsrqrhxslircuirvyogaxjdfxidubsijzrcmniyydmitsvowtvmhnqabndefkcygamohktrjigqrmpzktlrrifossnnnybawvkphiixrdmlvmkxapnmrwkwl"
 };
 
 fetch(url, {
@@ -1163,7 +1254,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://localhost/8000/api/classrooms/setUser',
+    'http://localhost:8000/api/classrooms/setUser',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1171,7 +1262,7 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'name' =&gt; 'rfvfvjzrpvpqsrivdwtoyegntqttvvmojofjfmprdtvysm',
+            'name' =&gt; 'mzerffgizpukzvljwzbsrqrhxslircuirvyogaxjdfxidubsijzrcmniyydmitsvowtvmhnqabndefkcygamohktrjigqrmpzktlrrifossnnnybawvkphiixrdmlvmkxapnmrwkwl',
         ],
     ]
 );
@@ -1235,150 +1326,12 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-classrooms-setUser"
-               value="rfvfvjzrpvpqsrivdwtoyegntqttvvmojofjfmprdtvysm"
+               value="mzerffgizpukzvljwzbsrqrhxslircuirvyogaxjdfxidubsijzrcmniyydmitsvowtvmhnqabndefkcygamohktrjigqrmpzktlrrifossnnnybawvkphiixrdmlvmkxapnmrwkwl"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
         </p>
         </form>
-
-            <h2 id="autres-GETapi-absences">GET api/absences</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-absences">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/absences" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer {{token}}"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/absences"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer {{token}}",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;get(
-    'http://localhost/8000/api/absences',
-    [
-        'headers' =&gt; [
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-            'Authorization' =&gt; 'Bearer {{token}}',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-absences">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IktmV3VLMlZKTjB2cVVjMk9VcVBUOXc9PSIsInZhbHVlIjoiaUZzZi9meXl2akYvNE1XekVGK3kvQWVzeVJuSHVCWVovS1c1di9KYWZMdzVKYjlLQ3kyTVg1YThhUDhPaFVqaE9VYWhuYkM3VlVXNUl1RmQxRFZhcUN6OGE0QnhQT0lUZklicE8yQThmc3V5QXdQK3I0Z1ZoRzBTOFQ3OC81Z2kiLCJtYWMiOiJlMDBlYzM1YjY2NWYwOTMyMDA1MzdlOTBmYzc3MjkzMmQxOTFlNTE4OTIyYmI4OTc1OWM4NmFlYzQwNGYwZTgxIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IlZIYjU0NmYxTEt1ZXJML2s2UmpJdFE9PSIsInZhbHVlIjoiWndldlliUTVRWDRGeFluQlhXaEJQdjgyallGdmI1bi93NWNLNXhKWE0wK2N2TXJnOUI1TG16WEdkdkRweVFVTy93T2pQMkNacUpkbUdiK0YvWklNeVdWOEYwcUR3QkZaK0RSUEIwUUk5eGdFTlJwb3E4c1pkRDlFQ2ZzVXhnWTAiLCJtYWMiOiJhMmU2YTE2YjE1ZTA2NTIwY2FlNmQ0ZDJmNjQ2YzNhMzc2MThkMDE3ZWUwNDM1YjczZWY1NjY1NmYzZjhmNjc3IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-absences" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-absences"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-absences"></code></pre>
-</span>
-<span id="execution-error-GETapi-absences" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-absences"></code></pre>
-</span>
-<form id="form-GETapi-absences" data-method="GET"
-      data-path="api/absences"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-absences', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-absences"
-                    onclick="tryItOut('GETapi-absences');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-absences"
-                    onclick="cancelTryOut('GETapi-absences');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-absences" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/absences</code></b>
-        </p>
-                <p>
-            <label id="auth-GETapi-absences" hidden>Authorization header:
-                <b><code>Bearer </code></b><input type="text"
-                                                                name="Authorization"
-                                                                data-prefix="Bearer "
-                                                                data-endpoint="GETapi-absences"
-                                                                data-component="header"></label>
-        </p>
-                </form>
 
             <h2 id="autres-POSTapi-telegram--token-">POST api/telegram/{token}</h2>
 
@@ -1394,7 +1347,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IktmV3VLMlZKTjB2cVVjMk9VcVBUOXc9PSIsInZhbHVlIjoia
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/8000/api/telegram/suscipit" \
+    "http://localhost:8000/api/telegram/5531545475:AAFTPbgpcDrRrKnBOf_hYhibJK_HKqW_ED4" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -1402,7 +1355,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IktmV3VLMlZKTjB2cVVjMk9VcVBUOXc9PSIsInZhbHVlIjoia
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/telegram/suscipit"
+    "http://localhost:8000/api/telegram/5531545475:AAFTPbgpcDrRrKnBOf_hYhibJK_HKqW_ED4"
 );
 
 const headers = {
@@ -1420,7 +1373,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://localhost/8000/api/telegram/suscipit',
+    'http://localhost:8000/api/telegram/5531545475:AAFTPbgpcDrRrKnBOf_hYhibJK_HKqW_ED4',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1489,7 +1442,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="token"
                data-endpoint="POSTapi-telegram--token-"
-               value="suscipit"
+               value="5531545475:AAFTPbgpcDrRrKnBOf_hYhibJK_HKqW_ED4"
                data-component="url" hidden>
     <br>
 
@@ -1514,7 +1467,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/calendars" \
+    --get "http://localhost:8000/api/calendars" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -1522,7 +1475,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/calendars"
+    "http://localhost:8000/api/calendars"
 );
 
 const headers = {
@@ -1540,7 +1493,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/calendars',
+    'http://localhost:8000/api/calendars',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1640,19 +1593,19 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/8000/api/calendars" \
+    "http://localhost:8000/api/calendars" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"name\": \"sfjolxvjlwoysvlhhjprpfamvhmwfvhcgnejqcikwvlfmielgqhbelbddaudmxbqyaiwuqivymssjnockquenpyczxknsnpyzaulwiophlmlxosvkjeddncwemcsavukf\"
+    \"name\": \"qatwmwegsbsbuqbjvcnfmgtatzqaoqluxgrdlqmmynpkgvgiumuchgtwepkahhkcrexanyhrfbujdlatzeuyvdzbdmjkbgzwxchzdnfesywnozlscrmyravkunteklzxzcgnmidxzxdwxfxiawkecudqnldiwqckbqrjdeucxnvdefaackgezveakvqoopbumgcactrvvrjrtsieyupznuccgwqbcxzpjniuwicfznvrvofkodkuvkfbbuxloj\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/calendars"
+    "http://localhost:8000/api/calendars"
 );
 
 const headers = {
@@ -1662,7 +1615,7 @@ const headers = {
 };
 
 let body = {
-    "name": "sfjolxvjlwoysvlhhjprpfamvhmwfvhcgnejqcikwvlfmielgqhbelbddaudmxbqyaiwuqivymssjnockquenpyczxknsnpyzaulwiophlmlxosvkjeddncwemcsavukf"
+    "name": "qatwmwegsbsbuqbjvcnfmgtatzqaoqluxgrdlqmmynpkgvgiumuchgtwepkahhkcrexanyhrfbujdlatzeuyvdzbdmjkbgzwxchzdnfesywnozlscrmyravkunteklzxzcgnmidxzxdwxfxiawkecudqnldiwqckbqrjdeucxnvdefaackgezveakvqoopbumgcactrvvrjrtsieyupznuccgwqbcxzpjniuwicfznvrvofkodkuvkfbbuxloj"
 };
 
 fetch(url, {
@@ -1675,7 +1628,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://localhost/8000/api/calendars',
+    'http://localhost:8000/api/calendars',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1683,7 +1636,7 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'name' =&gt; 'sfjolxvjlwoysvlhhjprpfamvhmwfvhcgnejqcikwvlfmielgqhbelbddaudmxbqyaiwuqivymssjnockquenpyczxknsnpyzaulwiophlmlxosvkjeddncwemcsavukf',
+            'name' =&gt; 'qatwmwegsbsbuqbjvcnfmgtatzqaoqluxgrdlqmmynpkgvgiumuchgtwepkahhkcrexanyhrfbujdlatzeuyvdzbdmjkbgzwxchzdnfesywnozlscrmyravkunteklzxzcgnmidxzxdwxfxiawkecudqnldiwqckbqrjdeucxnvdefaackgezveakvqoopbumgcactrvvrjrtsieyupznuccgwqbcxzpjniuwicfznvrvofkodkuvkfbbuxloj',
         ],
     ]
 );
@@ -1747,7 +1700,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-calendars"
-               value="sfjolxvjlwoysvlhhjprpfamvhmwfvhcgnejqcikwvlfmielgqhbelbddaudmxbqyaiwuqivymssjnockquenpyczxknsnpyzaulwiophlmlxosvkjeddncwemcsavukf"
+               value="qatwmwegsbsbuqbjvcnfmgtatzqaoqluxgrdlqmmynpkgvgiumuchgtwepkahhkcrexanyhrfbujdlatzeuyvdzbdmjkbgzwxchzdnfesywnozlscrmyravkunteklzxzcgnmidxzxdwxfxiawkecudqnldiwqckbqrjdeucxnvdefaackgezveakvqoopbumgcactrvvrjrtsieyupznuccgwqbcxzpjniuwicfznvrvofkodkuvkfbbuxloj"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1768,7 +1721,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/calendars/1" \
+    --get "http://localhost:8000/api/calendars/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -1776,7 +1729,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/calendars/1"
+    "http://localhost:8000/api/calendars/1"
 );
 
 const headers = {
@@ -1794,7 +1747,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/calendars/1',
+    'http://localhost:8000/api/calendars/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1810,37 +1763,25 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-calendars--id-">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6ImZqbExYVmlRUHE4ZjgxTnFRQmprSVE9PSIsInZhbHVlIjoiUUVKZUUrc2tUSzlPY1RwTDkwUnN6eTNkU3FuOGFyOW56alRCOGNtZVVUYVd5N2ExRitEVjdmRmlyenFEVDc3cjVpLzZEZkt4TW9pTVRYNWJ5TWZLTmZpQ1dwdWtrZG8rM3RPV25MZzZUbDF5a01mUi9xT0hoNFM0L0tBRDAzV3IiLCJtYWMiOiJmYjg3Yzc0NzBhOGQwMDFmYWQ3ZmI1YmViYTNmOGNhMzY0MDgyODkyYjk0N2Y3NWNhZGQxYWZiNTFmY2Y1OTA4IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkVGSzZlbDR2bzVpSDN3bFVWQU9mSHc9PSIsInZhbHVlIjoickxJZGIwaU1mUFQvK250VWdzYW1XR3RSMk9yWlZCTWw1dS9NeUVpbXROcmd5dkdDTmlJZWhRaW9WRUVabFY2Z1hGNlQyMXRINzFQcjdDTElQYVdJYlVOczFuSW1tTisxR3J4R0xpOVFVdTl2cXZVbUxQV3JqU0Y4OW5CYW9mY0YiLCJtYWMiOiJlOTY1MWI4MjI4ZWMwMTVkMjM4ZDA4MGExZjhjODNhOWRhYWIyMjhmMmRlZTY3NWY4OTk5ZjY3Zjg2YWYwOTBjIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-calendars--id-" hidden>
@@ -1917,19 +1858,19 @@ set-cookie: XSRF-TOKEN=eyJpdiI6ImZqbExYVmlRUHE4ZjgxTnFRQmprSVE9PSIsInZhbHVlIjoiU
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/8000/api/calendars/1" \
+    "http://localhost:8000/api/calendars/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"name\": \"icgczfxaiylpahrqguypfszuukxijhjwcpnsandnuxndkyyhwfxlnuffppkscsokaevmpqibvxumumfdzwdtbkjkdcdiqcsqonuevdwdefdymnutqrvzjcoapgkkbpxvqpdrwthxaliywwgdvfeisqpqszoreiulddopkbojfwfguedmiadayfnbeeuqsrjkgtvjwbfkb\"
+    \"name\": \"fqnxdlxafnqjasoquslhkxhiuizmotkwdmghxzflrfvqpvacbamygrkfkdfspselnymfdxtscojammdmwvsvqodzlpzwforvxfjkcllzlcxzjyksspisyzwsmtbboknotknwxasnkitshwopmfsfygjciyyktuxevaywxciipefxvahijivpjwboshirqxejsyqvqhrpfxfrew\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/calendars/1"
+    "http://localhost:8000/api/calendars/1"
 );
 
 const headers = {
@@ -1939,7 +1880,7 @@ const headers = {
 };
 
 let body = {
-    "name": "icgczfxaiylpahrqguypfszuukxijhjwcpnsandnuxndkyyhwfxlnuffppkscsokaevmpqibvxumumfdzwdtbkjkdcdiqcsqonuevdwdefdymnutqrvzjcoapgkkbpxvqpdrwthxaliywwgdvfeisqpqszoreiulddopkbojfwfguedmiadayfnbeeuqsrjkgtvjwbfkb"
+    "name": "fqnxdlxafnqjasoquslhkxhiuizmotkwdmghxzflrfvqpvacbamygrkfkdfspselnymfdxtscojammdmwvsvqodzlpzwforvxfjkcllzlcxzjyksspisyzwsmtbboknotknwxasnkitshwopmfsfygjciyyktuxevaywxciipefxvahijivpjwboshirqxejsyqvqhrpfxfrew"
 };
 
 fetch(url, {
@@ -1952,7 +1893,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost/8000/api/calendars/1',
+    'http://localhost:8000/api/calendars/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -1960,7 +1901,7 @@ $response = $client-&gt;put(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'name' =&gt; 'icgczfxaiylpahrqguypfszuukxijhjwcpnsandnuxndkyyhwfxlnuffppkscsokaevmpqibvxumumfdzwdtbkjkdcdiqcsqonuevdwdefdymnutqrvzjcoapgkkbpxvqpdrwthxaliywwgdvfeisqpqszoreiulddopkbojfwfguedmiadayfnbeeuqsrjkgtvjwbfkb',
+            'name' =&gt; 'fqnxdlxafnqjasoquslhkxhiuizmotkwdmghxzflrfvqpvacbamygrkfkdfspselnymfdxtscojammdmwvsvqodzlpzwforvxfjkcllzlcxzjyksspisyzwsmtbboknotknwxasnkitshwopmfsfygjciyyktuxevaywxciipefxvahijivpjwboshirqxejsyqvqhrpfxfrew',
         ],
     ]
 );
@@ -2039,7 +1980,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="PUTapi-calendars--id-"
-               value="icgczfxaiylpahrqguypfszuukxijhjwcpnsandnuxndkyyhwfxlnuffppkscsokaevmpqibvxumumfdzwdtbkjkdcdiqcsqonuevdwdefdymnutqrvzjcoapgkkbpxvqpdrwthxaliywwgdvfeisqpqszoreiulddopkbojfwfguedmiadayfnbeeuqsrjkgtvjwbfkb"
+               value="fqnxdlxafnqjasoquslhkxhiuizmotkwdmghxzflrfvqpvacbamygrkfkdfspselnymfdxtscojammdmwvsvqodzlpzwforvxfjkcllzlcxzjyksspisyzwsmtbboknotknwxasnkitshwopmfsfygjciyyktuxevaywxciipefxvahijivpjwboshirqxejsyqvqhrpfxfrew"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2060,7 +2001,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/8000/api/calendars/1" \
+    "http://localhost:8000/api/calendars/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -2068,7 +2009,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/calendars/1"
+    "http://localhost:8000/api/calendars/1"
 );
 
 const headers = {
@@ -2086,7 +2027,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost/8000/api/calendars/1',
+    'http://localhost:8000/api/calendars/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2176,14 +2117,14 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/8000/api/calendars/share" \
+    "http://localhost:8000/api/calendars/share" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"calendar_id\": 4,
-    \"user_id\": 20,
-    \"can_own\": false,
+    \"calendar_id\": 13,
+    \"user_id\": 2,
+    \"can_own\": true,
     \"can_view\": true
 }"
 </code></pre></div>
@@ -2191,7 +2132,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/calendars/share"
+    "http://localhost:8000/api/calendars/share"
 );
 
 const headers = {
@@ -2201,9 +2142,9 @@ const headers = {
 };
 
 let body = {
-    "calendar_id": 4,
-    "user_id": 20,
-    "can_own": false,
+    "calendar_id": 13,
+    "user_id": 2,
+    "can_own": true,
     "can_view": true
 };
 
@@ -2217,7 +2158,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://localhost/8000/api/calendars/share',
+    'http://localhost:8000/api/calendars/share',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2225,9 +2166,9 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'calendar_id' =&gt; 4,
-            'user_id' =&gt; 20,
-            'can_own' =&gt; false,
+            'calendar_id' =&gt; 13,
+            'user_id' =&gt; 2,
+            'can_own' =&gt; true,
             'can_view' =&gt; true,
         ],
     ]
@@ -2292,7 +2233,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="calendar_id"
                data-endpoint="POSTapi-calendars-share"
-               value="4"
+               value="13"
                data-component="body" hidden>
     <br>
 <p>ID du calendrier à partager.</p>
@@ -2302,7 +2243,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="user_id"
                data-endpoint="POSTapi-calendars-share"
-               value="20"
+               value="2"
                data-component="body" hidden>
     <br>
 <p>ID de l'utilisateur à qui partager le calendrier.</p>
@@ -2369,7 +2310,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/events" \
+    --get "http://localhost:8000/api/events" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -2377,7 +2318,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/events"
+    "http://localhost:8000/api/events"
 );
 
 const headers = {
@@ -2395,7 +2336,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/events',
+    'http://localhost:8000/api/events',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2497,24 +2438,24 @@ Fail: erreur</p>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/8000/api/events" \
+    "http://localhost:8000/api/events" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"title\": \"gvxkoirqqqo\",
-    \"description\": \"frstbqpmltxtrblocjwylfkvhqnfqqxelsvsubydxkbnshyvbswvalgiluyxtbfgrlkdgedpiptookmdmojefllfkxohztyqwzgcmzvgeebfnzqptdzzlpzdxreclvdvaamgenraalbenvywryxjtvlbhetsnzsmvrwzowgjzfpwklbgwwbgwobgeyndadrssveniquufgshwaixhfgblrikvxuzuqcbvqztlfzfiywmygzhkvczxvkdkvwtdoqxcgplorsfrmhcduaurjvjjmonqfvuvnvxnkpinmhljcapxukhdbirfmadsaztaexrrvzvnffatzdrglfjfaadswxjhnjbddbioxfghbtklpjjviwkpxgzjkvgzfxintgcteyeisgfvhvgtpjsxkfzfdnoqpfcuxcsoilkrowrbcjhynbzjd\",
-    \"start\": \"2022-05-29T17:37:37\",
-    \"end\": \"2022-05-29T17:37:37\",
-    \"location\": \"snvxgqsmdxjdbssejzqylufajwhlcetspfvqgheitvhhgqxneseuifncsoercnpytzbbqsynpyuvwfgkckvvppihjqltydulkijizjpoclgtowdlspvuafadu\",
-    \"calendar_id\": \"natus\"
+    \"title\": \"edizzgvflbwiudzggieaocufderogezqouulbrxgnmsvgncrvychzspvlfiapifufkbbvtdlmkyfinkfwuxuqrhmbpbksziuwxlxrvzfbdtdvirhdzwobtkxnfwhgpsuhwfqnoabhkbfpwwoivcicxysnxkchrzysnmdnimfmwdeputwlwxzkzfwbuatgwlgtixkigocrtbwdbghgvjasyoejahejhywfbcjjuyxlbddglqzipgwkzmu\",
+    \"description\": \"unjdtrxncnuundrizjaghayjeiwezpqnhukwjhouhdtbhrfpeztwertxlfpfpoekkyqggmcyrwamactemnyyfocwyyituphybonvkvcgltvazieawmfcvfzeoienfqawfswutsfaqwnfolpnuyyhzjprajxlldbygmvctitxeabkulvopdjopqdfcnms\",
+    \"start\": \"2022-05-30T11:43:25\",
+    \"end\": \"2022-05-30T11:43:25\",
+    \"location\": \"rezzmhzsuqgbkylorborzybyckrieklqwucvglunogndiqattodlloevgcpmfqcohdloocqsewrubplrmrfrfygq\",
+    \"calendar_id\": \"quo\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/events"
+    "http://localhost:8000/api/events"
 );
 
 const headers = {
@@ -2524,12 +2465,12 @@ const headers = {
 };
 
 let body = {
-    "title": "gvxkoirqqqo",
-    "description": "frstbqpmltxtrblocjwylfkvhqnfqqxelsvsubydxkbnshyvbswvalgiluyxtbfgrlkdgedpiptookmdmojefllfkxohztyqwzgcmzvgeebfnzqptdzzlpzdxreclvdvaamgenraalbenvywryxjtvlbhetsnzsmvrwzowgjzfpwklbgwwbgwobgeyndadrssveniquufgshwaixhfgblrikvxuzuqcbvqztlfzfiywmygzhkvczxvkdkvwtdoqxcgplorsfrmhcduaurjvjjmonqfvuvnvxnkpinmhljcapxukhdbirfmadsaztaexrrvzvnffatzdrglfjfaadswxjhnjbddbioxfghbtklpjjviwkpxgzjkvgzfxintgcteyeisgfvhvgtpjsxkfzfdnoqpfcuxcsoilkrowrbcjhynbzjd",
-    "start": "2022-05-29T17:37:37",
-    "end": "2022-05-29T17:37:37",
-    "location": "snvxgqsmdxjdbssejzqylufajwhlcetspfvqgheitvhhgqxneseuifncsoercnpytzbbqsynpyuvwfgkckvvppihjqltydulkijizjpoclgtowdlspvuafadu",
-    "calendar_id": "natus"
+    "title": "edizzgvflbwiudzggieaocufderogezqouulbrxgnmsvgncrvychzspvlfiapifufkbbvtdlmkyfinkfwuxuqrhmbpbksziuwxlxrvzfbdtdvirhdzwobtkxnfwhgpsuhwfqnoabhkbfpwwoivcicxysnxkchrzysnmdnimfmwdeputwlwxzkzfwbuatgwlgtixkigocrtbwdbghgvjasyoejahejhywfbcjjuyxlbddglqzipgwkzmu",
+    "description": "unjdtrxncnuundrizjaghayjeiwezpqnhukwjhouhdtbhrfpeztwertxlfpfpoekkyqggmcyrwamactemnyyfocwyyituphybonvkvcgltvazieawmfcvfzeoienfqawfswutsfaqwnfolpnuyyhzjprajxlldbygmvctitxeabkulvopdjopqdfcnms",
+    "start": "2022-05-30T11:43:25",
+    "end": "2022-05-30T11:43:25",
+    "location": "rezzmhzsuqgbkylorborzybyckrieklqwucvglunogndiqattodlloevgcpmfqcohdloocqsewrubplrmrfrfygq",
+    "calendar_id": "quo"
 };
 
 fetch(url, {
@@ -2542,7 +2483,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://localhost/8000/api/events',
+    'http://localhost:8000/api/events',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2550,12 +2491,12 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'title' =&gt; 'gvxkoirqqqo',
-            'description' =&gt; 'frstbqpmltxtrblocjwylfkvhqnfqqxelsvsubydxkbnshyvbswvalgiluyxtbfgrlkdgedpiptookmdmojefllfkxohztyqwzgcmzvgeebfnzqptdzzlpzdxreclvdvaamgenraalbenvywryxjtvlbhetsnzsmvrwzowgjzfpwklbgwwbgwobgeyndadrssveniquufgshwaixhfgblrikvxuzuqcbvqztlfzfiywmygzhkvczxvkdkvwtdoqxcgplorsfrmhcduaurjvjjmonqfvuvnvxnkpinmhljcapxukhdbirfmadsaztaexrrvzvnffatzdrglfjfaadswxjhnjbddbioxfghbtklpjjviwkpxgzjkvgzfxintgcteyeisgfvhvgtpjsxkfzfdnoqpfcuxcsoilkrowrbcjhynbzjd',
-            'start' =&gt; '2022-05-29T17:37:37',
-            'end' =&gt; '2022-05-29T17:37:37',
-            'location' =&gt; 'snvxgqsmdxjdbssejzqylufajwhlcetspfvqgheitvhhgqxneseuifncsoercnpytzbbqsynpyuvwfgkckvvppihjqltydulkijizjpoclgtowdlspvuafadu',
-            'calendar_id' =&gt; 'natus',
+            'title' =&gt; 'edizzgvflbwiudzggieaocufderogezqouulbrxgnmsvgncrvychzspvlfiapifufkbbvtdlmkyfinkfwuxuqrhmbpbksziuwxlxrvzfbdtdvirhdzwobtkxnfwhgpsuhwfqnoabhkbfpwwoivcicxysnxkchrzysnmdnimfmwdeputwlwxzkzfwbuatgwlgtixkigocrtbwdbghgvjasyoejahejhywfbcjjuyxlbddglqzipgwkzmu',
+            'description' =&gt; 'unjdtrxncnuundrizjaghayjeiwezpqnhukwjhouhdtbhrfpeztwertxlfpfpoekkyqggmcyrwamactemnyyfocwyyituphybonvkvcgltvazieawmfcvfzeoienfqawfswutsfaqwnfolpnuyyhzjprajxlldbygmvctitxeabkulvopdjopqdfcnms',
+            'start' =&gt; '2022-05-30T11:43:25',
+            'end' =&gt; '2022-05-30T11:43:25',
+            'location' =&gt; 'rezzmhzsuqgbkylorborzybyckrieklqwucvglunogndiqattodlloevgcpmfqcohdloocqsewrubplrmrfrfygq',
+            'calendar_id' =&gt; 'quo',
         ],
     ]
 );
@@ -2640,7 +2581,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="title"
                data-endpoint="POSTapi-events"
-               value="gvxkoirqqqo"
+               value="edizzgvflbwiudzggieaocufderogezqouulbrxgnmsvgncrvychzspvlfiapifufkbbvtdlmkyfinkfwuxuqrhmbpbksziuwxlxrvzfbdtdvirhdzwobtkxnfwhgpsuhwfqnoabhkbfpwwoivcicxysnxkchrzysnmdnimfmwdeputwlwxzkzfwbuatgwlgtixkigocrtbwdbghgvjasyoejahejhywfbcjjuyxlbddglqzipgwkzmu"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2650,7 +2591,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="description"
                data-endpoint="POSTapi-events"
-               value="frstbqpmltxtrblocjwylfkvhqnfqqxelsvsubydxkbnshyvbswvalgiluyxtbfgrlkdgedpiptookmdmojefllfkxohztyqwzgcmzvgeebfnzqptdzzlpzdxreclvdvaamgenraalbenvywryxjtvlbhetsnzsmvrwzowgjzfpwklbgwwbgwobgeyndadrssveniquufgshwaixhfgblrikvxuzuqcbvqztlfzfiywmygzhkvczxvkdkvwtdoqxcgplorsfrmhcduaurjvjjmonqfvuvnvxnkpinmhljcapxukhdbirfmadsaztaexrrvzvnffatzdrglfjfaadswxjhnjbddbioxfghbtklpjjviwkpxgzjkvgzfxintgcteyeisgfvhvgtpjsxkfzfdnoqpfcuxcsoilkrowrbcjhynbzjd"
+               value="unjdtrxncnuundrizjaghayjeiwezpqnhukwjhouhdtbhrfpeztwertxlfpfpoekkyqggmcyrwamactemnyyfocwyyituphybonvkvcgltvazieawmfcvfzeoienfqawfswutsfaqwnfolpnuyyhzjprajxlldbygmvctitxeabkulvopdjopqdfcnms"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 1000 characters.</p>
@@ -2660,7 +2601,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="start"
                data-endpoint="POSTapi-events"
-               value="2022-05-29T17:37:37"
+               value="2022-05-30T11:43:25"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -2670,7 +2611,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="end"
                data-endpoint="POSTapi-events"
-               value="2022-05-29T17:37:37"
+               value="2022-05-30T11:43:25"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -2680,7 +2621,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="location"
                data-endpoint="POSTapi-events"
-               value="snvxgqsmdxjdbssejzqylufajwhlcetspfvqgheitvhhgqxneseuifncsoercnpytzbbqsynpyuvwfgkckvvppihjqltydulkijizjpoclgtowdlspvuafadu"
+               value="rezzmhzsuqgbkylorborzybyckrieklqwucvglunogndiqattodlloevgcpmfqcohdloocqsewrubplrmrfrfygq"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2690,7 +2631,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="calendar_id"
                data-endpoint="POSTapi-events"
-               value="natus"
+               value="quo"
                data-component="body" hidden>
     <br>
 
@@ -2711,7 +2652,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/events/1" \
+    --get "http://localhost:8000/api/events/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -2719,7 +2660,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/events/1"
+    "http://localhost:8000/api/events/1"
 );
 
 const headers = {
@@ -2737,7 +2678,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/events/1',
+    'http://localhost:8000/api/events/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2753,37 +2694,25 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-events--id-">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IkV6QzI1UzJ1QjJrcENyQ1Q3NGdFU3c9PSIsInZhbHVlIjoiTDdzWHVuTVFXY3R3Vml5QWRudTNCWHV4ckM4alp2MTRaYWtLc2RIS2JYZktENmRNOEJpNEZseEFDR3pwNi9pWVdZVlA4eGkvYWpSOHk4SUlJUmFaTUJGNEEyOHVHT3FoTXNNajYvNGZjV3g1dnV2V1VSME1Ub2I0ODZLZWhkRm0iLCJtYWMiOiI5NDk0ZjU5MzllMzdkNzA4M2Q4MDFiZjJiMTQ2MGIxNThmYmMxYTYyN2UxODJjMTE5ZGIxMGNmMjU4OThmZjc2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6InVIWTdtbkpxUytyOTVvVktlekQ4cXc9PSIsInZhbHVlIjoiMzZMSm84NkdOdFJNSXE1bmJYNU5XZDhWQXRyWk9LMTIvR2h2VU1BVVgzSEREdjU0YUVMRjJOdmhLeFBEMVlFSmU3ZFN6YkkyZksyUmVMaEQ1d3hUOHorTThUMlpOVDQ2QmF5dTJrZVppdytDTGN0RXo1a3hzbnpEUERSc3ZQdU8iLCJtYWMiOiI1MDM2YjI1M2NmMzUzMmZlYTNjZGZkMjA4NGI5YTA0MzI2NjMyZjkzMjBhOWFhYWUyZDY5ZmJiOGEwYjg0YWJmIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-events--id-" hidden>
@@ -2860,23 +2789,23 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IkV6QzI1UzJ1QjJrcENyQ1Q3NGdFU3c9PSIsInZhbHVlIjoiT
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost/8000/api/events/1" \
+    "http://localhost:8000/api/events/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"title\": \"cliclcqxujmmgfttxfscvcguzmfhwgqgtygvrlxztwluueetrhsnguhtxlrgsnakbzwpzfdzdraxunnmzcmnenoojeomzdghlbylarckudibsmpuijivwgwrfwmfjqqlgub\",
-    \"description\": \"ibsppqahlnfgabnrieuovebzrsazigjlvytljfrfnpuaajnhfimnxsrnbgkwjlqqyiizg\",
-    \"start\": \"2022-05-29T17:37:37\",
-    \"end\": \"2022-05-29T17:37:37\",
-    \"location\": \"gdgsgmqqpxhhsptzgdocnjewobskzlffyotfsfgjjcetuxzzvpouotzippleuwalrvnjlhyfipmmhsmuzlfcqbwlsflrulycwdjgcbduosrbfdemlvmlpngunxcvvkbbmotwaecodjbwkcwffxpngfgosebbvtohoyenrnjfraylifjhbrrvkwmmqktfuupidoempbcwlusfttayvhlpnwzdtwciwvtrhyaraxxlotmfxehbiziwtr\"
+    \"title\": \"kkueclsbffzpbrfzxqejxltcypsecenyvtvuubnhszmzecuxzoghaxvvgrijvxageyacmuvsmeevcyazhzxxvckonxmxcscfnrqjkmyndejeniqzgmmknfnaizhngrxpgampqhzhctcieudbikpbffpmibcywrnaxuzjfdhaqivuzek\",
+    \"description\": \"ziwqycubijdhthgohnhzyjibaxcnffaavmvizizsoqwhsrcadqkvhpbpvgihdesizvujvhuafwmgpokwidmiwbvxvhdrrnjrsotqclzgzrtwykgesshajbphuwiscrnoornjivhroviuaxwklbxcruxhfzyysyskwstvaztbevymfvizmrduuwvzlurmrpppndoiskxocrebcmlqvgknoyqhhpymylvlloqceahxntoegoxizxmgawjjalnbunbmrrzuvgpbewhwexkojweupmhvweeyufcojsxdrybntsutyjdrxgxvllrzndebzjfzcztimvepwkkejhsdiptebupthczxspaaeuqtspmsbobcpbqubblv\",
+    \"start\": \"2022-05-30T11:43:25\",
+    \"end\": \"2022-05-30T11:43:25\",
+    \"location\": \"reisgacooribvhmllnlbyameocppkpsxayccrlaicelpohwfzoggefllhocoootdnrumqzikykcxlozysdlozjsdkmhotdnnjnlxweq\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/events/1"
+    "http://localhost:8000/api/events/1"
 );
 
 const headers = {
@@ -2886,11 +2815,11 @@ const headers = {
 };
 
 let body = {
-    "title": "cliclcqxujmmgfttxfscvcguzmfhwgqgtygvrlxztwluueetrhsnguhtxlrgsnakbzwpzfdzdraxunnmzcmnenoojeomzdghlbylarckudibsmpuijivwgwrfwmfjqqlgub",
-    "description": "ibsppqahlnfgabnrieuovebzrsazigjlvytljfrfnpuaajnhfimnxsrnbgkwjlqqyiizg",
-    "start": "2022-05-29T17:37:37",
-    "end": "2022-05-29T17:37:37",
-    "location": "gdgsgmqqpxhhsptzgdocnjewobskzlffyotfsfgjjcetuxzzvpouotzippleuwalrvnjlhyfipmmhsmuzlfcqbwlsflrulycwdjgcbduosrbfdemlvmlpngunxcvvkbbmotwaecodjbwkcwffxpngfgosebbvtohoyenrnjfraylifjhbrrvkwmmqktfuupidoempbcwlusfttayvhlpnwzdtwciwvtrhyaraxxlotmfxehbiziwtr"
+    "title": "kkueclsbffzpbrfzxqejxltcypsecenyvtvuubnhszmzecuxzoghaxvvgrijvxageyacmuvsmeevcyazhzxxvckonxmxcscfnrqjkmyndejeniqzgmmknfnaizhngrxpgampqhzhctcieudbikpbffpmibcywrnaxuzjfdhaqivuzek",
+    "description": "ziwqycubijdhthgohnhzyjibaxcnffaavmvizizsoqwhsrcadqkvhpbpvgihdesizvujvhuafwmgpokwidmiwbvxvhdrrnjrsotqclzgzrtwykgesshajbphuwiscrnoornjivhroviuaxwklbxcruxhfzyysyskwstvaztbevymfvizmrduuwvzlurmrpppndoiskxocrebcmlqvgknoyqhhpymylvlloqceahxntoegoxizxmgawjjalnbunbmrrzuvgpbewhwexkojweupmhvweeyufcojsxdrybntsutyjdrxgxvllrzndebzjfzcztimvepwkkejhsdiptebupthczxspaaeuqtspmsbobcpbqubblv",
+    "start": "2022-05-30T11:43:25",
+    "end": "2022-05-30T11:43:25",
+    "location": "reisgacooribvhmllnlbyameocppkpsxayccrlaicelpohwfzoggefllhocoootdnrumqzikykcxlozysdlozjsdkmhotdnnjnlxweq"
 };
 
 fetch(url, {
@@ -2903,7 +2832,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost/8000/api/events/1',
+    'http://localhost:8000/api/events/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -2911,11 +2840,11 @@ $response = $client-&gt;put(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'title' =&gt; 'cliclcqxujmmgfttxfscvcguzmfhwgqgtygvrlxztwluueetrhsnguhtxlrgsnakbzwpzfdzdraxunnmzcmnenoojeomzdghlbylarckudibsmpuijivwgwrfwmfjqqlgub',
-            'description' =&gt; 'ibsppqahlnfgabnrieuovebzrsazigjlvytljfrfnpuaajnhfimnxsrnbgkwjlqqyiizg',
-            'start' =&gt; '2022-05-29T17:37:37',
-            'end' =&gt; '2022-05-29T17:37:37',
-            'location' =&gt; 'gdgsgmqqpxhhsptzgdocnjewobskzlffyotfsfgjjcetuxzzvpouotzippleuwalrvnjlhyfipmmhsmuzlfcqbwlsflrulycwdjgcbduosrbfdemlvmlpngunxcvvkbbmotwaecodjbwkcwffxpngfgosebbvtohoyenrnjfraylifjhbrrvkwmmqktfuupidoempbcwlusfttayvhlpnwzdtwciwvtrhyaraxxlotmfxehbiziwtr',
+            'title' =&gt; 'kkueclsbffzpbrfzxqejxltcypsecenyvtvuubnhszmzecuxzoghaxvvgrijvxageyacmuvsmeevcyazhzxxvckonxmxcscfnrqjkmyndejeniqzgmmknfnaizhngrxpgampqhzhctcieudbikpbffpmibcywrnaxuzjfdhaqivuzek',
+            'description' =&gt; 'ziwqycubijdhthgohnhzyjibaxcnffaavmvizizsoqwhsrcadqkvhpbpvgihdesizvujvhuafwmgpokwidmiwbvxvhdrrnjrsotqclzgzrtwykgesshajbphuwiscrnoornjivhroviuaxwklbxcruxhfzyysyskwstvaztbevymfvizmrduuwvzlurmrpppndoiskxocrebcmlqvgknoyqhhpymylvlloqceahxntoegoxizxmgawjjalnbunbmrrzuvgpbewhwexkojweupmhvweeyufcojsxdrybntsutyjdrxgxvllrzndebzjfzcztimvepwkkejhsdiptebupthczxspaaeuqtspmsbobcpbqubblv',
+            'start' =&gt; '2022-05-30T11:43:25',
+            'end' =&gt; '2022-05-30T11:43:25',
+            'location' =&gt; 'reisgacooribvhmllnlbyameocppkpsxayccrlaicelpohwfzoggefllhocoootdnrumqzikykcxlozysdlozjsdkmhotdnnjnlxweq',
         ],
     ]
 );
@@ -2994,7 +2923,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="title"
                data-endpoint="PUTapi-events--id-"
-               value="cliclcqxujmmgfttxfscvcguzmfhwgqgtygvrlxztwluueetrhsnguhtxlrgsnakbzwpzfdzdraxunnmzcmnenoojeomzdghlbylarckudibsmpuijivwgwrfwmfjqqlgub"
+               value="kkueclsbffzpbrfzxqejxltcypsecenyvtvuubnhszmzecuxzoghaxvvgrijvxageyacmuvsmeevcyazhzxxvckonxmxcscfnrqjkmyndejeniqzgmmknfnaizhngrxpgampqhzhctcieudbikpbffpmibcywrnaxuzjfdhaqivuzek"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -3004,7 +2933,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="description"
                data-endpoint="PUTapi-events--id-"
-               value="ibsppqahlnfgabnrieuovebzrsazigjlvytljfrfnpuaajnhfimnxsrnbgkwjlqqyiizg"
+               value="ziwqycubijdhthgohnhzyjibaxcnffaavmvizizsoqwhsrcadqkvhpbpvgihdesizvujvhuafwmgpokwidmiwbvxvhdrrnjrsotqclzgzrtwykgesshajbphuwiscrnoornjivhroviuaxwklbxcruxhfzyysyskwstvaztbevymfvizmrduuwvzlurmrpppndoiskxocrebcmlqvgknoyqhhpymylvlloqceahxntoegoxizxmgawjjalnbunbmrrzuvgpbewhwexkojweupmhvweeyufcojsxdrybntsutyjdrxgxvllrzndebzjfzcztimvepwkkejhsdiptebupthczxspaaeuqtspmsbobcpbqubblv"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 1000 characters.</p>
@@ -3014,7 +2943,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="start"
                data-endpoint="PUTapi-events--id-"
-               value="2022-05-29T17:37:37"
+               value="2022-05-30T11:43:25"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -3024,7 +2953,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="end"
                data-endpoint="PUTapi-events--id-"
-               value="2022-05-29T17:37:37"
+               value="2022-05-30T11:43:25"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -3034,7 +2963,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="location"
                data-endpoint="PUTapi-events--id-"
-               value="gdgsgmqqpxhhsptzgdocnjewobskzlffyotfsfgjjcetuxzzvpouotzippleuwalrvnjlhyfipmmhsmuzlfcqbwlsflrulycwdjgcbduosrbfdemlvmlpngunxcvvkbbmotwaecodjbwkcwffxpngfgosebbvtohoyenrnjfraylifjhbrrvkwmmqktfuupidoempbcwlusfttayvhlpnwzdtwciwvtrhyaraxxlotmfxehbiziwtr"
+               value="reisgacooribvhmllnlbyameocppkpsxayccrlaicelpohwfzoggefllhocoootdnrumqzikykcxlozysdlozjsdkmhotdnnjnlxweq"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -3055,7 +2984,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost/8000/api/events/1" \
+    "http://localhost:8000/api/events/1" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -3063,7 +2992,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/events/1"
+    "http://localhost:8000/api/events/1"
 );
 
 const headers = {
@@ -3081,7 +3010,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost/8000/api/events/1',
+    'http://localhost:8000/api/events/1',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3175,7 +3104,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/update/gaps/events" \
+    --get "http://localhost:8000/api/update/gaps/events" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -3183,7 +3112,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/update/gaps/events"
+    "http://localhost:8000/api/update/gaps/events"
 );
 
 const headers = {
@@ -3201,7 +3130,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/update/gaps/events',
+    'http://localhost:8000/api/update/gaps/events',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3217,37 +3146,25 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-update-gaps-events">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6ImNONUtWUDlPSTBHVjlIb3d0L1VxL2c9PSIsInZhbHVlIjoiZDdZQm1IN1dvdVZwTmdYMFBXb0RaRjFjdEhFcnE3QXpkemIyNU0rSmVoR0pTYUhDVHcvQXRlWDhYM2NGbGJISHozNEhSY3JqK3V2R2JWNWE0TW8yb3NKSEdndU5iWWgzK2VOUmdLUUhkYW9uVlhwN2MxNFBwOWpKM2pkSlNJbG4iLCJtYWMiOiJjZmIyNzJjZWNjZDM1NzFjNTFhNjhlMmE3ZjhkNmJkMzFkNTk3YTMxYmI4MjAxYWZjOTllNjFlNDdmYzE1YjA5IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IjU4V2RPZGdpWXlZWklRNitDZlRkdUE9PSIsInZhbHVlIjoidEdaNEMxNE9MRDQxVjY3dnpHVTF3bENnblFNSkdQZmFjM2x4ajEvanFhK2tQcnFRY0R0TVZLdk4zUCsyUVdscFdsTk9mUVVlWlNTYys4TEVGV2ppbVlrRU5waVAyMXphNTQxMnZ1b3BCTHUxNDFLc3dNeWgwVFVzbEFJbU80KzEiLCJtYWMiOiI4ZDUwNmNiNGRlN2UyMWE5ZDNiMjIxNzI4MjI0ZDY0NGRhN2QzMzYxZmRlNzZlNGQ3YWQ1ODZhNmMwYTMwZDUyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-update-gaps-events" hidden>
@@ -3299,155 +3216,6 @@ set-cookie: XSRF-TOKEN=eyJpdiI6ImNONUtWUDlPSTBHVjlIb3d0L1VxL2c9PSIsInZhbHVlIjoiZ
         </p>
                 </form>
 
-            <h2 id="gaps-GETapi-update-gaps--token-">GET api/update/gaps/{token}</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-update-gaps--token-">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/update/gaps/secret" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer {{token}}"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/update/gaps/secret"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer {{token}}",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;get(
-    'http://localhost/8000/api/update/gaps/secret',
-    [
-        'headers' =&gt; [
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-            'Authorization' =&gt; 'Bearer {{token}}',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-update-gaps--token-">
-            <blockquote>
-            <p>Example response (200):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6Inpib0MvQUF4ZWwvVUFRSEZ5S09WOHc9PSIsInZhbHVlIjoiNmdxQy96d3I3b25kQkgzZGVoTFl1VVVudENaS09RV1g4MW5IRnRMdlZacDU4UC9Vc3JBdXFnY0FSOVpiQ2FWU3ZtNC9zbkdtbmtIcWlJL1k1Ulpub1M5VGRiUkRVdzhBZCtydy9laEV5Q3RBM2hZSUMzcnhzWld3L0tlVGlxZ3MiLCJtYWMiOiI2NWVlY2YwNmUzZTI1Y2QxZjAxNmYwNDdkN2U1MWRhMDg5ZTkxOGM0OGY1MTRlNmVkOGY4ODQ1ODQ5YTllOGI2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkNYZVdZOTlVMHd6UzNMbVpsVm9MVEE9PSIsInZhbHVlIjoiNHJyZ1V4eHRJUlZLMld1ZHNmOGRmU3RhMW5rclJjakFpQUFmNjFoTFpMVmM2Q1Jkay9mQmF4b2JFTmR0ZHlKMjI2YXZkR0hFckY1MTI3VUFwNGdxS0RNMm9zUCttSnhiOHNDOXJQWXhpWnpVakY1TkhON3FxMlMrdDRYcDUwT3AiLCJtYWMiOiJhNGE3N2IxNTJkMjhmMmJmZjUzZWNiMDA3ZjY2ZWVhZjVkMDI4ODA2YWNiNWU4YjkyYWZlOTBiNTRmM2RiYzg5IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-update-gaps--token-" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-update-gaps--token-"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-update-gaps--token-"></code></pre>
-</span>
-<span id="execution-error-GETapi-update-gaps--token-" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-update-gaps--token-"></code></pre>
-</span>
-<form id="form-GETapi-update-gaps--token-" data-method="GET"
-      data-path="api/update/gaps/{token}"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps--token-', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-update-gaps--token-"
-                    onclick="tryItOut('GETapi-update-gaps--token-');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-update-gaps--token-"
-                    onclick="cancelTryOut('GETapi-update-gaps--token-');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-update-gaps--token-" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/update/gaps/{token}</code></b>
-        </p>
-                <p>
-            <label id="auth-GETapi-update-gaps--token-" hidden>Authorization header:
-                <b><code>Bearer </code></b><input type="text"
-                                                                name="Authorization"
-                                                                data-prefix="Bearer "
-                                                                data-endpoint="GETapi-update-gaps--token-"
-                                                                data-component="header"></label>
-        </p>
-                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
-                    <p>
-                <b><code>token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="token"
-               data-endpoint="GETapi-update-gaps--token-"
-               value="secret"
-               data-component="url" hidden>
-    <br>
-
-            </p>
-                    </form>
-
             <h2 id="gaps-GETapi-update-gaps-marks">GET api/update/gaps/marks</h2>
 
 <p>
@@ -3462,7 +3230,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Inpib0MvQUF4ZWwvVUFRSEZ5S09WOHc9PSIsInZhbHVlIjoiN
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/update/gaps/marks" \
+    --get "http://localhost:8000/api/update/gaps/marks" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -3470,7 +3238,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Inpib0MvQUF4ZWwvVUFRSEZ5S09WOHc9PSIsInZhbHVlIjoiN
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/update/gaps/marks"
+    "http://localhost:8000/api/update/gaps/marks"
 );
 
 const headers = {
@@ -3488,7 +3256,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/update/gaps/marks',
+    'http://localhost:8000/api/update/gaps/marks',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3504,37 +3272,25 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-update-gaps-marks">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6ImUvQk40VTRqZDNqamNhckhGaGNvc0E9PSIsInZhbHVlIjoiWEhKalNST2haN3ZSNVBzMVovTUVwQjhvcmpiMk9GWW4xOHZuQUJOWWlvSEoxLzRUb2IvVGQ5ZS9MdzNlSU5BOEhibjdkTTU3RUpyQXpZcjNYYUhlUjlYTllSVjVsN0ljb2VvNW9YMWI3cHl1d3RQTEZpOHFsNjMxbG40WHp4UXUiLCJtYWMiOiI3MDM2ODQxZDI2NDAzMDIwMTk1ODU2Y2JkYjM1N2FjOTQwOTgxOTI5YzJkM2Q4N2E0NTgxOTQyYzVlNDJkZGUyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6ImZPUXM5eWs3SVdMUTdITlNXRDhVVlE9PSIsInZhbHVlIjoiK2RsVVFHL0hPdDhCWUl1Zjk0bGdNTmVWcStXb0MyRENvY1pvTHZCMmRHQjBLRmhXYWsrQ1A3US9FT0FVakw1Z05NWWU2VSt6cUMvRFhCaU84dXJTVm5hU3JCYlpYSk92c2RZZUZlUW1YdVkxa2t6NU9mMmwxQUU0RnBqRElDdTEiLCJtYWMiOiIwMmFmODE0NzBiNmY1Yzc5ZTQ0OTAyMDY2OWNkNmJhYmZmM2E2MTUzMmFhOTY5OTI3NDE2NjlhZjBhZmI4YWE1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-update-gaps-marks" hidden>
@@ -3600,7 +3356,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6ImUvQk40VTRqZDNqamNhckhGaGNvc0E9PSIsInZhbHVlIjoiW
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/update/gaps" \
+    --get "http://localhost:8000/api/update/gaps" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -3608,7 +3364,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6ImUvQk40VTRqZDNqamNhckhGaGNvc0E9PSIsInZhbHVlIjoiW
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/update/gaps"
+    "http://localhost:8000/api/update/gaps"
 );
 
 const headers = {
@@ -3626,7 +3382,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/update/gaps',
+    'http://localhost:8000/api/update/gaps',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3642,37 +3398,25 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-update-gaps">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IlhGSlYvemcraHZHMUJrMll1NzVlSFE9PSIsInZhbHVlIjoiaFVqclBzcmVMVW9qNk5tREk5RG1QWnEyUTl1d1F1MTBuQWJIcHltTmNWTmpDMzFqUExFSzk2U1dmelFaVHQxQVlBOHVQWmtyOTBaZlJ2d3VDcFVhL0tZSEdXckdDMm5kNkpmUmF3WVFLb3huNU5pVWNlT3NadWJNTmtkcitOTWciLCJtYWMiOiIyZWU4OGQwYzk0MzdlZGMyMWY5NzU5NzZkNmE5MzQ4MzIwNGVlMGI2Y2RmYWQyMTE3MzU1Y2FkMWZkOGRkODg2IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6InVoUGh6azVCVWtmK0prTWJGcDBieGc9PSIsInZhbHVlIjoib3NteGpuUXdubmRHVWNhVGRxK2dMa3J2R1ZoYmFGZWpSZXdRRFN0ZVBWU2Jqb20vMzV3a3JMRmVNL0tkKy9HbEdZeXFwWWlxd2h5Ykc2c1QrTy9Ramp3eEtEeG1Fd1U1cHBsOHgwb1U4emlkM1NoVWwrdjJsZVhUTjUwdkt5NjIiLCJtYWMiOiJmMGFiNzYwMGUxYTgwMmVkNzBjZGRjMTRlMTFiMTFmY2I1YTc3Njk0YWEwNDU2NDgyNzE2YmVjMWNlYWQyODBhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-update-gaps" hidden>
@@ -3738,17 +3482,17 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IlhGSlYvemcraHZHMUJrMll1NzVlSFE9PSIsInZhbHVlIjoia
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/8000/api/calendars/import" \
+    "http://localhost:8000/api/calendars/import" \
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
-    --form "name=zqawsckqvavzfqgurgqecdubaitbvrchpevqlbxrgsbxydhqusdgstchilfovo" \
-    --form "ics=@/private/var/folders/gr/hsjthpqj71v53t2s_5zpv29m0000gn/T/phpAZqcR2" </code></pre></div>
+    --form "name=dwmcnyrjalgmysrysfdltppdujtlwtcneqqzoakqosvbnxubbpdcskwvemyqeubqhzlhaongloeukecd" \
+    --form "ics=@/private/var/folders/gx/jp0czw8n7px21n5nnq93l1sh0000gn/T/phpGda9dG" </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/calendars/import"
+    "http://localhost:8000/api/calendars/import"
 );
 
 const headers = {
@@ -3758,7 +3502,7 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('name', 'zqawsckqvavzfqgurgqecdubaitbvrchpevqlbxrgsbxydhqusdgstchilfovo');
+body.append('name', 'dwmcnyrjalgmysrysfdltppdujtlwtcneqqzoakqosvbnxubbpdcskwvemyqeubqhzlhaongloeukecd');
 body.append('ics', document.querySelector('input[name="ics"]').files[0]);
 
 fetch(url, {
@@ -3771,7 +3515,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://localhost/8000/api/calendars/import',
+    'http://localhost:8000/api/calendars/import',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'multipart/form-data',
@@ -3781,11 +3525,11 @@ $response = $client-&gt;post(
         'multipart' =&gt; [
             [
                 'name' =&gt; 'name',
-                'contents' =&gt; 'zqawsckqvavzfqgurgqecdubaitbvrchpevqlbxrgsbxydhqusdgstchilfovo'
+                'contents' =&gt; 'dwmcnyrjalgmysrysfdltppdujtlwtcneqqzoakqosvbnxubbpdcskwvemyqeubqhzlhaongloeukecd'
             ],
             [
                 'name' =&gt; 'ics',
-                'contents' =&gt; fopen('/private/var/folders/gr/hsjthpqj71v53t2s_5zpv29m0000gn/T/phpAZqcR2', 'r')
+                'contents' =&gt; fopen('/private/var/folders/gx/jp0czw8n7px21n5nnq93l1sh0000gn/T/phpGda9dG', 'r')
             ],
         ],
     ]
@@ -3850,7 +3594,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-calendars-import"
-               value="zqawsckqvavzfqgurgqecdubaitbvrchpevqlbxrgsbxydhqusdgstchilfovo"
+               value="dwmcnyrjalgmysrysfdltppdujtlwtcneqqzoakqosvbnxubbpdcskwvemyqeubqhzlhaongloeukecd"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -3866,6 +3610,636 @@ print_r(json_decode((string) $body));</code></pre></div>
 <p>Must be a file.</p>
         </p>
         </form>
+
+            <h2 id="gaps-GETapi-update-gaps--token-">GET api/update/gaps/{token}</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-update-gaps--token-">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/update/gaps/VGrxhPp9xuDb947JZADe7ESdBDkwdq" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer {{token}}"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/update/gaps/VGrxhPp9xuDb947JZADe7ESdBDkwdq"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {{token}}",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/update/gaps/VGrxhPp9xuDb947JZADe7ESdBDkwdq',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+            'Authorization' =&gt; 'Bearer {{token}}',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-update-gaps--token-">
+            <blockquote>
+            <p>Example response (500):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+x-ratelimit-limit: 60
+x-ratelimit-remaining: 58
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;message&quot;: &quot;Attempt to read property \&quot;name\&quot; on null&quot;,
+    &quot;exception&quot;: &quot;ErrorException&quot;,
+    &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Services/GapsEventsService.php&quot;,
+    &quot;line&quot;: 62,
+    &quot;trace&quot;: [
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php&quot;,
+            &quot;line&quot;: 255,
+            &quot;function&quot;: &quot;handleError&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Bootstrap\\HandleExceptions&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Services/GapsEventsService.php&quot;,
+            &quot;line&quot;: 62,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Bootstrap\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Bootstrap\\HandleExceptions&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Controllers/GapsController.php&quot;,
+            &quot;line&quot;: 27,
+            &quot;function&quot;: &quot;fetchAllHoraires&quot;,
+            &quot;class&quot;: &quot;App\\Http\\Services\\GapsEventsService&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Controller.php&quot;,
+            &quot;line&quot;: 54,
+            &quot;function&quot;: &quot;updateAll&quot;,
+            &quot;class&quot;: &quot;App\\Http\\Controllers\\GapsController&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php&quot;,
+            &quot;line&quot;: 45,
+            &quot;function&quot;: &quot;callAction&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Controller&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 261,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\ControllerDispatcher&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php&quot;,
+            &quot;line&quot;: 204,
+            &quot;function&quot;: &quot;runController&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 725,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Route&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Routing\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php&quot;,
+            &quot;line&quot;: 50,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\SubstituteBindings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 126,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;handleRequest&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php&quot;,
+            &quot;line&quot;: 54,
+            &quot;function&quot;: &quot;handleRequestUsingNamedLimiter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Middleware\\ThrottleRequests&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 33,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\{closure}&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php&quot;,
+            &quot;line&quot;: 34,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Laravel\\Sanctum\\Http\\Middleware\\EnsureFrontendRequestsAreStateful&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 726,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 703,
+            &quot;function&quot;: &quot;runRouteWithinStack&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 667,
+            &quot;function&quot;: &quot;runRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php&quot;,
+            &quot;line&quot;: 656,
+            &quot;function&quot;: &quot;dispatchToRoute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 167,
+            &quot;function&quot;: &quot;dispatch&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Routing\\Router&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 141,
+            &quot;function&quot;: &quot;Illuminate\\Foundation\\Http\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php&quot;,
+            &quot;line&quot;: 31,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ConvertEmptyStringsToNull&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php&quot;,
+            &quot;line&quot;: 21,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php&quot;,
+            &quot;line&quot;: 40,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TransformsRequest&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\TrimStrings&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php&quot;,
+            &quot;line&quot;: 27,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\ValidatePostSize&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php&quot;,
+            &quot;line&quot;: 86,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Middleware\\PreventRequestsDuringMaintenance&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php&quot;,
+            &quot;line&quot;: 62,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\HandleCors&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php&quot;,
+            &quot;line&quot;: 39,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 180,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Http\\Middleware\\TrustProxies&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;Illuminate\\Pipeline\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 142,
+            &quot;function&quot;: &quot;then&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Pipeline\\Pipeline&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php&quot;,
+            &quot;line&quot;: 111,
+            &quot;function&quot;: &quot;sendRequestThroughRouter&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Http\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 287,
+            &quot;function&quot;: &quot;callLaravelOrLumenRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 89,
+            &quot;function&quot;: &quot;makeApiCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 45,
+            &quot;function&quot;: &quot;makeResponseCall&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php&quot;,
+            &quot;line&quot;: 35,
+            &quot;function&quot;: &quot;makeResponseCallIfConditionsPass&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 222,
+            &quot;function&quot;: &quot;__invoke&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Strategies\\Responses\\ResponseCalls&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 179,
+            &quot;function&quot;: &quot;iterateThroughStrategies&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php&quot;,
+            &quot;line&quot;: 116,
+            &quot;function&quot;: &quot;fetchResponses&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 123,
+            &quot;function&quot;: &quot;processRoute&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Extracting\\Extractor&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 80,
+            &quot;function&quot;: &quot;extractEndpointsInfoFromLaravelApp&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php&quot;,
+            &quot;line&quot;: 56,
+            &quot;function&quot;: &quot;extractEndpointsInfoAndWriteToDisk&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php&quot;,
+            &quot;line&quot;: 55,
+            &quot;function&quot;: &quot;get&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\GroupedEndpoints\\GroupedEndpointsFromApp&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 36,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Knuckles\\Scribe\\Commands\\GenerateDocumentation&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Util.php&quot;,
+            &quot;line&quot;: 41,
+            &quot;function&quot;: &quot;Illuminate\\Container\\{closure}&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 93,
+            &quot;function&quot;: &quot;unwrapIfClosure&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Util&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;callBoundMethod&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Container.php&quot;,
+            &quot;line&quot;: 651,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\BoundMethod&quot;,
+            &quot;type&quot;: &quot;::&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 136,
+            &quot;function&quot;: &quot;call&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Container\\Container&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Command/Command.php&quot;,
+            &quot;line&quot;: 308,
+            &quot;function&quot;: &quot;execute&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php&quot;,
+            &quot;line&quot;: 121,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Command\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 998,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Command&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 299,
+            &quot;function&quot;: &quot;doRunCommand&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php&quot;,
+            &quot;line&quot;: 171,
+            &quot;function&quot;: &quot;doRun&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Application.php&quot;,
+            &quot;line&quot;: 102,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Symfony\\Component\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php&quot;,
+            &quot;line&quot;: 129,
+            &quot;function&quot;: &quot;run&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Console\\Application&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        },
+        {
+            &quot;file&quot;: &quot;/Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/artisan&quot;,
+            &quot;line&quot;: 37,
+            &quot;function&quot;: &quot;handle&quot;,
+            &quot;class&quot;: &quot;Illuminate\\Foundation\\Console\\Kernel&quot;,
+            &quot;type&quot;: &quot;-&gt;&quot;
+        }
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-update-gaps--token-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-update-gaps--token-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-update-gaps--token-"></code></pre>
+</span>
+<span id="execution-error-GETapi-update-gaps--token-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-update-gaps--token-"></code></pre>
+</span>
+<form id="form-GETapi-update-gaps--token-" data-method="GET"
+      data-path="api/update/gaps/{token}"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-update-gaps--token-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-update-gaps--token-"
+                    onclick="tryItOut('GETapi-update-gaps--token-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-update-gaps--token-"
+                    onclick="cancelTryOut('GETapi-update-gaps--token-');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-update-gaps--token-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/update/gaps/{token}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-update-gaps--token-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-update-gaps--token-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>token</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+                <input type="text"
+               name="token"
+               data-endpoint="GETapi-update-gaps--token-"
+               value="VGrxhPp9xuDb947JZADe7ESdBDkwdq"
+               data-component="url" hidden>
+    <br>
+
+            </p>
+                    </form>
 
         <h1 id="mail">Mail</h1>
 
@@ -3885,7 +4259,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/mails" \
+    --get "http://localhost:8000/api/mails" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -3893,7 +4267,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/mails"
+    "http://localhost:8000/api/mails"
 );
 
 const headers = {
@@ -3911,7 +4285,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/mails',
+    'http://localhost:8000/api/mails',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3927,37 +4301,25 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-mails">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6IjFnQ2VoZUl4L3hoeHhZNkduSDBHSVE9PSIsInZhbHVlIjoiNlB6SWUrVitCZGZQdWcxSUZDSkxWL0xqR1V3SDVwMUtlVjFua0Qwc0RZeUpMd2Fqck9tYW90cVBOMVV1dVJreWdJOGxzQk1vTmhMaGlodmsyUmlpdDFhQ1pYUnVRZXdaSnBJQTYzTUQ5MUZ3bGRXWndnWWYxdm5ZZVlWSGN5QUsiLCJtYWMiOiJiZWMxM2ZhZGYzYTBjZWVmZTJlZTRhODUxYjcwZTdjMDVhZmZhOGJmM2E4YTgyMzNiNTZlYTBmYzYyNzRlZTcyIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkllQ0t3QXRHSTBQUzE5ZGVUUXcxeGc9PSIsInZhbHVlIjoiVzJ5VU1FSUVqY2VFNmVMV2U1cE5oNFNESlkvY0tWak84VGw0d21FN2VjKzArazVLSDFhZHF3aFZuYUQxb2lEQ1hCaGlBTXZIWHNUN3p2WXl0Qjl6c09tWm94REFGZXBOcU5PK2M2NCs1UDFYZkdFZ1R1Z1NSR1RtMlBrTU9aNUQiLCJtYWMiOiI1M2E4NjA4ZTE1ODJkNzM1ZTkwYmVhOTZjZDFlM2UzZTFiMDFkNDM5MmJhMDU1ZGM5MmM3YzU0MWYzODg2Yzc1IiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-mails" hidden>
@@ -4023,7 +4385,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjFnQ2VoZUl4L3hoeHhZNkduSDBHSVE9PSIsInZhbHVlIjoiN
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/mails/7" \
+    --get "http://localhost:8000/api/mails/4473" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -4031,7 +4393,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6IjFnQ2VoZUl4L3hoeHhZNkduSDBHSVE9PSIsInZhbHVlIjoiN
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/mails/7"
+    "http://localhost:8000/api/mails/4473"
 );
 
 const headers = {
@@ -4049,7 +4411,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/mails/7',
+    'http://localhost:8000/api/mails/4473',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -4065,37 +4427,25 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-mails--id-">
             <blockquote>
-            <p>Example response (200):</p>
+            <p>Example response (401):</p>
         </blockquote>
                 <details class="annotation">
             <summary>
                 <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
             </summary>
-            <pre><code class="language-http">content-type: text/html; charset=UTF-8
-cache-control: no-cache, private
-set-cookie: XSRF-TOKEN=eyJpdiI6Im9EYm5uMTk2TGo3a1I0djlBM2FkVWc9PSIsInZhbHVlIjoiSGdWT3ZrejZTWHlNbmdzbWZ6aXFLT2QwTEVHcFlQdlpKRnlvRXpLdmFYdGpoSGhlOFp2K00vTE43WmZLZDJCY0xVOWphV0k2Y2s3eG52MSs4QzhYOGxBMWF0eG91azl6YzdlSWViSjhRMUIyRVJOY0ZyZG42T0ZSbUcrd0JhMEIiLCJtYWMiOiJjY2QwNDZlNDE1ODFmNDMyYTliZjRjYTRlZmY2ZGNlNWUyZDI1YjUxODhkNmU0OTdjZTQ4MDk4YzlhMzdhNmFhIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6IkpXVGtyeXQwVkpzaitxaGplY3IyekE9PSIsInZhbHVlIjoiN3cxdHcvcW5sdW4waG9XZUFyOUZMM2xTNnNHTkRlbVMrbzJhSnhOdFQ2ZXRxdEN2S1hlSExoZlFJSEpzYTJERDRwQUVXbnVjYTdHN292eiswNDVlKzZQS2xTOXB3RDdiN1dQWlVPZ01rVlhlTDVjQXJCUXE2V0o0SFNPMlVPVWMiLCJtYWMiOiIwZTAyYTQ1NzQzNGI0NzZmOWQ1YTQ4YmY2NDE4MTRkYzg5ZWEzNGJmOTk0MWI1NDZmY2Q1MThlMjNlMjljOTZjIiwidGFnIjoiIn0%3D; expires=Sun, 29 May 2022 17:37:37 GMT; Max-Age=7200; path=/; httponly; samesite=lax
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
 
-<code class="language-json">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
-    &lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;ie=edge&quot;&gt;
-    &lt;title&gt;Document&lt;/title&gt;
-    &lt;link rel=&quot;stylesheet&quot; href=&quot;//localhost:8080/css/app.css&quot;&gt;
-&lt;/head&gt;
-
-&lt;body&gt;
-    &lt;div id=&quot;app&quot;&gt;&lt;/div&gt;
-
-    &lt;script src=&quot;//localhost:8080/js/app.js&quot;&gt;&lt;/script&gt;
-&lt;/body&gt;
-
-&lt;/html&gt;
-</code>
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
  </pre>
     </span>
 <span id="execution-results-GETapi-mails--id-" hidden>
@@ -4151,7 +4501,7 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Im9EYm5uMTk2TGo3a1I0djlBM2FkVWc9PSIsInZhbHVlIjoiS
                 <input type="text"
                name="id"
                data-endpoint="GETapi-mails--id-"
-               value="7"
+               value="4473"
                data-component="url" hidden>
     <br>
 <p>The ID of the mail.</p>
@@ -4172,21 +4522,21 @@ set-cookie: XSRF-TOKEN=eyJpdiI6Im9EYm5uMTk2TGo3a1I0djlBM2FkVWc9PSIsInZhbHVlIjoiS
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/8000/api/mails/send" \
+    "http://localhost:8000/api/mails/send" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"to\": \"missouri10@example.com\",
-    \"subject\": \"ncdnjequaltnivdkldlkruhvrqnehjbwisduuttafzlkqpvhypivikavyawpvigbofqkfbzssmiexlymnrpalkwxatstxqiccaohntlzvvmqycuuhgzsufkocygkvxfpuaaeuodvrpfbhiedtsfcpcnpwkmercphldlvpizynrxdgvcqakyslvqgzdxdtmbpzbrjyppmqtaeoijlyfuozagnjidksljwzyeloamjmfviypkrgscganr\",
-    \"message\": \"velit\"
+    \"to\": \"zframi@example.org\",
+    \"subject\": \"lvruzqrqlhajdpfjhjhrouaeaqshhlhurbzugh\",
+    \"message\": \"illo\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/mails/send"
+    "http://localhost:8000/api/mails/send"
 );
 
 const headers = {
@@ -4196,9 +4546,9 @@ const headers = {
 };
 
 let body = {
-    "to": "missouri10@example.com",
-    "subject": "ncdnjequaltnivdkldlkruhvrqnehjbwisduuttafzlkqpvhypivikavyawpvigbofqkfbzssmiexlymnrpalkwxatstxqiccaohntlzvvmqycuuhgzsufkocygkvxfpuaaeuodvrpfbhiedtsfcpcnpwkmercphldlvpizynrxdgvcqakyslvqgzdxdtmbpzbrjyppmqtaeoijlyfuozagnjidksljwzyeloamjmfviypkrgscganr",
-    "message": "velit"
+    "to": "zframi@example.org",
+    "subject": "lvruzqrqlhajdpfjhjhrouaeaqshhlhurbzugh",
+    "message": "illo"
 };
 
 fetch(url, {
@@ -4211,7 +4561,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://localhost/8000/api/mails/send',
+    'http://localhost:8000/api/mails/send',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -4219,9 +4569,9 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'to' =&gt; 'missouri10@example.com',
-            'subject' =&gt; 'ncdnjequaltnivdkldlkruhvrqnehjbwisduuttafzlkqpvhypivikavyawpvigbofqkfbzssmiexlymnrpalkwxatstxqiccaohntlzvvmqycuuhgzsufkocygkvxfpuaaeuodvrpfbhiedtsfcpcnpwkmercphldlvpizynrxdgvcqakyslvqgzdxdtmbpzbrjyppmqtaeoijlyfuozagnjidksljwzyeloamjmfviypkrgscganr',
-            'message' =&gt; 'velit',
+            'to' =&gt; 'zframi@example.org',
+            'subject' =&gt; 'lvruzqrqlhajdpfjhjhrouaeaqshhlhurbzugh',
+            'message' =&gt; 'illo',
         ],
     ]
 );
@@ -4285,7 +4635,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="to"
                data-endpoint="POSTapi-mails-send"
-               value="missouri10@example.com"
+               value="zframi@example.org"
                data-component="body" hidden>
     <br>
 <p>Must be a valid email address.</p>
@@ -4295,7 +4645,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="subject"
                data-endpoint="POSTapi-mails-send"
-               value="ncdnjequaltnivdkldlkruhvrqnehjbwisduuttafzlkqpvhypivikavyawpvigbofqkfbzssmiexlymnrpalkwxatstxqiccaohntlzvvmqycuuhgzsufkocygkvxfpuaaeuodvrpfbhiedtsfcpcnpwkmercphldlvpizynrxdgvcqakyslvqgzdxdtmbpzbrjyppmqtaeoijlyfuozagnjidksljwzyeloamjmfviypkrgscganr"
+               value="lvruzqrqlhajdpfjhjhrouaeaqshhlhurbzugh"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -4305,7 +4655,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="message"
                data-endpoint="POSTapi-mails-send"
-               value="velit"
+               value="illo"
                data-component="body" hidden>
     <br>
 
@@ -4330,7 +4680,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/menu" \
+    --get "http://localhost:8000/api/menu" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -4338,7 +4688,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/menu"
+    "http://localhost:8000/api/menu"
 );
 
 const headers = {
@@ -4356,7 +4706,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/menu',
+    'http://localhost:8000/api/menu',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -4472,7 +4822,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/8000/api/marks" \
+    --get "http://localhost:8000/api/marks" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -4480,7 +4830,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/8000/api/marks"
+    "http://localhost:8000/api/marks"
 );
 
 const headers = {
@@ -4498,7 +4848,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost/8000/api/marks',
+    'http://localhost:8000/api/marks',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
