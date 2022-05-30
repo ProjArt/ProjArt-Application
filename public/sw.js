@@ -1,4 +1,7 @@
 const CACHE_VERSION = '1';
+const CACHE_FILES = [
+
+];
 
 self.addEventListener('install', event => {
     caches.open(CACHE_VERSION).then(cache => {
