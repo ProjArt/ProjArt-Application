@@ -45,7 +45,7 @@ const submitHandler = async () => {
     });
     isLoading.value = false; */
 
-    await OneSignal.push(async function () {
+    /* await OneSignal.push(async function () {
       await OneSignal.getUserId(async function (userId) {
         console.log("OneSignal User ID:", userId);
 
@@ -58,7 +58,14 @@ const submitHandler = async () => {
         });
         console.log(r);
       });
+    }); */
+
+    const beamsClient = new PusherPushNotifications.Client({
+      instanceId: process.env.MIX_PUSHER_APP_ID,
     });
+
+    console.log(formData.value.username);
+    await beamsClient.addDeviceInterest(formData.value.username);
 
     window.location.href += routesNames.calendar.replace("/", "");
   } else {

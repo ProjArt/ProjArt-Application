@@ -11,11 +11,13 @@
         "doctrine/dbal": "^3.3",
         "guzzlehttp/guzzle": "^7.4.3",
         "johngrogg/ics-parser": "^3.1",
+        "laravel-notification-channels/pusher-push-notifications": "^3.0",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
         "php-imap/php-imap": "^2.0",
+        "pusher/pusher-php-server": "^7.0",
         "staudenmeir/eloquent-has-many-deep": "^1.15",
         "voku/simple_html_dom": "^4.8",
         "webklex/laravel-imap": "^2.4"

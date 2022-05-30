@@ -15,6 +15,8 @@ use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
+use Pusher\PushNotifications\PushNotifications;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,6 +82,43 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("/absences", [AbsenceController::class, 'index'])->name("api.absences.index");
 
     Route::post("/onesignal", [UserController::class, 'setOnesignal'])->name("api.onesignal");
+
+
+
+    Route::get('/pusher/beams-auth', function (Request $request) {
+        $username = $request->user()->username; // If you use a different auth system, do your checks here
+        $beamsClient = new PushNotifications([
+            "instanceId" => config('services.pusher.beams_instance_id'),
+            "secretKey" => config('services.pusher.beams_secret_key'),
+        ]);
+        $beamsToken = $beamsClient->generateToken($username);
+        return response()->json($beamsToken);
+    });
+
+    Route::post("/beams", function (Request $request) {
+        $beamsClient = new PushNotifications([
+            "instanceId" => config('services.pusher.beams_instance_id'),
+            "secretKey" => config('services.pusher.beams_secret_key'),
+        ]);
+        $publishResponse = $beamsClient->publishToUsers(
+            ["vincent.tarrit"],
+            [
+                "apns" => [
+                    "aps" => [
+                        "alert" => "Hello!",
+                    ],
+                ],
+                "fcm" => [
+                    "notification" => [
+                        "title" => "Hello!",
+                        "body" => "Hello, world!",
+                    ],
+                ],
+            ]
+        );
+
+        return response()->json($publishResponse);
+    });
 });
 
 Route::get('/', function () {
