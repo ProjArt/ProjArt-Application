@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthUserRequest;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
+use App\Models\Calendar;
 use App\Models\Classroom;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -42,6 +43,11 @@ class AuthController extends Controller
 
         if ($request->classroom_name) {
             $user->classrooms()->sync([$request->classroom_name]);
+            $calendar = Calendar::whereName($request->classroom_name)->first();
+            if ($calendar == null) {
+                abort(404, "Calendar not found");
+            }
+            $user->calendars()->sync([$calendar->id]);
         }
 
         return httpSuccess("Register validated", [
