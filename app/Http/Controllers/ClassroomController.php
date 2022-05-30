@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 class ClassroomController extends Controller
 {
     /**
+     * Get classrooms
+     * 
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response

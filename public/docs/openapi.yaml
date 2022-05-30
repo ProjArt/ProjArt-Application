@@ -99,15 +99,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: at
+                  example: et
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: consequatur
+                  example: et
                 classroom_name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ljhfhjxdsloqhmtsjnycdfnhzsbvvqbyycbcur
+                  example: jaevrrlcgifkygqxddpcuiabklfscnvjjhksodbfmmhhxvzbfvxnartilzhbgajzpzwlplvnlkmjoexazvuojwtyjhaiuepsoutamghmmxxqlmwqv
               required:
                 - username
                 - password
@@ -150,15 +150,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: sed
+                  example: praesentium
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: eum
+                  example: soluta
                 classroom_name:
                   type: string
                   description: 'The class of the user.'
-                  example: qui
+                  example: nam
               required:
                 - username
                 - password
@@ -271,8 +271,8 @@ paths:
         - Authentication
   /api/classrooms:
     get:
-      summary: 'Display a listing of the resource.'
-      description: ''
+      summary: 'Get classrooms'
+      description: 'Display a listing of the resource.'
       parameters:
         -
           in: header
@@ -306,7 +306,28 @@ paths:
                   success: true
                   message: Classroom
                   data:
-                    classrooms: []
+                    classrooms:
+                      -
+                        name: M49-1
+                        total_persons: 1
+                        users:
+                          -
+                            id: 49
+                            username: vincent.tarrit
+                            gaps_id: 0
+                            role: student
+                            card_money: 0
+                            pivot:
+                              classroom_name: M49-1
+                              user_id: 49
+                            theme:
+                              id: 1
+                              primary:
+                                id: 1
+                                value: '#000000'
+                              secondary:
+                                id: 2
+                                value: '#ffffff'
                 properties:
                   success:
                     type: boolean
@@ -317,7 +338,28 @@ paths:
                   data:
                     type: object
                     example:
-                      classrooms: []
+                      classrooms:
+                        -
+                          name: M49-1
+                          total_persons: 1
+                          users:
+                            -
+                              id: 49
+                              username: vincent.tarrit
+                              gaps_id: 0
+                              role: student
+                              card_money: 0
+                              pivot:
+                                classroom_name: M49-1
+                                user_id: 49
+                              theme:
+                                id: 1
+                                primary:
+                                  id: 1
+                                  value: '#000000'
+                                secondary:
+                                  id: 2
+                                  value: '#ffffff'
       tags:
         - Autres
   /api/update/gaps/absences:
@@ -412,7 +454,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: mzerffgizpukzvljwzbsrqrhxslircuirvyogaxjdfxidubsijzrcmniyydmitsvowtvmhnqabndefkcygamohktrjigqrmpzktlrrifossnnnybawvkphiixrdmlvmkxapnmrwkwl
+                  example: xcvkcvetxghmihosswlmagcettnrbbuzyktzxkaulwifszawyahukimebfpkkftddyaetxqesexqlqril
               required:
                 - name
   '/api/telegram/{token}':
@@ -527,7 +569,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: qatwmwegsbsbuqbjvcnfmgtatzqaoqluxgrdlqmmynpkgvgiumuchgtwepkahhkcrexanyhrfbujdlatzeuyvdzbdmjkbgzwxchzdnfesywnozlscrmyravkunteklzxzcgnmidxzxdwxfxiawkecudqnldiwqckbqrjdeucxnvdefaackgezveakvqoopbumgcactrvvrjrtsieyupznuccgwqbcxzpjniuwicfznvrvofkodkuvkfbbuxloj
+                  example: yzehrmygrwafetbwbcktuvpohmqweawtflzlkgekaoxxq
               required:
                 - name
   '/api/calendars/{id}':
@@ -621,7 +663,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: fqnxdlxafnqjasoquslhkxhiuizmotkwdmghxzflrfvqpvacbamygrkfkdfspselnymfdxtscojammdmwvsvqodzlpzwforvxfjkcllzlcxzjyksspisyzwsmtbboknotknwxasnkitshwopmfsfygjciyyktuxevaywxciipefxvahijivpjwboshirqxejsyqvqhrpfxfrew
+                  example: putelmhwtchxwwughczfndnpfvxoyrzylirnbxbiqkjkplykmetnmxsuftwlrzptflbrdsdrmxlgqoubvfbwe
               required:
                 - name
     delete:
@@ -700,19 +742,19 @@ paths:
                 calendar_id:
                   type: integer
                   description: 'ID du calendrier à partager.'
-                  example: 13
+                  example: 10
                 user_id:
                   type: integer
                   description: "ID de l'utilisateur à qui partager le calendrier."
-                  example: 2
+                  example: 8
                 can_own:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
                 can_view:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
               required:
                 - calendar_id
                 - user_id
@@ -799,27 +841,27 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: edizzgvflbwiudzggieaocufderogezqouulbrxgnmsvgncrvychzspvlfiapifufkbbvtdlmkyfinkfwuxuqrhmbpbksziuwxlxrvzfbdtdvirhdzwobtkxnfwhgpsuhwfqnoabhkbfpwwoivcicxysnxkchrzysnmdnimfmwdeputwlwxzkzfwbuatgwlgtixkigocrtbwdbghgvjasyoejahejhywfbcjjuyxlbddglqzipgwkzmu
+                  example: wwdnqhcuoqqfbdllmagxnevxinrswjwyhanduwhcmsuxoltqkxqhvnspdxdusiauvsdehpulxpaiowtahqygoqrbrxbehzeoxhqppbovslvxbztjaqpcdkbkn
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: unjdtrxncnuundrizjaghayjeiwezpqnhukwjhouhdtbhrfpeztwertxlfpfpoekkyqggmcyrwamactemnyyfocwyyituphybonvkvcgltvazieawmfcvfzeoienfqawfswutsfaqwnfolpnuyyhzjprajxlldbygmvctitxeabkulvopdjopqdfcnms
+                  example: xqbmswyzcuxtzjjozgyozppkyoukwiutbphadofxmujsvymjzdccybslvedpclscbfuajiungszjggcfnlchehxtzooindgxyjnsdffhskpsadpdozprgjjavzhjgpgtmiwstfjhcadyfuwiqnfmuhfhydxhhctrxwmphmbgwgoxqgwsjvltglqukjsazuiicaiuzvmwanpwomxmdldnbdwffmpntcbqsrpxjvqejdyqrwahgxsebtqjagmkadflaamheugovpjfehuzfgnqerbkqljmnuvrwtdrikvitvlptvkksnfidadgjampmmqvgejivfmilsfvhudyspjsoyptajyskrzayudbhpolysxawheugpynlzjnqynhpjwqgfqxhdwuxlcqujksrxvcpynbybbqsmjzubcvtyfgoqbsenallnxrybgoxvwkieidytnnmveyvqdtlxymfizgybnubpjegedrvgykzxtwrlxcaypodnccetaaolongqwfej
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-30T11:43:25'
+                  example: '2022-05-30T14:57:09'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-30T11:43:25'
+                  example: '2022-05-30T14:57:09'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: rezzmhzsuqgbkylorborzybyckrieklqwucvglunogndiqattodlloevgcpmfqcohdloocqsewrubplrmrfrfygq
+                  example: ddtoaintkiqbmqdqctzbwmyajojdnjqynbsrlnkgqlfpfzoqdhwycqxpqkercjhynwsvqsmmqfghnzhvfawnocrpsdkssafpxqnbxzvmeaqlzfawsv
                 calendar_id:
                   type: string
                   description: ''
-                  example: quo
+                  example: nam
               required:
                 - title
                 - description
@@ -918,23 +960,23 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: kkueclsbffzpbrfzxqejxltcypsecenyvtvuubnhszmzecuxzoghaxvvgrijvxageyacmuvsmeevcyazhzxxvckonxmxcscfnrqjkmyndejeniqzgmmknfnaizhngrxpgampqhzhctcieudbikpbffpmibcywrnaxuzjfdhaqivuzek
+                  example: ptwelehcdyaferhlgeawspdfwvnbyrzltzrfsalvmewvnzookarzlveyfsaeuxyyifusauomfvyvkwgvjbsxrkdsybofvoxlzvffgraasvimmtpqfnqfreigkcxnkvbdlrworakknjktqpkjlyxnbjyhxcbemvcetwigpidyabscqstqsrdofpdijpcimyqrlniazqoctuqzvtfbegxvjvrzycjlfrfprftrbsnwxdoa
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: ziwqycubijdhthgohnhzyjibaxcnffaavmvizizsoqwhsrcadqkvhpbpvgihdesizvujvhuafwmgpokwidmiwbvxvhdrrnjrsotqclzgzrtwykgesshajbphuwiscrnoornjivhroviuaxwklbxcruxhfzyysyskwstvaztbevymfvizmrduuwvzlurmrpppndoiskxocrebcmlqvgknoyqhhpymylvlloqceahxntoegoxizxmgawjjalnbunbmrrzuvgpbewhwexkojweupmhvweeyufcojsxdrybntsutyjdrxgxvllrzndebzjfzcztimvepwkkejhsdiptebupthczxspaaeuqtspmsbobcpbqubblv
+                  example: dqqzcjojsmvcgdtebmurgxwenkxsjodbiapytfawtltqodwakvluvcqvvhczcblyqqjvctrjuzqqoojyghkeblwxtiusonvalxvfegvdrmenqqewiiuqrphjduhavlofkwucldxkkuaxestuvocbzxofghqgegmthsaerbgvktudpapyenrycfltbcopsnfffeptadadhliqxrnpzsluiceagovpgfqakmvrmkzgoroierjdkoqydygvqvwnctyjue
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-30T11:43:25'
+                  example: '2022-05-30T14:57:09'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-30T11:43:25'
+                  example: '2022-05-30T14:57:09'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: reisgacooribvhmllnlbyameocppkpsxayccrlaicelpohwfzoggefllhocoootdnrumqzikykcxlozysdlozjsdkmhotdnnjnlxweq
+                  example: pkuknqlqwaetyucjbipbqeaurqiisctuielkbgwjmtnnypdxexzinymakcasppfntbpnujuodcyuucethtuiqflwdmlebzhdyctvnbuudddpquxm
     delete:
       summary: 'Delete event'
       description: 'Remove the specified resource from storage.'
@@ -1078,10 +1120,117 @@ paths:
                       type: string
       tags:
         - Gaps
-  /api/update/gaps:
-    get:
+  /api/calendars/import:
+    post:
       summary: ''
       description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: multipart/form-data
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Gaps
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Must not be greater than 255 characters.'
+                  example: tius
+                ics:
+                  type: string
+                  format: binary
+                  description: 'Must be a file.'
+              required:
+                - name
+                - ics
+  '/api/update/gaps/{token}':
+    get:
+      summary: 'Update all Gaps Cron'
+      description: 'Pour forcer la mise à jour des données provenant de Gaps depuis un cron'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: true
+                  message: 'All fetched'
+                  data:
+                    user: null
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: 'All fetched'
+                  data:
+                    type: object
+                    example:
+                      user: null
+      tags:
+        - Gaps
+    parameters:
+      -
+        in: path
+        name: token
+        description: ''
+        example: VGrxhPp9xuDb947JZADe7ESdBDkwdq
+        required: true
+        schema:
+          type: string
+  /api/update/gaps/all:
+    get:
+      summary: 'Update all Gaps'
+      description: 'Pour forcer la mise à jour des données provenant de Gaps'
       parameters:
         -
           in: header
@@ -1131,961 +1280,6 @@ paths:
                       type: string
       tags:
         - Gaps
-  /api/calendars/import:
-    post:
-      summary: ''
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: multipart/form-data
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {{token}}'
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Gaps
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: dwmcnyrjalgmysrysfdltppdujtlwtcneqqzoakqosvbnxubbpdcskwvemyqeubqhzlhaongloeukecd
-                ics:
-                  type: string
-                  format: binary
-                  description: 'Must be a file.'
-              required:
-                - name
-                - ics
-  '/api/update/gaps/{token}':
-    get:
-      summary: ''
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {{token}}'
-          schema:
-            type: string
-      responses:
-        500:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  message: 'Attempt to read property "name" on null'
-                  exception: ErrorException
-                  file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Services/GapsEventsService.php
-                  line: 62
-                  trace:
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php
-                      line: 255
-                      function: handleError
-                      class: Illuminate\Foundation\Bootstrap\HandleExceptions
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Services/GapsEventsService.php
-                      line: 62
-                      function: 'Illuminate\Foundation\Bootstrap\{closure}'
-                      class: Illuminate\Foundation\Bootstrap\HandleExceptions
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Controllers/GapsController.php
-                      line: 27
-                      function: fetchAllHoraires
-                      class: App\Http\Services\GapsEventsService
-                      type: '::'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Controller.php
-                      line: 54
-                      function: updateAll
-                      class: App\Http\Controllers\GapsController
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php
-                      line: 45
-                      function: callAction
-                      class: Illuminate\Routing\Controller
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php
-                      line: 261
-                      function: dispatch
-                      class: Illuminate\Routing\ControllerDispatcher
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php
-                      line: 204
-                      function: runController
-                      class: Illuminate\Routing\Route
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php
-                      line: 725
-                      function: run
-                      class: Illuminate\Routing\Route
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 141
-                      function: 'Illuminate\Routing\{closure}'
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php
-                      line: 50
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 180
-                      function: handle
-                      class: Illuminate\Routing\Middleware\SubstituteBindings
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
-                      line: 126
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
-                      line: 102
-                      function: handleRequest
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
-                      line: 54
-                      function: handleRequestUsingNamedLimiter
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 180
-                      function: handle
-                      class: Illuminate\Routing\Middleware\ThrottleRequests
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php
-                      line: 33
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 141
-                      function: 'Laravel\Sanctum\Http\Middleware\{closure}'
-                      class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 116
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php
-                      line: 34
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 180
-                      function: handle
-                      class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 116
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php
-                      line: 726
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php
-                      line: 703
-                      function: runRouteWithinStack
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php
-                      line: 667
-                      function: runRoute
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php
-                      line: 656
-                      function: dispatchToRoute
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
-                      line: 167
-                      function: dispatch
-                      class: Illuminate\Routing\Router
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 141
-                      function: 'Illuminate\Foundation\Http\{closure}'
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php
-                      line: 21
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php
-                      line: 31
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php
-                      line: 21
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php
-                      line: 40
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php
-                      line: 27
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php
-                      line: 86
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 180
-                      function: handle
-                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php
-                      line: 62
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 180
-                      function: handle
-                      class: Illuminate\Http\Middleware\HandleCors
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php
-                      line: 39
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 180
-                      function: handle
-                      class: Illuminate\Http\Middleware\TrustProxies
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                      line: 116
-                      function: 'Illuminate\Pipeline\{closure}'
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
-                      line: 142
-                      function: then
-                      class: Illuminate\Pipeline\Pipeline
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
-                      line: 111
-                      function: sendRequestThroughRouter
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
-                      line: 299
-                      function: handle
-                      class: Illuminate\Foundation\Http\Kernel
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
-                      line: 287
-                      function: callLaravelOrLumenRoute
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
-                      line: 89
-                      function: makeApiCall
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
-                      line: 45
-                      function: makeResponseCall
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
-                      line: 35
-                      function: makeResponseCallIfConditionsPass
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
-                      line: 222
-                      function: __invoke
-                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
-                      line: 179
-                      function: iterateThroughStrategies
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
-                      line: 116
-                      function: fetchResponses
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
-                      line: 123
-                      function: processRoute
-                      class: Knuckles\Scribe\Extracting\Extractor
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
-                      line: 80
-                      function: extractEndpointsInfoFromLaravelApp
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
-                      line: 56
-                      function: extractEndpointsInfoAndWriteToDisk
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php
-                      line: 55
-                      function: get
-                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
-                      line: 36
-                      function: handle
-                      class: Knuckles\Scribe\Commands\GenerateDocumentation
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Util.php
-                      line: 41
-                      function: 'Illuminate\Container\{closure}'
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
-                      line: 93
-                      function: unwrapIfClosure
-                      class: Illuminate\Container\Util
-                      type: '::'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
-                      line: 37
-                      function: callBoundMethod
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Container.php
-                      line: 651
-                      function: call
-                      class: Illuminate\Container\BoundMethod
-                      type: '::'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php
-                      line: 136
-                      function: call
-                      class: Illuminate\Container\Container
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Command/Command.php
-                      line: 308
-                      function: execute
-                      class: Illuminate\Console\Command
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php
-                      line: 121
-                      function: run
-                      class: Symfony\Component\Console\Command\Command
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php
-                      line: 998
-                      function: run
-                      class: Illuminate\Console\Command
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php
-                      line: 299
-                      function: doRunCommand
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php
-                      line: 171
-                      function: doRun
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Application.php
-                      line: 102
-                      function: run
-                      class: Symfony\Component\Console\Application
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php
-                      line: 129
-                      function: run
-                      class: Illuminate\Console\Application
-                      type: '->'
-                    -
-                      file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/artisan
-                      line: 37
-                      function: handle
-                      class: Illuminate\Foundation\Console\Kernel
-                      type: '->'
-                properties:
-                  message:
-                    type: string
-                    example: 'Attempt to read property "name" on null'
-                  exception:
-                    type: string
-                    example: ErrorException
-                  file:
-                    type: string
-                    example: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Services/GapsEventsService.php
-                  line:
-                    type: integer
-                    example: 62
-                  trace:
-                    type: array
-                    example:
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Bootstrap/HandleExceptions.php
-                        line: 255
-                        function: handleError
-                        class: Illuminate\Foundation\Bootstrap\HandleExceptions
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Services/GapsEventsService.php
-                        line: 62
-                        function: 'Illuminate\Foundation\Bootstrap\{closure}'
-                        class: Illuminate\Foundation\Bootstrap\HandleExceptions
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/app/Http/Controllers/GapsController.php
-                        line: 27
-                        function: fetchAllHoraires
-                        class: App\Http\Services\GapsEventsService
-                        type: '::'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Controller.php
-                        line: 54
-                        function: updateAll
-                        class: App\Http\Controllers\GapsController
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/ControllerDispatcher.php
-                        line: 45
-                        function: callAction
-                        class: Illuminate\Routing\Controller
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php
-                        line: 261
-                        function: dispatch
-                        class: Illuminate\Routing\ControllerDispatcher
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Route.php
-                        line: 204
-                        function: runController
-                        class: Illuminate\Routing\Route
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php
-                        line: 725
-                        function: run
-                        class: Illuminate\Routing\Route
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 141
-                        function: 'Illuminate\Routing\{closure}'
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php
-                        line: 50
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 180
-                        function: handle
-                        class: Illuminate\Routing\Middleware\SubstituteBindings
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
-                        line: 126
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
-                        line: 102
-                        function: handleRequest
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
-                        line: 54
-                        function: handleRequestUsingNamedLimiter
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 180
-                        function: handle
-                        class: Illuminate\Routing\Middleware\ThrottleRequests
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php
-                        line: 33
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 141
-                        function: 'Laravel\Sanctum\Http\Middleware\{closure}'
-                        class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 116
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/sanctum/src/Http/Middleware/EnsureFrontendRequestsAreStateful.php
-                        line: 34
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 180
-                        function: handle
-                        class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 116
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php
-                        line: 726
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php
-                        line: 703
-                        function: runRouteWithinStack
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php
-                        line: 667
-                        function: runRoute
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Routing/Router.php
-                        line: 656
-                        function: dispatchToRoute
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
-                        line: 167
-                        function: dispatch
-                        class: Illuminate\Routing\Router
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 141
-                        function: 'Illuminate\Foundation\Http\{closure}'
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php
-                        line: 21
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php
-                        line: 31
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php
-                        line: 21
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php
-                        line: 40
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php
-                        line: 27
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php
-                        line: 86
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 180
-                        function: handle
-                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php
-                        line: 62
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 180
-                        function: handle
-                        class: Illuminate\Http\Middleware\HandleCors
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php
-                        line: 39
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 180
-                        function: handle
-                        class: Illuminate\Http\Middleware\TrustProxies
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
-                        line: 116
-                        function: 'Illuminate\Pipeline\{closure}'
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
-                        line: 142
-                        function: then
-                        class: Illuminate\Pipeline\Pipeline
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
-                        line: 111
-                        function: sendRequestThroughRouter
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
-                        line: 299
-                        function: handle
-                        class: Illuminate\Foundation\Http\Kernel
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
-                        line: 287
-                        function: callLaravelOrLumenRoute
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
-                        line: 89
-                        function: makeApiCall
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
-                        line: 45
-                        function: makeResponseCall
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
-                        line: 35
-                        function: makeResponseCallIfConditionsPass
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
-                        line: 222
-                        function: __invoke
-                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
-                        line: 179
-                        function: iterateThroughStrategies
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
-                        line: 116
-                        function: fetchResponses
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
-                        line: 123
-                        function: processRoute
-                        class: Knuckles\Scribe\Extracting\Extractor
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
-                        line: 80
-                        function: extractEndpointsInfoFromLaravelApp
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
-                        line: 56
-                        function: extractEndpointsInfoAndWriteToDisk
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php
-                        line: 55
-                        function: get
-                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
-                        line: 36
-                        function: handle
-                        class: Knuckles\Scribe\Commands\GenerateDocumentation
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Util.php
-                        line: 41
-                        function: 'Illuminate\Container\{closure}'
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
-                        line: 93
-                        function: unwrapIfClosure
-                        class: Illuminate\Container\Util
-                        type: '::'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
-                        line: 37
-                        function: callBoundMethod
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Container/Container.php
-                        line: 651
-                        function: call
-                        class: Illuminate\Container\BoundMethod
-                        type: '::'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php
-                        line: 136
-                        function: call
-                        class: Illuminate\Container\Container
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Command/Command.php
-                        line: 308
-                        function: execute
-                        class: Illuminate\Console\Command
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Command.php
-                        line: 121
-                        function: run
-                        class: Symfony\Component\Console\Command\Command
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php
-                        line: 998
-                        function: run
-                        class: Illuminate\Console\Command
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php
-                        line: 299
-                        function: doRunCommand
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/symfony/console/Application.php
-                        line: 171
-                        function: doRun
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Console/Application.php
-                        line: 102
-                        function: run
-                        class: Symfony\Component\Console\Application
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php
-                        line: 129
-                        function: run
-                        class: Illuminate\Console\Application
-                        type: '->'
-                      -
-                        file: /Users/vincenttarrit/CloudTarrit/HEIG/2eme/2/ProjArt/ProjArt-Application/artisan
-                        line: 37
-                        function: handle
-                        class: Illuminate\Foundation\Console\Kernel
-                        type: '->'
-                    items:
-                      type: object
-      tags:
-        - Gaps
-    parameters:
-      -
-        in: path
-        name: token
-        description: ''
-        example: VGrxhPp9xuDb947JZADe7ESdBDkwdq
-        required: true
-        schema:
-          type: string
   /api/mails:
     get:
       summary: ''
@@ -2197,7 +1391,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the mail.'
-        example: '4473'
+        example: '7'
         required: true
         schema:
           type: string
@@ -2240,15 +1434,15 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: zframi@example.org
+                  example: erwin.herman@example.com
                 subject:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: lvruzqrqlhajdpfjhjhrouaeaqshhlhurbzugh
+                  example: ijjkuhxpbqnwzbojkjlnfrdjjadreaorzkuitxcxyjlgubtijjdulwqoznwvwzsfvaetxqiysnhlrjzjxseuwt
                 message:
                   type: string
                   description: ''
-                  example: illo
+                  example: harum
               required:
                 - to
                 - subject

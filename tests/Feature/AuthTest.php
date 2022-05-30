@@ -177,5 +177,7 @@ class AuthTest extends TestCase
         ]);
 
         $response->assertStatus(404);
+
+        $classroom->delete();
     }
 }
