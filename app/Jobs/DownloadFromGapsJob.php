@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Http\Services\GapsAbsencesService;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
+use App\Models\Notification;
 use App\Models\User;
 use App\Notifications\OneSignal;
 use Illuminate\Bus\Queueable;
@@ -13,7 +14,6 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Notification;
 
 class DownloadFromGapsJob implements ShouldQueue
 {
@@ -39,6 +39,6 @@ class DownloadFromGapsJob implements ShouldQueue
         GapsMarksService::fetchAllNotes($this->user);
         GapsAbsencesService::fetchAllAbsences($this->user);
 
-        $this->user->sendNotification();
+        (new Notification())->send();
     }
 }
