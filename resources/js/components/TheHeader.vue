@@ -1,7 +1,9 @@
 <script setup>
 import useLogout from "../composables/useLogout";
 import { routesNames } from "../router/routes";
+import { isAuthenticated } from "../stores/auth";
 
+console.log(isAuthenticated.value);
 console.log("routesNames", routesNames);
 </script>
 <template>
@@ -9,7 +11,7 @@ console.log("routesNames", routesNames);
     <div class="header__links">
       <button @click="useLogout()">Déconnexion</button>
     </div>
-    <div class="menu">
+    <div class="menu" v-if="isAuthenticated">
       <div
         v-for="routeName in Object.keys(routesNames)"
         :key="routeName"
