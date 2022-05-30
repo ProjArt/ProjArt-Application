@@ -19,15 +19,20 @@
 
     <link rel="stylesheet" href="{{ config('app.url') }}{{ mix('css/app.css') }}">
 
-    {{-- ONE SIGNAL --}}
-    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+
+
+    {{-- PUSHER --}}
+    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+
     <script>
-        window.OneSignal = window.OneSignal || [];
-        OneSignal.push(function() {
-            OneSignal.init({
-                appId: "5786d114-d551-43c0-9705-d79e26fb9461",
-            });
+        const beamsClient = new PusherPushNotifications.Client({
+            instanceId: '9daf55df-fcab-4d64-b2d7-5d7a2a56b4ee',
         });
+
+        beamsClient.start()
+            .then(() => beamsClient.addDeviceInterest('all'))
+            .then(() => console.log('Successfully registered and subscribed!'))
+            .catch(console.error);
     </script>
 </head>
 
