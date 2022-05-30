@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\OneSignal;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -144,5 +145,15 @@ class User extends Authenticatable
     public function events()
     {
         return $this->hasManyDeep(Event::class, ['calendar_user', Calendar::class]);
+    }
+
+
+
+
+    // NOTIFICATIONS
+
+    public function sendNotification()
+    {
+        $this->notify(new OneSignal()); //Pass the model data to the OneSignal Notificator
     }
 }
