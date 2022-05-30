@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "a2d7784b-d671-4076-9946-5380f3df6c97",
+        "_postman_id": "853c44c5-07eb-44a3-a2f3-69477dce783c",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -100,7 +100,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"et\",\"password\":\"et\",\"classroom_name\":\"jaevrrlcgifkygqxddpcuiabklfscnvjjhksodbfmmhhxvzbfvxnartilzhbgajzpzwlplvnlkmjoexazvuojwtyjhaiuepsoutamghmmxxqlmwqv\"}"
+                            "raw": "{\"username\":\"fuga\",\"password\":\"veniam\",\"classroom_name\":\"swfidkivtgekwiqlgodvvfnbgqihiludwffxfufqwfonujxpltpmzhjuypahruuozxrebbsmbikafzzxmcszpyikgwrlivkornydtbmwuawarsvbozowfpmupcmotlwradrtoakedqczcjxgpdmlcehgpcwdevcoardhaoshgqndioarfbmjbenxmyzfnurrrtcrhhwjerrftzjpzzqqknx\"}"
                         },
                         "description": "Authentication for a user"
                     },
@@ -132,7 +132,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"praesentium\",\"password\":\"soluta\",\"classroom_name\":\"nam\"}"
+                            "raw": "{\"username\":\"ut\",\"password\":\"est\",\"classroom_name\":\"id\"}"
                         },
                         "description": "Register a new user"
                     },
@@ -294,7 +294,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"success\":true,\"message\":\"Classroom\",\"data\":{\"classrooms\":[{\"name\":\"M49-1\",\"total_persons\":1,\"users\":[{\"id\":49,\"username\":\"vincent.tarrit\",\"gaps_id\":0,\"role\":\"student\",\"card_money\":0,\"pivot\":{\"classroom_name\":\"M49-1\",\"user_id\":49},\"theme\":{\"id\":1,\"primary\":{\"id\":1,\"value\":\"#000000\"},\"secondary\":{\"id\":2,\"value\":\"#ffffff\"}}}]}]}}",
+                            "body": "{\"success\":true,\"message\":\"Classroom\",\"data\":{\"classrooms\":[{\"name\":\"M49-1\",\"total_persons\":1,\"users\":[{\"id\":63,\"username\":\"vincent.tarrit\",\"gaps_id\":17486,\"role\":\"student\",\"card_money\":0,\"pivot\":{\"classroom_name\":\"M49-1\",\"user_id\":63},\"theme\":{\"id\":1,\"primary\":{\"id\":1,\"value\":\"#000000\"},\"secondary\":{\"id\":2,\"value\":\"#ffffff\"}}}]}]}}",
                             "name": ""
                         }
                     ]
@@ -374,7 +374,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"xcvkcvetxghmihosswlmagcettnrbbuzyktzxkaulwifszawyahukimebfpkkftddyaetxqesexqlqril\"}"
+                            "raw": "{\"name\":\"jhgfxkxchmnkzutnmncquiyvrtpfbhqdokajxegjsmcodglzxsjtmeooouvyvtkjkukmohlnuxqduprhjrsowakdnwmbwuhsuwqowuzdhjlwunrybknppla\"}"
                         },
                         "description": ""
                     },
@@ -485,7 +485,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"yzehrmygrwafetbwbcktuvpohmqweawtflzlkgekaoxxq\"}"
+                            "raw": "{\"name\":\"hlnlsuqtorsckjvkinhhwaznsphmbciiypkxttmkajhrkiggmbqeogqfvyqlfrbrygylvuaktkkndxuiudisuyiqtoqipwlnaoqgrqqoqmwronjqi\"}"
                         },
                         "description": "Cr\u00e9e un calendrier."
                     },
@@ -582,7 +582,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"putelmhwtchxwwughczfndnpfvxoyrzylirnbxbiqkjkplykmetnmxsuftwlrzptflbrdsdrmxlgqoubvfbwe\"}"
+                            "raw": "{\"name\":\"ghkqjmwnbflobizpymvszvehjkbwtcztakrdyooqkgcbpcrzfmqtzpygfiuouijinbnblfljbdhgqntsyjspsrhtmdjfxumuunytqzlgwkycboxmwvnx\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -651,7 +651,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"calendar_id\":10,\"user_id\":8,\"can_own\":false,\"can_view\":false}"
+                            "raw": "{\"calendar_id\":13,\"user_id\":4,\"can_own\":false,\"can_view\":true}"
                         },
                         "description": "Partage un calendrier avec un autre utilisateur."
                     },
@@ -725,7 +725,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"wwdnqhcuoqqfbdllmagxnevxinrswjwyhanduwhcmsuxoltqkxqhvnspdxdusiauvsdehpulxpaiowtahqygoqrbrxbehzeoxhqppbovslvxbztjaqpcdkbkn\",\"description\":\"xqbmswyzcuxtzjjozgyozppkyoukwiutbphadofxmujsvymjzdccybslvedpclscbfuajiungszjggcfnlchehxtzooindgxyjnsdffhskpsadpdozprgjjavzhjgpgtmiwstfjhcadyfuwiqnfmuhfhydxhhctrxwmphmbgwgoxqgwsjvltglqukjsazuiicaiuzvmwanpwomxmdldnbdwffmpntcbqsrpxjvqejdyqrwahgxsebtqjagmkadflaamheugovpjfehuzfgnqerbkqljmnuvrwtdrikvitvlptvkksnfidadgjampmmqvgejivfmilsfvhudyspjsoyptajyskrzayudbhpolysxawheugpynlzjnqynhpjwqgfqxhdwuxlcqujksrxvcpynbybbqsmjzubcvtyfgoqbsenallnxrybgoxvwkieidytnnmveyvqdtlxymfizgybnubpjegedrvgykzxtwrlxcaypodnccetaaolongqwfej\",\"start\":\"2022-05-30T14:57:09\",\"end\":\"2022-05-30T14:57:09\",\"location\":\"ddtoaintkiqbmqdqctzbwmyajojdnjqynbsrlnkgqlfpfzoqdhwycqxpqkercjhynwsvqsmmqfghnzhvfawnocrpsdkssafpxqnbxzvmeaqlzfawsv\",\"calendar_id\":\"nam\"}"
+                            "raw": "{\"title\":\"paagddgrmobozxultwswjfjerenwvbjrzx\",\"description\":\"jvpxkodkwbikyoa\",\"start\":\"2022-05-30T20:46:44\",\"end\":\"2022-05-30T20:46:44\",\"location\":\"jczfkpnzytmhnyafzxnazkxcnfwnargbhiyhkbsivqlneceywnxuhenfrffwfrywuqnmdymfklahaqsocwlztxaqenggrrbtozucslmqmisalvgthrasflytddoxwkioyppcmdtdevsmmqxyfkhplvbgfpymwfefxwhjbzhfvedtosrbrdvpiwpqzrkvveweeveuehewtrvnhtuetmpuwueubjpddiijtabzadajzdvfvjomeu\",\"calendar_id\":\"rerum\"}"
                         },
                         "description": "Enregistre un nouvel \u00e9v\u00e8nement dans la BDD\nSucc\u00e8s: retourne un json contenant l'\u00e9v\u00e8nement cr\u00e9\u00e9\nFail: erreur"
                     },
@@ -750,7 +750,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "2110",
                                     "description": "The ID of the event."
                                 }
                             ]
@@ -807,7 +807,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "2110",
                                     "description": "The ID of the event."
                                 }
                             ]
@@ -829,7 +829,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"ptwelehcdyaferhlgeawspdfwvnbyrzltzrfsalvmewvnzookarzlveyfsaeuxyyifusauomfvyvkwgvjbsxrkdsybofvoxlzvffgraasvimmtpqfnqfreigkcxnkvbdlrworakknjktqpkjlyxnbjyhxcbemvcetwigpidyabscqstqsrdofpdijpcimyqrlniazqoctuqzvtfbegxvjvrzycjlfrfprftrbsnwxdoa\",\"description\":\"dqqzcjojsmvcgdtebmurgxwenkxsjodbiapytfawtltqodwakvluvcqvvhczcblyqqjvctrjuzqqoojyghkeblwxtiusonvalxvfegvdrmenqqewiiuqrphjduhavlofkwucldxkkuaxestuvocbzxofghqgegmthsaerbgvktudpapyenrycfltbcopsnfffeptadadhliqxrnpzsluiceagovpgfqakmvrmkzgoroierjdkoqydygvqvwnctyjue\",\"start\":\"2022-05-30T14:57:09\",\"end\":\"2022-05-30T14:57:09\",\"location\":\"pkuknqlqwaetyucjbipbqeaurqiisctuielkbgwjmtnnypdxexzinymakcasppfntbpnujuodcyuucethtuiqflwdmlebzhdyctvnbuudddpquxm\"}"
+                            "raw": "{\"title\":\"kjngrcbckacvamqwgxlbjsyziepubcolejupvmrgwmgrvrqkyyggilqinyigqvobpmrwnpodwlefdorybwignhnirkvyaukkllhbmnzirddlyeusdvklhcugrdxpymptejwvsdalpthepzfolkhdih\",\"description\":\"llrsiuswiqnkeqibaixctmlazvnzmabwbbzxfzfyorjhjerqvcoopckjgbqiuwqorfyqevbgubdcrefuvsjxkxrwunvcgglxatoioqanrarfutlnrbarznrorxkrreuwmnbvgzgmzfpjkjwfkyfufuyjdsfxpgifmtwihtmfyhtrswgzfevsyqnkhksqrvgkdweyruhfeqjlelgfywcblaqjcdnawueoaouoyrnjjqdudepfaedxrmcfguzgkpahhrahthgnydahnrxkapyvunoldeafimoljbdwlyrpbavfochkhhtascjonacuecvkrxkcwzxeyoegwfcjkxpxklezgibxvnywusmnfmqcfgripawmagcbzeujtojzabdlyrvjlhjdvoueqgsuzexvraqnxbcnlfulzbvzrcjvqvvkycsisqkdcxfnqlevfaqdntbehcfvfubcpjbpiubquzeaxfczpigkzoutfabyrautshlipbygkgkkuedeyrvnquozucruxgehteoezbxjcuvzdkjxchntkmxzlqfkazlqhovgojitlcmoqfejyjxvusakatspfzobqfnvqummjxgvlwhffttvdxgwclpughafqdrlqjiujnvwcsvjpmivvkvmeteyjpodvqhwwnmseykghpwvwfpeuxmqhvqjsliijwgcsdsjaoftpasvojosukhmemznxaqvbusszkynznreqnjfbfuclzoib\",\"start\":\"2022-05-30T20:46:44\",\"end\":\"2022-05-30T20:46:44\",\"location\":\"ctkqzwiukmcsqmblmptpgelyhfvukeeimejnocfgjxbyuoknajimtldreiuvpnpdxeasbiyyirgjjvelzkgpmzsvkfjeatpirjeaimwwmvrsvcfkofousjcazvzycrvoxzuuvlpntmuqkeklfoqsddwqrpmwyajkaezibmwuyogzsqiwkhovwdeghujorcfvzytehqqygxrirjsbi\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -847,7 +847,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "1",
+                                    "value": "2110",
                                     "description": "The ID of the event."
                                 }
                             ]
@@ -1005,7 +1005,7 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "tius",
+                                    "value": "nzsqfsmcojrvyuluwcaupxlliqjremyhyvftdzewfsigxgpuskzywaqtnqbgnvetofatdvcmvpsijefofwngktbafhbkrhjdgfipygoyilodaxjutcnxvyouczzmfmuqwngzmrbctqwbnyiliuleovh",
                                     "type": "text"
                                 },
                                 {
@@ -1200,7 +1200,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "7",
+                                    "value": "5",
                                     "description": "The ID of the mail."
                                 }
                             ]
@@ -1271,7 +1271,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"erwin.herman@example.com\",\"subject\":\"ijjkuhxpbqnwzbojkjlnfrdjjadreaorzkuitxcxyjlgubtijjdulwqoznwvwzsfvaetxqiysnhlrjzjxseuwt\",\"message\":\"harum\"}"
+                            "raw": "{\"to\":\"lvonrueden@example.net\",\"subject\":\"sgfukdjpytyxgsspesbhdz\",\"message\":\"vitae\"}"
                         },
                         "description": ""
                     },
@@ -1360,6 +1360,44 @@
                             "name": "success"
                         }
                     ]
+                }
+            ]
+        },
+        {
+            "name": "Utilisateurs",
+            "description": "\nAPIs pour g\u00e9rer les utilisateurs",
+            "item": [
+                {
+                    "name": "Set onesignal user id",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/onesignal",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/onesignal"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"onesignal_id\":\"wqrqmrjniuikduoobmlcpmidsgwrqhmdjrcsdxfcrusoarlarsyydszdnbckkfoeygdaxohdduiyesizzfrmvanxwghthiwnafkxhnqopjqavxsdfaajikqkxqnzbzmqlikqljjkramisiltozqwcksgvjhjvjzoahaeodlndupcghjkxmcupjlywsjbagiz\"}"
+                        },
+                        "description": "Pour mettre \u00e0 jour l'id d'un utilisateur"
+                    },
+                    "response": []
                 }
             ]
         }

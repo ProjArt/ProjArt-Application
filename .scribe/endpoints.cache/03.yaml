@@ -63,7 +63,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: yzehrmygrwafetbwbcktuvpohmqweawtflzlkgekaoxxq
+        example: hlnlsuqtorsckjvkinhhwaznsphmbciiypkxttmkajhrkiggmbqeogqfvyqlfrbrygylvuaktkkndxuiudisuyiqtoqipwlnaoqgrqqoqmwronjqi
         type: string
         custom: []
     responses: []
@@ -129,7 +129,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: putelmhwtchxwwughczfndnpfvxoyrzylirnbxbiqkjkplykmetnmxsuftwlrzptflbrdsdrmxlgqoubvfbwe
+        example: ghkqjmwnbflobizpymvszvehjkbwtcztakrdyooqkgcbpcrzfmqtzpygfiuouijinbnblfljbdhgqntsyjspsrhtmdjfxumuunytqzlgwkycboxmwvnx
         type: string
         custom: []
     responses: []
@@ -179,14 +179,14 @@ endpoints:
         name: calendar_id
         description: 'ID du calendrier à partager.'
         required: true
-        example: 10
+        example: 13
         type: integer
         custom: []
       user_id:
         name: user_id
         description: "ID de l'utilisateur à qui partager le calendrier."
         required: true
-        example: 8
+        example: 4
         type: integer
         custom: []
       can_own:
@@ -200,7 +200,7 @@ endpoints:
         name: can_view
         description: ''
         required: true
-        example: false
+        example: true
         type: boolean
         custom: []
     responses: []

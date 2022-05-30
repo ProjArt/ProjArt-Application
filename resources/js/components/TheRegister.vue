@@ -44,6 +44,21 @@ const submitHandler = async () => {
       method: API.updateAllGaps.method,
     });
     isLoading.value = false; */
+
+    OneSignal.push(function () {
+      OneSignal.getUserId(async function (userId) {
+        console.log("OneSignal User ID:", userId);
+
+        await useFetch({
+          url: API.setOnesignalUserId.path(),
+          method: API.setOnesignalUserId.method,
+          data: {
+            onesignal_id: userId,
+          },
+        });
+      });
+    });
+
     window.location.href += routesNames.calendar.replace("/", "");
   } else {
     isAuthenticated.value = false;
