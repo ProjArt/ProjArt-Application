@@ -45,7 +45,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/events', [GapsEventsController::class, 'fetchAll'])->name('api.fetch.gaps.events');
         Route::get('/marks', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
         Route::get('/absences', [GapsAbsenceController::class, 'fetchAll'])->name('api.fetch.gaps.absences');
-        Route::get('/', [GapsController::class, 'updateAll'])->name('api.fetch.gaps');
+        Route::get('/all', [GapsController::class, 'updateAll'])->name('api.fetch.gaps');
     });
 
 
@@ -84,6 +84,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/update/gaps/{token}', [GapsController::class, "updateAll"])->where('token', config('gaps.token'));
+Route::get('/update/gaps/{token}', [GapsController::class, "updateAllCron"])->where('token', config('gaps.token'));
 
 Route::post("/telegram/{token}", [TelegramController::class, "handle"])->where(["token" => env("TELEGRAM_BOT_TOKEN")]);

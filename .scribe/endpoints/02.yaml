@@ -6,8 +6,8 @@ endpoints:
       - GET
     uri: api/classrooms
     metadata:
-      title: 'Display a listing of the resource.'
-      description: ''
+      title: 'Get classrooms'
+      description: 'Display a listing of the resource.'
       authenticated: true
       custom: []
     headers:
@@ -20,7 +20,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"success":true,"message":"Classroom","data":{"classrooms":[]}}'
+        content: '{"success":true,"message":"Classroom","data":{"classrooms":[{"name":"M49-1","total_persons":1,"users":[{"id":49,"username":"vincent.tarrit","gaps_id":0,"role":"student","card_money":0,"pivot":{"classroom_name":"M49-1","user_id":49},"theme":{"id":1,"primary":{"id":1,"value":"#000000"},"secondary":{"id":2,"value":"#ffffff"}}}]}]}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -75,7 +75,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: mzerffgizpukzvljwzbsrqrhxslircuirvyogaxjdfxidubsijzrcmniyydmitsvowtvmhnqabndefkcygamohktrjigqrmpzktlrrifossnnnybawvkphiixrdmlvmkxapnmrwkwl
+        example: xcvkcvetxghmihosswlmagcettnrbbuzyktzxkaulwifszawyahukimebfpkkftddyaetxqesexqlqril
         type: string
         custom: []
     responses: []
