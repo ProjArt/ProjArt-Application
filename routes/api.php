@@ -14,6 +14,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\TelegramController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,6 +78,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post("/classrooms/setUser", [ClassroomController::class, 'setUserClassroom'])->name("api.classrooms.setUserClassroom");
 
     Route::get("/absences", [AbsenceController::class, 'index'])->name("api.absences.index");
+
+    Route::post("/onesignal", [UserController::class, 'setOnesignal'])->name("api.onesignal");
 });
 
 Route::get('/', function () {

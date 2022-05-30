@@ -16,7 +16,12 @@
         OneSignal.push(function() {
             OneSignal.init({
                 appId: "5786d114-d551-43c0-9705-d79e26fb9461",
+                autoRegister: false,
+                notifyButton: {
+                    enable: true,
+                },
             });
+            OneSignal.registerForPushNotifications();
         });
     </script>
 </head>
