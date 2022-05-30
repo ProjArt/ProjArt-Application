@@ -1,6 +1,4 @@
 import api from "../../../public/docs/collection.json";
-// const API_URL = "http://localhost:8000/api/";
-// const BASE_URL = "http://localhost:8000/";
 
 /**
  * API contain every routes of the API each route is an object with the following properties:
@@ -14,7 +12,6 @@ import api from "../../../public/docs/collection.json";
 export const API = {};
 const API_URL = getUrl() + "api/";
 const BASE_URL = getUrl();
-// console.log({ api_url, base_url });
 
 /**
  * Get and transform the api url to an usable url
