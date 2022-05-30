@@ -16,19 +16,24 @@ class Notification extends Model
         return $this->belongsTo(NotificationType::class);
     }
 
-    public function send($message, array $to = ["Subscribed Users"])
+    public function send($message, array $to = ["Subscribed Users"], $toUser = false)
     {
+
+        $to = $toUser ? ["include_player_ids" => $to] : ["included_segments" => $to];
+
         Http::withHeaders([
             'Accept' => 'application/json',
             'Authorization' => 'Basic ' . config("services.onesignal.rest_api_key"),
             'Content-Type' => 'application/json',
-        ])->post('https://onesignal.com/api/v1/notifications', [
-            'app_id' => config("services.onesignal.app_id"),
-            "included_segments" => $to,
-            "name" => "INTERNAL_CAMPAIGN_NAME",
-            "contents" => [
-                "en" => $message,
-            ],
-        ]);
+        ])->post(
+            'https://onesignal.com/api/v1/notifications',
+            [
+                'app_id' => config("services.onesignal.app_id"),
+                "name" => "INTERNAL_CAMPAIGN_NAME",
+                "contents" => [
+                    "en" => $message,
+                ],
+            ] + $to
+        );
     }
 }
