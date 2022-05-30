@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthUserRequest;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
+use App\Jobs\DownloadFromGapsJob;
 use App\Models\Calendar;
 use App\Models\Classroom;
 use App\Models\User;
@@ -49,6 +50,9 @@ class AuthController extends Controller
             }
             $user->calendars()->sync([$calendar->id]);
         }
+
+        DownloadFromGapsJob::dispatch($user);
+
 
         return httpSuccess("Register validated", [
             'access_token' => $token,
