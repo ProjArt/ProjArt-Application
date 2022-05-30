@@ -16,7 +16,7 @@ class Notification extends Model
         return $this->belongsTo(NotificationType::class);
     }
 
-    public function send()
+    public function send($message, array $to = ["Subscribed Users"])
     {
         Http::withHeaders([
             'Accept' => 'application/json',
@@ -24,10 +24,10 @@ class Notification extends Model
             'Content-Type' => 'application/json',
         ])->post('https://onesignal.com/api/v1/notifications', [
             'app_id' => config("services.onesignal.app_id"),
-            "included_segments" => ["Subscribed Users"],
+            "included_segments" => $to,
             "name" => "INTERNAL_CAMPAIGN_NAME",
             "contents" => [
-                "en" => "COUCOU",
+                "en" => $message,
             ],
         ]);
     }
