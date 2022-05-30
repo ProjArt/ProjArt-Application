@@ -2,6 +2,7 @@
 import useLogout from "../composables/useLogout";
 import { routesNames } from "../router/routes";
 import { isAuthenticated } from "../stores/auth";
+import { notification } from "../stores/notifications";
 
 console.log(isAuthenticated.value);
 console.log("routesNames", routesNames);
@@ -10,6 +11,9 @@ console.log("routesNames", routesNames);
   <header class="header">
     <div class="header__links">
       <button @click="useLogout()">Déconnexion</button>
+    </div>
+    <div>
+      {{ notification }}
     </div>
     <div class="menu" v-if="isAuthenticated">
       <div

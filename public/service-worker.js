@@ -26,7 +26,7 @@ function postMsg(payload) {
     }).then(function(clients) {
         clients.forEach(function(client) {
             console.log("client", client);
-            client.postMessage({ msg: 'Hello from SW' });
+            client.postMessage(payload.notification);
         });
     });
 }
