@@ -22,9 +22,9 @@ const CSS = {
 
 const dates = ref([]);
 const allCalendars = ref({});
-const calendarsNames = ref([]);
+const calendarsNames = ref({});
 const currentLayout = ref(AVAILABLE_LAYOUT.MONTH);
-const currentCalendarId = ref(0);
+const currentsCalendarIds = ref([]);
 const displayedDate = ref(new Date().toLocaleDateString(...DATE_OPTION));
 const newEventPopupRef = ref([]);
 const showNewEventPopupRef = ref('');
@@ -39,6 +39,7 @@ const indexUnderEdition = ref('')
 const currDateCursor = ref(TODAY)
 const dayLabels = ref(DAY_LABELS.slice())
 const canEditCalendar = ref(false)
+const events = ref([])
 
 // Computed 
 // ====================================== 
@@ -94,16 +95,6 @@ function formatDayObject(ref) {
     }
 }
 
-function setEvents() {
-    /* const currentCalendar = allCalendars.value.filter(calendar => calendar.id === parseInt(currentCalendarId.value)) */
-    /* currentCalendar[0].events.forEach(event => { */
-    /*     const newEvent = toRaw(event) */
-    /*     const date = new Date(event.start) */
-    /*     const local = date.toLocaleDateString() */
-    /*     newEvent['local'] = local */
-    /*     dates.value?.[local]?.events.push(newEvent) */
-    /* }) */
-}
 
 function getAllDaysInMonth(year, month) {
     const date = new Date(year, month, 1)
@@ -130,17 +121,6 @@ function getSunday(date) {
     const diff = date.getDate() - day + (day == 0 ? -6 : 1);
     return new Date(date.setDate(diff + 6));
 }
-
-/* function getAllDaysInWeek(choosenDate) { */
-/*     const monday = getMonday(choosenDate) */
-/*     const dates = {} */
-/*     for (let i = 0; i <= 6; i++) { */
-/*         const date = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + i) */
-/*         const key = date.toLocaleDateString() */
-/*         dates[key] = formatDayObject(date); */
-/*     } */
-/*     return dates */
-/* } */
 
 function toChDate(date) {
     date = date.split(' ')[0]
@@ -208,13 +188,13 @@ async function getCalendars() {
 }
 
 async function setCalendars(calendars) {
-    const userCalendars = []
+    const userCalendars = {}
     calendars.forEach((calendar) => {
-        userCalendars.push({ name: calendar.name, id: calendar.id, canEdit: calendar.can_edit })
+        userCalendars[calendar.id] = calendar.name
     })
-    calendarsNames.value = userCalendars;
+    calendarsNames.value = userCalendars
     allCalendars.value = calendars
-    currentCalendarId.value = calendars[0].id
+    currentsCalendarIds.value = [calendars[0].id.toString()]
 }
 
 
@@ -241,7 +221,6 @@ function getAllDaysInMonthAndBeginning(year, month) {
 
 function getAllDaysInWeek(choosenDate) {
     const monday = getMonday(choosenDate)
-    console.log({ monday, choosenDate })
     const dates = {}
     for (let i = 0; i <= 6; i++) {
         const date = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + i)
@@ -264,6 +243,7 @@ function actualPeriod() {
     } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
         dates.value = getAllDaysInWeek(TODAY);
     }
+    currDateCursor.value = TODAY;
     displayedDateManager.value = { year: TODAY.getFullYear(), month: TODAY.getMonth() };
 }
 
@@ -307,7 +287,6 @@ function formatCurrentDateForDisplay(date) {
     } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
         const monday = getMonday(date)
         const sunday = getSunday(date)
-        console.log({ monday, sunday })
         checkIfBothDatesAreInSameMonth(monday, sunday)
             ? displayedDateManager.value = { year: date.getFullYear(), month: date.getMonth() }
             : displayedDateManager.value = { year: monday.getFullYear(), month: monday.getMonth(), year2: sunday.getFullYear(), month2: sunday.getMonth() }
@@ -322,37 +301,13 @@ function getMonthRelativeToDate(date, numberOfMonths) {
     return date.setMonth(date.getMonth() + parseInt(numberOfMonths));
 }
 
-
-/* function setDisplayedDates(timeInterval) { */
-/*     const nextDate = new Date(currDateCursor.value); */
-/*     if (timeInterval === 0) { */
-/*         if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) { */
-/*             dates.value = getAllDaysInMonthAndBeginning(TODAY.getFullYear(), TODAY.getMonth()); */
-/*         } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) { */
-/*             dates.value = getAllDaysInWeek(TODAY); */
-/*         } */
-/*         displayedDateManager.value = { year: TODAY.getFullYear(), month: TODAY.getMonth() }; */
-/*     } else if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) { */
-/*         nextDate.setMonth(nextDate.getMonth() + parseInt(timeInterval)); */
-/*         currDateCursor.value = nextDate; */
-/*         dates.value = getAllDaysInMonthAndBeginning(currDateCursor.value.getFullYear(), currDateCursor.value.getMonth()); */
-/*         displayedDateManager.value = { year: nextDate.getFullYear(), month: nextDate.getMonth() }; */
-/*     } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) { */
-/*         nextDate.setDate(nextDate.getDate() + parseInt(timeInterval)); */
-/*         currDateCursor.value = nextDate; */
-/*         dates.value = getAllDaysInWeek(nextDate); */
-/*         displayedDateManager.value = { year: nextDate.getFullYear(), month: nextDate.getMonth() }; */
-/*     } */
-/*     setEvents() */
-/*     showNewEventPopupRef.value = '' */
-/* } */
-
 // At startup
 // ====================================== 
 
 (async function startUp() {
     const calendars = await getCalendars()
     await setCalendars(calendars)
+    setEvents(getEvents())
     dates.value = getAllDaysInMonthAndBeginning(TODAY.getFullYear(), TODAY.getMonth());
     /* setEvents() */
 })()
@@ -370,17 +325,59 @@ watch(currentLayout, () => {
     /* showNewEventPopupRef.value = '' */
 })
 
+watch(currentsCalendarIds, () => {
+    setEvents(getEvents())
+})
+
+function getEvents() {
+    const iterable = currentsCalendarIds.value.values()
+    const calendars = []
+    for (const [value] of iterable) {
+        allCalendars.value.forEach(calendar => {
+            if (calendar.id == value) {
+                calendars.push(calendar)
+            }
+        });
+    }
+    return calendars
+}
+
+function setEvents(calendars) {
+    events.value = {}
+    calendars.forEach(calendar => {
+        const canEdit = calendar.can_edit
+        calendar.events.forEach(event => {
+            const index = toChDate(event.start)
+            event.can_edit = canEdit
+            if (events.value.hasOwnProperty(index)) {
+                events.value[index].push(event)
+            } else {
+                events.value[index] = [event]
+            }
+        })
+        //sorte events
+        Object.keys(events.value).forEach(key => {
+            events.value[key].sort((a, b) => {
+                return a.start - b.start
+            })
+        })
+    });
+}
 </script>
 <template>
 
     <div class="calendar">
         <!--====  Calendar Header  ====-->
         <h3>{{ displayedDateManager }}</h3>
+        <div class="calendar__choose">
+            <FormKit v-model="currentsCalendarIds" type="checkbox" label="Calendrier" :options="calendarsNames" />
+        </div>
         <header class="calendar__header">
             <button @click="previousPeriod">&lt;&lt;</button>
             <button @click="nextPeriod">&gt;&gt;</button>
             <button @click="currentLayout = AVAILABLE_LAYOUT.MONTH">Mois</button>
             <button @click="currentLayout = AVAILABLE_LAYOUT.WEEK">Semaines</button>
+            <button @click="actualPeriod">Aujaurd'hui</button>
         </header>
         <!--====  Calendar days names  ====-->
         <div class="calendar__days-names">
@@ -393,13 +390,13 @@ watch(currentLayout, () => {
             <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(index)"
                 :class="day?.class, selectedDate === index ? 'is-selected-day' : ''" :key="index" :date-id="day?.local">
                 <p class="calendar__day-number">{{ day?.dayOfMonthNumber }}</p>
-                <!--
-                <div v-for="event in day.events">
-                    <p class="calendar__event">{{ event.title }}</p>
+                <p class="calendar__day-date">{{ day?.local }}</p>
+                <div v-for="event in events[day?.local]">
+                    <p class="calendar__event">{{ event.start }}</p>
                 </div>
+                <!--
                 <button :value="index" @click="showNewEventForm" class="button--add-event"
                     v-show="index.includes('/') && canEditCalendar">+</button>
-
                 -->
             </div>
         </div>
@@ -451,10 +448,30 @@ watch(currentLayout, () => {
     grid-gap: 1rem;
 }
 
+.calendar__choose {
+    display: flex;
+}
+
+/* :deep(.formkit-option) { */
+/*     display: flex; */
+/* } */
+
+:deep(.formkit-option .formkit-wrapper) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
 .calendar__day-number {
     font-size: 1.5rem;
     text-align: left;
     padding: 0.5rem;
+}
+
+.calendar__day-date {
+    font-size: 0.8rem;
+    text-align: left;
+    padding: 0.5rem;
+    opacity: 0.5;
 }
 
 .calendar__event {
