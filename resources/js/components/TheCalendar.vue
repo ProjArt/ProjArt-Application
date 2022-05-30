@@ -40,6 +40,7 @@ const currDateCursor = ref(TODAY)
 const dayLabels = ref(DAY_LABELS.slice())
 const canEditCalendar = ref(false)
 const events = ref([])
+const editableCalendarsNamesRef = ref({})
 
 // Computed 
 // ====================================== 
@@ -64,6 +65,27 @@ const displayedDateManager = computed({
             }
         }
     }
+});
+
+const showNewEventPopup = computed({
+    get: () => showNewEventPopupRef.value,
+    set: (date) => { showNewEventPopup.value !== date ? showNewEventPopupRef.value = date : showNewEventPopupRef.value = ''; }
+});
+
+const showCurrentEventsPopup = computed({
+    get() { return showCurrentEventsPopupRef.value; },
+    set(events) { showCurrentEventsPopupRef.value = events; }
+});
+
+const editableCalendarsNames = computed(() => {
+    let names = {}
+    for (const [key, value] of Object.entries(allCalendars.value)) {
+        if (allCalendars.value[key].can_edit) {
+            names[key] = value.name
+        }
+    }
+    console.log({ names })
+    return names
 });
 
 // Helpers
@@ -157,6 +179,13 @@ function hideNewEventForm() {
 
 function hideEditEventsForm() {
     showCurrentEventsPopup.value = '';
+}
+
+function showNewEventForm(event) {
+    hideEditEventsForm()
+    event.stopPropagation()
+    showNewEventPopup.value = true;
+    showCurrentEventsPopup.value = false;
 }
 
 // CRUD operations on API
@@ -321,8 +350,6 @@ watch(currentLayout, () => {
     } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
         dates.value = getAllDaysInWeek(currDateCursor.value);
     }
-    /* setEvents() */
-    /* showNewEventPopupRef.value = '' */
 })
 
 watch(currentsCalendarIds, () => {
@@ -378,6 +405,7 @@ function setEvents(calendars) {
             <button @click="currentLayout = AVAILABLE_LAYOUT.MONTH">Mois</button>
             <button @click="currentLayout = AVAILABLE_LAYOUT.WEEK">Semaines</button>
             <button @click="actualPeriod">Aujaurd'hui</button>
+            <button @click="showNewEventForm">Ajouter événement</button>
         </header>
         <!--====  Calendar days names  ====-->
         <div class="calendar__days-names">
@@ -394,15 +422,25 @@ function setEvents(calendars) {
                 <div v-for="event in events[day?.local]">
                     <p class="calendar__event">{{ event.start }}</p>
                 </div>
-                <!--
-                <button :value="index" @click="showNewEventForm" class="button--add-event"
-                    v-show="index.includes('/') && canEditCalendar">+</button>
-                -->
             </div>
         </div>
     </div>
     <!--====  Popup new event  ====-->
-    <div class="popup popup--new-event">
+    <div class="popup popup--new-event" v-show="showNewEventPopup">
+        <FormKit type="form" v-model="newEventForm" :form-class="isSubmitted ? 'hide' : 'show'"
+            submit-label="Enregistrer" @submit="storeEvent">
+            <h2>Ajouter un événement</h2>
+            <p>{{ selectedDate }}</p>
+            <FormKit type="text" name="title" validation="required" label="Titre"
+                :value="new Date().getHours() + ':' + new Date().getMinutes()" />
+            <FormKit type="text" name="location" validation="required" label="Lieu" value="HEIG" />
+            <FormKit type="textarea" name="description" validation="required" label="Description" value="..." />
+            <FormKit type="time" name="start" label="Début" value="08:00" />
+            <FormKit type="time" name="end" label="Fin" value="08:00" />
+            <FormKit name="start_date" type="date" value="2022-06-01" label="Date de Début" validation="required" />
+            <FormKit name="end_date" type="date" value="2022-06-01" label="Date de Fin" validation="required" />
+            <FormKit type="select" label="calendrier" name="calendar_id" :options="editableCalendarsNames" />
+        </FormKit>
     </div>
     <!--====  Popup edit event  ====-->
     <div class="popup popup--edit-events">
