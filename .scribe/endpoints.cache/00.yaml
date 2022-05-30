@@ -7,6 +7,111 @@ description: |-
 endpoints:
   -
     httpMethods:
+      - POST
+    uri: api/login
+    metadata:
+      title: login
+      description: 'Authentication for a user'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      username:
+        name: username
+        description: 'The Gaps username of the user.'
+        required: true
+        example: aut
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'The Gaps password of the user.'
+        required: true
+        example: nesciunt
+        type: string
+        custom: []
+      classroom_name:
+        name: classroom_name
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: njfngoovvkoxajghbawvwwptdtcdzsqjscputikvaofufaenxckzzutxuahzpbymqfkpbpwnhhqyyrcztrleoifztnodmkegodj
+        type: string
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/register
+    metadata:
+      title: register
+      description: 'Register a new user'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      username:
+        name: username
+        description: 'The Gaps username of the user.'
+        required: true
+        example: veritatis
+        type: string
+        custom: []
+      password:
+        name: password
+        description: 'The Gaps password of the user.'
+        required: true
+        example: dolorem
+        type: string
+        custom: []
+      classroom_name:
+        name: classroom_name
+        description: 'The class of the user.'
+        required: true
+        example: repudiandae
+        type: string
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/me
+    metadata:
+      title: me
+      description: 'Get actual authenticate user'
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+
       - GET
     uri: api/absences
     metadata:
@@ -23,6 +128,7 @@ endpoints:
     bodyParameters: []
     responses:
       -
+
         status: 200
         content: |
           <!DOCTYPE html>
@@ -44,9 +150,14 @@ endpoints:
           </body>
 
           </html>
+
+        status: 401
+        content: '{"success":false,"message":"Unauthenticated","data":["sanctum"]}'
+
         headers:
-          content-type: 'text/html; charset=UTF-8'
           cache-control: 'no-cache, private'
+
           set-cookie: 'XSRF-TOKEN=eyJpdiI6IkJUVlpKblduTTZHRWtRVk1FTzF3bHc9PSIsInZhbHVlIjoiYWozS1FKSEZSdzY2ZittWUV3K3BXTjAzcGlCV3JzdVRxeGwwZzVaZFJHOVU2YXdJeHlRQmF3ejRLaHVZTHJnOGYrT2dONEwzM3RGSDB3R1FiMUtrUnFLSTA3YjFrWW9hdUhpZGZWelhoYUppNW9vNXB4dTEyNXlHeE9NZjJDNEUiLCJtYWMiOiIzODEzNGI4ZWE1NTY2OGYwMjhkMmI4OTQ0MjE1Nzg1ZWUxMGY2MDU4YjllYzNkOGY1NmJlMmZmYTM0ZGRmMTBmIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=/; samesite=lax; laravel_session=eyJpdiI6Im1iam9PekVtbk9GdHhjeDQ1L3I2bXc9PSIsInZhbHVlIjoiTDVTdWwxZnRmcHVUUC9DUnJGZ3g0U1ZlcURxay9BU29uOEdNYmNwOTJKSnlxSHJZejV6SDJCZnpUbllGQmkwUTU1NzZ1eEhJaGVTUlRGa0tDZ0haOWU2Mm5HUWRTbU94QkZjRTlEYUl2dzlncGdNTDMxbVJ5Y0Q2bXAyemhobWUiLCJtYWMiOiJlYjQyZWFhNzQ5MDE0ODliY2Q5NTkzNjAyYzE3MzJhZGQwMzNhOGRhMmI4NmQ2OWFhZTU0ZjFjOWRiNWRiMzUwIiwidGFnIjoiIn0%3D; expires=Mon, 30 May 2022 11:12:20 GMT; Max-Age=7200; path=/; httponly; samesite=lax'
+
         description: null
     responseFields: []
