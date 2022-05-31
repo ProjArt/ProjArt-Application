@@ -3,6 +3,8 @@ import TheMenu from "./TheMenu.vue";
 import TheBody from "./TheBody.vue";
 import TheHeader from "./TheHeader.vue";
 import TheNotification from "./TheNotification.vue";
+
+
 </script>
 
 
