@@ -72,6 +72,16 @@
                                                 </ul>
                     
                     <ul id="tocify-header-2" class="tocify-header">
+                <li class="tocify-item level-1" data-unique="notifications">
+                    <a href="#notifications">Notifications</a>
+                </li>
+                                    <ul id="tocify-subheader-notifications" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="notifications-POSTapi-notification">
+                        <a href="#notifications-POSTapi-notification">Send notification</a>
+                    </li>
+                                                    </ul>
+                            </ul>
+                    <ul id="tocify-header-3" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="absences">
                     <a href="#absences">Absences</a>
                 </li>
@@ -81,7 +91,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-3" class="tocify-header">
+                    <ul id="tocify-header-4" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="authentication">
                     <a href="#authentication">Authentication</a>
                 </li>
@@ -100,7 +110,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-4" class="tocify-header">
+                    <ul id="tocify-header-5" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="autres">
                     <a href="#autres">Autres</a>
                 </li>
@@ -117,9 +127,15 @@
                                     <li class="tocify-item level-2" data-unique="autres-POSTapi-telegram--token-">
                         <a href="#autres-POSTapi-telegram--token-">POST api/telegram/{token}</a>
                     </li>
+                                    <li class="tocify-item level-2" data-unique="autres-GETapi-pusher-beams-auth">
+                        <a href="#autres-GETapi-pusher-beams-auth">GET api/pusher/beams-auth</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="autres-POSTapi-beams">
+                        <a href="#autres-POSTapi-beams">POST api/beams</a>
+                    </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-5" class="tocify-header">
+                    <ul id="tocify-header-6" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="calendrier">
                     <a href="#calendrier">Calendrier</a>
                 </li>
@@ -144,7 +160,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-6" class="tocify-header">
+                    <ul id="tocify-header-7" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="evenements">
                     <a href="#evenements">Evènements</a>
                 </li>
@@ -166,7 +182,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-7" class="tocify-header">
+                    <ul id="tocify-header-8" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="gaps">
                     <a href="#gaps">Gaps</a>
                 </li>
@@ -188,7 +204,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-8" class="tocify-header">
+                    <ul id="tocify-header-9" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="mail">
                     <a href="#mail">Mail</a>
                 </li>
@@ -204,7 +220,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-9" class="tocify-header">
+                    <ul id="tocify-header-10" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="menu-de-la-caf">
                     <a href="#menu-de-la-caf">Menu de la caf</a>
                 </li>
@@ -214,7 +230,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-10" class="tocify-header">
+                    <ul id="tocify-header-11" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="notes">
                     <a href="#notes">Notes</a>
                 </li>
@@ -224,7 +240,7 @@
                     </li>
                                                     </ul>
                             </ul>
-                    <ul id="tocify-header-11" class="tocify-header">
+                    <ul id="tocify-header-12" class="tocify-header">
                 <li class="tocify-item level-1" data-unique="utilisateurs">
                     <a href="#utilisateurs">Utilisateurs</a>
                 </li>
@@ -244,7 +260,7 @@
                             <li><a href="http://github.com/knuckleswtf/scribe">Documentation powered by Scribe ✍</a></li>
                     </ul>
         <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 30 2022</li>
+        <li>Last updated: May 31 2022</li>
     </ul>
 </div>
 
@@ -262,6 +278,115 @@ You can switch the language used with the tabs at the top right (or from the nav
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
+
+        <h1 id="notifications">Notifications</h1>
+
+    <p>APIs pour gérer les notifications</p>
+
+            <h2 id="notifications-POSTapi-notification">Send notification</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Permet d'envoyer une notification</p>
+
+<span id="example-requests-POSTapi-notification">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/notification" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer {{token}}"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/notification"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {{token}}",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost:8000/api/notification',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+            'Authorization' =&gt; 'Bearer {{token}}',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-notification">
+</span>
+<span id="execution-results-POSTapi-notification" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-notification"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-notification"></code></pre>
+</span>
+<span id="execution-error-POSTapi-notification" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-notification"></code></pre>
+</span>
+<form id="form-POSTapi-notification" data-method="POST"
+      data-path="api/notification"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-notification', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-notification"
+                    onclick="tryItOut('POSTapi-notification');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-notification"
+                    onclick="cancelTryOut('POSTapi-notification');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-notification" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/notification</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-notification" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-notification"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
         <h1 id="absences">Absences</h1>
 
@@ -416,9 +541,9 @@ access-control-allow-origin: *
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"username\": \"fuga\",
-    \"password\": \"veniam\",
-    \"classroom_name\": \"swfidkivtgekwiqlgodvvfnbgqihiludwffxfufqwfonujxpltpmzhjuypahruuozxrebbsmbikafzzxmcszpyikgwrlivkornydtbmwuawarsvbozowfpmupcmotlwradrtoakedqczcjxgpdmlcehgpcwdevcoardhaoshgqndioarfbmjbenxmyzfnurrrtcrhhwjerrftzjpzzqqknx\"
+    \"username\": \"quidem\",
+    \"password\": \"omnis\",
+    \"classroom_name\": \"cecmmcdqsksyinirpzoyfdjwfzolwceukmhrsqsqqtqxvcncmtkabysttpqfinprmtoaggkdylauhtnwdezfunrcrmhtameokmunhpmhsozlxeezujxswzwkcxkxnafeezqqktntiaoqlr\"
 }"
 </code></pre></div>
 
@@ -435,9 +560,9 @@ const headers = {
 };
 
 let body = {
-    "username": "fuga",
-    "password": "veniam",
-    "classroom_name": "swfidkivtgekwiqlgodvvfnbgqihiludwffxfufqwfonujxpltpmzhjuypahruuozxrebbsmbikafzzxmcszpyikgwrlivkornydtbmwuawarsvbozowfpmupcmotlwradrtoakedqczcjxgpdmlcehgpcwdevcoardhaoshgqndioarfbmjbenxmyzfnurrrtcrhhwjerrftzjpzzqqknx"
+    "username": "quidem",
+    "password": "omnis",
+    "classroom_name": "cecmmcdqsksyinirpzoyfdjwfzolwceukmhrsqsqqtqxvcncmtkabysttpqfinprmtoaggkdylauhtnwdezfunrcrmhtameokmunhpmhsozlxeezujxswzwkcxkxnafeezqqktntiaoqlr"
 };
 
 fetch(url, {
@@ -458,9 +583,9 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'username' =&gt; 'fuga',
-            'password' =&gt; 'veniam',
-            'classroom_name' =&gt; 'swfidkivtgekwiqlgodvvfnbgqihiludwffxfufqwfonujxpltpmzhjuypahruuozxrebbsmbikafzzxmcszpyikgwrlivkornydtbmwuawarsvbozowfpmupcmotlwradrtoakedqczcjxgpdmlcehgpcwdevcoardhaoshgqndioarfbmjbenxmyzfnurrrtcrhhwjerrftzjpzzqqknx',
+            'username' =&gt; 'quidem',
+            'password' =&gt; 'omnis',
+            'classroom_name' =&gt; 'cecmmcdqsksyinirpzoyfdjwfzolwceukmhrsqsqqtqxvcncmtkabysttpqfinprmtoaggkdylauhtnwdezfunrcrmhtameokmunhpmhsozlxeezujxswzwkcxkxnafeezqqktntiaoqlr',
         ],
     ]
 );
@@ -524,7 +649,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-login"
-               value="fuga"
+               value="quidem"
                data-component="body" hidden>
     <br>
 <p>The Gaps username of the user.</p>
@@ -534,7 +659,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="veniam"
+               value="omnis"
                data-component="body" hidden>
     <br>
 <p>The Gaps password of the user.</p>
@@ -544,7 +669,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="classroom_name"
                data-endpoint="POSTapi-login"
-               value="swfidkivtgekwiqlgodvvfnbgqihiludwffxfufqwfonujxpltpmzhjuypahruuozxrebbsmbikafzzxmcszpyikgwrlivkornydtbmwuawarsvbozowfpmupcmotlwradrtoakedqczcjxgpdmlcehgpcwdevcoardhaoshgqndioarfbmjbenxmyzfnurrrtcrhhwjerrftzjpzzqqknx"
+               value="cecmmcdqsksyinirpzoyfdjwfzolwceukmhrsqsqqtqxvcncmtkabysttpqfinprmtoaggkdylauhtnwdezfunrcrmhtameokmunhpmhsozlxeezujxswzwkcxkxnafeezqqktntiaoqlr"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -570,9 +695,9 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"username\": \"ut\",
-    \"password\": \"est\",
-    \"classroom_name\": \"id\"
+    \"username\": \"iure\",
+    \"password\": \"iste\",
+    \"classroom_name\": \"et\"
 }"
 </code></pre></div>
 
@@ -589,9 +714,9 @@ const headers = {
 };
 
 let body = {
-    "username": "ut",
-    "password": "est",
-    "classroom_name": "id"
+    "username": "iure",
+    "password": "iste",
+    "classroom_name": "et"
 };
 
 fetch(url, {
@@ -612,9 +737,9 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'username' =&gt; 'ut',
-            'password' =&gt; 'est',
-            'classroom_name' =&gt; 'id',
+            'username' =&gt; 'iure',
+            'password' =&gt; 'iste',
+            'classroom_name' =&gt; 'et',
         ],
     ]
 );
@@ -678,7 +803,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-register"
-               value="ut"
+               value="iure"
                data-component="body" hidden>
     <br>
 <p>The Gaps username of the user.</p>
@@ -688,7 +813,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="est"
+               value="iste"
                data-component="body" hidden>
     <br>
 <p>The Gaps password of the user.</p>
@@ -698,7 +823,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="classroom_name"
                data-endpoint="POSTapi-register"
-               value="id"
+               value="et"
                data-component="body" hidden>
     <br>
 <p>The class of the user.</p>
@@ -1041,14 +1166,14 @@ access-control-allow-origin: *
                 &quot;total_persons&quot;: 1,
                 &quot;users&quot;: [
                     {
-                        &quot;id&quot;: 63,
+                        &quot;id&quot;: 68,
                         &quot;username&quot;: &quot;vincent.tarrit&quot;,
-                        &quot;gaps_id&quot;: 17486,
+                        &quot;gaps_id&quot;: 0,
                         &quot;role&quot;: &quot;student&quot;,
                         &quot;card_money&quot;: 0,
                         &quot;pivot&quot;: {
                             &quot;classroom_name&quot;: &quot;M49-1&quot;,
-                            &quot;user_id&quot;: 63
+                            &quot;user_id&quot;: 68
                         },
                         &quot;theme&quot;: {
                             &quot;id&quot;: 1,
@@ -1263,7 +1388,7 @@ access-control-allow-origin: *
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"name\": \"jhgfxkxchmnkzutnmncquiyvrtpfbhqdokajxegjsmcodglzxsjtmeooouvyvtkjkukmohlnuxqduprhjrsowakdnwmbwuhsuwqowuzdhjlwunrybknppla\"
+    \"name\": \"natykuaavdpmtksyqbjmjogpojusglpwlcd\"
 }"
 </code></pre></div>
 
@@ -1280,7 +1405,7 @@ const headers = {
 };
 
 let body = {
-    "name": "jhgfxkxchmnkzutnmncquiyvrtpfbhqdokajxegjsmcodglzxsjtmeooouvyvtkjkukmohlnuxqduprhjrsowakdnwmbwuhsuwqowuzdhjlwunrybknppla"
+    "name": "natykuaavdpmtksyqbjmjogpojusglpwlcd"
 };
 
 fetch(url, {
@@ -1301,7 +1426,7 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'name' =&gt; 'jhgfxkxchmnkzutnmncquiyvrtpfbhqdokajxegjsmcodglzxsjtmeooouvyvtkjkukmohlnuxqduprhjrsowakdnwmbwuhsuwqowuzdhjlwunrybknppla',
+            'name' =&gt; 'natykuaavdpmtksyqbjmjogpojusglpwlcd',
         ],
     ]
 );
@@ -1365,7 +1490,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-classrooms-setUser"
-               value="jhgfxkxchmnkzutnmncquiyvrtpfbhqdokajxegjsmcodglzxsjtmeooouvyvtkjkukmohlnuxqduprhjrsowakdnwmbwuhsuwqowuzdhjlwunrybknppla"
+               value="natykuaavdpmtksyqbjmjogpojusglpwlcd"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1487,6 +1612,237 @@ print_r(json_decode((string) $body));</code></pre></div>
 
             </p>
                     </form>
+
+            <h2 id="autres-GETapi-pusher-beams-auth">GET api/pusher/beams-auth</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-GETapi-pusher-beams-auth">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/pusher/beams-auth" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer {{token}}"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/pusher/beams-auth"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {{token}}",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/pusher/beams-auth',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+            'Authorization' =&gt; 'Bearer {{token}}',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-GETapi-pusher-beams-auth">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-pusher-beams-auth" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-pusher-beams-auth"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-pusher-beams-auth"></code></pre>
+</span>
+<span id="execution-error-GETapi-pusher-beams-auth" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-pusher-beams-auth"></code></pre>
+</span>
+<form id="form-GETapi-pusher-beams-auth" data-method="GET"
+      data-path="api/pusher/beams-auth"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-pusher-beams-auth', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-pusher-beams-auth"
+                    onclick="tryItOut('GETapi-pusher-beams-auth');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-pusher-beams-auth"
+                    onclick="cancelTryOut('GETapi-pusher-beams-auth');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-pusher-beams-auth" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/pusher/beams-auth</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-pusher-beams-auth" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-pusher-beams-auth"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="autres-POSTapi-beams">POST api/beams</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<span id="example-requests-POSTapi-beams">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/beams" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer {{token}}"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/beams"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {{token}}",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost:8000/api/beams',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+            'Authorization' =&gt; 'Bearer {{token}}',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-beams">
+</span>
+<span id="execution-results-POSTapi-beams" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-beams"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-beams"></code></pre>
+</span>
+<span id="execution-error-POSTapi-beams" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-beams"></code></pre>
+</span>
+<form id="form-POSTapi-beams" data-method="POST"
+      data-path="api/beams"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-beams', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-beams"
+                    onclick="tryItOut('POSTapi-beams');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-beams"
+                    onclick="cancelTryOut('POSTapi-beams');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-beams" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/beams</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-beams" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-beams"
+                                                                data-component="header"></label>
+        </p>
+                </form>
 
         <h1 id="calendrier">Calendrier</h1>
 
@@ -1637,7 +1993,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"name\": \"hlnlsuqtorsckjvkinhhwaznsphmbciiypkxttmkajhrkiggmbqeogqfvyqlfrbrygylvuaktkkndxuiudisuyiqtoqipwlnaoqgrqqoqmwronjqi\"
+    \"name\": \"mmazanyfrdngkfbeutwgnnskilndmmlxgopwenmuelunitdmmsocghmevzjxvzmbqxpjfmd\"
 }"
 </code></pre></div>
 
@@ -1654,7 +2010,7 @@ const headers = {
 };
 
 let body = {
-    "name": "hlnlsuqtorsckjvkinhhwaznsphmbciiypkxttmkajhrkiggmbqeogqfvyqlfrbrygylvuaktkkndxuiudisuyiqtoqipwlnaoqgrqqoqmwronjqi"
+    "name": "mmazanyfrdngkfbeutwgnnskilndmmlxgopwenmuelunitdmmsocghmevzjxvzmbqxpjfmd"
 };
 
 fetch(url, {
@@ -1675,7 +2031,7 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'name' =&gt; 'hlnlsuqtorsckjvkinhhwaznsphmbciiypkxttmkajhrkiggmbqeogqfvyqlfrbrygylvuaktkkndxuiudisuyiqtoqipwlnaoqgrqqoqmwronjqi',
+            'name' =&gt; 'mmazanyfrdngkfbeutwgnnskilndmmlxgopwenmuelunitdmmsocghmevzjxvzmbqxpjfmd',
         ],
     ]
 );
@@ -1739,7 +2095,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-calendars"
-               value="hlnlsuqtorsckjvkinhhwaznsphmbciiypkxttmkajhrkiggmbqeogqfvyqlfrbrygylvuaktkkndxuiudisuyiqtoqipwlnaoqgrqqoqmwronjqi"
+               value="mmazanyfrdngkfbeutwgnnskilndmmlxgopwenmuelunitdmmsocghmevzjxvzmbqxpjfmd"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1902,7 +2258,7 @@ access-control-allow-origin: *
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"name\": \"ghkqjmwnbflobizpymvszvehjkbwtcztakrdyooqkgcbpcrzfmqtzpygfiuouijinbnblfljbdhgqntsyjspsrhtmdjfxumuunytqzlgwkycboxmwvnx\"
+    \"name\": \"ltxdybvbggpjsoadhhmdwwvrs\"
 }"
 </code></pre></div>
 
@@ -1919,7 +2275,7 @@ const headers = {
 };
 
 let body = {
-    "name": "ghkqjmwnbflobizpymvszvehjkbwtcztakrdyooqkgcbpcrzfmqtzpygfiuouijinbnblfljbdhgqntsyjspsrhtmdjfxumuunytqzlgwkycboxmwvnx"
+    "name": "ltxdybvbggpjsoadhhmdwwvrs"
 };
 
 fetch(url, {
@@ -1940,7 +2296,7 @@ $response = $client-&gt;put(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'name' =&gt; 'ghkqjmwnbflobizpymvszvehjkbwtcztakrdyooqkgcbpcrzfmqtzpygfiuouijinbnblfljbdhgqntsyjspsrhtmdjfxumuunytqzlgwkycboxmwvnx',
+            'name' =&gt; 'ltxdybvbggpjsoadhhmdwwvrs',
         ],
     ]
 );
@@ -2019,7 +2375,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="PUTapi-calendars--id-"
-               value="ghkqjmwnbflobizpymvszvehjkbwtcztakrdyooqkgcbpcrzfmqtzpygfiuouijinbnblfljbdhgqntsyjspsrhtmdjfxumuunytqzlgwkycboxmwvnx"
+               value="ltxdybvbggpjsoadhhmdwwvrs"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2161,10 +2517,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"calendar_id\": 13,
+    \"calendar_id\": 4,
     \"user_id\": 4,
-    \"can_own\": false,
-    \"can_view\": true
+    \"can_own\": true,
+    \"can_view\": false
 }"
 </code></pre></div>
 
@@ -2181,10 +2537,10 @@ const headers = {
 };
 
 let body = {
-    "calendar_id": 13,
+    "calendar_id": 4,
     "user_id": 4,
-    "can_own": false,
-    "can_view": true
+    "can_own": true,
+    "can_view": false
 };
 
 fetch(url, {
@@ -2205,10 +2561,10 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'calendar_id' =&gt; 13,
+            'calendar_id' =&gt; 4,
             'user_id' =&gt; 4,
-            'can_own' =&gt; false,
-            'can_view' =&gt; true,
+            'can_own' =&gt; true,
+            'can_view' =&gt; false,
         ],
     ]
 );
@@ -2272,7 +2628,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="calendar_id"
                data-endpoint="POSTapi-calendars-share"
-               value="13"
+               value="4"
                data-component="body" hidden>
     <br>
 <p>ID du calendrier à partager.</p>
@@ -2482,12 +2838,12 @@ Fail: erreur</p>
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"title\": \"paagddgrmobozxultwswjfjerenwvbjrzx\",
-    \"description\": \"jvpxkodkwbikyoa\",
-    \"start\": \"2022-05-30T20:46:44\",
-    \"end\": \"2022-05-30T20:46:44\",
-    \"location\": \"jczfkpnzytmhnyafzxnazkxcnfwnargbhiyhkbsivqlneceywnxuhenfrffwfrywuqnmdymfklahaqsocwlztxaqenggrrbtozucslmqmisalvgthrasflytddoxwkioyppcmdtdevsmmqxyfkhplvbgfpymwfefxwhjbzhfvedtosrbrdvpiwpqzrkvveweeveuehewtrvnhtuetmpuwueubjpddiijtabzadajzdvfvjomeu\",
-    \"calendar_id\": \"rerum\"
+    \"title\": \"uhzilmtdzffnwiseopoivyfjmwrazjfpocfkmfzqacmopftgsaglujgnjcvuentwyhkepmueivljbuzxkngzkjpzidawwidzfllcactepxulqtipnpszmfzlrqvqffztwsqerydooymtninizltwrtzokqsxfneyrwbgrtlzjmpfuqrghefvkejfrebrubrtswbhimdwaojuhtwvhehmhfjfknieqxkprjvojxecxlapfavvtxgfwpvvcgcg\",
+    \"description\": \"jpcuyywwrjmnqjhfnwaywpzistwneouvxweyyupxhazuwpjfzjfytivbjrowcfedhtsdwiyusgdsxswtxasugnrflfyktfyvzjoqtecbepcqsrcdonzqjbscerzzbznmdvtnxoubkhtpbskwbzdxhroafozlmnztzglyjdsapdkebleynhzqujfatcltwfbvgttzljvpxsaufwbzftckovderlcntkksyytnhctkqqiqlkturoequqzbezuheaozlcyglzkkxhyefvrvqcxfuelkiaarrhbyfubzspyzelgwevfsivgwjknyldwskigiafytovijqdbkbdwwgraychdmqcbraejmgkkepvcggxfezxgvktbthgjahprbwbbpehugjknmzgwrznzrucomchroacjfdshqciuptobjrsonstgypgkojimcbiyhlrobovltmkzejoueevhzoaezqmigsdadlxxcxvcnhjetqfcykjbipzzwujpkbwvphiwptgkplgxdiaribfdibcqrzcpqcanxpjakoxjkxynvcvdoztfzluufrwsczztxfelrplxsenltiavixjacgrajicjlyoofxezwywocwmnyohfzzxslrhitmtroxcluvkqarsgvkmebshzrsdnaykcrlgdgwzmjksrrvpekyprpxsralqvrxruqqszdvsgnfzrmwlneqbybrunbnibtswlauajtxpuzrfvpemduajwqhplcaiofyspvqalcsjsvbfvjompudakmkvqqcgoygmegkzdhdrbzvkunqtkxakdgrmafqfwgtveocoanqudfxojesxlsixylmycnqhflyhhxtjbxdpomldcifgvfobewijzwtabxaoxvipmhdmpoflanflyxvdqaogbdpmzv\",
+    \"start\": \"2022-05-31T10:00:15\",
+    \"end\": \"2022-05-31T10:00:15\",
+    \"location\": \"uhrvotmzoepqgspatcmmqieutraiwkvodebkkzdmzrzdwqhs\",
+    \"calendar_id\": \"nesciunt\"
 }"
 </code></pre></div>
 
@@ -2504,12 +2860,12 @@ const headers = {
 };
 
 let body = {
-    "title": "paagddgrmobozxultwswjfjerenwvbjrzx",
-    "description": "jvpxkodkwbikyoa",
-    "start": "2022-05-30T20:46:44",
-    "end": "2022-05-30T20:46:44",
-    "location": "jczfkpnzytmhnyafzxnazkxcnfwnargbhiyhkbsivqlneceywnxuhenfrffwfrywuqnmdymfklahaqsocwlztxaqenggrrbtozucslmqmisalvgthrasflytddoxwkioyppcmdtdevsmmqxyfkhplvbgfpymwfefxwhjbzhfvedtosrbrdvpiwpqzrkvveweeveuehewtrvnhtuetmpuwueubjpddiijtabzadajzdvfvjomeu",
-    "calendar_id": "rerum"
+    "title": "uhzilmtdzffnwiseopoivyfjmwrazjfpocfkmfzqacmopftgsaglujgnjcvuentwyhkepmueivljbuzxkngzkjpzidawwidzfllcactepxulqtipnpszmfzlrqvqffztwsqerydooymtninizltwrtzokqsxfneyrwbgrtlzjmpfuqrghefvkejfrebrubrtswbhimdwaojuhtwvhehmhfjfknieqxkprjvojxecxlapfavvtxgfwpvvcgcg",
+    "description": "jpcuyywwrjmnqjhfnwaywpzistwneouvxweyyupxhazuwpjfzjfytivbjrowcfedhtsdwiyusgdsxswtxasugnrflfyktfyvzjoqtecbepcqsrcdonzqjbscerzzbznmdvtnxoubkhtpbskwbzdxhroafozlmnztzglyjdsapdkebleynhzqujfatcltwfbvgttzljvpxsaufwbzftckovderlcntkksyytnhctkqqiqlkturoequqzbezuheaozlcyglzkkxhyefvrvqcxfuelkiaarrhbyfubzspyzelgwevfsivgwjknyldwskigiafytovijqdbkbdwwgraychdmqcbraejmgkkepvcggxfezxgvktbthgjahprbwbbpehugjknmzgwrznzrucomchroacjfdshqciuptobjrsonstgypgkojimcbiyhlrobovltmkzejoueevhzoaezqmigsdadlxxcxvcnhjetqfcykjbipzzwujpkbwvphiwptgkplgxdiaribfdibcqrzcpqcanxpjakoxjkxynvcvdoztfzluufrwsczztxfelrplxsenltiavixjacgrajicjlyoofxezwywocwmnyohfzzxslrhitmtroxcluvkqarsgvkmebshzrsdnaykcrlgdgwzmjksrrvpekyprpxsralqvrxruqqszdvsgnfzrmwlneqbybrunbnibtswlauajtxpuzrfvpemduajwqhplcaiofyspvqalcsjsvbfvjompudakmkvqqcgoygmegkzdhdrbzvkunqtkxakdgrmafqfwgtveocoanqudfxojesxlsixylmycnqhflyhhxtjbxdpomldcifgvfobewijzwtabxaoxvipmhdmpoflanflyxvdqaogbdpmzv",
+    "start": "2022-05-31T10:00:15",
+    "end": "2022-05-31T10:00:15",
+    "location": "uhrvotmzoepqgspatcmmqieutraiwkvodebkkzdmzrzdwqhs",
+    "calendar_id": "nesciunt"
 };
 
 fetch(url, {
@@ -2530,12 +2886,12 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'title' =&gt; 'paagddgrmobozxultwswjfjerenwvbjrzx',
-            'description' =&gt; 'jvpxkodkwbikyoa',
-            'start' =&gt; '2022-05-30T20:46:44',
-            'end' =&gt; '2022-05-30T20:46:44',
-            'location' =&gt; 'jczfkpnzytmhnyafzxnazkxcnfwnargbhiyhkbsivqlneceywnxuhenfrffwfrywuqnmdymfklahaqsocwlztxaqenggrrbtozucslmqmisalvgthrasflytddoxwkioyppcmdtdevsmmqxyfkhplvbgfpymwfefxwhjbzhfvedtosrbrdvpiwpqzrkvveweeveuehewtrvnhtuetmpuwueubjpddiijtabzadajzdvfvjomeu',
-            'calendar_id' =&gt; 'rerum',
+            'title' =&gt; 'uhzilmtdzffnwiseopoivyfjmwrazjfpocfkmfzqacmopftgsaglujgnjcvuentwyhkepmueivljbuzxkngzkjpzidawwidzfllcactepxulqtipnpszmfzlrqvqffztwsqerydooymtninizltwrtzokqsxfneyrwbgrtlzjmpfuqrghefvkejfrebrubrtswbhimdwaojuhtwvhehmhfjfknieqxkprjvojxecxlapfavvtxgfwpvvcgcg',
+            'description' =&gt; 'jpcuyywwrjmnqjhfnwaywpzistwneouvxweyyupxhazuwpjfzjfytivbjrowcfedhtsdwiyusgdsxswtxasugnrflfyktfyvzjoqtecbepcqsrcdonzqjbscerzzbznmdvtnxoubkhtpbskwbzdxhroafozlmnztzglyjdsapdkebleynhzqujfatcltwfbvgttzljvpxsaufwbzftckovderlcntkksyytnhctkqqiqlkturoequqzbezuheaozlcyglzkkxhyefvrvqcxfuelkiaarrhbyfubzspyzelgwevfsivgwjknyldwskigiafytovijqdbkbdwwgraychdmqcbraejmgkkepvcggxfezxgvktbthgjahprbwbbpehugjknmzgwrznzrucomchroacjfdshqciuptobjrsonstgypgkojimcbiyhlrobovltmkzejoueevhzoaezqmigsdadlxxcxvcnhjetqfcykjbipzzwujpkbwvphiwptgkplgxdiaribfdibcqrzcpqcanxpjakoxjkxynvcvdoztfzluufrwsczztxfelrplxsenltiavixjacgrajicjlyoofxezwywocwmnyohfzzxslrhitmtroxcluvkqarsgvkmebshzrsdnaykcrlgdgwzmjksrrvpekyprpxsralqvrxruqqszdvsgnfzrmwlneqbybrunbnibtswlauajtxpuzrfvpemduajwqhplcaiofyspvqalcsjsvbfvjompudakmkvqqcgoygmegkzdhdrbzvkunqtkxakdgrmafqfwgtveocoanqudfxojesxlsixylmycnqhflyhhxtjbxdpomldcifgvfobewijzwtabxaoxvipmhdmpoflanflyxvdqaogbdpmzv',
+            'start' =&gt; '2022-05-31T10:00:15',
+            'end' =&gt; '2022-05-31T10:00:15',
+            'location' =&gt; 'uhrvotmzoepqgspatcmmqieutraiwkvodebkkzdmzrzdwqhs',
+            'calendar_id' =&gt; 'nesciunt',
         ],
     ]
 );
@@ -2620,7 +2976,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="title"
                data-endpoint="POSTapi-events"
-               value="paagddgrmobozxultwswjfjerenwvbjrzx"
+               value="uhzilmtdzffnwiseopoivyfjmwrazjfpocfkmfzqacmopftgsaglujgnjcvuentwyhkepmueivljbuzxkngzkjpzidawwidzfllcactepxulqtipnpszmfzlrqvqffztwsqerydooymtninizltwrtzokqsxfneyrwbgrtlzjmpfuqrghefvkejfrebrubrtswbhimdwaojuhtwvhehmhfjfknieqxkprjvojxecxlapfavvtxgfwpvvcgcg"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2630,7 +2986,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="description"
                data-endpoint="POSTapi-events"
-               value="jvpxkodkwbikyoa"
+               value="jpcuyywwrjmnqjhfnwaywpzistwneouvxweyyupxhazuwpjfzjfytivbjrowcfedhtsdwiyusgdsxswtxasugnrflfyktfyvzjoqtecbepcqsrcdonzqjbscerzzbznmdvtnxoubkhtpbskwbzdxhroafozlmnztzglyjdsapdkebleynhzqujfatcltwfbvgttzljvpxsaufwbzftckovderlcntkksyytnhctkqqiqlkturoequqzbezuheaozlcyglzkkxhyefvrvqcxfuelkiaarrhbyfubzspyzelgwevfsivgwjknyldwskigiafytovijqdbkbdwwgraychdmqcbraejmgkkepvcggxfezxgvktbthgjahprbwbbpehugjknmzgwrznzrucomchroacjfdshqciuptobjrsonstgypgkojimcbiyhlrobovltmkzejoueevhzoaezqmigsdadlxxcxvcnhjetqfcykjbipzzwujpkbwvphiwptgkplgxdiaribfdibcqrzcpqcanxpjakoxjkxynvcvdoztfzluufrwsczztxfelrplxsenltiavixjacgrajicjlyoofxezwywocwmnyohfzzxslrhitmtroxcluvkqarsgvkmebshzrsdnaykcrlgdgwzmjksrrvpekyprpxsralqvrxruqqszdvsgnfzrmwlneqbybrunbnibtswlauajtxpuzrfvpemduajwqhplcaiofyspvqalcsjsvbfvjompudakmkvqqcgoygmegkzdhdrbzvkunqtkxakdgrmafqfwgtveocoanqudfxojesxlsixylmycnqhflyhhxtjbxdpomldcifgvfobewijzwtabxaoxvipmhdmpoflanflyxvdqaogbdpmzv"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 1000 characters.</p>
@@ -2640,7 +2996,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="start"
                data-endpoint="POSTapi-events"
-               value="2022-05-30T20:46:44"
+               value="2022-05-31T10:00:15"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -2650,7 +3006,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="end"
                data-endpoint="POSTapi-events"
-               value="2022-05-30T20:46:44"
+               value="2022-05-31T10:00:15"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -2660,7 +3016,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="location"
                data-endpoint="POSTapi-events"
-               value="jczfkpnzytmhnyafzxnazkxcnfwnargbhiyhkbsivqlneceywnxuhenfrffwfrywuqnmdymfklahaqsocwlztxaqenggrrbtozucslmqmisalvgthrasflytddoxwkioyppcmdtdevsmmqxyfkhplvbgfpymwfefxwhjbzhfvedtosrbrdvpiwpqzrkvveweeveuehewtrvnhtuetmpuwueubjpddiijtabzadajzdvfvjomeu"
+               value="uhrvotmzoepqgspatcmmqieutraiwkvodebkkzdmzrzdwqhs"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2670,7 +3026,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="calendar_id"
                data-endpoint="POSTapi-events"
-               value="rerum"
+               value="nesciunt"
                data-component="body" hidden>
     <br>
 
@@ -2833,11 +3189,11 @@ access-control-allow-origin: *
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"title\": \"kjngrcbckacvamqwgxlbjsyziepubcolejupvmrgwmgrvrqkyyggilqinyigqvobpmrwnpodwlefdorybwignhnirkvyaukkllhbmnzirddlyeusdvklhcugrdxpymptejwvsdalpthepzfolkhdih\",
-    \"description\": \"llrsiuswiqnkeqibaixctmlazvnzmabwbbzxfzfyorjhjerqvcoopckjgbqiuwqorfyqevbgubdcrefuvsjxkxrwunvcgglxatoioqanrarfutlnrbarznrorxkrreuwmnbvgzgmzfpjkjwfkyfufuyjdsfxpgifmtwihtmfyhtrswgzfevsyqnkhksqrvgkdweyruhfeqjlelgfywcblaqjcdnawueoaouoyrnjjqdudepfaedxrmcfguzgkpahhrahthgnydahnrxkapyvunoldeafimoljbdwlyrpbavfochkhhtascjonacuecvkrxkcwzxeyoegwfcjkxpxklezgibxvnywusmnfmqcfgripawmagcbzeujtojzabdlyrvjlhjdvoueqgsuzexvraqnxbcnlfulzbvzrcjvqvvkycsisqkdcxfnqlevfaqdntbehcfvfubcpjbpiubquzeaxfczpigkzoutfabyrautshlipbygkgkkuedeyrvnquozucruxgehteoezbxjcuvzdkjxchntkmxzlqfkazlqhovgojitlcmoqfejyjxvusakatspfzobqfnvqummjxgvlwhffttvdxgwclpughafqdrlqjiujnvwcsvjpmivvkvmeteyjpodvqhwwnmseykghpwvwfpeuxmqhvqjsliijwgcsdsjaoftpasvojosukhmemznxaqvbusszkynznreqnjfbfuclzoib\",
-    \"start\": \"2022-05-30T20:46:44\",
-    \"end\": \"2022-05-30T20:46:44\",
-    \"location\": \"ctkqzwiukmcsqmblmptpgelyhfvukeeimejnocfgjxbyuoknajimtldreiuvpnpdxeasbiyyirgjjvelzkgpmzsvkfjeatpirjeaimwwmvrsvcfkofousjcazvzycrvoxzuuvlpntmuqkeklfoqsddwqrpmwyajkaezibmwuyogzsqiwkhovwdeghujorcfvzytehqqygxrirjsbi\"
+    \"title\": \"loytimnfzxylqnzojemlclqbhbjqzhcwmlxlpugywmgfgvmwvwsfnzynuilfsjteglvqysnfjjhqrhqnniernxkfehjjbywcltkueypeklkhjysuzycntgrcuaskvycakxooialbfpnjcaswgboltqvirnxvvgkuefmplxhmiaxdxqubjxsvdrkmucorqgkestrthmsmpvbbchvkzcerkycqwlrer\",
+    \"description\": \"tejioqsaysikeqzfxbsckufcqatqxykvmjublcxqntvaznuqlitahnsajkzqutflkwlbudeadsdlbkdshwbzduvxrpovusqfiyfkxnpftcjhuyciwhbyomkqvozpquogekckgtaelwehovqukprqxaqzbglmitpgsqwufdxjyrmcpbqkjleadyudpkanknypwoejnragcblamyimffseyqwmtlwpmpzbvocdswxwgstpxhbqbtzozdupnlxzfngebpjmtnlvwqvnmqozxpkqvghbanijrlmasbjinikzntkghnhssmftiuqyzmjpvupkdotddpidbdvlrdhgcudwnevcjzbihusitwcwjseacydwyzfufzaynxamsbjotogponpvnrqjslitahecrjbcpnbjpttpxhqxyrfcqczilgiidsvozjllbqpmqymlokklyzuafxhxpwelmynflrpmhlwepauteknkcubuhwnyxfgiwwnousgvkarypqmmgbltwaebknnecqwcacdnpilpmnvyjdtpnotljfrnpxaawlmhcsihqhutismanavrwlzafvsnazrfjpezylmckhcmeaqwigdjmyfrflqrvnmbuzlfxndwslozkgopmcbywtjvduixanrbyebzloljplsqlxnqdgcacjgrabrjqxocqfcvyqarbpphakrtdgeqiytyomlcsqqttglhbpxtydokezdjwzxuteaqhfenywrcxbwooljczudxxrdhpbnbrbtekikdbwwdldclwojmkfqmhtocaxdiwcyipuawsfvgsyoqfigtikdytivbpqxfaqyiyquubyrpkknvntuiubpzoriqlqoememfezehxdqyufvsvqhyrmpllizgqoxutuhecbtmuveblgapnigmdnpvsymsmdnfrwyvfndrveumxvqtvszzuuovmtcailemssm\",
+    \"start\": \"2022-05-31T10:00:15\",
+    \"end\": \"2022-05-31T10:00:15\",
+    \"location\": \"kdwyqfuysyxqffruuuwozkanlhlnbhlslcwqeplahmlwmebbvgumkiaqowowqwvkbzyvufymxkfrgyctttppytzwocwjbzobnxutlmqackcmdtlvnhfcstmrwcqqtwjlxamkchfigynvsvtodpjchkvjxrnafazhiooqznzemuswimqfp\"
 }"
 </code></pre></div>
 
@@ -2854,11 +3210,11 @@ const headers = {
 };
 
 let body = {
-    "title": "kjngrcbckacvamqwgxlbjsyziepubcolejupvmrgwmgrvrqkyyggilqinyigqvobpmrwnpodwlefdorybwignhnirkvyaukkllhbmnzirddlyeusdvklhcugrdxpymptejwvsdalpthepzfolkhdih",
-    "description": "llrsiuswiqnkeqibaixctmlazvnzmabwbbzxfzfyorjhjerqvcoopckjgbqiuwqorfyqevbgubdcrefuvsjxkxrwunvcgglxatoioqanrarfutlnrbarznrorxkrreuwmnbvgzgmzfpjkjwfkyfufuyjdsfxpgifmtwihtmfyhtrswgzfevsyqnkhksqrvgkdweyruhfeqjlelgfywcblaqjcdnawueoaouoyrnjjqdudepfaedxrmcfguzgkpahhrahthgnydahnrxkapyvunoldeafimoljbdwlyrpbavfochkhhtascjonacuecvkrxkcwzxeyoegwfcjkxpxklezgibxvnywusmnfmqcfgripawmagcbzeujtojzabdlyrvjlhjdvoueqgsuzexvraqnxbcnlfulzbvzrcjvqvvkycsisqkdcxfnqlevfaqdntbehcfvfubcpjbpiubquzeaxfczpigkzoutfabyrautshlipbygkgkkuedeyrvnquozucruxgehteoezbxjcuvzdkjxchntkmxzlqfkazlqhovgojitlcmoqfejyjxvusakatspfzobqfnvqummjxgvlwhffttvdxgwclpughafqdrlqjiujnvwcsvjpmivvkvmeteyjpodvqhwwnmseykghpwvwfpeuxmqhvqjsliijwgcsdsjaoftpasvojosukhmemznxaqvbusszkynznreqnjfbfuclzoib",
-    "start": "2022-05-30T20:46:44",
-    "end": "2022-05-30T20:46:44",
-    "location": "ctkqzwiukmcsqmblmptpgelyhfvukeeimejnocfgjxbyuoknajimtldreiuvpnpdxeasbiyyirgjjvelzkgpmzsvkfjeatpirjeaimwwmvrsvcfkofousjcazvzycrvoxzuuvlpntmuqkeklfoqsddwqrpmwyajkaezibmwuyogzsqiwkhovwdeghujorcfvzytehqqygxrirjsbi"
+    "title": "loytimnfzxylqnzojemlclqbhbjqzhcwmlxlpugywmgfgvmwvwsfnzynuilfsjteglvqysnfjjhqrhqnniernxkfehjjbywcltkueypeklkhjysuzycntgrcuaskvycakxooialbfpnjcaswgboltqvirnxvvgkuefmplxhmiaxdxqubjxsvdrkmucorqgkestrthmsmpvbbchvkzcerkycqwlrer",
+    "description": "tejioqsaysikeqzfxbsckufcqatqxykvmjublcxqntvaznuqlitahnsajkzqutflkwlbudeadsdlbkdshwbzduvxrpovusqfiyfkxnpftcjhuyciwhbyomkqvozpquogekckgtaelwehovqukprqxaqzbglmitpgsqwufdxjyrmcpbqkjleadyudpkanknypwoejnragcblamyimffseyqwmtlwpmpzbvocdswxwgstpxhbqbtzozdupnlxzfngebpjmtnlvwqvnmqozxpkqvghbanijrlmasbjinikzntkghnhssmftiuqyzmjpvupkdotddpidbdvlrdhgcudwnevcjzbihusitwcwjseacydwyzfufzaynxamsbjotogponpvnrqjslitahecrjbcpnbjpttpxhqxyrfcqczilgiidsvozjllbqpmqymlokklyzuafxhxpwelmynflrpmhlwepauteknkcubuhwnyxfgiwwnousgvkarypqmmgbltwaebknnecqwcacdnpilpmnvyjdtpnotljfrnpxaawlmhcsihqhutismanavrwlzafvsnazrfjpezylmckhcmeaqwigdjmyfrflqrvnmbuzlfxndwslozkgopmcbywtjvduixanrbyebzloljplsqlxnqdgcacjgrabrjqxocqfcvyqarbpphakrtdgeqiytyomlcsqqttglhbpxtydokezdjwzxuteaqhfenywrcxbwooljczudxxrdhpbnbrbtekikdbwwdldclwojmkfqmhtocaxdiwcyipuawsfvgsyoqfigtikdytivbpqxfaqyiyquubyrpkknvntuiubpzoriqlqoememfezehxdqyufvsvqhyrmpllizgqoxutuhecbtmuveblgapnigmdnpvsymsmdnfrwyvfndrveumxvqtvszzuuovmtcailemssm",
+    "start": "2022-05-31T10:00:15",
+    "end": "2022-05-31T10:00:15",
+    "location": "kdwyqfuysyxqffruuuwozkanlhlnbhlslcwqeplahmlwmebbvgumkiaqowowqwvkbzyvufymxkfrgyctttppytzwocwjbzobnxutlmqackcmdtlvnhfcstmrwcqqtwjlxamkchfigynvsvtodpjchkvjxrnafazhiooqznzemuswimqfp"
 };
 
 fetch(url, {
@@ -2879,11 +3235,11 @@ $response = $client-&gt;put(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'title' =&gt; 'kjngrcbckacvamqwgxlbjsyziepubcolejupvmrgwmgrvrqkyyggilqinyigqvobpmrwnpodwlefdorybwignhnirkvyaukkllhbmnzirddlyeusdvklhcugrdxpymptejwvsdalpthepzfolkhdih',
-            'description' =&gt; 'llrsiuswiqnkeqibaixctmlazvnzmabwbbzxfzfyorjhjerqvcoopckjgbqiuwqorfyqevbgubdcrefuvsjxkxrwunvcgglxatoioqanrarfutlnrbarznrorxkrreuwmnbvgzgmzfpjkjwfkyfufuyjdsfxpgifmtwihtmfyhtrswgzfevsyqnkhksqrvgkdweyruhfeqjlelgfywcblaqjcdnawueoaouoyrnjjqdudepfaedxrmcfguzgkpahhrahthgnydahnrxkapyvunoldeafimoljbdwlyrpbavfochkhhtascjonacuecvkrxkcwzxeyoegwfcjkxpxklezgibxvnywusmnfmqcfgripawmagcbzeujtojzabdlyrvjlhjdvoueqgsuzexvraqnxbcnlfulzbvzrcjvqvvkycsisqkdcxfnqlevfaqdntbehcfvfubcpjbpiubquzeaxfczpigkzoutfabyrautshlipbygkgkkuedeyrvnquozucruxgehteoezbxjcuvzdkjxchntkmxzlqfkazlqhovgojitlcmoqfejyjxvusakatspfzobqfnvqummjxgvlwhffttvdxgwclpughafqdrlqjiujnvwcsvjpmivvkvmeteyjpodvqhwwnmseykghpwvwfpeuxmqhvqjsliijwgcsdsjaoftpasvojosukhmemznxaqvbusszkynznreqnjfbfuclzoib',
-            'start' =&gt; '2022-05-30T20:46:44',
-            'end' =&gt; '2022-05-30T20:46:44',
-            'location' =&gt; 'ctkqzwiukmcsqmblmptpgelyhfvukeeimejnocfgjxbyuoknajimtldreiuvpnpdxeasbiyyirgjjvelzkgpmzsvkfjeatpirjeaimwwmvrsvcfkofousjcazvzycrvoxzuuvlpntmuqkeklfoqsddwqrpmwyajkaezibmwuyogzsqiwkhovwdeghujorcfvzytehqqygxrirjsbi',
+            'title' =&gt; 'loytimnfzxylqnzojemlclqbhbjqzhcwmlxlpugywmgfgvmwvwsfnzynuilfsjteglvqysnfjjhqrhqnniernxkfehjjbywcltkueypeklkhjysuzycntgrcuaskvycakxooialbfpnjcaswgboltqvirnxvvgkuefmplxhmiaxdxqubjxsvdrkmucorqgkestrthmsmpvbbchvkzcerkycqwlrer',
+            'description' =&gt; 'tejioqsaysikeqzfxbsckufcqatqxykvmjublcxqntvaznuqlitahnsajkzqutflkwlbudeadsdlbkdshwbzduvxrpovusqfiyfkxnpftcjhuyciwhbyomkqvozpquogekckgtaelwehovqukprqxaqzbglmitpgsqwufdxjyrmcpbqkjleadyudpkanknypwoejnragcblamyimffseyqwmtlwpmpzbvocdswxwgstpxhbqbtzozdupnlxzfngebpjmtnlvwqvnmqozxpkqvghbanijrlmasbjinikzntkghnhssmftiuqyzmjpvupkdotddpidbdvlrdhgcudwnevcjzbihusitwcwjseacydwyzfufzaynxamsbjotogponpvnrqjslitahecrjbcpnbjpttpxhqxyrfcqczilgiidsvozjllbqpmqymlokklyzuafxhxpwelmynflrpmhlwepauteknkcubuhwnyxfgiwwnousgvkarypqmmgbltwaebknnecqwcacdnpilpmnvyjdtpnotljfrnpxaawlmhcsihqhutismanavrwlzafvsnazrfjpezylmckhcmeaqwigdjmyfrflqrvnmbuzlfxndwslozkgopmcbywtjvduixanrbyebzloljplsqlxnqdgcacjgrabrjqxocqfcvyqarbpphakrtdgeqiytyomlcsqqttglhbpxtydokezdjwzxuteaqhfenywrcxbwooljczudxxrdhpbnbrbtekikdbwwdldclwojmkfqmhtocaxdiwcyipuawsfvgsyoqfigtikdytivbpqxfaqyiyquubyrpkknvntuiubpzoriqlqoememfezehxdqyufvsvqhyrmpllizgqoxutuhecbtmuveblgapnigmdnpvsymsmdnfrwyvfndrveumxvqtvszzuuovmtcailemssm',
+            'start' =&gt; '2022-05-31T10:00:15',
+            'end' =&gt; '2022-05-31T10:00:15',
+            'location' =&gt; 'kdwyqfuysyxqffruuuwozkanlhlnbhlslcwqeplahmlwmebbvgumkiaqowowqwvkbzyvufymxkfrgyctttppytzwocwjbzobnxutlmqackcmdtlvnhfcstmrwcqqtwjlxamkchfigynvsvtodpjchkvjxrnafazhiooqznzemuswimqfp',
         ],
     ]
 );
@@ -2962,7 +3318,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="title"
                data-endpoint="PUTapi-events--id-"
-               value="kjngrcbckacvamqwgxlbjsyziepubcolejupvmrgwmgrvrqkyyggilqinyigqvobpmrwnpodwlefdorybwignhnirkvyaukkllhbmnzirddlyeusdvklhcugrdxpymptejwvsdalpthepzfolkhdih"
+               value="loytimnfzxylqnzojemlclqbhbjqzhcwmlxlpugywmgfgvmwvwsfnzynuilfsjteglvqysnfjjhqrhqnniernxkfehjjbywcltkueypeklkhjysuzycntgrcuaskvycakxooialbfpnjcaswgboltqvirnxvvgkuefmplxhmiaxdxqubjxsvdrkmucorqgkestrthmsmpvbbchvkzcerkycqwlrer"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2972,7 +3328,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="description"
                data-endpoint="PUTapi-events--id-"
-               value="llrsiuswiqnkeqibaixctmlazvnzmabwbbzxfzfyorjhjerqvcoopckjgbqiuwqorfyqevbgubdcrefuvsjxkxrwunvcgglxatoioqanrarfutlnrbarznrorxkrreuwmnbvgzgmzfpjkjwfkyfufuyjdsfxpgifmtwihtmfyhtrswgzfevsyqnkhksqrvgkdweyruhfeqjlelgfywcblaqjcdnawueoaouoyrnjjqdudepfaedxrmcfguzgkpahhrahthgnydahnrxkapyvunoldeafimoljbdwlyrpbavfochkhhtascjonacuecvkrxkcwzxeyoegwfcjkxpxklezgibxvnywusmnfmqcfgripawmagcbzeujtojzabdlyrvjlhjdvoueqgsuzexvraqnxbcnlfulzbvzrcjvqvvkycsisqkdcxfnqlevfaqdntbehcfvfubcpjbpiubquzeaxfczpigkzoutfabyrautshlipbygkgkkuedeyrvnquozucruxgehteoezbxjcuvzdkjxchntkmxzlqfkazlqhovgojitlcmoqfejyjxvusakatspfzobqfnvqummjxgvlwhffttvdxgwclpughafqdrlqjiujnvwcsvjpmivvkvmeteyjpodvqhwwnmseykghpwvwfpeuxmqhvqjsliijwgcsdsjaoftpasvojosukhmemznxaqvbusszkynznreqnjfbfuclzoib"
+               value="tejioqsaysikeqzfxbsckufcqatqxykvmjublcxqntvaznuqlitahnsajkzqutflkwlbudeadsdlbkdshwbzduvxrpovusqfiyfkxnpftcjhuyciwhbyomkqvozpquogekckgtaelwehovqukprqxaqzbglmitpgsqwufdxjyrmcpbqkjleadyudpkanknypwoejnragcblamyimffseyqwmtlwpmpzbvocdswxwgstpxhbqbtzozdupnlxzfngebpjmtnlvwqvnmqozxpkqvghbanijrlmasbjinikzntkghnhssmftiuqyzmjpvupkdotddpidbdvlrdhgcudwnevcjzbihusitwcwjseacydwyzfufzaynxamsbjotogponpvnrqjslitahecrjbcpnbjpttpxhqxyrfcqczilgiidsvozjllbqpmqymlokklyzuafxhxpwelmynflrpmhlwepauteknkcubuhwnyxfgiwwnousgvkarypqmmgbltwaebknnecqwcacdnpilpmnvyjdtpnotljfrnpxaawlmhcsihqhutismanavrwlzafvsnazrfjpezylmckhcmeaqwigdjmyfrflqrvnmbuzlfxndwslozkgopmcbywtjvduixanrbyebzloljplsqlxnqdgcacjgrabrjqxocqfcvyqarbpphakrtdgeqiytyomlcsqqttglhbpxtydokezdjwzxuteaqhfenywrcxbwooljczudxxrdhpbnbrbtekikdbwwdldclwojmkfqmhtocaxdiwcyipuawsfvgsyoqfigtikdytivbpqxfaqyiyquubyrpkknvntuiubpzoriqlqoememfezehxdqyufvsvqhyrmpllizgqoxutuhecbtmuveblgapnigmdnpvsymsmdnfrwyvfndrveumxvqtvszzuuovmtcailemssm"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 1000 characters.</p>
@@ -2982,7 +3338,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="start"
                data-endpoint="PUTapi-events--id-"
-               value="2022-05-30T20:46:44"
+               value="2022-05-31T10:00:15"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -2992,7 +3348,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="end"
                data-endpoint="PUTapi-events--id-"
-               value="2022-05-30T20:46:44"
+               value="2022-05-31T10:00:15"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -3002,7 +3358,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="location"
                data-endpoint="PUTapi-events--id-"
-               value="ctkqzwiukmcsqmblmptpgelyhfvukeeimejnocfgjxbyuoknajimtldreiuvpnpdxeasbiyyirgjjvelzkgpmzsvkfjeatpirjeaimwwmvrsvcfkofousjcazvzycrvoxzuuvlpntmuqkeklfoqsddwqrpmwyajkaezibmwuyogzsqiwkhovwdeghujorcfvzytehqqygxrirjsbi"
+               value="kdwyqfuysyxqffruuuwozkanlhlnbhlslcwqeplahmlwmebbvgumkiaqowowqwvkbzyvufymxkfrgyctttppytzwocwjbzobnxutlmqackcmdtlvnhfcstmrwcqqtwjlxamkchfigynvsvtodpjchkvjxrnafazhiooqznzemuswimqfp"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -3399,8 +3755,8 @@ access-control-allow-origin: *
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
-    --form "name=nzsqfsmcojrvyuluwcaupxlliqjremyhyvftdzewfsigxgpuskzywaqtnqbgnvetofatdvcmvpsijefofwngktbafhbkrhjdgfipygoyilodaxjutcnxvyouczzmfmuqwngzmrbctqwbnyiliuleovh" \
-    --form "ics=@/private/var/folders/gx/jp0czw8n7px21n5nnq93l1sh0000gn/T/phpF8ctMx" </code></pre></div>
+    --form "name=n" \
+    --form "ics=@/private/var/folders/gx/jp0czw8n7px21n5nnq93l1sh0000gn/T/php7Q6Co2" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -3415,7 +3771,7 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('name', 'nzsqfsmcojrvyuluwcaupxlliqjremyhyvftdzewfsigxgpuskzywaqtnqbgnvetofatdvcmvpsijefofwngktbafhbkrhjdgfipygoyilodaxjutcnxvyouczzmfmuqwngzmrbctqwbnyiliuleovh');
+body.append('name', 'n');
 body.append('ics', document.querySelector('input[name="ics"]').files[0]);
 
 fetch(url, {
@@ -3438,11 +3794,11 @@ $response = $client-&gt;post(
         'multipart' =&gt; [
             [
                 'name' =&gt; 'name',
-                'contents' =&gt; 'nzsqfsmcojrvyuluwcaupxlliqjremyhyvftdzewfsigxgpuskzywaqtnqbgnvetofatdvcmvpsijefofwngktbafhbkrhjdgfipygoyilodaxjutcnxvyouczzmfmuqwngzmrbctqwbnyiliuleovh'
+                'contents' =&gt; 'n'
             ],
             [
                 'name' =&gt; 'ics',
-                'contents' =&gt; fopen('/private/var/folders/gx/jp0czw8n7px21n5nnq93l1sh0000gn/T/phpF8ctMx', 'r')
+                'contents' =&gt; fopen('/private/var/folders/gx/jp0czw8n7px21n5nnq93l1sh0000gn/T/php7Q6Co2', 'r')
             ],
         ],
     ]
@@ -3507,7 +3863,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-calendars-import"
-               value="nzsqfsmcojrvyuluwcaupxlliqjremyhyvftdzewfsigxgpuskzywaqtnqbgnvetofatdvcmvpsijefofwngktbafhbkrhjdgfipygoyilodaxjutcnxvyouczzmfmuqwngzmrbctqwbnyiliuleovh"
+               value="n"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -3933,7 +4289,7 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/mails/5" \
+    --get "http://localhost:8000/api/mails/4" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -3941,7 +4297,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/mails/5"
+    "http://localhost:8000/api/mails/4"
 );
 
 const headers = {
@@ -3959,7 +4315,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost:8000/api/mails/5',
+    'http://localhost:8000/api/mails/4',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -4049,7 +4405,7 @@ access-control-allow-origin: *
                 <input type="text"
                name="id"
                data-endpoint="GETapi-mails--id-"
-               value="5"
+               value="4"
                data-component="url" hidden>
     <br>
 <p>The ID of the mail.</p>
@@ -4075,9 +4431,9 @@ access-control-allow-origin: *
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"to\": \"lvonrueden@example.net\",
-    \"subject\": \"sgfukdjpytyxgsspesbhdz\",
-    \"message\": \"vitae\"
+    \"to\": \"haag.catherine@example.net\",
+    \"subject\": \"gdlhoamvphfreurgxtiombfzqmjnckpkcjsykaqlnrnadvxoxhlihopdzklwhichzdxzqfkccqbiuruxaejamvjtlxscqdutgqxkcezcomytzsiooqqlpyrvwvahirdgchikavbrbxzlbgbtxypabzzjevxdggyykwfzxmojwpnhndxdnpcqfcpcolcoprauejcxjmtveqebnygovx\",
+    \"message\": \"molestiae\"
 }"
 </code></pre></div>
 
@@ -4094,9 +4450,9 @@ const headers = {
 };
 
 let body = {
-    "to": "lvonrueden@example.net",
-    "subject": "sgfukdjpytyxgsspesbhdz",
-    "message": "vitae"
+    "to": "haag.catherine@example.net",
+    "subject": "gdlhoamvphfreurgxtiombfzqmjnckpkcjsykaqlnrnadvxoxhlihopdzklwhichzdxzqfkccqbiuruxaejamvjtlxscqdutgqxkcezcomytzsiooqqlpyrvwvahirdgchikavbrbxzlbgbtxypabzzjevxdggyykwfzxmojwpnhndxdnpcqfcpcolcoprauejcxjmtveqebnygovx",
+    "message": "molestiae"
 };
 
 fetch(url, {
@@ -4117,9 +4473,9 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'to' =&gt; 'lvonrueden@example.net',
-            'subject' =&gt; 'sgfukdjpytyxgsspesbhdz',
-            'message' =&gt; 'vitae',
+            'to' =&gt; 'haag.catherine@example.net',
+            'subject' =&gt; 'gdlhoamvphfreurgxtiombfzqmjnckpkcjsykaqlnrnadvxoxhlihopdzklwhichzdxzqfkccqbiuruxaejamvjtlxscqdutgqxkcezcomytzsiooqqlpyrvwvahirdgchikavbrbxzlbgbtxypabzzjevxdggyykwfzxmojwpnhndxdnpcqfcpcolcoprauejcxjmtveqebnygovx',
+            'message' =&gt; 'molestiae',
         ],
     ]
 );
@@ -4183,7 +4539,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="to"
                data-endpoint="POSTapi-mails-send"
-               value="lvonrueden@example.net"
+               value="haag.catherine@example.net"
                data-component="body" hidden>
     <br>
 <p>Must be a valid email address.</p>
@@ -4193,7 +4549,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="subject"
                data-endpoint="POSTapi-mails-send"
-               value="sgfukdjpytyxgsspesbhdz"
+               value="gdlhoamvphfreurgxtiombfzqmjnckpkcjsykaqlnrnadvxoxhlihopdzklwhichzdxzqfkccqbiuruxaejamvjtlxscqdutgqxkcezcomytzsiooqqlpyrvwvahirdgchikavbrbxzlbgbtxypabzzjevxdggyykwfzxmojwpnhndxdnpcqfcpcolcoprauejcxjmtveqebnygovx"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -4203,7 +4559,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="message"
                data-endpoint="POSTapi-mails-send"
-               value="vitae"
+               value="molestiae"
                data-component="body" hidden>
     <br>
 
@@ -4501,7 +4857,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"onesignal_id\": \"wqrqmrjniuikduoobmlcpmidsgwrqhmdjrcsdxfcrusoarlarsyydszdnbckkfoeygdaxohdduiyesizzfrmvanxwghthiwnafkxhnqopjqavxsdfaajikqkxqnzbzmqlikqljjkramisiltozqwcksgvjhjvjzoahaeodlndupcghjkxmcupjlywsjbagiz\"
+    \"onesignal_id\": \"iykvcnnvzijsvocwpweqgtbljbrqpetfafkanerenkezfohumkrsfmbdfcizwhgobyzexbsiwokudsstcoxgmnkyweogexhaycjanjzqgtkepykbungqfkujprkocwxojjjpzlfenyvxpnczhjkiuxotrdlpeqdvhbsarbkcgqmujmlrsovuvxbwgajelanbkznwfbwbyywyqkppbn\"
 }"
 </code></pre></div>
 
@@ -4518,7 +4874,7 @@ const headers = {
 };
 
 let body = {
-    "onesignal_id": "wqrqmrjniuikduoobmlcpmidsgwrqhmdjrcsdxfcrusoarlarsyydszdnbckkfoeygdaxohdduiyesizzfrmvanxwghthiwnafkxhnqopjqavxsdfaajikqkxqnzbzmqlikqljjkramisiltozqwcksgvjhjvjzoahaeodlndupcghjkxmcupjlywsjbagiz"
+    "onesignal_id": "iykvcnnvzijsvocwpweqgtbljbrqpetfafkanerenkezfohumkrsfmbdfcizwhgobyzexbsiwokudsstcoxgmnkyweogexhaycjanjzqgtkepykbungqfkujprkocwxojjjpzlfenyvxpnczhjkiuxotrdlpeqdvhbsarbkcgqmujmlrsovuvxbwgajelanbkznwfbwbyywyqkppbn"
 };
 
 fetch(url, {
@@ -4539,7 +4895,7 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'onesignal_id' =&gt; 'wqrqmrjniuikduoobmlcpmidsgwrqhmdjrcsdxfcrusoarlarsyydszdnbckkfoeygdaxohdduiyesizzfrmvanxwghthiwnafkxhnqopjqavxsdfaajikqkxqnzbzmqlikqljjkramisiltozqwcksgvjhjvjzoahaeodlndupcghjkxmcupjlywsjbagiz',
+            'onesignal_id' =&gt; 'iykvcnnvzijsvocwpweqgtbljbrqpetfafkanerenkezfohumkrsfmbdfcizwhgobyzexbsiwokudsstcoxgmnkyweogexhaycjanjzqgtkepykbungqfkujprkocwxojjjpzlfenyvxpnczhjkiuxotrdlpeqdvhbsarbkcgqmujmlrsovuvxbwgajelanbkznwfbwbyywyqkppbn',
         ],
     ]
 );
@@ -4603,7 +4959,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="onesignal_id"
                data-endpoint="POSTapi-onesignal"
-               value="wqrqmrjniuikduoobmlcpmidsgwrqhmdjrcsdxfcrusoarlarsyydszdnbckkfoeygdaxohdduiyesizzfrmvanxwghthiwnafkxhnqopjqavxsdfaajikqkxqnzbzmqlikqljjkramisiltozqwcksgvjhjvjzoahaeodlndupcghjkxmcupjlywsjbagiz"
+               value="iykvcnnvzijsvocwpweqgtbljbrqpetfafkanerenkezfohumkrsfmbdfcizwhgobyzexbsiwokudsstcoxgmnkyweogexhaycjanjzqgtkepykbungqfkujprkocwxojjjpzlfenyvxpnczhjkiuxotrdlpeqdvhbsarbkcgqmujmlrsovuvxbwgajelanbkznwfbwbyywyqkppbn"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
