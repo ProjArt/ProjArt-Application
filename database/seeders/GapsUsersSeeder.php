@@ -19,6 +19,10 @@ class GapsUsersSeeder extends Seeder
         DB::table('gaps_users')->truncate();
         DB::table('courses')->truncate();
 
-        GapsUsersService::fetchAllUsers();
+        try {
+            GapsUsersService::fetchAllUsers();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }
