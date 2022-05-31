@@ -10,11 +10,175 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "ef3bb62c-95ec-4c5b-80d9-cafec8c36b23",
+        "_postman_id": "8fa569bd-dc03-421c-849e-207a887ee3f3",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
+        {
+            "name": "Notes",
+            "description": "\nAPIs pour g\u00e9rer les notes",
+            "item": [
+                {
+                    "name": "Get marks",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/marks",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/marks"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Retourne un json contenant une liste des notes de l'utilisateur."
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n\"2020 - 2021\": [\n  {\n    \"id\": 1,\n    \"module_code\": \"MODULE\",\n    \"module_name\": \"TEXT\",\n    \"value\": X,\n    \"year_start\": X,\n    \"year_end\": X\n  },\n}",
+                            "name": "success"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Notifications",
+            "description": "\nAPIs pour g\u00e9rer les notifications",
+            "item": [
+                {
+                    "name": "Send notification",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/notification",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/notification"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Permet d'envoyer une notification"
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Themes",
+            "description": "\nAPIs pour g\u00e9rer les th\u00e8mes",
+            "item": [
+                {
+                    "name": "Set theme",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user\/theme",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/user\/theme"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"theme_id\":2}"
+                        },
+                        "description": "Pour mettre \u00e0 jour le th\u00e8me d'un utilisateur"
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Get themes",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/themes",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/themes"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Pour obtenir tout les th\u00e8mes disponibles"
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "name": ""
+                        }
+                    ]
+                }
+            ]
+        },
         {
             "name": "Absences",
             "description": "\nAPIs pour g\u00e9rer les absences",
@@ -100,7 +264,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"earum\",\"password\":\"aut\",\"classroom_name\":\"suoizjizpjtesmvviganoyifyrbuhwwhjbfxkfnpzvmtbuajorotztzqpovxvpgzhzquebnazzccbztsinyefhlodpuxidatqcchojnfsbklbagynmpkwdbblqzemywaepxameblqbnktghsagcqiyahjbyybxeqo\"}"
+                            "raw": "{\"username\":\"tempore\",\"password\":\"officiis\",\"classroom_name\":\"tcpklokpxbpogxumiusktrytmiombokypwqvbhssxtjidnjyfbxmlxiqdqnpvfkvljoyanzflqvaxvuetrxyzujsmluxfmkkhnvjltohhkuoxyaewixabfgycvkokwcbcgpwyznzid\"}"
                         },
                         "description": "Authentication for a user"
                     },
@@ -132,7 +296,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"nemo\",\"password\":\"dicta\",\"classroom_name\":\"id\"}"
+                            "raw": "{\"username\":\"enim\",\"password\":\"ut\",\"classroom_name\":\"asperiores\"}"
                         },
                         "description": "Register a new user"
                     },
@@ -286,7 +450,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "57"
+                                    "value": "59"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -294,7 +458,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"success\":true,\"message\":\"Classroom\",\"data\":{\"classrooms\":[]}}",
+                            "body": "{\"success\":true,\"message\":\"Classroom\",\"data\":{\"classrooms\":[{\"name\":\"M49-1\",\"total_persons\":1,\"users\":[{\"id\":1,\"username\":\"timothee.dione\",\"gaps_id\":17449,\"role\":\"student\",\"card_money\":10,\"pivot\":{\"classroom_name\":\"M49-1\",\"user_id\":1},\"theme\":{\"id\":1,\"primary\":{\"id\":1,\"value\":\"#000000\"},\"secondary\":{\"id\":2,\"value\":\"#ffffff\"}}}]}]}}",
                             "name": ""
                         }
                     ]
@@ -374,7 +538,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"qceomdvcdbwgwcgwmcmfyaixrsvdqbfexnbvsqgdiszbwmdazukobwszoquxenbgrkshoaggywpplzoizvgjlfwzpssoymsdnlyfbpkplizimzbnmgedxgkkzuwjphpaxggxgxdyjfluzjybnouigwmkhaddbhvsmxmoewudsjtlshaggvmytqjysofqkbaywmfdjperxjnhvnqttumiuadopxvn\"}"
+                            "raw": "{\"name\":\"cbefteevtmfjaqoauesxjruwiesdyklryxhaokfcvhyddbjkqpttgovfsghvajkbvxakykmsbzuxykvsctqrtruyjyzjdavpncyiogffiqdvaegvfvkfmzgtbfoaajknumdmddoehwwupxmbhjpmqrtdzbpnlktyqptmohcsimyggzmdiiew\"}"
                         },
                         "description": ""
                     },
@@ -392,7 +556,7 @@
                                 {
                                     "id": "token",
                                     "key": "token",
-                                    "value": "voluptas",
+                                    "value": "officia",
                                     "description": ""
                                 }
                             ]
@@ -485,7 +649,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"zeshxjjeuijinzylnkccpzrfbxburgqxdmzgtpqfsjjyijfwdurrxrfoasamrbmuslsgqjwttsccwiokydacmglcjinlmsaoarxkjldhpiyoflkcilxnsdzpnjbrnzdirusrufzxapickjyxtjrafzoiienzkmjimrhyszluiopltcnmauxedhnpembnhyyuffdwfzcapyjshuyvihhmrxczaquhhcxoepxgmtcnwmimdvavtglolydhqwkdase\"}"
+                            "raw": "{\"name\":\"fgbgaqgcewklftchkjcyisnkcturssrhxbufcmswxjhhyhgsadhachwweuanzncfenpkuviqctxbamjclfruggqryltxvxqjoorrbvycaywcjxxltzqkwwhwvwkhkaklhmsimxybdvmitratccwdallpkglzppantdjsmgetgclztcbafhpejuxutifmdgbfcahzcoccsmhznffk\"}"
                         },
                         "description": "Cr\u00e9e un calendrier."
                     },
@@ -503,7 +667,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "18",
+                                    "value": "1",
                                     "description": "The ID of the calendar."
                                 }
                             ]
@@ -560,7 +724,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "11",
+                                    "value": "1",
                                     "description": "The ID of the calendar."
                                 }
                             ]
@@ -582,7 +746,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"qkqbjhkusmtlbmzsmkhbfxxxsurfmyvldyephbxr\"}"
+                            "raw": "{\"name\":\"txzvyyehfeypcsxlftmpkozyywedituyxmlmbuoesnubmzpkqrkflwywxizoihikkxfplkzhveydazzxwyngtioruntpkyyebxdhlnsvxngwrwobgksglbriqoqlixvizjiwqtollpgmjyjnnyafoofkbugqtzwseukhioixuwzkvfyqqaxudqglrhirzntaoxfaasxavfbftzmagtsqmglyslpjybyultrxadmwmzsuyhpdvyzouvqmqzk\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -600,7 +764,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "16",
+                                    "value": "1",
                                     "description": "The ID of the calendar."
                                 }
                             ]
@@ -651,7 +815,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"calendar_id\":19,\"user_id\":14,\"can_own\":true,\"can_view\":true}"
+                            "raw": "{\"calendar_id\":16,\"user_id\":7,\"can_own\":false,\"can_view\":false}"
                         },
                         "description": "Partage un calendrier avec un autre utilisateur."
                     },
@@ -725,7 +889,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"rspkhlmvflfqvnvdavkwqdqhygdvqtylpsyaplprizxozntdlifnaiulsxftilndjieozwsccnyuvrwljutpfaffblvuvbtotqotlijejqblwnhoepppjkhsg\",\"description\":\"fkbvjhrgrmtlonyquzsdegvzdrytrsefuxtgaeezqwmvkeyrbxcdzpllkamimwwmxoxpzojecndggrjowdipmlvvefwphmevlqqbxvxvfmgnunrkvjnvxxhqzwgwtdjuqevaascuhypvwrxxxrfaspzdagmrdnaugdsaelgehnopsrnjenfsulkkuglbqvnbonqxmjfwijesbbppnkjxcnkgqbfghriubunarvobqxzszdpvdpjmzegbzvwdhwycnfczjhabwzpcrpgtsjsbcuiykksxepslawbfidblfacjylrhkhdwezixlamjntygtqemjvhdilrykyhouuspbotfjupokmuaolczixazsthyadrsobnakhnaovbqihvmjahsscewginlhjivlflosopimjqyykxsbnrijquxoivqkdupatbwsguxocdnyvxhtomdurmlzzjofloptjxmklnvkkxrdwziilzvdfqrghhxgszcsaiisehljkzazfuhqmy\",\"start\":\"2022-05-31T14:55:05\",\"end\":\"2022-05-31T14:55:05\",\"location\":\"wmpssprkyajjmatgbannkrapilacffjranghqgxgbmppmndnikjdglvevzqwfjjiabjermuvfefeqkraidzdnjlhievbvpgtcxgjmfftnxeonzfgvnagtxazkjzsctkzmqyorolphclcgylqbolpuzessphxlmsojuzrjzjwyhqonclurazcsbqecphkchzmculfvbqlg\",\"calendar_id\":\"veritatis\"}"
+                            "raw": "{\"title\":\"c\",\"description\":\"njzdrsyiypjdtkjfikhaqnsiekuzvteykkjyskpchzenmlgacabujqrxauqnhonmrpmjrpvgluhqrvfzkkidkfwglrzrwmzlclcwsbkucyfeigkctcbhpxubwkaoxavgvzcrhelbyipaylztetvyxkhzdhtpnipmoettgszfurhyhsrmeyyitjynwywgdycowcaqgqlmdhgjaenfcitowbgqspqjbtgiaawcexyfswogsqzgjbgdhvoxkjgoqwelfjuvgwydiumszvlapcivkwdtevoxghvyspgyjbrnhnqwshohgqvuvgfzwhouunojfxwmcftkiozrybupfgfusreceylkiydyklkmvvjjhgmqxwjbwbydgazhursrpxarea\",\"start\":\"2022-05-31T15:35:07\",\"end\":\"2022-05-31T15:35:07\",\"location\":\"nncmharfcfepgsixmejvtmyslvsssuiyffnhlavwpvhfgeovlpbqkcdqaqddtotmsmpofgfupohqjtfkmeckbjoiqvxoefiajwraohorutnnlgtgyqrzqkyozqxohhbwzylxfrmwfbcmoscnhevdpupdediuqvxlvppefyekdsytvgpkrjhxpxmnjcdqxdrknifvpdfvlpyeqexddjwmaqfamfhighrgzmybdalzvbgtwcnbduqaiwecwjrgf\",\"calendar_id\":\"dolorum\"}"
                         },
                         "description": "Enregistre un nouvel \u00e9v\u00e8nement dans la BDD\nSucc\u00e8s: retourne un json contenant l'\u00e9v\u00e8nement cr\u00e9\u00e9\nFail: erreur"
                     },
@@ -750,7 +914,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "9",
+                                    "value": "1",
                                     "description": "The ID of the event."
                                 }
                             ]
@@ -807,7 +971,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "17",
+                                    "value": "1",
                                     "description": "The ID of the event."
                                 }
                             ]
@@ -829,7 +993,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"sveuypvhzsxaztjvnvbdejwoxoqxiacayibwtntffynxcvmltuiflxezcplmwhuieluhblexsudujymtowyfxkpqohlunthgkiafgorzjuwokqjllrmhnscxjojhjjgxgvrlwmczcfqbgjjybxpkvriiwvttvrbpyqtabnaiilccufgbavfpijlakaoirkfwqjkhgtuildtxtrzzzyyxqwvhjfayktr\",\"description\":\"setthjznftdkqoshsufejjrgxhwucbnybycqyohvdfozogbyltoghjelflbmorogczezgoaxjaezsluubrzhelydqtjlvewemgvfoudkcdahkkqsljlagrpzxxgezxwkopwlpliiznvabwqybzwzqodivpiqzwwwcpffyxefkhjamygukvgwhqncdk\",\"start\":\"2022-05-31T14:55:05\",\"end\":\"2022-05-31T14:55:05\",\"location\":\"hdxytemncdpczklmgmmgqbebaamxvvujmpfpdzzbrnjvjoitcdawctjjzyoqhctwkxyctrmceoaepcvdnzqhpbnleldiemnftuxzocgspruwhavdijsacafpcayntuwjlkulgxweekprganhxvsdacnjdebhtemgduhcknrkulnlritwubsnollbuuqvrljtfmnsltchxhwvmwfbootjddyykspwfrbaawzifx\"}"
+                            "raw": "{\"title\":\"bkebreehwufopeaipjhqmvfspavquetjicfgfkqzaaxjzklnipgtfxqemernkaqutdrtvsgwzvbfxinfiayeuiccvbdmdbfzfkiyhpcqhajomminogxblslkvilvgilfvozbyhfisflfotzvzrkckasddahfabzirwggczsjsjoxyjfdmitovdjimtgfsivugvcwlvbtp\",\"description\":\"ijeacljrbwvnnbcchkjtjaljkjwxzelmmnceqbjpsuxqthryfepwnzlasljhxeeootsmdxqmxvwjmopapztzhiarxgeeaskidrxfxowclzwhxnctgyobiqnohchjztiitncrdwfihgnbphqwzwcawridyskwhpqhbocpysaxanuupdtsucctqxejxsrijhwdybjxqezfhjvrkyyfdgilrywscrhgatqogqzgixnjceacquckpiqtoeziwgxibvxidhcljqulsqlywiaoqkutnlkojnfcxopvflijephdxogawvhzebfmnmitxlviktcryhjrjzbsiylxznkunoibiagzycrcvsnvutlxgdtoamtppasvkrmtsjqdiyhpcsgtwcrjjfnojtkaczswsrutecippucnwzkqtdbpvfzejeeaytjuzhvbsqgesmyx\",\"start\":\"2022-05-31T15:35:07\",\"end\":\"2022-05-31T15:35:07\",\"location\":\"whjvhaenlvovbipukmeaaaaftaabjsmwhcdezcncfbougrbhpbexmrdbsihfnkeovbqekruvajdmwdloghdvtmriupcbeateqblvwxbctqbkihpafmtvynxknxfvzjhuywkzyxialxdkinigynyxckaiefvnpuwirkuclpertkopapjkexayjublfavfgmskoprjlyar\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -1005,7 +1169,7 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "tehdrxdldqljcvopbbfgmudwjiwpmwervzstjdepxnfeuxtqtcrdaqgjkphklesdzhjvaupfdwmmtgrtocybfohaeniecqnodncoczepnxvtrktfuxlfrzgywtisxvfqnqemjyxohgwzyugbfpupnrsowhnnzodrkmkuswsonbr",
+                                    "value": "twhjmnmazxcybbbwmacwjisqcwntgyyypaxtwinvwxcmhmogvjmkalngzzbegvkddnzmtamewyqyxgsfbpdwuqlzcbylewpdxqsvnpgxsdphlkzt",
                                     "type": "text"
                                 },
                                 {
@@ -1071,15 +1235,15 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "56"
+                                    "value": "58"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
                                     "value": "*"
                                 }
                             ],
-                            "code": 500,
-                            "body": "{\n    \"message\": \"Undefined variable $calendar\",\n    \"exception\": \"ErrorException\",\n    \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\app\\\\Http\\\\Services\\\\GapsEventsService.php\",\n    \"line\": 92,\n    \"trace\": [\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Bootstrap\\\\HandleExceptions.php\",\n            \"line\": 255,\n            \"function\": \"handleError\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Bootstrap\\\\HandleExceptions\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\app\\\\Http\\\\Services\\\\GapsEventsService.php\",\n            \"line\": 92,\n            \"function\": \"Illuminate\\\\Foundation\\\\Bootstrap\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Bootstrap\\\\HandleExceptions\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\app\\\\Http\\\\Controllers\\\\GapsController.php\",\n            \"line\": 29,\n            \"function\": \"fetchAllHoraires\",\n            \"class\": \"App\\\\Http\\\\Services\\\\GapsEventsService\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\app\\\\Http\\\\Controllers\\\\GapsController.php\",\n            \"line\": 47,\n            \"function\": \"updateAll\",\n            \"class\": \"App\\\\Http\\\\Controllers\\\\GapsController\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Controller.php\",\n            \"line\": 54,\n            \"function\": \"updateAllCron\",\n            \"class\": \"App\\\\Http\\\\Controllers\\\\GapsController\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\ControllerDispatcher.php\",\n            \"line\": 45,\n            \"function\": \"callAction\",\n            \"class\": \"Illuminate\\\\Routing\\\\Controller\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 261,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\ControllerDispatcher\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Route.php\",\n            \"line\": 204,\n            \"function\": \"runController\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 725,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Routing\\\\Route\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 141,\n            \"function\": \"Illuminate\\\\Routing\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings.php\",\n            \"line\": 50,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\SubstituteBindings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 126,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 102,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests.php\",\n            \"line\": 54,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\sanctum\\\\src\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful.php\",\n            \"line\": 33,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 141,\n            \"function\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\{closure}\",\n            \"class\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\sanctum\\\\src\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful.php\",\n            \"line\": 34,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Laravel\\\\Sanctum\\\\Http\\\\Middleware\\\\EnsureFrontendRequestsAreStateful\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 726,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 703,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 667,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Routing\\\\Router.php\",\n            \"line\": 656,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 167,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 141,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Http\\\\Middleware\\\\HandleCors.php\",\n            \"line\": 62,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Http\\\\Middleware\\\\TrustProxies.php\",\n            \"line\": 39,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Pipeline\\\\Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 142,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Http\\\\Kernel.php\",\n            \"line\": 111,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 299,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 287,\n            \"function\": \"callLaravelOrLumenRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 89,\n            \"function\": \"makeApiCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 45,\n            \"function\": \"makeResponseCall\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls.php\",\n            \"line\": 35,\n            \"function\": \"makeResponseCallIfConditionsPass\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 222,\n            \"function\": \"__invoke\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Strategies\\\\Responses\\\\ResponseCalls\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 179,\n            \"function\": \"iterateThroughStrategies\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Extracting\\\\Extractor.php\",\n            \"line\": 116,\n            \"function\": \"fetchResponses\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 123,\n            \"function\": \"processRoute\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Extracting\\\\Extractor\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 80,\n            \"function\": \"extractEndpointsInfoFromLaravelApp\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp.php\",\n            \"line\": 56,\n            \"function\": \"extractEndpointsInfoAndWriteToDisk\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\knuckleswtf\\\\scribe\\\\src\\\\Commands\\\\GenerateDocumentation.php\",\n            \"line\": 55,\n            \"function\": \"get\",\n            \"class\": \"Knuckles\\\\Scribe\\\\GroupedEndpoints\\\\GroupedEndpointsFromApp\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 36,\n            \"function\": \"handle\",\n            \"class\": \"Knuckles\\\\Scribe\\\\Commands\\\\GenerateDocumentation\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Util.php\",\n            \"line\": 41,\n            \"function\": \"Illuminate\\\\Container\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 93,\n            \"function\": \"unwrapIfClosure\",\n            \"class\": \"Illuminate\\\\Container\\\\Util\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\BoundMethod.php\",\n            \"line\": 37,\n            \"function\": \"callBoundMethod\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Container\\\\Container.php\",\n            \"line\": 651,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\BoundMethod\",\n            \"type\": \"::\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 136,\n            \"function\": \"call\",\n            \"class\": \"Illuminate\\\\Container\\\\Container\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\symfony\\\\console\\\\Command\\\\Command.php\",\n            \"line\": 308,\n            \"function\": \"execute\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Command.php\",\n            \"line\": 121,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Command\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 998,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Command\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 299,\n            \"function\": \"doRunCommand\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\symfony\\\\console\\\\Application.php\",\n            \"line\": 171,\n            \"function\": \"doRun\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Console\\\\Application.php\",\n            \"line\": 102,\n            \"function\": \"run\",\n            \"class\": \"Symfony\\\\Component\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Console\\\\Kernel.php\",\n            \"line\": 129,\n            \"function\": \"run\",\n            \"class\": \"Illuminate\\\\Console\\\\Application\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"C:\\\\Users\\\\timot\\\\OneDrive\\\\Documents\\\\HEIG\\\\semestre-4\\\\ProjArt\\\\ProjArt-Application\\\\artisan\",\n            \"line\": 37,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Console\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}",
+                            "code": 200,
+                            "body": "{\"success\":true,\"message\":\"All fetched\",\"data\":{\"user\":null}}",
                             "name": ""
                         }
                     ]
@@ -1200,7 +1364,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "30",
+                                    "value": "67329",
                                     "description": "The ID of the mail."
                                 }
                             ]
@@ -1271,7 +1435,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"maeve64@example.org\",\"subject\":\"gjhoinvrisugwjzqqirciljasvitvdfksqsdfqvkfejyejgathuslyztknzgpcunvveowiofvpasgyewzrwzkznzlxjosasmyzfjnpfwslqzbnqurhfkutwrilglejmvretxuardjyxypsbuiglrtoollhktcxokvwkhzirndkgheqzynkvtzvfugycbtqigmcjrffmxcklxbkogcgkfvjdridchvipccmvyimpnuecnqnauozfnoqe\",\"message\":\"maiores\"}"
+                            "raw": "{\"to\":\"annabel.wisoky@example.net\",\"subject\":\"ycmeprwsvlbvfgkrjdfoztvhkjtxrufhsemcvlejehnevosuorfwcoelkxtmxuakzwcyhcczlipkhuzydhfzzyqiznlkjrjmrlbynvccxfhwltaajrncthimdlsuyingbfsgdpocjqimzbyezuhpqbgjyqsgkqplhskbuezfwhvkcjoteyebkrifvdjztzqcumuubauvrdpys\",\"message\":\"aspernatur\"}"
                         },
                         "description": ""
                     },
@@ -1316,170 +1480,6 @@
                             "code": 200,
                             "body": "[\n {\n  \"2022-05-25\": [\n    {\n      \"id\": 1,\n      \"entry\": \"Cr\u00e8me de l\u00e9gumes\",\n      \"plate\": \"Quiche aux tomates et basilic\",\n      \"dessert\": \"Salade de fruits\",\n      \"date\": \"2022-05-25 23:32:08\",\n      \"menu\": {\n        \"id\": 1529386802506784773,\n        \"date\": \"2022-05-25 23:32:08\"\n      }\n    },\n    {\n      \"id\": 2,\n      \"entry\": \"Cr\u00e8me de l\u00e9gumes\",\n      \"plate\": \"Ailerons de poulet (CH) grill\u00e9s, Sauce barbecue, Frites, Saut\u00e9 de l\u00e9gumes de saison\",\n      \"dessert\": \"Salade de fruits\",\n      \"date\": \"2022-05-25 23:32:08\",\n      \"menu\": {\n        \"id\": 1529386800858468355,\n        \"date\": \"2022-05-25 23:32:08\"\n      }\n    }\n  ],\n}",
                             "name": "success"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Notes",
-            "description": "\nAPIs pour g\u00e9rer les notes",
-            "item": [
-                {
-                    "name": "Get marks",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/marks",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/marks"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer {{token}}"
-                            }
-                        ],
-                        "body": null,
-                        "description": "Retourne un json contenant une liste des notes de l'utilisateur."
-                    },
-                    "response": [
-                        {
-                            "header": [],
-                            "code": 200,
-                            "body": "{\n\"2020 - 2021\": [\n  {\n    \"id\": 1,\n    \"module_code\": \"MODULE\",\n    \"module_name\": \"TEXT\",\n    \"value\": X,\n    \"year_start\": X,\n    \"year_end\": X\n  },\n}",
-                            "name": "success"
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "name": "Notifications",
-            "description": "\nAPIs pour g\u00e9rer les notifications",
-            "item": [
-                {
-                    "name": "Send notification",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/notification",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/notification"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer {{token}}"
-                            }
-                        ],
-                        "body": null,
-                        "description": "Permet d'envoyer une notification"
-                    },
-                    "response": []
-                }
-            ]
-        },
-        {
-            "name": "Themes",
-            "description": "\nAPIs pour g\u00e9rer les th\u00e8mes",
-            "item": [
-                {
-                    "name": "Set theme",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/user\/theme",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/user\/theme"
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer {{token}}"
-                            }
-                        ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"theme_id\":18}"
-                        },
-                        "description": "Pour mettre \u00e0 jour le th\u00e8me d'un utilisateur"
-                    },
-                    "response": []
-                },
-                {
-                    "name": "Get themes",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/themes",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/themes"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer {{token}}"
-                            }
-                        ],
-                        "body": null,
-                        "description": "Pour obtenir tout les th\u00e8mes disponibles"
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
-                            "name": ""
                         }
                     ]
                 }

@@ -63,7 +63,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: zeshxjjeuijinzylnkccpzrfbxburgqxdmzgtpqfsjjyijfwdurrxrfoasamrbmuslsgqjwttsccwiokydacmglcjinlmsaoarxkjldhpiyoflkcilxnsdzpnjbrnzdirusrufzxapickjyxtjrafzoiienzkmjimrhyszluiopltcnmauxedhnpembnhyyuffdwfzcapyjshuyvihhmrxczaquhhcxoepxgmtcnwmimdvavtglolydhqwkdase
+        example: fgbgaqgcewklftchkjcyisnkcturssrhxbufcmswxjhhyhgsadhachwweuanzncfenpkuviqctxbamjclfruggqryltxvxqjoorrbvycaywcjxxltzqkwwhwvwkhkaklhmsimxybdvmitratccwdallpkglzppantdjsmgetgclztcbafhpejuxutifmdgbfcahzcoccsmhznffk
         type: string
         custom: []
     responses: []
@@ -86,7 +86,7 @@ endpoints:
         name: id
         description: 'The ID of the calendar.'
         required: true
-        example: 18
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -120,7 +120,7 @@ endpoints:
         name: id
         description: 'The ID of the calendar.'
         required: true
-        example: 11
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -129,7 +129,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: qkqbjhkusmtlbmzsmkhbfxxxsurfmyvldyephbxr
+        example: txzvyyehfeypcsxlftmpkozyywedituyxmlmbuoesnubmzpkqrkflwywxizoihikkxfplkzhveydazzxwyngtioruntpkyyebxdhlnsvxngwrwobgksglbriqoqlixvizjiwqtollpgmjyjnnyafoofkbugqtzwseukhioixuwzkvfyqqaxudqglrhirzntaoxfaasxavfbftzmagtsqmglyslpjybyultrxadmwmzsuyhpdvyzouvqmqzk
         type: string
         custom: []
     responses: []
@@ -152,7 +152,7 @@ endpoints:
         name: id
         description: 'The ID of the calendar.'
         required: true
-        example: 16
+        example: 1
         type: integer
         custom: []
     queryParameters: []
@@ -179,28 +179,28 @@ endpoints:
         name: calendar_id
         description: 'ID du calendrier à partager.'
         required: true
-        example: 19
+        example: 16
         type: integer
         custom: []
       user_id:
         name: user_id
         description: "ID de l'utilisateur à qui partager le calendrier."
         required: true
-        example: 14
+        example: 7
         type: integer
         custom: []
       can_own:
         name: can_own
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         custom: []
       can_view:
         name: can_view
         description: ''
         required: true
-        example: true
+        example: false
         type: boolean
         custom: []
     responses: []
