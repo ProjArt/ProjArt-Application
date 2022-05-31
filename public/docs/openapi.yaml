@@ -7,10 +7,10 @@ servers:
   -
     url: 'http://localhost:8000'
 paths:
-  /api/notification:
+  /api/user/theme:
     post:
-      summary: 'Send notification'
-      description: "Permet d'envoyer une notification"
+      summary: 'Set theme'
+      description: "Pour mettre à jour le thème d'un utilisateur"
       parameters:
         -
           in: header
@@ -35,7 +35,73 @@ paths:
             type: string
       responses: {  }
       tags:
-        - Notifications
+        - Themes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                theme_id:
+                  type: integer
+                  description: ''
+                  example: 13
+              required:
+                - theme_id
+  /api/themes:
+    get:
+      summary: 'Get themes'
+      description: 'Pour obtenir tout les thèmes disponibles'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Themes
   /api/absences:
     get:
       summary: 'Get absences'
@@ -128,15 +194,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: quidem
+                  example: cupiditate
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: omnis
+                  example: veniam
                 classroom_name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: cecmmcdqsksyinirpzoyfdjwfzolwceukmhrsqsqqtqxvcncmtkabysttpqfinprmtoaggkdylauhtnwdezfunrcrmhtameokmunhpmhsozlxeezujxswzwkcxkxnafeezqqktntiaoqlr
+                  example: ypwbnxuzqdkwvmmblpxiwdefnnqliutyrmrkgwffqylgwtnisbdhqcphebupbojtwttxjvpqeaupqcuvruinoyuwmkkvjp
               required:
                 - username
                 - password
@@ -179,15 +245,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: iure
+                  example: qui
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: iste
+                  example: velit
                 classroom_name:
                   type: string
                   description: 'The class of the user.'
-                  example: et
+                  example: doloribus
               required:
                 - username
                 - password
@@ -341,14 +407,14 @@ paths:
                         total_persons: 1
                         users:
                           -
-                            id: 68
+                            id: 69
                             username: vincent.tarrit
-                            gaps_id: 0
+                            gaps_id: 17486
                             role: student
                             card_money: 0
                             pivot:
                               classroom_name: M49-1
-                              user_id: 68
+                              user_id: 69
                             theme:
                               id: 1
                               primary:
@@ -373,14 +439,14 @@ paths:
                           total_persons: 1
                           users:
                             -
-                              id: 68
+                              id: 69
                               username: vincent.tarrit
-                              gaps_id: 0
+                              gaps_id: 17486
                               role: student
                               card_money: 0
                               pivot:
                                 classroom_name: M49-1
-                                user_id: 68
+                                user_id: 69
                               theme:
                                 id: 1
                                 primary:
@@ -483,7 +549,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: natykuaavdpmtksyqbjmjogpojusglpwlcd
+                  example: lnxhdywrjiuuequlfmrvcc
               required:
                 - name
   '/api/telegram/{token}':
@@ -524,88 +590,6 @@ paths:
         required: true
         schema:
           type: string
-  /api/pusher/beams-auth:
-    get:
-      summary: ''
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {{token}}'
-          schema:
-            type: string
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
-      tags:
-        - Autres
-  /api/beams:
-    post:
-      summary: ''
-      description: ''
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {{token}}'
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Autres
   /api/calendars:
     get:
       summary: getCalendars
@@ -680,7 +664,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: mmazanyfrdngkfbeutwgnnskilndmmlxgopwenmuelunitdmmsocghmevzjxvzmbqxpjfmd
+                  example: hzojverodhindhnewljuwehjemfcgewxzxkbzeftduprzqjcvqpldrgirhqvwtbyymknqfqszpmrbfcmvpbumnxdjahgx
               required:
                 - name
   '/api/calendars/{id}':
@@ -774,7 +758,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ltxdybvbggpjsoadhhmdwwvrs
+                  example: ysyqirsupukeosrdpavapcfeskpwkdienlrdgfzbyewmalvpfqskfeztgcyumepmtgczhppujbhqyuovqywkdedypakkksickavroxfxozefzzxyfvzybdbqniubpwgkzwawivdbzbonuhxqpvfxquycikuglgxvosdrqltkhuysfoqbshxmkvfoxhsdderesrzbgr
               required:
                 - name
     delete:
@@ -853,19 +837,19 @@ paths:
                 calendar_id:
                   type: integer
                   description: 'ID du calendrier à partager.'
-                  example: 4
+                  example: 2
                 user_id:
                   type: integer
                   description: "ID de l'utilisateur à qui partager le calendrier."
-                  example: 4
+                  example: 17
                 can_own:
                   type: boolean
                   description: ''
-                  example: true
+                  example: false
                 can_view:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
               required:
                 - calendar_id
                 - user_id
@@ -952,27 +936,27 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: uhzilmtdzffnwiseopoivyfjmwrazjfpocfkmfzqacmopftgsaglujgnjcvuentwyhkepmueivljbuzxkngzkjpzidawwidzfllcactepxulqtipnpszmfzlrqvqffztwsqerydooymtninizltwrtzokqsxfneyrwbgrtlzjmpfuqrghefvkejfrebrubrtswbhimdwaojuhtwvhehmhfjfknieqxkprjvojxecxlapfavvtxgfwpvvcgcg
+                  example: xxioqkosulmajnkbexnjjpetvllbnyjzlwdsovtvylnuxhjdsnfdspzenicgxykyhqaeccorrabjnsvdzsturhpbnbhlsengiuxklvcopsaugeuumlantigswcdxdxjdehfdmqovrkuilaxkmqiamrugbkcvkxj
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: jpcuyywwrjmnqjhfnwaywpzistwneouvxweyyupxhazuwpjfzjfytivbjrowcfedhtsdwiyusgdsxswtxasugnrflfyktfyvzjoqtecbepcqsrcdonzqjbscerzzbznmdvtnxoubkhtpbskwbzdxhroafozlmnztzglyjdsapdkebleynhzqujfatcltwfbvgttzljvpxsaufwbzftckovderlcntkksyytnhctkqqiqlkturoequqzbezuheaozlcyglzkkxhyefvrvqcxfuelkiaarrhbyfubzspyzelgwevfsivgwjknyldwskigiafytovijqdbkbdwwgraychdmqcbraejmgkkepvcggxfezxgvktbthgjahprbwbbpehugjknmzgwrznzrucomchroacjfdshqciuptobjrsonstgypgkojimcbiyhlrobovltmkzejoueevhzoaezqmigsdadlxxcxvcnhjetqfcykjbipzzwujpkbwvphiwptgkplgxdiaribfdibcqrzcpqcanxpjakoxjkxynvcvdoztfzluufrwsczztxfelrplxsenltiavixjacgrajicjlyoofxezwywocwmnyohfzzxslrhitmtroxcluvkqarsgvkmebshzrsdnaykcrlgdgwzmjksrrvpekyprpxsralqvrxruqqszdvsgnfzrmwlneqbybrunbnibtswlauajtxpuzrfvpemduajwqhplcaiofyspvqalcsjsvbfvjompudakmkvqqcgoygmegkzdhdrbzvkunqtkxakdgrmafqfwgtveocoanqudfxojesxlsixylmycnqhflyhhxtjbxdpomldcifgvfobewijzwtabxaoxvipmhdmpoflanflyxvdqaogbdpmzv
+                  example: uokgpyqbzakyhaphkjqeybipcegtkludylfingntyyspxtxlubhsoqptxymhlvdhfcidkaxocidyyvjaamiwfzcafgqcpjuqowomkcdrqaebwlotyylmvgkihzpwyiqmazjpxrgtkxxexcrlgfixqsiccryemzhvlmcxymbgwylaietirptnfvexdhchpkdgklyftfzelpoihyrzrzlmtdhxrpzqbatpgxazhmyymimliczerwsvnykycxefsduqaaifstgxxshjstpnpvvsqngpikexkgnypadbgtrpyzikbbovutfekwqqzfngdnrjcmnrrqmkygsmqfcnusetfeewvndvjbvaebjehdqayzvwrnpdmombktnzwfscmjfajoyugeaqmczzedezkbbprwnpxzmtqsugunbwrhwvgscpjfvsafzbtqbsalwygdpxymrtjcykuxicucstafzlmevnyreofywhsozagzqfvdaojopauqwshcqtzwldprgqmeqwxtiqpurqsndnqkfyrhvimbhkqbralhlihuanmphnawmvangaajpbimswdotywnjkqfoahetzuptgsghuaqepuytmnmfgvrmkmrcmnubrzeejvtdzupclehnfzrqyinyqnwcnkksrdewodvkjldoqpognhqkuvqtcukqofpxomkeorhouaepexpybcgozkvfynokhlfxjkwofffnrfsmpykxzbebshiyusgmnvwdcatiypgjlirqaiecolsotpehxhxzczvhrba
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-31T10:00:15'
+                  example: '2022-05-31T13:04:12'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-31T10:00:15'
+                  example: '2022-05-31T13:04:12'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: uhrvotmzoepqgspatcmmqieutraiwkvodebkkzdmzrzdwqhs
+                  example: iteslukzlhjebocsitndlvocyhhqytynmmzoskmxpzvghhliipglzuskaksbmbfmqjruhmgpzwksncbsmlzmecrzwfpgewnlkipegcnqnfysvdxapirptxfcrvvzteefuejstckzfxpkvqwgigvpncefovzqiodydcwvmlyngz
                 calendar_id:
                   type: string
                   description: ''
-                  example: nesciunt
+                  example: facere
               required:
                 - title
                 - description
@@ -1071,23 +1055,23 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: loytimnfzxylqnzojemlclqbhbjqzhcwmlxlpugywmgfgvmwvwsfnzynuilfsjteglvqysnfjjhqrhqnniernxkfehjjbywcltkueypeklkhjysuzycntgrcuaskvycakxooialbfpnjcaswgboltqvirnxvvgkuefmplxhmiaxdxqubjxsvdrkmucorqgkestrthmsmpvbbchvkzcerkycqwlrer
+                  example: gkpmnrufucwmcujxmstuyajufylkoxdhbmgkxhmulcemdtjhmjbmidnpjhtzgxwsuyhfunvsqzaczwycqznmagviamtqwqdvgrylcvctniexobmxtspimmwclygbtbzfepaqzvyigfhdcwhwqonzexlmuflmjngqakurplhqfgxcxywdcsfjgflxjgtsmvouivnohhsoyvyrbreufhjioacjpzjbimmborrxqncrjwclgqexy
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: tejioqsaysikeqzfxbsckufcqatqxykvmjublcxqntvaznuqlitahnsajkzqutflkwlbudeadsdlbkdshwbzduvxrpovusqfiyfkxnpftcjhuyciwhbyomkqvozpquogekckgtaelwehovqukprqxaqzbglmitpgsqwufdxjyrmcpbqkjleadyudpkanknypwoejnragcblamyimffseyqwmtlwpmpzbvocdswxwgstpxhbqbtzozdupnlxzfngebpjmtnlvwqvnmqozxpkqvghbanijrlmasbjinikzntkghnhssmftiuqyzmjpvupkdotddpidbdvlrdhgcudwnevcjzbihusitwcwjseacydwyzfufzaynxamsbjotogponpvnrqjslitahecrjbcpnbjpttpxhqxyrfcqczilgiidsvozjllbqpmqymlokklyzuafxhxpwelmynflrpmhlwepauteknkcubuhwnyxfgiwwnousgvkarypqmmgbltwaebknnecqwcacdnpilpmnvyjdtpnotljfrnpxaawlmhcsihqhutismanavrwlzafvsnazrfjpezylmckhcmeaqwigdjmyfrflqrvnmbuzlfxndwslozkgopmcbywtjvduixanrbyebzloljplsqlxnqdgcacjgrabrjqxocqfcvyqarbpphakrtdgeqiytyomlcsqqttglhbpxtydokezdjwzxuteaqhfenywrcxbwooljczudxxrdhpbnbrbtekikdbwwdldclwojmkfqmhtocaxdiwcyipuawsfvgsyoqfigtikdytivbpqxfaqyiyquubyrpkknvntuiubpzoriqlqoememfezehxdqyufvsvqhyrmpllizgqoxutuhecbtmuveblgapnigmdnpvsymsmdnfrwyvfndrveumxvqtvszzuuovmtcailemssm
+                  example: gvbwrttrujkyulipxwibrvyebipskyeswdyjlqcdklnfrdpyve
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-31T10:00:15'
+                  example: '2022-05-31T13:04:12'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-31T10:00:15'
+                  example: '2022-05-31T13:04:12'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: kdwyqfuysyxqffruuuwozkanlhlnbhlslcwqeplahmlwmebbvgumkiaqowowqwvkbzyvufymxkfrgyctttppytzwocwjbzobnxutlmqackcmdtlvnhfcstmrwcqqtwjlxamkchfigynvsvtodpjchkvjxrnafazhiooqznzemuswimqfp
+                  example: svtykdiclagpgclhgmbgbrtdyxwkodxsgkmniyymymcpxwforcrdhcyxursrpgrmujqokoafugcqanndkykdkppssdnhtwiepbquiyjilsrgzlboapdnnigujjspuqtoeujkhuftvgiwmwthtzoqoslwfnwismavkvskys
     delete:
       summary: 'Delete event'
       description: 'Remove the specified resource from storage.'
@@ -1121,7 +1105,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the event.'
-        example: 2110
+        example: 3083
         required: true
         schema:
           type: integer
@@ -1270,7 +1254,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: 'n'
+                  example: jcedfeqveyogswmfjyfwgsgkxvlrtzywazlzbhrahwlrpxvqyhym
                 ics:
                   type: string
                   format: binary
@@ -1502,7 +1486,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the mail.'
-        example: '4'
+        example: '25'
         required: true
         schema:
           type: string
@@ -1545,15 +1529,15 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: haag.catherine@example.net
+                  example: dean59@example.net
                 subject:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: gdlhoamvphfreurgxtiombfzqmjnckpkcjsykaqlnrnadvxoxhlihopdzklwhichzdxzqfkccqbiuruxaejamvjtlxscqdutgqxkcezcomytzsiooqqlpyrvwvahirdgchikavbrbxzlbgbtxypabzzjevxdggyykwfzxmojwpnhndxdnpcqfcpcolcoprauejcxjmtveqebnygovx
+                  example: xfshfcficjktrcmyqsmxjtfcfjofqoxdfeahsrabuaifgeziiuuojlfbbrjnoghlmahtkusbxzvmnilqokdthgckfrgawevctvnkemzldcdvpdktegzazojfvpzeedwtwljohdnnaeliqimnvuzwydujxjcmckiindsospevqvbkngkmpiqp
                 message:
                   type: string
                   description: ''
-                  example: molestiae
+                  example: quidem
               required:
                 - to
                 - subject
@@ -1630,10 +1614,10 @@ paths:
                 example: "{\n\"2020 - 2021\": [\n  {\n    \"id\": 1,\n    \"module_code\": \"MODULE\",\n    \"module_name\": \"TEXT\",\n    \"value\": X,\n    \"year_start\": X,\n    \"year_end\": X\n  },\n}"
       tags:
         - Notes
-  /api/onesignal:
+  /api/notification:
     post:
-      summary: 'Set onesignal user id'
-      description: "Pour mettre à jour l'id d'un utilisateur"
+      summary: 'Send notification'
+      description: "Permet d'envoyer une notification"
       parameters:
         -
           in: header
@@ -1658,24 +1642,11 @@ paths:
             type: string
       responses: {  }
       tags:
-        - Utilisateurs
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                onesignal_id:
-                  type: string
-                  description: 'Must not be greater than 255 characters.'
-                  example: iykvcnnvzijsvocwpweqgtbljbrqpetfafkanerenkezfohumkrsfmbdfcizwhgobyzexbsiwokudsstcoxgmnkyweogexhaycjanjzqgtkepykbungqfkujprkocwxojjjpzlfenyvxpnczhjkiuxotrdlpeqdvhbsarbkcgqmujmlrsovuvxbwgajelanbkznwfbwbyywyqkppbn
-              required:
-                - onesignal_id
+        - Notifications
 tags:
   -
-    name: Notifications
-    description: "\nAPIs pour gérer les notifications"
+    name: Themes
+    description: "\nAPIs pour gérer les thèmes"
   -
     name: Absences
     description: "\nAPIs pour gérer les absences"
@@ -1704,5 +1675,5 @@ tags:
     name: Notes
     description: "\nAPIs pour gérer les notes"
   -
-    name: Utilisateurs
-    description: "\nAPIs pour gérer les utilisateurs"
+    name: Notifications
+    description: "\nAPIs pour gérer les notifications"

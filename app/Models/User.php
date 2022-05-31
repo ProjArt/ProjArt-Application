@@ -35,6 +35,7 @@ class User extends Authenticatable
         'card_money',
         'gaps_id',
         'onesignal_id',
+        "theme_id"
     ];
 
     /**

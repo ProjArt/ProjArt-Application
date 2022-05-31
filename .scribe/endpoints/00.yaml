@@ -1,15 +1,40 @@
-name: Absences
+name: Themes
 description: |-
 
-  APIs pour gérer les absences
+  APIs pour gérer les thèmes
 endpoints:
   -
     httpMethods:
-      - GET
-    uri: api/absences
+      - POST
+    uri: api/user/theme
     metadata:
-      title: 'Get absences'
-      description: 'Retourne un json contenant une liste des absences.'
+      title: 'Set theme'
+      description: "Pour mettre à jour le thème d'un utilisateur"
+      authenticated: true
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+      Authorization: 'Bearer {{token}}'
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      theme_id:
+        name: theme_id
+        description: ''
+        required: true
+        example: 13
+        type: integer
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: api/themes
+    metadata:
+      title: 'Get themes'
+      description: 'Pour obtenir tout les thèmes disponibles'
       authenticated: true
       custom: []
     headers:

@@ -4,6 +4,7 @@ import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
 import { routesNames } from "../router/routes";
 import { user } from "../stores/auth";
+import { registerToChannelNotification } from "../stores/notifications";
 
 const isSubmitted = ref(false);
 const formData = ref({});
@@ -21,6 +22,7 @@ const submitHandler = async () => {
     isAuthenticated.value = true;
     localStorage.setItem("token", response.data.access_token);
     user.value = response.data.user;
+    theme.value = response.data.user.theme;
     errorMessage.value = "";
 
     await registerToChannelNotification(response.data.user.username);

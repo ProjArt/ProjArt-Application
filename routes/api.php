@@ -15,6 +15,8 @@ use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TelegramController;
+use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +80,11 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("/absences", [AbsenceController::class, 'index'])->name("api.absences.index");
 
     Route::post("/notification", [NotificationController::class, 'send'])->name("api.notification.send");
+
+    Route::controller(ThemeController::class)->group(function () {
+        Route::post("/user/theme", 'setTheme')->name("api.user.setTheme");
+        Route::get('/themes', 'index')->name('api.themes.index');
+    });
 });
 
 Route::get('/', function () {

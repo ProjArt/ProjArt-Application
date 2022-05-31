@@ -72,12 +72,15 @@
                                                 </ul>
                     
                     <ul id="tocify-header-2" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="notifications">
-                    <a href="#notifications">Notifications</a>
+                <li class="tocify-item level-1" data-unique="themes">
+                    <a href="#themes">Themes</a>
                 </li>
-                                    <ul id="tocify-subheader-notifications" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="notifications-POSTapi-notification">
-                        <a href="#notifications-POSTapi-notification">Send notification</a>
+                                    <ul id="tocify-subheader-themes" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="themes-POSTapi-user-theme">
+                        <a href="#themes-POSTapi-user-theme">Set theme</a>
+                    </li>
+                                    <li class="tocify-item level-2" data-unique="themes-GETapi-themes">
+                        <a href="#themes-GETapi-themes">Get themes</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -126,12 +129,6 @@
                     </li>
                                     <li class="tocify-item level-2" data-unique="autres-POSTapi-telegram--token-">
                         <a href="#autres-POSTapi-telegram--token-">POST api/telegram/{token}</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="autres-GETapi-pusher-beams-auth">
-                        <a href="#autres-GETapi-pusher-beams-auth">GET api/pusher/beams-auth</a>
-                    </li>
-                                    <li class="tocify-item level-2" data-unique="autres-POSTapi-beams">
-                        <a href="#autres-POSTapi-beams">POST api/beams</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -241,12 +238,12 @@
                                                     </ul>
                             </ul>
                     <ul id="tocify-header-12" class="tocify-header">
-                <li class="tocify-item level-1" data-unique="utilisateurs">
-                    <a href="#utilisateurs">Utilisateurs</a>
+                <li class="tocify-item level-1" data-unique="notifications">
+                    <a href="#notifications">Notifications</a>
                 </li>
-                                    <ul id="tocify-subheader-utilisateurs" class="tocify-subheader">
-                                                    <li class="tocify-item level-2" data-unique="utilisateurs-POSTapi-onesignal">
-                        <a href="#utilisateurs-POSTapi-onesignal">Set onesignal user id</a>
+                                    <ul id="tocify-subheader-notifications" class="tocify-subheader">
+                                                    <li class="tocify-item level-2" data-unique="notifications-POSTapi-notification">
+                        <a href="#notifications-POSTapi-notification">Send notification</a>
                     </li>
                                                     </ul>
                             </ul>
@@ -279,25 +276,153 @@ You can switch the language used with the tabs at the top right (or from the nav
         <h1 id="authenticating-requests">Authenticating requests</h1>
 <p>This API is not authenticated.</p>
 
-        <h1 id="notifications">Notifications</h1>
+        <h1 id="themes">Themes</h1>
 
-    <p>APIs pour gérer les notifications</p>
+    <p>APIs pour gérer les thèmes</p>
 
-            <h2 id="notifications-POSTapi-notification">Send notification</h2>
+            <h2 id="themes-POSTapi-user-theme">Set theme</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Permet d'envoyer une notification</p>
+<p>Pour mettre à jour le thème d'un utilisateur</p>
 
-<span id="example-requests-POSTapi-notification">
+<span id="example-requests-POSTapi-user-theme">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/notification" \
+    "http://localhost:8000/api/user/theme" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --header "Authorization: Bearer {{token}}" \
+    --data "{
+    \"theme_id\": 13
+}"
+</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/user/theme"
+);
+
+const headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "Authorization": "Bearer {{token}}",
+};
+
+let body = {
+    "theme_id": 13
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost:8000/api/user/theme',
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+            'Authorization' =&gt; 'Bearer {{token}}',
+        ],
+        'json' =&gt; [
+            'theme_id' =&gt; 13,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-user-theme">
+</span>
+<span id="execution-results-POSTapi-user-theme" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-user-theme"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-user-theme"></code></pre>
+</span>
+<span id="execution-error-POSTapi-user-theme" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-user-theme"></code></pre>
+</span>
+<form id="form-POSTapi-user-theme" data-method="POST"
+      data-path="api/user/theme"
+      data-authed="1"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-user-theme', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-user-theme"
+                    onclick="tryItOut('POSTapi-user-theme');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-user-theme"
+                    onclick="cancelTryOut('POSTapi-user-theme');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-user-theme" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/user/theme</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-user-theme" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-user-theme"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>theme_id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+                <input type="number"
+               name="theme_id"
+               data-endpoint="POSTapi-user-theme"
+               value="13"
+               data-component="body" hidden>
+    <br>
+
+        </p>
+        </form>
+
+            <h2 id="themes-GETapi-themes">Get themes</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+<p>Pour obtenir tout les thèmes disponibles</p>
+
+<span id="example-requests-GETapi-themes">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request GET \
+    --get "http://localhost:8000/api/themes" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -305,7 +430,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/notification"
+    "http://localhost:8000/api/themes"
 );
 
 const headers = {
@@ -315,15 +440,15 @@ const headers = {
 };
 
 fetch(url, {
-    method: "POST",
+    method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;post(
-    'http://localhost:8000/api/notification',
+$response = $client-&gt;get(
+    'http://localhost:8000/api/themes',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -337,53 +462,74 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
-<span id="example-responses-POSTapi-notification">
-</span>
-<span id="execution-results-POSTapi-notification" hidden>
+<span id="example-responses-GETapi-themes">
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre><code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code></pre>
+        </details>         <pre>
+
+<code class="language-json">{
+    &quot;success&quot;: false,
+    &quot;message&quot;: &quot;Unauthenticated&quot;,
+    &quot;data&quot;: [
+        &quot;sanctum&quot;
+    ]
+}</code>
+ </pre>
+    </span>
+<span id="execution-results-GETapi-themes" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-notification"></span>:
+                id="execution-response-status-GETapi-themes"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-notification"></code></pre>
+    <pre class="json"><code id="execution-response-content-GETapi-themes"></code></pre>
 </span>
-<span id="execution-error-POSTapi-notification" hidden>
+<span id="execution-error-GETapi-themes" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-notification"></code></pre>
+    <pre><code id="execution-error-message-GETapi-themes"></code></pre>
 </span>
-<form id="form-POSTapi-notification" data-method="POST"
-      data-path="api/notification"
+<form id="form-GETapi-themes" data-method="GET"
+      data-path="api/themes"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-notification', this);">
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-themes', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-notification"
-                    onclick="tryItOut('POSTapi-notification');">Try it out ⚡
+                    id="btn-tryout-GETapi-themes"
+                    onclick="tryItOut('GETapi-themes');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-notification"
-                    onclick="cancelTryOut('POSTapi-notification');" hidden>Cancel 🛑
+                    id="btn-canceltryout-GETapi-themes"
+                    onclick="cancelTryOut('GETapi-themes');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-notification" hidden>Send Request 💥
+                    id="btn-executetryout-GETapi-themes" hidden>Send Request 💥
             </button>
             </h3>
             <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/notification</code></b>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/themes</code></b>
         </p>
                 <p>
-            <label id="auth-POSTapi-notification" hidden>Authorization header:
+            <label id="auth-GETapi-themes" hidden>Authorization header:
                 <b><code>Bearer </code></b><input type="text"
                                                                 name="Authorization"
                                                                 data-prefix="Bearer "
-                                                                data-endpoint="POSTapi-notification"
+                                                                data-endpoint="GETapi-themes"
                                                                 data-component="header"></label>
         </p>
                 </form>
@@ -541,9 +687,9 @@ access-control-allow-origin: *
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"username\": \"quidem\",
-    \"password\": \"omnis\",
-    \"classroom_name\": \"cecmmcdqsksyinirpzoyfdjwfzolwceukmhrsqsqqtqxvcncmtkabysttpqfinprmtoaggkdylauhtnwdezfunrcrmhtameokmunhpmhsozlxeezujxswzwkcxkxnafeezqqktntiaoqlr\"
+    \"username\": \"cupiditate\",
+    \"password\": \"veniam\",
+    \"classroom_name\": \"ypwbnxuzqdkwvmmblpxiwdefnnqliutyrmrkgwffqylgwtnisbdhqcphebupbojtwttxjvpqeaupqcuvruinoyuwmkkvjp\"
 }"
 </code></pre></div>
 
@@ -560,9 +706,9 @@ const headers = {
 };
 
 let body = {
-    "username": "quidem",
-    "password": "omnis",
-    "classroom_name": "cecmmcdqsksyinirpzoyfdjwfzolwceukmhrsqsqqtqxvcncmtkabysttpqfinprmtoaggkdylauhtnwdezfunrcrmhtameokmunhpmhsozlxeezujxswzwkcxkxnafeezqqktntiaoqlr"
+    "username": "cupiditate",
+    "password": "veniam",
+    "classroom_name": "ypwbnxuzqdkwvmmblpxiwdefnnqliutyrmrkgwffqylgwtnisbdhqcphebupbojtwttxjvpqeaupqcuvruinoyuwmkkvjp"
 };
 
 fetch(url, {
@@ -583,9 +729,9 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'username' =&gt; 'quidem',
-            'password' =&gt; 'omnis',
-            'classroom_name' =&gt; 'cecmmcdqsksyinirpzoyfdjwfzolwceukmhrsqsqqtqxvcncmtkabysttpqfinprmtoaggkdylauhtnwdezfunrcrmhtameokmunhpmhsozlxeezujxswzwkcxkxnafeezqqktntiaoqlr',
+            'username' =&gt; 'cupiditate',
+            'password' =&gt; 'veniam',
+            'classroom_name' =&gt; 'ypwbnxuzqdkwvmmblpxiwdefnnqliutyrmrkgwffqylgwtnisbdhqcphebupbojtwttxjvpqeaupqcuvruinoyuwmkkvjp',
         ],
     ]
 );
@@ -649,7 +795,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-login"
-               value="quidem"
+               value="cupiditate"
                data-component="body" hidden>
     <br>
 <p>The Gaps username of the user.</p>
@@ -659,7 +805,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-login"
-               value="omnis"
+               value="veniam"
                data-component="body" hidden>
     <br>
 <p>The Gaps password of the user.</p>
@@ -669,7 +815,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="classroom_name"
                data-endpoint="POSTapi-login"
-               value="cecmmcdqsksyinirpzoyfdjwfzolwceukmhrsqsqqtqxvcncmtkabysttpqfinprmtoaggkdylauhtnwdezfunrcrmhtameokmunhpmhsozlxeezujxswzwkcxkxnafeezqqktntiaoqlr"
+               value="ypwbnxuzqdkwvmmblpxiwdefnnqliutyrmrkgwffqylgwtnisbdhqcphebupbojtwttxjvpqeaupqcuvruinoyuwmkkvjp"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -695,9 +841,9 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"username\": \"iure\",
-    \"password\": \"iste\",
-    \"classroom_name\": \"et\"
+    \"username\": \"qui\",
+    \"password\": \"velit\",
+    \"classroom_name\": \"doloribus\"
 }"
 </code></pre></div>
 
@@ -714,9 +860,9 @@ const headers = {
 };
 
 let body = {
-    "username": "iure",
-    "password": "iste",
-    "classroom_name": "et"
+    "username": "qui",
+    "password": "velit",
+    "classroom_name": "doloribus"
 };
 
 fetch(url, {
@@ -737,9 +883,9 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'username' =&gt; 'iure',
-            'password' =&gt; 'iste',
-            'classroom_name' =&gt; 'et',
+            'username' =&gt; 'qui',
+            'password' =&gt; 'velit',
+            'classroom_name' =&gt; 'doloribus',
         ],
     ]
 );
@@ -803,7 +949,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="username"
                data-endpoint="POSTapi-register"
-               value="iure"
+               value="qui"
                data-component="body" hidden>
     <br>
 <p>The Gaps username of the user.</p>
@@ -813,7 +959,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="password"
                data-endpoint="POSTapi-register"
-               value="iste"
+               value="velit"
                data-component="body" hidden>
     <br>
 <p>The Gaps password of the user.</p>
@@ -823,7 +969,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="classroom_name"
                data-endpoint="POSTapi-register"
-               value="et"
+               value="doloribus"
                data-component="body" hidden>
     <br>
 <p>The class of the user.</p>
@@ -1151,7 +1297,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 59
+x-ratelimit-remaining: 57
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -1166,14 +1312,14 @@ access-control-allow-origin: *
                 &quot;total_persons&quot;: 1,
                 &quot;users&quot;: [
                     {
-                        &quot;id&quot;: 68,
+                        &quot;id&quot;: 69,
                         &quot;username&quot;: &quot;vincent.tarrit&quot;,
-                        &quot;gaps_id&quot;: 0,
+                        &quot;gaps_id&quot;: 17486,
                         &quot;role&quot;: &quot;student&quot;,
                         &quot;card_money&quot;: 0,
                         &quot;pivot&quot;: {
                             &quot;classroom_name&quot;: &quot;M49-1&quot;,
-                            &quot;user_id&quot;: 68
+                            &quot;user_id&quot;: 69
                         },
                         &quot;theme&quot;: {
                             &quot;id&quot;: 1,
@@ -1388,7 +1534,7 @@ access-control-allow-origin: *
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"name\": \"natykuaavdpmtksyqbjmjogpojusglpwlcd\"
+    \"name\": \"lnxhdywrjiuuequlfmrvcc\"
 }"
 </code></pre></div>
 
@@ -1405,7 +1551,7 @@ const headers = {
 };
 
 let body = {
-    "name": "natykuaavdpmtksyqbjmjogpojusglpwlcd"
+    "name": "lnxhdywrjiuuequlfmrvcc"
 };
 
 fetch(url, {
@@ -1426,7 +1572,7 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'name' =&gt; 'natykuaavdpmtksyqbjmjogpojusglpwlcd',
+            'name' =&gt; 'lnxhdywrjiuuequlfmrvcc',
         ],
     ]
 );
@@ -1490,7 +1636,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-classrooms-setUser"
-               value="natykuaavdpmtksyqbjmjogpojusglpwlcd"
+               value="lnxhdywrjiuuequlfmrvcc"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -1612,237 +1758,6 @@ print_r(json_decode((string) $body));</code></pre></div>
 
             </p>
                     </form>
-
-            <h2 id="autres-GETapi-pusher-beams-auth">GET api/pusher/beams-auth</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-GETapi-pusher-beams-auth">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/pusher/beams-auth" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer {{token}}"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/pusher/beams-auth"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer {{token}}",
-};
-
-fetch(url, {
-    method: "GET",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;get(
-    'http://localhost:8000/api/pusher/beams-auth',
-    [
-        'headers' =&gt; [
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-            'Authorization' =&gt; 'Bearer {{token}}',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-</span>
-
-<span id="example-responses-GETapi-pusher-beams-auth">
-            <blockquote>
-            <p>Example response (401):</p>
-        </blockquote>
-                <details class="annotation">
-            <summary>
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre>
-        </details>         <pre>
-
-<code class="language-json">{
-    &quot;success&quot;: false,
-    &quot;message&quot;: &quot;Unauthenticated&quot;,
-    &quot;data&quot;: [
-        &quot;sanctum&quot;
-    ]
-}</code>
- </pre>
-    </span>
-<span id="execution-results-GETapi-pusher-beams-auth" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-GETapi-pusher-beams-auth"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-GETapi-pusher-beams-auth"></code></pre>
-</span>
-<span id="execution-error-GETapi-pusher-beams-auth" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-GETapi-pusher-beams-auth"></code></pre>
-</span>
-<form id="form-GETapi-pusher-beams-auth" data-method="GET"
-      data-path="api/pusher/beams-auth"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('GETapi-pusher-beams-auth', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-GETapi-pusher-beams-auth"
-                    onclick="tryItOut('GETapi-pusher-beams-auth');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-GETapi-pusher-beams-auth"
-                    onclick="cancelTryOut('GETapi-pusher-beams-auth');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-GETapi-pusher-beams-auth" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-green">GET</small>
-            <b><code>api/pusher/beams-auth</code></b>
-        </p>
-                <p>
-            <label id="auth-GETapi-pusher-beams-auth" hidden>Authorization header:
-                <b><code>Bearer </code></b><input type="text"
-                                                                name="Authorization"
-                                                                data-prefix="Bearer "
-                                                                data-endpoint="GETapi-pusher-beams-auth"
-                                                                data-component="header"></label>
-        </p>
-                </form>
-
-            <h2 id="autres-POSTapi-beams">POST api/beams</h2>
-
-<p>
-<small class="badge badge-darkred">requires authentication</small>
-</p>
-
-
-
-<span id="example-requests-POSTapi-beams">
-<blockquote>Example request:</blockquote>
-
-
-<div class="bash-example">
-    <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/beams" \
-    --header "Content-Type: application/json" \
-    --header "Accept: application/json" \
-    --header "Authorization: Bearer {{token}}"</code></pre></div>
-
-
-<div class="javascript-example">
-    <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/beams"
-);
-
-const headers = {
-    "Content-Type": "application/json",
-    "Accept": "application/json",
-    "Authorization": "Bearer {{token}}",
-};
-
-fetch(url, {
-    method: "POST",
-    headers,
-}).then(response =&gt; response.json());</code></pre></div>
-
-
-<div class="php-example">
-    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$response = $client-&gt;post(
-    'http://localhost:8000/api/beams',
-    [
-        'headers' =&gt; [
-            'Content-Type' =&gt; 'application/json',
-            'Accept' =&gt; 'application/json',
-            'Authorization' =&gt; 'Bearer {{token}}',
-        ],
-    ]
-);
-$body = $response-&gt;getBody();
-print_r(json_decode((string) $body));</code></pre></div>
-
-</span>
-
-<span id="example-responses-POSTapi-beams">
-</span>
-<span id="execution-results-POSTapi-beams" hidden>
-    <blockquote>Received response<span
-                id="execution-response-status-POSTapi-beams"></span>:
-    </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-beams"></code></pre>
-</span>
-<span id="execution-error-POSTapi-beams" hidden>
-    <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-beams"></code></pre>
-</span>
-<form id="form-POSTapi-beams" data-method="POST"
-      data-path="api/beams"
-      data-authed="1"
-      data-hasfiles="0"
-      data-isarraybody="0"
-      data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
-      autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-beams', this);">
-    <h3>
-        Request&nbsp;&nbsp;&nbsp;
-                    <button type="button"
-                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-beams"
-                    onclick="tryItOut('POSTapi-beams');">Try it out ⚡
-            </button>
-            <button type="button"
-                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-beams"
-                    onclick="cancelTryOut('POSTapi-beams');" hidden>Cancel 🛑
-            </button>&nbsp;&nbsp;
-            <button type="submit"
-                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-beams" hidden>Send Request 💥
-            </button>
-            </h3>
-            <p>
-            <small class="badge badge-black">POST</small>
-            <b><code>api/beams</code></b>
-        </p>
-                <p>
-            <label id="auth-POSTapi-beams" hidden>Authorization header:
-                <b><code>Bearer </code></b><input type="text"
-                                                                name="Authorization"
-                                                                data-prefix="Bearer "
-                                                                data-endpoint="POSTapi-beams"
-                                                                data-component="header"></label>
-        </p>
-                </form>
 
         <h1 id="calendrier">Calendrier</h1>
 
@@ -1993,7 +1908,7 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"name\": \"mmazanyfrdngkfbeutwgnnskilndmmlxgopwenmuelunitdmmsocghmevzjxvzmbqxpjfmd\"
+    \"name\": \"hzojverodhindhnewljuwehjemfcgewxzxkbzeftduprzqjcvqpldrgirhqvwtbyymknqfqszpmrbfcmvpbumnxdjahgx\"
 }"
 </code></pre></div>
 
@@ -2010,7 +1925,7 @@ const headers = {
 };
 
 let body = {
-    "name": "mmazanyfrdngkfbeutwgnnskilndmmlxgopwenmuelunitdmmsocghmevzjxvzmbqxpjfmd"
+    "name": "hzojverodhindhnewljuwehjemfcgewxzxkbzeftduprzqjcvqpldrgirhqvwtbyymknqfqszpmrbfcmvpbumnxdjahgx"
 };
 
 fetch(url, {
@@ -2031,7 +1946,7 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'name' =&gt; 'mmazanyfrdngkfbeutwgnnskilndmmlxgopwenmuelunitdmmsocghmevzjxvzmbqxpjfmd',
+            'name' =&gt; 'hzojverodhindhnewljuwehjemfcgewxzxkbzeftduprzqjcvqpldrgirhqvwtbyymknqfqszpmrbfcmvpbumnxdjahgx',
         ],
     ]
 );
@@ -2095,7 +2010,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-calendars"
-               value="mmazanyfrdngkfbeutwgnnskilndmmlxgopwenmuelunitdmmsocghmevzjxvzmbqxpjfmd"
+               value="hzojverodhindhnewljuwehjemfcgewxzxkbzeftduprzqjcvqpldrgirhqvwtbyymknqfqszpmrbfcmvpbumnxdjahgx"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2258,7 +2173,7 @@ access-control-allow-origin: *
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"name\": \"ltxdybvbggpjsoadhhmdwwvrs\"
+    \"name\": \"ysyqirsupukeosrdpavapcfeskpwkdienlrdgfzbyewmalvpfqskfeztgcyumepmtgczhppujbhqyuovqywkdedypakkksickavroxfxozefzzxyfvzybdbqniubpwgkzwawivdbzbonuhxqpvfxquycikuglgxvosdrqltkhuysfoqbshxmkvfoxhsdderesrzbgr\"
 }"
 </code></pre></div>
 
@@ -2275,7 +2190,7 @@ const headers = {
 };
 
 let body = {
-    "name": "ltxdybvbggpjsoadhhmdwwvrs"
+    "name": "ysyqirsupukeosrdpavapcfeskpwkdienlrdgfzbyewmalvpfqskfeztgcyumepmtgczhppujbhqyuovqywkdedypakkksickavroxfxozefzzxyfvzybdbqniubpwgkzwawivdbzbonuhxqpvfxquycikuglgxvosdrqltkhuysfoqbshxmkvfoxhsdderesrzbgr"
 };
 
 fetch(url, {
@@ -2296,7 +2211,7 @@ $response = $client-&gt;put(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'name' =&gt; 'ltxdybvbggpjsoadhhmdwwvrs',
+            'name' =&gt; 'ysyqirsupukeosrdpavapcfeskpwkdienlrdgfzbyewmalvpfqskfeztgcyumepmtgczhppujbhqyuovqywkdedypakkksickavroxfxozefzzxyfvzybdbqniubpwgkzwawivdbzbonuhxqpvfxquycikuglgxvosdrqltkhuysfoqbshxmkvfoxhsdderesrzbgr',
         ],
     ]
 );
@@ -2375,7 +2290,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="PUTapi-calendars--id-"
-               value="ltxdybvbggpjsoadhhmdwwvrs"
+               value="ysyqirsupukeosrdpavapcfeskpwkdienlrdgfzbyewmalvpfqskfeztgcyumepmtgczhppujbhqyuovqywkdedypakkksickavroxfxozefzzxyfvzybdbqniubpwgkzwawivdbzbonuhxqpvfxquycikuglgxvosdrqltkhuysfoqbshxmkvfoxhsdderesrzbgr"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2517,10 +2432,10 @@ print_r(json_decode((string) $body));</code></pre></div>
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"calendar_id\": 4,
-    \"user_id\": 4,
-    \"can_own\": true,
-    \"can_view\": false
+    \"calendar_id\": 2,
+    \"user_id\": 17,
+    \"can_own\": false,
+    \"can_view\": true
 }"
 </code></pre></div>
 
@@ -2537,10 +2452,10 @@ const headers = {
 };
 
 let body = {
-    "calendar_id": 4,
-    "user_id": 4,
-    "can_own": true,
-    "can_view": false
+    "calendar_id": 2,
+    "user_id": 17,
+    "can_own": false,
+    "can_view": true
 };
 
 fetch(url, {
@@ -2561,10 +2476,10 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'calendar_id' =&gt; 4,
-            'user_id' =&gt; 4,
-            'can_own' =&gt; true,
-            'can_view' =&gt; false,
+            'calendar_id' =&gt; 2,
+            'user_id' =&gt; 17,
+            'can_own' =&gt; false,
+            'can_view' =&gt; true,
         ],
     ]
 );
@@ -2628,7 +2543,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="calendar_id"
                data-endpoint="POSTapi-calendars-share"
-               value="4"
+               value="2"
                data-component="body" hidden>
     <br>
 <p>ID du calendrier à partager.</p>
@@ -2638,7 +2553,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="user_id"
                data-endpoint="POSTapi-calendars-share"
-               value="4"
+               value="17"
                data-component="body" hidden>
     <br>
 <p>ID de l'utilisateur à qui partager le calendrier.</p>
@@ -2838,12 +2753,12 @@ Fail: erreur</p>
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"title\": \"uhzilmtdzffnwiseopoivyfjmwrazjfpocfkmfzqacmopftgsaglujgnjcvuentwyhkepmueivljbuzxkngzkjpzidawwidzfllcactepxulqtipnpszmfzlrqvqffztwsqerydooymtninizltwrtzokqsxfneyrwbgrtlzjmpfuqrghefvkejfrebrubrtswbhimdwaojuhtwvhehmhfjfknieqxkprjvojxecxlapfavvtxgfwpvvcgcg\",
-    \"description\": \"jpcuyywwrjmnqjhfnwaywpzistwneouvxweyyupxhazuwpjfzjfytivbjrowcfedhtsdwiyusgdsxswtxasugnrflfyktfyvzjoqtecbepcqsrcdonzqjbscerzzbznmdvtnxoubkhtpbskwbzdxhroafozlmnztzglyjdsapdkebleynhzqujfatcltwfbvgttzljvpxsaufwbzftckovderlcntkksyytnhctkqqiqlkturoequqzbezuheaozlcyglzkkxhyefvrvqcxfuelkiaarrhbyfubzspyzelgwevfsivgwjknyldwskigiafytovijqdbkbdwwgraychdmqcbraejmgkkepvcggxfezxgvktbthgjahprbwbbpehugjknmzgwrznzrucomchroacjfdshqciuptobjrsonstgypgkojimcbiyhlrobovltmkzejoueevhzoaezqmigsdadlxxcxvcnhjetqfcykjbipzzwujpkbwvphiwptgkplgxdiaribfdibcqrzcpqcanxpjakoxjkxynvcvdoztfzluufrwsczztxfelrplxsenltiavixjacgrajicjlyoofxezwywocwmnyohfzzxslrhitmtroxcluvkqarsgvkmebshzrsdnaykcrlgdgwzmjksrrvpekyprpxsralqvrxruqqszdvsgnfzrmwlneqbybrunbnibtswlauajtxpuzrfvpemduajwqhplcaiofyspvqalcsjsvbfvjompudakmkvqqcgoygmegkzdhdrbzvkunqtkxakdgrmafqfwgtveocoanqudfxojesxlsixylmycnqhflyhhxtjbxdpomldcifgvfobewijzwtabxaoxvipmhdmpoflanflyxvdqaogbdpmzv\",
-    \"start\": \"2022-05-31T10:00:15\",
-    \"end\": \"2022-05-31T10:00:15\",
-    \"location\": \"uhrvotmzoepqgspatcmmqieutraiwkvodebkkzdmzrzdwqhs\",
-    \"calendar_id\": \"nesciunt\"
+    \"title\": \"xxioqkosulmajnkbexnjjpetvllbnyjzlwdsovtvylnuxhjdsnfdspzenicgxykyhqaeccorrabjnsvdzsturhpbnbhlsengiuxklvcopsaugeuumlantigswcdxdxjdehfdmqovrkuilaxkmqiamrugbkcvkxj\",
+    \"description\": \"uokgpyqbzakyhaphkjqeybipcegtkludylfingntyyspxtxlubhsoqptxymhlvdhfcidkaxocidyyvjaamiwfzcafgqcpjuqowomkcdrqaebwlotyylmvgkihzpwyiqmazjpxrgtkxxexcrlgfixqsiccryemzhvlmcxymbgwylaietirptnfvexdhchpkdgklyftfzelpoihyrzrzlmtdhxrpzqbatpgxazhmyymimliczerwsvnykycxefsduqaaifstgxxshjstpnpvvsqngpikexkgnypadbgtrpyzikbbovutfekwqqzfngdnrjcmnrrqmkygsmqfcnusetfeewvndvjbvaebjehdqayzvwrnpdmombktnzwfscmjfajoyugeaqmczzedezkbbprwnpxzmtqsugunbwrhwvgscpjfvsafzbtqbsalwygdpxymrtjcykuxicucstafzlmevnyreofywhsozagzqfvdaojopauqwshcqtzwldprgqmeqwxtiqpurqsndnqkfyrhvimbhkqbralhlihuanmphnawmvangaajpbimswdotywnjkqfoahetzuptgsghuaqepuytmnmfgvrmkmrcmnubrzeejvtdzupclehnfzrqyinyqnwcnkksrdewodvkjldoqpognhqkuvqtcukqofpxomkeorhouaepexpybcgozkvfynokhlfxjkwofffnrfsmpykxzbebshiyusgmnvwdcatiypgjlirqaiecolsotpehxhxzczvhrba\",
+    \"start\": \"2022-05-31T13:04:12\",
+    \"end\": \"2022-05-31T13:04:12\",
+    \"location\": \"iteslukzlhjebocsitndlvocyhhqytynmmzoskmxpzvghhliipglzuskaksbmbfmqjruhmgpzwksncbsmlzmecrzwfpgewnlkipegcnqnfysvdxapirptxfcrvvzteefuejstckzfxpkvqwgigvpncefovzqiodydcwvmlyngz\",
+    \"calendar_id\": \"facere\"
 }"
 </code></pre></div>
 
@@ -2860,12 +2775,12 @@ const headers = {
 };
 
 let body = {
-    "title": "uhzilmtdzffnwiseopoivyfjmwrazjfpocfkmfzqacmopftgsaglujgnjcvuentwyhkepmueivljbuzxkngzkjpzidawwidzfllcactepxulqtipnpszmfzlrqvqffztwsqerydooymtninizltwrtzokqsxfneyrwbgrtlzjmpfuqrghefvkejfrebrubrtswbhimdwaojuhtwvhehmhfjfknieqxkprjvojxecxlapfavvtxgfwpvvcgcg",
-    "description": "jpcuyywwrjmnqjhfnwaywpzistwneouvxweyyupxhazuwpjfzjfytivbjrowcfedhtsdwiyusgdsxswtxasugnrflfyktfyvzjoqtecbepcqsrcdonzqjbscerzzbznmdvtnxoubkhtpbskwbzdxhroafozlmnztzglyjdsapdkebleynhzqujfatcltwfbvgttzljvpxsaufwbzftckovderlcntkksyytnhctkqqiqlkturoequqzbezuheaozlcyglzkkxhyefvrvqcxfuelkiaarrhbyfubzspyzelgwevfsivgwjknyldwskigiafytovijqdbkbdwwgraychdmqcbraejmgkkepvcggxfezxgvktbthgjahprbwbbpehugjknmzgwrznzrucomchroacjfdshqciuptobjrsonstgypgkojimcbiyhlrobovltmkzejoueevhzoaezqmigsdadlxxcxvcnhjetqfcykjbipzzwujpkbwvphiwptgkplgxdiaribfdibcqrzcpqcanxpjakoxjkxynvcvdoztfzluufrwsczztxfelrplxsenltiavixjacgrajicjlyoofxezwywocwmnyohfzzxslrhitmtroxcluvkqarsgvkmebshzrsdnaykcrlgdgwzmjksrrvpekyprpxsralqvrxruqqszdvsgnfzrmwlneqbybrunbnibtswlauajtxpuzrfvpemduajwqhplcaiofyspvqalcsjsvbfvjompudakmkvqqcgoygmegkzdhdrbzvkunqtkxakdgrmafqfwgtveocoanqudfxojesxlsixylmycnqhflyhhxtjbxdpomldcifgvfobewijzwtabxaoxvipmhdmpoflanflyxvdqaogbdpmzv",
-    "start": "2022-05-31T10:00:15",
-    "end": "2022-05-31T10:00:15",
-    "location": "uhrvotmzoepqgspatcmmqieutraiwkvodebkkzdmzrzdwqhs",
-    "calendar_id": "nesciunt"
+    "title": "xxioqkosulmajnkbexnjjpetvllbnyjzlwdsovtvylnuxhjdsnfdspzenicgxykyhqaeccorrabjnsvdzsturhpbnbhlsengiuxklvcopsaugeuumlantigswcdxdxjdehfdmqovrkuilaxkmqiamrugbkcvkxj",
+    "description": "uokgpyqbzakyhaphkjqeybipcegtkludylfingntyyspxtxlubhsoqptxymhlvdhfcidkaxocidyyvjaamiwfzcafgqcpjuqowomkcdrqaebwlotyylmvgkihzpwyiqmazjpxrgtkxxexcrlgfixqsiccryemzhvlmcxymbgwylaietirptnfvexdhchpkdgklyftfzelpoihyrzrzlmtdhxrpzqbatpgxazhmyymimliczerwsvnykycxefsduqaaifstgxxshjstpnpvvsqngpikexkgnypadbgtrpyzikbbovutfekwqqzfngdnrjcmnrrqmkygsmqfcnusetfeewvndvjbvaebjehdqayzvwrnpdmombktnzwfscmjfajoyugeaqmczzedezkbbprwnpxzmtqsugunbwrhwvgscpjfvsafzbtqbsalwygdpxymrtjcykuxicucstafzlmevnyreofywhsozagzqfvdaojopauqwshcqtzwldprgqmeqwxtiqpurqsndnqkfyrhvimbhkqbralhlihuanmphnawmvangaajpbimswdotywnjkqfoahetzuptgsghuaqepuytmnmfgvrmkmrcmnubrzeejvtdzupclehnfzrqyinyqnwcnkksrdewodvkjldoqpognhqkuvqtcukqofpxomkeorhouaepexpybcgozkvfynokhlfxjkwofffnrfsmpykxzbebshiyusgmnvwdcatiypgjlirqaiecolsotpehxhxzczvhrba",
+    "start": "2022-05-31T13:04:12",
+    "end": "2022-05-31T13:04:12",
+    "location": "iteslukzlhjebocsitndlvocyhhqytynmmzoskmxpzvghhliipglzuskaksbmbfmqjruhmgpzwksncbsmlzmecrzwfpgewnlkipegcnqnfysvdxapirptxfcrvvzteefuejstckzfxpkvqwgigvpncefovzqiodydcwvmlyngz",
+    "calendar_id": "facere"
 };
 
 fetch(url, {
@@ -2886,12 +2801,12 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'title' =&gt; 'uhzilmtdzffnwiseopoivyfjmwrazjfpocfkmfzqacmopftgsaglujgnjcvuentwyhkepmueivljbuzxkngzkjpzidawwidzfllcactepxulqtipnpszmfzlrqvqffztwsqerydooymtninizltwrtzokqsxfneyrwbgrtlzjmpfuqrghefvkejfrebrubrtswbhimdwaojuhtwvhehmhfjfknieqxkprjvojxecxlapfavvtxgfwpvvcgcg',
-            'description' =&gt; 'jpcuyywwrjmnqjhfnwaywpzistwneouvxweyyupxhazuwpjfzjfytivbjrowcfedhtsdwiyusgdsxswtxasugnrflfyktfyvzjoqtecbepcqsrcdonzqjbscerzzbznmdvtnxoubkhtpbskwbzdxhroafozlmnztzglyjdsapdkebleynhzqujfatcltwfbvgttzljvpxsaufwbzftckovderlcntkksyytnhctkqqiqlkturoequqzbezuheaozlcyglzkkxhyefvrvqcxfuelkiaarrhbyfubzspyzelgwevfsivgwjknyldwskigiafytovijqdbkbdwwgraychdmqcbraejmgkkepvcggxfezxgvktbthgjahprbwbbpehugjknmzgwrznzrucomchroacjfdshqciuptobjrsonstgypgkojimcbiyhlrobovltmkzejoueevhzoaezqmigsdadlxxcxvcnhjetqfcykjbipzzwujpkbwvphiwptgkplgxdiaribfdibcqrzcpqcanxpjakoxjkxynvcvdoztfzluufrwsczztxfelrplxsenltiavixjacgrajicjlyoofxezwywocwmnyohfzzxslrhitmtroxcluvkqarsgvkmebshzrsdnaykcrlgdgwzmjksrrvpekyprpxsralqvrxruqqszdvsgnfzrmwlneqbybrunbnibtswlauajtxpuzrfvpemduajwqhplcaiofyspvqalcsjsvbfvjompudakmkvqqcgoygmegkzdhdrbzvkunqtkxakdgrmafqfwgtveocoanqudfxojesxlsixylmycnqhflyhhxtjbxdpomldcifgvfobewijzwtabxaoxvipmhdmpoflanflyxvdqaogbdpmzv',
-            'start' =&gt; '2022-05-31T10:00:15',
-            'end' =&gt; '2022-05-31T10:00:15',
-            'location' =&gt; 'uhrvotmzoepqgspatcmmqieutraiwkvodebkkzdmzrzdwqhs',
-            'calendar_id' =&gt; 'nesciunt',
+            'title' =&gt; 'xxioqkosulmajnkbexnjjpetvllbnyjzlwdsovtvylnuxhjdsnfdspzenicgxykyhqaeccorrabjnsvdzsturhpbnbhlsengiuxklvcopsaugeuumlantigswcdxdxjdehfdmqovrkuilaxkmqiamrugbkcvkxj',
+            'description' =&gt; 'uokgpyqbzakyhaphkjqeybipcegtkludylfingntyyspxtxlubhsoqptxymhlvdhfcidkaxocidyyvjaamiwfzcafgqcpjuqowomkcdrqaebwlotyylmvgkihzpwyiqmazjpxrgtkxxexcrlgfixqsiccryemzhvlmcxymbgwylaietirptnfvexdhchpkdgklyftfzelpoihyrzrzlmtdhxrpzqbatpgxazhmyymimliczerwsvnykycxefsduqaaifstgxxshjstpnpvvsqngpikexkgnypadbgtrpyzikbbovutfekwqqzfngdnrjcmnrrqmkygsmqfcnusetfeewvndvjbvaebjehdqayzvwrnpdmombktnzwfscmjfajoyugeaqmczzedezkbbprwnpxzmtqsugunbwrhwvgscpjfvsafzbtqbsalwygdpxymrtjcykuxicucstafzlmevnyreofywhsozagzqfvdaojopauqwshcqtzwldprgqmeqwxtiqpurqsndnqkfyrhvimbhkqbralhlihuanmphnawmvangaajpbimswdotywnjkqfoahetzuptgsghuaqepuytmnmfgvrmkmrcmnubrzeejvtdzupclehnfzrqyinyqnwcnkksrdewodvkjldoqpognhqkuvqtcukqofpxomkeorhouaepexpybcgozkvfynokhlfxjkwofffnrfsmpykxzbebshiyusgmnvwdcatiypgjlirqaiecolsotpehxhxzczvhrba',
+            'start' =&gt; '2022-05-31T13:04:12',
+            'end' =&gt; '2022-05-31T13:04:12',
+            'location' =&gt; 'iteslukzlhjebocsitndlvocyhhqytynmmzoskmxpzvghhliipglzuskaksbmbfmqjruhmgpzwksncbsmlzmecrzwfpgewnlkipegcnqnfysvdxapirptxfcrvvzteefuejstckzfxpkvqwgigvpncefovzqiodydcwvmlyngz',
+            'calendar_id' =&gt; 'facere',
         ],
     ]
 );
@@ -2976,7 +2891,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="title"
                data-endpoint="POSTapi-events"
-               value="uhzilmtdzffnwiseopoivyfjmwrazjfpocfkmfzqacmopftgsaglujgnjcvuentwyhkepmueivljbuzxkngzkjpzidawwidzfllcactepxulqtipnpszmfzlrqvqffztwsqerydooymtninizltwrtzokqsxfneyrwbgrtlzjmpfuqrghefvkejfrebrubrtswbhimdwaojuhtwvhehmhfjfknieqxkprjvojxecxlapfavvtxgfwpvvcgcg"
+               value="xxioqkosulmajnkbexnjjpetvllbnyjzlwdsovtvylnuxhjdsnfdspzenicgxykyhqaeccorrabjnsvdzsturhpbnbhlsengiuxklvcopsaugeuumlantigswcdxdxjdehfdmqovrkuilaxkmqiamrugbkcvkxj"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -2986,7 +2901,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="description"
                data-endpoint="POSTapi-events"
-               value="jpcuyywwrjmnqjhfnwaywpzistwneouvxweyyupxhazuwpjfzjfytivbjrowcfedhtsdwiyusgdsxswtxasugnrflfyktfyvzjoqtecbepcqsrcdonzqjbscerzzbznmdvtnxoubkhtpbskwbzdxhroafozlmnztzglyjdsapdkebleynhzqujfatcltwfbvgttzljvpxsaufwbzftckovderlcntkksyytnhctkqqiqlkturoequqzbezuheaozlcyglzkkxhyefvrvqcxfuelkiaarrhbyfubzspyzelgwevfsivgwjknyldwskigiafytovijqdbkbdwwgraychdmqcbraejmgkkepvcggxfezxgvktbthgjahprbwbbpehugjknmzgwrznzrucomchroacjfdshqciuptobjrsonstgypgkojimcbiyhlrobovltmkzejoueevhzoaezqmigsdadlxxcxvcnhjetqfcykjbipzzwujpkbwvphiwptgkplgxdiaribfdibcqrzcpqcanxpjakoxjkxynvcvdoztfzluufrwsczztxfelrplxsenltiavixjacgrajicjlyoofxezwywocwmnyohfzzxslrhitmtroxcluvkqarsgvkmebshzrsdnaykcrlgdgwzmjksrrvpekyprpxsralqvrxruqqszdvsgnfzrmwlneqbybrunbnibtswlauajtxpuzrfvpemduajwqhplcaiofyspvqalcsjsvbfvjompudakmkvqqcgoygmegkzdhdrbzvkunqtkxakdgrmafqfwgtveocoanqudfxojesxlsixylmycnqhflyhhxtjbxdpomldcifgvfobewijzwtabxaoxvipmhdmpoflanflyxvdqaogbdpmzv"
+               value="uokgpyqbzakyhaphkjqeybipcegtkludylfingntyyspxtxlubhsoqptxymhlvdhfcidkaxocidyyvjaamiwfzcafgqcpjuqowomkcdrqaebwlotyylmvgkihzpwyiqmazjpxrgtkxxexcrlgfixqsiccryemzhvlmcxymbgwylaietirptnfvexdhchpkdgklyftfzelpoihyrzrzlmtdhxrpzqbatpgxazhmyymimliczerwsvnykycxefsduqaaifstgxxshjstpnpvvsqngpikexkgnypadbgtrpyzikbbovutfekwqqzfngdnrjcmnrrqmkygsmqfcnusetfeewvndvjbvaebjehdqayzvwrnpdmombktnzwfscmjfajoyugeaqmczzedezkbbprwnpxzmtqsugunbwrhwvgscpjfvsafzbtqbsalwygdpxymrtjcykuxicucstafzlmevnyreofywhsozagzqfvdaojopauqwshcqtzwldprgqmeqwxtiqpurqsndnqkfyrhvimbhkqbralhlihuanmphnawmvangaajpbimswdotywnjkqfoahetzuptgsghuaqepuytmnmfgvrmkmrcmnubrzeejvtdzupclehnfzrqyinyqnwcnkksrdewodvkjldoqpognhqkuvqtcukqofpxomkeorhouaepexpybcgozkvfynokhlfxjkwofffnrfsmpykxzbebshiyusgmnvwdcatiypgjlirqaiecolsotpehxhxzczvhrba"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 1000 characters.</p>
@@ -2996,7 +2911,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="start"
                data-endpoint="POSTapi-events"
-               value="2022-05-31T10:00:15"
+               value="2022-05-31T13:04:12"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -3006,7 +2921,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="end"
                data-endpoint="POSTapi-events"
-               value="2022-05-31T10:00:15"
+               value="2022-05-31T13:04:12"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -3016,7 +2931,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="location"
                data-endpoint="POSTapi-events"
-               value="uhrvotmzoepqgspatcmmqieutraiwkvodebkkzdmzrzdwqhs"
+               value="iteslukzlhjebocsitndlvocyhhqytynmmzoskmxpzvghhliipglzuskaksbmbfmqjruhmgpzwksncbsmlzmecrzwfpgewnlkipegcnqnfysvdxapirptxfcrvvzteefuejstckzfxpkvqwgigvpncefovzqiodydcwvmlyngz"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -3026,7 +2941,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="calendar_id"
                data-endpoint="POSTapi-events"
-               value="nesciunt"
+               value="facere"
                data-component="body" hidden>
     <br>
 
@@ -3047,7 +2962,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/events/2110" \
+    --get "http://localhost:8000/api/events/3083" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -3055,7 +2970,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/events/2110"
+    "http://localhost:8000/api/events/3083"
 );
 
 const headers = {
@@ -3073,7 +2988,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost:8000/api/events/2110',
+    'http://localhost:8000/api/events/3083',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3163,7 +3078,7 @@ access-control-allow-origin: *
                 <input type="number"
                name="id"
                data-endpoint="GETapi-events--id-"
-               value="2110"
+               value="3083"
                data-component="url" hidden>
     <br>
 <p>The ID of the event.</p>
@@ -3184,23 +3099,23 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:8000/api/events/2110" \
+    "http://localhost:8000/api/events/3083" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"title\": \"loytimnfzxylqnzojemlclqbhbjqzhcwmlxlpugywmgfgvmwvwsfnzynuilfsjteglvqysnfjjhqrhqnniernxkfehjjbywcltkueypeklkhjysuzycntgrcuaskvycakxooialbfpnjcaswgboltqvirnxvvgkuefmplxhmiaxdxqubjxsvdrkmucorqgkestrthmsmpvbbchvkzcerkycqwlrer\",
-    \"description\": \"tejioqsaysikeqzfxbsckufcqatqxykvmjublcxqntvaznuqlitahnsajkzqutflkwlbudeadsdlbkdshwbzduvxrpovusqfiyfkxnpftcjhuyciwhbyomkqvozpquogekckgtaelwehovqukprqxaqzbglmitpgsqwufdxjyrmcpbqkjleadyudpkanknypwoejnragcblamyimffseyqwmtlwpmpzbvocdswxwgstpxhbqbtzozdupnlxzfngebpjmtnlvwqvnmqozxpkqvghbanijrlmasbjinikzntkghnhssmftiuqyzmjpvupkdotddpidbdvlrdhgcudwnevcjzbihusitwcwjseacydwyzfufzaynxamsbjotogponpvnrqjslitahecrjbcpnbjpttpxhqxyrfcqczilgiidsvozjllbqpmqymlokklyzuafxhxpwelmynflrpmhlwepauteknkcubuhwnyxfgiwwnousgvkarypqmmgbltwaebknnecqwcacdnpilpmnvyjdtpnotljfrnpxaawlmhcsihqhutismanavrwlzafvsnazrfjpezylmckhcmeaqwigdjmyfrflqrvnmbuzlfxndwslozkgopmcbywtjvduixanrbyebzloljplsqlxnqdgcacjgrabrjqxocqfcvyqarbpphakrtdgeqiytyomlcsqqttglhbpxtydokezdjwzxuteaqhfenywrcxbwooljczudxxrdhpbnbrbtekikdbwwdldclwojmkfqmhtocaxdiwcyipuawsfvgsyoqfigtikdytivbpqxfaqyiyquubyrpkknvntuiubpzoriqlqoememfezehxdqyufvsvqhyrmpllizgqoxutuhecbtmuveblgapnigmdnpvsymsmdnfrwyvfndrveumxvqtvszzuuovmtcailemssm\",
-    \"start\": \"2022-05-31T10:00:15\",
-    \"end\": \"2022-05-31T10:00:15\",
-    \"location\": \"kdwyqfuysyxqffruuuwozkanlhlnbhlslcwqeplahmlwmebbvgumkiaqowowqwvkbzyvufymxkfrgyctttppytzwocwjbzobnxutlmqackcmdtlvnhfcstmrwcqqtwjlxamkchfigynvsvtodpjchkvjxrnafazhiooqznzemuswimqfp\"
+    \"title\": \"gkpmnrufucwmcujxmstuyajufylkoxdhbmgkxhmulcemdtjhmjbmidnpjhtzgxwsuyhfunvsqzaczwycqznmagviamtqwqdvgrylcvctniexobmxtspimmwclygbtbzfepaqzvyigfhdcwhwqonzexlmuflmjngqakurplhqfgxcxywdcsfjgflxjgtsmvouivnohhsoyvyrbreufhjioacjpzjbimmborrxqncrjwclgqexy\",
+    \"description\": \"gvbwrttrujkyulipxwibrvyebipskyeswdyjlqcdklnfrdpyve\",
+    \"start\": \"2022-05-31T13:04:12\",
+    \"end\": \"2022-05-31T13:04:12\",
+    \"location\": \"svtykdiclagpgclhgmbgbrtdyxwkodxsgkmniyymymcpxwforcrdhcyxursrpgrmujqokoafugcqanndkykdkppssdnhtwiepbquiyjilsrgzlboapdnnigujjspuqtoeujkhuftvgiwmwthtzoqoslwfnwismavkvskys\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/events/2110"
+    "http://localhost:8000/api/events/3083"
 );
 
 const headers = {
@@ -3210,11 +3125,11 @@ const headers = {
 };
 
 let body = {
-    "title": "loytimnfzxylqnzojemlclqbhbjqzhcwmlxlpugywmgfgvmwvwsfnzynuilfsjteglvqysnfjjhqrhqnniernxkfehjjbywcltkueypeklkhjysuzycntgrcuaskvycakxooialbfpnjcaswgboltqvirnxvvgkuefmplxhmiaxdxqubjxsvdrkmucorqgkestrthmsmpvbbchvkzcerkycqwlrer",
-    "description": "tejioqsaysikeqzfxbsckufcqatqxykvmjublcxqntvaznuqlitahnsajkzqutflkwlbudeadsdlbkdshwbzduvxrpovusqfiyfkxnpftcjhuyciwhbyomkqvozpquogekckgtaelwehovqukprqxaqzbglmitpgsqwufdxjyrmcpbqkjleadyudpkanknypwoejnragcblamyimffseyqwmtlwpmpzbvocdswxwgstpxhbqbtzozdupnlxzfngebpjmtnlvwqvnmqozxpkqvghbanijrlmasbjinikzntkghnhssmftiuqyzmjpvupkdotddpidbdvlrdhgcudwnevcjzbihusitwcwjseacydwyzfufzaynxamsbjotogponpvnrqjslitahecrjbcpnbjpttpxhqxyrfcqczilgiidsvozjllbqpmqymlokklyzuafxhxpwelmynflrpmhlwepauteknkcubuhwnyxfgiwwnousgvkarypqmmgbltwaebknnecqwcacdnpilpmnvyjdtpnotljfrnpxaawlmhcsihqhutismanavrwlzafvsnazrfjpezylmckhcmeaqwigdjmyfrflqrvnmbuzlfxndwslozkgopmcbywtjvduixanrbyebzloljplsqlxnqdgcacjgrabrjqxocqfcvyqarbpphakrtdgeqiytyomlcsqqttglhbpxtydokezdjwzxuteaqhfenywrcxbwooljczudxxrdhpbnbrbtekikdbwwdldclwojmkfqmhtocaxdiwcyipuawsfvgsyoqfigtikdytivbpqxfaqyiyquubyrpkknvntuiubpzoriqlqoememfezehxdqyufvsvqhyrmpllizgqoxutuhecbtmuveblgapnigmdnpvsymsmdnfrwyvfndrveumxvqtvszzuuovmtcailemssm",
-    "start": "2022-05-31T10:00:15",
-    "end": "2022-05-31T10:00:15",
-    "location": "kdwyqfuysyxqffruuuwozkanlhlnbhlslcwqeplahmlwmebbvgumkiaqowowqwvkbzyvufymxkfrgyctttppytzwocwjbzobnxutlmqackcmdtlvnhfcstmrwcqqtwjlxamkchfigynvsvtodpjchkvjxrnafazhiooqznzemuswimqfp"
+    "title": "gkpmnrufucwmcujxmstuyajufylkoxdhbmgkxhmulcemdtjhmjbmidnpjhtzgxwsuyhfunvsqzaczwycqznmagviamtqwqdvgrylcvctniexobmxtspimmwclygbtbzfepaqzvyigfhdcwhwqonzexlmuflmjngqakurplhqfgxcxywdcsfjgflxjgtsmvouivnohhsoyvyrbreufhjioacjpzjbimmborrxqncrjwclgqexy",
+    "description": "gvbwrttrujkyulipxwibrvyebipskyeswdyjlqcdklnfrdpyve",
+    "start": "2022-05-31T13:04:12",
+    "end": "2022-05-31T13:04:12",
+    "location": "svtykdiclagpgclhgmbgbrtdyxwkodxsgkmniyymymcpxwforcrdhcyxursrpgrmujqokoafugcqanndkykdkppssdnhtwiepbquiyjilsrgzlboapdnnigujjspuqtoeujkhuftvgiwmwthtzoqoslwfnwismavkvskys"
 };
 
 fetch(url, {
@@ -3227,7 +3142,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;put(
-    'http://localhost:8000/api/events/2110',
+    'http://localhost:8000/api/events/3083',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3235,11 +3150,11 @@ $response = $client-&gt;put(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'title' =&gt; 'loytimnfzxylqnzojemlclqbhbjqzhcwmlxlpugywmgfgvmwvwsfnzynuilfsjteglvqysnfjjhqrhqnniernxkfehjjbywcltkueypeklkhjysuzycntgrcuaskvycakxooialbfpnjcaswgboltqvirnxvvgkuefmplxhmiaxdxqubjxsvdrkmucorqgkestrthmsmpvbbchvkzcerkycqwlrer',
-            'description' =&gt; 'tejioqsaysikeqzfxbsckufcqatqxykvmjublcxqntvaznuqlitahnsajkzqutflkwlbudeadsdlbkdshwbzduvxrpovusqfiyfkxnpftcjhuyciwhbyomkqvozpquogekckgtaelwehovqukprqxaqzbglmitpgsqwufdxjyrmcpbqkjleadyudpkanknypwoejnragcblamyimffseyqwmtlwpmpzbvocdswxwgstpxhbqbtzozdupnlxzfngebpjmtnlvwqvnmqozxpkqvghbanijrlmasbjinikzntkghnhssmftiuqyzmjpvupkdotddpidbdvlrdhgcudwnevcjzbihusitwcwjseacydwyzfufzaynxamsbjotogponpvnrqjslitahecrjbcpnbjpttpxhqxyrfcqczilgiidsvozjllbqpmqymlokklyzuafxhxpwelmynflrpmhlwepauteknkcubuhwnyxfgiwwnousgvkarypqmmgbltwaebknnecqwcacdnpilpmnvyjdtpnotljfrnpxaawlmhcsihqhutismanavrwlzafvsnazrfjpezylmckhcmeaqwigdjmyfrflqrvnmbuzlfxndwslozkgopmcbywtjvduixanrbyebzloljplsqlxnqdgcacjgrabrjqxocqfcvyqarbpphakrtdgeqiytyomlcsqqttglhbpxtydokezdjwzxuteaqhfenywrcxbwooljczudxxrdhpbnbrbtekikdbwwdldclwojmkfqmhtocaxdiwcyipuawsfvgsyoqfigtikdytivbpqxfaqyiyquubyrpkknvntuiubpzoriqlqoememfezehxdqyufvsvqhyrmpllizgqoxutuhecbtmuveblgapnigmdnpvsymsmdnfrwyvfndrveumxvqtvszzuuovmtcailemssm',
-            'start' =&gt; '2022-05-31T10:00:15',
-            'end' =&gt; '2022-05-31T10:00:15',
-            'location' =&gt; 'kdwyqfuysyxqffruuuwozkanlhlnbhlslcwqeplahmlwmebbvgumkiaqowowqwvkbzyvufymxkfrgyctttppytzwocwjbzobnxutlmqackcmdtlvnhfcstmrwcqqtwjlxamkchfigynvsvtodpjchkvjxrnafazhiooqznzemuswimqfp',
+            'title' =&gt; 'gkpmnrufucwmcujxmstuyajufylkoxdhbmgkxhmulcemdtjhmjbmidnpjhtzgxwsuyhfunvsqzaczwycqznmagviamtqwqdvgrylcvctniexobmxtspimmwclygbtbzfepaqzvyigfhdcwhwqonzexlmuflmjngqakurplhqfgxcxywdcsfjgflxjgtsmvouivnohhsoyvyrbreufhjioacjpzjbimmborrxqncrjwclgqexy',
+            'description' =&gt; 'gvbwrttrujkyulipxwibrvyebipskyeswdyjlqcdklnfrdpyve',
+            'start' =&gt; '2022-05-31T13:04:12',
+            'end' =&gt; '2022-05-31T13:04:12',
+            'location' =&gt; 'svtykdiclagpgclhgmbgbrtdyxwkodxsgkmniyymymcpxwforcrdhcyxursrpgrmujqokoafugcqanndkykdkppssdnhtwiepbquiyjilsrgzlboapdnnigujjspuqtoeujkhuftvgiwmwthtzoqoslwfnwismavkvskys',
         ],
     ]
 );
@@ -3307,7 +3222,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="id"
                data-endpoint="PUTapi-events--id-"
-               value="2110"
+               value="3083"
                data-component="url" hidden>
     <br>
 <p>The ID of the event.</p>
@@ -3318,7 +3233,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="title"
                data-endpoint="PUTapi-events--id-"
-               value="loytimnfzxylqnzojemlclqbhbjqzhcwmlxlpugywmgfgvmwvwsfnzynuilfsjteglvqysnfjjhqrhqnniernxkfehjjbywcltkueypeklkhjysuzycntgrcuaskvycakxooialbfpnjcaswgboltqvirnxvvgkuefmplxhmiaxdxqubjxsvdrkmucorqgkestrthmsmpvbbchvkzcerkycqwlrer"
+               value="gkpmnrufucwmcujxmstuyajufylkoxdhbmgkxhmulcemdtjhmjbmidnpjhtzgxwsuyhfunvsqzaczwycqznmagviamtqwqdvgrylcvctniexobmxtspimmwclygbtbzfepaqzvyigfhdcwhwqonzexlmuflmjngqakurplhqfgxcxywdcsfjgflxjgtsmvouivnohhsoyvyrbreufhjioacjpzjbimmborrxqncrjwclgqexy"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -3328,7 +3243,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="description"
                data-endpoint="PUTapi-events--id-"
-               value="tejioqsaysikeqzfxbsckufcqatqxykvmjublcxqntvaznuqlitahnsajkzqutflkwlbudeadsdlbkdshwbzduvxrpovusqfiyfkxnpftcjhuyciwhbyomkqvozpquogekckgtaelwehovqukprqxaqzbglmitpgsqwufdxjyrmcpbqkjleadyudpkanknypwoejnragcblamyimffseyqwmtlwpmpzbvocdswxwgstpxhbqbtzozdupnlxzfngebpjmtnlvwqvnmqozxpkqvghbanijrlmasbjinikzntkghnhssmftiuqyzmjpvupkdotddpidbdvlrdhgcudwnevcjzbihusitwcwjseacydwyzfufzaynxamsbjotogponpvnrqjslitahecrjbcpnbjpttpxhqxyrfcqczilgiidsvozjllbqpmqymlokklyzuafxhxpwelmynflrpmhlwepauteknkcubuhwnyxfgiwwnousgvkarypqmmgbltwaebknnecqwcacdnpilpmnvyjdtpnotljfrnpxaawlmhcsihqhutismanavrwlzafvsnazrfjpezylmckhcmeaqwigdjmyfrflqrvnmbuzlfxndwslozkgopmcbywtjvduixanrbyebzloljplsqlxnqdgcacjgrabrjqxocqfcvyqarbpphakrtdgeqiytyomlcsqqttglhbpxtydokezdjwzxuteaqhfenywrcxbwooljczudxxrdhpbnbrbtekikdbwwdldclwojmkfqmhtocaxdiwcyipuawsfvgsyoqfigtikdytivbpqxfaqyiyquubyrpkknvntuiubpzoriqlqoememfezehxdqyufvsvqhyrmpllizgqoxutuhecbtmuveblgapnigmdnpvsymsmdnfrwyvfndrveumxvqtvszzuuovmtcailemssm"
+               value="gvbwrttrujkyulipxwibrvyebipskyeswdyjlqcdklnfrdpyve"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 1000 characters.</p>
@@ -3338,7 +3253,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="start"
                data-endpoint="PUTapi-events--id-"
-               value="2022-05-31T10:00:15"
+               value="2022-05-31T13:04:12"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -3348,7 +3263,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="end"
                data-endpoint="PUTapi-events--id-"
-               value="2022-05-31T10:00:15"
+               value="2022-05-31T13:04:12"
                data-component="body" hidden>
     <br>
 <p>Must be a valid date.</p>
@@ -3358,7 +3273,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="location"
                data-endpoint="PUTapi-events--id-"
-               value="kdwyqfuysyxqffruuuwozkanlhlnbhlslcwqeplahmlwmebbvgumkiaqowowqwvkbzyvufymxkfrgyctttppytzwocwjbzobnxutlmqackcmdtlvnhfcstmrwcqqtwjlxamkchfigynvsvtodpjchkvjxrnafazhiooqznzemuswimqfp"
+               value="svtykdiclagpgclhgmbgbrtdyxwkodxsgkmniyymymcpxwforcrdhcyxursrpgrmujqokoafugcqanndkykdkppssdnhtwiepbquiyjilsrgzlboapdnnigujjspuqtoeujkhuftvgiwmwthtzoqoslwfnwismavkvskys"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -3379,7 +3294,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:8000/api/events/2110" \
+    "http://localhost:8000/api/events/3083" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -3387,7 +3302,7 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/events/2110"
+    "http://localhost:8000/api/events/3083"
 );
 
 const headers = {
@@ -3405,7 +3320,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;delete(
-    'http://localhost:8000/api/events/2110',
+    'http://localhost:8000/api/events/3083',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -3474,7 +3389,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="number"
                name="id"
                data-endpoint="DELETEapi-events--id-"
-               value="2110"
+               value="3083"
                data-component="url" hidden>
     <br>
 <p>The ID of the event.</p>
@@ -3755,8 +3670,8 @@ access-control-allow-origin: *
     --header "Content-Type: multipart/form-data" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
-    --form "name=n" \
-    --form "ics=@/private/var/folders/gx/jp0czw8n7px21n5nnq93l1sh0000gn/T/php7Q6Co2" </code></pre></div>
+    --form "name=jcedfeqveyogswmfjyfwgsgkxvlrtzywazlzbhrahwlrpxvqyhym" \
+    --form "ics=@/private/var/folders/gx/jp0czw8n7px21n5nnq93l1sh0000gn/T/phpftdr5P" </code></pre></div>
 
 
 <div class="javascript-example">
@@ -3771,7 +3686,7 @@ const headers = {
 };
 
 const body = new FormData();
-body.append('name', 'n');
+body.append('name', 'jcedfeqveyogswmfjyfwgsgkxvlrtzywazlzbhrahwlrpxvqyhym');
 body.append('ics', document.querySelector('input[name="ics"]').files[0]);
 
 fetch(url, {
@@ -3794,11 +3709,11 @@ $response = $client-&gt;post(
         'multipart' =&gt; [
             [
                 'name' =&gt; 'name',
-                'contents' =&gt; 'n'
+                'contents' =&gt; 'jcedfeqveyogswmfjyfwgsgkxvlrtzywazlzbhrahwlrpxvqyhym'
             ],
             [
                 'name' =&gt; 'ics',
-                'contents' =&gt; fopen('/private/var/folders/gx/jp0czw8n7px21n5nnq93l1sh0000gn/T/php7Q6Co2', 'r')
+                'contents' =&gt; fopen('/private/var/folders/gx/jp0czw8n7px21n5nnq93l1sh0000gn/T/phpftdr5P', 'r')
             ],
         ],
     ]
@@ -3863,7 +3778,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="name"
                data-endpoint="POSTapi-calendars-import"
-               value="n"
+               value="jcedfeqveyogswmfjyfwgsgkxvlrtzywazlzbhrahwlrpxvqyhym"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -3945,7 +3860,7 @@ print_r(json_decode((string) $body));</code></pre></div>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
 x-ratelimit-limit: 60
-x-ratelimit-remaining: 58
+x-ratelimit-remaining: 60
 access-control-allow-origin: *
  </code></pre>
         </details>         <pre>
@@ -4289,7 +4204,7 @@ access-control-allow-origin: *
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/mails/4" \
+    --get "http://localhost:8000/api/mails/25" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}"</code></pre></div>
@@ -4297,7 +4212,7 @@ access-control-allow-origin: *
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/mails/4"
+    "http://localhost:8000/api/mails/25"
 );
 
 const headers = {
@@ -4315,7 +4230,7 @@ fetch(url, {
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;get(
-    'http://localhost:8000/api/mails/4',
+    'http://localhost:8000/api/mails/25',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
@@ -4405,7 +4320,7 @@ access-control-allow-origin: *
                 <input type="text"
                name="id"
                data-endpoint="GETapi-mails--id-"
-               value="4"
+               value="25"
                data-component="url" hidden>
     <br>
 <p>The ID of the mail.</p>
@@ -4431,9 +4346,9 @@ access-control-allow-origin: *
     --header "Accept: application/json" \
     --header "Authorization: Bearer {{token}}" \
     --data "{
-    \"to\": \"haag.catherine@example.net\",
-    \"subject\": \"gdlhoamvphfreurgxtiombfzqmjnckpkcjsykaqlnrnadvxoxhlihopdzklwhichzdxzqfkccqbiuruxaejamvjtlxscqdutgqxkcezcomytzsiooqqlpyrvwvahirdgchikavbrbxzlbgbtxypabzzjevxdggyykwfzxmojwpnhndxdnpcqfcpcolcoprauejcxjmtveqebnygovx\",
-    \"message\": \"molestiae\"
+    \"to\": \"dean59@example.net\",
+    \"subject\": \"xfshfcficjktrcmyqsmxjtfcfjofqoxdfeahsrabuaifgeziiuuojlfbbrjnoghlmahtkusbxzvmnilqokdthgckfrgawevctvnkemzldcdvpdktegzazojfvpzeedwtwljohdnnaeliqimnvuzwydujxjcmckiindsospevqvbkngkmpiqp\",
+    \"message\": \"quidem\"
 }"
 </code></pre></div>
 
@@ -4450,9 +4365,9 @@ const headers = {
 };
 
 let body = {
-    "to": "haag.catherine@example.net",
-    "subject": "gdlhoamvphfreurgxtiombfzqmjnckpkcjsykaqlnrnadvxoxhlihopdzklwhichzdxzqfkccqbiuruxaejamvjtlxscqdutgqxkcezcomytzsiooqqlpyrvwvahirdgchikavbrbxzlbgbtxypabzzjevxdggyykwfzxmojwpnhndxdnpcqfcpcolcoprauejcxjmtveqebnygovx",
-    "message": "molestiae"
+    "to": "dean59@example.net",
+    "subject": "xfshfcficjktrcmyqsmxjtfcfjofqoxdfeahsrabuaifgeziiuuojlfbbrjnoghlmahtkusbxzvmnilqokdthgckfrgawevctvnkemzldcdvpdktegzazojfvpzeedwtwljohdnnaeliqimnvuzwydujxjcmckiindsospevqvbkngkmpiqp",
+    "message": "quidem"
 };
 
 fetch(url, {
@@ -4473,9 +4388,9 @@ $response = $client-&gt;post(
             'Authorization' =&gt; 'Bearer {{token}}',
         ],
         'json' =&gt; [
-            'to' =&gt; 'haag.catherine@example.net',
-            'subject' =&gt; 'gdlhoamvphfreurgxtiombfzqmjnckpkcjsykaqlnrnadvxoxhlihopdzklwhichzdxzqfkccqbiuruxaejamvjtlxscqdutgqxkcezcomytzsiooqqlpyrvwvahirdgchikavbrbxzlbgbtxypabzzjevxdggyykwfzxmojwpnhndxdnpcqfcpcolcoprauejcxjmtveqebnygovx',
-            'message' =&gt; 'molestiae',
+            'to' =&gt; 'dean59@example.net',
+            'subject' =&gt; 'xfshfcficjktrcmyqsmxjtfcfjofqoxdfeahsrabuaifgeziiuuojlfbbrjnoghlmahtkusbxzvmnilqokdthgckfrgawevctvnkemzldcdvpdktegzazojfvpzeedwtwljohdnnaeliqimnvuzwydujxjcmckiindsospevqvbkngkmpiqp',
+            'message' =&gt; 'quidem',
         ],
     ]
 );
@@ -4539,7 +4454,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="to"
                data-endpoint="POSTapi-mails-send"
-               value="haag.catherine@example.net"
+               value="dean59@example.net"
                data-component="body" hidden>
     <br>
 <p>Must be a valid email address.</p>
@@ -4549,7 +4464,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="subject"
                data-endpoint="POSTapi-mails-send"
-               value="gdlhoamvphfreurgxtiombfzqmjnckpkcjsykaqlnrnadvxoxhlihopdzklwhichzdxzqfkccqbiuruxaejamvjtlxscqdutgqxkcezcomytzsiooqqlpyrvwvahirdgchikavbrbxzlbgbtxypabzzjevxdggyykwfzxmojwpnhndxdnpcqfcpcolcoprauejcxjmtveqebnygovx"
+               value="xfshfcficjktrcmyqsmxjtfcfjofqoxdfeahsrabuaifgeziiuuojlfbbrjnoghlmahtkusbxzvmnilqokdthgckfrgawevctvnkemzldcdvpdktegzazojfvpzeedwtwljohdnnaeliqimnvuzwydujxjcmckiindsospevqvbkngkmpiqp"
                data-component="body" hidden>
     <br>
 <p>Must not be greater than 255 characters.</p>
@@ -4559,7 +4474,7 @@ print_r(json_decode((string) $body));</code></pre></div>
                 <input type="text"
                name="message"
                data-endpoint="POSTapi-mails-send"
-               value="molestiae"
+               value="quidem"
                data-component="body" hidden>
     <br>
 
@@ -4834,37 +4749,33 @@ print_r(json_decode((string) $body));</code></pre></div>
         </p>
                 </form>
 
-        <h1 id="utilisateurs">Utilisateurs</h1>
+        <h1 id="notifications">Notifications</h1>
 
-    <p>APIs pour gérer les utilisateurs</p>
+    <p>APIs pour gérer les notifications</p>
 
-            <h2 id="utilisateurs-POSTapi-onesignal">Set onesignal user id</h2>
+            <h2 id="notifications-POSTapi-notification">Send notification</h2>
 
 <p>
 <small class="badge badge-darkred">requires authentication</small>
 </p>
 
-<p>Pour mettre à jour l'id d'un utilisateur</p>
+<p>Permet d'envoyer une notification</p>
 
-<span id="example-requests-POSTapi-onesignal">
+<span id="example-requests-POSTapi-notification">
 <blockquote>Example request:</blockquote>
 
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:8000/api/onesignal" \
+    "http://localhost:8000/api/notification" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
-    --header "Authorization: Bearer {{token}}" \
-    --data "{
-    \"onesignal_id\": \"iykvcnnvzijsvocwpweqgtbljbrqpetfafkanerenkezfohumkrsfmbdfcizwhgobyzexbsiwokudsstcoxgmnkyweogexhaycjanjzqgtkepykbungqfkujprkocwxojjjpzlfenyvxpnczhjkiuxotrdlpeqdvhbsarbkcgqmujmlrsovuvxbwgajelanbkznwfbwbyywyqkppbn\"
-}"
-</code></pre></div>
+    --header "Authorization: Bearer {{token}}"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/onesignal"
+    "http://localhost:8000/api/notification"
 );
 
 const headers = {
@@ -4873,29 +4784,21 @@ const headers = {
     "Authorization": "Bearer {{token}}",
 };
 
-let body = {
-    "onesignal_id": "iykvcnnvzijsvocwpweqgtbljbrqpetfafkanerenkezfohumkrsfmbdfcizwhgobyzexbsiwokudsstcoxgmnkyweogexhaycjanjzqgtkepykbungqfkujprkocwxojjjpzlfenyvxpnczhjkiuxotrdlpeqdvhbsarbkcgqmujmlrsovuvxbwgajelanbkznwfbwbyywyqkppbn"
-};
-
 fetch(url, {
     method: "POST",
     headers,
-    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
 $response = $client-&gt;post(
-    'http://localhost:8000/api/onesignal',
+    'http://localhost:8000/api/notification',
     [
         'headers' =&gt; [
             'Content-Type' =&gt; 'application/json',
             'Accept' =&gt; 'application/json',
             'Authorization' =&gt; 'Bearer {{token}}',
-        ],
-        'json' =&gt; [
-            'onesignal_id' =&gt; 'iykvcnnvzijsvocwpweqgtbljbrqpetfafkanerenkezfohumkrsfmbdfcizwhgobyzexbsiwokudsstcoxgmnkyweogexhaycjanjzqgtkepykbungqfkujprkocwxojjjpzlfenyvxpnczhjkiuxotrdlpeqdvhbsarbkcgqmujmlrsovuvxbwgajelanbkznwfbwbyywyqkppbn',
         ],
     ]
 );
@@ -4904,67 +4807,56 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
-<span id="example-responses-POSTapi-onesignal">
+<span id="example-responses-POSTapi-notification">
 </span>
-<span id="execution-results-POSTapi-onesignal" hidden>
+<span id="execution-results-POSTapi-notification" hidden>
     <blockquote>Received response<span
-                id="execution-response-status-POSTapi-onesignal"></span>:
+                id="execution-response-status-POSTapi-notification"></span>:
     </blockquote>
-    <pre class="json"><code id="execution-response-content-POSTapi-onesignal"></code></pre>
+    <pre class="json"><code id="execution-response-content-POSTapi-notification"></code></pre>
 </span>
-<span id="execution-error-POSTapi-onesignal" hidden>
+<span id="execution-error-POSTapi-notification" hidden>
     <blockquote>Request failed with error:</blockquote>
-    <pre><code id="execution-error-message-POSTapi-onesignal"></code></pre>
+    <pre><code id="execution-error-message-POSTapi-notification"></code></pre>
 </span>
-<form id="form-POSTapi-onesignal" data-method="POST"
-      data-path="api/onesignal"
+<form id="form-POSTapi-notification" data-method="POST"
+      data-path="api/notification"
       data-authed="1"
       data-hasfiles="0"
       data-isarraybody="0"
       data-headers='{"Content-Type":"application\/json","Accept":"application\/json","Authorization":"Bearer {{token}}"}'
       autocomplete="off"
-      onsubmit="event.preventDefault(); executeTryOut('POSTapi-onesignal', this);">
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-notification', this);">
     <h3>
         Request&nbsp;&nbsp;&nbsp;
                     <button type="button"
                     style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-tryout-POSTapi-onesignal"
-                    onclick="tryItOut('POSTapi-onesignal');">Try it out ⚡
+                    id="btn-tryout-POSTapi-notification"
+                    onclick="tryItOut('POSTapi-notification');">Try it out ⚡
             </button>
             <button type="button"
                     style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-canceltryout-POSTapi-onesignal"
-                    onclick="cancelTryOut('POSTapi-onesignal');" hidden>Cancel 🛑
+                    id="btn-canceltryout-POSTapi-notification"
+                    onclick="cancelTryOut('POSTapi-notification');" hidden>Cancel 🛑
             </button>&nbsp;&nbsp;
             <button type="submit"
                     style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
-                    id="btn-executetryout-POSTapi-onesignal" hidden>Send Request 💥
+                    id="btn-executetryout-POSTapi-notification" hidden>Send Request 💥
             </button>
             </h3>
             <p>
             <small class="badge badge-black">POST</small>
-            <b><code>api/onesignal</code></b>
+            <b><code>api/notification</code></b>
         </p>
                 <p>
-            <label id="auth-POSTapi-onesignal" hidden>Authorization header:
+            <label id="auth-POSTapi-notification" hidden>Authorization header:
                 <b><code>Bearer </code></b><input type="text"
                                                                 name="Authorization"
                                                                 data-prefix="Bearer "
-                                                                data-endpoint="POSTapi-onesignal"
+                                                                data-endpoint="POSTapi-notification"
                                                                 data-component="header"></label>
         </p>
-                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
-        <p>
-            <b><code>onesignal_id</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
-                <input type="text"
-               name="onesignal_id"
-               data-endpoint="POSTapi-onesignal"
-               value="iykvcnnvzijsvocwpweqgtbljbrqpetfafkanerenkezfohumkrsfmbdfcizwhgobyzexbsiwokudsstcoxgmnkyweogexhaycjanjzqgtkepykbungqfkujprkocwxojjjpzlfenyvxpnczhjkiuxotrdlpeqdvhbsarbkcgqmujmlrsovuvxbwgajelanbkznwfbwbyywyqkppbn"
-               data-component="body" hidden>
-    <br>
-<p>Must not be greater than 255 characters.</p>
-        </p>
-        </form>
+                </form>
 
     
 

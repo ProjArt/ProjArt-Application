@@ -10,23 +10,23 @@
     ],
     "info": {
         "name": "Laravel",
-        "_postman_id": "bdf20f2b-7168-404b-8ab8-83ac1f500770",
+        "_postman_id": "89210acf-905f-4502-ad51-d5775028da81",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
     "item": [
         {
-            "name": "Notifications",
-            "description": "\nAPIs pour g\u00e9rer les notifications",
+            "name": "Themes",
+            "description": "\nAPIs pour g\u00e9rer les th\u00e8mes",
             "item": [
                 {
-                    "name": "Send notification",
+                    "name": "Set theme",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/notification",
+                            "path": "api\/user\/theme",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/notification"
+                            "raw": "{{baseUrl}}\/api\/user\/theme"
                         },
                         "method": "POST",
                         "header": [
@@ -43,10 +43,62 @@
                                 "value": "Bearer {{token}}"
                             }
                         ],
-                        "body": null,
-                        "description": "Permet d'envoyer une notification"
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"theme_id\":13}"
+                        },
+                        "description": "Pour mettre \u00e0 jour le th\u00e8me d'un utilisateur"
                     },
                     "response": []
+                },
+                {
+                    "name": "Get themes",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/themes",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/themes"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer {{token}}"
+                            }
+                        ],
+                        "body": null,
+                        "description": "Pour obtenir tout les th\u00e8mes disponibles"
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
+                            "name": ""
+                        }
+                    ]
                 }
             ]
         },
@@ -135,7 +187,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"quidem\",\"password\":\"omnis\",\"classroom_name\":\"cecmmcdqsksyinirpzoyfdjwfzolwceukmhrsqsqqtqxvcncmtkabysttpqfinprmtoaggkdylauhtnwdezfunrcrmhtameokmunhpmhsozlxeezujxswzwkcxkxnafeezqqktntiaoqlr\"}"
+                            "raw": "{\"username\":\"cupiditate\",\"password\":\"veniam\",\"classroom_name\":\"ypwbnxuzqdkwvmmblpxiwdefnnqliutyrmrkgwffqylgwtnisbdhqcphebupbojtwttxjvpqeaupqcuvruinoyuwmkkvjp\"}"
                         },
                         "description": "Authentication for a user"
                     },
@@ -167,7 +219,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"username\":\"iure\",\"password\":\"iste\",\"classroom_name\":\"et\"}"
+                            "raw": "{\"username\":\"qui\",\"password\":\"velit\",\"classroom_name\":\"doloribus\"}"
                         },
                         "description": "Register a new user"
                     },
@@ -321,7 +373,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "59"
+                                    "value": "57"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -329,7 +381,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"success\":true,\"message\":\"Classroom\",\"data\":{\"classrooms\":[{\"name\":\"M49-1\",\"total_persons\":1,\"users\":[{\"id\":68,\"username\":\"vincent.tarrit\",\"gaps_id\":0,\"role\":\"student\",\"card_money\":0,\"pivot\":{\"classroom_name\":\"M49-1\",\"user_id\":68},\"theme\":{\"id\":1,\"primary\":{\"id\":1,\"value\":\"#000000\"},\"secondary\":{\"id\":2,\"value\":\"#ffffff\"}}}]}]}}",
+                            "body": "{\"success\":true,\"message\":\"Classroom\",\"data\":{\"classrooms\":[{\"name\":\"M49-1\",\"total_persons\":1,\"users\":[{\"id\":69,\"username\":\"vincent.tarrit\",\"gaps_id\":17486,\"role\":\"student\",\"card_money\":0,\"pivot\":{\"classroom_name\":\"M49-1\",\"user_id\":69},\"theme\":{\"id\":1,\"primary\":{\"id\":1,\"value\":\"#000000\"},\"secondary\":{\"id\":2,\"value\":\"#ffffff\"}}}]}]}}",
                             "name": ""
                         }
                     ]
@@ -409,7 +461,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"natykuaavdpmtksyqbjmjogpojusglpwlcd\"}"
+                            "raw": "{\"name\":\"lnxhdywrjiuuequlfmrvcc\"}"
                         },
                         "description": ""
                     },
@@ -431,84 +483,6 @@
                                     "description": ""
                                 }
                             ]
-                        },
-                        "method": "POST",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer {{token}}"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": []
-                },
-                {
-                    "name": "api\/pusher\/beams-auth",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/pusher\/beams-auth",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/pusher\/beams-auth"
-                        },
-                        "method": "GET",
-                        "header": [
-                            {
-                                "key": "Content-Type",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Accept",
-                                "value": "application\/json"
-                            },
-                            {
-                                "key": "Authorization",
-                                "value": "Bearer {{token}}"
-                            }
-                        ],
-                        "body": null,
-                        "description": ""
-                    },
-                    "response": [
-                        {
-                            "header": [
-                                {
-                                    "key": "cache-control",
-                                    "value": "no-cache, private"
-                                },
-                                {
-                                    "key": "content-type",
-                                    "value": "application\/json"
-                                },
-                                {
-                                    "key": "access-control-allow-origin",
-                                    "value": "*"
-                                }
-                            ],
-                            "code": 401,
-                            "body": "{\"success\":false,\"message\":\"Unauthenticated\",\"data\":[\"sanctum\"]}",
-                            "name": ""
-                        }
-                    ]
-                },
-                {
-                    "name": "api\/beams",
-                    "request": {
-                        "url": {
-                            "host": "{{baseUrl}}",
-                            "path": "api\/beams",
-                            "query": [],
-                            "raw": "{{baseUrl}}\/api\/beams"
                         },
                         "method": "POST",
                         "header": [
@@ -598,7 +572,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"mmazanyfrdngkfbeutwgnnskilndmmlxgopwenmuelunitdmmsocghmevzjxvzmbqxpjfmd\"}"
+                            "raw": "{\"name\":\"hzojverodhindhnewljuwehjemfcgewxzxkbzeftduprzqjcvqpldrgirhqvwtbyymknqfqszpmrbfcmvpbumnxdjahgx\"}"
                         },
                         "description": "Cr\u00e9e un calendrier."
                     },
@@ -695,7 +669,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"name\":\"ltxdybvbggpjsoadhhmdwwvrs\"}"
+                            "raw": "{\"name\":\"ysyqirsupukeosrdpavapcfeskpwkdienlrdgfzbyewmalvpfqskfeztgcyumepmtgczhppujbhqyuovqywkdedypakkksickavroxfxozefzzxyfvzybdbqniubpwgkzwawivdbzbonuhxqpvfxquycikuglgxvosdrqltkhuysfoqbshxmkvfoxhsdderesrzbgr\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -764,7 +738,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"calendar_id\":4,\"user_id\":4,\"can_own\":true,\"can_view\":false}"
+                            "raw": "{\"calendar_id\":2,\"user_id\":17,\"can_own\":false,\"can_view\":true}"
                         },
                         "description": "Partage un calendrier avec un autre utilisateur."
                     },
@@ -838,7 +812,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"uhzilmtdzffnwiseopoivyfjmwrazjfpocfkmfzqacmopftgsaglujgnjcvuentwyhkepmueivljbuzxkngzkjpzidawwidzfllcactepxulqtipnpszmfzlrqvqffztwsqerydooymtninizltwrtzokqsxfneyrwbgrtlzjmpfuqrghefvkejfrebrubrtswbhimdwaojuhtwvhehmhfjfknieqxkprjvojxecxlapfavvtxgfwpvvcgcg\",\"description\":\"jpcuyywwrjmnqjhfnwaywpzistwneouvxweyyupxhazuwpjfzjfytivbjrowcfedhtsdwiyusgdsxswtxasugnrflfyktfyvzjoqtecbepcqsrcdonzqjbscerzzbznmdvtnxoubkhtpbskwbzdxhroafozlmnztzglyjdsapdkebleynhzqujfatcltwfbvgttzljvpxsaufwbzftckovderlcntkksyytnhctkqqiqlkturoequqzbezuheaozlcyglzkkxhyefvrvqcxfuelkiaarrhbyfubzspyzelgwevfsivgwjknyldwskigiafytovijqdbkbdwwgraychdmqcbraejmgkkepvcggxfezxgvktbthgjahprbwbbpehugjknmzgwrznzrucomchroacjfdshqciuptobjrsonstgypgkojimcbiyhlrobovltmkzejoueevhzoaezqmigsdadlxxcxvcnhjetqfcykjbipzzwujpkbwvphiwptgkplgxdiaribfdibcqrzcpqcanxpjakoxjkxynvcvdoztfzluufrwsczztxfelrplxsenltiavixjacgrajicjlyoofxezwywocwmnyohfzzxslrhitmtroxcluvkqarsgvkmebshzrsdnaykcrlgdgwzmjksrrvpekyprpxsralqvrxruqqszdvsgnfzrmwlneqbybrunbnibtswlauajtxpuzrfvpemduajwqhplcaiofyspvqalcsjsvbfvjompudakmkvqqcgoygmegkzdhdrbzvkunqtkxakdgrmafqfwgtveocoanqudfxojesxlsixylmycnqhflyhhxtjbxdpomldcifgvfobewijzwtabxaoxvipmhdmpoflanflyxvdqaogbdpmzv\",\"start\":\"2022-05-31T10:00:15\",\"end\":\"2022-05-31T10:00:15\",\"location\":\"uhrvotmzoepqgspatcmmqieutraiwkvodebkkzdmzrzdwqhs\",\"calendar_id\":\"nesciunt\"}"
+                            "raw": "{\"title\":\"xxioqkosulmajnkbexnjjpetvllbnyjzlwdsovtvylnuxhjdsnfdspzenicgxykyhqaeccorrabjnsvdzsturhpbnbhlsengiuxklvcopsaugeuumlantigswcdxdxjdehfdmqovrkuilaxkmqiamrugbkcvkxj\",\"description\":\"uokgpyqbzakyhaphkjqeybipcegtkludylfingntyyspxtxlubhsoqptxymhlvdhfcidkaxocidyyvjaamiwfzcafgqcpjuqowomkcdrqaebwlotyylmvgkihzpwyiqmazjpxrgtkxxexcrlgfixqsiccryemzhvlmcxymbgwylaietirptnfvexdhchpkdgklyftfzelpoihyrzrzlmtdhxrpzqbatpgxazhmyymimliczerwsvnykycxefsduqaaifstgxxshjstpnpvvsqngpikexkgnypadbgtrpyzikbbovutfekwqqzfngdnrjcmnrrqmkygsmqfcnusetfeewvndvjbvaebjehdqayzvwrnpdmombktnzwfscmjfajoyugeaqmczzedezkbbprwnpxzmtqsugunbwrhwvgscpjfvsafzbtqbsalwygdpxymrtjcykuxicucstafzlmevnyreofywhsozagzqfvdaojopauqwshcqtzwldprgqmeqwxtiqpurqsndnqkfyrhvimbhkqbralhlihuanmphnawmvangaajpbimswdotywnjkqfoahetzuptgsghuaqepuytmnmfgvrmkmrcmnubrzeejvtdzupclehnfzrqyinyqnwcnkksrdewodvkjldoqpognhqkuvqtcukqofpxomkeorhouaepexpybcgozkvfynokhlfxjkwofffnrfsmpykxzbebshiyusgmnvwdcatiypgjlirqaiecolsotpehxhxzczvhrba\",\"start\":\"2022-05-31T13:04:12\",\"end\":\"2022-05-31T13:04:12\",\"location\":\"iteslukzlhjebocsitndlvocyhhqytynmmzoskmxpzvghhliipglzuskaksbmbfmqjruhmgpzwksncbsmlzmecrzwfpgewnlkipegcnqnfysvdxapirptxfcrvvzteefuejstckzfxpkvqwgigvpncefovzqiodydcwvmlyngz\",\"calendar_id\":\"facere\"}"
                         },
                         "description": "Enregistre un nouvel \u00e9v\u00e8nement dans la BDD\nSucc\u00e8s: retourne un json contenant l'\u00e9v\u00e8nement cr\u00e9\u00e9\nFail: erreur"
                     },
@@ -863,7 +837,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "2110",
+                                    "value": "3083",
                                     "description": "The ID of the event."
                                 }
                             ]
@@ -920,7 +894,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "2110",
+                                    "value": "3083",
                                     "description": "The ID of the event."
                                 }
                             ]
@@ -942,7 +916,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"title\":\"loytimnfzxylqnzojemlclqbhbjqzhcwmlxlpugywmgfgvmwvwsfnzynuilfsjteglvqysnfjjhqrhqnniernxkfehjjbywcltkueypeklkhjysuzycntgrcuaskvycakxooialbfpnjcaswgboltqvirnxvvgkuefmplxhmiaxdxqubjxsvdrkmucorqgkestrthmsmpvbbchvkzcerkycqwlrer\",\"description\":\"tejioqsaysikeqzfxbsckufcqatqxykvmjublcxqntvaznuqlitahnsajkzqutflkwlbudeadsdlbkdshwbzduvxrpovusqfiyfkxnpftcjhuyciwhbyomkqvozpquogekckgtaelwehovqukprqxaqzbglmitpgsqwufdxjyrmcpbqkjleadyudpkanknypwoejnragcblamyimffseyqwmtlwpmpzbvocdswxwgstpxhbqbtzozdupnlxzfngebpjmtnlvwqvnmqozxpkqvghbanijrlmasbjinikzntkghnhssmftiuqyzmjpvupkdotddpidbdvlrdhgcudwnevcjzbihusitwcwjseacydwyzfufzaynxamsbjotogponpvnrqjslitahecrjbcpnbjpttpxhqxyrfcqczilgiidsvozjllbqpmqymlokklyzuafxhxpwelmynflrpmhlwepauteknkcubuhwnyxfgiwwnousgvkarypqmmgbltwaebknnecqwcacdnpilpmnvyjdtpnotljfrnpxaawlmhcsihqhutismanavrwlzafvsnazrfjpezylmckhcmeaqwigdjmyfrflqrvnmbuzlfxndwslozkgopmcbywtjvduixanrbyebzloljplsqlxnqdgcacjgrabrjqxocqfcvyqarbpphakrtdgeqiytyomlcsqqttglhbpxtydokezdjwzxuteaqhfenywrcxbwooljczudxxrdhpbnbrbtekikdbwwdldclwojmkfqmhtocaxdiwcyipuawsfvgsyoqfigtikdytivbpqxfaqyiyquubyrpkknvntuiubpzoriqlqoememfezehxdqyufvsvqhyrmpllizgqoxutuhecbtmuveblgapnigmdnpvsymsmdnfrwyvfndrveumxvqtvszzuuovmtcailemssm\",\"start\":\"2022-05-31T10:00:15\",\"end\":\"2022-05-31T10:00:15\",\"location\":\"kdwyqfuysyxqffruuuwozkanlhlnbhlslcwqeplahmlwmebbvgumkiaqowowqwvkbzyvufymxkfrgyctttppytzwocwjbzobnxutlmqackcmdtlvnhfcstmrwcqqtwjlxamkchfigynvsvtodpjchkvjxrnafazhiooqznzemuswimqfp\"}"
+                            "raw": "{\"title\":\"gkpmnrufucwmcujxmstuyajufylkoxdhbmgkxhmulcemdtjhmjbmidnpjhtzgxwsuyhfunvsqzaczwycqznmagviamtqwqdvgrylcvctniexobmxtspimmwclygbtbzfepaqzvyigfhdcwhwqonzexlmuflmjngqakurplhqfgxcxywdcsfjgflxjgtsmvouivnohhsoyvyrbreufhjioacjpzjbimmborrxqncrjwclgqexy\",\"description\":\"gvbwrttrujkyulipxwibrvyebipskyeswdyjlqcdklnfrdpyve\",\"start\":\"2022-05-31T13:04:12\",\"end\":\"2022-05-31T13:04:12\",\"location\":\"svtykdiclagpgclhgmbgbrtdyxwkodxsgkmniyymymcpxwforcrdhcyxursrpgrmujqokoafugcqanndkykdkppssdnhtwiepbquiyjilsrgzlboapdnnigujjspuqtoeujkhuftvgiwmwthtzoqoslwfnwismavkvskys\"}"
                         },
                         "description": "Update the specified resource in storage."
                     },
@@ -960,7 +934,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "2110",
+                                    "value": "3083",
                                     "description": "The ID of the event."
                                 }
                             ]
@@ -1118,7 +1092,7 @@
                             "formdata": [
                                 {
                                     "key": "name",
-                                    "value": "n",
+                                    "value": "jcedfeqveyogswmfjyfwgsgkxvlrtzywazlzbhrahwlrpxvqyhym",
                                     "type": "text"
                                 },
                                 {
@@ -1184,7 +1158,7 @@
                                 },
                                 {
                                     "key": "x-ratelimit-remaining",
-                                    "value": "58"
+                                    "value": "60"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -1313,7 +1287,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "4",
+                                    "value": "25",
                                     "description": "The ID of the mail."
                                 }
                             ]
@@ -1384,7 +1358,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"to\":\"haag.catherine@example.net\",\"subject\":\"gdlhoamvphfreurgxtiombfzqmjnckpkcjsykaqlnrnadvxoxhlihopdzklwhichzdxzqfkccqbiuruxaejamvjtlxscqdutgqxkcezcomytzsiooqqlpyrvwvahirdgchikavbrbxzlbgbtxypabzzjevxdggyykwfzxmojwpnhndxdnpcqfcpcolcoprauejcxjmtveqebnygovx\",\"message\":\"molestiae\"}"
+                            "raw": "{\"to\":\"dean59@example.net\",\"subject\":\"xfshfcficjktrcmyqsmxjtfcfjofqoxdfeahsrabuaifgeziiuuojlfbbrjnoghlmahtkusbxzvmnilqokdthgckfrgawevctvnkemzldcdvpdktegzazojfvpzeedwtwljohdnnaeliqimnvuzwydujxjcmckiindsospevqvbkngkmpiqp\",\"message\":\"quidem\"}"
                         },
                         "description": ""
                     },
@@ -1477,17 +1451,17 @@
             ]
         },
         {
-            "name": "Utilisateurs",
-            "description": "\nAPIs pour g\u00e9rer les utilisateurs",
+            "name": "Notifications",
+            "description": "\nAPIs pour g\u00e9rer les notifications",
             "item": [
                 {
-                    "name": "Set onesignal user id",
+                    "name": "Send notification",
                     "request": {
                         "url": {
                             "host": "{{baseUrl}}",
-                            "path": "api\/onesignal",
+                            "path": "api\/notification",
                             "query": [],
-                            "raw": "{{baseUrl}}\/api\/onesignal"
+                            "raw": "{{baseUrl}}\/api\/notification"
                         },
                         "method": "POST",
                         "header": [
@@ -1504,11 +1478,8 @@
                                 "value": "Bearer {{token}}"
                             }
                         ],
-                        "body": {
-                            "mode": "raw",
-                            "raw": "{\"onesignal_id\":\"iykvcnnvzijsvocwpweqgtbljbrqpetfafkanerenkezfohumkrsfmbdfcizwhgobyzexbsiwokudsstcoxgmnkyweogexhaycjanjzqgtkepykbungqfkujprkocwxojjjpzlfenyvxpnczhjkiuxotrdlpeqdvhbsarbkcgqmujmlrsovuvxbwgajelanbkznwfbwbyywyqkppbn\"}"
-                        },
-                        "description": "Pour mettre \u00e0 jour l'id d'un utilisateur"
+                        "body": null,
+                        "description": "Permet d'envoyer une notification"
                     },
                     "response": []
                 }
