@@ -5,6 +5,8 @@ import absences from "./AbsencesRoute.vue";
 import marks from "./MarksRoute.vue";
 import menus from "./MenusRoute.vue";
 import notFound from "./404Route.vue";
+import settings from "./SettingsRoute.vue";
+import infos from "./InfosRoute.vue";
 
 const routes = [
     { name: "home", path: "/", component: home },
@@ -13,6 +15,8 @@ const routes = [
     { name: "marks", path: "/marks", component: marks },
     { name: "menus", path: "/menus", component: menus },
     { name: "notFound", path: '/:pathMatch(.*)*', component: notFound }
+    { name: "settings", path: "/settings", component: settings },
+    { name: "infos", path: "/infos", component: infos }
 ];
 
 export const routesNames = (() => {

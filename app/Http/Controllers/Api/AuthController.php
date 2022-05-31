@@ -58,6 +58,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'Bearer',
             'loading_url' => route('api.fetch.gaps'),
+            'user' => $user
         ]);
     }
 
@@ -83,6 +84,7 @@ class AuthController extends Controller
         return httpSuccess("Login validated", [
             'access_token' => $token,
             'token_type' => 'Bearer',
+            'user' => $user
         ]);
     }
 

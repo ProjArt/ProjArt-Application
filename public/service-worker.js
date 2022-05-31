@@ -16,7 +16,6 @@ PusherPushNotifications.onNotificationReceived = ({ pushEvent, payload }) => {
         })
     );
 
-    console.log("Notification received from SW:", payload);
     postMsg(payload);
 };
 
@@ -25,7 +24,6 @@ function postMsg(payload) {
         includeUncontrolled: true
     }).then(function(clients) {
         clients.forEach(function(client) {
-            console.log("client", client);
             client.postMessage(payload.notification);
         });
     });

@@ -5,7 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Requests\UpdateNotificationRequest;
 use App\Models\Notification;
+use Illuminate\Http\Request;
 
+
+/**
+ * @group Notifications
+ *
+ * APIs pour gérer les notifications
+ */
 class NotificationController extends Controller
 {
     /**
@@ -61,5 +68,22 @@ class NotificationController extends Controller
     public function destroy(Notification $notification)
     {
         //
+    }
+
+
+    /**
+     * 
+     * Send notification
+     * 
+     * Permet d'envoyer une notification
+     *
+     */
+    public function send(Request $request)
+    {
+        (new Notification())->send($request->title, $request->message, $request->to);
+
+        return response()->json([
+            'status' => 'success'
+        ]);
     }
 }
