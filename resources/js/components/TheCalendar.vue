@@ -33,13 +33,10 @@ const newEventForm = ref({});
 const formUpdate = ref({});
 const isSubmitted = ref(false);
 const selectedDate = ref('')
-const start = ref('...')
-const end = ref('...')
 const indexUnderEdition = ref('')
 const currDateCursor = ref(TODAY)
 const dayLabels = ref(DAY_LABELS.slice())
 const events = ref([])
-const editableCalendarsNamesRef = ref({})
 const calendarIdWhereToAddTheNewEvent = ref(2)
 
 // Computed 
@@ -93,7 +90,6 @@ const editableCalendarsNames = computed(() => {
     }
     return names
 });
-
 
 // Helpers
 // ====================================== 
@@ -184,94 +180,9 @@ function showNewEventForm(event) {
     showCurrentEventsPopup.value = false;
 }
 
-// CRUD operations on API
-// ====================================== 
-
-async function storeEvent(form) {
-    const date = form.start_date
-    form = prepareFormBeforeSending(form)
-    const response = await useFetch({
-        url: API.storeEvent.path(),
-        method: API.storeEvent.method,
-        data: form
-    });
-    if (response.success === true) {
-        try {
-            displayNewlyCreatedEvent(form)
-        } catch (error) {
-            console.log(error)
-        }
-    } else {
-        console.log('error')
-    }
-}
-
-function displayNewlyCreatedEvent(event) {
-    const calendarId = calendarIdWhereToAddTheNewEvent.value
-    allCalendars.value.forEach(calendar => {
-        if (calendar.id == calendarId) {
-            console.log({ calendar, calendarId })
-            const index = toChDate(event.start)
-            const canEdit = calendar.can_edit
-            event['can_edit'] = canEdit
-            events.value[index].push(event)
-        }
-    });
-}
-
-async function deleteEvent(dayId, eventId) {
-    const response = await useFetch({
-        url: API.deleteEvent.path(eventId),
-        method: API.deleteEvent.method,
-    });
-    if (response.success === true) {
-        try {
-            const date = toChDate(dayId)
-            events.value[date] = events.value[date].filter((event) => event.id !== eventId)
-            console.log({ date })
-            const newEvents = sortEventsByDate(date)
-            newEventPopup.value = newEvents
-        } catch (error) {
-            console.log(error)
-        }
-    } else {
-        console.log('error')
-    }
-}
-
-async function updateEvent(form) {
-
-}
-
-async function getCalendars() {
-    const response = await useFetch({
-        url: API.getEvents.path(),
-        method: API.getEvents.method,
-    });
-    if (response.success === true) {
-        return response.data
-    } else {
-        console.log(response, 'error')
-        return []
-    }
-}
-
-async function setCalendars(calendars) {
-    const userCalendars = {}
-    calendars.forEach((calendar) => {
-        userCalendars[calendar.id] = calendar.name
-    })
-    calendarsNames.value = userCalendars
-    allCalendars.value = calendars
-    currentsCalendarIds.value = [calendars[0].id.toString()]
-}
-
-// Features
-// ====================================== 
-
 function getAllDaysInMonthAndBeginning(year, month) {
     const days = []
-    const daysInMonth = year && month
+    const daysInMonth = typeof year !== 'undefined' && typeof month !== 'undefined'
         ? getAllDaysInMonth(year, month)
         : getAllDaysInMonth(TODAY.getFullYear(), TODAY.getMonth())
     for (const [index, date] of Object.entries(daysInMonth)) {
@@ -305,6 +216,149 @@ function setDayCssClass(date) {
     else return CSS.clickable
 }
 
+function checkIfBothDatesAreInSameMonth(date1, date2) {
+    const date1Month = date1.getMonth()
+    const date2Month = date2.getMonth()
+    return date1Month === date2Month
+}
+
+function formatCurrentDateForDisplay(date) {
+    if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
+        displayedDateManager.value = { year: date.getFullYear(), month: date.getMonth() }
+    } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
+        const monday = getMonday(date)
+        const sunday = getSunday(date)
+        checkIfBothDatesAreInSameMonth(monday, sunday)
+            ? displayedDateManager.value = { year: date.getFullYear(), month: date.getMonth() }
+            : displayedDateManager.value = { year: monday.getFullYear(), month: monday.getMonth(), year2: sunday.getFullYear(), month2: sunday.getMonth() }
+    }
+}
+
+function getWeekRelativeToDate(date, numberOfDays) {
+    return date.setDate(date.getDate() + parseInt(numberOfDays));
+}
+
+function getMonthRelativeToDate(date, numberOfMonths) {
+    return date.setMonth(date.getMonth() + parseInt(numberOfMonths));
+}
+
+function chDateToYMD(dateString, separator) {
+    const datesParts = dateString.split('/');
+    const year = datesParts[2];
+    const month = datesParts[1];
+    const day = datesParts[0];
+    return year + separator + month + separator + day;
+}
+
+// CRUD operations on API
+// ====================================== 
+
+async function storeEvent(form) {
+    form = prepareFormBeforeSending(form)
+    const response = await useFetch({
+        url: API.storeEvent.path(),
+        method: API.storeEvent.method,
+        data: form
+    });
+    if (response.success === true) {
+        try {
+            displayNewlyCreatedEvent(form)
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        console.log('error')
+    }
+}
+
+async function deleteEvent(dayId, eventId) {
+    const response = await useFetch({
+        url: API.deleteEvent.path(eventId),
+        method: API.deleteEvent.method,
+    });
+    if (response.success === true) {
+        try {
+            const date = toChDate(dayId)
+            events.value[date] = events.value[date].filter((event) => event.id !== eventId)
+            const newEvents = sortEventsByDate(date)
+            newEventPopup.value = newEvents
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        console.log('error')
+    }
+}
+
+async function updateEvent(form) {
+    const date = form.start_date
+    form.start_date = chDateToYMD(form.start_date, '-')
+    form.end_date = chDateToYMD(form.end_date, '-')
+    form = prepareFormBeforeSending(form)
+    const response = await useFetch({
+        url: API.updateEvent.path(form.id),
+        method: API.updateEvent.method,
+        data: form
+    });
+    if (response.success === true) {
+        try {
+            allCalendars.value.forEach(calendar => {
+                if (calendar.id == form.calendar_id) {
+                    form['can_edit'] = calendar.can_edit
+                }
+            });
+            let othersEvents = toRaw(events.value[date].filter((event) => event.id !== form.id))
+            othersEvents.push(form)
+            events.value[date] = othersEvents
+            const newEvents = sortEventsByDate(date)
+            newEventPopup.value = newEvents
+            indexUnderEdition.value = null
+        } catch (error) {
+            console.log(error)
+        }
+    } else {
+        console.log('error')
+    }
+}
+
+async function getCalendars() {
+    const response = await useFetch({
+        url: API.getEvents.path(),
+        method: API.getEvents.method,
+    });
+    if (response.success === true) {
+        return response.data
+    } else {
+        console.log(response, 'error')
+        return []
+    }
+}
+
+async function setCalendars(calendars) {
+    const userCalendars = {}
+    calendars.forEach((calendar) => {
+        userCalendars[calendar.id] = calendar.name
+    })
+    calendarsNames.value = userCalendars
+    allCalendars.value = calendars
+    currentsCalendarIds.value = [calendars[0].id.toString()]
+}
+
+// Features
+// ====================================== 
+
+function displayNewlyCreatedEvent(event) {
+    const calendarId = calendarIdWhereToAddTheNewEvent.value
+    allCalendars.value.forEach(calendar => {
+        if (calendar.id == calendarId) {
+            const index = toChDate(event.start)
+            const canEdit = calendar.can_edit
+            event['can_edit'] = canEdit
+            events.value[index].push(event)
+        }
+    });
+}
+
 function actualPeriod() {
     if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
         dates.value = getAllDaysInMonthAndBeginning(TODAY.getFullYear(), TODAY.getMonth());
@@ -329,12 +383,6 @@ function nextPeriod() {
     formatCurrentDateForDisplay(nextPeriod);
 }
 
-function checkIfBothDatesAreInSameMonth(date1, date2) {
-    const date1Month = date1.getMonth()
-    const date2Month = date2.getMonth()
-    return date1Month === date2Month
-}
-
 function previousPeriod() {
     const dateUnderCursor = new Date(currDateCursor.value);
     let previousPeriod
@@ -348,52 +396,6 @@ function previousPeriod() {
     currDateCursor.value = previousPeriod;
     formatCurrentDateForDisplay(previousPeriod);
 }
-
-function formatCurrentDateForDisplay(date) {
-    if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-        displayedDateManager.value = { year: date.getFullYear(), month: date.getMonth() }
-    } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-        const monday = getMonday(date)
-        const sunday = getSunday(date)
-        checkIfBothDatesAreInSameMonth(monday, sunday)
-            ? displayedDateManager.value = { year: date.getFullYear(), month: date.getMonth() }
-            : displayedDateManager.value = { year: monday.getFullYear(), month: monday.getMonth(), year2: sunday.getFullYear(), month2: sunday.getMonth() }
-    }
-}
-
-function getWeekRelativeToDate(date, numberOfDays) {
-    return date.setDate(date.getDate() + parseInt(numberOfDays));
-}
-
-function getMonthRelativeToDate(date, numberOfMonths) {
-    return date.setMonth(date.getMonth() + parseInt(numberOfMonths));
-}
-
-// At startup
-// ====================================== 
-
-(async function startUp() {
-    const calendars = await getCalendars()
-    await setCalendars(calendars)
-    setEvents(getEvents())
-    dates.value = getAllDaysInMonthAndBeginning(TODAY.getFullYear(), TODAY.getMonth());
-    /* setEvents() */
-})()
-
-// Watcher(s)
-// ====================================== 
-
-watch(currentLayout, () => {
-    if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-        dates.value = getAllDaysInMonthAndBeginning(currDateCursor.value.getFullYear(), currDateCursor.value.getMonth());
-    } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-        dates.value = getAllDaysInWeek(currDateCursor.value);
-    }
-})
-
-watch(currentsCalendarIds, () => {
-    setEvents(getEvents())
-})
 
 function getEvents() {
     const iterable = currentsCalendarIds.value.values()
@@ -415,6 +417,7 @@ function setEvents(calendars) {
         calendar.events.forEach(event => {
             const index = toChDate(event.start)
             event.can_edit = canEdit
+            event.local = index
             if (events.value.hasOwnProperty(index)) {
                 events.value[index].push(event)
             } else {
@@ -448,6 +451,58 @@ function showCurrentEvent(index, dayIndex) {
     }
 }
 
+function showEventEditForm(startDate, id) {
+    const date = toChDate(startDate)
+    indexUnderEdition.value = id !== indexUnderEdition.value ? id : undefined
+    let newEvent = toRaw(events.value[date])
+    newEvent = newEvent.filter((event) => { return event.id == id })
+    let start;
+    let end;
+    try {
+        start = newEvent[0].start.split(' ')[1].split(':')
+        start = `${start[0]}:${start[1]}`
+        end = newEvent[0].end.split(' ')[1].split(':')
+        end = `${end[0]}:${end[1]}`
+    } catch (error) {
+        start = ''
+        end = ''
+    }
+    formUpdate.value = {
+        title: newEvent[0].title,
+        location: newEvent[0].location,
+        description: newEvent[0].description,
+        start: start,
+        end: end,
+        start_date: date,
+        end_date: date,
+    }
+}
+
+// At startup
+// ====================================== 
+
+(async function startUp() {
+    const calendars = await getCalendars()
+    await setCalendars(calendars)
+    setEvents(getEvents())
+    dates.value = getAllDaysInMonthAndBeginning(TODAY.getFullYear(), TODAY.getMonth());
+})()
+
+// Watcher(s)
+// ====================================== 
+
+watch(currentLayout, () => {
+    if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
+        dates.value = getAllDaysInMonthAndBeginning(currDateCursor.value.getFullYear(), currDateCursor.value.getMonth());
+    } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
+        dates.value = getAllDaysInWeek(currDateCursor.value);
+    }
+})
+
+watch(currentsCalendarIds, () => {
+    setEvents(getEvents())
+})
+
 </script>
 <template>
 
@@ -478,7 +533,7 @@ function showCurrentEvent(index, dayIndex) {
                 <p class="calendar__day-number">{{ day?.dayOfMonthNumber }}</p>
                 <p class="calendar__day-date">{{ day?.local }}</p>
                 <div v-for="event in sortEventsByDate(day?.local)">
-                    <p class="calendar__event">{{ event.start }}</p>
+                    <p class="calendar__event">{{ event.title }}</p>
                 </div>
             </div>
         </div>
@@ -488,7 +543,6 @@ function showCurrentEvent(index, dayIndex) {
         <FormKit type="form" v-model="newEventForm" :form-class="isSubmitted ? 'hide' : 'show'"
             submit-label="Enregistrer" @submit="storeEvent">
             <h2>Ajouter un événement</h2>
-            <p>{{ selectedDate }}</p>
             <FormKit type="text" name="title" validation="required" label="Titre"
                 :value="new Date().getHours() + ':' + new Date().getMinutes()" />
             <FormKit type="text" name="location" validation="required" label="Lieu" value="HEIG" />
@@ -522,16 +576,21 @@ function showCurrentEvent(index, dayIndex) {
                 <button v-show="event.can_edit" @click="deleteEvent(event.start, event.id)">supprimer</button>
                 <button v-show="event.can_edit" @click="showEventEditForm(event.start, event.id)">editer</button>
                 <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
-                    v-if="indexUnderEdition === event.id && canEditCalendar" :key="event.id">
-                    <FormKit type="text" name="title" validation="required" :label="'Titre ' + event.id" />
+                    v-if="indexUnderEdition === event.id" :key="event.id">
+                    <FormKit type="text" name="title" validation="required" label="Titre" />
                     <FormKit type="text" name="location" validation="required" label="Lieu" />
                     <FormKit type="textarea" name="description" validation="required" label="Description" />
                     <FormKit type="time" name="start" label="Début" />
                     <FormKit type="time" name="end" label="Fin" />
-                    <FormKit name="calendar_id" type="hidden" :value="currentCalendarId" />
-                    <FormKit name="start_date" type="hidden" :value="event.local" />
-                    <FormKit name="end_date" type="hidden" :value="event.local" />
+                    <FormKit name="start_date" type="hidden" :value="event.start" />
+                    <FormKit name="end_date" type="hidden" :value="event.start" />
                     <FormKit name="id" type="hidden" :value="event.id" />
+                    <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier"
+                        name="calendar_id" validation="required">
+                        <option v-for="(name, id) in editableCalendarsNames" :value="id">
+                            {{ name }}
+                        </option>
+                    </FormKit>
                 </FormKit>
             </div>
         </article>
