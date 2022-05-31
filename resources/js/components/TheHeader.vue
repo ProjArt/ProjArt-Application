@@ -2,19 +2,27 @@
 import useLogout from "../composables/useLogout";
 import { routesNames } from "../router/routes";
 import { isAuthenticated } from "../stores/auth";
-import { notification } from "../stores/notifications";
+import { notification, sendNotification } from "../stores/notifications";
 
 console.log(isAuthenticated.value);
 console.log("routesNames", routesNames);
+
+async function _send() {
+  await sendNotification({
+    title: "coucou",
+    message: "test",
+    to: ["vincent.tarrit"],
+  });
+}
 </script>
 <template>
   <header class="header">
     <div class="header__links">
       <button @click="useLogout()">Déconnexion</button>
     </div>
-    <div>
-      {{ notification }}
-    </div>
+
+    <button @click="_send()">Notification</button>
+
     <div class="menu" v-if="isAuthenticated">
       <div
         v-for="routeName in Object.keys(routesNames)"

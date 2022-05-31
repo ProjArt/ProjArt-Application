@@ -19,6 +19,8 @@ class Notification extends Model
     public function send($title, $message, $to = ["all"])
     {
 
+        Log::info("Sending notification: " . $title . "message:" . $message . " to " . implode(", ", $to));
+
         $response =  Http::withHeaders([
             'Accept' => 'application/json',
             'Authorization' => "Bearer " . config('broadcasting.connections.pusher.key'),

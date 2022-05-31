@@ -13,8 +13,10 @@ use App\Http\Controllers\GapsMarksController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\UserController;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Pusher\PushNotifications\PushNotifications;
 
@@ -83,6 +85,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post("/onesignal", [UserController::class, 'setOnesignal'])->name("api.onesignal");
 
+    Route::post("/notification", [NotificationController::class, 'send'])->name("api.notification.send");
 
 
     Route::get('/pusher/beams-auth', function (Request $request) {
