@@ -4,6 +4,7 @@ import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
 import { routesNames } from "../router/routes";
 import { user } from "../stores/auth";
+import { registerToChannelNotification } from "../stores/notifications";
 
 const isSubmitted = ref(false);
 const formData = ref({});
