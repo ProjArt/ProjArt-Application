@@ -14,12 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('course_gaps_user', function (Blueprint $table) {
-            $table->id();
             $table->string("gaps_user_username");
             $table->string("course_code");
-            $table->foreign('gaps_user_username')->references("username")->on("gaps_users")->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('course_code')->references("code")->on("courses")->onDelete('cascade')->onUpdate('cascade');
-            $table->unique(["id", "gaps_user_username", "course_code"]);
+
+            $table->foreign("gaps_user_username")->references("username")->on("gaps_users")->onUpdate("cascade")->onDelete("cascade");
+            $table->foreign("course_code")->references("code")->on("courses")->onUpdate("cascade")->onDelete("cascade");
+
+            $table->unique(["gaps_user_username", "course_code"]);
             $table->timestamps();
         });
     }
