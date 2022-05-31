@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
             $this->call(MarkSeeder::class);
             $this->call(CalendarSeeder::class);
             $this->call(AbsencesSeeder::class);
-            $this->call(MenuSeeder::class);
+            //$this->call(MenuSeeder::class);
         }
 
 
