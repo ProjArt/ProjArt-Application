@@ -1,7 +1,17 @@
 <script setup>
 import { user } from '../stores/auth.js';
-console.log("ththhteme")
+import { API } from "../stores/api.js";
 console.log("user:", user.value);
+
+async function getThemes() {
+  const response = await useFetch({
+    url: API.getThemes.path(),
+    method: API.getThemes.method,
+  });
+};
+
+const themesList = await getThemes();
+console.log(themesList);
 
 
 </script>
