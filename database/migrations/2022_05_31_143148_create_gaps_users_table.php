@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
+        Schema::create('gaps_users', function (Blueprint $table) {
             $table->id();
-            $table->string('code', 50);
-            $table->string('name');
-            $table->string('faculty');
+            $table->string("username");
+            $table->string("firstname");
+            $table->string("name");
+            $table->boolean("is_teacher");
             $table->timestamps();
-            $table->unique(["id", "code"]);
+            $table->unique(["id", "username"]);
         });
     }
 
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('gaps_users');
     }
 };

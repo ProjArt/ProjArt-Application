@@ -1,6 +1,14 @@
-<script>
+<script setup>
+import { user } from '../stores/auth.js';
+console.log("ththhteme")
+console.log("user:", user.value);
 
-console.log("ththeme");
+
 </script>
 
-<template><h1>The theme</h1></template>
+
+<template>
+
+    
+
+</template>
