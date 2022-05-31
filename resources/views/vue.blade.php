@@ -37,7 +37,6 @@
 
         beamsClient.start()
             .then(() => beamsClient.addDeviceInterest('all'))
-            .then(() => console.log('Successfully registered and subscribed!'))
             .catch(console.error);
     </script>
 </head>

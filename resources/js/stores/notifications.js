@@ -9,7 +9,6 @@ export const notification = computed({
     get: () => _notifications.value[_notifications.value.length - 1],
     set: (value) => {
         _notifications.value.push(value);
-        console.log("notifications", _notifications.value);
     }
 });
 
@@ -24,6 +23,11 @@ export async function sendNotification({ title, message, to }) {
             to,
         }
     });
+}
 
-    console.log("sendNotification", response);
+export async function registerToChannelNotification(channel) {
+    const beamsClient = new PusherPushNotifications.Client({
+        instanceId: process.env.MIX_PUSHER_APP_ID,
+    });
+    await beamsClient.addDeviceInterest(channel);
 }
