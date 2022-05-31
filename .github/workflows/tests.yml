@@ -57,6 +57,8 @@ jobs:
         DB_DATABASE: database/database.sqlite
         GAPS_USERNAME: ${{ secrets.GAPS_USERNAME }}
         GAPS_PASSWORD: ${{ secrets.GAPS_PASSWORD }}
+        PUSHER_APP_ID: ${{ secrets.PUSHER_APP_ID }}
+        PUSHER_APP_KEY: ${{ secrets.PUSHER_APP_KEY }}
       run: vendor/bin/phpunit
       id: tests
       
