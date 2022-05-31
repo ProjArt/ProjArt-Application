@@ -3,6 +3,9 @@ import { ref, toRaw } from "vue";
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
 import { routesNames } from "../router/routes";
+import { user } from "../stores/auth";
+import { registerToChannelNotification } from "../stores/notifications";
+
 const isSubmitted = ref(false);
 const formData = ref({});
 const isAuthenticated = ref(false);
@@ -60,12 +63,9 @@ const submitHandler = async () => {
       });
     }); */
 
-    const beamsClient = new PusherPushNotifications.Client({
-      instanceId: process.env.MIX_PUSHER_APP_ID,
-    });
+    user.value = response.data.user;
 
-    console.log(formData.value.username);
-    await beamsClient.addDeviceInterest(formData.value.username);
+    await registerToChannelNotification(response.data.user.username);
 
     window.location.href += routesNames.calendar.replace("/", "");
   } else {
