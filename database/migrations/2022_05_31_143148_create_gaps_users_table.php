@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('courses', function (Blueprint $table) {
-            $table->string('code', 50)->primary();
-            $table->string('name');
-            $table->string('faculty');
+        Schema::create('gaps_users', function (Blueprint $table) {
+            $table->string("username")->primary();
+            $table->string("firstname");
+            $table->string("name");
+            $table->string("mail")->nullable();
+            $table->boolean("is_teacher");
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('courses');
+        Schema::dropIfExists('gaps_users');
     }
 };

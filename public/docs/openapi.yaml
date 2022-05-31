@@ -7,101 +7,6 @@ servers:
   -
     url: 'http://localhost:8000'
 paths:
-  /api/user/theme:
-    post:
-      summary: 'Set theme'
-      description: "Pour mettre à jour le thème d'un utilisateur"
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {{token}}'
-          schema:
-            type: string
-      responses: {  }
-      tags:
-        - Themes
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                theme_id:
-                  type: integer
-                  description: ''
-                  example: 13
-              required:
-                - theme_id
-  /api/themes:
-    get:
-      summary: 'Get themes'
-      description: 'Pour obtenir tout les thèmes disponibles'
-      parameters:
-        -
-          in: header
-          name: Content-Type
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Accept
-          description: ''
-          example: application/json
-          schema:
-            type: string
-        -
-          in: header
-          name: Authorization
-          description: ''
-          example: 'Bearer {{token}}'
-          schema:
-            type: string
-      responses:
-        401:
-          description: ''
-          content:
-            application/json:
-              schema:
-                type: object
-                example:
-                  success: false
-                  message: Unauthenticated
-                  data:
-                    - sanctum
-                properties:
-                  success:
-                    type: boolean
-                    example: false
-                  message:
-                    type: string
-                    example: Unauthenticated
-                  data:
-                    type: array
-                    example:
-                      - sanctum
-                    items:
-                      type: string
-      tags:
-        - Themes
   /api/absences:
     get:
       summary: 'Get absences'
@@ -194,15 +99,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: cupiditate
+                  example: earum
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: veniam
+                  example: aut
                 classroom_name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ypwbnxuzqdkwvmmblpxiwdefnnqliutyrmrkgwffqylgwtnisbdhqcphebupbojtwttxjvpqeaupqcuvruinoyuwmkkvjp
+                  example: suoizjizpjtesmvviganoyifyrbuhwwhjbfxkfnpzvmtbuajorotztzqpovxvpgzhzquebnazzccbztsinyefhlodpuxidatqcchojnfsbklbagynmpkwdbblqzemywaepxameblqbnktghsagcqiyahjbyybxeqo
               required:
                 - username
                 - password
@@ -245,15 +150,15 @@ paths:
                 username:
                   type: string
                   description: 'The Gaps username of the user.'
-                  example: qui
+                  example: nemo
                 password:
                   type: string
                   description: 'The Gaps password of the user.'
-                  example: velit
+                  example: dicta
                 classroom_name:
                   type: string
                   description: 'The class of the user.'
-                  example: doloribus
+                  example: id
               required:
                 - username
                 - password
@@ -401,28 +306,7 @@ paths:
                   success: true
                   message: Classroom
                   data:
-                    classrooms:
-                      -
-                        name: M49-1
-                        total_persons: 1
-                        users:
-                          -
-                            id: 69
-                            username: vincent.tarrit
-                            gaps_id: 17486
-                            role: student
-                            card_money: 0
-                            pivot:
-                              classroom_name: M49-1
-                              user_id: 69
-                            theme:
-                              id: 1
-                              primary:
-                                id: 1
-                                value: '#000000'
-                              secondary:
-                                id: 2
-                                value: '#ffffff'
+                    classrooms: []
                 properties:
                   success:
                     type: boolean
@@ -433,28 +317,7 @@ paths:
                   data:
                     type: object
                     example:
-                      classrooms:
-                        -
-                          name: M49-1
-                          total_persons: 1
-                          users:
-                            -
-                              id: 69
-                              username: vincent.tarrit
-                              gaps_id: 17486
-                              role: student
-                              card_money: 0
-                              pivot:
-                                classroom_name: M49-1
-                                user_id: 69
-                              theme:
-                                id: 1
-                                primary:
-                                  id: 1
-                                  value: '#000000'
-                                secondary:
-                                  id: 2
-                                  value: '#ffffff'
+                      classrooms: []
       tags:
         - Autres
   /api/update/gaps/absences:
@@ -549,7 +412,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: lnxhdywrjiuuequlfmrvcc
+                  example: qceomdvcdbwgwcgwmcmfyaixrsvdqbfexnbvsqgdiszbwmdazukobwszoquxenbgrkshoaggywpplzoizvgjlfwzpssoymsdnlyfbpkplizimzbnmgedxgkkzuwjphpaxggxgxdyjfluzjybnouigwmkhaddbhvsmxmoewudsjtlshaggvmytqjysofqkbaywmfdjperxjnhvnqttumiuadopxvn
               required:
                 - name
   '/api/telegram/{token}':
@@ -586,7 +449,7 @@ paths:
         in: path
         name: token
         description: ''
-        example: '5531545475:AAFTPbgpcDrRrKnBOf_hYhibJK_HKqW_ED4'
+        example: voluptas
         required: true
         schema:
           type: string
@@ -664,7 +527,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: hzojverodhindhnewljuwehjemfcgewxzxkbzeftduprzqjcvqpldrgirhqvwtbyymknqfqszpmrbfcmvpbumnxdjahgx
+                  example: zeshxjjeuijinzylnkccpzrfbxburgqxdmzgtpqfsjjyijfwdurrxrfoasamrbmuslsgqjwttsccwiokydacmglcjinlmsaoarxkjldhpiyoflkcilxnsdzpnjbrnzdirusrufzxapickjyxtjrafzoiienzkmjimrhyszluiopltcnmauxedhnpembnhyyuffdwfzcapyjshuyvihhmrxczaquhhcxoepxgmtcnwmimdvavtglolydhqwkdase
               required:
                 - name
   '/api/calendars/{id}':
@@ -758,7 +621,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: ysyqirsupukeosrdpavapcfeskpwkdienlrdgfzbyewmalvpfqskfeztgcyumepmtgczhppujbhqyuovqywkdedypakkksickavroxfxozefzzxyfvzybdbqniubpwgkzwawivdbzbonuhxqpvfxquycikuglgxvosdrqltkhuysfoqbshxmkvfoxhsdderesrzbgr
+                  example: qkqbjhkusmtlbmzsmkhbfxxxsurfmyvldyephbxr
               required:
                 - name
     delete:
@@ -794,7 +657,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the calendar.'
-        example: 1
+        example: 18
         required: true
         schema:
           type: integer
@@ -837,15 +700,15 @@ paths:
                 calendar_id:
                   type: integer
                   description: 'ID du calendrier à partager.'
-                  example: 2
+                  example: 19
                 user_id:
                   type: integer
                   description: "ID de l'utilisateur à qui partager le calendrier."
-                  example: 17
+                  example: 14
                 can_own:
                   type: boolean
                   description: ''
-                  example: false
+                  example: true
                 can_view:
                   type: boolean
                   description: ''
@@ -936,27 +799,27 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: xxioqkosulmajnkbexnjjpetvllbnyjzlwdsovtvylnuxhjdsnfdspzenicgxykyhqaeccorrabjnsvdzsturhpbnbhlsengiuxklvcopsaugeuumlantigswcdxdxjdehfdmqovrkuilaxkmqiamrugbkcvkxj
+                  example: rspkhlmvflfqvnvdavkwqdqhygdvqtylpsyaplprizxozntdlifnaiulsxftilndjieozwsccnyuvrwljutpfaffblvuvbtotqotlijejqblwnhoepppjkhsg
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: uokgpyqbzakyhaphkjqeybipcegtkludylfingntyyspxtxlubhsoqptxymhlvdhfcidkaxocidyyvjaamiwfzcafgqcpjuqowomkcdrqaebwlotyylmvgkihzpwyiqmazjpxrgtkxxexcrlgfixqsiccryemzhvlmcxymbgwylaietirptnfvexdhchpkdgklyftfzelpoihyrzrzlmtdhxrpzqbatpgxazhmyymimliczerwsvnykycxefsduqaaifstgxxshjstpnpvvsqngpikexkgnypadbgtrpyzikbbovutfekwqqzfngdnrjcmnrrqmkygsmqfcnusetfeewvndvjbvaebjehdqayzvwrnpdmombktnzwfscmjfajoyugeaqmczzedezkbbprwnpxzmtqsugunbwrhwvgscpjfvsafzbtqbsalwygdpxymrtjcykuxicucstafzlmevnyreofywhsozagzqfvdaojopauqwshcqtzwldprgqmeqwxtiqpurqsndnqkfyrhvimbhkqbralhlihuanmphnawmvangaajpbimswdotywnjkqfoahetzuptgsghuaqepuytmnmfgvrmkmrcmnubrzeejvtdzupclehnfzrqyinyqnwcnkksrdewodvkjldoqpognhqkuvqtcukqofpxomkeorhouaepexpybcgozkvfynokhlfxjkwofffnrfsmpykxzbebshiyusgmnvwdcatiypgjlirqaiecolsotpehxhxzczvhrba
+                  example: fkbvjhrgrmtlonyquzsdegvzdrytrsefuxtgaeezqwmvkeyrbxcdzpllkamimwwmxoxpzojecndggrjowdipmlvvefwphmevlqqbxvxvfmgnunrkvjnvxxhqzwgwtdjuqevaascuhypvwrxxxrfaspzdagmrdnaugdsaelgehnopsrnjenfsulkkuglbqvnbonqxmjfwijesbbppnkjxcnkgqbfghriubunarvobqxzszdpvdpjmzegbzvwdhwycnfczjhabwzpcrpgtsjsbcuiykksxepslawbfidblfacjylrhkhdwezixlamjntygtqemjvhdilrykyhouuspbotfjupokmuaolczixazsthyadrsobnakhnaovbqihvmjahsscewginlhjivlflosopimjqyykxsbnrijquxoivqkdupatbwsguxocdnyvxhtomdurmlzzjofloptjxmklnvkkxrdwziilzvdfqrghhxgszcsaiisehljkzazfuhqmy
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-31T13:04:12'
+                  example: '2022-05-31T14:55:05'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-31T13:04:12'
+                  example: '2022-05-31T14:55:05'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: iteslukzlhjebocsitndlvocyhhqytynmmzoskmxpzvghhliipglzuskaksbmbfmqjruhmgpzwksncbsmlzmecrzwfpgewnlkipegcnqnfysvdxapirptxfcrvvzteefuejstckzfxpkvqwgigvpncefovzqiodydcwvmlyngz
+                  example: wmpssprkyajjmatgbannkrapilacffjranghqgxgbmppmndnikjdglvevzqwfjjiabjermuvfefeqkraidzdnjlhievbvpgtcxgjmfftnxeonzfgvnagtxazkjzsctkzmqyorolphclcgylqbolpuzessphxlmsojuzrjzjwyhqonclurazcsbqecphkchzmculfvbqlg
                 calendar_id:
                   type: string
                   description: ''
-                  example: facere
+                  example: veritatis
               required:
                 - title
                 - description
@@ -1055,23 +918,23 @@ paths:
                 title:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: gkpmnrufucwmcujxmstuyajufylkoxdhbmgkxhmulcemdtjhmjbmidnpjhtzgxwsuyhfunvsqzaczwycqznmagviamtqwqdvgrylcvctniexobmxtspimmwclygbtbzfepaqzvyigfhdcwhwqonzexlmuflmjngqakurplhqfgxcxywdcsfjgflxjgtsmvouivnohhsoyvyrbreufhjioacjpzjbimmborrxqncrjwclgqexy
+                  example: sveuypvhzsxaztjvnvbdejwoxoqxiacayibwtntffynxcvmltuiflxezcplmwhuieluhblexsudujymtowyfxkpqohlunthgkiafgorzjuwokqjllrmhnscxjojhjjgxgvrlwmczcfqbgjjybxpkvriiwvttvrbpyqtabnaiilccufgbavfpijlakaoirkfwqjkhgtuildtxtrzzzyyxqwvhjfayktr
                 description:
                   type: string
                   description: 'Must not be greater than 1000 characters.'
-                  example: gvbwrttrujkyulipxwibrvyebipskyeswdyjlqcdklnfrdpyve
+                  example: setthjznftdkqoshsufejjrgxhwucbnybycqyohvdfozogbyltoghjelflbmorogczezgoaxjaezsluubrzhelydqtjlvewemgvfoudkcdahkkqsljlagrpzxxgezxwkopwlpliiznvabwqybzwzqodivpiqzwwwcpffyxefkhjamygukvgwhqncdk
                 start:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-31T13:04:12'
+                  example: '2022-05-31T14:55:05'
                 end:
                   type: string
                   description: 'Must be a valid date.'
-                  example: '2022-05-31T13:04:12'
+                  example: '2022-05-31T14:55:05'
                 location:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: svtykdiclagpgclhgmbgbrtdyxwkodxsgkmniyymymcpxwforcrdhcyxursrpgrmujqokoafugcqanndkykdkppssdnhtwiepbquiyjilsrgzlboapdnnigujjspuqtoeujkhuftvgiwmwthtzoqoslwfnwismavkvskys
+                  example: hdxytemncdpczklmgmmgqbebaamxvvujmpfpdzzbrnjvjoitcdawctjjzyoqhctwkxyctrmceoaepcvdnzqhpbnleldiemnftuxzocgspruwhavdijsacafpcayntuwjlkulgxweekprganhxvsdacnjdebhtemgduhcknrkulnlritwubsnollbuuqvrljtfmnsltchxhwvmwfbootjddyykspwfrbaawzifx
     delete:
       summary: 'Delete event'
       description: 'Remove the specified resource from storage.'
@@ -1105,7 +968,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the event.'
-        example: 3083
+        example: 9
         required: true
         schema:
           type: integer
@@ -1254,7 +1117,7 @@ paths:
                 name:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: jcedfeqveyogswmfjyfwgsgkxvlrtzywazlzbhrahwlrpxvqyhym
+                  example: tehdrxdldqljcvopbbfgmudwjiwpmwervzstjdepxnfeuxtqtcrdaqgjkphklesdzhjvaupfdwmmtgrtocybfohaeniecqnodncoczepnxvtrktfuxlfrzgywtisxvfqnqemjyxohgwzyugbfpupnrsowhnnzodrkmkuswsonbr
                 ics:
                   type: string
                   format: binary
@@ -1289,28 +1152,888 @@ paths:
           schema:
             type: string
       responses:
-        200:
+        500:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  success: true
-                  message: 'All fetched'
-                  data:
-                    user: null
+                  message: 'Undefined variable $calendar'
+                  exception: ErrorException
+                  file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\app\Http\Services\GapsEventsService.php'
+                  line: 92
+                  trace:
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php'
+                      line: 255
+                      function: handleError
+                      class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\app\Http\Services\GapsEventsService.php'
+                      line: 92
+                      function: 'Illuminate\Foundation\Bootstrap\{closure}'
+                      class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\app\Http\Controllers\GapsController.php'
+                      line: 29
+                      function: fetchAllHoraires
+                      class: App\Http\Services\GapsEventsService
+                      type: '::'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\app\Http\Controllers\GapsController.php'
+                      line: 47
+                      function: updateAll
+                      class: App\Http\Controllers\GapsController
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
+                      line: 54
+                      function: updateAllCron
+                      class: App\Http\Controllers\GapsController
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                      line: 45
+                      function: callAction
+                      class: Illuminate\Routing\Controller
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 261
+                      function: dispatch
+                      class: Illuminate\Routing\ControllerDispatcher
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                      line: 204
+                      function: runController
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 725
+                      function: run
+                      class: Illuminate\Routing\Route
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 141
+                      function: 'Illuminate\Routing\{closure}'
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                      line: 50
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Routing\Middleware\SubstituteBindings
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 126
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 102
+                      function: handleRequest
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                      line: 54
+                      function: handleRequestUsingNamedLimiter
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\sanctum\src\Http\Middleware\EnsureFrontendRequestsAreStateful.php'
+                      line: 33
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 141
+                      function: 'Laravel\Sanctum\Http\Middleware\{closure}'
+                      class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 116
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\sanctum\src\Http\Middleware\EnsureFrontendRequestsAreStateful.php'
+                      line: 34
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 116
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 726
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 703
+                      function: runRouteWithinStack
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 667
+                      function: runRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                      line: 656
+                      function: dispatchToRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 167
+                      function: dispatch
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 141
+                      function: 'Illuminate\Foundation\Http\{closure}'
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                      line: 31
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                      line: 40
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                      line: 27
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                      line: 86
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
+                      line: 62
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Http\Middleware\HandleCors
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                      line: 39
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 180
+                      function: handle
+                      class: Illuminate\Http\Middleware\TrustProxies
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                      line: 116
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 142
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                      line: 111
+                      function: sendRequestThroughRouter
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 299
+                      function: handle
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 287
+                      function: callLaravelOrLumenRoute
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 89
+                      function: makeApiCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 45
+                      function: makeResponseCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                      line: 35
+                      function: makeResponseCallIfConditionsPass
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 222
+                      function: __invoke
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 179
+                      function: iterateThroughStrategies
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                      line: 116
+                      function: fetchResponses
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 123
+                      function: processRoute
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 80
+                      function: extractEndpointsInfoFromLaravelApp
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                      line: 56
+                      function: extractEndpointsInfoAndWriteToDisk
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                      line: 55
+                      function: get
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 36
+                      function: handle
+                      class: Knuckles\Scribe\Commands\GenerateDocumentation
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                      line: 41
+                      function: 'Illuminate\Container\{closure}'
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 93
+                      function: unwrapIfClosure
+                      class: Illuminate\Container\Util
+                      type: '::'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                      line: 37
+                      function: callBoundMethod
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                      line: 651
+                      function: call
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 136
+                      function: call
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\symfony\console\Command\Command.php'
+                      line: 308
+                      function: execute
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                      line: 121
+                      function: run
+                      class: Symfony\Component\Console\Command\Command
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\symfony\console\Application.php'
+                      line: 998
+                      function: run
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\symfony\console\Application.php'
+                      line: 299
+                      function: doRunCommand
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\symfony\console\Application.php'
+                      line: 171
+                      function: doRun
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                      line: 102
+                      function: run
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                      line: 129
+                      function: run
+                      class: Illuminate\Console\Application
+                      type: '->'
+                    -
+                      file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\artisan'
+                      line: 37
+                      function: handle
+                      class: Illuminate\Foundation\Console\Kernel
+                      type: '->'
                 properties:
-                  success:
-                    type: boolean
-                    example: true
                   message:
                     type: string
-                    example: 'All fetched'
-                  data:
-                    type: object
+                    example: 'Undefined variable $calendar'
+                  exception:
+                    type: string
+                    example: ErrorException
+                  file:
+                    type: string
+                    example: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\app\Http\Services\GapsEventsService.php'
+                  line:
+                    type: integer
+                    example: 92
+                  trace:
+                    type: array
                     example:
-                      user: null
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Bootstrap\HandleExceptions.php'
+                        line: 255
+                        function: handleError
+                        class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\app\Http\Services\GapsEventsService.php'
+                        line: 92
+                        function: 'Illuminate\Foundation\Bootstrap\{closure}'
+                        class: Illuminate\Foundation\Bootstrap\HandleExceptions
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\app\Http\Controllers\GapsController.php'
+                        line: 29
+                        function: fetchAllHoraires
+                        class: App\Http\Services\GapsEventsService
+                        type: '::'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\app\Http\Controllers\GapsController.php'
+                        line: 47
+                        function: updateAll
+                        class: App\Http\Controllers\GapsController
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Controller.php'
+                        line: 54
+                        function: updateAllCron
+                        class: App\Http\Controllers\GapsController
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php'
+                        line: 45
+                        function: callAction
+                        class: Illuminate\Routing\Controller
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 261
+                        function: dispatch
+                        class: Illuminate\Routing\ControllerDispatcher
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Route.php'
+                        line: 204
+                        function: runController
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 725
+                        function: run
+                        class: Illuminate\Routing\Route
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 141
+                        function: 'Illuminate\Routing\{closure}'
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Middleware\SubstituteBindings.php'
+                        line: 50
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Routing\Middleware\SubstituteBindings
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 126
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 102
+                        function: handleRequest
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Middleware\ThrottleRequests.php'
+                        line: 54
+                        function: handleRequestUsingNamedLimiter
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\sanctum\src\Http\Middleware\EnsureFrontendRequestsAreStateful.php'
+                        line: 33
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 141
+                        function: 'Laravel\Sanctum\Http\Middleware\{closure}'
+                        class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 116
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\sanctum\src\Http\Middleware\EnsureFrontendRequestsAreStateful.php'
+                        line: 34
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 116
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 726
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 703
+                        function: runRouteWithinStack
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 667
+                        function: runRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Routing\Router.php'
+                        line: 656
+                        function: dispatchToRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 167
+                        function: dispatch
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 141
+                        function: 'Illuminate\Foundation\Http\{closure}'
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull.php'
+                        line: 31
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TransformsRequest.php'
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\TrimStrings.php'
+                        line: 40
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\ValidatePostSize.php'
+                        line: 27
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance.php'
+                        line: 86
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Http\Middleware\HandleCors.php'
+                        line: 62
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Http\Middleware\HandleCors
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Http\Middleware\TrustProxies.php'
+                        line: 39
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 180
+                        function: handle
+                        class: Illuminate\Http\Middleware\TrustProxies
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Pipeline\Pipeline.php'
+                        line: 116
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 142
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Http\Kernel.php'
+                        line: 111
+                        function: sendRequestThroughRouter
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 299
+                        function: handle
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 287
+                        function: callLaravelOrLumenRoute
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 89
+                        function: makeApiCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 45
+                        function: makeResponseCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Strategies\Responses\ResponseCalls.php'
+                        line: 35
+                        function: makeResponseCallIfConditionsPass
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 222
+                        function: __invoke
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 179
+                        function: iterateThroughStrategies
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Extracting\Extractor.php'
+                        line: 116
+                        function: fetchResponses
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 123
+                        function: processRoute
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 80
+                        function: extractEndpointsInfoFromLaravelApp
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\GroupedEndpoints\GroupedEndpointsFromApp.php'
+                        line: 56
+                        function: extractEndpointsInfoAndWriteToDisk
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\knuckleswtf\scribe\src\Commands\GenerateDocumentation.php'
+                        line: 55
+                        function: get
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 36
+                        function: handle
+                        class: Knuckles\Scribe\Commands\GenerateDocumentation
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Container\Util.php'
+                        line: 41
+                        function: 'Illuminate\Container\{closure}'
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 93
+                        function: unwrapIfClosure
+                        class: Illuminate\Container\Util
+                        type: '::'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Container\BoundMethod.php'
+                        line: 37
+                        function: callBoundMethod
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Container\Container.php'
+                        line: 651
+                        function: call
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 136
+                        function: call
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\symfony\console\Command\Command.php'
+                        line: 308
+                        function: execute
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Console\Command.php'
+                        line: 121
+                        function: run
+                        class: Symfony\Component\Console\Command\Command
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\symfony\console\Application.php'
+                        line: 998
+                        function: run
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\symfony\console\Application.php'
+                        line: 299
+                        function: doRunCommand
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\symfony\console\Application.php'
+                        line: 171
+                        function: doRun
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Console\Application.php'
+                        line: 102
+                        function: run
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\vendor\laravel\framework\src\Illuminate\Foundation\Console\Kernel.php'
+                        line: 129
+                        function: run
+                        class: Illuminate\Console\Application
+                        type: '->'
+                      -
+                        file: 'C:\Users\timot\OneDrive\Documents\HEIG\semestre-4\ProjArt\ProjArt-Application\artisan'
+                        line: 37
+                        function: handle
+                        class: Illuminate\Foundation\Console\Kernel
+                        type: '->'
+                    items:
+                      type: object
       tags:
         - Gaps
     parameters:
@@ -1486,7 +2209,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the mail.'
-        example: '25'
+        example: '30'
         required: true
         schema:
           type: string
@@ -1529,15 +2252,15 @@ paths:
                 to:
                   type: string
                   description: 'Must be a valid email address.'
-                  example: dean59@example.net
+                  example: maeve64@example.org
                 subject:
                   type: string
                   description: 'Must not be greater than 255 characters.'
-                  example: xfshfcficjktrcmyqsmxjtfcfjofqoxdfeahsrabuaifgeziiuuojlfbbrjnoghlmahtkusbxzvmnilqokdthgckfrgawevctvnkemzldcdvpdktegzazojfvpzeedwtwljohdnnaeliqimnvuzwydujxjcmckiindsospevqvbkngkmpiqp
+                  example: gjhoinvrisugwjzqqirciljasvitvdfksqsdfqvkfejyejgathuslyztknzgpcunvveowiofvpasgyewzrwzkznzlxjosasmyzfjnpfwslqzbnqurhfkutwrilglejmvretxuardjyxypsbuiglrtoollhktcxokvwkhzirndkgheqzynkvtzvfugycbtqigmcjrffmxcklxbkogcgkfvjdridchvipccmvyimpnuecnqnauozfnoqe
                 message:
                   type: string
                   description: ''
-                  example: quidem
+                  example: maiores
               required:
                 - to
                 - subject
@@ -1643,10 +2366,102 @@ paths:
       responses: {  }
       tags:
         - Notifications
+  /api/user/theme:
+    post:
+      summary: 'Set theme'
+      description: "Pour mettre à jour le thème d'un utilisateur"
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Themes
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                theme_id:
+                  type: integer
+                  description: ''
+                  example: 18
+              required:
+                - theme_id
+  /api/themes:
+    get:
+      summary: 'Get themes'
+      description: 'Pour obtenir tout les thèmes disponibles'
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {{token}}'
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  success: false
+                  message: Unauthenticated
+                  data:
+                    - sanctum
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: Unauthenticated
+                  data:
+                    type: array
+                    example:
+                      - sanctum
+                    items:
+                      type: string
+      tags:
+        - Themes
 tags:
-  -
-    name: Themes
-    description: "\nAPIs pour gérer les thèmes"
   -
     name: Absences
     description: "\nAPIs pour gérer les absences"
@@ -1677,3 +2492,6 @@ tags:
   -
     name: Notifications
     description: "\nAPIs pour gérer les notifications"
+  -
+    name: Themes
+    description: "\nAPIs pour gérer les thèmes"

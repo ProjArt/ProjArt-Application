@@ -20,7 +20,7 @@ endpoints:
     responses:
       -
         status: 200
-        content: '{"success":true,"message":"Classroom","data":{"classrooms":[{"name":"M49-1","total_persons":1,"users":[{"id":69,"username":"vincent.tarrit","gaps_id":17486,"role":"student","card_money":0,"pivot":{"classroom_name":"M49-1","user_id":69},"theme":{"id":1,"primary":{"id":1,"value":"#000000"},"secondary":{"id":2,"value":"#ffffff"}}}]}]}}'
+        content: '{"success":true,"message":"Classroom","data":{"classrooms":[]}}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
@@ -75,7 +75,7 @@ endpoints:
         name: name
         description: 'Must not be greater than 255 characters.'
         required: true
-        example: lnxhdywrjiuuequlfmrvcc
+        example: qceomdvcdbwgwcgwmcmfyaixrsvdqbfexnbvsqgdiszbwmdazukobwszoquxenbgrkshoaggywpplzoizvgjlfwzpssoymsdnlyfbpkplizimzbnmgedxgkkzuwjphpaxggxgxdyjfluzjybnouigwmkhaddbhvsmxmoewudsjtlshaggvmytqjysofqkbaywmfdjperxjnhvnqttumiuadopxvn
         type: string
         custom: []
     responses: []
@@ -98,7 +98,7 @@ endpoints:
         name: token
         description: ''
         required: true
-        example: '5531545475:AAFTPbgpcDrRrKnBOf_hYhibJK_HKqW_ED4'
+        example: voluptas
         type: string
         custom: []
     queryParameters: []
