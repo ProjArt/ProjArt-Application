@@ -5,6 +5,7 @@ import { API } from "../stores/api";
 import { routesNames } from "../router/routes";
 import { user } from "../stores/auth";
 import { registerToChannelNotification } from "../stores/notifications";
+import { theme } from "../stores/preferences";
 
 const isSubmitted = ref(false);
 const formData = ref({});
@@ -64,6 +65,7 @@ const submitHandler = async () => {
     }); */
 
     user.value = response.data.user;
+    theme.value = response.data.user.theme;
 
     await registerToChannelNotification(response.data.user.username);
 
