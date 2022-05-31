@@ -3,6 +3,7 @@ import useLogout from "../composables/useLogout";
 import { routesNames } from "../router/routes";
 import { isAuthenticated } from "../stores/auth";
 import { notification, sendNotification } from "../stores/notifications";
+import { user } from "../stores/auth";
 
 console.log(isAuthenticated.value);
 console.log("routesNames", routesNames);
@@ -11,7 +12,7 @@ async function _send() {
   await sendNotification({
     title: "coucou",
     message: "test",
-    to: ["vincent.tarrit"],
+    to: [user.value.username],
   });
 }
 </script>
@@ -19,9 +20,8 @@ async function _send() {
   <header class="header">
     <div class="header__links">
       <button @click="useLogout()">Déconnexion</button>
+      <button @click="_send()">Notification</button>
     </div>
-
-    <button @click="_send()">Notification</button>
 
     <div class="menu" v-if="isAuthenticated">
       <div
@@ -38,7 +38,7 @@ async function _send() {
 .header {
   background-color: lightgrey;
   width: 100%;
-  height: 100px;
+  padding: 1rem;
 }
 
 .menu {
@@ -48,5 +48,6 @@ async function _send() {
   align-items: center;
   width: 100%;
   height: 100%;
+  padding: 1rem;
 }
 </style>

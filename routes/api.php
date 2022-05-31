@@ -15,10 +15,6 @@ use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TelegramController;
-use App\Http\Controllers\UserController;
-use App\Models\Notification;
-use Illuminate\Http\Request;
-use Pusher\PushNotifications\PushNotifications;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,7 +61,6 @@ Route::middleware('auth:sanctum')->group(function () {
     ]);
     //Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents'])->name("api.getCalendarEvents");
 
-
     Route::get('/marks', [MarkController::class, 'index'])->name('api.marks.index');
 
     Route::get('/menu', [MenuController::class, 'index'])->name("api.getMenu");
@@ -78,12 +73,9 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/calendars/share', [CalendarController::class, 'share'])->name("api.calendars.share");
 
-
     Route::post("/classrooms/setUser", [ClassroomController::class, 'setUserClassroom'])->name("api.classrooms.setUserClassroom");
 
     Route::get("/absences", [AbsenceController::class, 'index'])->name("api.absences.index");
-
-    Route::post("/onesignal", [UserController::class, 'setOnesignal'])->name("api.onesignal");
 
     Route::post("/notification", [NotificationController::class, 'send'])->name("api.notification.send");
 });
