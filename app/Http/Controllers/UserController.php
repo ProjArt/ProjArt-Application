@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\OneSignalRequest;
-use App\Http\Requests\ThemeRequest;
-use Illuminate\Http\Request;
 
 /**
  * @group Utilisateurs
@@ -31,21 +29,5 @@ class UserController extends Controller
             'onesignal_id' => $request->onesignal_id
         ]);
         return response()->json(['success' => true]);
-    }
-
-    /**
-     * 
-     * Set theme
-     * 
-     * Pour mettre à jour le thème d'un utilisateur
-     * 
-     */
-    public function setTheme(ThemeRequest $request)
-    {
-        $user = $request->user();
-        $user->update([
-            'theme_id' => $request->theme_id
-        ]);
-        return httpSuccess("Le thème a été mis à jour", $user);
     }
 }

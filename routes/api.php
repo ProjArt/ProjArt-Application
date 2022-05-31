@@ -81,9 +81,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post("/notification", [NotificationController::class, 'send'])->name("api.notification.send");
 
-    Route::post("/user/theme", [UserController::class, 'setTheme'])->name("api.user.setTheme");
-
-    Route::get('/themes', [ThemeController::class, 'index'])->name('api.themes.index');
+    Route::controller(ThemeController::class)->group(function () {
+        Route::post("/user/theme", 'setTheme')->name("api.user.setTheme");
+        Route::get('/themes', 'index')->name('api.themes.index');
+    });
 });
 
 Route::get('/', function () {

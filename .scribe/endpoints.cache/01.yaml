@@ -25,21 +25,21 @@ endpoints:
         name: username
         description: 'The Gaps username of the user.'
         required: true
-        example: quidem
+        example: cupiditate
         type: string
         custom: []
       password:
         name: password
         description: 'The Gaps password of the user.'
         required: true
-        example: omnis
+        example: veniam
         type: string
         custom: []
       classroom_name:
         name: classroom_name
         description: 'Must not be greater than 255 characters.'
         required: false
-        example: cecmmcdqsksyinirpzoyfdjwfzolwceukmhrsqsqqtqxvcncmtkabysttpqfinprmtoaggkdylauhtnwdezfunrcrmhtameokmunhpmhsozlxeezujxswzwkcxkxnafeezqqktntiaoqlr
+        example: ypwbnxuzqdkwvmmblpxiwdefnnqliutyrmrkgwffqylgwtnisbdhqcphebupbojtwttxjvpqeaupqcuvruinoyuwmkkvjp
         type: string
         custom: []
     responses: []
@@ -64,21 +64,21 @@ endpoints:
         name: username
         description: 'The Gaps username of the user.'
         required: true
-        example: iure
+        example: qui
         type: string
         custom: []
       password:
         name: password
         description: 'The Gaps password of the user.'
         required: true
-        example: iste
+        example: velit
         type: string
         custom: []
       classroom_name:
         name: classroom_name
         description: 'The class of the user.'
         required: true
-        example: et
+        example: doloribus
         type: string
         custom: []
     responses: []
