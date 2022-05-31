@@ -21,7 +21,6 @@ return new class extends Migration
             $table->integer('year_start');
             $table->integer('year_end');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-
             $table->timestamps();
         });
     }
