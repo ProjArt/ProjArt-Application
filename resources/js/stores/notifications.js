@@ -25,19 +25,16 @@ export async function sendNotification({ title, message, to }) {
 
 export async function registerToChannelNotification(channel) {
 
-    const result = await navigator.permissions.query({ name: 'push', userVisibleOnly: true });
+    Notification.requestPermission(function(permission) {
+        if (permission === "granted") {
+            const beamsClient = new PusherPushNotifications.Client({
+                instanceId: process.env.MIX_PUSHER_APP_ID,
+            });
 
-    console.log(result);
-    if (result.state !== 'granted') {
-        await Notification.requestPermission();
-        return;
-    }
-    const beamsClient = new PusherPushNotifications.Client({
-        instanceId: process.env.MIX_PUSHER_APP_ID,
+            await beamsClient.start()
+            await beamsClient.addDeviceInterest(channel);
+            const deviceInterests = await beamsClient.getDeviceInterests();
+            console.log("Device registered to channels: " + deviceInterests);
+        }
     });
-
-    await beamsClient.start()
-    await beamsClient.addDeviceInterest(channel);
-    const deviceInterests = await beamsClient.getDeviceInterests();
-    console.log("Device registered to channels: " + deviceInterests);
 }
