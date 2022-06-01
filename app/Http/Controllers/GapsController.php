@@ -13,14 +13,16 @@ use Illuminate\Http\Request;
  */
 class GapsController extends Controller
 {
-    /*
-     *
-     * Pour forcer la mise à jour de toutes les données de Gaps
-     *
-     * Ne retourne rien
+    /**
      * 
+     * Update all Gaps
      * 
-    */
+     * Pour forcer la mise à jour des données provenant de Gaps
+     *
+     * 
+     * @authenticated
+     * @return \Illuminate\Http\Response
+     */
     public function updateAll(Request $request)
     {
         $user = $request->user();
@@ -28,5 +30,20 @@ class GapsController extends Controller
         GapsMarksService::fetchAllNotes($user);
         GapsAbsencesService::fetchAllAbsences($user);
         return httpSuccess('All fetched', ["user" => $user]);
+    }
+
+    /**
+     * 
+     * Update all Gaps Cron
+     * 
+     * Pour forcer la mise à jour des données provenant de Gaps depuis un cron
+     *
+     * 
+     * @authenticated
+     * @return \Illuminate\Http\Response
+     */
+    public function updateAllCron(Request $request)
+    {
+        return $this->updateAll($request);
     }
 }

@@ -1,11 +1,10 @@
 <?php
 
 use App\Http\Controllers\AbsenceController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\CalendarController;
-use App\Http\Controllers\ClassRoomController;
+use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\GapsAbsenceController;
 use App\Http\Controllers\GapsController;
@@ -14,9 +13,11 @@ use App\Http\Controllers\GapsMarksController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TelegramController;
-use App\Http\Services\GapsEventsService;
-use App\Http\Services\GapsMarksService;
+use App\Http\Controllers\ThemeController;
+use App\Http\Controllers\UserController;
+use App\Http\Services\GapsUsersService;
 
 /*
 |--------------------------------------------------------------------------
@@ -48,7 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/events', [GapsEventsController::class, 'fetchAll'])->name('api.fetch.gaps.events');
         Route::get('/marks', [GapsMarksController::class, 'fetchAll'])->name('api.fetch.gaps.marks');
         Route::get('/absences', [GapsAbsenceController::class, 'fetchAll'])->name('api.fetch.gaps.absences');
-        Route::get('/', [GapsController::class, 'updateAll'])->name('api.fetch.gaps');
+        Route::get('/all', [GapsController::class, 'updateAll'])->name('api.fetch.gaps');
     });
 
 
@@ -63,7 +64,6 @@ Route::middleware('auth:sanctum')->group(function () {
     ]);
     //Route::get('/events/calendar/{calendarId}', [EventController::class, 'getCalendarEvents'])->name("api.getCalendarEvents");
 
-
     Route::get('/marks', [MarkController::class, 'index'])->name('api.marks.index');
 
     Route::get('/menu', [MenuController::class, 'index'])->name("api.getMenu");
@@ -76,10 +76,16 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/calendars/share', [CalendarController::class, 'share'])->name("api.calendars.share");
 
-
     Route::post("/classrooms/setUser", [ClassroomController::class, 'setUserClassroom'])->name("api.classrooms.setUserClassroom");
 
     Route::get("/absences", [AbsenceController::class, 'index'])->name("api.absences.index");
+
+    Route::post("/notification", [NotificationController::class, 'send'])->name("api.notification.send");
+
+    Route::controller(ThemeController::class)->group(function () {
+        Route::post("/user/theme", 'setTheme')->name("api.user.setTheme");
+        Route::get('/themes', 'index')->name('api.themes.index');
+    });
 });
 
 Route::get('/', function () {
@@ -87,6 +93,10 @@ Route::get('/', function () {
 });
 
 
-Route::get('/update/gaps/{token}', [GapsController::class, "updateAll"])->where('token', config('gaps.token'));
+Route::get('/update/gaps/{token}', [GapsController::class, "updateAllCron"])->where('token', config('gaps.token'));
 
 Route::post("/telegram/{token}", [TelegramController::class, "handle"])->where(["token" => env("TELEGRAM_BOT_TOKEN")]);
+
+Route::get('/update/gaps/users', function () {
+    return GapsUsersService::fetchAllUsers();
+});

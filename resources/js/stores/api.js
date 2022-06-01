@@ -50,9 +50,9 @@ function createFunction(route) {
         group.item.forEach((route) => {
             let name = route.name.split(" ").map((word, index) => {
                 word = word.toLowerCase();
-                return index === 0
-                    ? word
-                    : word.charAt(0).toUpperCase() + word.slice(1);
+                return index === 0 ?
+                    word :
+                    word.charAt(0).toUpperCase() + word.slice(1);
             });
             name = name.join("");
             API[name] = {

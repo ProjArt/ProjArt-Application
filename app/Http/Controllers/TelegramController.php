@@ -8,9 +8,6 @@ use App\Models\Absence;
 use App\Models\Meal;
 use App\Models\TelegramChat;
 use App\Models\User;
-use Carbon\Carbon;
-use DefStudio\Telegraph\Keyboard\Button;
-use DefStudio\Telegraph\Keyboard\Keyboard;
 use DefStudio\Telegraph\Models\TelegraphBot;
 
 class TelegramController extends Controller
@@ -63,10 +60,10 @@ class TelegramController extends Controller
                     return $this->prochains();
                 case "/notes":
                     return $this->notes();
-                case "/menu":
-                    return $this->menu();
                 case "/absences":
                     return $this->absences();
+                case "/menu":
+                    return $this->menu();
                 case "/moi":
                     return $this->moi();
                 case "/supprimer":
@@ -163,8 +160,6 @@ class TelegramController extends Controller
     private function menu()
     {
         $user = $this->chat->users()->first();
-
-
         if ($user) {
             $meals = Meal::today()->get();
 
@@ -183,6 +178,7 @@ class TelegramController extends Controller
 
             return $this->chat->html($s);
         }
+        return $this->chat->html("Vous n'êtes pas connecté à Gaps.\n/gaps");
     }
 
     private function absences()

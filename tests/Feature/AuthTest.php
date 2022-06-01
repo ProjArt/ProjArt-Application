@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Calendar;
 use App\Models\Classroom;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -132,6 +133,10 @@ class AuthTest extends TestCase
             'name' => 'test',
         ]);
 
+        $calendar = Calendar::firstOrCreate([
+            "name" => "test",
+        ]);
+
         $this->assertDatabaseHas('classrooms', [
             'name' => $classroom->name,
         ]);
@@ -139,9 +144,8 @@ class AuthTest extends TestCase
         $response = $this->json('POST', '/api/register', [
             'username' => $username,
             'password' => "password",
-            'classroom_name' => $classroom->name,
+            'classroom_name' => "test",
         ]);
-
 
         $response->assertSuccessful();
 
@@ -157,5 +161,23 @@ class AuthTest extends TestCase
 
         Classroom::whereName($classroom->name)->delete();
         User::whereUsername($username)->delete();
+    }
+
+    public function test_fail_register_if_calendar_not_known()
+    {
+        $username = Str::random(10);
+        $classroom = Classroom::firstOrCreate([
+            'name' => 'test-not-existing',
+        ]);
+
+        $response = $this->json('POST', '/api/register', [
+            'username' => $username,
+            'password' => "password",
+            'classroom_name' => $classroom->name,
+        ]);
+
+        $response->assertStatus(404);
+
+        $classroom->delete();
     }
 }

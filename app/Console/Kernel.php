@@ -6,6 +6,7 @@ use App\Http\Services\GapsAbsencesService;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
 use App\Http\Services\GapsMenuService;
+use App\Http\Services\GapsUsersService;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -30,6 +31,10 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             GapsMenuService::fetchMenus();
         })->dailyAt('11:02');
+
+        $schedule->call(function () {
+            GapsUsersService::fetchAllUsers();
+        })->weeklyOn(1, '02:00');
     }
 
     /**

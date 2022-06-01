@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Notifications\OneSignal;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -32,7 +33,9 @@ class User extends Authenticatable
         'email',
         'password',
         'card_money',
-        'gaps_id'
+        'gaps_id',
+        'onesignal_id',
+        "theme_id"
     ];
 
     /**
@@ -58,8 +61,13 @@ class User extends Authenticatable
     ];
 
     protected $with = [
-        'theme'
+        'theme',
     ];
+
+    protected $appends = [
+        'gaps_user'
+    ];
+
 
     protected function password(): Attribute
     {
@@ -144,5 +152,10 @@ class User extends Authenticatable
     public function events()
     {
         return $this->hasManyDeep(Event::class, ['calendar_user', Calendar::class]);
+    }
+
+    public function getGapsUserAttribute()
+    {
+        return GapsUser::whereUsername($this->username)->first();
     }
 }
