@@ -17,15 +17,19 @@
     <link rel="manifest" href="{{ asset('manifest.json') }} " />
     <link rel="apple-touch-icon" href="link to the smaller icon">
 
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @production
+        <link rel="stylesheet" href="{{ config('app.url') }}{{ mix('css/app.css') }}">
+    @else
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @endproduction
 
 
 
     {{-- PUSHER --}}
     @production
-    <script src="{{ asset('js/pusher-prod.js') }}"></script>
+        <script src="{{ asset('js/pusher-prod.js') }}"></script>
     @else
-    <script src="{{ asset('js/pusher.js') }}"></script>
+        <script src="{{ asset('js/pusher.js') }}"></script>
     @endproduction
 
 </head>
@@ -33,7 +37,11 @@
 <body>
     <div id="app"></div>
 
-    <script src="{{ mix('js/app.js') }}"></script>
+    @production
+        <script src="{{ config('app.url') }}{{ mix('js/app.js') }}"></script>
+    @else
+        <script src="{{ mix('js/app.js') }}"></script>
+    @endproduction
 </body>
 
 </html>

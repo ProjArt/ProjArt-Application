@@ -834,6 +834,122 @@ var PusherPushNotifications = (function(exports) {
 
     var createClass = _createClass;
 
+    var _typeof_1 = createCommonjsModule(function(module) {
+        function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
+
+        function _typeof(obj) {
+            if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+                module.exports = _typeof = function _typeof(obj) {
+                    return _typeof2(obj);
+                };
+            } else {
+                module.exports = _typeof = function _typeof(obj) {
+                    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+                };
+            }
+
+            return _typeof(obj);
+        }
+
+        module.exports = _typeof;
+    });
+
+    function _assertThisInitialized(self) {
+        if (self === void 0) {
+            throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+        }
+
+        return self;
+    }
+
+    var assertThisInitialized = _assertThisInitialized;
+
+    function _possibleConstructorReturn(self, call) {
+        if (call && (_typeof_1(call) === "object" || typeof call === "function")) {
+            return call;
+        }
+
+        return assertThisInitialized(self);
+    }
+
+    var possibleConstructorReturn = _possibleConstructorReturn;
+
+    var getPrototypeOf = createCommonjsModule(function(module) {
+        function _getPrototypeOf(o) {
+            module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+                return o.__proto__ || Object.getPrototypeOf(o);
+            };
+            return _getPrototypeOf(o);
+        }
+
+        module.exports = _getPrototypeOf;
+    });
+
+    function _superPropBase(object, property) {
+        while (!Object.prototype.hasOwnProperty.call(object, property)) {
+            object = getPrototypeOf(object);
+            if (object === null) break;
+        }
+
+        return object;
+    }
+
+    var superPropBase = _superPropBase;
+
+    var get = createCommonjsModule(function(module) {
+        function _get(target, property, receiver) {
+            if (typeof Reflect !== "undefined" && Reflect.get) {
+                module.exports = _get = Reflect.get;
+            } else {
+                module.exports = _get = function _get(target, property, receiver) {
+                    var base = superPropBase(target, property);
+                    if (!base) return;
+                    var desc = Object.getOwnPropertyDescriptor(base, property);
+
+                    if (desc.get) {
+                        return desc.get.call(receiver);
+                    }
+
+                    return desc.value;
+                };
+            }
+
+            return _get(target, property, receiver || target);
+        }
+
+        module.exports = _get;
+    });
+
+    var setPrototypeOf = createCommonjsModule(function(module) {
+        function _setPrototypeOf(o, p) {
+            module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+                o.__proto__ = p;
+                return o;
+            };
+
+            return _setPrototypeOf(o, p);
+        }
+
+        module.exports = _setPrototypeOf;
+    });
+
+    function _inherits(subClass, superClass) {
+        if (typeof superClass !== "function" && superClass !== null) {
+            throw new TypeError("Super expression must either be null or a function");
+        }
+
+        subClass.prototype = Object.create(superClass && superClass.prototype, {
+            constructor: {
+                value: subClass,
+                writable: true,
+                configurable: true
+            }
+        });
+        if (superClass) setPrototypeOf(subClass, superClass);
+    }
+
+    var inherits = _inherits;
+
     function _defineProperty(obj, key, value) {
         if (key in obj) {
             Object.defineProperty(obj, key, {
@@ -878,10 +994,13 @@ var PusherPushNotifications = (function(exports) {
             _ref$body = _ref.body,
             body = _ref$body === void 0 ? null : _ref$body,
             _ref$headers = _ref.headers,
-            headers = _ref$headers === void 0 ? {} : _ref$headers;
+            headers = _ref$headers === void 0 ? {} : _ref$headers,
+            _ref$credentials = _ref.credentials,
+            credentials = _ref$credentials === void 0 ? 'same-origin' : _ref$credentials;
         var options = {
             method: method,
-            headers: headers
+            headers: headers,
+            credentials: credentials
         };
 
         if (body !== null) {
@@ -986,69 +1105,7 @@ var PusherPushNotifications = (function(exports) {
         return _handleError.apply(this, arguments);
     }
 
-    var TokenProvider =
-        /*#__PURE__*/
-        function() {
-            function TokenProvider() {
-                var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-                    url = _ref.url,
-                    queryParams = _ref.queryParams,
-                    headers = _ref.headers;
-
-                classCallCheck(this, TokenProvider);
-
-                this.url = url;
-                this.queryParams = queryParams;
-                this.headers = headers;
-            }
-
-            createClass(TokenProvider, [{
-                key: "fetchToken",
-                value: function() {
-                    var _fetchToken = asyncToGenerator(
-                        /*#__PURE__*/
-                        regenerator.mark(function _callee(userId) {
-                            var queryParams, encodedParams, options, response;
-                            return regenerator.wrap(function _callee$(_context) {
-                                while (1) {
-                                    switch (_context.prev = _context.next) {
-                                        case 0:
-                                            queryParams = objectSpread({
-                                                user_id: userId
-                                            }, this.queryParams);
-                                            encodedParams = Object.entries(queryParams).map(function(kv) {
-                                                return kv.map(encodeURIComponent).join('=');
-                                            }).join('&');
-                                            options = {
-                                                method: 'GET',
-                                                path: "".concat(this.url, "?").concat(encodedParams),
-                                                headers: this.headers
-                                            };
-                                            _context.next = 5;
-                                            return doRequest(options);
-
-                                        case 5:
-                                            response = _context.sent;
-                                            return _context.abrupt("return", response);
-
-                                        case 7:
-                                        case "end":
-                                            return _context.stop();
-                                    }
-                                }
-                            }, _callee, this);
-                        }));
-
-                    function fetchToken(_x) {
-                        return _fetchToken.apply(this, arguments);
-                    }
-
-                    return fetchToken;
-                }()
-            }]);
-
-            return TokenProvider;
-        }();
+    var version = "2.0.0-beta.1";
 
     var DeviceStateStore =
         /*#__PURE__*/
@@ -1288,23 +1345,38 @@ var PusherPushNotifications = (function(exports) {
             return DeviceStateStore;
         }();
 
-    var version = "1.0.3";
-
     var INTERESTS_REGEX = new RegExp('^(_|\\-|=|@|,|\\.|;|[A-Z]|[a-z]|[0-9])*$');
     var MAX_INTEREST_LENGTH = 164;
     var MAX_INTERESTS_NUM = 5000;
-    var SERVICE_WORKER_URL = "/tgv/service-worker.js?pusherBeamsWebSDKVersion=".concat(version);
     var RegistrationState = Object.freeze({
         PERMISSION_PROMPT_REQUIRED: 'PERMISSION_PROMPT_REQUIRED',
         PERMISSION_GRANTED_NOT_REGISTERED_WITH_BEAMS: 'PERMISSION_GRANTED_NOT_REGISTERED_WITH_BEAMS',
         PERMISSION_GRANTED_REGISTERED_WITH_BEAMS: 'PERMISSION_GRANTED_REGISTERED_WITH_BEAMS',
         PERMISSION_DENIED: 'PERMISSION_DENIED'
     });
-    var Client =
+    /* BaseClient is an abstract client containing functionality shared between
+     * safari and web push clients. Platform specific classes should extend this
+     * class. This method expects sub classes to implement the following public
+     * methods:
+     * async start()
+     * async getRegistrationState() {
+     * async stop() {
+     * async clearAllState() {
+     *
+     * It also assumes that the following private methods are implemented:
+     * async _init()
+     * async _detectSubscriptionChange()
+     */
+
+    var BaseClient =
         /*#__PURE__*/
         function() {
-            function Client(config) {
-                classCallCheck(this, Client);
+            function BaseClient(config, platform) {
+                classCallCheck(this, BaseClient);
+
+                if (this.constructor === BaseClient) {
+                    throw new Error('BaseClient is abstract and should not be directly constructed.');
+                }
 
                 if (!config) {
                     throw new Error('Config object required');
@@ -1312,9 +1384,7 @@ var PusherPushNotifications = (function(exports) {
 
                 var instanceId = config.instanceId,
                     _config$endpointOverr = config.endpointOverride,
-                    endpointOverride = _config$endpointOverr === void 0 ? null : _config$endpointOverr,
-                    _config$serviceWorker = config.serviceWorkerRegistration,
-                    serviceWorkerRegistration = _config$serviceWorker === void 0 ? null : _config$serviceWorker;
+                    endpointOverride = _config$endpointOverr === void 0 ? null : _config$endpointOverr;
 
                 if (instanceId === undefined) {
                     throw new Error('Instance ID is required');
@@ -1332,223 +1402,42 @@ var PusherPushNotifications = (function(exports) {
                     throw new Error('Pusher Beams does not support this browser version (IndexedDB not supported)');
                 }
 
-                if (!window.isSecureContext) {
-                    throw new Error('Pusher Beams relies on Service Workers, which only work in secure contexts. Check that your page is being served from localhost/over HTTPS');
-                }
-
-                if (!('serviceWorker' in navigator)) {
-                    throw new Error('Pusher Beams does not support this browser version (Service Workers not supported)');
-                }
-
-                if (!('PushManager' in window)) {
-                    throw new Error('Pusher Beams does not support this browser version (Web Push not supported)');
-                }
-
-                if (serviceWorkerRegistration) {
-                    var serviceWorkerScope = serviceWorkerRegistration.scope;
-                    var currentURL = window.location.href;
-                    var scopeMatchesCurrentPage = currentURL.startsWith(serviceWorkerScope);
-
-                    if (!scopeMatchesCurrentPage) {
-                        throw new Error("Could not initialize Pusher web push: current page not in serviceWorkerRegistration scope (".concat(serviceWorkerScope, ")"));
-                    }
-                }
-
                 this.instanceId = instanceId;
                 this._deviceId = null;
                 this._token = null;
                 this._userId = null;
-                this._serviceWorkerRegistration = serviceWorkerRegistration;
                 this._deviceStateStore = new DeviceStateStore(instanceId);
                 this._endpoint = endpointOverride; // Internal only
 
-                this._ready = this._init();
+                this._platform = platform;
             }
 
-            createClass(Client, [{
-                key: "_init",
-                value: function() {
-                        var _init2 = asyncToGenerator(
-                            /*#__PURE__*/
-                            regenerator.mark(function _callee() {
-                                return regenerator.wrap(function _callee$(_context) {
-                                    while (1) {
-                                        switch (_context.prev = _context.next) {
-                                            case 0:
-                                                if (!(this._deviceId !== null)) {
-                                                    _context.next = 2;
-                                                    break;
-                                                }
-
-                                                return _context.abrupt("return");
-
-                                            case 2:
-                                                _context.next = 4;
-                                                return this._deviceStateStore.connect();
-
-                                            case 4:
-                                                if (!this._serviceWorkerRegistration) {
-                                                    _context.next = 9;
-                                                    break;
-                                                }
-
-                                                _context.next = 7;
-                                                return window.navigator.serviceWorker.ready;
-
-                                            case 7:
-                                                _context.next = 12;
-                                                break;
-
-                                            case 9:
-                                                _context.next = 11;
-                                                return getServiceWorkerRegistration();
-
-                                            case 11:
-                                                this._serviceWorkerRegistration = _context.sent;
-
-                                            case 12:
-                                                _context.next = 14;
-                                                return this._detectSubscriptionChange();
-
-                                            case 14:
-                                                _context.next = 16;
-                                                return this._deviceStateStore.getDeviceId();
-
-                                            case 16:
-                                                this._deviceId = _context.sent;
-                                                _context.next = 19;
-                                                return this._deviceStateStore.getToken();
-
-                                            case 19:
-                                                this._token = _context.sent;
-                                                _context.next = 22;
-                                                return this._deviceStateStore.getUserId();
-
-                                            case 22:
-                                                this._userId = _context.sent;
-
-                                            case 23:
-                                            case "end":
-                                                return _context.stop();
-                                        }
-                                    }
-                                }, _callee, this);
-                            }));
-
-                        function _init() {
-                            return _init2.apply(this, arguments);
-                        }
-
-                        return _init;
-                    }() // Ensure SDK is loaded and is consistent
-
-            }, {
-                key: "_resolveSDKState",
-                value: function() {
-                    var _resolveSDKState2 = asyncToGenerator(
-                        /*#__PURE__*/
-                        regenerator.mark(function _callee2() {
-                            return regenerator.wrap(function _callee2$(_context2) {
-                                while (1) {
-                                    switch (_context2.prev = _context2.next) {
-                                        case 0:
-                                            _context2.next = 2;
-                                            return this._ready;
-
-                                        case 2:
-                                            _context2.next = 4;
-                                            return this._detectSubscriptionChange();
-
-                                        case 4:
-                                        case "end":
-                                            return _context2.stop();
-                                    }
-                                }
-                            }, _callee2, this);
-                        }));
-
-                    function _resolveSDKState() {
-                        return _resolveSDKState2.apply(this, arguments);
-                    }
-
-                    return _resolveSDKState;
-                }()
-            }, {
-                key: "_detectSubscriptionChange",
-                value: function() {
-                    var _detectSubscriptionChange2 = asyncToGenerator(
-                        /*#__PURE__*/
-                        regenerator.mark(function _callee3() {
-                            var storedToken, actualToken, pushTokenHasChanged;
-                            return regenerator.wrap(function _callee3$(_context3) {
-                                while (1) {
-                                    switch (_context3.prev = _context3.next) {
-                                        case 0:
-                                            _context3.next = 2;
-                                            return this._deviceStateStore.getToken();
-
-                                        case 2:
-                                            storedToken = _context3.sent;
-                                            _context3.next = 5;
-                                            return getWebPushToken(this._serviceWorkerRegistration);
-
-                                        case 5:
-                                            actualToken = _context3.sent;
-                                            pushTokenHasChanged = storedToken !== actualToken;
-
-                                            if (!pushTokenHasChanged) {
-                                                _context3.next = 13;
-                                                break;
-                                            }
-
-                                            _context3.next = 10;
-                                            return this._deviceStateStore.clear();
-
-                                        case 10:
-                                            this._deviceId = null;
-                                            this._token = null;
-                                            this._userId = null;
-
-                                        case 13:
-                                        case "end":
-                                            return _context3.stop();
-                                    }
-                                }
-                            }, _callee3, this);
-                        }));
-
-                    function _detectSubscriptionChange() {
-                        return _detectSubscriptionChange2.apply(this, arguments);
-                    }
-
-                    return _detectSubscriptionChange;
-                }()
-            }, {
+            createClass(BaseClient, [{
                 key: "getDeviceId",
                 value: function() {
                     var _getDeviceId = asyncToGenerator(
                         /*#__PURE__*/
-                        regenerator.mark(function _callee4() {
+                        regenerator.mark(function _callee() {
                             var _this = this;
 
-                            return regenerator.wrap(function _callee4$(_context4) {
+                            return regenerator.wrap(function _callee$(_context) {
                                 while (1) {
-                                    switch (_context4.prev = _context4.next) {
+                                    switch (_context.prev = _context.next) {
                                         case 0:
-                                            _context4.next = 2;
+                                            _context.next = 2;
                                             return this._resolveSDKState();
 
                                         case 2:
-                                            return _context4.abrupt("return", this._ready.then(function() {
+                                            return _context.abrupt("return", this._ready.then(function() {
                                                 return _this._deviceId;
                                             }));
 
                                         case 3:
                                         case "end":
-                                            return _context4.stop();
+                                            return _context.stop();
                                     }
                                 }
-                            }, _callee4, this);
+                            }, _callee, this);
                         }));
 
                     function getDeviceId() {
@@ -1562,27 +1451,27 @@ var PusherPushNotifications = (function(exports) {
                 value: function() {
                     var _getToken = asyncToGenerator(
                         /*#__PURE__*/
-                        regenerator.mark(function _callee5() {
+                        regenerator.mark(function _callee2() {
                             var _this2 = this;
 
-                            return regenerator.wrap(function _callee5$(_context5) {
+                            return regenerator.wrap(function _callee2$(_context2) {
                                 while (1) {
-                                    switch (_context5.prev = _context5.next) {
+                                    switch (_context2.prev = _context2.next) {
                                         case 0:
-                                            _context5.next = 2;
+                                            _context2.next = 2;
                                             return this._resolveSDKState();
 
                                         case 2:
-                                            return _context5.abrupt("return", this._ready.then(function() {
+                                            return _context2.abrupt("return", this._ready.then(function() {
                                                 return _this2._token;
                                             }));
 
                                         case 3:
                                         case "end":
-                                            return _context5.stop();
+                                            return _context2.stop();
                                     }
                                 }
-                            }, _callee5, this);
+                            }, _callee2, this);
                         }));
 
                     function getToken() {
@@ -1596,27 +1485,27 @@ var PusherPushNotifications = (function(exports) {
                 value: function() {
                     var _getUserId = asyncToGenerator(
                         /*#__PURE__*/
-                        regenerator.mark(function _callee6() {
+                        regenerator.mark(function _callee3() {
                             var _this3 = this;
 
-                            return regenerator.wrap(function _callee6$(_context6) {
+                            return regenerator.wrap(function _callee3$(_context3) {
                                 while (1) {
-                                    switch (_context6.prev = _context6.next) {
+                                    switch (_context3.prev = _context3.next) {
                                         case 0:
-                                            _context6.next = 2;
+                                            _context3.next = 2;
                                             return this._resolveSDKState();
 
                                         case 2:
-                                            return _context6.abrupt("return", this._ready.then(function() {
+                                            return _context3.abrupt("return", this._ready.then(function() {
                                                 return _this3._userId;
                                             }));
 
                                         case 3:
                                         case "end":
-                                            return _context6.stop();
+                                            return _context3.stop();
                                     }
                                 }
-                            }, _callee6, this);
+                            }, _callee3, this);
                         }));
 
                     function getUserId() {
@@ -1633,173 +1522,68 @@ var PusherPushNotifications = (function(exports) {
                     }
                 }
             }, {
-                key: "start",
+                key: "_resolveSDKState",
                 value: function() {
-                    var _start = asyncToGenerator(
+                    var _resolveSDKState2 = asyncToGenerator(
                         /*#__PURE__*/
-                        regenerator.mark(function _callee7() {
-                            var _ref, publicKey, token, deviceId;
-
-                            return regenerator.wrap(function _callee7$(_context7) {
+                        regenerator.mark(function _callee4() {
+                            return regenerator.wrap(function _callee4$(_context4) {
                                 while (1) {
-                                    switch (_context7.prev = _context7.next) {
+                                    switch (_context4.prev = _context4.next) {
                                         case 0:
-                                            _context7.next = 2;
-                                            return this._resolveSDKState();
+                                            _context4.next = 2;
+                                            return this._ready;
 
                                         case 2:
-                                            if (isSupportedBrowser()) {
-                                                _context7.next = 4;
-                                                break;
-                                            }
-
-                                            return _context7.abrupt("return", this);
+                                            _context4.next = 4;
+                                            return this._detectSubscriptionChange();
 
                                         case 4:
-                                            if (!(this._deviceId !== null)) {
-                                                _context7.next = 6;
-                                                break;
-                                            }
-
-                                            return _context7.abrupt("return", this);
-
-                                        case 6:
-                                            _context7.next = 8;
-                                            return this._getPublicKey();
-
-                                        case 8:
-                                            _ref = _context7.sent;
-                                            publicKey = _ref.vapidPublicKey;
-                                            _context7.next = 12;
-                                            return this._getPushToken(publicKey);
-
-                                        case 12:
-                                            token = _context7.sent;
-                                            _context7.next = 15;
-                                            return this._registerDevice(token);
-
-                                        case 15:
-                                            deviceId = _context7.sent;
-                                            _context7.next = 18;
-                                            return this._deviceStateStore.setToken(token);
-
-                                        case 18:
-                                            _context7.next = 20;
-                                            return this._deviceStateStore.setDeviceId(deviceId);
-
-                                        case 20:
-                                            _context7.next = 22;
-                                            return this._deviceStateStore.setLastSeenSdkVersion(version);
-
-                                        case 22:
-                                            _context7.next = 24;
-                                            return this._deviceStateStore.setLastSeenUserAgent(window.navigator.userAgent);
-
-                                        case 24:
-                                            this._token = token;
-                                            this._deviceId = deviceId;
-                                            return _context7.abrupt("return", this);
-
-                                        case 27:
                                         case "end":
-                                            return _context7.stop();
+                                            return _context4.stop();
                                     }
                                 }
-                            }, _callee7, this);
+                            }, _callee4, this);
                         }));
 
-                    function start() {
-                        return _start.apply(this, arguments);
+                    function _resolveSDKState() {
+                        return _resolveSDKState2.apply(this, arguments);
                     }
 
-                    return start;
-                }()
-            }, {
-                key: "getRegistrationState",
-                value: function() {
-                    var _getRegistrationState = asyncToGenerator(
-                        /*#__PURE__*/
-                        regenerator.mark(function _callee8() {
-                            return regenerator.wrap(function _callee8$(_context8) {
-                                while (1) {
-                                    switch (_context8.prev = _context8.next) {
-                                        case 0:
-                                            _context8.next = 2;
-                                            return this._resolveSDKState();
-
-                                        case 2:
-                                            if (!(Notification.permission === 'denied')) {
-                                                _context8.next = 4;
-                                                break;
-                                            }
-
-                                            return _context8.abrupt("return", RegistrationState.PERMISSION_DENIED);
-
-                                        case 4:
-                                            if (!(Notification.permission === 'granted' && this._deviceId !== null)) {
-                                                _context8.next = 6;
-                                                break;
-                                            }
-
-                                            return _context8.abrupt("return", RegistrationState.PERMISSION_GRANTED_REGISTERED_WITH_BEAMS);
-
-                                        case 6:
-                                            if (!(Notification.permission === 'granted' && this._deviceId === null)) {
-                                                _context8.next = 8;
-                                                break;
-                                            }
-
-                                            return _context8.abrupt("return", RegistrationState.PERMISSION_GRANTED_NOT_REGISTERED_WITH_BEAMS);
-
-                                        case 8:
-                                            return _context8.abrupt("return", RegistrationState.PERMISSION_PROMPT_REQUIRED);
-
-                                        case 9:
-                                        case "end":
-                                            return _context8.stop();
-                                    }
-                                }
-                            }, _callee8, this);
-                        }));
-
-                    function getRegistrationState() {
-                        return _getRegistrationState.apply(this, arguments);
-                    }
-
-                    return getRegistrationState;
+                    return _resolveSDKState;
                 }()
             }, {
                 key: "addDeviceInterest",
                 value: function() {
                     var _addDeviceInterest = asyncToGenerator(
                         /*#__PURE__*/
-                        regenerator.mark(function _callee9(interest) {
+                        regenerator.mark(function _callee5(interest) {
                             var path, options;
-                            return regenerator.wrap(function _callee9$(_context9) {
+                            return regenerator.wrap(function _callee5$(_context5) {
                                 while (1) {
-                                    switch (_context9.prev = _context9.next) {
+                                    switch (_context5.prev = _context5.next) {
                                         case 0:
-                                            _context9.next = 2;
+                                            _context5.next = 2;
                                             return this._resolveSDKState();
 
                                         case 2:
                                             this._throwIfNotStarted('Could not add Device Interest');
 
                                             validateInterestName(interest);
-                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/web/").concat(this._deviceId, "/interests/").concat(encodeURIComponent(interest));
+                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/").concat(this._platform, "/").concat(this._deviceId, "/interests/").concat(encodeURIComponent(interest));
                                             options = {
                                                 method: 'POST',
                                                 path: path
                                             };
-                                            _context9.next = 8;
+                                            _context5.next = 8;
                                             return doRequest(options);
 
                                         case 8:
                                         case "end":
-                                            return _context9.stop();
+                                            return _context5.stop();
                                     }
                                 }
-                            }, _callee9, this);
+                            }, _callee5, this);
                         }));
 
                     function addDeviceInterest(_x) {
@@ -1813,33 +1597,33 @@ var PusherPushNotifications = (function(exports) {
                 value: function() {
                     var _removeDeviceInterest = asyncToGenerator(
                         /*#__PURE__*/
-                        regenerator.mark(function _callee10(interest) {
+                        regenerator.mark(function _callee6(interest) {
                             var path, options;
-                            return regenerator.wrap(function _callee10$(_context10) {
+                            return regenerator.wrap(function _callee6$(_context6) {
                                 while (1) {
-                                    switch (_context10.prev = _context10.next) {
+                                    switch (_context6.prev = _context6.next) {
                                         case 0:
-                                            _context10.next = 2;
+                                            _context6.next = 2;
                                             return this._resolveSDKState();
 
                                         case 2:
                                             this._throwIfNotStarted('Could not remove Device Interest');
 
                                             validateInterestName(interest);
-                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/web/").concat(this._deviceId, "/interests/").concat(encodeURIComponent(interest));
+                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/").concat(this._platform, "/").concat(this._deviceId, "/interests/").concat(encodeURIComponent(interest));
                                             options = {
                                                 method: 'DELETE',
                                                 path: path
                                             };
-                                            _context10.next = 8;
+                                            _context6.next = 8;
                                             return doRequest(options);
 
                                         case 8:
                                         case "end":
-                                            return _context10.stop();
+                                            return _context6.stop();
                                     }
                                 }
-                            }, _callee10, this);
+                            }, _callee6, this);
                         }));
 
                     function removeDeviceInterest(_x2) {
@@ -1853,45 +1637,45 @@ var PusherPushNotifications = (function(exports) {
                 value: function() {
                     var _getDeviceInterests = asyncToGenerator(
                         /*#__PURE__*/
-                        regenerator.mark(function _callee11() {
+                        regenerator.mark(function _callee7() {
                             var path, options;
-                            return regenerator.wrap(function _callee11$(_context11) {
+                            return regenerator.wrap(function _callee7$(_context7) {
                                 while (1) {
-                                    switch (_context11.prev = _context11.next) {
+                                    switch (_context7.prev = _context7.next) {
                                         case 0:
-                                            _context11.next = 2;
+                                            _context7.next = 2;
                                             return this._resolveSDKState();
 
                                         case 2:
                                             this._throwIfNotStarted('Could not get Device Interests');
 
-                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/web/").concat(this._deviceId, "/interests");
+                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/").concat(this._platform, "/").concat(this._deviceId, "/interests");
                                             options = {
                                                 method: 'GET',
                                                 path: path
                                             };
-                                            _context11.next = 7;
+                                            _context7.next = 7;
                                             return doRequest(options);
 
                                         case 7:
-                                            _context11.t0 = _context11.sent['interests'];
+                                            _context7.t0 = _context7.sent['interests'];
 
-                                            if (_context11.t0) {
-                                                _context11.next = 10;
+                                            if (_context7.t0) {
+                                                _context7.next = 10;
                                                 break;
                                             }
 
-                                            _context11.t0 = [];
+                                            _context7.t0 = [];
 
                                         case 10:
-                                            return _context11.abrupt("return", _context11.t0);
+                                            return _context7.abrupt("return", _context7.t0);
 
                                         case 11:
                                         case "end":
-                                            return _context11.stop();
+                                            return _context7.stop();
                                     }
                                 }
-                            }, _callee11, this);
+                            }, _callee7, this);
                         }));
 
                     function getDeviceInterests() {
@@ -1905,21 +1689,21 @@ var PusherPushNotifications = (function(exports) {
                 value: function() {
                     var _setDeviceInterests = asyncToGenerator(
                         /*#__PURE__*/
-                        regenerator.mark(function _callee12(interests) {
+                        regenerator.mark(function _callee8(interests) {
                             var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, interest, uniqueInterests, path, options;
 
-                            return regenerator.wrap(function _callee12$(_context12) {
+                            return regenerator.wrap(function _callee8$(_context8) {
                                 while (1) {
-                                    switch (_context12.prev = _context12.next) {
+                                    switch (_context8.prev = _context8.next) {
                                         case 0:
-                                            _context12.next = 2;
+                                            _context8.next = 2;
                                             return this._resolveSDKState();
 
                                         case 2:
                                             this._throwIfNotStarted('Could not set Device Interests');
 
                                             if (!(interests === undefined || interests === null)) {
-                                                _context12.next = 5;
+                                                _context8.next = 5;
                                                 break;
                                             }
 
@@ -1927,7 +1711,7 @@ var PusherPushNotifications = (function(exports) {
 
                                         case 5:
                                             if (Array.isArray(interests)) {
-                                                _context12.next = 7;
+                                                _context8.next = 7;
                                                 break;
                                             }
 
@@ -1935,7 +1719,7 @@ var PusherPushNotifications = (function(exports) {
 
                                         case 7:
                                             if (!(interests.length > MAX_INTERESTS_NUM)) {
-                                                _context12.next = 9;
+                                                _context8.next = 9;
                                                 break;
                                             }
 
@@ -1945,49 +1729,49 @@ var PusherPushNotifications = (function(exports) {
                                             _iteratorNormalCompletion = true;
                                             _didIteratorError = false;
                                             _iteratorError = undefined;
-                                            _context12.prev = 12;
+                                            _context8.prev = 12;
 
                                             for (_iterator = interests[Symbol.iterator](); !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                                                 interest = _step.value;
                                                 validateInterestName(interest);
                                             }
 
-                                            _context12.next = 20;
+                                            _context8.next = 20;
                                             break;
 
                                         case 16:
-                                            _context12.prev = 16;
-                                            _context12.t0 = _context12["catch"](12);
+                                            _context8.prev = 16;
+                                            _context8.t0 = _context8["catch"](12);
                                             _didIteratorError = true;
-                                            _iteratorError = _context12.t0;
+                                            _iteratorError = _context8.t0;
 
                                         case 20:
-                                            _context12.prev = 20;
-                                            _context12.prev = 21;
+                                            _context8.prev = 20;
+                                            _context8.prev = 21;
 
                                             if (!_iteratorNormalCompletion && _iterator["return"] != null) {
                                                 _iterator["return"]();
                                             }
 
                                         case 23:
-                                            _context12.prev = 23;
+                                            _context8.prev = 23;
 
                                             if (!_didIteratorError) {
-                                                _context12.next = 26;
+                                                _context8.next = 26;
                                                 break;
                                             }
 
                                             throw _iteratorError;
 
                                         case 26:
-                                            return _context12.finish(23);
+                                            return _context8.finish(23);
 
                                         case 27:
-                                            return _context12.finish(20);
+                                            return _context8.finish(20);
 
                                         case 28:
                                             uniqueInterests = Array.from(new Set(interests));
-                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/web/").concat(this._deviceId, "/interests");
+                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/").concat(this._platform, "/").concat(this._deviceId, "/interests");
                                             options = {
                                                 method: 'PUT',
                                                 path: path,
@@ -1995,15 +1779,15 @@ var PusherPushNotifications = (function(exports) {
                                                     interests: uniqueInterests
                                                 }
                                             };
-                                            _context12.next = 33;
+                                            _context8.next = 33;
                                             return doRequest(options);
 
                                         case 33:
                                         case "end":
-                                            return _context12.stop();
+                                            return _context8.stop();
                                     }
                                 }
-                            }, _callee12, this, [
+                            }, _callee8, this, [
                                 [12, 16, 20, 28],
                                 [21, , 23, 27]
                             ]);
@@ -2020,26 +1804,26 @@ var PusherPushNotifications = (function(exports) {
                 value: function() {
                     var _clearDeviceInterests = asyncToGenerator(
                         /*#__PURE__*/
-                        regenerator.mark(function _callee13() {
-                            return regenerator.wrap(function _callee13$(_context13) {
+                        regenerator.mark(function _callee9() {
+                            return regenerator.wrap(function _callee9$(_context9) {
                                 while (1) {
-                                    switch (_context13.prev = _context13.next) {
+                                    switch (_context9.prev = _context9.next) {
                                         case 0:
-                                            _context13.next = 2;
+                                            _context9.next = 2;
                                             return this._resolveSDKState();
 
                                         case 2:
                                             this._throwIfNotStarted('Could not clear Device Interests');
 
-                                            _context13.next = 5;
+                                            _context9.next = 5;
                                             return this.setDeviceInterests([]);
 
                                         case 5:
                                         case "end":
-                                            return _context13.stop();
+                                            return _context9.stop();
                                     }
                                 }
-                            }, _callee13, this);
+                            }, _callee9, this);
                         }));
 
                     function clearDeviceInterests() {
@@ -2049,40 +1833,181 @@ var PusherPushNotifications = (function(exports) {
                     return clearDeviceInterests;
                 }()
             }, {
+                key: "_deleteDevice",
+                value: function() {
+                        var _deleteDevice2 = asyncToGenerator(
+                            /*#__PURE__*/
+                            regenerator.mark(function _callee10() {
+                                var path, options;
+                                return regenerator.wrap(function _callee10$(_context10) {
+                                    while (1) {
+                                        switch (_context10.prev = _context10.next) {
+                                            case 0:
+                                                path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/").concat(this._platform, "/").concat(encodeURIComponent(this._deviceId));
+                                                options = {
+                                                    method: 'DELETE',
+                                                    path: path
+                                                };
+                                                _context10.next = 4;
+                                                return doRequest(options);
+
+                                            case 4:
+                                            case "end":
+                                                return _context10.stop();
+                                        }
+                                    }
+                                }, _callee10, this);
+                            }));
+
+                        function _deleteDevice() {
+                            return _deleteDevice2.apply(this, arguments);
+                        }
+
+                        return _deleteDevice;
+                    }() // TODO is this ever used?
+
+                /**
+                 * Submit SDK version and browser details (via the user agent) to Pusher Beams.
+                 */
+
+            }, {
+                key: "_updateDeviceMetadata",
+                value: function() {
+                    var _updateDeviceMetadata2 = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee11() {
+                            var userAgent, storedUserAgent, storedSdkVersion, path, metadata, options;
+                            return regenerator.wrap(function _callee11$(_context11) {
+                                while (1) {
+                                    switch (_context11.prev = _context11.next) {
+                                        case 0:
+                                            userAgent = window.navigator.userAgent;
+                                            _context11.next = 3;
+                                            return this._deviceStateStore.getLastSeenUserAgent();
+
+                                        case 3:
+                                            storedUserAgent = _context11.sent;
+                                            _context11.next = 6;
+                                            return this._deviceStateStore.getLastSeenSdkVersion();
+
+                                        case 6:
+                                            storedSdkVersion = _context11.sent;
+
+                                            if (!(userAgent === storedUserAgent && version === storedSdkVersion)) {
+                                                _context11.next = 9;
+                                                break;
+                                            }
+
+                                            return _context11.abrupt("return");
+
+                                        case 9:
+                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/").concat(this._platform, "/").concat(this._deviceId, "/metadata");
+                                            metadata = {
+                                                sdkVersion: version
+                                            };
+                                            options = {
+                                                method: 'PUT',
+                                                path: path,
+                                                body: metadata
+                                            };
+                                            _context11.next = 14;
+                                            return doRequest(options);
+
+                                        case 14:
+                                            _context11.next = 16;
+                                            return this._deviceStateStore.setLastSeenSdkVersion(version);
+
+                                        case 16:
+                                            _context11.next = 18;
+                                            return this._deviceStateStore.setLastSeenUserAgent(userAgent);
+
+                                        case 18:
+                                        case "end":
+                                            return _context11.stop();
+                                    }
+                                }
+                            }, _callee11, this);
+                        }));
+
+                    function _updateDeviceMetadata() {
+                        return _updateDeviceMetadata2.apply(this, arguments);
+                    }
+
+                    return _updateDeviceMetadata;
+                }()
+            }, {
+                key: "_registerDevice",
+                value: function() {
+                    var _registerDevice2 = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee12(device) {
+                            var path, options, response;
+                            return regenerator.wrap(function _callee12$(_context12) {
+                                while (1) {
+                                    switch (_context12.prev = _context12.next) {
+                                        case 0:
+                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/").concat(this._platform);
+                                            options = {
+                                                method: 'POST',
+                                                path: path,
+                                                body: device
+                                            };
+                                            _context12.next = 4;
+                                            return doRequest(options);
+
+                                        case 4:
+                                            response = _context12.sent;
+                                            return _context12.abrupt("return", response.id);
+
+                                        case 6:
+                                        case "end":
+                                            return _context12.stop();
+                                    }
+                                }
+                            }, _callee12, this);
+                        }));
+
+                    function _registerDevice(_x4) {
+                        return _registerDevice2.apply(this, arguments);
+                    }
+
+                    return _registerDevice;
+                }()
+            }, {
                 key: "setUserId",
                 value: function() {
                     var _setUserId = asyncToGenerator(
                         /*#__PURE__*/
-                        regenerator.mark(function _callee14(userId, tokenProvider) {
-                            var error, path, _ref2, beamsAuthToken, options;
+                        regenerator.mark(function _callee13(userId, tokenProvider) {
+                            var error, path, _ref, beamsAuthToken, options;
 
-                            return regenerator.wrap(function _callee14$(_context14) {
+                            return regenerator.wrap(function _callee13$(_context13) {
                                 while (1) {
-                                    switch (_context14.prev = _context14.next) {
+                                    switch (_context13.prev = _context13.next) {
                                         case 0:
-                                            _context14.next = 2;
+                                            _context13.next = 2;
                                             return this._resolveSDKState();
 
                                         case 2:
-                                            if (isSupportedBrowser()) {
-                                                _context14.next = 4;
+                                            if (this._isSupportedBrowser()) {
+                                                _context13.next = 4;
                                                 break;
                                             }
 
-                                            return _context14.abrupt("return");
+                                            return _context13.abrupt("return");
 
                                         case 4:
                                             if (!(this._deviceId === null)) {
-                                                _context14.next = 7;
+                                                _context13.next = 7;
                                                 break;
                                             }
 
                                             error = new Error('.start must be called before .setUserId');
-                                            return _context14.abrupt("return", Promise.reject(error));
+                                            return _context13.abrupt("return", Promise.reject(error));
 
                                         case 7:
                                             if (!(typeof userId !== 'string')) {
-                                                _context14.next = 9;
+                                                _context13.next = 9;
                                                 break;
                                             }
 
@@ -2090,7 +2015,7 @@ var PusherPushNotifications = (function(exports) {
 
                                         case 9:
                                             if (!(userId === '')) {
-                                                _context14.next = 11;
+                                                _context13.next = 11;
                                                 break;
                                             }
 
@@ -2098,20 +2023,20 @@ var PusherPushNotifications = (function(exports) {
 
                                         case 11:
                                             if (!(this._userId !== null && this._userId !== userId)) {
-                                                _context14.next = 13;
+                                                _context13.next = 13;
                                                 break;
                                             }
 
                                             throw new Error('Changing the `userId` is not allowed.');
 
                                         case 13:
-                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/web/").concat(this._deviceId, "/user");
-                                            _context14.next = 16;
+                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/").concat(this._platform, "/").concat(this._deviceId, "/user");
+                                            _context13.next = 16;
                                             return tokenProvider.fetchToken(userId);
 
                                         case 16:
-                                            _ref2 = _context14.sent;
-                                            beamsAuthToken = _ref2.token;
+                                            _ref = _context13.sent;
+                                            beamsAuthToken = _ref.token;
                                             options = {
                                                 method: 'PUT',
                                                 path: path,
@@ -2119,78 +2044,97 @@ var PusherPushNotifications = (function(exports) {
                                                     Authorization: "Bearer ".concat(beamsAuthToken)
                                                 }
                                             };
-                                            _context14.next = 21;
+                                            _context13.next = 21;
                                             return doRequest(options);
 
                                         case 21:
                                             this._userId = userId;
-                                            return _context14.abrupt("return", this._deviceStateStore.setUserId(userId));
+                                            return _context13.abrupt("return", this._deviceStateStore.setUserId(userId));
 
                                         case 23:
                                         case "end":
-                                            return _context14.stop();
+                                            return _context13.stop();
                                     }
                                 }
-                            }, _callee14, this);
+                            }, _callee13, this);
                         }));
 
-                    function setUserId(_x4, _x5) {
+                    function setUserId(_x5, _x6) {
                         return _setUserId.apply(this, arguments);
                     }
 
                     return setUserId;
                 }()
             }, {
-                key: "stop",
+                key: "start",
                 value: function() {
-                    var _stop = asyncToGenerator(
+                    var _start = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee14() {
+                            return regenerator.wrap(function _callee14$(_context14) {
+                                while (1) {
+                                    switch (_context14.prev = _context14.next) {
+                                        case 0:
+                                            throwNotImplementedError('start');
+
+                                        case 1:
+                                        case "end":
+                                            return _context14.stop();
+                                    }
+                                }
+                            }, _callee14);
+                        }));
+
+                    function start() {
+                        return _start.apply(this, arguments);
+                    }
+
+                    return start;
+                }()
+            }, {
+                key: "getRegistrationState",
+                value: function() {
+                    var _getRegistrationState = asyncToGenerator(
                         /*#__PURE__*/
                         regenerator.mark(function _callee15() {
                             return regenerator.wrap(function _callee15$(_context15) {
                                 while (1) {
                                     switch (_context15.prev = _context15.next) {
                                         case 0:
-                                            _context15.next = 2;
-                                            return this._resolveSDKState();
+                                            throwNotImplementedError('getRegistrationState');
 
-                                        case 2:
-                                            if (isSupportedBrowser()) {
-                                                _context15.next = 4;
-                                                break;
-                                            }
-
-                                            return _context15.abrupt("return");
-
-                                        case 4:
-                                            if (!(this._deviceId === null)) {
-                                                _context15.next = 6;
-                                                break;
-                                            }
-
-                                            return _context15.abrupt("return");
-
-                                        case 6:
-                                            _context15.next = 8;
-                                            return this._deleteDevice();
-
-                                        case 8:
-                                            _context15.next = 10;
-                                            return this._deviceStateStore.clear();
-
-                                        case 10:
-                                            this._clearPushToken()["catch"](function() {}); // Not awaiting this, best effort.
-
-
-                                            this._deviceId = null;
-                                            this._token = null;
-                                            this._userId = null;
-
-                                        case 14:
+                                        case 1:
                                         case "end":
                                             return _context15.stop();
                                     }
                                 }
-                            }, _callee15, this);
+                            }, _callee15);
+                        }));
+
+                    function getRegistrationState() {
+                        return _getRegistrationState.apply(this, arguments);
+                    }
+
+                    return getRegistrationState;
+                }()
+            }, {
+                key: "stop",
+                value: function() {
+                    var _stop = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee16() {
+                            return regenerator.wrap(function _callee16$(_context16) {
+                                while (1) {
+                                    switch (_context16.prev = _context16.next) {
+                                        case 0:
+                                            throwNotImplementedError('stop');
+
+                                        case 1:
+                                        case "end":
+                                            return _context16.stop();
+                                    }
+                                }
+                            }, _callee16);
                         }));
 
                     function stop() {
@@ -2204,32 +2148,19 @@ var PusherPushNotifications = (function(exports) {
                 value: function() {
                     var _clearAllState = asyncToGenerator(
                         /*#__PURE__*/
-                        regenerator.mark(function _callee16() {
-                            return regenerator.wrap(function _callee16$(_context16) {
+                        regenerator.mark(function _callee17() {
+                            return regenerator.wrap(function _callee17$(_context17) {
                                 while (1) {
-                                    switch (_context16.prev = _context16.next) {
+                                    switch (_context17.prev = _context17.next) {
                                         case 0:
-                                            if (isSupportedBrowser()) {
-                                                _context16.next = 2;
-                                                break;
-                                            }
+                                            throwNotImplementedError('clearAllState');
 
-                                            return _context16.abrupt("return");
-
-                                        case 2:
-                                            _context16.next = 4;
-                                            return this.stop();
-
-                                        case 4:
-                                            _context16.next = 6;
-                                            return this.start();
-
-                                        case 6:
+                                        case 1:
                                         case "end":
-                                            return _context16.stop();
+                                            return _context17.stop();
                                     }
                                 }
-                            }, _callee16, this);
+                            }, _callee17);
                         }));
 
                     function clearAllState() {
@@ -2237,261 +2168,6 @@ var PusherPushNotifications = (function(exports) {
                     }
 
                     return clearAllState;
-                }()
-            }, {
-                key: "_getPublicKey",
-                value: function() {
-                    var _getPublicKey2 = asyncToGenerator(
-                        /*#__PURE__*/
-                        regenerator.mark(function _callee17() {
-                            var path, options;
-                            return regenerator.wrap(function _callee17$(_context17) {
-                                while (1) {
-                                    switch (_context17.prev = _context17.next) {
-                                        case 0:
-                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/web-vapid-public-key");
-                                            options = {
-                                                method: 'GET',
-                                                path: path
-                                            };
-                                            return _context17.abrupt("return", doRequest(options));
-
-                                        case 3:
-                                        case "end":
-                                            return _context17.stop();
-                                    }
-                                }
-                            }, _callee17, this);
-                        }));
-
-                    function _getPublicKey() {
-                        return _getPublicKey2.apply(this, arguments);
-                    }
-
-                    return _getPublicKey;
-                }()
-            }, {
-                key: "_getPushToken",
-                value: function() {
-                    var _getPushToken2 = asyncToGenerator(
-                        /*#__PURE__*/
-                        regenerator.mark(function _callee18(publicKey) {
-                            var sub;
-                            return regenerator.wrap(function _callee18$(_context18) {
-                                while (1) {
-                                    switch (_context18.prev = _context18.next) {
-                                        case 0:
-                                            _context18.prev = 0;
-                                            _context18.next = 3;
-                                            return this._clearPushToken();
-
-                                        case 3:
-                                            _context18.next = 5;
-                                            return this._serviceWorkerRegistration.pushManager.subscribe({
-                                                userVisibleOnly: true,
-                                                applicationServerKey: urlBase64ToUInt8Array(publicKey)
-                                            });
-
-                                        case 5:
-                                            sub = _context18.sent;
-                                            return _context18.abrupt("return", btoa(JSON.stringify(sub)));
-
-                                        case 9:
-                                            _context18.prev = 9;
-                                            _context18.t0 = _context18["catch"](0);
-                                            return _context18.abrupt("return", Promise.reject(_context18.t0));
-
-                                        case 12:
-                                        case "end":
-                                            return _context18.stop();
-                                    }
-                                }
-                            }, _callee18, this, [
-                                [0, 9]
-                            ]);
-                        }));
-
-                    function _getPushToken(_x6) {
-                        return _getPushToken2.apply(this, arguments);
-                    }
-
-                    return _getPushToken;
-                }()
-            }, {
-                key: "_clearPushToken",
-                value: function() {
-                    var _clearPushToken2 = asyncToGenerator(
-                        /*#__PURE__*/
-                        regenerator.mark(function _callee19() {
-                            return regenerator.wrap(function _callee19$(_context19) {
-                                while (1) {
-                                    switch (_context19.prev = _context19.next) {
-                                        case 0:
-                                            return _context19.abrupt("return", navigator.serviceWorker.ready.then(function(reg) {
-                                                return reg.pushManager.getSubscription();
-                                            }).then(function(sub) {
-                                                if (sub) sub.unsubscribe();
-                                            }));
-
-                                        case 1:
-                                        case "end":
-                                            return _context19.stop();
-                                    }
-                                }
-                            }, _callee19);
-                        }));
-
-                    function _clearPushToken() {
-                        return _clearPushToken2.apply(this, arguments);
-                    }
-
-                    return _clearPushToken;
-                }()
-            }, {
-                key: "_registerDevice",
-                value: function() {
-                    var _registerDevice2 = asyncToGenerator(
-                        /*#__PURE__*/
-                        regenerator.mark(function _callee20(token) {
-                            var path, device, options, response;
-                            return regenerator.wrap(function _callee20$(_context20) {
-                                while (1) {
-                                    switch (_context20.prev = _context20.next) {
-                                        case 0:
-                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/web");
-                                            device = {
-                                                token: token,
-                                                metadata: {
-                                                    sdkVersion: version
-                                                }
-                                            };
-                                            options = {
-                                                method: 'POST',
-                                                path: path,
-                                                body: device
-                                            };
-                                            _context20.next = 5;
-                                            return doRequest(options);
-
-                                        case 5:
-                                            response = _context20.sent;
-                                            return _context20.abrupt("return", response.id);
-
-                                        case 7:
-                                        case "end":
-                                            return _context20.stop();
-                                    }
-                                }
-                            }, _callee20, this);
-                        }));
-
-                    function _registerDevice(_x7) {
-                        return _registerDevice2.apply(this, arguments);
-                    }
-
-                    return _registerDevice;
-                }()
-            }, {
-                key: "_deleteDevice",
-                value: function() {
-                        var _deleteDevice2 = asyncToGenerator(
-                            /*#__PURE__*/
-                            regenerator.mark(function _callee21() {
-                                var path, options;
-                                return regenerator.wrap(function _callee21$(_context21) {
-                                    while (1) {
-                                        switch (_context21.prev = _context21.next) {
-                                            case 0:
-                                                path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/web/").concat(encodeURIComponent(this._deviceId));
-                                                options = {
-                                                    method: 'DELETE',
-                                                    path: path
-                                                };
-                                                _context21.next = 4;
-                                                return doRequest(options);
-
-                                            case 4:
-                                            case "end":
-                                                return _context21.stop();
-                                        }
-                                    }
-                                }, _callee21, this);
-                            }));
-
-                        function _deleteDevice() {
-                            return _deleteDevice2.apply(this, arguments);
-                        }
-
-                        return _deleteDevice;
-                    }()
-                    /**
-                     * Submit SDK version and browser details (via the user agent) to Pusher Beams.
-                     */
-
-            }, {
-                key: "_updateDeviceMetadata",
-                value: function() {
-                    var _updateDeviceMetadata2 = asyncToGenerator(
-                        /*#__PURE__*/
-                        regenerator.mark(function _callee22() {
-                            var userAgent, storedUserAgent, storedSdkVersion, path, metadata, options;
-                            return regenerator.wrap(function _callee22$(_context22) {
-                                while (1) {
-                                    switch (_context22.prev = _context22.next) {
-                                        case 0:
-                                            userAgent = window.navigator.userAgent;
-                                            _context22.next = 3;
-                                            return this._deviceStateStore.getLastSeenUserAgent();
-
-                                        case 3:
-                                            storedUserAgent = _context22.sent;
-                                            _context22.next = 6;
-                                            return this._deviceStateStore.getLastSeenSdkVersion();
-
-                                        case 6:
-                                            storedSdkVersion = _context22.sent;
-
-                                            if (!(userAgent === storedUserAgent && version === storedSdkVersion)) {
-                                                _context22.next = 9;
-                                                break;
-                                            }
-
-                                            return _context22.abrupt("return");
-
-                                        case 9:
-                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/devices/web/").concat(this._deviceId, "/metadata");
-                                            metadata = {
-                                                sdkVersion: version
-                                            };
-                                            options = {
-                                                method: 'PUT',
-                                                path: path,
-                                                body: metadata
-                                            };
-                                            _context22.next = 14;
-                                            return doRequest(options);
-
-                                        case 14:
-                                            _context22.next = 16;
-                                            return this._deviceStateStore.setLastSeenSdkVersion(version);
-
-                                        case 16:
-                                            _context22.next = 18;
-                                            return this._deviceStateStore.setLastSeenUserAgent(userAgent);
-
-                                        case 18:
-                                        case "end":
-                                            return _context22.stop();
-                                    }
-                                }
-                            }, _callee22, this);
-                        }));
-
-                    function _updateDeviceMetadata() {
-                        return _updateDeviceMetadata2.apply(this, arguments);
-                    }
-
-                    return _updateDeviceMetadata;
                 }()
             }, {
                 key: "_baseURL",
@@ -2504,10 +2180,14 @@ var PusherPushNotifications = (function(exports) {
                 }
             }]);
 
-            return Client;
+            return BaseClient;
         }();
 
-    var validateInterestName = function validateInterestName(interest) {
+    function throwNotImplementedError(method) {
+        throw new Error("".concat(method, " not implemented on abstract BaseClient.") + 'Instantiate either WebPushClient or SafariClient');
+    }
+
+    function validateInterestName(interest) {
         if (interest === undefined || interest === null) {
             throw new Error('Interest name is required');
         }
@@ -2523,7 +2203,582 @@ var PusherPushNotifications = (function(exports) {
         if (interest.length > MAX_INTEREST_LENGTH) {
             throw new Error("Interest is longer than the maximum of ".concat(MAX_INTEREST_LENGTH, " chars"));
         }
-    };
+    }
+
+    var SERVICE_WORKER_URL = "/tgv/service-worker.js?pusherBeamsWebSDKVersion=".concat(version);
+    var platform = 'web';
+    var WebPushClient =
+        /*#__PURE__*/
+        function(_BaseClient) {
+            inherits(WebPushClient, _BaseClient);
+
+            function WebPushClient(config) {
+                var _this;
+
+                classCallCheck(this, WebPushClient);
+
+                _this = possibleConstructorReturn(this, getPrototypeOf(WebPushClient).call(this, config, platform));
+
+                if (!window.isSecureContext) {
+                    throw new Error('Pusher Beams relies on Service Workers, which only work in secure contexts. Check that your page is being served from localhost/over HTTPS');
+                }
+
+                if (!('serviceWorker' in navigator)) {
+                    throw new Error('Pusher Beams does not support this browser version (Service Workers not supported)');
+                }
+
+                if (!('PushManager' in window)) {
+                    throw new Error('Pusher Beams does not support this browser version (Web Push not supported)');
+                }
+
+                var _config$serviceWorker = config.serviceWorkerRegistration,
+                    serviceWorkerRegistration = _config$serviceWorker === void 0 ? null : _config$serviceWorker;
+
+                if (serviceWorkerRegistration) {
+                    var serviceWorkerScope = serviceWorkerRegistration.scope;
+                    var currentURL = window.location.href;
+                    var scopeMatchesCurrentPage = currentURL.startsWith(serviceWorkerScope);
+
+                    if (!scopeMatchesCurrentPage) {
+                        throw new Error("Could not initialize Pusher web push: current page not in serviceWorkerRegistration scope (".concat(serviceWorkerScope, ")"));
+                    }
+                }
+
+                _this._serviceWorkerRegistration = serviceWorkerRegistration;
+                _this._ready = _this._init();
+                return _this;
+            }
+
+            createClass(WebPushClient, [{
+                key: "_init",
+                value: function() {
+                    var _init2 = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee() {
+                            return regenerator.wrap(function _callee$(_context) {
+                                while (1) {
+                                    switch (_context.prev = _context.next) {
+                                        case 0:
+                                            if (!(this._deviceId !== null)) {
+                                                _context.next = 2;
+                                                break;
+                                            }
+
+                                            return _context.abrupt("return");
+
+                                        case 2:
+                                            _context.next = 4;
+                                            return this._deviceStateStore.connect();
+
+                                        case 4:
+                                            if (!this._serviceWorkerRegistration) {
+                                                _context.next = 9;
+                                                break;
+                                            }
+
+                                            _context.next = 7;
+                                            return window.navigator.serviceWorker.ready;
+
+                                        case 7:
+                                            _context.next = 12;
+                                            break;
+
+                                        case 9:
+                                            _context.next = 11;
+                                            return getServiceWorkerRegistration();
+
+                                        case 11:
+                                            this._serviceWorkerRegistration = _context.sent;
+
+                                        case 12:
+                                            _context.next = 14;
+                                            return this._detectSubscriptionChange();
+
+                                        case 14:
+                                            _context.next = 16;
+                                            return this._deviceStateStore.getDeviceId();
+
+                                        case 16:
+                                            this._deviceId = _context.sent;
+                                            _context.next = 19;
+                                            return this._deviceStateStore.getToken();
+
+                                        case 19:
+                                            this._token = _context.sent;
+                                            _context.next = 22;
+                                            return this._deviceStateStore.getUserId();
+
+                                        case 22:
+                                            this._userId = _context.sent;
+
+                                        case 23:
+                                        case "end":
+                                            return _context.stop();
+                                    }
+                                }
+                            }, _callee, this);
+                        }));
+
+                    function _init() {
+                        return _init2.apply(this, arguments);
+                    }
+
+                    return _init;
+                }()
+            }, {
+                key: "_detectSubscriptionChange",
+                value: function() {
+                    var _detectSubscriptionChange2 = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee2() {
+                            var storedToken, actualToken, pushTokenHasChanged;
+                            return regenerator.wrap(function _callee2$(_context2) {
+                                while (1) {
+                                    switch (_context2.prev = _context2.next) {
+                                        case 0:
+                                            _context2.next = 2;
+                                            return this._deviceStateStore.getToken();
+
+                                        case 2:
+                                            storedToken = _context2.sent;
+                                            _context2.next = 5;
+                                            return getWebPushToken(this._serviceWorkerRegistration);
+
+                                        case 5:
+                                            actualToken = _context2.sent;
+                                            pushTokenHasChanged = storedToken !== actualToken;
+
+                                            if (!pushTokenHasChanged) {
+                                                _context2.next = 13;
+                                                break;
+                                            }
+
+                                            _context2.next = 10;
+                                            return this._deviceStateStore.clear();
+
+                                        case 10:
+                                            this._deviceId = null;
+                                            this._token = null;
+                                            this._userId = null;
+
+                                        case 13:
+                                        case "end":
+                                            return _context2.stop();
+                                    }
+                                }
+                            }, _callee2, this);
+                        }));
+
+                    function _detectSubscriptionChange() {
+                        return _detectSubscriptionChange2.apply(this, arguments);
+                    }
+
+                    return _detectSubscriptionChange;
+                }()
+            }, {
+                key: "start",
+                value: function() {
+                    var _start = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee3() {
+                            var _ref, publicKey, token, deviceId;
+
+                            return regenerator.wrap(function _callee3$(_context3) {
+                                while (1) {
+                                    switch (_context3.prev = _context3.next) {
+                                        case 0:
+                                            _context3.next = 2;
+                                            return this._resolveSDKState();
+
+                                        case 2:
+                                            if (this._isSupportedBrowser()) {
+                                                _context3.next = 4;
+                                                break;
+                                            }
+
+                                            return _context3.abrupt("return", this);
+
+                                        case 4:
+                                            if (!(this._deviceId !== null)) {
+                                                _context3.next = 6;
+                                                break;
+                                            }
+
+                                            return _context3.abrupt("return", this);
+
+                                        case 6:
+                                            _context3.next = 8;
+                                            return this._getPublicKey();
+
+                                        case 8:
+                                            _ref = _context3.sent;
+                                            publicKey = _ref.vapidPublicKey;
+                                            _context3.next = 12;
+                                            return this._getPushToken(publicKey);
+
+                                        case 12:
+                                            token = _context3.sent;
+                                            _context3.next = 15;
+                                            return this._registerDevice(token);
+
+                                        case 15:
+                                            deviceId = _context3.sent;
+                                            _context3.next = 18;
+                                            return this._deviceStateStore.setToken(token);
+
+                                        case 18:
+                                            _context3.next = 20;
+                                            return this._deviceStateStore.setDeviceId(deviceId);
+
+                                        case 20:
+                                            _context3.next = 22;
+                                            return this._deviceStateStore.setLastSeenSdkVersion(version);
+
+                                        case 22:
+                                            _context3.next = 24;
+                                            return this._deviceStateStore.setLastSeenUserAgent(window.navigator.userAgent);
+
+                                        case 24:
+                                            this._token = token;
+                                            this._deviceId = deviceId;
+                                            return _context3.abrupt("return", this);
+
+                                        case 27:
+                                        case "end":
+                                            return _context3.stop();
+                                    }
+                                }
+                            }, _callee3, this);
+                        }));
+
+                    function start() {
+                        return _start.apply(this, arguments);
+                    }
+
+                    return start;
+                }()
+            }, {
+                key: "getRegistrationState",
+                value: function() {
+                    var _getRegistrationState = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee4() {
+                            return regenerator.wrap(function _callee4$(_context4) {
+                                while (1) {
+                                    switch (_context4.prev = _context4.next) {
+                                        case 0:
+                                            _context4.next = 2;
+                                            return this._resolveSDKState();
+
+                                        case 2:
+                                            if (!(Notification.permission === 'denied')) {
+                                                _context4.next = 4;
+                                                break;
+                                            }
+
+                                            return _context4.abrupt("return", RegistrationState.PERMISSION_DENIED);
+
+                                        case 4:
+                                            if (!(Notification.permission === 'granted' && this._deviceId !== null)) {
+                                                _context4.next = 6;
+                                                break;
+                                            }
+
+                                            return _context4.abrupt("return", RegistrationState.PERMISSION_GRANTED_REGISTERED_WITH_BEAMS);
+
+                                        case 6:
+                                            if (!(Notification.permission === 'granted' && this._deviceId === null)) {
+                                                _context4.next = 8;
+                                                break;
+                                            }
+
+                                            return _context4.abrupt("return", RegistrationState.PERMISSION_GRANTED_NOT_REGISTERED_WITH_BEAMS);
+
+                                        case 8:
+                                            return _context4.abrupt("return", RegistrationState.PERMISSION_PROMPT_REQUIRED);
+
+                                        case 9:
+                                        case "end":
+                                            return _context4.stop();
+                                    }
+                                }
+                            }, _callee4, this);
+                        }));
+
+                    function getRegistrationState() {
+                        return _getRegistrationState.apply(this, arguments);
+                    }
+
+                    return getRegistrationState;
+                }()
+            }, {
+                key: "stop",
+                value: function() {
+                    var _stop = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee5() {
+                            return regenerator.wrap(function _callee5$(_context5) {
+                                while (1) {
+                                    switch (_context5.prev = _context5.next) {
+                                        case 0:
+                                            _context5.next = 2;
+                                            return this._resolveSDKState();
+
+                                        case 2:
+                                            if (this._isSupportedBrowser()) {
+                                                _context5.next = 4;
+                                                break;
+                                            }
+
+                                            return _context5.abrupt("return");
+
+                                        case 4:
+                                            if (!(this._deviceId === null)) {
+                                                _context5.next = 6;
+                                                break;
+                                            }
+
+                                            return _context5.abrupt("return");
+
+                                        case 6:
+                                            _context5.next = 8;
+                                            return this._deleteDevice();
+
+                                        case 8:
+                                            _context5.next = 10;
+                                            return this._deviceStateStore.clear();
+
+                                        case 10:
+                                            this._clearPushToken()["catch"](function() {}); // Not awaiting this, best effort.
+
+
+                                            this._deviceId = null;
+                                            this._token = null;
+                                            this._userId = null;
+
+                                        case 14:
+                                        case "end":
+                                            return _context5.stop();
+                                    }
+                                }
+                            }, _callee5, this);
+                        }));
+
+                    function stop() {
+                        return _stop.apply(this, arguments);
+                    }
+
+                    return stop;
+                }()
+            }, {
+                key: "clearAllState",
+                value: function() {
+                    var _clearAllState = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee6() {
+                            return regenerator.wrap(function _callee6$(_context6) {
+                                while (1) {
+                                    switch (_context6.prev = _context6.next) {
+                                        case 0:
+                                            if (this._isSupportedBrowser()) {
+                                                _context6.next = 2;
+                                                break;
+                                            }
+
+                                            return _context6.abrupt("return");
+
+                                        case 2:
+                                            _context6.next = 4;
+                                            return this.stop();
+
+                                        case 4:
+                                            _context6.next = 6;
+                                            return this.start();
+
+                                        case 6:
+                                        case "end":
+                                            return _context6.stop();
+                                    }
+                                }
+                            }, _callee6, this);
+                        }));
+
+                    function clearAllState() {
+                        return _clearAllState.apply(this, arguments);
+                    }
+
+                    return clearAllState;
+                }()
+            }, {
+                key: "_getPublicKey",
+                value: function() {
+                    var _getPublicKey2 = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee7() {
+                            var path, options;
+                            return regenerator.wrap(function _callee7$(_context7) {
+                                while (1) {
+                                    switch (_context7.prev = _context7.next) {
+                                        case 0:
+                                            path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/web-vapid-public-key");
+                                            options = {
+                                                method: 'GET',
+                                                path: path
+                                            };
+                                            return _context7.abrupt("return", doRequest(options));
+
+                                        case 3:
+                                        case "end":
+                                            return _context7.stop();
+                                    }
+                                }
+                            }, _callee7, this);
+                        }));
+
+                    function _getPublicKey() {
+                        return _getPublicKey2.apply(this, arguments);
+                    }
+
+                    return _getPublicKey;
+                }()
+            }, {
+                key: "_getPushToken",
+                value: function() {
+                    var _getPushToken2 = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee8(publicKey) {
+                            var sub;
+                            return regenerator.wrap(function _callee8$(_context8) {
+                                while (1) {
+                                    switch (_context8.prev = _context8.next) {
+                                        case 0:
+                                            _context8.prev = 0;
+                                            _context8.next = 3;
+                                            return this._clearPushToken();
+
+                                        case 3:
+                                            _context8.next = 5;
+                                            return this._serviceWorkerRegistration.pushManager.subscribe({
+                                                userVisibleOnly: true,
+                                                applicationServerKey: urlBase64ToUInt8Array(publicKey)
+                                            });
+
+                                        case 5:
+                                            sub = _context8.sent;
+                                            return _context8.abrupt("return", btoa(JSON.stringify(sub)));
+
+                                        case 9:
+                                            _context8.prev = 9;
+                                            _context8.t0 = _context8["catch"](0);
+                                            return _context8.abrupt("return", Promise.reject(_context8.t0));
+
+                                        case 12:
+                                        case "end":
+                                            return _context8.stop();
+                                    }
+                                }
+                            }, _callee8, this, [
+                                [0, 9]
+                            ]);
+                        }));
+
+                    function _getPushToken(_x) {
+                        return _getPushToken2.apply(this, arguments);
+                    }
+
+                    return _getPushToken;
+                }()
+            }, {
+                key: "_clearPushToken",
+                value: function() {
+                    var _clearPushToken2 = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee9() {
+                            return regenerator.wrap(function _callee9$(_context9) {
+                                while (1) {
+                                    switch (_context9.prev = _context9.next) {
+                                        case 0:
+                                            return _context9.abrupt("return", navigator.serviceWorker.ready.then(function(reg) {
+                                                return reg.pushManager.getSubscription();
+                                            }).then(function(sub) {
+                                                if (sub) sub.unsubscribe();
+                                            }));
+
+                                        case 1:
+                                        case "end":
+                                            return _context9.stop();
+                                    }
+                                }
+                            }, _callee9);
+                        }));
+
+                    function _clearPushToken() {
+                        return _clearPushToken2.apply(this, arguments);
+                    }
+
+                    return _clearPushToken;
+                }()
+            }, {
+                key: "_registerDevice",
+                value: function() {
+                        var _registerDevice2 = asyncToGenerator(
+                            /*#__PURE__*/
+                            regenerator.mark(function _callee10(token) {
+                                return regenerator.wrap(function _callee10$(_context10) {
+                                    while (1) {
+                                        switch (_context10.prev = _context10.next) {
+                                            case 0:
+                                                _context10.next = 2;
+                                                return get(getPrototypeOf(WebPushClient.prototype), "_registerDevice", this).call(this, {
+                                                    token: token,
+                                                    metadata: {
+                                                        sdkVersion: version
+                                                    }
+                                                });
+
+                                            case 2:
+                                                return _context10.abrupt("return", _context10.sent);
+
+                                            case 3:
+                                            case "end":
+                                                return _context10.stop();
+                                        }
+                                    }
+                                }, _callee10, this);
+                            }));
+
+                        function _registerDevice(_x2) {
+                            return _registerDevice2.apply(this, arguments);
+                        }
+
+                        return _registerDevice;
+                    }()
+                    /**
+                     * Modified from https://stackoverflow.com/questions/4565112
+                     */
+
+            }, {
+                key: "_isSupportedBrowser",
+                value: function _isSupportedBrowser() {
+                    var winNav = window.navigator;
+                    var vendorName = winNav.vendor;
+                    var isChromium = window.chrome !== null && typeof window.chrome !== 'undefined';
+                    var isOpera = winNav.userAgent.indexOf('OPR') > -1;
+                    var isEdge = winNav.userAgent.indexOf('Edg') > -1;
+                    var isFirefox = winNav.userAgent.indexOf('Firefox') > -1;
+                    var isChrome = isChromium && vendorName === 'Google Inc.' && !isEdge && !isOpera;
+                    var isSupported = isChrome || isOpera || isFirefox || isEdge;
+
+                    if (!isSupported) {
+                        console.warn('Pusher Web Push Notifications supports Chrome, Firefox, Edge and Opera.');
+                    }
+
+                    return isSupported;
+                }
+            }]);
+
+            return WebPushClient;
+        }(BaseClient);
 
     function getServiceWorkerRegistration() {
         return _getServiceWorkerRegistration.apply(this, arguments);
@@ -2532,22 +2787,22 @@ var PusherPushNotifications = (function(exports) {
     function _getServiceWorkerRegistration() {
         _getServiceWorkerRegistration = asyncToGenerator(
             /*#__PURE__*/
-            regenerator.mark(function _callee23() {
-                var _ref3, swStatusCode;
+            regenerator.mark(function _callee11() {
+                var _ref2, swStatusCode;
 
-                return regenerator.wrap(function _callee23$(_context23) {
+                return regenerator.wrap(function _callee11$(_context11) {
                     while (1) {
-                        switch (_context23.prev = _context23.next) {
+                        switch (_context11.prev = _context11.next) {
                             case 0:
-                                _context23.next = 2;
+                                _context11.next = 2;
                                 return fetch(SERVICE_WORKER_URL);
 
                             case 2:
-                                _ref3 = _context23.sent;
-                                swStatusCode = _ref3.status;
+                                _ref2 = _context11.sent;
+                                swStatusCode = _ref2.status;
 
                                 if (!(swStatusCode !== 200)) {
-                                    _context23.next = 6;
+                                    _context11.next = 6;
                                     break;
                                 }
 
@@ -2560,14 +2815,14 @@ var PusherPushNotifications = (function(exports) {
                                     // accidentally set `Cache-Control` to something other than `max-age=0`
                                     updateViaCache: 'none'
                                 });
-                                return _context23.abrupt("return", window.navigator.serviceWorker.ready);
+                                return _context11.abrupt("return", window.navigator.serviceWorker.ready);
 
                             case 8:
                             case "end":
-                                return _context23.stop();
+                                return _context11.stop();
                         }
                     }
-                }, _callee23);
+                }, _callee11);
             }));
         return _getServiceWorkerRegistration.apply(this, arguments);
     }
@@ -2590,26 +2845,538 @@ var PusherPushNotifications = (function(exports) {
             return _char.charCodeAt(0);
         }));
     }
-    /**
-     * Modified from https://stackoverflow.com/questions/4565112
-     */
 
+    var platform$1 = 'safari';
+    var SafariClient =
+        /*#__PURE__*/
+        function(_BaseClient) {
+            inherits(SafariClient, _BaseClient);
 
-    function isSupportedBrowser() {
-        var winNav = window.navigator;
-        var vendorName = winNav.vendor;
-        var isChromium = window.chrome !== null && typeof window.chrome !== 'undefined';
-        var isOpera = winNav.userAgent.indexOf('OPR') > -1;
-        var isEdge = winNav.userAgent.indexOf('Edg') > -1;
-        var isFirefox = winNav.userAgent.indexOf('Firefox') > -1;
-        var isChrome = isChromium && vendorName === 'Google Inc.' && !isEdge && !isOpera;
-        var isSupported = isChrome || isOpera || isFirefox || isEdge;
+            function SafariClient(config) {
+                var _this;
 
-        if (!isSupported) {
-            console.warn('Pusher Web Push Notifications supports Chrome, Firefox, Edge and Opera.');
+                classCallCheck(this, SafariClient);
+
+                _this = possibleConstructorReturn(this, getPrototypeOf(SafariClient).call(this, config, platform$1));
+
+                if (!_this._isSupportedBrowser()) {
+                    throw new Error('Pusher Beams does not support this Safari version (Safari Push Notifications not supported)');
+                }
+
+                _this._ready = _this._init();
+                return _this;
+            }
+
+            createClass(SafariClient, [{
+                key: "_init",
+                value: function() {
+                    var _init2 = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee() {
+                            var _ref, websitePushId;
+
+                            return regenerator.wrap(function _callee$(_context) {
+                                while (1) {
+                                    switch (_context.prev = _context.next) {
+                                        case 0:
+                                            _context.next = 2;
+                                            return this._fetchWebsitePushId();
+
+                                        case 2:
+                                            _ref = _context.sent;
+                                            websitePushId = _ref.websitePushId;
+                                            this._websitePushId = websitePushId;
+                                            this._serviceUrl = "".concat(this._baseURL, "/safari_api/v1/instances/").concat(encodeURIComponent(this.instanceId));
+
+                                            if (!(this._deviceId !== null)) {
+                                                _context.next = 8;
+                                                break;
+                                            }
+
+                                            return _context.abrupt("return");
+
+                                        case 8:
+                                            _context.next = 10;
+                                            return this._deviceStateStore.connect();
+
+                                        case 10:
+                                            _context.next = 12;
+                                            return this._detectSubscriptionChange();
+
+                                        case 12:
+                                            _context.next = 14;
+                                            return this._deviceStateStore.getDeviceId(this._websitePushId);
+
+                                        case 14:
+                                            this._deviceId = _context.sent;
+                                            _context.next = 17;
+                                            return this._deviceStateStore.getToken();
+
+                                        case 17:
+                                            this._token = _context.sent;
+                                            _context.next = 20;
+                                            return this._deviceStateStore.getUserId();
+
+                                        case 20:
+                                            this._userId = _context.sent;
+
+                                        case 21:
+                                        case "end":
+                                            return _context.stop();
+                                    }
+                                }
+                            }, _callee, this);
+                        }));
+
+                    function _init() {
+                        return _init2.apply(this, arguments);
+                    }
+
+                    return _init;
+                }()
+            }, {
+                key: "_detectSubscriptionChange",
+                value: function() {
+                    var _detectSubscriptionChange2 = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee2() {
+                            var storedToken, _getCurrentPermission, actualToken, tokenHasChanged;
+
+                            return regenerator.wrap(function _callee2$(_context2) {
+                                while (1) {
+                                    switch (_context2.prev = _context2.next) {
+                                        case 0:
+                                            _context2.next = 2;
+                                            return this._deviceStateStore.getToken();
+
+                                        case 2:
+                                            storedToken = _context2.sent;
+                                            _getCurrentPermission = getCurrentPermission(this._websitePushId), actualToken = _getCurrentPermission.deviceToken;
+                                            tokenHasChanged = storedToken !== actualToken;
+
+                                            if (!tokenHasChanged) {
+                                                _context2.next = 11;
+                                                break;
+                                            }
+
+                                            _context2.next = 8;
+                                            return this._deviceStateStore.clear();
+
+                                        case 8:
+                                            this._deviceId = null;
+                                            this._token = null;
+                                            this._userId = null;
+
+                                        case 11:
+                                        case "end":
+                                            return _context2.stop();
+                                    }
+                                }
+                            }, _callee2, this);
+                        }));
+
+                    function _detectSubscriptionChange() {
+                        return _detectSubscriptionChange2.apply(this, arguments);
+                    }
+
+                    return _detectSubscriptionChange;
+                }()
+            }, {
+                key: "_requestPermission",
+                value: function _requestPermission() {
+                    var _this2 = this;
+
+                    // Check to see whether we've already asked for permission, if we have we
+                    // can't ask again
+                    var _getCurrentPermission2 = getCurrentPermission(this._websitePushId),
+                        deviceToken = _getCurrentPermission2.deviceToken,
+                        permission = _getCurrentPermission2.permission;
+
+                    if (permission !== 'default') {
+                        return Promise.resolve({
+                            deviceToken: deviceToken,
+                            permission: permission
+                        });
+                    }
+
+                    return new Promise(function(resolve, reject) {
+                        try {
+                            window.safari.pushNotification.requestPermission(_this2._serviceUrl, _this2._websitePushId, {}, resolve);
+                        } catch (e) {
+                            reject(e);
+                        }
+                    });
+                }
+            }, {
+                key: "start",
+                value: function() {
+                    var _start = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee3() {
+                            var _ref2, deviceToken, permission, deviceId;
+
+                            return regenerator.wrap(function _callee3$(_context3) {
+                                while (1) {
+                                    switch (_context3.prev = _context3.next) {
+                                        case 0:
+                                            _context3.next = 2;
+                                            return this._ready;
+
+                                        case 2:
+                                            if (!(this._deviceId !== null)) {
+                                                _context3.next = 4;
+                                                break;
+                                            }
+
+                                            return _context3.abrupt("return", this);
+
+                                        case 4:
+                                            _context3.next = 6;
+                                            return this._requestPermission();
+
+                                        case 6:
+                                            _ref2 = _context3.sent;
+                                            deviceToken = _ref2.deviceToken;
+                                            permission = _ref2.permission;
+
+                                            if (!(permission == 'granted')) {
+                                                _context3.next = 25;
+                                                break;
+                                            }
+
+                                            _context3.next = 12;
+                                            return this._registerDevice(deviceToken, this._websitePushId);
+
+                                        case 12:
+                                            deviceId = _context3.sent;
+                                            _context3.next = 15;
+                                            return this._deviceStateStore.setToken(deviceToken);
+
+                                        case 15:
+                                            _context3.next = 17;
+                                            return this._deviceStateStore.setDeviceId(deviceId);
+
+                                        case 17:
+                                            _context3.next = 19;
+                                            return this._deviceStateStore.setLastSeenSdkVersion(version);
+
+                                        case 19:
+                                            _context3.next = 21;
+                                            return this._deviceStateStore.setLastSeenUserAgent(window.navigator.userAgent);
+
+                                        case 21:
+                                            this._token = deviceToken;
+                                            this._deviceId = deviceId;
+                                            _context3.next = 27;
+                                            break;
+
+                                        case 25:
+                                            if (!(permission === 'denied')) {
+                                                _context3.next = 27;
+                                                break;
+                                            }
+
+                                            throw new Error('Registration failed - permission denied');
+
+                                        case 27:
+                                            return _context3.abrupt("return", this);
+
+                                        case 28:
+                                        case "end":
+                                            return _context3.stop();
+                                    }
+                                }
+                            }, _callee3, this);
+                        }));
+
+                    function start() {
+                        return _start.apply(this, arguments);
+                    }
+
+                    return start;
+                }()
+            }, {
+                key: "getRegistrationState",
+                value: function() {
+                    var _getRegistrationState = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee4() {
+                            var _getCurrentPermission3, permission;
+
+                            return regenerator.wrap(function _callee4$(_context4) {
+                                while (1) {
+                                    switch (_context4.prev = _context4.next) {
+                                        case 0:
+                                            _context4.next = 2;
+                                            return this._resolveSDKState();
+
+                                        case 2:
+                                            _getCurrentPermission3 = getCurrentPermission(this._websitePushId), permission = _getCurrentPermission3.permission;
+
+                                            if (!(permission === 'denied')) {
+                                                _context4.next = 5;
+                                                break;
+                                            }
+
+                                            return _context4.abrupt("return", RegistrationState.PERMISSION_DENIED);
+
+                                        case 5:
+                                            if (!(permission === 'granted' && this._deviceId !== null)) {
+                                                _context4.next = 7;
+                                                break;
+                                            }
+
+                                            return _context4.abrupt("return", RegistrationState.PERMISSION_GRANTED_REGISTERED_WITH_BEAMS);
+
+                                        case 7:
+                                            if (!(permission === 'granted' && this._deviceId === null)) {
+                                                _context4.next = 9;
+                                                break;
+                                            }
+
+                                            return _context4.abrupt("return", RegistrationState.PERMISSION_GRANTED_NOT_REGISTERED_WITH_BEAMS);
+
+                                        case 9:
+                                            return _context4.abrupt("return", RegistrationState.PERMISSION_PROMPT_REQUIRED);
+
+                                        case 10:
+                                        case "end":
+                                            return _context4.stop();
+                                    }
+                                }
+                            }, _callee4, this);
+                        }));
+
+                    function getRegistrationState() {
+                        return _getRegistrationState.apply(this, arguments);
+                    }
+
+                    return getRegistrationState;
+                }()
+            }, {
+                key: "clearAllState",
+                value: function() {
+                    var _clearAllState = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee5() {
+                            return regenerator.wrap(function _callee5$(_context5) {
+                                while (1) {
+                                    switch (_context5.prev = _context5.next) {
+                                        case 0:
+                                            if (this._isSupportedBrowser()) {
+                                                _context5.next = 2;
+                                                break;
+                                            }
+
+                                            return _context5.abrupt("return");
+
+                                        case 2:
+                                            _context5.next = 4;
+                                            return this._deleteDevice();
+
+                                        case 4:
+                                            _context5.next = 6;
+                                            return this._deviceStateStore.clear();
+
+                                        case 6:
+                                            this._deviceId = null;
+                                            this._token = null;
+                                            this._userId = null;
+
+                                        case 9:
+                                        case "end":
+                                            return _context5.stop();
+                                    }
+                                }
+                            }, _callee5, this);
+                        }));
+
+                    function clearAllState() {
+                        return _clearAllState.apply(this, arguments);
+                    }
+
+                    return clearAllState;
+                }()
+            }, {
+                key: "stop",
+                value: function() {
+                    var _stop = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee6() {
+                            return regenerator.wrap(function _callee6$(_context6) {
+                                while (1) {
+                                    switch (_context6.prev = _context6.next) {
+                                        case 0:
+                                            _context6.next = 2;
+                                            return this._resolveSDKState();
+
+                                        case 2:
+                                            if (this._isSupportedBrowser()) {
+                                                _context6.next = 4;
+                                                break;
+                                            }
+
+                                            return _context6.abrupt("return");
+
+                                        case 4:
+                                            if (!(this._deviceId === null)) {
+                                                _context6.next = 6;
+                                                break;
+                                            }
+
+                                            return _context6.abrupt("return");
+
+                                        case 6:
+                                            _context6.next = 8;
+                                            return this.clearAllState();
+
+                                        case 8:
+                                        case "end":
+                                            return _context6.stop();
+                                    }
+                                }
+                            }, _callee6, this);
+                        }));
+
+                    function stop() {
+                        return _stop.apply(this, arguments);
+                    }
+
+                    return stop;
+                }()
+            }, {
+                key: "_registerDevice",
+                value: function() {
+                    var _registerDevice2 = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee7(token, websitePushId) {
+                            return regenerator.wrap(function _callee7$(_context7) {
+                                while (1) {
+                                    switch (_context7.prev = _context7.next) {
+                                        case 0:
+                                            _context7.next = 2;
+                                            return get(getPrototypeOf(SafariClient.prototype), "_registerDevice", this).call(this, {
+                                                token: token,
+                                                websitePushId: websitePushId,
+                                                metadata: {
+                                                    sdkVersion: version
+                                                }
+                                            });
+
+                                        case 2:
+                                            return _context7.abrupt("return", _context7.sent);
+
+                                        case 3:
+                                        case "end":
+                                            return _context7.stop();
+                                    }
+                                }
+                            }, _callee7, this);
+                        }));
+
+                    function _registerDevice(_x, _x2) {
+                        return _registerDevice2.apply(this, arguments);
+                    }
+
+                    return _registerDevice;
+                }()
+            }, {
+                key: "_fetchWebsitePushId",
+                value: function _fetchWebsitePushId() {
+                    var path = "".concat(this._baseURL, "/device_api/v1/instances/").concat(encodeURIComponent(this.instanceId), "/safari-website-push-id");
+                    var options = {
+                        method: 'GET',
+                        path: path
+                    };
+                    return doRequest(options);
+                }
+            }, {
+                key: "_isSupportedBrowser",
+                value: function _isSupportedBrowser() {
+                    return 'safari' in window && 'pushNotification' in window.safari;
+                }
+            }]);
+
+            return SafariClient;
+        }(BaseClient);
+
+    function getCurrentPermission(websitePushId) {
+        return window.safari.pushNotification.permission(websitePushId);
+    }
+
+    var TokenProvider =
+        /*#__PURE__*/
+        function() {
+            function TokenProvider() {
+                var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+                    url = _ref.url,
+                    queryParams = _ref.queryParams,
+                    headers = _ref.headers,
+                    credentials = _ref.credentials;
+
+                classCallCheck(this, TokenProvider);
+
+                this.url = url;
+                this.queryParams = queryParams;
+                this.headers = headers;
+                this.credentials = credentials;
+            }
+
+            createClass(TokenProvider, [{
+                key: "fetchToken",
+                value: function() {
+                    var _fetchToken = asyncToGenerator(
+                        /*#__PURE__*/
+                        regenerator.mark(function _callee(userId) {
+                            var queryParams, encodedParams, options, response;
+                            return regenerator.wrap(function _callee$(_context) {
+                                while (1) {
+                                    switch (_context.prev = _context.next) {
+                                        case 0:
+                                            queryParams = objectSpread({
+                                                user_id: userId
+                                            }, this.queryParams);
+                                            encodedParams = Object.entries(queryParams).map(function(kv) {
+                                                return kv.map(encodeURIComponent).join('=');
+                                            }).join('&');
+                                            options = {
+                                                method: 'GET',
+                                                path: "".concat(this.url, "?").concat(encodedParams),
+                                                headers: this.headers,
+                                                credentials: this.credentials
+                                            };
+                                            _context.next = 5;
+                                            return doRequest(options);
+
+                                        case 5:
+                                            response = _context.sent;
+                                            return _context.abrupt("return", response);
+
+                                        case 7:
+                                        case "end":
+                                            return _context.stop();
+                                    }
+                                }
+                            }, _callee, this);
+                        }));
+
+                    function fetchToken(_x) {
+                        return _fetchToken.apply(this, arguments);
+                    }
+
+                    return fetchToken;
+                }()
+            }]);
+
+            return TokenProvider;
+        }();
+
+    function Client(config) {
+        if ('safari' in window) {
+            return new SafariClient(config);
         }
 
-        return isSupported;
+        return new WebPushClient(config);
     }
 
     exports.Client = Client;

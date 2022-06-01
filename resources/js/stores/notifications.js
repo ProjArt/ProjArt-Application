@@ -2,6 +2,10 @@ import { ref, computed } from "vue";
 import { API } from "./api";
 import useFetch from "../composables/useFetch";
 
+const beamsClient = new PusherPushNotifications.Client({
+    instanceId: process.env.MIX_PUSHER_APP_ID,
+});
+
 const _notifications = ref([]);
 
 export const notification = computed({
@@ -24,9 +28,22 @@ export async function sendNotification({ title, message, to }) {
 }
 
 export async function registerToChannelNotification(channel) {
-    const beamsClient = new PusherPushNotifications.Client({
-        instanceId: process.env.MIX_PUSHER_APP_ID,
-    });
+    return; // desactivated for testing purpose
+    var isSafari = window.safari !== undefined;
 
-    beamsClient.start().then(() => beamsClient.addDeviceInterest(channel));
+    var ua = window.navigator.userAgent;
+    var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+    var webkit = !!ua.match(/WebKit/i);
+    var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+    if (isSafari || iOSSafari) {
+        return;
+    }
+    await Notification.requestPermission(async function (permission) {
+        if (permission === "granted") {
+            await beamsClient.start();
+            await beamsClient.addDeviceInterest(channel);
+            const deviceInterests = await beamsClient.getDeviceInterests();
+            console.log("Device registered to channels: " + deviceInterests);
+        }
+    });
 }
