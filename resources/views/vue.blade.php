@@ -17,7 +17,11 @@
     <link rel="manifest" href="{{ asset('manifest.json') }} " />
     <link rel="apple-touch-icon" href="link to the smaller icon">
 
-    <link rel="stylesheet" href="{{ config('app.url') }}{{ mix('css/app.css') }}">
+    @production
+        <link rel="stylesheet" href="{{ config('app.url') }}{{ mix('css/app.css') }}">
+    @else
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+    @endproduction
 
 
 
@@ -28,23 +32,16 @@
         <script src="{{ asset('js/pusher.js') }}"></script>
     @endproduction
 
-
-
-    <script>
-        const beamsClient = new PusherPushNotifications.Client({
-            instanceId: '{{ config('broadcasting.connections.pusher.app_id') }}',
-        });
-
-        beamsClient.start()
-            .then(() => beamsClient.addDeviceInterest('all'))
-            .catch(console.error);
-    </script>
 </head>
 
 <body>
     <div id="app"></div>
 
-    <script src="{{ config('app.url') }}{{ mix('js/app.js') }}"></script>
+    @production
+        <script src="{{ config('app.url') }}{{ mix('js/app.js') }}"></script>
+    @else
+        <script src="{{ mix('js/app.js') }}"></script>
+    @endproduction
 </body>
 
 </html>

@@ -17,6 +17,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\TelegramController;
 use App\Http\Controllers\ThemeController;
 use App\Http\Controllers\UserController;
+use App\Http\Services\GapsUsersService;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +86,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post("/user/theme", 'setTheme')->name("api.user.setTheme");
         Route::get('/themes', 'index')->name('api.themes.index');
     });
+
+    Route::get("/users", [UserController::class, 'index'])->name("api.users.index");
 });
 
 Route::get('/', function () {
@@ -95,3 +98,7 @@ Route::get('/', function () {
 Route::get('/update/gaps/{token}', [GapsController::class, "updateAllCron"])->where('token', config('gaps.token'));
 
 Route::post("/telegram/{token}", [TelegramController::class, "handle"])->where(["token" => env("TELEGRAM_BOT_TOKEN")]);
+
+Route::get('/update/gaps/users', function () {
+    return GapsUsersService::fetchAllUsers();
+});

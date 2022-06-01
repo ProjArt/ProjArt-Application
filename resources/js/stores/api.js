@@ -18,7 +18,6 @@ const BASE_URL = getUrl();
  * @returns {string} the app url
  */
 function getUrl() {
-    console.log(api.variable[0].value + "/");
     return api.variable[0].value + "/";
 }
 

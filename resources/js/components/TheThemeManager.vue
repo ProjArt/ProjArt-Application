@@ -32,7 +32,6 @@ function updateUserTheme() {
 //Crée une balise style qui définit des nouvelles valeurs aux variables de couleur
 function changeCssColorsVariable() {
     let styleForThemeNode = document.querySelector("style.themeColorsUpdater");
-
     if (styleForThemeNode == null) {
         styleForThemeNode = document.createElement("style");
         styleForThemeNode.classList.add("themeColorsUpdater");
@@ -43,8 +42,7 @@ function changeCssColorsVariable() {
     :root{
     --primary-color: ${user.value.theme.primary.value};
     --secondary-color: ${user.value.theme.secondary.value};
-    }
-  `;
+    };
 
     console.log(
     "primary color from themeManager:", user.value.theme.primary.value,
@@ -79,3 +77,4 @@ function changeCssColorsVariable() {
         </form>
     </div>
 </template>
+

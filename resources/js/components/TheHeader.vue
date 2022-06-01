@@ -2,7 +2,11 @@
 import useLogout from "../composables/useLogout";
 import { routesNames } from "../router/routes";
 import { isAuthenticated } from "../stores/auth";
-import { notification, sendNotification } from "../stores/notifications";
+import {
+  notification,
+  sendNotification,
+  askPermissionNotification,
+} from "../stores/notifications";
 import { user } from "../stores/auth";
 
 console.log(isAuthenticated.value);
