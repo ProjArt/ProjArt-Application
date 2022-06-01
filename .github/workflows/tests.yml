@@ -84,7 +84,7 @@ jobs:
             
   confirmation:
         runs-on: ubuntu-latest
-        needs: vue-tests
+        needs: laravel-tests
         steps:
         - name: send telegram message on push
           uses: appleboy/telegram-action@master
