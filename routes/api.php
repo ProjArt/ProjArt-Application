@@ -86,6 +86,8 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post("/user/theme", 'setTheme')->name("api.user.setTheme");
         Route::get('/themes', 'index')->name('api.themes.index');
     });
+
+    Route::get("/users", [UserController::class, 'index'])->name("api.users.index");
 });
 
 Route::get('/', function () {
