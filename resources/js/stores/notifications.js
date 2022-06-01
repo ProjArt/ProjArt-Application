@@ -25,7 +25,7 @@ export async function sendNotification({ title, message, to }) {
 
 export async function registerToChannelNotification(channel) {
 
-    Notification.requestPermission(function(permission) {
+    await Notification.requestPermission(async function(permission) {
         if (permission === "granted") {
             const beamsClient = new PusherPushNotifications.Client({
                 instanceId: process.env.MIX_PUSHER_APP_ID,
