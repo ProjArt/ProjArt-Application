@@ -28,17 +28,6 @@
         <script src="{{ asset('js/pusher.js') }}"></script>
     @endproduction
 
-
-
-    <script>
-        const beamsClient = new PusherPushNotifications.Client({
-            instanceId: '{{ config('broadcasting.connections.pusher.app_id') }}',
-        });
-
-        beamsClient.start()
-            .then(() => beamsClient.addDeviceInterest('all'))
-            .catch(console.error);
-    </script>
 </head>
 
 <body>
