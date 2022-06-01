@@ -61,8 +61,13 @@ class User extends Authenticatable
     ];
 
     protected $with = [
-        'theme'
+        'theme',
     ];
+
+    protected $appends = [
+        'gaps_user'
+    ];
+
 
     protected function password(): Attribute
     {
@@ -147,5 +152,10 @@ class User extends Authenticatable
     public function events()
     {
         return $this->hasManyDeep(Event::class, ['calendar_user', Calendar::class]);
+    }
+
+    public function getGapsUserAttribute()
+    {
+        return GapsUser::whereUsername($this->username)->first();
     }
 }

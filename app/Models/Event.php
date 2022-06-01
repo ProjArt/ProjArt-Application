@@ -28,6 +28,10 @@ class Event extends Model
         'updated_at',
     ];
 
+    protected $appends = [
+        "course"
+    ];
+
     public function calendar()
     {
         return $this->belongsTo(Calendar::class);
@@ -36,5 +40,10 @@ class Event extends Model
     public function scopeNexts($query, $items)
     {
         return $query->where('end', '>=', now()->format('Y-m-d H:i:s'))->orderBy('start', 'asc')->take($items);
+    }
+
+    public function getCourseAttribute()
+    {
+        return Course::where('code', "LIKE", "%" . explode("-", $this->title)[0] . "%")->first();
     }
 }

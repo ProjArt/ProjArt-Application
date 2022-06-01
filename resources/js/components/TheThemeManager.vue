@@ -4,7 +4,7 @@ import { API } from "../stores/api.js";
 import useFetch from "../composables/useFetch";
 import { ref, computed, watchEffect } from "vue";
 
-console.log("user:", user.value);
+//console.log("user:", user.value);
 
 async function getThemes() {
     const response = await useFetch({
@@ -33,6 +33,7 @@ function updateUserTheme() {
 function changeCssColorsVariable() {
     let styleForThemeNode = document.querySelector("style.themeColorsUpdater");
 
+
     if (styleForThemeNode == null) {
         styleForThemeNode = document.createElement("style");
         styleForThemeNode.classList.add("themeColorsUpdater");
@@ -51,8 +52,6 @@ function changeCssColorsVariable() {
     "secondary color from themeManager:", user.value.theme.secondary.value,
     "selected themeID", selectedThemeId.value
     )
-    console.log(styleForThemeNode);
-
 }
 </script>
 
