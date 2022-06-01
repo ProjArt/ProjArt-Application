@@ -22,5 +22,10 @@ class ThemeSeeder extends Seeder
                 'primary_color_id' => 1,
                 'secondary_color_id' => 2,
             ]);
+            \App\Models\Theme::factory()
+            ->create([
+                'primary_color_id' => 2,
+                'secondary_color_id' => 1,
+            ]);
     }
 }
