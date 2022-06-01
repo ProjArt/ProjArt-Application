@@ -27,5 +27,7 @@ export async function registerToChannelNotification(channel) {
     const beamsClient = new PusherPushNotifications.Client({
         instanceId: process.env.MIX_PUSHER_APP_ID,
     });
-    await beamsClient.addDeviceInterest(channel);
+
+    beamsClient.start().then(() => beamsClient.addDeviceInterest(channel));
 }
+

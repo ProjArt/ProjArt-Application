@@ -28,8 +28,6 @@
     <script src="{{ asset('js/pusher.js') }}"></script>
     @endproduction
 
-
-
 </head>
 
 <body>
