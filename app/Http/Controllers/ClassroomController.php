@@ -8,12 +8,17 @@ use App\Http\Requests\UpdateClassRoomRequest;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
 
+/**
+ * 
+ * @group Classes
+ * 
+ */
 class ClassroomController extends Controller
 {
     /**
      * Get classrooms
      * 
-     * Display a listing of the resource.
+     * Affiche la liste des classes
      *
      * @return \Illuminate\Http\Response
      */
@@ -23,6 +28,13 @@ class ClassroomController extends Controller
         return httpSuccess('Classroom', compact('classrooms'));
     }
 
+    /**
+     * 
+     * Set user class
+     * 
+     * Pour définir la classe d'un utilisateur
+     * 
+     */
     public function setUserClassroom(SetUserClassRequest $request)
     {
         $user = $request->user();

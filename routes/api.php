@@ -37,6 +37,8 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::get("/classrooms", [ClassroomController::class, 'index'])->name("api.classrooms.index");
 
+Route::get("/getRole/{username}", [UserController::class, 'getRole'])->name("api.getRole");
+
 //Auth routes
 Route::middleware('auth:sanctum')->group(function () {
 
