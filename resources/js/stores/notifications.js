@@ -30,4 +30,3 @@ export async function registerToChannelNotification(channel) {
 
     beamsClient.start().then(() => beamsClient.addDeviceInterest(channel));
 }
-

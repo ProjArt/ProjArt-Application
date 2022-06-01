@@ -1,9 +1,4 @@
 <script setup>
-import { computed } from 'vue';
-import { sideMenuWidth } from '../stores/sideMenu.js';
-const bodyWidth = computed(() => {
-    return 'calc(100vw - ' + sideMenuWidth.value;
-});
 
 </script>
 
