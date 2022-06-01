@@ -4,6 +4,7 @@ import { routesNames } from "../router/routes";
 import { isAuthenticated } from "../stores/auth";
 import {
   sendNotification,
+  //askPermissionNotification,
 } from "../stores/notifications";
 import { user } from "../stores/auth";
 

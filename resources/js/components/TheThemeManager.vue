@@ -11,23 +11,23 @@ async function getThemes() {
         url: API.getThemes.path(),
         method: API.getThemes.method,
     });
-    console.log(response.data);
+    // console.log(response.data);
     return response.data;
 }
 
 const themesList = await getThemes();
 console.log(themesList);
-const selectedThemeId = ref(1);
+const selectedThemeId = ref(2);
 
 function updateUserTheme() {
     let themeId = selectedThemeId.value;
-    console.log(themeId);
+    //console.log(themeId);
     let newTheme = themesList.filter((theme) => theme.id == themeId)[0];
     //console.log(newTheme);
     user.value.theme = newTheme;
-    console.log("newUserTheme", user.value.theme);
+    //console.log("newUserTheme", user.value.theme);
     changeCssColorsVariable();
-    
+
 }
 
 //Crée une balise style qui définit des nouvelles valeurs aux variables de couleur
@@ -43,13 +43,15 @@ function changeCssColorsVariable() {
     :root{
     --primary-color: ${user.value.theme.primary.value};
     --secondary-color: ${user.value.theme.secondary.value};
-    };`
+    }
+    `
+    
 
-    console.log(
+    /*console.log(
     "primary color from themeManager:", user.value.theme.primary.value,
     "secondary color from themeManager:", user.value.theme.secondary.value,
     "selected themeID", selectedThemeId.value
-    )
+    )*/
 }
 </script>
 
@@ -61,18 +63,36 @@ function changeCssColorsVariable() {
                 name="theme"
                 value="1"
                 v-model="selectedThemeId"
-                data-colors="red-white"
+                data-colors="black-white"
             />
-            <label for="red-white">Red-white</label><br />
+            <label for="red-white">Black-white</label><br />
             <input
                 type="radio"
                 name="theme"
                 value="2"
+                checked
+                selected="true"
                 v-model="selectedThemeId"
                 data-colors="black-white"
             />
-            <label for="black-white">Black-white</label><br />
-            <input type="submit" value="sélectionner ce thème" />
+            <label for="black-white">White-black</label><br />
+            <input class="submit" type="submit" value="sélectionner ce thème" />
         </form>
     </div>
 </template>
+
+<style>
+
+
+    .themeSlectionForm {
+    background-color:var(--primary-color);
+    color:var(--secondary-color);
+    border-color: var(--secondary-color);
+    }
+    
+   div#app{
+      background-color:var(--primary-color);
+      color:var(--secondary-color);
+      border-color: var(--secondary-color);
+    }
+</style>
