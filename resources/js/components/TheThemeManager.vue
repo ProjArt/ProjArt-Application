@@ -16,7 +16,7 @@ async function getThemes() {
 }
 
 const themesList = await getThemes();
-console.log(themesList);
+//console.log(themesList);
 const selectedThemeId = ref(2);
 
 function updateUserTheme() {

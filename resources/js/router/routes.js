@@ -7,6 +7,8 @@ import menus from "./MenusRoute.vue";
 import notFound from "./404Route.vue";
 import settings from "./SettingsRoute.vue";
 import infos from "./InfosRoute.vue";
+import classRoom from "./StudentsAndTeachersListRoute.vue";
+
 
 const routes = [
     { name: "home", path: "/", component: home },
@@ -16,7 +18,8 @@ const routes = [
     { name: "menus", path: "/menus", component: menus },
     { name: "notFound", path: '/:pathMatch(.*)*', component: notFound },
     { name: "settings", path: "/settings", component: settings },
-    { name: "infos", path: "/infos", component: infos }
+    { name: "infos", path: "/infos", component: infos },
+    { name: "studentsAndTeachersList", path: "/class-list", component: classRoom},
 ];
 
 export const routesNames = (() => {
