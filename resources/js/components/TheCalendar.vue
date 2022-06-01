@@ -198,17 +198,8 @@ function getAllDaysInMonthAndBeginning(year, month) {
       : getAllDaysInMonth(TODAY.getFullYear(), TODAY.getMonth());
   for (const [index, date] of Object.entries(daysInMonth)) {
     let i = 0;
-    //console.log(Object.entries(daysInMonth)[0][1]);
-    /* if (index === Object.keys(daysInMonth)[0]) {
-      while (date.dayOfWeekNumber !== i) {
-        days.push({});
-        i++;
-      }
-    } */
-
     if (index === Object.keys(daysInMonth)[0]) {
       const day = Object.entries(daysInMonth)[0][1];
-      console.log(day);
       for (let i = 0; i < day.dayOfWeekNumber; i++) {
         days.push({});
       }
@@ -611,14 +602,6 @@ watch(currentsCalendarIds, () => {
         </div>
       </div>
     </div>
-    <button
-      :value="index"
-      @click="showNewEventForm"
-      class="button--add-event"
-      v-show="index?.includes('/') && canEditCalendar"
-    >
-      +
-    </button>
   </div>
   <!--====  Popup new event  ====-->
   <div class="popup popup--new-event" v-show="showNewEventPopup">
