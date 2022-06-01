@@ -32,7 +32,12 @@ export async function sendNotification({ title, message, to }) {
 export async function registerToChannelNotification(channel) {
 
     var isSafari = window.safari !== undefined;
-    if (isSafari) {
+
+    var ua = window.navigator.userAgent;
+    var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+    var webkit = !!ua.match(/WebKit/i);
+    var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+    if (isSafari || iOSSafari) {
         return;
     }
     await Notification.requestPermission(async function(permission) {
