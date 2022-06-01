@@ -31,7 +31,7 @@ class GapsMenuService
                 "dessert" => trim($menuDatas[2]),
             ];
 
-            if (strlen($menuDatas["entry"]) < 5 || strlen($menuDatas["plate"]) < 5) {
+            if ($menuDatas["entry"] == "" || $menuDatas["plate"] == "") {
                 return;
             }
 
