@@ -5,7 +5,7 @@ import { isAuthenticated } from "../stores/auth";
 import {
   notification,
   sendNotification,
-  askPermissionNotification,
+  //askPermissionNotification,
 } from "../stores/notifications";
 import { user } from "../stores/auth";
 

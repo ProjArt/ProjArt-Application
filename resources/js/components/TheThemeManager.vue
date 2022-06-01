@@ -43,7 +43,8 @@ function changeCssColorsVariable() {
     :root{
     --primary-color: ${user.value.theme.primary.value};
     --secondary-color: ${user.value.theme.secondary.value};
-    };`
+    }
+    `
     
 
     console.log(
@@ -62,18 +63,32 @@ function changeCssColorsVariable() {
                 name="theme"
                 value="1"
                 v-model="selectedThemeId"
-                data-colors="red-white"
+                data-colors="black-white"
             />
-            <label for="red-white">Red-white</label><br />
+            <label for="red-white">Black-white</label><br />
             <input
                 type="radio"
                 name="theme"
                 value="2"
+                checked
                 v-model="selectedThemeId"
                 data-colors="black-white"
             />
-            <label for="black-white">Black-white</label><br />
-            <input type="submit" value="sélectionner ce thème" />
+            <label for="black-white">White-black</label><br />
+            <input class="submit" type="submit" value="sélectionner ce thème" />
         </form>
     </div>
 </template>
+
+<style>
+
+    :global(root){
+      --primary-color: red;
+    }
+
+
+   /*  test 
+   div#app{
+      background-color:var(--primary-color);
+    } */
+</style>
