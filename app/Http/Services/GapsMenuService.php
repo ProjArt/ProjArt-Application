@@ -22,19 +22,22 @@ class GapsMenuService
                 'max_results' => 10,
             ]);
 
-        collect($response->json()["data"])->reject(function ($tweet) {
-            return strlen($tweet["text"])  < 5;
-        })->map(function ($tweet) {
-            $menu = Menu::firstOrCreate([
-                'id' => $tweet["id"],
-            ]);
-
+        collect($response->json()["data"])->map(function ($tweet) {
             $menuDatas = explode("*", $tweet["text"]);
+
             $menuDatas = [
                 "entry" => trim($menuDatas[0]),
                 "plate" => trim($menuDatas[1]),
                 "dessert" => trim($menuDatas[2]),
             ];
+
+            if (strlen($menuDatas["entry"]) < 5 || strlen($menuDatas["plate"]) < 5) {
+                return;
+            }
+
+            $menu = Menu::firstOrCreate([
+                'id' => $tweet["id"],
+            ]);
 
             return $menu->meals()->firstOrCreate($menuDatas, [
                 'menu_id' => $tweet["id"],
