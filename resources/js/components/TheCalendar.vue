@@ -6,16 +6,15 @@ import { API } from "../stores/api";
 // Constants
 // ======================================
 
-const TODAY = new Date()
-const DAY_LABELS = ['LU', 'MA', 'ME', 'JE', 'VE', 'SA', 'DI'];
-const DAY_LABELS_ORDERS = ['DI', 'MA', 'ME', 'JE', 'VE', 'SA', 'LU'];
-const DATE_OPTION = ['fr-ch', { year: 'numeric', month: 'long' }]
+const TODAY = new Date();
+const DAY_LABELS = ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, DAY: 3 };
 
 const CSS = {
-  currentDay: 'is-current-day',
-  clickable: 'is-clickable-day',
-}
+  currentDay: "is-current-day",
+  clickable: "is-clickable-day",
+};
 
 // Ref
 // ======================================
@@ -32,27 +31,29 @@ const showCurrentEventsPopupRef = ref("");
 const newEventForm = ref({});
 const formUpdate = ref({});
 const isSubmitted = ref(false);
-const selectedDate = ref('')
-const indexUnderEdition = ref('')
-const currDateCursor = ref(TODAY)
-const dayLabels = ref(DAY_LABELS.slice())
-const events = ref([])
-const calendarIdWhereToAddTheNewEvent = ref(2)
+const selectedDate = ref("");
+const indexUnderEdition = ref("");
+const currDateCursor = ref(TODAY);
+const dayLabels = DAY_LABELS.slice();
+const events = ref([]);
+const calendarIdWhereToAddTheNewEvent = ref(2);
 
 // Computed
 // ======================================
 
 const displayedDateManager = computed({
-  get() { return displayedDate.value },
+  get() {
+    return displayedDate.value;
+  },
   set({ year, month, year2, month2 }) {
-    if (typeof year2 === 'undefined' && typeof month2 === 'undefined') {
+    if (typeof year2 === "undefined" && typeof month2 === "undefined") {
       const date = new Date(year, month);
       displayedDate.value = date.toLocaleDateString(...DATE_OPTION);
     } else {
       let date1 = new Date(year, month);
       let date2 = new Date(year2, month2);
       if (year === year2) {
-        const month = date1.toLocaleString('fr-ch', { month: 'long' });
+        const month = date1.toLocaleString("fr-ch", { month: "long" });
         date2 = date2.toLocaleDateString(...DATE_OPTION);
         displayedDate.value = `${month} - ${date2}`;
       } else {
@@ -61,7 +62,7 @@ const displayedDateManager = computed({
         displayedDate.value = `${date1} - ${date2}`;
       }
     }
-  }
+  },
 });
 
 const showNewEventPopup = computed({
@@ -74,8 +75,12 @@ const showNewEventPopup = computed({
 });
 
 const showCurrentEventsPopup = computed({
-  get() { return showCurrentEventsPopupRef.value; },
-  set(events) { showCurrentEventsPopupRef.value = events; }
+  get() {
+    return showCurrentEventsPopupRef.value;
+  },
+  set(events) {
+    showCurrentEventsPopupRef.value = events;
+  },
 });
 
 const newEventPopup = computed({
@@ -88,13 +93,13 @@ const newEventPopup = computed({
 });
 
 const editableCalendarsNames = computed(() => {
-  let names = {}
+  let names = {};
   for (const [key, value] of Object.entries(allCalendars.value)) {
     if (allCalendars.value[key].can_edit) {
-      names[value.id] = value.name
+      names[value.id] = value.name;
     }
   }
-  return names
+  return names;
 });
 
 // Helpers
@@ -105,15 +110,14 @@ const editableCalendarsNames = computed(() => {
  * @param {Array} obj { name: string, value: ref }
  */
 function consoleRef(array) {
-  array.forEach(element => {
-    const item = toRaw(element.value.value)
-    console.log({ [element.name]: item })
+  array.forEach((element) => {
+    const item = toRaw(element.value.value);
+    console.log({ [element.name]: item });
   });
 }
 
 function toSwissDay(day) {
-  const index = DAY_LABELS_ORDERS[day];
-  return DAY_LABELS.indexOf(index, 0);
+  return day - 1 < 0 ? 6 : day - 1; // si dimanche, on ajoute sinon on retire un jour
 }
 
 function formatDayObject(ref) {
@@ -122,8 +126,8 @@ function formatDayObject(ref) {
     local: ref.toLocaleDateString(),
     dayOfMonthNumber: ref.getDate(),
     dayOfWeekNumber: toSwissDay(ref.getDay()),
-    events: []
-  }
+    events: [],
+  };
 }
 
 function getAllDaysInMonth(year, month) {
@@ -161,14 +165,14 @@ function toChDate(date) {
 
 function prepareFormBeforeSending(rawForm) {
   //  expected output: 2022-05-27 12:06:28
-  const date = rawForm.start_date
-  const start = `${date} ${rawForm.start}`
-  const end = `${date} ${rawForm.end}`
-  rawForm.start = start
-  rawForm.end = end
-  delete rawForm.end_date
-  delete rawForm.start_date
-  return rawForm
+  const date = rawForm.start_date;
+  const start = `${date} ${rawForm.start}`;
+  const end = `${date} ${rawForm.end}`;
+  rawForm.start = start;
+  rawForm.end = end;
+  delete rawForm.end_date;
+  delete rawForm.start_date;
+  return rawForm;
 }
 
 function hideNewEventForm() {
@@ -180,63 +184,94 @@ function hideEditEventsForm() {
 }
 
 function showNewEventForm(event) {
-  hideEditEventsForm()
-  event.stopPropagation()
+  hideEditEventsForm();
+  event.stopPropagation();
   showNewEventPopup.value = true;
   showCurrentEventsPopup.value = false;
 }
 
 function getAllDaysInMonthAndBeginning(year, month) {
-  const days = []
-  const daysInMonth = typeof year !== 'undefined' && typeof month !== 'undefined'
-    ? getAllDaysInMonth(year, month)
-    : getAllDaysInMonth(TODAY.getFullYear(), TODAY.getMonth())
+  const days = [];
+  const daysInMonth =
+    typeof year !== "undefined" && typeof month !== "undefined"
+      ? getAllDaysInMonth(year, month)
+      : getAllDaysInMonth(TODAY.getFullYear(), TODAY.getMonth());
   for (const [index, date] of Object.entries(daysInMonth)) {
-    let i = 0
-    if (index === Object.keys(daysInMonth)[0]) {
+    let i = 0;
+    //console.log(Object.entries(daysInMonth)[0][1]);
+    /* if (index === Object.keys(daysInMonth)[0]) {
       while (date.dayOfWeekNumber !== i) {
-        days.push({})
-        i++
+        days.push({});
+        i++;
+      }
+    } */
+
+    if (index === Object.keys(daysInMonth)[0]) {
+      const day = Object.entries(daysInMonth)[0][1];
+      console.log(day);
+      for (let i = 0; i < day.dayOfWeekNumber; i++) {
+        days.push({});
       }
     }
-    days.push(date)
+
+    days.push(date);
   }
-  return days
+  return days;
 }
 
 function getAllDaysInWeek(choosenDate) {
-  const monday = getMonday(choosenDate)
-  const dates = {}
+  const monday = getMonday(choosenDate);
+  const dates = {};
   for (let i = 0; i <= 6; i++) {
-    const date = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + i)
-    const key = date.toLocaleDateString()
+    const date = new Date(
+      monday.getFullYear(),
+      monday.getMonth(),
+      monday.getDate() + i
+    );
+    const key = date.toLocaleDateString();
     dates[key] = formatDayObject(date);
   }
-  return dates
+  return dates;
 }
 
 function setDayCssClass(date) {
-  const today = new Date(TODAY.getFullYear(), TODAY.getMonth(), TODAY.getDate());
-  if (typeof date === 'undefined') return ''
-  else if (today.toLocaleDateString() === date.toLocaleDateString()) return `${CSS.clickable} ${CSS.currentDay}`
-  else return CSS.clickable
+  const today = new Date(
+    TODAY.getFullYear(),
+    TODAY.getMonth(),
+    TODAY.getDate()
+  );
+  if (typeof date === "undefined") return "";
+  else if (today.toLocaleDateString() === date.toLocaleDateString())
+    return `${CSS.clickable} ${CSS.currentDay}`;
+  else return CSS.clickable;
 }
 
 function checkIfBothDatesAreInSameMonth(date1, date2) {
-  const date1Month = date1.getMonth()
-  const date2Month = date2.getMonth()
-  return date1Month === date2Month
+  const date1Month = date1.getMonth();
+  const date2Month = date2.getMonth();
+  return date1Month === date2Month;
 }
 
 function formatCurrentDateForDisplay(date) {
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-    displayedDateManager.value = { year: date.getFullYear(), month: date.getMonth() }
+    displayedDateManager.value = {
+      year: date.getFullYear(),
+      month: date.getMonth(),
+    };
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-    const monday = getMonday(date)
-    const sunday = getSunday(date)
+    const monday = getMonday(date);
+    const sunday = getSunday(date);
     checkIfBothDatesAreInSameMonth(monday, sunday)
-      ? displayedDateManager.value = { year: date.getFullYear(), month: date.getMonth() }
-      : displayedDateManager.value = { year: monday.getFullYear(), month: monday.getMonth(), year2: sunday.getFullYear(), month2: sunday.getMonth() }
+      ? (displayedDateManager.value = {
+          year: date.getFullYear(),
+          month: date.getMonth(),
+        })
+      : (displayedDateManager.value = {
+          year: monday.getFullYear(),
+          month: monday.getMonth(),
+          year2: sunday.getFullYear(),
+          month2: sunday.getMonth(),
+        });
   }
 }
 
@@ -249,7 +284,7 @@ function getMonthRelativeToDate(date, numberOfMonths) {
 }
 
 function chDateToYMD(dateString, separator) {
-  const datesParts = dateString.split('/');
+  const datesParts = dateString.split("/");
   const year = datesParts[2];
   const month = datesParts[1];
   const day = datesParts[0];
@@ -257,20 +292,20 @@ function chDateToYMD(dateString, separator) {
 }
 
 // CRUD operations on API
-// ====================================== 
+// ======================================
 
 async function storeEvent(form) {
-  form = prepareFormBeforeSending(form)
+  form = prepareFormBeforeSending(form);
   const response = await useFetch({
     url: API.storeEvent.path(),
     method: API.storeEvent.method,
-    data: form
+    data: form,
   });
   if (response.success === true) {
     try {
-      displayNewlyCreatedEvent(form)
+      displayNewlyCreatedEvent(form);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   } else {
     console.log("error");
@@ -284,12 +319,14 @@ async function deleteEvent(dayId, eventId) {
   });
   if (response.success === true) {
     try {
-      const date = toChDate(dayId)
-      events.value[date] = events.value[date].filter((event) => event.id !== eventId)
-      const newEvents = sortEventsByDate(date)
-      newEventPopup.value = newEvents
+      const date = toChDate(dayId);
+      events.value[date] = events.value[date].filter(
+        (event) => event.id !== eventId
+      );
+      const newEvents = sortEventsByDate(date);
+      newEventPopup.value = newEvents;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   } else {
     console.log("error");
@@ -297,30 +334,32 @@ async function deleteEvent(dayId, eventId) {
 }
 
 async function updateEvent(form) {
-  const date = form.start_date
-  form.start_date = chDateToYMD(form.start_date, '-')
-  form.end_date = chDateToYMD(form.end_date, '-')
-  form = prepareFormBeforeSending(form)
+  const date = form.start_date;
+  form.start_date = chDateToYMD(form.start_date, "-");
+  form.end_date = chDateToYMD(form.end_date, "-");
+  form = prepareFormBeforeSending(form);
   const response = await useFetch({
     url: API.updateEvent.path(form.id),
     method: API.updateEvent.method,
-    data: form
+    data: form,
   });
   if (response.success === true) {
     try {
-      allCalendars.value.forEach(calendar => {
+      allCalendars.value.forEach((calendar) => {
         if (calendar.id == form.calendar_id) {
-          form['can_edit'] = calendar.can_edit
+          form["can_edit"] = calendar.can_edit;
         }
       });
-      let othersEvents = toRaw(events.value[date].filter((event) => event.id !== form.id))
-      othersEvents.push(form)
-      events.value[date] = othersEvents
-      const newEvents = sortEventsByDate(date)
-      newEventPopup.value = newEvents
-      indexUnderEdition.value = null
+      let othersEvents = toRaw(
+        events.value[date].filter((event) => event.id !== form.id)
+      );
+      othersEvents.push(form);
+      events.value[date] = othersEvents;
+      const newEvents = sortEventsByDate(date);
+      newEventPopup.value = newEvents;
+      indexUnderEdition.value = null;
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   } else {
     console.log("error");
@@ -333,56 +372,65 @@ async function getCalendars() {
     method: API.getEvents.method,
   });
   if (response.success === true) {
-    return response.data
+    return response.data;
   } else {
-    console.log(response, 'error')
-    return []
+    console.log(response, "error");
+    return [];
   }
 }
 
 async function setCalendars(calendars) {
-  const userCalendars = {}
+  const userCalendars = {};
   calendars.forEach((calendar) => {
-    userCalendars[calendar.id] = calendar.name
-  })
-  calendarsNames.value = userCalendars
-  allCalendars.value = calendars
-  currentsCalendarIds.value = [calendars[0].id.toString()]
+    userCalendars[calendar.id] = calendar.name;
+  });
+  calendarsNames.value = userCalendars;
+  allCalendars.value = calendars;
+  currentsCalendarIds.value = [calendars[0].id.toString()];
 }
 
 // Features
 // ======================================
 
 function displayNewlyCreatedEvent(event) {
-  const calendarId = calendarIdWhereToAddTheNewEvent.value
-  allCalendars.value.forEach(calendar => {
+  const calendarId = calendarIdWhereToAddTheNewEvent.value;
+  allCalendars.value.forEach((calendar) => {
     if (calendar.id == calendarId) {
-      const index = toChDate(event.start)
-      const canEdit = calendar.can_edit
-      event['can_edit'] = canEdit
-      events.value[index].push(event)
+      const index = toChDate(event.start);
+      const canEdit = calendar.can_edit;
+      event["can_edit"] = canEdit;
+      events.value[index].push(event);
     }
   });
 }
 
 function actualPeriod() {
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-    dates.value = getAllDaysInMonthAndBeginning(TODAY.getFullYear(), TODAY.getMonth());
+    dates.value = getAllDaysInMonthAndBeginning(
+      TODAY.getFullYear(),
+      TODAY.getMonth()
+    );
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
     dates.value = getAllDaysInWeek(TODAY);
   }
   currDateCursor.value = TODAY;
-  displayedDateManager.value = { year: TODAY.getFullYear(), month: TODAY.getMonth() };
+  displayedDateManager.value = {
+    year: TODAY.getFullYear(),
+    month: TODAY.getMonth(),
+  };
 }
 
 function nextPeriod() {
   const dateUnderCursor = new Date(currDateCursor.value);
-  let nextPeriod
+  let nextPeriod;
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-    nextPeriod = new Date(getMonthRelativeToDate(dateUnderCursor, 1))
-    dates.value = getAllDaysInMonthAndBeginning(nextPeriod.getFullYear(), nextPeriod.getMonth());
+    nextPeriod = new Date(getMonthRelativeToDate(dateUnderCursor, 1));
+    dates.value = getAllDaysInMonthAndBeginning(
+      nextPeriod.getFullYear(),
+      nextPeriod.getMonth()
+    );
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-    nextPeriod = new Date(getWeekRelativeToDate(dateUnderCursor, 7))
+    nextPeriod = new Date(getWeekRelativeToDate(dateUnderCursor, 7));
     dates.value = getAllDaysInWeek(nextPeriod);
   }
   currDateCursor.value = nextPeriod;
@@ -391,12 +439,15 @@ function nextPeriod() {
 
 function previousPeriod() {
   const dateUnderCursor = new Date(currDateCursor.value);
-  let previousPeriod
+  let previousPeriod;
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-    previousPeriod = new Date(getMonthRelativeToDate(dateUnderCursor, -1))
-    dates.value = getAllDaysInMonthAndBeginning(previousPeriod.getFullYear(), previousPeriod.getMonth());
+    previousPeriod = new Date(getMonthRelativeToDate(dateUnderCursor, -1));
+    dates.value = getAllDaysInMonthAndBeginning(
+      previousPeriod.getFullYear(),
+      previousPeriod.getMonth()
+    );
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-    previousPeriod = new Date(getWeekRelativeToDate(dateUnderCursor, -7))
+    previousPeriod = new Date(getWeekRelativeToDate(dateUnderCursor, -7));
     dates.value = getAllDaysInWeek(previousPeriod);
   }
   currDateCursor.value = previousPeriod;
@@ -404,74 +455,76 @@ function previousPeriod() {
 }
 
 function getEvents() {
-  const iterable = currentsCalendarIds.value.values()
-  const calendars = []
+  const iterable = currentsCalendarIds.value.values();
+  const calendars = [];
   for (const [value] of iterable) {
-    allCalendars.value.forEach(calendar => {
+    allCalendars.value.forEach((calendar) => {
       if (calendar.id == value) {
-        calendars.push(calendar)
+        calendars.push(calendar);
       }
     });
   }
-  return calendars
+  return calendars;
 }
 
 function setEvents(calendars) {
-  events.value = {}
-  calendars.forEach(calendar => {
-    const canEdit = calendar.can_edit
-    calendar.events.forEach(event => {
-      const index = toChDate(event.start)
-      event.can_edit = canEdit
-      event.local = index
+  events.value = {};
+  calendars.forEach((calendar) => {
+    const canEdit = calendar.can_edit;
+    calendar.events.forEach((event) => {
+      const index = toChDate(event.start);
+      event.can_edit = canEdit;
+      event.local = index;
       if (events.value.hasOwnProperty(index)) {
-        events.value[index].push(event)
+        events.value[index].push(event);
       } else {
-        events.value[index] = [event]
+        events.value[index] = [event];
       }
-    })
+    });
   });
 }
 
 function sortEventsByDate(index) {
-  if (typeof events.value[index] !== 'undefined') {
-    let sortedEvents = []
+  if (typeof events.value[index] !== "undefined") {
+    let sortedEvents = [];
     sortedEvents = events.value[index].sort((a, b) => {
-      return new Date(a.start) - new Date(b.start)
-    })
-    return sortedEvents
+      return new Date(a.start) - new Date(b.start);
+    });
+    return sortedEvents;
   } else {
-    return []
+    return [];
   }
 }
 
 function showCurrentEvent(index, dayIndex) {
-  hideNewEventForm()
+  hideNewEventForm();
   if (index == showCurrentEventsPopup.value) {
-    selectedDate.value = null
-    showCurrentEventsPopup.value = null
+    selectedDate.value = null;
+    showCurrentEventsPopup.value = null;
   } else {
-    selectedDate.value = dayIndex
-    showCurrentEventsPopup.value = index
-    newEventPopup.value = sortEventsByDate(index)
+    selectedDate.value = dayIndex;
+    showCurrentEventsPopup.value = index;
+    newEventPopup.value = sortEventsByDate(index);
   }
 }
 
 function showEventEditForm(startDate, id) {
-  const date = toChDate(startDate)
-  indexUnderEdition.value = id !== indexUnderEdition.value ? id : undefined
-  let newEvent = toRaw(events.value[date])
-  newEvent = newEvent.filter((event) => { return event.id == id })
+  const date = toChDate(startDate);
+  indexUnderEdition.value = id !== indexUnderEdition.value ? id : undefined;
+  let newEvent = toRaw(events.value[date]);
+  newEvent = newEvent.filter((event) => {
+    return event.id == id;
+  });
   let start;
   let end;
   try {
-    start = newEvent[0].start.split(' ')[1].split(':')
-    start = `${start[0]}:${start[1]}`
-    end = newEvent[0].end.split(' ')[1].split(':')
-    end = `${end[0]}:${end[1]}`
+    start = newEvent[0].start.split(" ")[1].split(":");
+    start = `${start[0]}:${start[1]}`;
+    end = newEvent[0].end.split(" ")[1].split(":");
+    end = `${end[0]}:${end[1]}`;
   } catch (error) {
-    start = ''
-    end = ''
+    start = "";
+    end = "";
   }
   formUpdate.value = {
     title: newEvent[0].title,
@@ -481,42 +534,51 @@ function showEventEditForm(startDate, id) {
     end: end,
     start_date: date,
     end_date: date,
-  }
+  };
 }
 
 // At startup
-// ====================================== 
+// ======================================
 
 (async function startUp() {
-  const calendars = await getCalendars()
-  await setCalendars(calendars)
-  setEvents(getEvents())
-  dates.value = getAllDaysInMonthAndBeginning(TODAY.getFullYear(), TODAY.getMonth());
-})()
+  const calendars = await getCalendars();
+  await setCalendars(calendars);
+  setEvents(getEvents());
+  dates.value = getAllDaysInMonthAndBeginning(
+    TODAY.getFullYear(),
+    TODAY.getMonth()
+  );
+})();
 
 // Watcher(s)
 // ======================================
 
 watch(currentLayout, () => {
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-    dates.value = getAllDaysInMonthAndBeginning(currDateCursor.value.getFullYear(), currDateCursor.value.getMonth());
+    dates.value = getAllDaysInMonthAndBeginning(
+      currDateCursor.value.getFullYear(),
+      currDateCursor.value.getMonth()
+    );
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
     dates.value = getAllDaysInWeek(currDateCursor.value);
   }
-})
+});
 
 watch(currentsCalendarIds, () => {
-  setEvents(getEvents())
-})
-
+  setEvents(getEvents());
+});
 </script>
 <template>
-
   <div class="calendar">
     <!--====  Calendar Header  ====-->
     <h3>{{ displayedDateManager }}</h3>
     <div class="calendar__choose">
-      <FormKit v-model="currentsCalendarIds" type="checkbox" label="Calendrier" :options="calendarsNames" />
+      <FormKit
+        v-model="currentsCalendarIds"
+        type="checkbox"
+        label="Calendrier"
+        :options="calendarsNames"
+      />
     </div>
     <header class="calendar__header">
       <button @click="previousPeriod">&lt;&lt;</button>
@@ -534,8 +596,14 @@ watch(currentsCalendarIds, () => {
     </div>
     <!--====  Calendar days  ====-->
     <div class="calendar__days">
-      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)"
-        :class="day?.class, selectedDate === index ? 'is-selected-day' : ''" :key="index" :date-id="day?.local">
+      <div
+        v-for="(day, index) in dates"
+        class="calendar__day"
+        @click="showCurrentEvent(day?.local, index)"
+        :class="(day?.class, selectedDate === index ? 'is-selected-day' : '')"
+        :key="index"
+        :date-id="day?.local"
+      >
         <p class="calendar__day-number">{{ day?.dayOfMonthNumber }}</p>
         <p class="calendar__day-date">{{ day?.local }}</p>
         <div v-for="event in sortEventsByDate(day?.local)">
@@ -543,24 +611,69 @@ watch(currentsCalendarIds, () => {
         </div>
       </div>
     </div>
-    <button :value="index" @click="showNewEventForm" class="button--add-event"
-      v-show="index.includes('/') && canEditCalendar"> + </button>
+    <button
+      :value="index"
+      @click="showNewEventForm"
+      class="button--add-event"
+      v-show="index?.includes('/') && canEditCalendar"
+    >
+      +
+    </button>
   </div>
   <!--====  Popup new event  ====-->
   <div class="popup popup--new-event" v-show="showNewEventPopup">
-    <FormKit type="form" v-model="newEventForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Enregistrer"
-      @submit="storeEvent">
+    <FormKit
+      type="form"
+      v-model="newEventForm"
+      :form-class="isSubmitted ? 'hide' : 'show'"
+      submit-label="Enregistrer"
+      @submit="storeEvent"
+    >
       <h2>Ajouter un événement</h2>
-      <FormKit type="text" name="title" validation="required" label="Titre"
-        :value="new Date().getHours() + ':' + new Date().getMinutes()" />
-      <FormKit type="text" name="location" validation="required" label="Lieu" value="HEIG" />
-      <FormKit type="textarea" name="description" validation="required" label="Description" value="..." />
+      <FormKit
+        type="text"
+        name="title"
+        validation="required"
+        label="Titre"
+        :value="new Date().getHours() + ':' + new Date().getMinutes()"
+      />
+      <FormKit
+        type="text"
+        name="location"
+        validation="required"
+        label="Lieu"
+        value="HEIG"
+      />
+      <FormKit
+        type="textarea"
+        name="description"
+        validation="required"
+        label="Description"
+        value="..."
+      />
       <FormKit type="time" name="start" label="Début" value="08:00" />
       <FormKit type="time" name="end" label="Fin" value="08:00" />
-      <FormKit name="start_date" type="date" value="2022-06-01" label="Date de Début" validation="required" />
-      <FormKit name="end_date" type="date" value="2022-06-01" label="Date de Fin" validation="required" />
-      <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
-        validation="required">
+      <FormKit
+        name="start_date"
+        type="date"
+        value="2022-06-01"
+        label="Date de Début"
+        validation="required"
+      />
+      <FormKit
+        name="end_date"
+        type="date"
+        value="2022-06-01"
+        label="Date de Fin"
+        validation="required"
+      />
+      <FormKit
+        v-model="calendarIdWhereToAddTheNewEvent"
+        type="select"
+        label="calendrier"
+        name="calendar_id"
+        validation="required"
+      >
         <option v-for="(name, id) in editableCalendarsNames" :value="id">
           {{ name }}
         </option>
@@ -581,20 +694,56 @@ watch(currentsCalendarIds, () => {
           <p>début: {{ event.start }}</p>
           <p>fin: {{ event.end }}</p>
         </div>
-        <button v-show="event.can_edit" @click="deleteEvent(event.start, event.id)">supprimer</button>
-        <button v-show="event.can_edit" @click="showEventEditForm(event.start, event.id)">editer</button>
-        <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
-          v-if="indexUnderEdition === event.id" :key="event.id">
-          <FormKit type="text" name="title" validation="required" label="Titre" />
-          <FormKit type="text" name="location" validation="required" label="Lieu" />
-          <FormKit type="textarea" name="description" validation="required" label="Description" />
+        <button
+          v-show="event.can_edit"
+          @click="deleteEvent(event.start, event.id)"
+        >
+          supprimer
+        </button>
+        <button
+          v-show="event.can_edit"
+          @click="showEventEditForm(event.start, event.id)"
+        >
+          editer
+        </button>
+        <FormKit
+          type="form"
+          v-model="formUpdate"
+          submit-label="Enregistrer"
+          @submit="updateEvent"
+          v-if="indexUnderEdition === event.id"
+          :key="event.id"
+        >
+          <FormKit
+            type="text"
+            name="title"
+            validation="required"
+            label="Titre"
+          />
+          <FormKit
+            type="text"
+            name="location"
+            validation="required"
+            label="Lieu"
+          />
+          <FormKit
+            type="textarea"
+            name="description"
+            validation="required"
+            label="Description"
+          />
           <FormKit type="time" name="start" label="Début" />
           <FormKit type="time" name="end" label="Fin" />
           <FormKit name="start_date" type="hidden" :value="event.start" />
           <FormKit name="end_date" type="hidden" :value="event.start" />
           <FormKit name="id" type="hidden" :value="event.id" />
-          <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
-            validation="required">
+          <FormKit
+            v-model="calendarIdWhereToAddTheNewEvent"
+            type="select"
+            label="calendrier"
+            name="calendar_id"
+            validation="required"
+          >
             <option v-for="(name, id) in editableCalendarsNames" :value="id">
               {{ name }}
             </option>
@@ -602,9 +751,7 @@ watch(currentsCalendarIds, () => {
         </FormKit>
       </div>
     </article>
-
   </div>
-
 </template>
 <style lang="scss" scoped>
 .calendar {
@@ -712,7 +859,8 @@ watch(currentsCalendarIds, () => {
   align-items: flex-start;
 }
 
-.popup--new-event {}
+.popup--new-event {
+}
 
 .event {
   display: flex;

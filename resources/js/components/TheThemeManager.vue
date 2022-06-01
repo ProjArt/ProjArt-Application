@@ -1,5 +1,5 @@
 <script setup>
-import { user } from '../stores/auth.js';
+import { user } from "../stores/auth.js";
 import { API } from "../stores/api.js";
 import useFetch from "../composables/useFetch.js";
 console.log("user:", user.value);
@@ -9,17 +9,11 @@ async function getThemes() {
     url: API.getThemes.path(),
     method: API.getThemes.method,
   });
-};
+  console.log("response:", response);
+}
 
-const themesList = await getThemes();
-console.log(themesList);
-
-
+getThemes();
 </script>
 
 
-<template>
-
-
-
-</template>
+<template></template>

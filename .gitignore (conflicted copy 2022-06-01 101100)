@@ -16,3 +16,5 @@ yarn-error.log
 /.vscode
 public/docs
 .scribe
+composer.lock
+package-lock.json
