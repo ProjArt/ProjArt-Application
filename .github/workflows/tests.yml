@@ -80,41 +80,7 @@ jobs:
             
             See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
           
-  vue-tests:
-    runs-on: ubuntu-latest
-    needs: laravel-tests
-    strategy:
-      matrix:
-        node-version: [16.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
-    steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm install
-    #- run: npm run build --if-present
-    #- run: npm run test
-
-    - name: send telegram message on push
-      if: ${{ failure() }}
-      uses: appleboy/telegram-action@master
-      with:
-        to: ${{ secrets.TELEGRAM_CHAT_ID }}
-        token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: |
-            ❌❌❌ A COMMIT DIDN'T PASS THE TEST IN VUE ❌❌❌
-            
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
-            
-            Repository: ${{ github.repository }}
-            
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+  
             
   confirmation:
         runs-on: ubuntu-latest
