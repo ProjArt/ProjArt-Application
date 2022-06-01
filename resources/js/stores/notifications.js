@@ -2,6 +2,12 @@ import { ref, computed } from "vue";
 import { API } from "./api";
 import useFetch from "../composables/useFetch";
 
+
+const beamsClient = new PusherPushNotifications.Client({
+    instanceId: process.env.MIX_PUSHER_APP_ID,
+});
+
+
 const _notifications = ref([]);
 
 export const notification = computed({
@@ -25,12 +31,12 @@ export async function sendNotification({ title, message, to }) {
 
 export async function registerToChannelNotification(channel) {
 
+    var isSafari = window.safari !== undefined;
+    if (isSafari) {
+        return;
+    }
     await Notification.requestPermission(async function(permission) {
         if (permission === "granted") {
-            const beamsClient = new PusherPushNotifications.Client({
-                instanceId: process.env.MIX_PUSHER_APP_ID,
-            });
-
             await beamsClient.start()
             await beamsClient.addDeviceInterest(channel);
             const deviceInterests = await beamsClient.getDeviceInterests();
