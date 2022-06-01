@@ -3,7 +3,6 @@ import useLogout from "../composables/useLogout";
 import { routesNames } from "../router/routes";
 import { isAuthenticated } from "../stores/auth";
 import {
-  notification,
   sendNotification,
   //askPermissionNotification,
 } from "../stores/notifications";
@@ -28,11 +27,7 @@ async function _send() {
     </div>
 
     <div class="menu" v-if="isAuthenticated">
-      <div
-        v-for="routeName in Object.keys(routesNames)"
-        :key="routeName"
-        class="menu__item"
-      >
+      <div v-for="routeName in Object.keys(routesNames)" :key="routeName" class="menu__item">
         <router-link :to="routesNames[routeName]">{{ routeName }}</router-link>
       </div>
     </div>
