@@ -7,9 +7,6 @@ import {
 } from "../stores/notifications";
 import { user } from "../stores/auth";
 
-console.log(isAuthenticated.value);
-console.log("routesNames", routesNames);
-
 async function _send() {
   await sendNotification({
     title: "coucou",

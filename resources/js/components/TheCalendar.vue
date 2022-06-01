@@ -10,6 +10,7 @@ const TODAY = new Date();
 const DAY_LABELS = ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, DAY: 3 };
+const AVAILABLE_POPUP = { STORE_EVENT: 0, STORE_CALENDAR: 1, SHOW_EVENT: 2, EDIT_CALENDAR: 3 }
 
 const CSS = {
   currentDay: "is-current-day",
@@ -23,12 +24,13 @@ const dates = ref([]);
 const allCalendars = ref({});
 const calendarsNames = ref({});
 const currentLayout = ref(AVAILABLE_LAYOUT.MONTH);
-const currentsCalendarIds = ref([]);
+const currentsCalendarIds = ref(null);
 const displayedDate = ref(new Date().toLocaleDateString(...DATE_OPTION));
 const newEventPopupRef = ref([]);
 const showNewEventPopupRef = ref("");
 const showCurrentEventsPopupRef = ref("");
 const newEventForm = ref({});
+const newCalendarForm = ref({});
 const formUpdate = ref({});
 const isSubmitted = ref(false);
 const selectedDate = ref("");
@@ -37,6 +39,7 @@ const currDateCursor = ref(TODAY);
 const dayLabels = DAY_LABELS.slice();
 const events = ref([]);
 const calendarIdWhereToAddTheNewEvent = ref(2);
+const currentPopup = ref(null)
 
 // Computed
 // ======================================
@@ -74,7 +77,7 @@ const showNewEventPopup = computed({
   },
 });
 
-const showCurrentEventsPopup = computed({
+const currentEventPopupIndex = computed({
   get() {
     return showCurrentEventsPopupRef.value;
   },
@@ -100,6 +103,14 @@ const editableCalendarsNames = computed(() => {
     }
   }
   return names;
+});
+
+const getCalendarsData = computed(() => {
+  let calendars = {};
+  for (const [key, value] of Object.entries(allCalendars.value)) {
+    calendars[value.id] = value;
+  }
+  return calendars;
 });
 
 // Helpers
@@ -174,19 +185,25 @@ function prepareFormBeforeSending(rawForm) {
   return rawForm;
 }
 
-function hideNewEventForm() {
-  showNewEventPopup.value = "";
-}
-
-function hideEditEventsForm() {
-  showCurrentEventsPopup.value = "";
-}
-
 function showNewEventForm(event) {
-  hideEditEventsForm();
   event.stopPropagation();
-  showNewEventPopup.value = true;
-  showCurrentEventsPopup.value = false;
+  currentPopup.value = currentPopup.value === AVAILABLE_POPUP.STORE_EVENT
+    ? null
+    : AVAILABLE_POPUP.STORE_EVENT;
+}
+
+function showNewCalendarForm(event) {
+  event.stopPropagation();
+  currentPopup.value = currentPopup.value === AVAILABLE_POPUP.STORE_CALENDAR
+    ? null
+    : AVAILABLE_POPUP.STORE_CALENDAR;
+}
+
+function showEditCalendarForm(event) {
+  event.stopPropagation();
+  currentPopup.value = currentPopup.value === AVAILABLE_POPUP.EDIT_CALENDAR
+    ? null
+    : AVAILABLE_POPUP.EDIT_CALENDAR;
 }
 
 function getAllDaysInMonthAndBeginning(year, month) {
@@ -284,6 +301,38 @@ function chDateToYMD(dateString, separator) {
 // CRUD operations on API
 // ======================================
 
+async function storeCalendar(form) {
+  const response = await useFetch({
+    url: API.storeCalendar.path(),
+    method: API.storeCalendar.method,
+    data: form,
+  });
+  if (response.success === true) {
+    try {
+      const newId = response.data.reduce((acc, curr) => {
+        if (curr.id > acc) acc = curr.id;
+        return acc;
+      }, 0);
+      const newCalendar = {
+        can_edit: true,
+        events: [],
+        id: newId,
+        name: form.name
+      }
+      allCalendars.value.push(newCalendar);
+      const userCalendars = {};
+      allCalendars.value.forEach((calendar) => {
+        userCalendars[calendar.id] = calendar.name;
+      });
+      calendarsNames.value = userCalendars;
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    console.log("error");
+  }
+}
+
 async function storeEvent(form) {
   form = prepareFormBeforeSending(form);
   const response = await useFetch({
@@ -369,14 +418,31 @@ async function getCalendars() {
   }
 }
 
-async function setCalendars(calendars) {
+async function setCalendars(calendars, setIds = true) {
   const userCalendars = {};
   calendars.forEach((calendar) => {
     userCalendars[calendar.id] = calendar.name;
   });
   calendarsNames.value = userCalendars;
   allCalendars.value = calendars;
-  currentsCalendarIds.value = [calendars[0].id.toString()];
+  if (setIds) currentsCalendarIds.value = [currentsCalendarIds.value || calendars[0].id.toString()];
+}
+
+async function deleteCalendar(calendarId) {
+  const response = await useFetch({
+    url: API.deleteCalendar.path(calendarId),
+    method: API.deleteCalendar.method,
+  });
+  if (response.success === true) {
+    try {
+      const calendars = allCalendars.value.filter((calendar) => calendar.id !== calendarId);
+      setCalendars(calendars, false);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    console.log("error");
+  }
 }
 
 // Features
@@ -389,7 +455,11 @@ function displayNewlyCreatedEvent(event) {
       const index = toChDate(event.start);
       const canEdit = calendar.can_edit;
       event["can_edit"] = canEdit;
-      events.value[index].push(event);
+      if (events.value[index]) {
+        events.value[index].push(event);
+      } else {
+        events.value[index] = [event];
+      }
     }
   });
 }
@@ -445,9 +515,8 @@ function previousPeriod() {
 }
 
 function getEvents() {
-  const iterable = currentsCalendarIds.value.values();
   const calendars = [];
-  for (const [value] of iterable) {
+  for (const [key, value] of Object.entries(currentsCalendarIds.value)) {
     allCalendars.value.forEach((calendar) => {
       if (calendar.id == value) {
         calendars.push(calendar);
@@ -487,14 +556,15 @@ function sortEventsByDate(index) {
 }
 
 function showCurrentEvent(index, dayIndex) {
-  hideNewEventForm();
-  if (index == showCurrentEventsPopup.value) {
+  if (index == currentEventPopupIndex.value) {
     selectedDate.value = null;
-    showCurrentEventsPopup.value = null;
+    currentEventPopupIndex.value = null;
+    currentPopup.value = null
   } else {
     selectedDate.value = dayIndex;
-    showCurrentEventsPopup.value = index;
+    currentEventPopupIndex.value = index;
     newEventPopup.value = sortEventsByDate(index);
+    currentPopup.value = AVAILABLE_POPUP.SHOW_EVENT
   }
 }
 
@@ -556,7 +626,8 @@ watch(currentLayout, () => {
 
 watch(currentsCalendarIds, () => {
   setEvents(getEvents());
-});
+})
+
 </script>
 <template>
   <div class="calendar">
@@ -570,8 +641,10 @@ watch(currentsCalendarIds, () => {
       <button @click="nextPeriod">&gt;&gt;</button>
       <button @click="currentLayout = AVAILABLE_LAYOUT.MONTH">Mois</button>
       <button @click="currentLayout = AVAILABLE_LAYOUT.WEEK">Semaines</button>
-      <button @click="actualPeriod">Aujaurd'hui</button>
+      <button @click="actualPeriod">Aujourd'hui</button>
       <button @click="showNewEventForm">Ajouter événement</button>
+      <button @click="showNewCalendarForm">Ajouter un calendrier</button>
+      <button @click="showEditCalendarForm">Editer les calendrier</button>
     </header>
     <!--====  Calendar days names  ====-->
     <div class="calendar__days-names">
@@ -592,7 +665,7 @@ watch(currentsCalendarIds, () => {
     </div>
   </div>
   <!--====  Popup new event  ====-->
-  <div class="popup popup--new-event" v-show="showNewEventPopup">
+  <div class="popup popup--new-event" v-show="currentPopup === AVAILABLE_POPUP.STORE_EVENT">
     <FormKit type="form" v-model="newEventForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Enregistrer"
       @submit="storeEvent">
       <h2>Ajouter un événement</h2>
@@ -612,8 +685,28 @@ watch(currentsCalendarIds, () => {
       </FormKit>
     </FormKit>
   </div>
+  <!--====  Popup store Calendar  ====-->
+  <div class="popup popup--new-calendar" v-show="currentPopup === AVAILABLE_POPUP.STORE_CALENDAR">
+    <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
+      submit-label="Enregistrer" @submit="storeCalendar">
+      <h2>Ajouter un Calendrier</h2>
+      <FormKit type="text" name="name" validation="required" label="Nom" />
+    </FormKit>
+  </div>
+  <!--====  Popup Edit Calendar  ====-->
+  <div class="popup popup--edit-calendar" v-show="currentPopup === AVAILABLE_POPUP.EDIT_CALENDAR">
+    <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
+      submit-label="Enregistrer" @submit="storeCalendar">
+      <h2>Editer les calendrier</h2>
+      <div v-for="calendar in getCalendarsData" style="display:flex;">
+        <FormKit v-if="calendar.can_edit" type="text" :name="calendar.name" validation="required"
+          :value="calendar.name" />
+        <button v-if="calendar.can_edit" @click="deleteCalendar(calendar.id)">supprimer</button>
+      </div>
+    </FormKit>
+  </div>
   <!--====  Popup edit event  ====-->
-  <div class="popup popup--edit-events" v-show="showCurrentEventsPopup">
+  <div class="popup popup--edit-events" v-show="currentPopup === AVAILABLE_POPUP.SHOW_EVENT">
     <h2>Current Events</h2>
     <article class="popup__event" v-for="(event, index) in newEventPopup">
       <div class="event">
