@@ -1,6 +1,7 @@
 <script setup>
 import { user } from '../stores/auth.js';
 import { API } from "../stores/api.js";
+import useFetch from "../composables/useFetch.js";
 console.log("user:", user.value);
 
 async function getThemes() {
@@ -19,6 +20,6 @@ console.log(themesList);
 
 <template>
 
-    
+
 
 </template>
