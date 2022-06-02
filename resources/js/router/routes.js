@@ -26,11 +26,13 @@ const routes = [
 export const routesNames = (() => {
     const obj = [];
     routes.forEach((route) => {
-        let role = user.value.role || "student";
-        role = "teacher";
-        if (route.is_visible.includes(role)) {
-            obj.push(route);
-        }
+        try {
+            let role = user.value.role;
+            role = role || "student";
+            if (route.is_visible.includes(role)) {
+                obj.push(route);
+            }
+        } catch (e) {}
     });
     return obj;
 })();
