@@ -26,7 +26,7 @@ const routes = [
 export const routesNames = (() => {
     const obj = [];
     routes.forEach((route) => {
-        let role = user.value.role;
+        let role = user.value.role || "student";
         role = "teacher";
         if (route.is_visible.includes(role)) {
             obj.push(route);
