@@ -71,7 +71,8 @@ const submitHandler = async () => {
 
     await registerToChannelNotification(response.data.user.username);
 
-    window.location.href += routesNames.calendar.replace("/", "");
+    let route = routesNames().find((e) => e.name == "calendar");
+    window.location.href += route.path.replace("/", "");
   } else {
     isAuthenticated.value = false;
   }
