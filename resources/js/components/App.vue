@@ -7,9 +7,6 @@ import TheThemeManager from "./TheThemeManager.vue";
 
 <template>
   <the-header />
-  <Suspense>
-  <the-theme-manager />
-  </Suspense>
   <the-notification></the-notification>
   <router-view></router-view>
 </template>

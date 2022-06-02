@@ -2,6 +2,7 @@
 import { user } from "../stores/auth.js";
 import { API } from "../stores/api.js";
 import useFetch from "../composables/useFetch";
+import { changeCssColorsVariable } from "../composables/changeCssColorsVariable.js"
 import { ref, computed, watchEffect, watch } from "vue";
 
 async function getThemes() {
@@ -16,10 +17,6 @@ const themesList = await getThemes();
 const initialThemeId = user.value.theme.id;
 //console.log('initialUserThemeId', user.value)
 const selectedThemeId = ref(initialThemeId);
-
-watch((initialThemeId) => {
-    console.log(initialThemeId.value)
-})
 
 function updateUserTheme() {
     let themeId = selectedThemeId.value;
@@ -47,37 +44,15 @@ async function registerUserThemeInDb(themeId){
     //console.log(response.data);
     return response.data;
 }
-
-//Crée une balise style qui définit des nouvelles valeurs aux variables de couleur
-function changeCssColorsVariable() {
-    let styleForThemeNode = document.querySelector("style.themeColorsUpdater");
-    if (styleForThemeNode == null) {
-        styleForThemeNode = document.createElement("style");
-        styleForThemeNode.classList.add("themeColorsUpdater");
-        document.head.appendChild(styleForThemeNode);
-    }
-
-    styleForThemeNode.textContent = `
-    :root{
-    --primary-color: ${user.value.theme.primary.value};
-    --secondary-color: ${user.value.theme.secondary.value};
-    }
-    `
-    
-
-    /*console.log(
-    "primary color from themeManager:", user.value.theme.primary.value,
-    "secondary color from themeManager:", user.value.theme.secondary.value,
-    "selected themeID", selectedThemeId.value
-    )*/
-}
-
-changeCssColorsVariable();
 </script>
 
 <template>
     <div class="themeSelection">
-        <form class="themeSlectionForm" @change="updateUserTheme()">       
+        <h2>Sélectionner un thème </h2>
+        <form class="themeSlectionForm" @change="updateUserTheme()"> 
+        <!-- Cette procédure fait en sorte que seul le tème correspondant à celui sélectionné est checké par défaut.
+        Elle permet de contourner le problème lié au fait que le backend ne retourne pas le nom du thème concerné mais des
+        couleurs en hexadecimal, ce qui est illisible pour un humain.       -->
              <input
                 v-if="initialThemeId == 1"
                 checked
