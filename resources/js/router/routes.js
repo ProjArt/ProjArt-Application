@@ -10,7 +10,6 @@ import infos from "./InfosRoute.vue";
 import classRoom from "./StudentsAndTeachersListRoute.vue";
 import { user } from "../stores/auth";
 
-const roles = ["student", "teacher"];
 const routes = [
     { name: "home", path: "/", component: home, icon: "home", is_visible: [] },
     { name: "calendar", path: "/calendar", component: calendar, icon: "calendar_month", is_visible: ["student", "teacher"] },
@@ -27,6 +26,7 @@ export const routesNames = (() => {
     const obj = [];
     routes.forEach((route) => {
         try {
+            console.log("user", user.value);
             let role = user.value.role;
             role = role || "student";
             if (route.is_visible.includes(role)) {
@@ -35,7 +35,7 @@ export const routesNames = (() => {
         } catch (e) {}
     });
     return obj;
-})();
+});
 
 const router = createRouter({
     history: createWebHistory(),

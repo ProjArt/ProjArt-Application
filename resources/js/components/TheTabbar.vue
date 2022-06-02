@@ -9,7 +9,6 @@ import {
 import { user } from "../stores/auth";
 
 console.log(isAuthenticated.value);
-console.log("routesNames", routesNames);
 
 async function _send() {
   await sendNotification({
@@ -21,7 +20,7 @@ async function _send() {
 </script>
 <template>
   <div class="menu" v-if="isAuthenticated">
-    <div v-for="route in routesNames" :key="route" class="menu__item">
+    <div v-for="route in routesNames()" :key="route" class="menu__item">
       <router-link :to="route.path" class="menu__item-link">
         <span class="menu-icon material-icons">{{ route.icon }}</span>
         <span class="menu-title">{{ route.name }}</span>
@@ -29,6 +28,8 @@ async function _send() {
     </div>
   </div>
 </template> 
+
+
 <style scoped lang="scss">
 .menu {
   background-color: var(--tab-bar-bg-color);
