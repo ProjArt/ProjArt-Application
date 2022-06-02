@@ -11,16 +11,23 @@ class Notification extends Model
 {
     use HasFactory;
 
-    public function notificationType()
+    protected $fillable = [
+        'title',
+        'text',
+        'channel_name',
+    ];
+
+    public static function boot()
     {
-        return $this->belongsTo(NotificationType::class);
+        parent::boot();
+
+        static::created(function ($notification) {
+            $notification->send($notification->title, $notification->text, $notification->channel);
+        });
     }
 
-    public function send($title, $message, $to = ["all"])
+    private function send($title, $message, $to = "all")
     {
-
-        Log::info("Sending notification: " . $title . "message:" . $message . " to " . implode(", ", $to));
-
         $response =  Http::withHeaders([
             'Accept' => 'application/json',
             'Authorization' => "Bearer " . config('broadcasting.connections.pusher.key'),
@@ -28,7 +35,7 @@ class Notification extends Model
         ])->post(
             'https://' . config('broadcasting.connections.pusher.app_id') . '.pushnotifications.pusher.com/publish_api/v1/instances/' . config('broadcasting.connections.pusher.app_id') . '/publishes',
             [
-                "interests" => $to,
+                "interests" => [$to],
                 "web" => [
                     "notification" => [
                         "title" => $title,
@@ -37,8 +44,6 @@ class Notification extends Model
                 ]
             ]
         );
-
-        Log::info($response->json());
     }
 }
 

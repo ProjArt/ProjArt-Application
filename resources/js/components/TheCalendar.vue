@@ -126,7 +126,6 @@ function formatDayObject(ref) {
     local: ref.toLocaleDateString(),
     dayOfMonthNumber: ref.getDate(),
     dayOfWeekNumber: toSwissDay(ref.getDay()),
-    events: [],
   };
 }
 
@@ -591,7 +590,7 @@ watch(currentsCalendarIds, () => {
         v-for="(day, index) in dates"
         class="calendar__day"
         @click="showCurrentEvent(day?.local, index)"
-        :class="(day?.class, selectedDate === index ? 'is-selected-day' : '')"
+        :class="(selectedDate === index ? 'is-selected-day' : '', day?.class)"
         :key="index"
         :date-id="day?.local"
       >
@@ -815,7 +814,7 @@ watch(currentsCalendarIds, () => {
   padding: 0.5rem;
   font-size: 1rem;
   cursor: pointer;
-  z-index: 10;
+  z-index: 1;
 }
 
 .is-clickable-day {

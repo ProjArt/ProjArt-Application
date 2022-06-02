@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Http\Services\GapsAbsencesService;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
+use App\Models\Channel;
 use App\Models\Notification;
 use App\Models\User;
 use App\Notifications\OneSignal;
@@ -39,6 +40,14 @@ class DownloadFromGapsJob implements ShouldQueue
         GapsMarksService::fetchAllNotes($this->user);
         GapsAbsencesService::fetchAllAbsences($this->user);
 
-        (new Notification())->send("Téléchargement", "Vos données ont été téléchargées.", [$this->user->username]);
+
+        $channel = Channel::firstOrCreate([
+            'name' => $this->user->username
+        ]);
+        Notification::create([
+            'title' => 'Mise à jour des données depuis Gaps',
+            'text' => 'Les données ont été mises à jour depuis Gaps',
+            'channel' => $channel->name
+        ]);
     }
 }

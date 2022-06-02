@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             // $table->integer('primary_color_id');
             // $table->integer('secondary_color_id');
-
             $table->foreignId('primary_color_id')->constrained('colors')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('secondary_color_id')->constrained('colors')->onDelete('cascade')->onUpdate('cascade');
             $table->unique(["id", "primary_color_id", "secondary_color_id"]);
