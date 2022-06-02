@@ -11297,3 +11297,7 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+html,
+body {
+  overscroll-behavior-x: none;
+}
