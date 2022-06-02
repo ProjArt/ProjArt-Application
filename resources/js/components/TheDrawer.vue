@@ -8,8 +8,25 @@ function toggle() {
   console.log("DRAWER TOGGLE FROM DRAWER");
 
   isOpen.value = !isOpen.value;
-  console.log(isOpen.value);
-  console.log(positionX.value);
+
+  if (isOpen.value) {
+    disableScrolling();
+  } else {
+    enableScrolling();
+  }
+}
+
+function disableScrolling() {
+  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
+
+  window.onscroll = function () {
+    window.scrollTo(scrollLeft, scrollTop);
+  };
+}
+
+function enableScrolling() {
+  window.onscroll = function () {};
 }
 
 const isOpen = ref(false);
