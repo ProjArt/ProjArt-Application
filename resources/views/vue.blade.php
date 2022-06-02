@@ -32,6 +32,12 @@
         <script src="{{ asset('js/pusher.js') }}"></script>
     @endproduction
 
+
+    {{-- ICONS --}}
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
 </head>
 
 <body>
