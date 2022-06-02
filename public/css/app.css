@@ -7,6 +7,8 @@
   --tab-bar-active-color: #8ed5df;
   --default-margin: 0.5rem;
   --default-pading: 0.5rem;
+  --drawer-bg-color: rgb(255, 255, 255);
+  --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
 }
 
 /*!
