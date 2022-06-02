@@ -1,9 +1,14 @@
 <script setup>
+const emits = defineEmits(["open-drawer"]);
+
+function openDrawer() {
+  emits("open-drawer");
+}
 </script>
 
 <template>
   <div class="app-bar">
-    <span class="material-icons">menu</span>
+    <span @click="openDrawer()" class="material-icons">menu</span>
     <img class="icon" src="/images/logo_REDY.svg" />
     <span class="material-icons">search</span>
   </div>
@@ -22,7 +27,7 @@
   height: var(--app-bar-height);
   background-color: var(--app-bar-bg-color);
   padding: var(--default-pading);
-  z-index: 1000;
+  z-index: 100;
 }
 
 .icon {
