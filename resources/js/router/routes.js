@@ -8,6 +8,7 @@ import notFound from "./404Route.vue";
 import settings from "./SettingsRoute.vue";
 import infos from "./InfosRoute.vue";
 import classRoom from "./StudentsAndTeachersListRoute.vue";
+import register from "./RegisterRoute.vue";
 
 
 const routes = [
@@ -20,6 +21,7 @@ const routes = [
     { name: "settings", path: "/settings", component: settings },
     { name: "infos", path: "/infos", component: infos },
     { name: "StudentsAndTeachersListRoute", path: "/class-list", component: classRoom},
+    { name: "register", path: "/register", component: register}
 ];
 
 export const routesNames = (() => {
@@ -37,7 +39,7 @@ const router = createRouter({
 
 router.beforeEach(async(to, from) => {
     const isAuthenticated = localStorage.getItem("token");
-    if (!isAuthenticated && to.name !== "home") {
+    if (!isAuthenticated && to.name !== "home" && to.name !=="register") {
         return { name: "home" };
     }
 });
