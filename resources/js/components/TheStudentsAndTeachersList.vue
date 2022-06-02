@@ -4,54 +4,61 @@ import { API } from "../stores/api.js";
 import useFetch from "../composables/useFetch";
 import { ref, computed, watchEffect } from "vue";
 
-const data = {
-    peopleList: [],
+const data = ref({
     studentsList: [],
     teachersList: [],
-    classRoom: ""
-};
-
-//fonction auto-appelée au début
-(async function startUp() {
-    const peopleList = await getList();
-    data.peopleList = peopleList;
-    data.studentsList = data.peopleList.filter(person => person.role == 'student');
-    console.log("students", data.studentsList);
-    data.teachersList = data.peopleList.filter(person => person.role == 'teacher');
-
-    console.log("dataPeople", data.peopleList)
-    const classRoom = await getClassRoom();
-    data.classRoom = classRoom;
-})();
+    classroom: "dsasàsld",
+});
 
 async function getList() {
     const response = await useFetch({
         url: API.getClassrooms.path(),
         method: API.getClassrooms.method,
     });
-     console.log("getList", response.data.classrooms[0].users);
-    return response.data.classrooms[0].users;
+    const usersList = response.data.classrooms[0].users;
+    data.value.studentsList = usersList.filter((person) => person.role == "student");
+    data.value.teachersList = usersList.filter((person) => person.role == "teacher");
 }
 
-async function getClassRoom(){
-     const response = await useFetch({
+async function getClassRoom() {
+    const response = await useFetch({
         url: API.getClassrooms.path(),
         method: API.getClassrooms.method,
     });
-    console.log(response.data);
-    return response.data.name;
+    const classRoomName = response.data.classrooms[0].name;
+    data.value.classroom = classRoomName;
 }
+
+const studentsList = computed({
+    get: () => data.value.studentsList
+});
+
+const teachersList = computed({
+    get: () => data.value.teacherslist,
+});
+
+const classroom = computed({
+    get: () => data.value.classroom,
+});
+
+console.log('dataBeforeScrap', data.value)
+await getList();
+await getClassRoom();
+console.log("dataAfterScrap", data.value);
+console.log("class", classroom.value)
 </script>
 
 <template>
     <div class="studentsAndTeachers">
-        <h2> Memebres de la classe {{data.classRoom}} </h2>
+        <h2>Membres de la classe {{ classroom }}</h2>
         <ul class="studentsList">
+        <h3> Etudiants </h3>
               <li v-for="student in data.studentsList">
                 <span>Nom d'utilisateur: {{ student.username }}</span>
              </li>
         </ul>
          <ul class="teachersList">
+                <h3>Enseignants </h3>
               <li v-for="teacher in data.teachersList">
                 <span>Nom d'utilisateur: {{ teacher.username }}</span>
              </li>
