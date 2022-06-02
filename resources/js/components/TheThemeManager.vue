@@ -27,7 +27,17 @@ function updateUserTheme() {
     user.value.theme = newTheme;
     //console.log("newUserTheme", user.value.theme);
     changeCssColorsVariable();
+    registerUserThemeInDb();
+}
 
+async function registerUserThemeInDb(themeId){
+    const response = await useFetch({
+        url: API.setTheme.path(),
+        method: API.setTheme.method,
+        data: {theme_id: user.value.theme.id}
+    });
+    console.log(response.data);
+    return response.data;
 }
 
 //Crée une balise style qui définit des nouvelles valeurs aux variables de couleur
