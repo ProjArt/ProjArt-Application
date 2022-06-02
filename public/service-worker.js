@@ -16,6 +16,8 @@ PusherPushNotifications.onNotificationReceived = ({ pushEvent, payload }) => {
         })
     );
 
+    console.log("Received notification in SW", payload);
+
     postMsg(payload);
 };
 
