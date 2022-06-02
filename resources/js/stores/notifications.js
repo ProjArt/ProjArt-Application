@@ -16,6 +16,7 @@ export const notification = computed({
 });
 
 export async function sendNotification({ title, message, to }) {
+    console.log("sends notification", title, message, to);
     const response = await useFetch({
         url: API.sendNotification.path(),
         method: API.sendNotification.method,
@@ -25,10 +26,11 @@ export async function sendNotification({ title, message, to }) {
             to,
         },
     });
+    console.log(response);
 }
 
 export async function registerToChannelNotification(channel) {
-    return; // desactivated for testing purpose
+    //return; // desactivated for testing purpose
     var isSafari = window.safari !== undefined;
 
     var ua = window.navigator.userAgent;
@@ -38,7 +40,7 @@ export async function registerToChannelNotification(channel) {
     if (isSafari || iOSSafari) {
         return;
     }
-    await Notification.requestPermission(async function (permission) {
+    await Notification.requestPermission(async function(permission) {
         if (permission === "granted") {
             await beamsClient.start();
             await beamsClient.addDeviceInterest(channel);
