@@ -113,14 +113,24 @@ const getCalendarsData = computed(() => {
   return calendars;
 });
 
-const allCalendarsManager = computed({
+const layoutStorage = computed({
   get() {
-    return allCalendars.value;
+    return parseInt(localStorage.getItem("layout"))
   },
-  set(calendars) {
-    allCalendars.value = calendars;
+  set(layoutId) {
+    localStorage.setItem("layout", layoutId);
+    currentLayout.value = parseInt(layoutId);
   },
-});
+})
+
+const selectedCalendarsIdStorage = computed({
+  get() {
+    return JSON.parse(localStorage.getItem("calendars"))
+  },
+  set(calendarsIds) {
+    localStorage.setItem("calendars", JSON.stringify(calendarsIds));
+  },
+})
 
 // Helpers
 // ======================================
@@ -663,13 +673,18 @@ function showEventEditForm(startDate, id) {
 // ======================================
 
 (async function startUp() {
+  currentLayout.value = layoutStorage.value || AVAILABLE_LAYOUT.MONTH
   const calendars = await getCalendars();
   await setCalendars(calendars);
   setEvents(getEvents());
-  dates.value = getAllDaysInMonthAndBeginning(
-    TODAY.getFullYear(),
-    TODAY.getMonth()
-  );
+  if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
+    dates.value = getAllDaysInMonthAndBeginning(
+      TODAY.getFullYear(),
+      TODAY.getMonth()
+    );
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
+    dates.value = getAllDaysInWeek(TODAY);
+  }
   console.log(allCalendars.value)
 })();
 
@@ -677,6 +692,7 @@ function showEventEditForm(startDate, id) {
 // ======================================
 
 watch(currentLayout, () => {
+  layoutStorage.value = currentLayout.value;
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
     dates.value = getAllDaysInMonthAndBeginning(
       currDateCursor.value.getFullYear(),
