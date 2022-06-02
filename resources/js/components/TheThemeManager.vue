@@ -2,7 +2,7 @@
 import { user } from "../stores/auth.js";
 import { API } from "../stores/api.js";
 import useFetch from "../composables/useFetch";
-import { ref, computed, watchEffect } from "vue";
+import { ref, computed, watchEffect, watch } from "vue";
 
 async function getThemes() {
     const response = await useFetch({
@@ -16,6 +16,10 @@ const themesList = await getThemes();
 const initialThemeId = user.value.theme.id;
 //console.log('initialUserThemeId', user.value)
 const selectedThemeId = ref(initialThemeId);
+
+watch((initialThemeId) => {
+    console.log(initialThemeId.value)
+})
 
 function updateUserTheme() {
     let themeId = selectedThemeId.value;
@@ -73,8 +77,7 @@ changeCssColorsVariable();
 
 <template>
     <div class="themeSelection">
-        <form class="themeSlectionForm" @submit.prevent="updateUserTheme()" @ref="selectedThemeId">
-            
+        <form class="themeSlectionForm" @change="updateUserTheme()">       
              <input
                 v-if="initialThemeId == 1"
                 checked
@@ -113,7 +116,6 @@ changeCssColorsVariable();
                 data-colors="black-white"
             /> 
             <label for="black-white">White-black</label><br />
-            <input class="submit" type="submit" value="sélectionner ce thème" />
         </form>
     </div>
 </template>
