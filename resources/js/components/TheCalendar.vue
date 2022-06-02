@@ -113,6 +113,15 @@ const getCalendarsData = computed(() => {
   return calendars;
 });
 
+const allCalendarsManager = computed({
+  get() {
+    return allCalendars.value;
+  },
+  set(calendars) {
+    allCalendars.value = calendars;
+  },
+});
+
 // Helpers
 // ======================================
 
@@ -342,6 +351,7 @@ async function storeEvent(form) {
   });
   if (response.success === true) {
     try {
+      form.id = response.data.id;
       displayNewlyCreatedEvent(form);
     } catch (error) {
       console.log(error);
@@ -351,7 +361,7 @@ async function storeEvent(form) {
   }
 }
 
-async function deleteEvent(dayId, eventId) {
+async function deleteEvent(dayId, eventId, calendarId) {
   const response = await useFetch({
     url: API.deleteEvent.path(eventId),
     method: API.deleteEvent.method,
@@ -359,9 +369,17 @@ async function deleteEvent(dayId, eventId) {
   if (response.success === true) {
     try {
       const date = toChDate(dayId);
-      events.value[date] = events.value[date].filter(
+      console.log({ date })
+      console.log(events.value)
+      const filtredEvents = events.value[date].filter(
         (event) => event.id !== eventId
       );
+      events.value[date] = filtredEvents;
+      allCalendars.value.forEach((calendar) => {
+        if (calendar.id === calendarId) {
+          calendar.events = filtredEvents;
+        }
+      })
       const newEvents = sortEventsByDate(date);
       newEventPopup.value = newEvents;
     } catch (error) {
@@ -396,6 +414,11 @@ async function updateEvent(form) {
       events.value[date] = othersEvents;
       const newEvents = sortEventsByDate(date);
       newEventPopup.value = newEvents;
+      allCalendars.value.forEach((calendar) => {
+        if (calendar.id == form.calendar_id) {
+          calendar.events = othersEvents;
+        }
+      });
       indexUnderEdition.value = null;
     } catch (error) {
       console.log(error);
@@ -445,6 +468,32 @@ async function deleteCalendar(calendarId) {
   }
 }
 
+async function updateCalendar(form) {
+  console.log({ form })
+  const response = await useFetch({
+    url: API.updateCalendar.path(form.calendar_id),
+    method: API.updateCalendar.method,
+    data: {
+      name: form.name
+    },
+  });
+  if (response.success === true) {
+    try {
+      const calendars = allCalendars.value.map((calendar) => {
+        if (calendar.id == form.calendar_id) {
+          calendar.name = form.name
+        }
+        return calendar;
+      });
+      setCalendars(calendars, false);
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    console.log("error");
+  }
+}
+
 // Features
 // ======================================
 
@@ -455,11 +504,23 @@ function displayNewlyCreatedEvent(event) {
       const index = toChDate(event.start);
       const canEdit = calendar.can_edit;
       event["can_edit"] = canEdit;
-      if (events.value[index]) {
-        events.value[index].push(event);
-      } else {
-        events.value[index] = [event];
+      event["calendar_id"] = calendar.id;
+      const ids = Object.keys(currentsCalendarIds.value)
+        .map(function (key) {
+          return currentsCalendarIds.value[key];
+        });
+      if (ids.includes(calendarId.toString())) {
+        if (events.value[index]) {
+          events.value[index].push(event);
+        } else {
+          events.value[index] = [event];
+        }
       }
+      allCalendars.value.forEach((calendar) => {
+        if (calendar.id == calendarId) {
+          calendar.events.push(event)
+        }
+      })
     }
   });
 }
@@ -533,6 +594,7 @@ function setEvents(calendars) {
     calendar.events.forEach((event) => {
       const index = toChDate(event.start);
       event.can_edit = canEdit;
+      event.calendar_id = calendar.id;
       event.local = index;
       if (events.value.hasOwnProperty(index)) {
         events.value[index].push(event);
@@ -608,6 +670,7 @@ function showEventEditForm(startDate, id) {
     TODAY.getFullYear(),
     TODAY.getMonth()
   );
+  console.log(allCalendars.value)
 })();
 
 // Watcher(s)
@@ -695,15 +758,15 @@ watch(currentsCalendarIds, () => {
   </div>
   <!--====  Popup Edit Calendar  ====-->
   <div class="popup popup--edit-calendar" v-show="currentPopup === AVAILABLE_POPUP.EDIT_CALENDAR">
-    <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
-      submit-label="Enregistrer" @submit="storeCalendar">
-      <h2>Editer les calendrier</h2>
-      <div v-for="calendar in getCalendarsData" style="display:flex;">
-        <FormKit v-if="calendar.can_edit" type="text" :name="calendar.name" validation="required"
-          :value="calendar.name" />
-        <button v-if="calendar.can_edit" @click="deleteCalendar(calendar.id)">supprimer</button>
-      </div>
-    </FormKit>
+    <h2>Editer les calendrier</h2>
+    <div v-for="calendar in getCalendarsData">
+      <FormKit v-if="calendar.can_edit" type="form" :form-class="isSubmitted ? 'hide' : 'show'"
+        submit-label="Enregistrer" @submit="updateCalendar">
+        <FormKit type="text" name="name" validation="required" :value="calendar.name" />
+        <FormKit type="hidden" name="calendar_id" :value="calendar.id" />
+        <button @click="deleteCalendar(calendar.id)">supprimer</button>
+      </FormKit>
+    </div>
   </div>
   <!--====  Popup edit event  ====-->
   <div class="popup popup--edit-events" v-show="currentPopup === AVAILABLE_POPUP.SHOW_EVENT">
@@ -719,10 +782,10 @@ watch(currentsCalendarIds, () => {
           <p>début: {{ event.start }}</p>
           <p>fin: {{ event.end }}</p>
         </div>
-        <button v-show="event.can_edit" @click="deleteEvent(event.start, event.id)">
+        <button v-show="event.can_edit" @click="deleteEvent(event.start, event.id, event.calendar_id)">
           supprimer
         </button>
-        <button v-show="event.can_edit" @click="showEventEditForm(event.start, event.id)">
+        <button v-show="event.can_edit" @click="showEventEditForm(event.start, event.id, event.calendar_id)">
           editer
         </button>
         <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
@@ -789,10 +852,6 @@ watch(currentsCalendarIds, () => {
   display: flex;
 }
 
-/* :deep(.formkit-option) { */
-/*     display: flex; */
-/* } */
-
 :deep(.formkit-option .formkit-wrapper) {
   display: grid;
   grid-template-columns: auto 1fr;
@@ -814,18 +873,6 @@ watch(currentsCalendarIds, () => {
 .calendar__event {
   font-size: 0.7rem;
   text-align: left;
-}
-
-.button--add-event {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background-color: #ccc;
-  border: none;
-  padding: 0.5rem;
-  font-size: 1rem;
-  cursor: pointer;
-  z-index: 10;
 }
 
 .is-clickable-day {
@@ -852,8 +899,6 @@ watch(currentsCalendarIds, () => {
   align-items: flex-start;
 }
 
-.popup--new-event {}
-
 .event {
   display: flex;
   background-color: lightgray;
@@ -873,6 +918,14 @@ watch(currentsCalendarIds, () => {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.popup--edit-calendar {
+  flex-direction: column;
+}
+
+.popup--edit-calendar :deep(.formkit-form) {
+  flex-direction: row;
 }
 
 .popup__event {
