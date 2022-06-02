@@ -55,12 +55,14 @@ console.log("class", classroom.value)
         <h3> Etudiants </h3>
               <li v-for="student in data.studentsList">
                 <span>Nom d'utilisateur: {{ student.username }}</span>
+                <span>Email: {{ student.username }} @heig-vd.ch</span>
              </li>
         </ul>
          <ul class="teachersList">
                 <h3>Enseignants </h3>
               <li v-for="teacher in data.teachersList">
                 <span>Nom d'utilisateur: {{ teacher.username }}</span>
+                <span>Email: {{ teacher.username }} @heig-vd.ch</span>
              </li>
         </ul>
     </div>
