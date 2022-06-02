@@ -19,7 +19,7 @@ const routes = [
     { name: "notFound", path: '/:pathMatch(.*)*', component: notFound },
     { name: "settings", path: "/settings", component: settings },
     { name: "infos", path: "/infos", component: infos },
-    { name: "studentsAndTeachersList", path: "/class-list", component: classRoom},
+    { name: "StudentsAndTeachersListRoute", path: "/class-list", component: classRoom},
 ];
 
 export const routesNames = (() => {
