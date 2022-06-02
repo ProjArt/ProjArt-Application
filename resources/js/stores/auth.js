@@ -9,5 +9,6 @@ export const user = computed({
     },
     set: (value) => {
         localStorage.setItem("user", JSON.stringify(value));
+        console.log("on update le localuser")
     }
 });
