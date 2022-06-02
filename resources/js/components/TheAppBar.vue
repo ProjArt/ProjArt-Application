@@ -22,6 +22,7 @@
   height: var(--app-bar-height);
   background-color: var(--app-bar-bg-color);
   padding: var(--default-pading);
+  z-index: 1000;
 }
 
 .icon {
