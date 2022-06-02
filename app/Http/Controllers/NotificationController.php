@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreNotificationRequest;
 use App\Http\Requests\UpdateNotificationRequest;
+use App\Models\Channel;
 use App\Models\Notification;
 use Illuminate\Http\Request;
 
@@ -80,10 +81,28 @@ class NotificationController extends Controller
      */
     public function send(Request $request)
     {
-        (new Notification())->send($request->title, $request->message, $request->to);
+        $channel = Channel::firstOrCreate(['name' => $request->to]);
 
-        return response()->json([
-            'status' => 'success'
+        Notification::create([
+            'title' => $request->title,
+            'text' => $request->message,
+            'channel_name' => $channel->name,
         ]);
+
+        return httpSuccess('Notifications sent');
+    }
+
+    /**
+     * 
+     * Get user notifications
+     * 
+     * Retourne les notifications de l'utilisateur
+     *
+     */
+    public function getUserNotifications(Request $request)
+    {
+        $user = $request->user();
+
+        return httpSuccess("Notifications", $user->notifications);
     }
 }

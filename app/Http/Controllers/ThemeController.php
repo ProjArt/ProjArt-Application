@@ -42,7 +42,7 @@ class ThemeController extends Controller
         $user->update([
             'theme_id' => $request->theme_id
         ]);
-        return httpSuccess("Le thème a été mis à jour", $user);
+        return httpSuccess("Le thème a été mis à jour", $user->refresh());
     }
 
     /**
