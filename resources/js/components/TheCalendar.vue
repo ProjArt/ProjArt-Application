@@ -9,7 +9,7 @@ import { API } from "../stores/api";
 const TODAY = new Date();
 const DAY_LABELS = ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
-const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3 };
+const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
 const AVAILABLE_POPUP = { STORE_EVENT: 0, STORE_CALENDAR: 1, SHOW_EVENT: 2, EDIT_CALENDAR: 3 }
 
 const CSS = {
@@ -251,7 +251,7 @@ function getAllDaysInMonthAndBeginning(year, month) {
 function getDaysFromDate(choosenDate, numberOfDays = 30) {
   const date = new Date(choosenDate.getFullYear(), choosenDate.getMonth(), choosenDate.getDate());
   const dates = {};
-  for (let i = 0; i <= numberOfDays; i++) {
+  for (let i = 0; i < numberOfDays; i++) {
     if (i != 0) date.setDate(date.getDate() + 1);
     const key = date.toLocaleDateString();
     dates[key] = formatDayObject(date);
@@ -560,6 +560,10 @@ function actualPeriod() {
     );
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
     dates.value = getAllDaysInWeek(TODAY);
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
+    dates.value = getDaysFromDate(TODAY, 1);
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
+    dates.value = getDaysFromDate(TODAY, 30);
   }
   currDateCursor.value = TODAY;
   displayedDateManager.value = {
@@ -584,7 +588,11 @@ function nextPeriod() {
     nextPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, 30));
     console.log({ nextPeriod })
     dates.value = getDaysFromDate(nextPeriod);
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
+    nextPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, 1));
+    dates.value = getDaysFromDate(nextPeriod, 1);
   }
+
   currDateCursor.value = nextPeriod;
   formatCurrentDateForDisplay(nextPeriod);
 }
@@ -605,7 +613,11 @@ function previousPeriod() {
     previousPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, -30));
     console.log({ previousPeriod })
     dates.value = getDaysFromDate(previousPeriod);
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
+    previousPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, -1));
+    dates.value = getDaysFromDate(previousPeriod, 1);
   }
+
   currDateCursor.value = previousPeriod;
   formatCurrentDateForDisplay(previousPeriod);
 }
@@ -711,6 +723,8 @@ function showEventEditForm(startDate, id) {
     dates.value = getAllDaysInWeek(TODAY);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
     dates.value = getDaysFromDate(TODAY);
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
+    dates.value = getDaysFromDate(TODAY, 1);
   }
 
   const watchCurrentsCalendarIds = watch(currentsCalendarIds, () => {
@@ -734,6 +748,8 @@ watch(currentLayout, () => {
     dates.value = getAllDaysInWeek(currDateCursor.value);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
     dates.value = getDaysFromDate(currDateCursor.value);
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
+    dates.value = getDaysFromDate(currDateCursor.value, 1);
   }
 });
 
@@ -751,6 +767,7 @@ watch(currentLayout, () => {
       <button @click="currentLayout = AVAILABLE_LAYOUT.MONTH">Mois</button>
       <button @click="currentLayout = AVAILABLE_LAYOUT.WEEK">Semaines</button>
       <button @click="currentLayout = AVAILABLE_LAYOUT.LIST">List</button>
+      <button @click="currentLayout = AVAILABLE_LAYOUT.DAY">Jour</button>
       <button @click="actualPeriod">Aujourd'hui</button>
       <button @click="showNewEventForm">Ajouter événement</button>
       <button @click="showNewCalendarForm">Ajouter un calendrier</button>
@@ -763,7 +780,7 @@ watch(currentLayout, () => {
       </div>
     </div>
     <!--====  Calendar no events message  ====-->
-    <div class="calendar__no-events">
+    <div class="calendar__no-events" v-show="currentLayout === AVAILABLE_LAYOUT.LIST">
       <p>Aucun événements pour cette période</p>
     </div>
     <!--====  Calendar days  ====-->
@@ -872,7 +889,6 @@ watch(currentLayout, () => {
   z-index: -1;
   width: 100%;
   text-align: center;
-  bottom: -4rem;
 }
 
 .calendar {
@@ -892,7 +908,8 @@ watch(currentLayout, () => {
   grid-gap: 1rem;
 }
 
-.calendar__days--list {
+.calendar__days--list,
+.calendar__days--day {
   grid-template-columns: 1fr;
 }
 
