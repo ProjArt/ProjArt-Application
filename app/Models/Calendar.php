@@ -20,7 +20,7 @@ class Calendar extends Model
 
     public function events()
     {
-        return $this->hasMany(Event::class)->orderBy('start');
+        return $this->belongsToMany(Event::class)->orderBy('start');
     }
 
     public function users()

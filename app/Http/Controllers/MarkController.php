@@ -45,7 +45,7 @@ class MarkController extends Controller
         $marks =  $user->marks->groupBy(function ($mark) {
             return $mark->year_start . " - " . $mark->year_end;
         });
-        return httpSuccess('Les notes', $marks);
+        return httpSuccess('Les notes', $user->markmodules);
     }
 
     /**
