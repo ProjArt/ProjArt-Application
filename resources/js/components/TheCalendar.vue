@@ -379,8 +379,6 @@ async function deleteEvent(dayId, eventId, calendarId) {
   if (response.success === true) {
     try {
       const date = toChDate(dayId);
-      console.log({ date })
-      console.log(events.value)
       const filtredEvents = events.value[date].filter(
         (event) => event.id !== eventId
       );
@@ -458,7 +456,12 @@ async function setCalendars(calendars, setIds = true) {
   });
   calendarsNames.value = userCalendars;
   allCalendars.value = calendars;
-  if (setIds) currentsCalendarIds.value = [currentsCalendarIds.value || calendars[0].id.toString()];
+  if (setIds) {
+    const storageValue = localStorage.getItem("calendars");
+    currentsCalendarIds.value = storageValue
+      ? JSON.parse(storageValue)
+      : [calendars[0].id.toString()]
+  }
 }
 
 async function deleteCalendar(calendarId) {
@@ -479,7 +482,6 @@ async function deleteCalendar(calendarId) {
 }
 
 async function updateCalendar(form) {
-  console.log({ form })
   const response = await useFetch({
     url: API.updateCalendar.path(form.calendar_id),
     method: API.updateCalendar.method,
@@ -685,7 +687,13 @@ function showEventEditForm(startDate, id) {
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
     dates.value = getAllDaysInWeek(TODAY);
   }
-  console.log(allCalendars.value)
+
+  const watchCurrentsCalendarIds = watch(currentsCalendarIds, () => {
+    selectedCalendarsIdStorage.value = toRaw(currentsCalendarIds.value)
+    console.log(toRaw(selectedCalendarsIdStorage.value))
+    setEvents(getEvents());
+  })
+
 })();
 
 // Watcher(s)
@@ -703,9 +711,6 @@ watch(currentLayout, () => {
   }
 });
 
-watch(currentsCalendarIds, () => {
-  setEvents(getEvents());
-})
 
 </script>
 <template>
