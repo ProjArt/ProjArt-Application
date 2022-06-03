@@ -42,9 +42,9 @@ class MarkController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        $marks =  $user->marks->groupBy(function ($mark) {
+        /* $marks =  $user->marks->groupBy(function ($mark) {
             return $mark->year_start . " - " . $mark->year_end;
-        });
+        }); */
         return httpSuccess('Les notes', $user->markmodules);
     }
 
