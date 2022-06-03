@@ -9,7 +9,7 @@ import { API } from "../stores/api";
 const TODAY = new Date();
 const DAY_LABELS = ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
-const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, DAY: 3 };
+const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3 };
 const AVAILABLE_POPUP = { STORE_EVENT: 0, STORE_CALENDAR: 1, SHOW_EVENT: 2, EDIT_CALENDAR: 3 }
 
 const CSS = {
@@ -135,6 +135,9 @@ const selectedCalendarsIdStorage = computed({
 // Helpers
 // ======================================
 
+function getKeyByValue(object, value) {
+  return Object.keys(object).find(key => object[key] === value);
+}
 /**
  * Console log to value of an array of refs
  * @param {Array} obj { name: string, value: ref }
@@ -245,6 +248,17 @@ function getAllDaysInMonthAndBeginning(year, month) {
   return days;
 }
 
+function getDaysFromDate(choosenDate, numberOfDays = 30) {
+  const date = new Date(choosenDate.getFullYear(), choosenDate.getMonth(), choosenDate.getDate());
+  const dates = {};
+  for (let i = 0; i <= numberOfDays; i++) {
+    if (i != 0) date.setDate(date.getDate() + 1);
+    const key = date.toLocaleDateString();
+    dates[key] = formatDayObject(date);
+  }
+  return dates;
+}
+
 function getAllDaysInWeek(choosenDate) {
   const monday = getMonday(choosenDate);
   const dates = {};
@@ -301,13 +315,14 @@ function formatCurrentDateForDisplay(date) {
   }
 }
 
-function getWeekRelativeToDate(date, numberOfDays) {
+function getDaysRelativeToDate(date, numberOfDays) {
   return date.setDate(date.getDate() + parseInt(numberOfDays));
 }
 
 function getMonthRelativeToDate(date, numberOfMonths) {
   return date.setMonth(date.getMonth() + parseInt(numberOfMonths));
 }
+
 
 function chDateToYMD(dateString, separator) {
   const datesParts = dateString.split("/");
@@ -458,7 +473,7 @@ async function setCalendars(calendars, setIds = true) {
   allCalendars.value = calendars;
   if (setIds) {
     const storageValue = localStorage.getItem("calendars");
-    currentsCalendarIds.value = storageValue
+    currentsCalendarIds.value = storageValue && typeof JSON.parse(storageValue) == "object"
       ? JSON.parse(storageValue)
       : [calendars[0].id.toString()]
   }
@@ -563,8 +578,12 @@ function nextPeriod() {
       nextPeriod.getMonth()
     );
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-    nextPeriod = new Date(getWeekRelativeToDate(dateUnderCursor, 7));
+    nextPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, 7));
     dates.value = getAllDaysInWeek(nextPeriod);
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
+    nextPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, 30));
+    console.log({ nextPeriod })
+    dates.value = getDaysFromDate(nextPeriod);
   }
   currDateCursor.value = nextPeriod;
   formatCurrentDateForDisplay(nextPeriod);
@@ -580,8 +599,12 @@ function previousPeriod() {
       previousPeriod.getMonth()
     );
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-    previousPeriod = new Date(getWeekRelativeToDate(dateUnderCursor, -7));
+    previousPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, -7));
     dates.value = getAllDaysInWeek(previousPeriod);
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
+    previousPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, -30));
+    console.log({ previousPeriod })
+    dates.value = getDaysFromDate(previousPeriod);
   }
   currDateCursor.value = previousPeriod;
   formatCurrentDateForDisplay(previousPeriod);
@@ -686,6 +709,8 @@ function showEventEditForm(startDate, id) {
     );
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
     dates.value = getAllDaysInWeek(TODAY);
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
+    dates.value = getDaysFromDate(TODAY);
   }
 
   const watchCurrentsCalendarIds = watch(currentsCalendarIds, () => {
@@ -693,7 +718,6 @@ function showEventEditForm(startDate, id) {
     console.log(toRaw(selectedCalendarsIdStorage.value))
     setEvents(getEvents());
   })
-
 })();
 
 // Watcher(s)
@@ -708,9 +732,10 @@ watch(currentLayout, () => {
     );
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
     dates.value = getAllDaysInWeek(currDateCursor.value);
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
+    dates.value = getDaysFromDate(currDateCursor.value);
   }
 });
-
 
 </script>
 <template>
@@ -725,6 +750,7 @@ watch(currentLayout, () => {
       <button @click="nextPeriod">&gt;&gt;</button>
       <button @click="currentLayout = AVAILABLE_LAYOUT.MONTH">Mois</button>
       <button @click="currentLayout = AVAILABLE_LAYOUT.WEEK">Semaines</button>
+      <button @click="currentLayout = AVAILABLE_LAYOUT.LIST">List</button>
       <button @click="actualPeriod">Aujourd'hui</button>
       <button @click="showNewEventForm">Ajouter événement</button>
       <button @click="showNewCalendarForm">Ajouter un calendrier</button>
@@ -736,10 +762,16 @@ watch(currentLayout, () => {
         {{ dayLabel }}
       </div>
     </div>
+    <!--====  Calendar no events message  ====-->
+    <div class="calendar__no-events">
+      <p>Aucun événements pour cette période</p>
+    </div>
     <!--====  Calendar days  ====-->
-    <div class="calendar__days">
+    <div class="calendar__days"
+      :class="'calendar__days--' + getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()">
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)"
-        :class="(selectedDate === index ? 'is-selected-day' : ''), day?.class" :key="index" :date-id="day?.local">
+        :class="(selectedDate === index ? 'is-selected-day' : ''), day?.class, currentLayout === AVAILABLE_LAYOUT.LIST && !events.hasOwnProperty(day?.local) ? 'is-display-none' : ''"
+        :key="index" :date-id="day?.local">
         <p class="calendar__day-number">{{ day?.dayOfMonthNumber }}</p>
         <p class="calendar__day-date">{{ day?.local }}</p>
         <div v-for="event in sortEventsByDate(day?.local)">
@@ -831,8 +863,21 @@ watch(currentLayout, () => {
   </div>
 </template>
 <style lang="scss" scoped>
+.is-display-none {
+  display: none !important;
+}
+
+.calendar__no-events {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  text-align: center;
+  bottom: -4rem;
+}
+
 .calendar {
   margin: 2rem;
+  position: relative;
 }
 
 .calendar__header {
@@ -845,6 +890,10 @@ watch(currentLayout, () => {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 1rem;
+}
+
+.calendar__days--list {
+  grid-template-columns: 1fr;
 }
 
 .calendar__day {
