@@ -67,13 +67,28 @@ class MailController extends Controller
 
 
 
-        Mail::send('mails.default', ["mail" => $mail], function ($message) use ($mail, $user) {
+        /*  Mail::send('mails.default', ["mail" => $mail], function ($message) use ($mail, $user) {
             $message->from($user->username . "@heig-vd.ch", $user->username);
             $message->to($mail['to']);
             $message->subject($mail['subject']);
-        });
+        }); */
 
-        return httpSuccess('Mail envoyé');
+
+        $to      = 'vincent@tarrit.com';
+        $subject = 'Sujet du mail';
+        $message = 'Voici un message ' . time();
+        $headers = array(
+            'From' => $user->username . '@heig-vd.ch',
+            'Reply-To' => $user->username . '@heig-vd.ch',
+            'X-Mailer' => 'PHP/' . phpversion()
+        );
+        echo time();
+        try {
+            mail($to, $subject, $message, $headers);
+            return httpSuccess('Mail envoyé');
+        } catch (\Exception $e) {
+            return httpError("Mail not sent");
+        }
     }
 
     private function getMailbox(Request $request)
