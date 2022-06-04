@@ -16,12 +16,7 @@
     <base href="{{ env('MIX_BASE_URL') }}">
     <link rel="manifest" href="{{ asset('manifest.json') }} " />
     <link rel="apple-touch-icon" href="link to the smaller icon">
-
-    @production
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    @else
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    @endproduction
+    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
 
 
