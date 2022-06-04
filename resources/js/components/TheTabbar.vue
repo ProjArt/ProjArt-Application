@@ -22,8 +22,10 @@ async function _send() {
 }
 
 function buildMenu() {
-  let menu = routesNames().filter((route) =>
-    route.is_visible.includes(user.value.role)
+  let menu = routesNames().filter(
+    (route) =>
+      route.is_visible.includes(user.value.role) ||
+      route.is_visible.includes("*")
   );
   return menu;
 }

@@ -21,7 +21,7 @@ const routes = [
         path: "/calendar",
         component: calendar,
         icon: "calendar_month",
-        is_visible: ["student", "teacher"],
+        is_visible: ["*"],
     },
     {
         name: "absences",
@@ -42,7 +42,7 @@ const routes = [
         path: "/menus",
         component: menus,
         icon: "restaurant_menu",
-        is_visible: ["student", "teacher"],
+        is_visible: ["*"],
     },
     {
         name: "notFound",
@@ -84,7 +84,7 @@ const routes = [
         path: "/mails",
         component: mails,
         icon: "mail",
-        is_visible: ["student", "teacher"],
+        is_visible: ["*"],
     },
     {
         name: "mail",
