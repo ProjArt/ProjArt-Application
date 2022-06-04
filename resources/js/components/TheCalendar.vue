@@ -12,7 +12,7 @@ const DAY_LABELS = ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
 const MONTH_LABELS = ["JANVIER", "FEVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOUT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DECEMBRE"];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
-const AVAILABLE_POPUP = { STORE_EVENT: 0, STORE_CALENDAR: 1, SHOW_EVENT: 2, EDIT_CALENDAR: 3 }
+const AVAILABLE_POPUP = { STORE_EVENT: 0, STORE_CALENDAR: 1, SHOW_EVENT: 2, EDIT_CALENDAR: 3, SHARE_CALENDAR: 4 }
 
 // Ref
 // ======================================
@@ -165,6 +165,13 @@ function showNewEventForm(event) {
   currentPopup.value = currentPopup.value === AVAILABLE_POPUP.STORE_EVENT
     ? null
     : AVAILABLE_POPUP.STORE_EVENT;
+}
+
+function showShareCalendarForm(event) {
+  event.stopPropagation();
+  currentPopup.value = currentPopup.value === AVAILABLE_POPUP.SHARE_CALENDAR
+    ? null
+    : AVAILABLE_POPUP.SHARE_CALENDAR;
 }
 
 function showNewCalendarForm(event) {
@@ -330,16 +337,20 @@ async function getCalendars() {
 
 async function setCalendars(calendars, setIds = true) {
   const userCalendars = {};
-  calendars.forEach((calendar) => {
-    userCalendars[calendar.id] = calendar.name;
-  });
-  calendarsNames.value = userCalendars;
-  allCalendars.value = calendars;
-  if (setIds) {
-    const storageValue = localStorage.getItem("calendars");
-    currentsCalendarIds.value = storageValue && typeof JSON.parse(storageValue) == "object"
-      ? JSON.parse(storageValue)
-      : [calendars[0].id.toString()]
+  try {
+    calendars.forEach((calendar) => {
+      userCalendars[calendar.id] = calendar.name;
+    });
+    calendarsNames.value = userCalendars;
+    allCalendars.value = calendars;
+    if (setIds) {
+      const storageValue = localStorage.getItem("calendars");
+      currentsCalendarIds.value = storageValue && typeof JSON.parse(storageValue) == "object"
+        ? JSON.parse(storageValue)
+        : [calendars[0].id.toString()]
+    }
+  } catch (error) {
+    console.log(error)
   }
 }
 
@@ -615,7 +626,7 @@ function showEventEditForm(startDate, id) {
     } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
       dates.value = useDate.getAllDaysInWeek(currDateCursor.value);
       const monday = useDate.getMonday(currDateCursor.value);
-      formatCurrentDateForDisplay(currDateCursor.value);
+      formatCurrentDateForDisplay(monday);
     } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
       dates.value = useDate.getDaysFromDate(currDateCursor.value);
       formatCurrentDateForDisplay(currDateCursor.value, 30);
@@ -670,6 +681,7 @@ function showEventEditForm(startDate, id) {
       <button @click="showNewEventForm">Ajouter événement</button>
       <button @click="showNewCalendarForm">Ajouter un calendrier</button>
       <button @click="showEditCalendarForm">Editer les calendrier</button>
+      <button @click="showShareCalendarForm">Partager un calendrier</button>
     </header>
     <!--====  Calendar days names  ====-->
     <div class="calendar__days-names">
@@ -721,6 +733,14 @@ function showEventEditForm(startDate, id) {
     <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
       submit-label="Enregistrer" @submit="storeCalendar">
       <h2>Ajouter un Calendrier</h2>
+      <FormKit type="text" name="name" validation="required" label="Nom" />
+    </FormKit>
+  </div>
+  <!--====  Popup share Calendar  ====-->
+  <div class="popup popup--share-calendar" v-show="currentPopup === AVAILABLE_POPUP.SHARE_CALENDAR">
+    <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
+      submit-label="Enregistrer" @submit="storeCalendar">
+      <h2>Partager un Calendrier</h2>
       <FormKit type="text" name="name" validation="required" label="Nom" />
     </FormKit>
   </div>

@@ -24,7 +24,7 @@ function getUrl() {
 /**
  * It takes a route string, splits it into parts, and returns a function that takes
  * the parameters of the route and returns the full url
- * @param route {string} The route you want to create a function for.
+ * @param {string} route The route you want to create a function for.
  * @returns A function that returns a string.
  */
 function createFunction(route) {
@@ -50,9 +50,9 @@ function createFunction(route) {
         group.item.forEach((route) => {
             let name = route.name.split(" ").map((word, index) => {
                 word = word.toLowerCase();
-                return index === 0 ?
-                    word :
-                    word.charAt(0).toUpperCase() + word.slice(1);
+                return index === 0
+                    ? word
+                    : word.charAt(0).toUpperCase() + word.slice(1);
             });
             name = name.join("");
             API[name] = {

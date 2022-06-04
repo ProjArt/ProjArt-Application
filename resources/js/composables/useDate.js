@@ -45,7 +45,7 @@ export function getDateFormat(date) {
 /**
  * @description get the week number in year relative to a date
  * @export
- * @param {*} date
+ * @param {*} d
  * @return {number}
  */
 export function getWeekYearNumber(d) {
