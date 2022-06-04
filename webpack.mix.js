@@ -14,7 +14,7 @@ const mix = require("laravel-mix");
 mix.js("resources/js/app.js", "public/js")
     .vue()
     .sass("resources/sass/app.scss", "public/css")
-    .sourceMaps(true); //just for debugging purpose
+    .sourceMaps(false); //just for debugging purpose
 mix.webpackConfig({
     stats: {
         children: true,
