@@ -1,5 +1,5 @@
 const useLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = process.env.MIX_BASE_URL;
+    window.location.href = window.location.origin + "/register";
 };
 export default useLogout;
