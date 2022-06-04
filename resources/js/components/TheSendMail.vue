@@ -3,8 +3,11 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
 
+const formData = ref({});
+
 // At start of component, fetch the data
 async function send() {
+  console.log(toRaw(formData.value));
   const response = await useFetch({
     url: API.sendMail.path(),
     method: API.sendMail.method,
@@ -17,8 +20,6 @@ async function send() {
     console.log(response, "error");
   }
 }
-
-const formData = ref();
 </script>
 
 <template>
@@ -29,7 +30,7 @@ const formData = ref();
       submit-label="Envoyer"
       @submit="send"
     >
-      <h2>À</h2>
+      <h2>Envoyer un mail</h2>
       <FormKit
         type="text"
         name="to"

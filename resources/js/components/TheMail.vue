@@ -5,7 +5,10 @@ import { API } from "../stores/api";
 
 // At start of component, fetch the data
 
-const mailID = window.location.href.split("/")[4];
+const mailID = window.location.href.substring(
+  window.location.href.lastIndexOf("/") + 1
+);
+console.log(mailID);
 async function setupMail() {
   const response = await useFetch({
     url: API.showMail.path(mailID),
@@ -27,14 +30,33 @@ const mail = ref();
 <template>
   <div>
     <h1 class="title">Mail</h1>
-    {{ mail }}
+    <div class="mail-group" v-if="mail != undefined">
+      <div clas="mail-from">
+        {{ mail.fromName }}
+      </div>
+      <div class="mail-date">
+        {{ mail.date }}
+      </div>
+      <div class="subject">
+        {{ mail.subject }}
+      </div>
+      <hr />
+      <div
+        class="mail-message"
+        v-html="
+          mail.textPlain
+            .replace(/<\/?[^>]+(>|$)/g, '')
+            .replace(/(?:\r\n|\r|\n)/g, '<br />')
+        "
+      ></div>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .mail-group {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 10px;
