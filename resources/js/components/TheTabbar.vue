@@ -7,8 +7,11 @@ import {
   //askPermissionNotification,
 } from "../stores/notifications";
 import { user } from "../stores/auth";
+import { changeCssColorsVariable } from "../composables/changeCssColorsVariable.js";
 
 console.log(isAuthenticated.value);
+
+changeCssColorsVariable();
 
 async function _send() {
   await sendNotification({

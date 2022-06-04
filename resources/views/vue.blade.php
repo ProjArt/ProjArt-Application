@@ -17,18 +17,13 @@
     <link rel="manifest" href="{{ asset('manifest.json') }} " />
     <link rel="apple-touch-icon" href="link to the smaller icon">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-
-
     {{-- PUSHER --}}
     <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
 
-
     {{-- ICONS --}}
-
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 </head>
 
