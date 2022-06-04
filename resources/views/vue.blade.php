@@ -23,13 +23,13 @@
     {{-- ICONS --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="/css/app.css">
 
 </head>
 
 <body>
     <div id="app"></div>
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>
