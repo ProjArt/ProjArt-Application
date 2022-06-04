@@ -1,7 +1,17 @@
 // Body
 $body-bg: #f8fafc;
-
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$font-family-sans-serif: 'Nunito',
+sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+:root {
+    --app-bar-height: 60px;
+    --app-bar-bg-color: #fff;
+    --tab-bar-bg-color: #e0e0e0;
+    --tab-bar-active-color: #8ed5df;
+    --default-margin: 0.5rem;
+    --default-pading: 0.5rem;
+    --drawer-bg-color: rgb(255, 255, 255);
+    --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
+}

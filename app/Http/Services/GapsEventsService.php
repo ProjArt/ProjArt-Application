@@ -59,7 +59,7 @@ class GapsEventsService
 
         foreach ($users as $user) {
             $calendar = $user->calendars()->firstOrCreate([
-                'name' => $user->classrooms()->latest()->first()->name
+                'name' => "Horaires"
             ]);
             try {
                 $user->setPersonalNumber();
@@ -77,13 +77,15 @@ class GapsEventsService
                 $calendar->events()->delete();
 
                 foreach ($ical->events() as $event) {
-                    $event = $calendar->events()->create([
+                    $event = Event::firstOrCreate([
                         'title' => $event->summary,
                         'description' => $event->description,
                         'start' => $event->dtstart,
                         'end' => $event->dtend,
                         'location' => $event->location ?? "",
                     ]);
+
+                    $calendar->events()->attach($event);
                 }
             } catch (\Exception $e) {
                 return $e->getMessage();
