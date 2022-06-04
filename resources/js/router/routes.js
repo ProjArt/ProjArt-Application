@@ -10,6 +10,9 @@ import infos from "./InfosRoute.vue";
 import classRoom from "./StudentsAndTeachersListRoute.vue";
 import { user } from "../stores/auth";
 import register from "./RegisterRoute.vue";
+import mails from "./MailsRoute.vue";
+import mail from "./MailRoute.vue";
+import sendMail from "./SendMailRoute.vue";
 
 
 const routes = [
@@ -22,7 +25,10 @@ const routes = [
     { name: "settings", path: "/settings", component: settings, icon: "home", is_visible: [] },
     { name: "infos", path: "/infos", component: infos, icon: "home", is_visible: [] },
     { name: "classList", path: "/class-list", component: classRoom, icon: "group", is_visible: ["teacher"] },
-    { name: "register", path: "/register", component: register }
+    { name: "register", path: "/register", component: register, icon: "home", is_visible: [] },
+    { name: "mails", path: "/mails", component: mails, icon: "mail", is_visible: ["student", "teacher"] },
+    { name: "mail", path: "/mails/:id", component: mail, icon: "home", is_visible: [] },
+    { name: "sendMail", path: "/mails/send", component: sendMail, icon: "home", is_visible: [] },
 ];
 
 export const routesNames = (() => {

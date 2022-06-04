@@ -37,7 +37,7 @@ class AuthController extends Controller
     public function register(AuthUserRequest $request)
     {
 
-        if (User::whereUsername($request->username)->exists()) {
+        if (User::whereUsername(strtolower($request->username))->exists()) {
             return httpError("This username is already taken");
         }
 
@@ -49,7 +49,9 @@ class AuthController extends Controller
             return httpError("This credentials are not valid");
         }
 
-        $user = User::create($request->all());
+        $data = $request->all();
+        $data['username'] = strtolower($request->username);
+        $user = User::create($data);
         $token = $user->createToken('auth_token')->plainTextToken;
 
         if ($request->classroom_name) {

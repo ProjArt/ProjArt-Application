@@ -74,9 +74,9 @@ function handleTouchMove(evt) {
   <the-header />
   <the-app-bar @open-drawer="openDrawer" />
   <div class="spacer-top">&nbsp;</div>
-  <Suspense>
+  <!-- <Suspense>
     <the-theme-manager />
-  </Suspense>
+  </Suspense> -->
   <the-notification></the-notification>
   <main>
     <router-view></router-view>

@@ -18,9 +18,9 @@ navigator.serviceWorker.addEventListener("message", (event) => {
     notification.value = event.data;
 });
 
-if (window.safari) {
+/* if (window.safari) {
     history.pushState(null, null, window.location.href);
     window.onpopstate = function() {
         history.go(1);
     }
-}
+} */
