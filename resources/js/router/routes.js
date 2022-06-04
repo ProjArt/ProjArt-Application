@@ -103,18 +103,8 @@ const routes = [
 ];
 
 export const routesNames = () => {
-    const obj = [];
-    routes.forEach((route) => {
-        try {
-            console.log("user", user.value);
-            let role = user.value.role;
-            role = role || "student";
-            if (route.is_visible.includes(role)) {
-                obj.push(route);
-            }
-        } catch (e) {}
-    });
-    return obj;
+
+    return routes;
 };
 
 const router = createRouter({
@@ -122,7 +112,7 @@ const router = createRouter({
     routes,
 });
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async(to, from) => {
     const isAuthenticated = localStorage.getItem("token");
     if (!isAuthenticated && to.name !== "home" && to.name !== "register") {
         return { name: "home" };

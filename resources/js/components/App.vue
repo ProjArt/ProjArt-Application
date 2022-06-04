@@ -72,9 +72,9 @@ function handleTouchMove(evt) {
 <template>
   <the-app-bar @open-drawer="openDrawer" />
   <div class="spacer-top">&nbsp;</div>
-  <!-- <Suspense>
+  <Suspense>
     <the-theme-manager />
-  </Suspense> -->
+  </Suspense>
   <the-notification></the-notification>
   <main>
     <router-view></router-view>
@@ -98,7 +98,7 @@ main {
 
 .spacer-bottom {
   width: 100%;
-  height: 3rem;
+  height: 5rem;
 }
 </style>
 
