@@ -119,20 +119,23 @@ class CalendarController extends Controller
      * 
      * Partage un calendrier avec un autre utilisateur.
      *
-     * @bodyParam user_id int required ID de l'utilisateur à qui partager le calendrier.
-     * @bodyParam calendar_id int required ID du calendrier à partager.           
+     * @bodyParam users une liste d'utilisateurs à qui partager le calendrier.
+     * @bodyParam can_own bool Si l'utilisateur peut modifier le calendrier.
      */
     public function share(ShareCalendarRequest $request)
     {
-        $userToShare = User::find($request->user_id);
         $calendar = Calendar::find($request->calendar_id);
 
         $this->authorize('share', $calendar);  // Check if user can share calendar
 
-        $userToShare->calendars()
-            ->sync([$calendar->id => [
-                'rights' => $request->can_own ? Calendar::EDIT_RIGHT : Calendar::READ_RIGHT
-            ]], false);
+        foreach ($request->users as $user_id) {
+            $user = User::find($user_id);
+            $user->calendars()
+                ->sync([$calendar->id => [
+                    'rights' => $request->can_own ? Calendar::EDIT_RIGHT : Calendar::READ_RIGHT
+                ]], false);
+        }
+
 
         return httpSuccess('Calendar shared');
     }
