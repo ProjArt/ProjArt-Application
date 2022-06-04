@@ -22,13 +22,9 @@ async function _send() {
 }
 
 function buildMenu() {
-  let menu = [];
-  let routes = routesNames();
-  routes.forEach((route) => {
-    if (route.is_visible.includes(user.value.role)) {
-      menu.push(route);
-    }
-  });
+  let menu = routesNames().filter((route) =>
+    route.is_visible.includes(user.value.role)
+  );
   return menu;
 }
 </script>
