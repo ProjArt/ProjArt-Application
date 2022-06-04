@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, toRaw, watch } from "vue";
 import useFetch from "../composables/useFetch";
+import * as useDate from "../composables/useDate";
 import { API } from "../stores/api";
 
 // Constants
@@ -8,14 +9,10 @@ import { API } from "../stores/api";
 
 const TODAY = new Date();
 const DAY_LABELS = ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+const MONTH_LABELS = ["JANVIER", "FEVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOUT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DECEMBRE"];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
 const AVAILABLE_POPUP = { STORE_EVENT: 0, STORE_CALENDAR: 1, SHOW_EVENT: 2, EDIT_CALENDAR: 3 }
-
-const CSS = {
-  currentDay: "is-current-day",
-  clickable: "is-clickable-day",
-};
 
 // Ref
 // ======================================
@@ -25,7 +22,7 @@ const allCalendars = ref({});
 const calendarsNames = ref({});
 const currentLayout = ref(AVAILABLE_LAYOUT.MONTH);
 const currentsCalendarIds = ref(null);
-const displayedDate = ref(new Date().toLocaleDateString(...DATE_OPTION));
+const displayedDate = ref(null);
 const newEventPopupRef = ref([]);
 const showNewEventPopupRef = ref("");
 const showCurrentEventsPopupRef = ref("");
@@ -48,22 +45,24 @@ const displayedDateManager = computed({
   get() {
     return displayedDate.value;
   },
-  set({ year, month, year2, month2 }) {
-    if (typeof year2 === "undefined" && typeof month2 === "undefined") {
-      const date = new Date(year, month);
-      displayedDate.value = date.toLocaleDateString(...DATE_OPTION);
+  set({ dateStart, dateEnd }) {
+    if (typeof dateEnd === "undefined") {
+      displayedDate.value = {
+        year1: dateStart.getFullYear(),
+        month1: MONTH_LABELS[dateStart.getMonth()],
+        day1: dateStart.getDate(),
+        weekOfYear: useDate.getWeekYearNumber(dateStart)
+      };
     } else {
-      let date1 = new Date(year, month);
-      let date2 = new Date(year2, month2);
-      if (year === year2) {
-        const month = date1.toLocaleString("fr-ch", { month: "long" });
-        date2 = date2.toLocaleDateString(...DATE_OPTION);
-        displayedDate.value = `${month} - ${date2}`;
-      } else {
-        date1 = date1.toLocaleDateString(...DATE_OPTION);
-        date2 = date2.toLocaleDateString(...DATE_OPTION);
-        displayedDate.value = `${date1} - ${date2}`;
-      }
+      displayedDate.value = {
+        year1: dateStart.getFullYear(),
+        month1: MONTH_LABELS[dateStart.getMonth()],
+        day1: dateStart.getDate(),
+        year2: dateEnd.getFullYear(),
+        month2: MONTH_LABELS[dateEnd.getMonth()],
+        day2: dateEnd.getDate(),
+        weekOfYear: useDate.getWeekYearNumber(dateStart)
+      };
     }
   },
 });
@@ -149,52 +148,6 @@ function consoleRef(array) {
   });
 }
 
-function toSwissDay(day) {
-  return day - 1 < 0 ? 6 : day - 1; // si dimanche, on ajoute sinon on retire un jour
-}
-
-function formatDayObject(ref) {
-  return {
-    class: setDayCssClass(ref),
-    local: ref.toLocaleDateString(),
-    dayOfMonthNumber: ref.getDate(),
-    dayOfWeekNumber: toSwissDay(ref.getDay()),
-  };
-}
-
-function getAllDaysInMonth(year, month) {
-  const date = new Date(year, month, 1);
-  const dates = {};
-  while (date.getMonth() === month) {
-    const day = new Date(date);
-    const key = day.toLocaleDateString();
-    dates[key] = formatDayObject(day);
-    date.setDate(date.getDate() + 1);
-  }
-  return dates;
-}
-
-function getMonday(date) {
-  date = new Date(date);
-  const day = date.getDay();
-  const diff = date.getDate() - day + (day == 0 ? -6 : 1);
-  return new Date(date.setDate(diff));
-}
-
-function getSunday(date) {
-  date = new Date(date);
-  const day = date.getDay();
-  const diff = date.getDate() - day + (day == 0 ? -6 : 1);
-  return new Date(date.setDate(diff + 6));
-}
-
-function toChDate(date) {
-  date = date.split(" ")[0];
-  date = date.split("-");
-  date = `${date[2]}/${date[1]}/${date[0]}`;
-  return date;
-}
-
 function prepareFormBeforeSending(rawForm) {
   //  expected output: 2022-05-27 12:06:28
   const date = rawForm.start_date;
@@ -228,108 +181,19 @@ function showEditCalendarForm(event) {
     : AVAILABLE_POPUP.EDIT_CALENDAR;
 }
 
-function getAllDaysInMonthAndBeginning(year, month) {
-  const days = [];
-  const daysInMonth =
-    typeof year !== "undefined" && typeof month !== "undefined"
-      ? getAllDaysInMonth(year, month)
-      : getAllDaysInMonth(TODAY.getFullYear(), TODAY.getMonth());
-  for (const [index, date] of Object.entries(daysInMonth)) {
-    let i = 0;
-    if (index === Object.keys(daysInMonth)[0]) {
-      const day = Object.entries(daysInMonth)[0][1];
-      for (let i = 0; i < day.dayOfWeekNumber; i++) {
-        days.push({});
-      }
-    }
-
-    days.push(date);
-  }
-  return days;
-}
-
-function getDaysFromDate(choosenDate, numberOfDays = 30) {
-  const date = new Date(choosenDate.getFullYear(), choosenDate.getMonth(), choosenDate.getDate());
-  const dates = {};
-  for (let i = 0; i < numberOfDays; i++) {
-    if (i != 0) date.setDate(date.getDate() + 1);
-    const key = date.toLocaleDateString();
-    dates[key] = formatDayObject(date);
-  }
-  return dates;
-}
-
-function getAllDaysInWeek(choosenDate) {
-  const monday = getMonday(choosenDate);
-  const dates = {};
-  for (let i = 0; i <= 6; i++) {
-    const date = new Date(
-      monday.getFullYear(),
-      monday.getMonth(),
-      monday.getDate() + i
-    );
-    const key = date.toLocaleDateString();
-    dates[key] = formatDayObject(date);
-  }
-  return dates;
-}
-
-function setDayCssClass(date) {
-  const today = new Date(
-    TODAY.getFullYear(),
-    TODAY.getMonth(),
-    TODAY.getDate()
-  );
-  if (typeof date === "undefined") return "";
-  else if (today.toLocaleDateString() === date.toLocaleDateString())
-    return `${CSS.clickable} ${CSS.currentDay}`;
-  else return CSS.clickable;
-}
-
-function checkIfBothDatesAreInSameMonth(date1, date2) {
-  const date1Month = date1.getMonth();
-  const date2Month = date2.getMonth();
-  return date1Month === date2Month;
-}
-
-function formatCurrentDateForDisplay(date) {
+function formatCurrentDateForDisplay(date, nextDays = 0) {
+  const date2 = new Date(date.getFullYear(), date.getMonth(), date.getDate() + nextDays)
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-    displayedDateManager.value = {
-      year: date.getFullYear(),
-      month: date.getMonth(),
-    };
+    displayedDateManager.value = { dateStart: date };
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-    const monday = getMonday(date);
-    const sunday = getSunday(date);
-    checkIfBothDatesAreInSameMonth(monday, sunday)
-      ? (displayedDateManager.value = {
-        year: date.getFullYear(),
-        month: date.getMonth(),
-      })
-      : (displayedDateManager.value = {
-        year: monday.getFullYear(),
-        month: monday.getMonth(),
-        year2: sunday.getFullYear(),
-        month2: sunday.getMonth(),
-      });
+    const monday = useDate.getMonday(date);
+    const sunday = useDate.getSunday(date);
+    displayedDateManager.value = { dateStart: monday, dateEnd: sunday };
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
+    displayedDateManager.value = { dateStart: date };
+  } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
+    displayedDateManager.value = { dateStart: date, dateEnd: date2 };
   }
-}
-
-function getDaysRelativeToDate(date, numberOfDays) {
-  return date.setDate(date.getDate() + parseInt(numberOfDays));
-}
-
-function getMonthRelativeToDate(date, numberOfMonths) {
-  return date.setMonth(date.getMonth() + parseInt(numberOfMonths));
-}
-
-
-function chDateToYMD(dateString, separator) {
-  const datesParts = dateString.split("/");
-  const year = datesParts[2];
-  const month = datesParts[1];
-  const day = datesParts[0];
-  return year + separator + month + separator + day;
 }
 
 // CRUD operations on API
@@ -393,7 +257,7 @@ async function deleteEvent(dayId, eventId, calendarId) {
   });
   if (response.success === true) {
     try {
-      const date = toChDate(dayId);
+      const date = toSwissDate(dayId);
       const filtredEvents = events.value[date].filter(
         (event) => event.id !== eventId
       );
@@ -415,8 +279,8 @@ async function deleteEvent(dayId, eventId, calendarId) {
 
 async function updateEvent(form) {
   const date = form.start_date;
-  form.start_date = chDateToYMD(form.start_date, "-");
-  form.end_date = chDateToYMD(form.end_date, "-");
+  form.start_date = useDate.swissDateToYMD(form.start_date, "-");
+  form.end_date = useDate.swissDateToYMD(form.end_date, "-");
   form = prepareFormBeforeSending(form);
   const response = await useFetch({
     url: API.updateEvent.path(form.id),
@@ -528,7 +392,7 @@ function displayNewlyCreatedEvent(event) {
   const calendarId = calendarIdWhereToAddTheNewEvent.value;
   allCalendars.value.forEach((calendar) => {
     if (calendar.id == calendarId) {
-      const index = toChDate(event.start);
+      const index = useDate.toSwissDate(event.start);
       const canEdit = calendar.can_edit;
       event["can_edit"] = canEdit;
       event["calendar_id"] = calendar.id;
@@ -554,72 +418,73 @@ function displayNewlyCreatedEvent(event) {
 
 function actualPeriod() {
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-    dates.value = getAllDaysInMonthAndBeginning(
+    dates.value = useDate.getAllDaysInMonthAndBeginning(
       TODAY.getFullYear(),
       TODAY.getMonth()
     );
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-    dates.value = getAllDaysInWeek(TODAY);
+    dates.value = useDate.getAllDaysInWeek(TODAY);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
-    dates.value = getDaysFromDate(TODAY, 1);
+    dates.value = useDate.getDaysFromDate(TODAY, 1);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
-    dates.value = getDaysFromDate(TODAY, 30);
+    dates.value = useDate.getDaysFromDate(TODAY, 30);
   }
   currDateCursor.value = TODAY;
-  displayedDateManager.value = {
-    year: TODAY.getFullYear(),
-    month: TODAY.getMonth(),
-  };
+  displayedDateManager.value = { dateStart: TODAY };
 }
 
 function nextPeriod() {
   const dateUnderCursor = new Date(currDateCursor.value);
   let nextPeriod;
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-    nextPeriod = new Date(getMonthRelativeToDate(dateUnderCursor, 1));
-    dates.value = getAllDaysInMonthAndBeginning(
+    nextPeriod = new Date(useDate.getMonthRelativeToDate(dateUnderCursor, 1));
+    dates.value = useDate.getAllDaysInMonthAndBeginning(
       nextPeriod.getFullYear(),
       nextPeriod.getMonth()
     );
+    formatCurrentDateForDisplay(nextPeriod);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-    nextPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, 7));
-    dates.value = getAllDaysInWeek(nextPeriod);
+    nextPeriod = new Date(useDate.getDaysRelativeToDate(dateUnderCursor, 7));
+    const monday = useDate.getMonday(nextPeriod);
+    dates.value = useDate.getAllDaysInWeek(monday, 7);
+    formatCurrentDateForDisplay(monday, 7);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
-    nextPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, 30));
-    console.log({ nextPeriod })
-    dates.value = getDaysFromDate(nextPeriod);
+    nextPeriod = new Date(useDate.getDaysRelativeToDate(dateUnderCursor, 30));
+    dates.value = useDate.getDaysFromDate(nextPeriod);
+    formatCurrentDateForDisplay(nextPeriod, 30);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
-    nextPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, 1));
-    dates.value = getDaysFromDate(nextPeriod, 1);
+    nextPeriod = new Date(useDate.getDaysRelativeToDate(dateUnderCursor, 1));
+    dates.value = useDate.getDaysFromDate(nextPeriod, 1);
+    formatCurrentDateForDisplay(nextPeriod);
   }
-
   currDateCursor.value = nextPeriod;
-  formatCurrentDateForDisplay(nextPeriod);
 }
 
 function previousPeriod() {
   const dateUnderCursor = new Date(currDateCursor.value);
   let previousPeriod;
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-    previousPeriod = new Date(getMonthRelativeToDate(dateUnderCursor, -1));
-    dates.value = getAllDaysInMonthAndBeginning(
+    previousPeriod = new Date(useDate.getMonthRelativeToDate(dateUnderCursor, -1));
+    dates.value = useDate.getAllDaysInMonthAndBeginning(
       previousPeriod.getFullYear(),
       previousPeriod.getMonth()
     );
+    formatCurrentDateForDisplay(previousPeriod);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-    previousPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, -7));
-    dates.value = getAllDaysInWeek(previousPeriod);
+    previousPeriod = new Date(useDate.getDaysRelativeToDate(dateUnderCursor, -7));
+    const monday = useDate.getMonday(previousPeriod);
+    dates.value = useDate.getAllDaysInWeek(previousPeriod);
+    formatCurrentDateForDisplay(monday, 7);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
-    previousPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, -30));
-    console.log({ previousPeriod })
-    dates.value = getDaysFromDate(previousPeriod);
+    previousPeriod = new Date(useDate.getDaysRelativeToDate(dateUnderCursor, -30));
+    dates.value = useDate.getDaysFromDate(previousPeriod);
+    formatCurrentDateForDisplay(previousPeriod, 30);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
-    previousPeriod = new Date(getDaysRelativeToDate(dateUnderCursor, -1));
-    dates.value = getDaysFromDate(previousPeriod, 1);
+    previousPeriod = new Date(useDate.getDaysRelativeToDate(dateUnderCursor, -1));
+    dates.value = useDate.getDaysFromDate(previousPeriod, 1);
+    formatCurrentDateForDisplay(previousPeriod);
   }
-
   currDateCursor.value = previousPeriod;
-  formatCurrentDateForDisplay(previousPeriod);
 }
 
 function getEvents() {
@@ -639,7 +504,7 @@ function setEvents(calendars) {
   calendars.forEach((calendar) => {
     const canEdit = calendar.can_edit;
     calendar.events.forEach((event) => {
-      const index = toChDate(event.start);
+      const index = useDate.toSwissDate(event.start);
       event.can_edit = canEdit;
       event.calendar_id = calendar.id;
       event.local = index;
@@ -678,7 +543,7 @@ function showCurrentEvent(index, dayIndex) {
 }
 
 function showEventEditForm(startDate, id) {
-  const date = toChDate(startDate);
+  const date = useDate.toSwissDate(startDate);
   indexUnderEdition.value = id !== indexUnderEdition.value ? id : undefined;
   let newEvent = toRaw(events.value[date]);
   newEvent = newEvent.filter((event) => {
@@ -710,54 +575,87 @@ function showEventEditForm(startDate, id) {
 // ======================================
 
 (async function startUp() {
+  displayedDateManager.value = { dateStart: TODAY }
   currentLayout.value = layoutStorage.value || AVAILABLE_LAYOUT.MONTH
   const calendars = await getCalendars();
   await setCalendars(calendars);
   setEvents(getEvents());
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-    dates.value = getAllDaysInMonthAndBeginning(
+    dates.value = useDate.getAllDaysInMonthAndBeginning(
       TODAY.getFullYear(),
       TODAY.getMonth()
     );
+    formatCurrentDateForDisplay(currDateCursor.value);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-    dates.value = getAllDaysInWeek(TODAY);
+    dates.value = useDate.getAllDaysInWeek(TODAY);
+    const monday = useDate.getMonday(currDateCursor.value);
+    formatCurrentDateForDisplay(monday, 7);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
-    dates.value = getDaysFromDate(TODAY);
+    dates.value = useDate.getDaysFromDate(TODAY);
+    formatCurrentDateForDisplay(currDateCursor.value, 30);
   } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
-    dates.value = getDaysFromDate(TODAY, 1);
+    dates.value = useDate.getDaysFromDate(TODAY, 1);
+    formatCurrentDateForDisplay(currDateCursor.value);
   }
 
-  const watchCurrentsCalendarIds = watch(currentsCalendarIds, () => {
+  watch(currentsCalendarIds, () => {
     selectedCalendarsIdStorage.value = toRaw(currentsCalendarIds.value)
     console.log(toRaw(selectedCalendarsIdStorage.value))
     setEvents(getEvents());
   })
+
+  watch(currentLayout, () => {
+    layoutStorage.value = currentLayout.value;
+    if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
+      dates.value = useDate.getAllDaysInMonthAndBeginning(
+        currDateCursor.value.getFullYear(),
+        currDateCursor.value.getMonth()
+      );
+      formatCurrentDateForDisplay(currDateCursor.value);
+    } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
+      dates.value = useDate.getAllDaysInWeek(currDateCursor.value);
+      const monday = useDate.getMonday(currDateCursor.value);
+      formatCurrentDateForDisplay(currDateCursor.value);
+    } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
+      dates.value = useDate.getDaysFromDate(currDateCursor.value);
+      formatCurrentDateForDisplay(currDateCursor.value, 30);
+    } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
+      dates.value = useDate.getDaysFromDate(currDateCursor.value, 1);
+      formatCurrentDateForDisplay(currDateCursor.value);
+    }
+  });
 })();
-
-// Watcher(s)
-// ======================================
-
-watch(currentLayout, () => {
-  layoutStorage.value = currentLayout.value;
-  if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
-    dates.value = getAllDaysInMonthAndBeginning(
-      currDateCursor.value.getFullYear(),
-      currDateCursor.value.getMonth()
-    );
-  } else if (currentLayout.value === AVAILABLE_LAYOUT.WEEK) {
-    dates.value = getAllDaysInWeek(currDateCursor.value);
-  } else if (currentLayout.value === AVAILABLE_LAYOUT.LIST) {
-    dates.value = getDaysFromDate(currDateCursor.value);
-  } else if (currentLayout.value === AVAILABLE_LAYOUT.DAY) {
-    dates.value = getDaysFromDate(currDateCursor.value, 1);
-  }
-});
-
 </script>
 <template>
   <div class="calendar">
     <!--====  Calendar Header  ====-->
-    <h3>{{ displayedDateManager }}</h3>
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.MONTH">
+      <h3>{{ displayedDateManager.year1 }}</h3>
+    </div>
+
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.WEEK">
+      <h3>{{ displayedDateManager.year1 }}</h3>
+      <h3>Semaine {{ displayedDateManager.weekOfYear }}</h3>
+      <p>{{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}
+        <span v-show="displayedDateManager.day2"> - </span>{{ displayedDateManager.day2 }} {{
+            displayedDateManager.month2
+        }} {{ displayedDateManager.year2 }}
+      </p>
+    </div>
+
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.DAY">
+      <h3>{{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}</h3>
+    </div>
+
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.LIST">
+      <h3>{{ displayedDateManager.year1 }}</h3>
+      <p>{{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}
+        <span v-show="displayedDateManager.day2"> - </span>{{ displayedDateManager.day2 }} {{
+            displayedDateManager.month2
+        }} {{ displayedDateManager.year2 }}
+      </p>
+    </div>
+
     <div class="calendar__choose">
       <FormKit v-model="currentsCalendarIds" type="checkbox" label="Calendrier" :options="calendarsNames" />
     </div>
