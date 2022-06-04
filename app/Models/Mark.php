@@ -11,7 +11,8 @@ class Mark extends Model
 
     protected $fillable = [
         'module_code',
-        'module_name',
+        'course_code',
+        'course_name',
         'value',
         'year_start',
         'year_end',
