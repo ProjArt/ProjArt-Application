@@ -11,7 +11,7 @@ async function setupMarks() {
   });
   if (response.success === true) {
     console.log("Marks fetched", response.data);
-    marks.value = response.data;
+    modules.value = response.data;
   } else {
     console.log(response, "error");
   }
@@ -19,21 +19,19 @@ async function setupMarks() {
 
 setupMarks();
 
-const marks = ref([]);
+const modules = ref([]);
 </script>
 
 <template>
   <!-- {{ marks }} -->
-  <div v-for="year in Object.keys(marks)" :key="year.id">
-    <div class="mark-group">
+  <div v-for="module in modules" :key="module.id">
+    <div class="module-group">
+      {{ module.code }}
       <div class="year-group">
-        <div class="year-title">
-          {{ year }}
-        </div>
-        <div v-for="mark in marks[year]" :key="mark.id">
+        <div v-for="mark in module.marks" :key="mark.id">
           <div class="mark-group">
             <div class="module_code">
-              {{ mark.module_code }}
+              {{ mark.course_code }}
             </div>
             <div class="value">
               {{ mark.value }}

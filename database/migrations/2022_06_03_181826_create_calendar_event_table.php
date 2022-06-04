@@ -18,6 +18,8 @@ return new class extends Migration
         Schema::create('calendar_event', function (Blueprint $table) {
             $table->foreignIdFor(Calendar::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignIdFor(Event::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
+
+            $table->primary(['calendar_id', 'event_id']);
         });
     }
 
