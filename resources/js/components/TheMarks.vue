@@ -32,12 +32,11 @@ const modules = ref([]);
           <div class="mark-group">
             <div class="module_code">
               {{ mark.course_code }}
+              <div class="course_name" v-html="mark.course_name"></div>
             </div>
             <div class="value">
               {{ mark.value }}
             </div>
-            <br />
-            <br />
           </div>
         </div>
       </div>
