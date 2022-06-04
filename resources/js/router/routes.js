@@ -9,6 +9,8 @@ import settings from "./SettingsRoute.vue";
 import infos from "./InfosRoute.vue";
 import classRoom from "./StudentsAndTeachersListRoute.vue";
 import { user } from "../stores/auth";
+import register from "./RegisterRoute.vue";
+
 
 const routes = [
     { name: "home", path: "/", component: home, icon: "home", is_visible: [] },
@@ -20,6 +22,8 @@ const routes = [
     { name: "settings", path: "/settings", component: settings, icon: "home", is_visible: [] },
     { name: "infos", path: "/infos", component: infos, icon: "home", is_visible: [] },
     { name: "classList", path: "/class-list", component: classRoom, icon: "group", is_visible: ["teacher"] },
+    { name: "register", path: "/register", component: register } >>>
+
 ];
 
 export const routesNames = (() => {
@@ -44,7 +48,7 @@ const router = createRouter({
 
 router.beforeEach(async(to, from) => {
     const isAuthenticated = localStorage.getItem("token");
-    if (!isAuthenticated && to.name !== "home") {
+    if (!isAuthenticated && to.name !== "home" && to.name !== "register") {
         return { name: "home" };
     }
 });

@@ -26,7 +26,7 @@
 
 
     {{-- PUSHER --}}
-    <script src="{{ asset('js/pusher.js') }}"></script>
+    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
 
 
     {{-- ICONS --}}

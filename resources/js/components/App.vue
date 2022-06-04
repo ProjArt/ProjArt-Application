@@ -71,6 +71,7 @@ function handleTouchMove(evt) {
 
 
 <template>
+  <the-header />
   <the-app-bar @open-drawer="openDrawer" />
   <div class="spacer-top">&nbsp;</div>
   <Suspense>
