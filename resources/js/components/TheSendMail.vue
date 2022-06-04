@@ -4,10 +4,11 @@ import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
 
 // At start of component, fetch the data
-async function setupMails() {
+async function send() {
   const response = await useFetch({
-    url: API.getMails.path(),
-    method: API.getMails.method,
+    url: API.sendMail.path(),
+    method: API.sendMail.method,
+    data: toRaw(formData.value),
   });
   if (response.success === true) {
     console.log("Mails fetched", response.data.reverse());
@@ -17,27 +18,40 @@ async function setupMails() {
   }
 }
 
-setupMails();
-
-const mails = ref([]);
+const formData = ref();
 </script>
 
 <template>
-  <h1 class="title">Mails</h1>
-  <router-link :to="'/mails/send'">Envoyer</router-link>
-
-  <div v-for="mail in mails" :key="mail.uid">
-    <router-link :to="'/mails/' + mail.uid" class="menu__item-link">
-      <div class="mail-group">
-        <div class="mail-content">
-          <div :class="mail.seen ? 'seen' : 'not-seen'"></div>
-          <div class="from">{{ mail.from }}</div>
-          <div class="subject">{{ mail.subject }}</div>
-          <div class="date">{{ mail.date }}</div>
-        </div>
-        <span class="material-icons">arrow_right</span>
-      </div>
-    </router-link>
+  <div class="wrapper">
+    <FormKit
+      type="form"
+      v-model="formData"
+      submit-label="Envoyer"
+      @submit="send"
+    >
+      <h2>À</h2>
+      <FormKit
+        type="text"
+        name="to"
+        placeholder="À"
+        validation="required"
+        label="À"
+      />
+      <FormKit
+        type="text"
+        name="subject"
+        placeholder="Sujet"
+        validation="required"
+        label="Sujet"
+      />
+      <FormKit
+        type="textarea"
+        name="message"
+        placeholder="Message"
+        validation="required"
+        label="Message"
+      />
+    </FormKit>
   </div>
 </template>
 

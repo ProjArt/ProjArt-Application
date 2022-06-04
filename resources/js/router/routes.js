@@ -12,6 +12,7 @@ import { user } from "../stores/auth";
 import register from "./RegisterRoute.vue";
 import mails from "./MailsRoute.vue";
 import mail from "./MailRoute.vue";
+import sendMail from "./SendMailRoute.vue";
 
 
 const routes = [
@@ -27,6 +28,7 @@ const routes = [
     { name: "register", path: "/register", component: register, icon: "home", is_visible: ["student", "teacher"] },
     { name: "mails", path: "/mails", component: mails, icon: "home", is_visible: ["student", "teacher"] },
     { name: "mail", path: "/mails/:id", component: mail, icon: "home", is_visible: [] },
+    { name: "sendMail", path: "/mails/send", component: sendMail, icon: "home", is_visible: [] },
 ];
 
 export const routesNames = (() => {

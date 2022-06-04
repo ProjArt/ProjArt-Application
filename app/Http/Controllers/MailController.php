@@ -69,6 +69,13 @@ class MailController extends Controller
         return httpSuccess('Mail', $mailbox->getMail($id));
     }
 
+    /**
+     * 
+     * Send mail
+     * 
+     * Envoie un mail 
+     * 
+     */
     public function send(SendMailRequest $request)
     {
         $mail = $request->validated();
