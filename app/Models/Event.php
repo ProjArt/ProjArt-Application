@@ -32,9 +32,9 @@ class Event extends Model
         "course"
     ];
 
-    public function calendar()
+    public function calendars()
     {
-        return $this->belongsTo(Calendar::class);
+        return $this->belongsToMany(Calendar::class);
     }
 
     public function scopeNexts($query, $items)

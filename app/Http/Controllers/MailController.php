@@ -20,6 +20,14 @@ use PhpImap\Exceptions\ConnectionException;
 class MailController extends Controller
 {
 
+    /**
+     * 
+     * Get mails
+     * 
+     * Retourne un json contenant une liste des mails de l'utilisateur.
+     * 
+     */
+
     public function index(Request $request)
     {
 
@@ -35,11 +43,19 @@ class MailController extends Controller
 
         $mailsIds = array_slice($mailsIds, 0, 20, true);
 
-        $mails[] = $this->getMailbox($request)->getMailsInfo($mailsIds);
+        $mails = $this->getMailbox($request)->getMailsInfo($mailsIds);
 
         return httpSuccess('Derniers mail', $mails);
     }
 
+    /**
+     * 
+     * Show mail
+     * 
+     * Retourne un json contenant un mail.
+     * 
+     * 
+     */
     public function show(Request $request, $id)
     {
         try {
@@ -53,6 +69,13 @@ class MailController extends Controller
         return httpSuccess('Mail', $mailbox->getMail($id));
     }
 
+    /**
+     * 
+     * Send mail
+     * 
+     * Envoie un mail 
+     * 
+     */
     public function send(SendMailRequest $request)
     {
         $mail = $request->validated();
@@ -67,13 +90,28 @@ class MailController extends Controller
 
 
 
-        Mail::send('mails.default', ["mail" => $mail], function ($message) use ($mail, $user) {
+        /*  Mail::send('mails.default', ["mail" => $mail], function ($message) use ($mail, $user) {
             $message->from($user->username . "@heig-vd.ch", $user->username);
             $message->to($mail['to']);
             $message->subject($mail['subject']);
-        });
+        }); */
 
-        return httpSuccess('Mail envoyé');
+
+        $to      = 'vincent@tarrit.com';
+        $subject = 'Sujet du mail';
+        $message = 'Voici un message ' . time();
+        $headers = array(
+            'From' => $user->gaps_user->full_name . ' <' . $user->username . '@heig-vd.ch>',
+            'Reply-To' => $user->username . '@heig-vd.ch',
+            'X-Mailer' => 'PHP/' . phpversion()
+        );
+        echo time();
+        try {
+            mail($to, $subject, $message, $headers);
+            return httpSuccess('Mail envoyé');
+        } catch (\Exception $e) {
+            return httpError("Mail not sent");
+        }
     }
 
     private function getMailbox(Request $request)

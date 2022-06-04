@@ -33,4 +33,9 @@ class GapsUser extends Model
     {
         return $this->belongsToMany(Course::class, 'course_gaps_user', 'gaps_user_username', 'course_code');
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->firstname . ' ' . $this->name;
+    }
 }

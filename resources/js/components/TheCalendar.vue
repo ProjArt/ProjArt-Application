@@ -845,6 +845,7 @@ function showEventEditForm(startDate, id) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  color: black;
 }
 
 .calendar__days-names {

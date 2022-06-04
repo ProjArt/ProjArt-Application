@@ -154,8 +154,28 @@ class User extends Authenticatable
         return $this->hasManyDeep(Event::class, ['calendar_user', Calendar::class]);
     }
 
+    public function channels()
+    {
+        return $this->belongsToMany(Channel::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasManyDeep(Notification::class, ['channel_user', Channel::class])->orderBy('created_at', 'desc');
+    }
+
     public function getGapsUserAttribute()
     {
         return GapsUser::whereUsername($this->username)->first();
+    }
+
+    public function getIsShareableAttribute()
+    {
+        return $this->id != auth('sanctum')->user()->id;
+    }
+
+    public function markmodules()
+    {
+        return $this->hasMany(MarkModule::class);
     }
 }

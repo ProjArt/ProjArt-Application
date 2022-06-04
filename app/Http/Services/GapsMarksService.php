@@ -3,8 +3,10 @@
 namespace App\Http\Services;
 
 use App\Models\Mark;
+use App\Models\MarkModule;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use voku\helper\HtmlDomParser;
 
 
@@ -40,25 +42,46 @@ class GapsMarksService
             try {
                 $user->setPersonalNumber();
 
-                $content = file_get_contents("https://" . $user->username . ":" . urlencode($user->password) . "@gaps.heig-vd.ch/consultation/notes/bulletin.php?id=" . $user->gaps_id);
+                $response = Http::withBasicAuth($user->username, $user->password)->get("https://@gaps.heig-vd.ch/consultation/notes/bulletin.php?id=" . $user->gaps_id);
 
-                $dom = HtmlDomParser::str_get_html($content);
+                $dom = HtmlDomParser::str_get_html($response->body());
 
                 $trs = $dom->findMulti("#record_table tr");
 
                 $marks = [];
+                $module = "";
+
                 foreach ($trs as $tr) {
-                    if ($tr->class == "bulletin_unit_row") {
+
+                    if ($tr->class == "bulletin_module_row") {
                         $tds = $tr->findMulti("td");
                         $moduleCode = $tds[0]->innerText;
                         $moduleName = $tds[1]->innerText;
+                        $moduleStatus = $tds[2]->innerText;
+                        $moduleYears = $tds[3]->innerText;
+                        $moduleMark = $tds[4]->innerText;
+                        $moduleCredits = $tds[6]->innerText;
+                        $module = $user->markmodules()->firstOrCreate([
+                            'code' => $moduleCode,
+                            'name' => $moduleName,
+                            'status' => $moduleStatus,
+                            'years' => $moduleYears,
+                            'credits' => $moduleCredits,
+                            'mark' => $moduleMark
+                        ]);
+                    }
+                    if ($tr->class == "bulletin_unit_row") {
+                        $tds = $tr->findMulti("td");
+                        $courseCode = $tds[0]->innerText;
+                        $courseName = $tds[1]->innerText;
                         $note = $tds[4]->innerText;
                         $yearStart = explode("-", $tds[3]->innerText)[0];
                         $yearEnd = explode("-", $tds[3]->innerText)[1];
 
                         $mark = $user->marks()->firstOrCreate([
-                            'module_code' => $moduleCode,
-                            'module_name' => $moduleName,
+                            'markmodule_id' => $module->id,
+                            'course_code' => $courseCode,
+                            'course_name' => $courseName,
                             'value' => explode(" ", str_replace("<br>", " ", $note))[0],
                             'year_start' => $yearStart,
                             'year_end' => $yearEnd,
@@ -68,8 +91,10 @@ class GapsMarksService
                     }
                 }
             } catch (\Throwable $th) {
-                echo $th->getMessage();
+                // echo $th->getMessage();
+                return $th->getMessage();
             }
         }
+        return "ok";
     }
 }

@@ -1,5 +1,5 @@
 <script setup >
-import { ref, toRaw } from "vue";
+import { ref, toRaw, watch, watchEffect } from "vue";
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
 import { routesNames } from "../router/routes";
@@ -12,6 +12,8 @@ const formData = ref({});
 const isAuthenticated = ref(false);
 const allClasses = ref([]);
 const isLoading = ref(false);
+const username = ref("");
+const isStudent = ref(false);
 
 (async function getClasses() {
   const response = await useFetch({
@@ -69,11 +71,20 @@ const submitHandler = async () => {
 
     await registerToChannelNotification(response.data.user.username);
 
-    window.location.href += routesNames.calendar.replace("/", "");
+    let route = routesNames().find((e) => e.name == "calendar");
+    window.location.href += route.path.replace("/", "");
   } else {
     isAuthenticated.value = false;
   }
 };
+
+watch(username, async (value) => {
+  const r = await useFetch({
+    url: API.getUserRole.path(value),
+    method: API.getUserRole.method,
+  });
+  isStudent.value = r.success && !r.data.is_teacher;
+});
 </script>
 <template>
   <div class="wrapper">
@@ -88,9 +99,10 @@ const submitHandler = async () => {
       <FormKit
         type="text"
         name="username"
-        placeholder="unsername"
+        placeholder="username"
         validation="required"
         label="UserName"
+        v-model="username"
       />
       <FormKit
         type="password"
@@ -107,17 +119,20 @@ const submitHandler = async () => {
         validation="required|confirm"
         validation-label="Password confirmation"
       />
-      <FormKit
-        type="select"
-        name="classroom_name"
-        placeholder="class"
-        validation="required"
-        label="Classe"
-      >
-        <option v-for="aClass in allClasses" :key="aClass" :value="aClass">
-          {{ aClass }}
-        </option>
-      </FormKit>
+
+      <div v-if="isStudent">
+        <FormKit
+          type="select"
+          name="classroom_name"
+          placeholder="class"
+          validation="required"
+          label="Classe"
+        >
+          <option v-for="aClass in allClasses" :key="aClass" :value="aClass">
+            {{ aClass }}
+          </option>
+        </FormKit>
+      </div>
     </FormKit>
     <div>
       <h2 v-if="isAuthenticated && isSubmitted">Compte crée</h2>

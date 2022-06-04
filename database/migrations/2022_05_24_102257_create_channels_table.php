@@ -13,14 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('marks', function (Blueprint $table) {
-            $table->id();
-            $table->string('module_code');
-            $table->string('module_name');
-            $table->float('value');
-            $table->integer('year_start');
-            $table->integer('year_end');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
+        Schema::create('channels', function (Blueprint $table) {
+            $table->string("name")->primary();
             $table->timestamps();
         });
     }
@@ -32,6 +26,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('marks');
+        Schema::dropIfExists('channels');
     }
 };

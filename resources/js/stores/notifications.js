@@ -16,6 +16,7 @@ export const notification = computed({
 });
 
 export async function sendNotification({ title, message, to }) {
+    console.log("sends notification", title, message, to);
     const response = await useFetch({
         url: API.sendNotification.path(),
         method: API.sendNotification.method,
@@ -25,6 +26,7 @@ export async function sendNotification({ title, message, to }) {
             to,
         },
     });
+    console.log(response);
 }
 
 export async function registerToChannelNotification(channel) {

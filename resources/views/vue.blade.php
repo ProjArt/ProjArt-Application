@@ -13,35 +13,23 @@
     <meta name="msapplication-TileColor" content="#000">
 
     <title>{{ config('app.name') }}</title>
-    <base href="{{ env('MIX_BASE_URL') }}">
+
     <link rel="manifest" href="{{ asset('manifest.json') }} " />
     <link rel="apple-touch-icon" href="link to the smaller icon">
 
-    @production
-        <link rel="stylesheet" href="{{ config('app.url') }}{{ mix('css/app.css') }}">
-    @else
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    @endproduction
-
-
-
     {{-- PUSHER --}}
-    @production
-        <script src="{{ asset('js/pusher-prod.js') }}"></script>
-    @else
-        <script src="{{ asset('js/pusher.js') }}"></script>
-    @endproduction
+    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+
+    {{-- ICONS --}}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{mix('/css/app.css')}}">
 
 </head>
 
 <body>
     <div id="app"></div>
-
-    @production
-        <script src="{{ config('app.url') }}{{ mix('js/app.js') }}"></script>
-    @else
-        <script src="{{ mix('js/app.js') }}"></script>
-    @endproduction
+    <script src="{{mix('js/app.js')}}"></script>
 </body>
 
 </html>

@@ -37,6 +37,8 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::get("/classrooms", [ClassroomController::class, 'index'])->name("api.classrooms.index");
 
+Route::get("/getRole/{username}", [UserController::class, 'getRole'])->name("api.getRole");
+
 //Auth routes
 Route::middleware('auth:sanctum')->group(function () {
 
@@ -82,12 +84,16 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post("/notification", [NotificationController::class, 'send'])->name("api.notification.send");
 
+    Route::get("/user/notifications", [NotificationController::class, 'getUserNotifications'])->name("api.user.notifications");
+
     Route::controller(ThemeController::class)->group(function () {
         Route::post("/user/theme", 'setTheme')->name("api.user.setTheme");
         Route::get('/themes', 'index')->name('api.themes.index');
     });
 
     Route::get("/users", [UserController::class, 'index'])->name("api.users.index");
+
+    Route::delete("/user", [UserController::class, 'destroy'])->name("api.users.destroy");
 });
 
 Route::get('/', function () {

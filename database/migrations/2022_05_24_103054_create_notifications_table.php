@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('notification_type_user', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('notification_type_id')->constrained('notification_types')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->unique(["id", "notification_type_id", "user_id"]);
-
+            $table->string('title');
+            $table->text('text');
+            $table->string("channel_name");
+            $table->foreign("channel_name")->references("name")->on("channels")->onUpdate("cascade")->onDelete("cascade");
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notification_type_user');
+        Schema::dropIfExists('notifications');
     }
 };

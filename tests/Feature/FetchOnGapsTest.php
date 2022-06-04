@@ -22,7 +22,7 @@ class FetchOnGapsTest extends TestCase
         $response->assertUnauthorized();
     }
 
-    public function test_fetch_on_gaps_failed_if_user_not_on_gaps()
+    /* public function test_fetch_on_gaps_failed_if_user_not_on_gaps()
     {
         $user =  User::factory()->create([
             "username" => "test" . date("YmdHis"),
@@ -38,5 +38,5 @@ class FetchOnGapsTest extends TestCase
 
 
         $user->delete();
-    }
+    } */
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,11 +14,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('notification_user_send', function (Blueprint $table) {
+        Schema::create('markmodules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('notification_type_id')->constrained('notification_types')->onDelete('cascade')->onUpdate('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade')->onUpdate('cascade');
-            $table->unique(["id", "notification_type_id", "user_id"]);
+            $table->string('code');
+            $table->string('name');
+            $table->string('status');
+            $table->string('years');
+            $table->float('mark');
+            $table->integer('credits');
+            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
     }
@@ -29,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notification_user_send');
+        Schema::dropIfExists('markmodule');
     }
 };

@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\GapsMarksController;
 use App\Http\Requests\AuthUserRequest;
 use App\Http\Services\GapsEventsService;
 use App\Http\Services\GapsMarksService;
 use App\Jobs\DownloadFromGapsJob;
 use App\Models\Calendar;
 use App\Models\Classroom;
+use App\Models\GapsUser;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Http;
 
 /**
  * @group Authentication
@@ -35,11 +37,21 @@ class AuthController extends Controller
     public function register(AuthUserRequest $request)
     {
 
-        if (User::whereUsername($request->username)->exists()) {
+        if (User::whereUsername(strtolower($request->username))->exists()) {
             return httpError("This username is already taken");
         }
 
-        $user = User::create($request->all());
+        if (!GapsUser::whereUsername($request->username)->exists()) {
+            return httpError("This username is not registered in Gaps");
+        }
+
+        if (!$this->credentialsIsValid($request->username, $request->password)) {
+            return httpError("This credentials are not valid");
+        }
+
+        $data = $request->all();
+        $data['username'] = strtolower($request->username);
+        $user = User::create($data);
         $token = $user->createToken('auth_token')->plainTextToken;
 
         if ($request->classroom_name) {
@@ -144,5 +156,25 @@ class AuthController extends Controller
         $request->user()->save();
 
         return httpSuccess("Classroom set");
+    }
+
+    private function credentialsIsValid($username, $password)
+    {
+        $gapsUser = GapsUser::whereUsername($username)->first();
+        if ($gapsUser == null) {
+            return false;
+        }
+
+        $response = Http::withBasicAuth($username, $password)->get('https://gaps.heig-vd.ch/consultation/etudiant/');
+
+        if ($response->status() != 200) {
+            return false;
+        }
+
+        if (substr($response->body(), 3, 8) != "<script>") { // not a logged response
+            return false;
+        }
+
+        return true;
     }
 }
