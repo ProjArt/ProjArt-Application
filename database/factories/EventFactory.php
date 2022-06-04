@@ -17,14 +17,12 @@ class EventFactory extends Factory
      */
     public function definition()
     {
-        $calendar = Calendar::factory()->create();
         return [
             "title" => "Event Title",
             "description" => "Event Description",
             "start" => now(),
             "end" => now()->addHour(),
             "location" => "Event Location",
-            "calendar_id" => $calendar->id,
         ];
     }
 }

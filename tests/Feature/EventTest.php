@@ -96,7 +96,6 @@ class EventTest extends TestCase
             'end' => '2020-01-01',
             'description' => 'Test Event',
             'location' => 'Test Event',
-            'calendar_id' => $calendar->id,
         ]);
 
         Event::where('title', 'Test Event')->delete();
@@ -118,9 +117,9 @@ class EventTest extends TestCase
 
         $user->calendars()->attach($calendar->id, ['rights' => Calendar::EDIT_RIGHT]);
 
-        $event = Event::factory()->create([
-            'calendar_id' => $calendar->id,
-        ]);
+        $event = Event::factory()->create();
+
+        $calendar->events()->attach($event->id);
 
         $response = $this->json(
             "PUT",
@@ -152,9 +151,9 @@ class EventTest extends TestCase
 
         $user->calendars()->attach($calendar->id, ['rights' => Calendar::READ_RIGHT]);
 
-        $event = Event::factory()->create([
-            'calendar_id' => $calendar->id,
-        ]);
+        $event = Event::factory()->create();
+
+        $calendar->events()->attach($event->id);
 
         $response = $this->json(
             "PUT",
