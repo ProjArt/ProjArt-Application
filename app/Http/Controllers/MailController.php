@@ -78,7 +78,7 @@ class MailController extends Controller
         $subject = 'Sujet du mail';
         $message = 'Voici un message ' . time();
         $headers = array(
-            'From' => $user->username . '@heig-vd.ch',
+            'From' => $user->gaps_user->full_name . ' <' . $user->username . '@heig-vd.ch>',
             'Reply-To' => $user->username . '@heig-vd.ch',
             'X-Mailer' => 'PHP/' . phpversion()
         );
