@@ -13,7 +13,7 @@
     <meta name="msapplication-TileColor" content="#000">
 
     <title>{{ config('app.name') }}</title>
-    <base href="{{ env('MIX_BASE_URL') }}">
+
     <link rel="manifest" href="{{ asset('manifest.json') }} " />
     <link rel="apple-touch-icon" href="link to the smaller icon">
 

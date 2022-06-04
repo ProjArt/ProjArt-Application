@@ -22,8 +22,7 @@ const routes = [
     { name: "settings", path: "/settings", component: settings, icon: "home", is_visible: [] },
     { name: "infos", path: "/infos", component: infos, icon: "home", is_visible: [] },
     { name: "classList", path: "/class-list", component: classRoom, icon: "group", is_visible: ["teacher"] },
-    { name: "register", path: "/register", component: register } >>>
-
+    { name: "register", path: "/register", component: register }
 ];
 
 export const routesNames = (() => {
