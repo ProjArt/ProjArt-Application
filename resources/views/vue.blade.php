@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon" href="link to the smaller icon">
 
     @production
-        <link rel="stylesheet" href="{{ config('app.url') }}{{ mix('css/app.css') }}">
+        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @else
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
     @endproduction
@@ -26,11 +26,7 @@
 
 
     {{-- PUSHER --}}
-    @production
-        <script src="{{ asset('js/pusher-prod.js') }}"></script>
-    @else
-        <script src="{{ asset('js/pusher.js') }}"></script>
-    @endproduction
+    <script src="{{ asset('js/pusher.js') }}"></script>
 
 
     {{-- ICONS --}}
@@ -42,12 +38,7 @@
 
 <body>
     <div id="app"></div>
-
-    @production
-        <script src="{{ config('app.url') }}{{ mix('js/app.js') }}"></script>
-    @else
-        <script src="{{ mix('js/app.js') }}"></script>
-    @endproduction
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
 </html>
