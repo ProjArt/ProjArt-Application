@@ -188,8 +188,7 @@ class CalendarTest extends TestCase
 
         $response = $this->postJson('/api/calendars/share', [
             'calendar_id' => $calendar->id,
-            'user_id' => $userToShare->id,
-            'can_view' => 1,
+            'users' => [$userToShare->id],
             'can_own' => 1,
         ]);
 
@@ -223,8 +222,7 @@ class CalendarTest extends TestCase
 
         $response = $this->postJson('/api/calendars/share', [
             'calendar_id' => $calendar->id,
-            'user_id' => $userToShare->id,
-            'can_view' => 1,
+            'users' => [$userToShare->id],
             'can_own' => 1,
         ]);
 

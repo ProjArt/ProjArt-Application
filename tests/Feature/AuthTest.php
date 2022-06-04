@@ -125,16 +125,4 @@ class AuthTest extends TestCase
 
         $response->assertUnauthorized();
     }
-
-    public function test_fail_register_if_calendar_not_known()
-    {
-        $username = Str::random(10);
-
-        $response = $this->json('POST', '/api/register', [
-            'username' => $username,
-            'password' => "password",
-        ]);
-
-        $response->assertStatus(401);
-    }
 }
