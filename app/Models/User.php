@@ -173,4 +173,9 @@ class User extends Authenticatable
     {
         return $this->id != auth('sanctum')->user()->id;
     }
+
+    public function markmodules()
+    {
+        return $this->hasMany(MarkModule::class);
+    }
 }

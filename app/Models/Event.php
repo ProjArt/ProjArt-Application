@@ -34,7 +34,7 @@ class Event extends Model
 
     public function calendar()
     {
-        return $this->belongsTo(Calendar::class);
+        return $this->belongsToMany(Calendar::class);
     }
 
     public function scopeNexts($query, $items)
