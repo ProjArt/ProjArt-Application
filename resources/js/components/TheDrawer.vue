@@ -8,25 +8,6 @@ function toggle() {
   console.log("DRAWER TOGGLE FROM DRAWER");
 
   isOpen.value = !isOpen.value;
-
-  if (isOpen.value) {
-    disableScrolling();
-  } else {
-    enableScrolling();
-  }
-}
-
-function disableScrolling() {
-  let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-  let scrollLeft = window.pageXOffset || document.documentElement.scrollLeft;
-
-  window.onscroll = function () {
-    window.scrollTo(scrollLeft, scrollTop);
-  };
-}
-
-function enableScrolling() {
-  window.onscroll = function () {};
 }
 
 const isOpen = ref(false);
@@ -57,7 +38,7 @@ watch(positionX, (newValue) => {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: v-bind(positionX);
   z-index: 1000;
@@ -75,7 +56,7 @@ watch(positionX, (newValue) => {
   width: 100%;
   height: 100%;
   z-index: 999;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: v-bind(positionX);
 }
