@@ -234,6 +234,8 @@ async function storeCalendar(form) {
         userCalendars[calendar.id] = calendar.name;
       });
       calendarsNames.value = userCalendars;
+      currentsCalendarIds.value.push(newId);
+      selectedCalendarsIdStorage.value = toRaw(currentsCalendarIds.value);
     } catch (error) {
       console.log(error);
     }
@@ -366,6 +368,9 @@ async function deleteCalendar(calendarId) {
   if (response.success === true) {
     try {
       const calendars = allCalendars.value.filter((calendar) => calendar.id !== calendarId);
+      const newIds = calendars.map((calendar) => calendar.id);
+      selectedCalendarsIdStorage.value = newIds;
+      currentsCalendarIds.value = newIds;
       setCalendars(calendars, false);
     } catch (error) {
       console.log(error);
