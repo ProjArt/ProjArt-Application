@@ -10,14 +10,6 @@ function toggle() {
   isOpen.value = !isOpen.value;
 }
 
-onMounted(() => {
-  window.onscroll = function (event) {
-    if (window.scrollY > 30) {
-      isOpen.value = false;
-    }
-  };
-});
-
 const isOpen = ref(false);
 
 const positionX = computed(() => (isOpen.value ? "0" : "-100%"));
