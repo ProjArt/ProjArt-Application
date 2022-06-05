@@ -193,10 +193,12 @@ export function getAllDaysInMonthAndBeginning(year, month) {
         getAllDaysInMonth(TODAY.getFullYear(), TODAY.getMonth());
 
     // get data from the previous month
+    let previousYear = month === 0 ? year - 1 : year;
+    let previousMonth = month === 0 ? 11 : month - 1;
     const daysInPreviousMonth =
         typeof year !== "undefined" && typeof month !== "undefined" ?
-        getAllDaysInMonth(year, month - 1) :
-        getAllDaysInMonth(TODAY.getFullYear(), TODAY.getMonth() - 1);
+        getAllDaysInMonth(previousYear, previousMonth) :
+        getAllDaysInMonth(TODAY.getFullYear() - (month === 0 ? 1 : 0), TODAY.getMonth() - (month === 0 ? 1 : 0));
 
     for (const [index, date] of Object.entries(daysInMonth)) {
         let i = 0;
@@ -213,11 +215,14 @@ export function getAllDaysInMonthAndBeginning(year, month) {
         days.push(date);
     }
 
+
+    let nextYear = month === 11 ? year + 1 : year;
+    let nextMonth = month === 11 ? 0 : month + 1;
     // get data from the next month
     const daysInNextMonth =
         typeof year !== "undefined" && typeof month !== "undefined" ?
-        getAllDaysInMonth(year, month + 1) :
-        getAllDaysInMonth(TODAY.getFullYear(), TODAY.getMonth() + 1);
+        getAllDaysInMonth(nextYear, nextMonth) :
+        getAllDaysInMonth(TODAY.getFullYear() + (month == 11 ? 1 : 0), (TODAY.getMonth() == 11 ? TODAY.getMonth() : TODAY.getMonth() + 1));
     const numberOfDayToTake = 6 - Object.entries(daysInMonth).slice(-1)[0][1].dayOfWeekNumber;
     const daysInNextMonthToTake = Object.keys(daysInNextMonth).slice(0, numberOfDayToTake);
 

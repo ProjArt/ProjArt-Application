@@ -777,13 +777,15 @@ function showEventEditForm(startDate, id) {
             ? 'is-display-none'
             : ''),
           currentLayout === AVAILABLE_LAYOUT.MONTH &&
-          MONTH_LABELS[day.monthNumber] !== displayedDateManager.month1
+          MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
             ? 'is-other-month'
             : '')
         "
         :key="index"
         :date-id="day?.local"
       >
+        {{ day?.monthNumber }}
+
         <p class="calendar__day-number">{{ day?.dayOfMonthNumber }}</p>
         <p class="calendar__day-date">{{ day?.local }}</p>
         <div v-for="event in sortEventsByDate(day?.local)">
