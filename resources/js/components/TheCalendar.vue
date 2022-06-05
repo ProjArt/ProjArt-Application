@@ -1007,6 +1007,7 @@ function showEventEditForm(startDate, id) {
 
 .calendar__header {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
