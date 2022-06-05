@@ -766,6 +766,7 @@ function showEventEditForm(startDate, id) {
           !events.hasOwnProperty(day?.local)
             ? 'is-display-none'
             : ''),
+          currentLayout === AVAILABLE_LAYOUT.MONTH &&
           MONTH_LABELS[day.monthNumber] !== displayedDateManager.month1
             ? 'is-other-month'
             : '')
