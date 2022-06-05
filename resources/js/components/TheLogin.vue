@@ -28,6 +28,7 @@ const submitHandler = async () => {
 
     await registerToChannelNotification(response.data.user.username);
 
+    console.log(routesNames());
     let route = routesNames().find((e) => e.name == "calendar");
     window.location.href += route.path.replace("/", "");
   } else {

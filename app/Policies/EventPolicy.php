@@ -107,17 +107,24 @@ class EventPolicy
 
     private function canEditEvent(User $user, Event $event)
     {
-        return $this->checkRightsOnCalendar($user, $event->calendar, Calendar::EDIT_RIGHT);
+        return $this->checkRightsOnCalendar($user, $event->calendars, Calendar::EDIT_RIGHT);
     }
 
     private function canViewEvent(User $user, Event $event)
     {
-        return $this->checkRightsOnCalendar($user, $event->calendar, Calendar::READ_RIGHT);
+        return $this->checkRightsOnCalendar($user, $event->calendars, Calendar::READ_RIGHT);
     }
 
-    private function checkRightsOnCalendar(User $user, Calendar $calendar, $rights)
+    private function checkRightsOnCalendar(User $user, $calendars, $rights)
     {
-        $c =  $user->calendars()->whereId($calendar->id)->first();
-        return $c != null && $c->pivot->rights == $rights;
+        if ($calendars instanceof \Illuminate\Database\Eloquent\Collection) {
+            $calendar = $calendars->first();
+        } else {
+            $calendar = $calendars;
+        }
+
+        if ($user->calendars()->where('calendars.id', $calendar->id)->first()->pivot->rights == $rights) {
+            return true;
+        }
     }
 }

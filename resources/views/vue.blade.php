@@ -23,13 +23,13 @@
     {{-- ICONS --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-    <link rel="stylesheet" href="/css/app.css">
+    <link rel="stylesheet" href="{{mix('/css/app.css')}}">
 
 </head>
 
 <body>
     <div id="app"></div>
-    <script src="/js/app.js"></script>
+    <script src="{{mix('js/app.js')}}"></script>
 </body>
 
 </html>

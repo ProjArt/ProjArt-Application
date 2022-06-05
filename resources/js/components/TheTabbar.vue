@@ -20,10 +20,19 @@ async function _send() {
     to: user.value.username,
   });
 }
+
+function buildMenu() {
+  let menu = routesNames().filter(
+    (route) =>
+      route.is_visible.includes(user.value.role) ||
+      route.is_visible.includes("*")
+  );
+  return menu;
+}
 </script>
 <template>
   <div class="menu" v-if="isAuthenticated">
-    <div v-for="route in routesNames()" :key="route" class="menu__item">
+    <div v-for="route in buildMenu()" :key="route" class="menu__item">
       <router-link :to="route.path" class="menu__item-link">
         <span class="menu-icon material-icons">{{ route.icon }}</span>
         <span class="menu-title">{{ route.name }}</span>

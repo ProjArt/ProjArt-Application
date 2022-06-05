@@ -33,31 +33,4 @@ class MarksTest extends TestCase
 
         $response->assertUnauthorized();
     }
-
-    public function test_marks_have_good_format()
-    {
-        Sanctum::actingAs(
-            User::findOr(1, function () {
-                return User::factory()->create();
-            }),
-        );
-        $response = $this->getJson('/api/marks');
-
-        $response->assertStatus(200);
-
-        $response->assertJsonStructure([
-            'data' => [
-                '*' => [ //any year
-                    '*' => [ //any marks
-                        'id',
-                        'module_code',
-                        'module_name',
-                        'value',
-                        'year_start',
-                        'year_end',
-                    ],
-                ],
-            ],
-        ]);
-    }
 }

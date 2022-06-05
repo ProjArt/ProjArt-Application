@@ -32,7 +32,7 @@ class Event extends Model
         "course"
     ];
 
-    public function calendar()
+    public function calendars()
     {
         return $this->belongsToMany(Calendar::class);
     }

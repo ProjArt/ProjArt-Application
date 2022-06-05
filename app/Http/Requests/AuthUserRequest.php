@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\LowerCaseRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AuthUserRequest extends FormRequest
@@ -24,7 +25,7 @@ class AuthUserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string|max:255',
+            'username' => ['required', 'string', 'max:255', new LowerCaseRule()],
             'password' => 'required|min:5',
             'classroom_name' => 'string|max:255|exists:classrooms,name',
         ];

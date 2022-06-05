@@ -47,6 +47,8 @@ jobs:
         GAPS_USERNAME: ${{ secrets.GAPS_USERNAME }}
         GAPS_PASSWORD: ${{ secrets.GAPS_PASSWORD }}
         TWITTER_TOKEN: ${{ secrets.TWITTER_TOKEN }}
+        PUSHER_APP_ID: ${{ secrets.PUSHER_APP_ID }}
+        PUSHER_APP_KEY: ${{ secrets.PUSHER_APP_KEY }}
       run: php artisan db:seed
       id: seeding
       

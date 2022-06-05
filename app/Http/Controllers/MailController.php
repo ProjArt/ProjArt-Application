@@ -20,6 +20,14 @@ use PhpImap\Exceptions\ConnectionException;
 class MailController extends Controller
 {
 
+    /**
+     * 
+     * Get mails
+     * 
+     * Retourne un json contenant une liste des mails de l'utilisateur.
+     * 
+     */
+
     public function index(Request $request)
     {
 
@@ -35,11 +43,19 @@ class MailController extends Controller
 
         $mailsIds = array_slice($mailsIds, 0, 20, true);
 
-        $mails[] = $this->getMailbox($request)->getMailsInfo($mailsIds);
+        $mails = $this->getMailbox($request)->getMailsInfo($mailsIds);
 
         return httpSuccess('Derniers mail', $mails);
     }
 
+    /**
+     * 
+     * Show mail
+     * 
+     * Retourne un json contenant un mail.
+     * 
+     * 
+     */
     public function show(Request $request, $id)
     {
         try {
@@ -53,6 +69,13 @@ class MailController extends Controller
         return httpSuccess('Mail', $mailbox->getMail($id));
     }
 
+    /**
+     * 
+     * Send mail
+     * 
+     * Envoie un mail 
+     * 
+     */
     public function send(SendMailRequest $request)
     {
         $mail = $request->validated();

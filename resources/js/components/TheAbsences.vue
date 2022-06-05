@@ -32,7 +32,12 @@ const absences = ref([]);
       <div class="unity">
         {{ absence.unity }}
       </div>
-      <div class="absolute_rate">{{ absence.absolute_rate }}%</div>
+      <div class="absolute_rate">
+        {{ absence.absolute_rate }}%
+        <span class="material-symbols-outlined" v-if="absence.absolute_rate">
+          warning
+        </span>
+      </div>
     </div>
   </div>
 </template>
