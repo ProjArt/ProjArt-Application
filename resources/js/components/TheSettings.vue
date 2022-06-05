@@ -5,7 +5,6 @@ import useLogout from "../composables/useLogout.js"
 
 function disconnectAndRedirect() {
   useLogout();
-
 }
 </script>
 

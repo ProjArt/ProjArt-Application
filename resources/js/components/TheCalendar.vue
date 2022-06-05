@@ -37,6 +37,10 @@ const dayLabels = DAY_LABELS.slice();
 const events = ref([]);
 const calendarIdWhereToAddTheNewEvent = ref(2);
 const currentPopup = ref(null)
+const users = ref([])
+const userSearch = ref("")
+const searchedUser = ref([])
+const usersForm = ref({})
 
 // Computed
 // ======================================
@@ -396,6 +400,43 @@ async function updateCalendar(form) {
   }
 }
 
+async function getAllUsers() {
+  const response = await useFetch({
+    url: API.getClassrooms.path(),
+    method: API.getClassrooms.method,
+  });
+  if (response.success === true) {
+    return response.data.classrooms;
+  } else {
+    console.log(response, "error: no users");
+    return [];
+  }
+}
+
+async function setAllUsers() {
+  const classrooms = await getAllUsers();
+  const allUsers = classrooms.map((classroom) => {
+    return classroom.users.map((user) => {
+      return user;
+    });
+  })
+  users.value = [...allUsers].flat();
+}
+
+async function shareCalendar(form) {
+  console.log(form)
+  const response = await useFetch({
+    url: API.shareCalendar.path(form.calendar_id),
+    method: API.shareCalendar.method,
+    data: { form },
+  });
+  if (response.success === true) {
+
+  } else {
+    console.log(response, "error: sharing calendar");
+  }
+}
+
 // Features
 // ======================================
 
@@ -590,6 +631,7 @@ function showEventEditForm(startDate, id) {
   currentLayout.value = layoutStorage.value || AVAILABLE_LAYOUT.MONTH
   const calendars = await getCalendars();
   await setCalendars(calendars);
+  await setAllUsers()
   setEvents(getEvents());
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
     dates.value = useDate.getAllDaysInMonthAndBeginning(
@@ -635,6 +677,18 @@ function showEventEditForm(startDate, id) {
       formatCurrentDateForDisplay(currDateCursor.value);
     }
   });
+
+  watch(userSearch, () => {
+    const resultOfsearch = []
+    if (userSearch.value != '') {
+      users.value.forEach((user) => {
+        if (user.username.toLowerCase().includes(toRaw(userSearch.value.toLowerCase()))) {
+          resultOfsearch.push(user.username)
+        };
+      })
+    }
+    searchedUser.value = resultOfsearch;
+  })
 })();
 </script>
 <template>
@@ -738,10 +792,14 @@ function showEventEditForm(startDate, id) {
   </div>
   <!--====  Popup share Calendar  ====-->
   <div class="popup popup--share-calendar" v-show="currentPopup === AVAILABLE_POPUP.SHARE_CALENDAR">
-    <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
-      submit-label="Enregistrer" @submit="storeCalendar">
-      <h2>Partager un Calendrier</h2>
-      <FormKit type="text" name="name" validation="required" label="Nom" />
+    <h2>Partager un Calendrier</h2>
+    <FormKit type="search" placeholder="prenom.nom..." label="Search" v-model="userSearch" />
+    <FormKit type="form" v-model="usersForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Partager"
+      @submit="shareCalendar">
+      <FormKit type="checkbox" name="users" :options="searchedUser" validation="required"
+        v-if="searchedUser.length > 0" />
+      <FormKit type="select" label="calendrier" name="calendar_id" :options="calendarsNames" />
+      <FormKit type="checkbox" label="Droit de modification" name="can_own" />
     </FormKit>
   </div>
   <!--====  Popup Edit Calendar  ====-->
@@ -798,6 +856,12 @@ function showEventEditForm(startDate, id) {
   </div>
 </template>
 <style lang="scss" scoped>
+.is-display-none {
+  display: none !important;
+}
+
+.calendar__no-events {}
+
 .is-display-none {
   display: none !important;
 }
@@ -921,6 +985,12 @@ function showEventEditForm(startDate, id) {
 
 .popup--edit-events,
 :deep(.formkit-form) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup--share-calendar {
   display: flex;
   flex-direction: column;
   align-items: center;
