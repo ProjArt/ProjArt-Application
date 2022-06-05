@@ -118,7 +118,7 @@ class MailController extends Controller
     {
         $user = $request->user();
         $mailbox = new Mailbox(
-            '{webmail.heig-vd.ch:993/imap/ssl}INBOX', // IMAP server and mailbox folder
+            "{" . config('imap.accounts.default.host') . ":" . config('imap.accounts.default.port') . "/imap/ssl}INBOX", // IMAP server and mailbox folder
             $user->username, // Username for the before configured mailbox
             $user->password, // Password for the before configured username
         );
