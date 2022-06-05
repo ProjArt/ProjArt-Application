@@ -199,14 +199,6 @@ function showEditCalendarForm(event) {
     : AVAILABLE_POPUP.EDIT_CALENDAR;
 }
 
-function getDateForForm(date) {
-  date = date.split(" ")[0];
-  date = date.split("-");
-  date = `${date[0]}-${date[1]}-${date[2]}`;
-  console.log(date)
-  return date;
-}
-
 function formatCurrentDateForDisplay(date, nextDays = 0) {
   const date2 = new Date(date.getFullYear(), date.getMonth(), date.getDate() + nextDays)
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
@@ -845,7 +837,7 @@ function showEventEditForm(startDate, id) {
           <p>titre: {{ event.title }}</p>
           <p>lieu: {{ event.location }}</p>
           <p>description: {{ event.description }}</p>
-          <p>début: {{ getDateForForm(event.start) }}</p>
+          <p>début: {{ event.start }}</p>
           <p>fin: {{ event.end }}</p>
         </div>
         <button v-show="event.can_edit" @click="deleteEvent(event.start, event.id, event.calendar_id)">
@@ -861,9 +853,8 @@ function showEventEditForm(startDate, id) {
           <FormKit type="textarea" name="description" validation="required" label="Description" />
           <FormKit type="time" name="start" label="Début" />
           <FormKit type="time" name="end" label="Fin" />
-          <FormKit name="start_date" type="date" :value="getDateForForm(event.start)" label="Date de Début"
-            validation="required" />
           <FormKit name="end_date" type="hidden" :value="event.start" />
+          <FormKit name="start_date" type="hidden" :value="event.start" />
           <FormKit name="id" type="hidden" :value="event.id" />
           <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
             validation="required">
