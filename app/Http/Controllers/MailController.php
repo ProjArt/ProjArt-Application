@@ -97,15 +97,14 @@ class MailController extends Controller
         }); */
 
 
-        $to      = 'vincent@tarrit.com';
-        $subject = 'Sujet du mail';
-        $message = 'Voici un message ' . time();
+        $to      = $mail['to'];
+        $subject = $mail['subject'];
+        $message = $mail['message'];
         $headers = array(
             'From' => $user->gaps_user->full_name . ' <' . $user->username . '@heig-vd.ch>',
             'Reply-To' => $user->username . '@heig-vd.ch',
             'X-Mailer' => 'PHP/' . phpversion()
         );
-        echo time();
         try {
             mail($to, $subject, $message, $headers);
             return httpSuccess('Mail envoyé');
