@@ -41,6 +41,7 @@ const users = ref([])
 const userSearch = ref("")
 const searchedUser = ref([])
 const usersForm = ref({})
+const newEventStart = ref("08:00")
 
 // Computed
 // ======================================
@@ -135,6 +136,13 @@ const selectedCalendarsIdStorage = computed({
   },
 })
 
+const getCurrentDateForForm = computed(() => {
+  const dateParts = TODAY.toLocaleDateString().split('/')
+  const date = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`
+  return date.replace(/\//g, '-')
+})
+console.log(getCurrentDateForForm.value)
+
 // Helpers
 // ======================================
 
@@ -159,7 +167,6 @@ function prepareFormBeforeSending(rawForm) {
   const end = `${date} ${rawForm.end}`;
   rawForm.start = start;
   rawForm.end = end;
-  delete rawForm.end_date;
   delete rawForm.start_date;
   return rawForm;
 }
@@ -190,6 +197,14 @@ function showEditCalendarForm(event) {
   currentPopup.value = currentPopup.value === AVAILABLE_POPUP.EDIT_CALENDAR
     ? null
     : AVAILABLE_POPUP.EDIT_CALENDAR;
+}
+
+function getDateForForm(date) {
+  date = date.split(" ")[0];
+  date = date.split("-");
+  date = `${date[0]}-${date[1]}-${date[2]}`;
+  console.log(date)
+  return date;
 }
 
 function formatCurrentDateForDisplay(date, nextDays = 0) {
@@ -293,7 +308,7 @@ async function deleteEvent(dayId, eventId, calendarId) {
 async function updateEvent(form) {
   const date = form.start_date;
   form.start_date = useDate.swissDateToYMD(form.start_date, "-");
-  form.end_date = useDate.swissDateToYMD(form.end_date, "-");
+  form.end_date = useDate.swissDateToYMD(form.start_date, "-");
   form = prepareFormBeforeSending(form);
   const response = await useFetch({
     url: API.updateEvent.path(form.id),
@@ -775,10 +790,10 @@ function showEventEditForm(startDate, id) {
         :value="new Date().getHours() + ':' + new Date().getMinutes()" />
       <FormKit type="text" name="location" validation="required" label="Lieu" value="HEIG" />
       <FormKit type="textarea" name="description" validation="required" label="Description" value="..." />
-      <FormKit type="time" name="start" label="Début" value="08:00" />
-      <FormKit type="time" name="end" label="Fin" value="08:00" />
-      <FormKit name="start_date" type="date" value="2022-06-01" label="Date de Début" validation="required" />
-      <FormKit name="end_date" type="date" value="2022-06-01" label="Date de Fin" validation="required" />
+      <FormKit type="time" name="start" label="Début" v-model="newEventStart" />
+      <FormKit type="time" name="end" validation="required" label="Fin" :min="newEventStart" :value="newEventStart" />
+      <FormKit name="start_date" type="date" :value="getCurrentDateForForm" label="Date de Début" validation="required"
+        :min="getCurrentDateForForm" />
       <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
         validation="required">
         <option v-for="(name, id) in editableCalendarsNames" :value="id">
@@ -830,7 +845,7 @@ function showEventEditForm(startDate, id) {
           <p>titre: {{ event.title }}</p>
           <p>lieu: {{ event.location }}</p>
           <p>description: {{ event.description }}</p>
-          <p>début: {{ event.start }}</p>
+          <p>début: {{ getDateForForm(event.start) }}</p>
           <p>fin: {{ event.end }}</p>
         </div>
         <button v-show="event.can_edit" @click="deleteEvent(event.start, event.id, event.calendar_id)">
@@ -846,7 +861,8 @@ function showEventEditForm(startDate, id) {
           <FormKit type="textarea" name="description" validation="required" label="Description" />
           <FormKit type="time" name="start" label="Début" />
           <FormKit type="time" name="end" label="Fin" />
-          <FormKit name="start_date" type="hidden" :value="event.start" />
+          <FormKit name="start_date" type="date" :value="getDateForForm(event.start)" label="Date de Début"
+            validation="required" />
           <FormKit name="end_date" type="hidden" :value="event.start" />
           <FormKit name="id" type="hidden" :value="event.id" />
           <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
