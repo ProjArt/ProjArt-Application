@@ -9,6 +9,7 @@ const isSent = ref(false);
 
 // At start of component, fetch the data
 async function send() {
+  isSent.value = false;
   console.log(toRaw(formData.value));
   const response = await useFetch({
     url: API.sendMail.path(),
