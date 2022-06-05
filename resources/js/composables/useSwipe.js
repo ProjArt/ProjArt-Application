@@ -1,4 +1,4 @@
-function useSwipe({ onSwipeLeft = () => {}, onSwipeRight = () => {}, onSwipeUp = () => {}, onSwipeDown = () => {} } = {}) {
+function useSwipe({ precision = 100, onSwipeLeft = () => {}, onSwipeRight = () => {}, onSwipeUp = () => {}, onSwipeDown = () => {} } = {}) {
     let touchstartX;
     let touchstartY;
     let touchendX;
@@ -18,19 +18,19 @@ function useSwipe({ onSwipeLeft = () => {}, onSwipeRight = () => {}, onSwipeUp =
         function(event) {
             touchendX = event.changedTouches[0].screenX;
             touchendY = event.changedTouches[0].screenY;
-            if (touchendX < touchstartX) {
+            if (touchendX < touchstartX - precision) {
                 onSwipeLeft();
             }
 
-            if (touchendX > touchstartX) {
+            if (touchendX > touchstartX + precision) {
                 onSwipeRight();
             }
 
-            if (touchendY < touchstartY) {
+            if (touchendY < touchstartY - precision) {
                 onSwipeUp();
             }
 
-            if (touchendY > touchstartY) {
+            if (touchendY > touchstartY + precision) {
                 onSwipeDown();
             }
         },
