@@ -19,6 +19,7 @@ async function send() {
   if (response.success === true) {
     console.log("Mails sent");
     isSent.value = true;
+    formData.value = {};
   } else {
     console.log(response, "error");
   }
