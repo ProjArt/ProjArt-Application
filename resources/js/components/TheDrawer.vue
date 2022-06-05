@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 
 defineExpose({
   toggle,
@@ -9,6 +9,14 @@ function toggle() {
 
   isOpen.value = !isOpen.value;
 }
+
+onMounted(() => {
+  window.onscroll = function (event) {
+    if (window.scrollY > 30) {
+      isOpen.value = false;
+    }
+  };
+});
 
 const isOpen = ref(false);
 
