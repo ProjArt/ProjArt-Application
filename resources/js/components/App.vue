@@ -21,7 +21,11 @@ function openDrawer() {
   </Suspense>
   <the-notification></the-notification>
   <main>
-    <router-view></router-view>
+    <router-view v-slot="{ Component }">
+      <keep-alive>
+        <component :is="Component" />
+      </keep-alive>
+    </router-view>
   </main>
   <div class="spacer-bottom">&nbsp;</div>
   <the-tabbar />
