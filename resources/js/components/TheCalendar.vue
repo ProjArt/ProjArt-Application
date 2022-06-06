@@ -19,20 +19,7 @@ useSwipe({
 
 const TODAY = new Date();
 const DAY_LABELS = ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
-const MONTH_LABELS = [
-  "JANVIER",
-  "FEVRIER",
-  "MARS",
-  "AVRIL",
-  "MAI",
-  "JUIN",
-  "JUILLET",
-  "AOUT",
-  "SEPTEMBRE",
-  "OCTOBRE",
-  "NOVEMBRE",
-  "DECEMBRE",
-];
+const MONTH_LABELS = ["JANVIER", "FEVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOUT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DECEMBRE",];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
 const AVAILABLE_POPUP = {
@@ -65,7 +52,12 @@ const currDateCursor = ref(TODAY);
 const dayLabels = DAY_LABELS.slice();
 const events = ref([]);
 const calendarIdWhereToAddTheNewEvent = ref(2);
-const currentPopup = ref(null);
+const currentPopup = ref(null)
+const users = ref([])
+const userSearch = ref("")
+const searchedUser = ref([])
+const usersForm = ref({})
+const newEventStart = ref("08:00")
 
 // Computed
 // ======================================
@@ -160,6 +152,13 @@ const selectedCalendarsIdStorage = computed({
   },
 });
 
+const getCurrentDateForForm = computed(() => {
+  const dateParts = TODAY.toLocaleDateString().split('/')
+  const date = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`
+  return date.replace(/\//g, '-')
+})
+console.log(getCurrentDateForForm.value)
+
 // Helpers
 // ======================================
 
@@ -184,7 +183,6 @@ function prepareFormBeforeSending(rawForm) {
   const end = `${date} ${rawForm.end}`;
   rawForm.start = start;
   rawForm.end = end;
-  delete rawForm.end_date;
   delete rawForm.start_date;
   return rawForm;
 }
@@ -267,6 +265,8 @@ async function storeCalendar(form) {
         userCalendars[calendar.id] = calendar.name;
       });
       calendarsNames.value = userCalendars;
+      currentsCalendarIds.value.push(newId);
+      selectedCalendarsIdStorage.value = toRaw(currentsCalendarIds.value);
     } catch (error) {
       console.log(error);
     }
@@ -324,7 +324,7 @@ async function deleteEvent(dayId, eventId, calendarId) {
 async function updateEvent(form) {
   const date = form.start_date;
   form.start_date = useDate.swissDateToYMD(form.start_date, "-");
-  form.end_date = useDate.swissDateToYMD(form.end_date, "-");
+  form.end_date = useDate.swissDateToYMD(form.start_date, "-");
   form = prepareFormBeforeSending(form);
   const response = await useFetch({
     url: API.updateEvent.path(form.id),
@@ -399,9 +399,10 @@ async function deleteCalendar(calendarId) {
   });
   if (response.success === true) {
     try {
-      const calendars = allCalendars.value.filter(
-        (calendar) => calendar.id !== calendarId
-      );
+      const calendars = allCalendars.value.filter((calendar) => calendar.id !== calendarId);
+      const newIds = calendars.map((calendar) => calendar.id);
+      selectedCalendarsIdStorage.value = newIds;
+      currentsCalendarIds.value = newIds;
       setCalendars(calendars, false);
     } catch (error) {
       console.log(error);
@@ -433,6 +434,43 @@ async function updateCalendar(form) {
     }
   } else {
     console.log("error");
+  }
+}
+
+async function getAllUsers() {
+  const response = await useFetch({
+    url: API.getClassrooms.path(),
+    method: API.getClassrooms.method,
+  });
+  if (response.success === true) {
+    return response.data.classrooms;
+  } else {
+    console.log(response, "error: no users");
+    return [];
+  }
+}
+
+async function setAllUsers() {
+  const classrooms = await getAllUsers();
+  const allUsers = classrooms.map((classroom) => {
+    return classroom.users.map((user) => {
+      return user;
+    });
+  })
+  users.value = [...allUsers].flat();
+}
+
+async function shareCalendar(form) {
+  console.log(form)
+  const response = await useFetch({
+    url: API.shareCalendar.path(form.calendar_id),
+    method: API.shareCalendar.method,
+    data: { form },
+  });
+  if (response.success === true) {
+
+  } else {
+    console.log(response, "error: sharing calendar");
   }
 }
 
@@ -637,6 +675,7 @@ function showEventEditForm(startDate, id) {
   currentLayout.value = layoutStorage.value || AVAILABLE_LAYOUT.MONTH;
   const calendars = await getCalendars();
   await setCalendars(calendars);
+  await setAllUsers()
   setEvents(getEvents());
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
     dates.value = useDate.getAllDaysInMonthAndBeginning(
@@ -682,6 +721,18 @@ function showEventEditForm(startDate, id) {
       formatCurrentDateForDisplay(currDateCursor.value);
     }
   });
+
+  watch(userSearch, () => {
+    const resultOfsearch = []
+    if (userSearch.value != '') {
+      users.value.forEach((user) => {
+        if (user.username.toLowerCase().includes(toRaw(userSearch.value.toLowerCase()))) {
+          resultOfsearch.push(user.username)
+        };
+      })
+    }
+    searchedUser.value = resultOfsearch;
+  })
 })();
 </script>
 <template>
@@ -699,8 +750,9 @@ function showEventEditForm(startDate, id) {
       <p>
         {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
         {{ displayedDateManager.year1 }}
-        <span v-show="displayedDateManager.day2"> - </span
-        >{{ displayedDateManager.day2 }} {{ displayedDateManager.month2 }}
+        <span v-show="displayedDateManager.day2"> - </span>{{ displayedDateManager.day2 }} {{
+            displayedDateManager.month2
+        }}
         {{ displayedDateManager.year2 }}
       </p>
     </div>
@@ -717,19 +769,15 @@ function showEventEditForm(startDate, id) {
       <p>
         {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
         {{ displayedDateManager.year1 }}
-        <span v-show="displayedDateManager.day2"> - </span
-        >{{ displayedDateManager.day2 }} {{ displayedDateManager.month2 }}
+        <span v-show="displayedDateManager.day2"> - </span>{{ displayedDateManager.day2 }} {{
+            displayedDateManager.month2
+        }}
         {{ displayedDateManager.year2 }}
       </p>
     </div>
 
     <div class="calendar__choose">
-      <FormKit
-        v-model="currentsCalendarIds"
-        type="checkbox"
-        label="Calendrier"
-        :options="calendarsNames"
-      />
+      <FormKit v-model="currentsCalendarIds" type="checkbox" label="Calendrier" :options="calendarsNames" />
     </div>
     <header class="calendar__header">
       <button @click="previousPeriod">&lt;&lt;</button>
@@ -751,40 +799,26 @@ function showEventEditForm(startDate, id) {
       </div>
     </div>
     <!--====  Calendar no events message  ====-->
-    <div
-      class="calendar__no-events"
-      v-show="currentLayout === AVAILABLE_LAYOUT.LIST"
-    >
+    <div class="calendar__no-events" v-show="currentLayout === AVAILABLE_LAYOUT.LIST">
       <p>Aucun événements pour cette période</p>
     </div>
     <!--====  Calendar days  ====-->
-    <div
-      class="calendar__days"
-      :class="
-        'calendar__days--' +
-        getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
-      "
-    >
-      <div
-        v-for="(day, index) in dates"
-        class="calendar__day"
-        @click="showCurrentEvent(day?.local, index)"
-        :class="
-          ((selectedDate === index ? 'is-selected-day' : '',
-          day?.class,
-          currentLayout === AVAILABLE_LAYOUT.LIST &&
+    <div class="calendar__days" :class="
+      'calendar__days--' +
+      getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
+    ">
+      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
+        selectedDate === index ? 'is-selected-day' : '',
+        day?.class,
+        currentLayout === AVAILABLE_LAYOUT.LIST &&
           !events.hasOwnProperty(day?.local)
-            ? 'is-display-none'
-            : ''),
-          currentLayout === AVAILABLE_LAYOUT.MONTH &&
+          ? 'is-display-none'
+          : '',
+        currentLayout === AVAILABLE_LAYOUT.MONTH &&
           MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
-            ? 'is-other-month'
-            : '')
-        "
-        :key="index"
-        :date-id="day?.local"
-      >
-        {{ day?.monthNumber }}
+          ? 'is-other-month'
+          : ''
+      " :key="index" :date-id="day?.local">
 
         <p class="calendar__day-number">{{ day?.dayOfMonthNumber }}</p>
         <p class="calendar__day-date">{{ day?.local }}</p>
@@ -795,62 +829,20 @@ function showEventEditForm(startDate, id) {
     </div>
   </div>
   <!--====  Popup new event  ====-->
-  <div
-    class="popup popup--new-event"
-    v-show="currentPopup === AVAILABLE_POPUP.STORE_EVENT"
-  >
-    <FormKit
-      type="form"
-      v-model="newEventForm"
-      :form-class="isSubmitted ? 'hide' : 'show'"
-      submit-label="Enregistrer"
-      @submit="storeEvent"
-    >
+  <div class="popup popup--new-event" v-show="currentPopup === AVAILABLE_POPUP.STORE_EVENT">
+    <FormKit type="form" v-model="newEventForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Enregistrer"
+      @submit="storeEvent">
       <h2>Ajouter un événement</h2>
-      <FormKit
-        type="text"
-        name="title"
-        validation="required"
-        label="Titre"
-        :value="new Date().getHours() + ':' + new Date().getMinutes()"
-      />
-      <FormKit
-        type="text"
-        name="location"
-        validation="required"
-        label="Lieu"
-        value="HEIG"
-      />
-      <FormKit
-        type="textarea"
-        name="description"
-        validation="required"
-        label="Description"
-        value="..."
-      />
-      <FormKit type="time" name="start" label="Début" value="08:00" />
-      <FormKit type="time" name="end" label="Fin" value="08:00" />
-      <FormKit
-        name="start_date"
-        type="date"
-        value="2022-06-01"
-        label="Date de Début"
-        validation="required"
-      />
-      <FormKit
-        name="end_date"
-        type="date"
-        value="2022-06-01"
-        label="Date de Fin"
-        validation="required"
-      />
-      <FormKit
-        v-model="calendarIdWhereToAddTheNewEvent"
-        type="select"
-        label="calendrier"
-        name="calendar_id"
-        validation="required"
-      >
+      <FormKit type="text" name="title" validation="required" label="Titre"
+        :value="new Date().getHours() + ':' + new Date().getMinutes()" />
+      <FormKit type="text" name="location" validation="required" label="Lieu" value="HEIG" />
+      <FormKit type="textarea" name="description" validation="required" label="Description" value="..." />
+      <FormKit type="time" name="start" label="Début" v-model="newEventStart" />
+      <FormKit type="time" name="end" validation="required" label="Fin" :min="newEventStart" :value="newEventStart" />
+      <FormKit name="start_date" type="date" :value="getCurrentDateForForm" label="Date de Début" validation="required"
+        :min="getCurrentDateForForm" />
+      <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
+        validation="required">
         <option v-for="(name, id) in editableCalendarsNames" :value="id">
           {{ name }}
         </option>
@@ -858,67 +850,39 @@ function showEventEditForm(startDate, id) {
     </FormKit>
   </div>
   <!--====  Popup store Calendar  ====-->
-  <div
-    class="popup popup--new-calendar"
-    v-show="currentPopup === AVAILABLE_POPUP.STORE_CALENDAR"
-  >
-    <FormKit
-      type="form"
-      v-model="newCalendarForm"
-      :form-class="isSubmitted ? 'hide' : 'show'"
-      submit-label="Enregistrer"
-      @submit="storeCalendar"
-    >
+  <div class="popup popup--new-calendar" v-show="currentPopup === AVAILABLE_POPUP.STORE_CALENDAR">
+    <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
+      submit-label="Enregistrer" @submit="storeCalendar">
       <h2>Ajouter un Calendrier</h2>
       <FormKit type="text" name="name" validation="required" label="Nom" />
     </FormKit>
   </div>
   <!--====  Popup share Calendar  ====-->
-  <div
-    class="popup popup--share-calendar"
-    v-show="currentPopup === AVAILABLE_POPUP.SHARE_CALENDAR"
-  >
-    <FormKit
-      type="form"
-      v-model="newCalendarForm"
-      :form-class="isSubmitted ? 'hide' : 'show'"
-      submit-label="Enregistrer"
-      @submit="storeCalendar"
-    >
-      <h2>Partager un Calendrier</h2>
-      <FormKit type="text" name="name" validation="required" label="Nom" />
+  <div class="popup popup--share-calendar" v-show="currentPopup === AVAILABLE_POPUP.SHARE_CALENDAR">
+    <h2>Partager un Calendrier</h2>
+    <FormKit type="search" placeholder="prenom.nom..." label="Search" v-model="userSearch" />
+    <FormKit type="form" v-model="usersForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Partager"
+      @submit="shareCalendar">
+      <FormKit type="checkbox" name="users" :options="searchedUser" validation="required"
+        v-if="searchedUser.length > 0" />
+      <FormKit type="select" label="calendrier" name="calendar_id" :options="calendarsNames" />
+      <FormKit type="checkbox" label="Droit de modification" name="can_own" />
     </FormKit>
   </div>
   <!--====  Popup Edit Calendar  ====-->
-  <div
-    class="popup popup--edit-calendar"
-    v-show="currentPopup === AVAILABLE_POPUP.EDIT_CALENDAR"
-  >
+  <div class="popup popup--edit-calendar" v-show="currentPopup === AVAILABLE_POPUP.EDIT_CALENDAR">
     <h2>Editer les calendrier</h2>
     <div v-for="calendar in getCalendarsData">
-      <FormKit
-        v-if="calendar.can_edit"
-        type="form"
-        :form-class="isSubmitted ? 'hide' : 'show'"
-        submit-label="Enregistrer"
-        @submit="updateCalendar"
-      >
-        <FormKit
-          type="text"
-          name="name"
-          validation="required"
-          :value="calendar.name"
-        />
+      <FormKit v-if="calendar.can_edit" type="form" :form-class="isSubmitted ? 'hide' : 'show'"
+        submit-label="Enregistrer" @submit="updateCalendar">
+        <FormKit type="text" name="name" validation="required" :value="calendar.name" />
         <FormKit type="hidden" name="calendar_id" :value="calendar.id" />
         <button @click="deleteCalendar(calendar.id)">supprimer</button>
       </FormKit>
     </div>
   </div>
   <!--====  Popup edit event  ====-->
-  <div
-    class="popup popup--edit-events"
-    v-show="currentPopup === AVAILABLE_POPUP.SHOW_EVENT"
-  >
+  <div class="popup popup--edit-events" v-show="currentPopup === AVAILABLE_POPUP.SHOW_EVENT">
     <h2>Current Events</h2>
     <article class="popup__event" v-for="(event, index) in newEventPopup">
       <div class="event">
@@ -931,56 +895,24 @@ function showEventEditForm(startDate, id) {
           <p>début: {{ event.start }}</p>
           <p>fin: {{ event.end }}</p>
         </div>
-        <button
-          v-show="event.can_edit"
-          @click="deleteEvent(event.start, event.id, event.calendar_id)"
-        >
+        <button v-show="event.can_edit" @click="deleteEvent(event.start, event.id, event.calendar_id)">
           supprimer
         </button>
-        <button
-          v-show="event.can_edit"
-          @click="showEventEditForm(event.start, event.id, event.calendar_id)"
-        >
+        <button v-show="event.can_edit" @click="showEventEditForm(event.start, event.id, event.calendar_id)">
           editer
         </button>
-        <FormKit
-          type="form"
-          v-model="formUpdate"
-          submit-label="Enregistrer"
-          @submit="updateEvent"
-          v-if="indexUnderEdition === event.id"
-          :key="event.id"
-        >
-          <FormKit
-            type="text"
-            name="title"
-            validation="required"
-            label="Titre"
-          />
-          <FormKit
-            type="text"
-            name="location"
-            validation="required"
-            label="Lieu"
-          />
-          <FormKit
-            type="textarea"
-            name="description"
-            validation="required"
-            label="Description"
-          />
+        <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
+          v-if="indexUnderEdition === event.id" :key="event.id">
+          <FormKit type="text" name="title" validation="required" label="Titre" />
+          <FormKit type="text" name="location" validation="required" label="Lieu" />
+          <FormKit type="textarea" name="description" validation="required" label="Description" />
           <FormKit type="time" name="start" label="Début" />
           <FormKit type="time" name="end" label="Fin" />
-          <FormKit name="start_date" type="hidden" :value="event.start" />
           <FormKit name="end_date" type="hidden" :value="event.start" />
+          <FormKit name="start_date" type="hidden" :value="event.start" />
           <FormKit name="id" type="hidden" :value="event.id" />
-          <FormKit
-            v-model="calendarIdWhereToAddTheNewEvent"
-            type="select"
-            label="calendrier"
-            name="calendar_id"
-            validation="required"
-          >
+          <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
+            validation="required">
             <option v-for="(name, id) in editableCalendarsNames" :value="id">
               {{ name }}
             </option>
@@ -991,6 +923,12 @@ function showEventEditForm(startDate, id) {
   </div>
 </template>
 <style lang="scss" scoped>
+.is-display-none {
+  display: none !important;
+}
+
+.calendar__no-events {}
+
 .is-display-none {
   display: none !important;
 }
@@ -1008,10 +946,8 @@ function showEventEditForm(startDate, id) {
 }
 
 .calendar__header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .calendar__days {
@@ -1033,9 +969,7 @@ function showEventEditForm(startDate, id) {
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
-  background-color: rgba(0, 0, 0, 0.1);
-  pointer-events: none;
-  cursor: none;
+  background-color: white;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1115,6 +1049,12 @@ function showEventEditForm(startDate, id) {
 
 .popup--edit-events,
 :deep(.formkit-form) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.popup--share-calendar {
   display: flex;
   flex-direction: column;
   align-items: center;
