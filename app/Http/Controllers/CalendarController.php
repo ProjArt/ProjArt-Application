@@ -52,7 +52,11 @@ class CalendarController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
-        return httpSuccess('Calendars', $user->calendars);
+        $calendars = $user->calendars->map(function ($c) {
+            $c->can_edit = $c->pivot->rights == Calendar::EDIT_RIGHT;
+            return $c;
+        });
+        return httpSuccess('Calendars', $calendars);
     }
 
     /**
