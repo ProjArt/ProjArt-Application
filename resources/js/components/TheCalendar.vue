@@ -65,15 +65,11 @@ const currDateCursor = ref(TODAY);
 const dayLabels = DAY_LABELS.slice();
 const events = ref([]);
 const calendarIdWhereToAddTheNewEvent = ref(2);
-<<<<<<< HEAD
 const currentPopup = ref(null)
 const users = ref([])
 const userSearch = ref("")
 const searchedUser = ref([])
 const usersForm = ref({})
-=======
-const currentPopup = ref(null);
->>>>>>> 68f43c30f4cd100ab8057f555f9d3394005636fb
 
 // Computed
 // ======================================
@@ -757,8 +753,9 @@ function showEventEditForm(startDate, id) {
       <p>
         {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
         {{ displayedDateManager.year1 }}
-        <span v-show="displayedDateManager.day2"> - </span
-        >{{ displayedDateManager.day2 }} {{ displayedDateManager.month2 }}
+        <span v-show="displayedDateManager.day2"> - </span>{{ displayedDateManager.day2 }} {{
+            displayedDateManager.month2
+        }}
         {{ displayedDateManager.year2 }}
       </p>
     </div>
@@ -775,19 +772,15 @@ function showEventEditForm(startDate, id) {
       <p>
         {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
         {{ displayedDateManager.year1 }}
-        <span v-show="displayedDateManager.day2"> - </span
-        >{{ displayedDateManager.day2 }} {{ displayedDateManager.month2 }}
+        <span v-show="displayedDateManager.day2"> - </span>{{ displayedDateManager.day2 }} {{
+            displayedDateManager.month2
+        }}
         {{ displayedDateManager.year2 }}
       </p>
     </div>
 
     <div class="calendar__choose">
-      <FormKit
-        v-model="currentsCalendarIds"
-        type="checkbox"
-        label="Calendrier"
-        :options="calendarsNames"
-      />
+      <FormKit v-model="currentsCalendarIds" type="checkbox" label="Calendrier" :options="calendarsNames" />
     </div>
     <header class="calendar__header">
       <button @click="previousPeriod">&lt;&lt;</button>
@@ -809,40 +802,26 @@ function showEventEditForm(startDate, id) {
       </div>
     </div>
     <!--====  Calendar no events message  ====-->
-    <div
-      class="calendar__no-events"
-      v-show="currentLayout === AVAILABLE_LAYOUT.LIST"
-    >
+    <div class="calendar__no-events" v-show="currentLayout === AVAILABLE_LAYOUT.LIST">
       <p>Aucun événements pour cette période</p>
     </div>
     <!--====  Calendar days  ====-->
-    <div
-      class="calendar__days"
-      :class="
-        'calendar__days--' +
-        getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
-      "
-    >
-      <div
-        v-for="(day, index) in dates"
-        class="calendar__day"
-        @click="showCurrentEvent(day?.local, index)"
-        :class="
-          ((selectedDate === index ? 'is-selected-day' : '',
-          day?.class,
-          currentLayout === AVAILABLE_LAYOUT.LIST &&
+    <div class="calendar__days" :class="
+      'calendar__days--' +
+      getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
+    ">
+      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
+        selectedDate === index ? 'is-selected-day' : '',
+        day?.class,
+        currentLayout === AVAILABLE_LAYOUT.LIST &&
           !events.hasOwnProperty(day?.local)
-            ? 'is-display-none'
-            : ''),
-          currentLayout === AVAILABLE_LAYOUT.MONTH &&
+          ? 'is-display-none'
+          : '',
+        currentLayout === AVAILABLE_LAYOUT.MONTH &&
           MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
-            ? 'is-other-month'
-            : '')
-        "
-        :key="index"
-        :date-id="day?.local"
-      >
-        {{ day?.monthNumber }}
+          ? 'is-other-month'
+          : ''
+      " :key="index" :date-id="day?.local">
 
         <p class="calendar__day-number">{{ day?.dayOfMonthNumber }}</p>
         <p class="calendar__day-date">{{ day?.local }}</p>
@@ -853,62 +832,20 @@ function showEventEditForm(startDate, id) {
     </div>
   </div>
   <!--====  Popup new event  ====-->
-  <div
-    class="popup popup--new-event"
-    v-show="currentPopup === AVAILABLE_POPUP.STORE_EVENT"
-  >
-    <FormKit
-      type="form"
-      v-model="newEventForm"
-      :form-class="isSubmitted ? 'hide' : 'show'"
-      submit-label="Enregistrer"
-      @submit="storeEvent"
-    >
+  <div class="popup popup--new-event" v-show="currentPopup === AVAILABLE_POPUP.STORE_EVENT">
+    <FormKit type="form" v-model="newEventForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Enregistrer"
+      @submit="storeEvent">
       <h2>Ajouter un événement</h2>
-      <FormKit
-        type="text"
-        name="title"
-        validation="required"
-        label="Titre"
-        :value="new Date().getHours() + ':' + new Date().getMinutes()"
-      />
-      <FormKit
-        type="text"
-        name="location"
-        validation="required"
-        label="Lieu"
-        value="HEIG"
-      />
-      <FormKit
-        type="textarea"
-        name="description"
-        validation="required"
-        label="Description"
-        value="..."
-      />
+      <FormKit type="text" name="title" validation="required" label="Titre"
+        :value="new Date().getHours() + ':' + new Date().getMinutes()" />
+      <FormKit type="text" name="location" validation="required" label="Lieu" value="HEIG" />
+      <FormKit type="textarea" name="description" validation="required" label="Description" value="..." />
       <FormKit type="time" name="start" label="Début" value="08:00" />
       <FormKit type="time" name="end" label="Fin" value="08:00" />
-      <FormKit
-        name="start_date"
-        type="date"
-        value="2022-06-01"
-        label="Date de Début"
-        validation="required"
-      />
-      <FormKit
-        name="end_date"
-        type="date"
-        value="2022-06-01"
-        label="Date de Fin"
-        validation="required"
-      />
-      <FormKit
-        v-model="calendarIdWhereToAddTheNewEvent"
-        type="select"
-        label="calendrier"
-        name="calendar_id"
-        validation="required"
-      >
+      <FormKit name="start_date" type="date" value="2022-06-01" label="Date de Début" validation="required" />
+      <FormKit name="end_date" type="date" value="2022-06-01" label="Date de Fin" validation="required" />
+      <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
+        validation="required">
         <option v-for="(name, id) in editableCalendarsNames" :value="id">
           {{ name }}
         </option>
@@ -916,23 +853,14 @@ function showEventEditForm(startDate, id) {
     </FormKit>
   </div>
   <!--====  Popup store Calendar  ====-->
-  <div
-    class="popup popup--new-calendar"
-    v-show="currentPopup === AVAILABLE_POPUP.STORE_CALENDAR"
-  >
-    <FormKit
-      type="form"
-      v-model="newCalendarForm"
-      :form-class="isSubmitted ? 'hide' : 'show'"
-      submit-label="Enregistrer"
-      @submit="storeCalendar"
-    >
+  <div class="popup popup--new-calendar" v-show="currentPopup === AVAILABLE_POPUP.STORE_CALENDAR">
+    <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
+      submit-label="Enregistrer" @submit="storeCalendar">
       <h2>Ajouter un Calendrier</h2>
       <FormKit type="text" name="name" validation="required" label="Nom" />
     </FormKit>
   </div>
   <!--====  Popup share Calendar  ====-->
-<<<<<<< HEAD
   <div class="popup popup--share-calendar" v-show="currentPopup === AVAILABLE_POPUP.SHARE_CALENDAR">
     <h2>Partager un Calendrier</h2>
     <FormKit type="search" placeholder="prenom.nom..." label="Search" v-model="userSearch" />
@@ -942,53 +870,22 @@ function showEventEditForm(startDate, id) {
         v-if="searchedUser.length > 0" />
       <FormKit type="select" label="calendrier" name="calendar_id" :options="calendarsNames" />
       <FormKit type="checkbox" label="Droit de modification" name="can_own" />
-=======
-  <div
-    class="popup popup--share-calendar"
-    v-show="currentPopup === AVAILABLE_POPUP.SHARE_CALENDAR"
-  >
-    <FormKit
-      type="form"
-      v-model="newCalendarForm"
-      :form-class="isSubmitted ? 'hide' : 'show'"
-      submit-label="Enregistrer"
-      @submit="storeCalendar"
-    >
-      <h2>Partager un Calendrier</h2>
-      <FormKit type="text" name="name" validation="required" label="Nom" />
->>>>>>> 68f43c30f4cd100ab8057f555f9d3394005636fb
     </FormKit>
   </div>
   <!--====  Popup Edit Calendar  ====-->
-  <div
-    class="popup popup--edit-calendar"
-    v-show="currentPopup === AVAILABLE_POPUP.EDIT_CALENDAR"
-  >
+  <div class="popup popup--edit-calendar" v-show="currentPopup === AVAILABLE_POPUP.EDIT_CALENDAR">
     <h2>Editer les calendrier</h2>
     <div v-for="calendar in getCalendarsData">
-      <FormKit
-        v-if="calendar.can_edit"
-        type="form"
-        :form-class="isSubmitted ? 'hide' : 'show'"
-        submit-label="Enregistrer"
-        @submit="updateCalendar"
-      >
-        <FormKit
-          type="text"
-          name="name"
-          validation="required"
-          :value="calendar.name"
-        />
+      <FormKit v-if="calendar.can_edit" type="form" :form-class="isSubmitted ? 'hide' : 'show'"
+        submit-label="Enregistrer" @submit="updateCalendar">
+        <FormKit type="text" name="name" validation="required" :value="calendar.name" />
         <FormKit type="hidden" name="calendar_id" :value="calendar.id" />
         <button @click="deleteCalendar(calendar.id)">supprimer</button>
       </FormKit>
     </div>
   </div>
   <!--====  Popup edit event  ====-->
-  <div
-    class="popup popup--edit-events"
-    v-show="currentPopup === AVAILABLE_POPUP.SHOW_EVENT"
-  >
+  <div class="popup popup--edit-events" v-show="currentPopup === AVAILABLE_POPUP.SHOW_EVENT">
     <h2>Current Events</h2>
     <article class="popup__event" v-for="(event, index) in newEventPopup">
       <div class="event">
@@ -1001,56 +898,24 @@ function showEventEditForm(startDate, id) {
           <p>début: {{ event.start }}</p>
           <p>fin: {{ event.end }}</p>
         </div>
-        <button
-          v-show="event.can_edit"
-          @click="deleteEvent(event.start, event.id, event.calendar_id)"
-        >
+        <button v-show="event.can_edit" @click="deleteEvent(event.start, event.id, event.calendar_id)">
           supprimer
         </button>
-        <button
-          v-show="event.can_edit"
-          @click="showEventEditForm(event.start, event.id, event.calendar_id)"
-        >
+        <button v-show="event.can_edit" @click="showEventEditForm(event.start, event.id, event.calendar_id)">
           editer
         </button>
-        <FormKit
-          type="form"
-          v-model="formUpdate"
-          submit-label="Enregistrer"
-          @submit="updateEvent"
-          v-if="indexUnderEdition === event.id"
-          :key="event.id"
-        >
-          <FormKit
-            type="text"
-            name="title"
-            validation="required"
-            label="Titre"
-          />
-          <FormKit
-            type="text"
-            name="location"
-            validation="required"
-            label="Lieu"
-          />
-          <FormKit
-            type="textarea"
-            name="description"
-            validation="required"
-            label="Description"
-          />
+        <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
+          v-if="indexUnderEdition === event.id" :key="event.id">
+          <FormKit type="text" name="title" validation="required" label="Titre" />
+          <FormKit type="text" name="location" validation="required" label="Lieu" />
+          <FormKit type="textarea" name="description" validation="required" label="Description" />
           <FormKit type="time" name="start" label="Début" />
           <FormKit type="time" name="end" label="Fin" />
           <FormKit name="start_date" type="hidden" :value="event.start" />
           <FormKit name="end_date" type="hidden" :value="event.start" />
           <FormKit name="id" type="hidden" :value="event.id" />
-          <FormKit
-            v-model="calendarIdWhereToAddTheNewEvent"
-            type="select"
-            label="calendrier"
-            name="calendar_id"
-            validation="required"
-          >
+          <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
+            validation="required">
             <option v-for="(name, id) in editableCalendarsNames" :value="id">
               {{ name }}
             </option>
@@ -1084,10 +949,8 @@ function showEventEditForm(startDate, id) {
 }
 
 .calendar__header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
 .calendar__days {
@@ -1109,9 +972,7 @@ function showEventEditForm(startDate, id) {
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
-  background-color: rgba(0, 0, 0, 0.1);
-  pointer-events: none;
-  cursor: none;
+  background-color: white;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
