@@ -41,7 +41,7 @@ class AuthController extends Controller
             return httpError("This username is already taken");
         }
 
-        if (!GapsUser::whereUsername($request->username)->exists()) {
+        if (!GapsUser::whereGapsUsername($request->username)->exists()) {
             return httpError("This username is not registered in Gaps");
         }
 
