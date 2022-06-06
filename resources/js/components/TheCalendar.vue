@@ -19,20 +19,7 @@ useSwipe({
 
 const TODAY = new Date();
 const DAY_LABELS = ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
-const MONTH_LABELS = [
-  "JANVIER",
-  "FEVRIER",
-  "MARS",
-  "AVRIL",
-  "MAI",
-  "JUIN",
-  "JUILLET",
-  "AOUT",
-  "SEPTEMBRE",
-  "OCTOBRE",
-  "NOVEMBRE",
-  "DECEMBRE",
-];
+const MONTH_LABELS = ["JANVIER", "FEVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOUT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DECEMBRE",];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
 const AVAILABLE_POPUP = {
