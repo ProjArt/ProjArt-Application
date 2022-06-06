@@ -5,8 +5,11 @@ import { API } from "../stores/api";
 
 const formData = ref({});
 
+const isSent = ref(false);
+
 // At start of component, fetch the data
 async function send() {
+  isSent.value = false;
   console.log(toRaw(formData.value));
   const response = await useFetch({
     url: API.sendMail.path(),
@@ -14,8 +17,9 @@ async function send() {
     data: toRaw(formData.value),
   });
   if (response.success === true) {
-    console.log("Mails fetched", response.data.reverse());
-    mails.value = response.data;
+    console.log("Mails sent");
+    isSent.value = true;
+    formData.value = {};
   } else {
     console.log(response, "error");
   }
@@ -53,6 +57,9 @@ async function send() {
         label="Message"
       />
     </FormKit>
+    <div v-if="isSent">
+      <h2>Mail envoyé</h2>
+    </div>
   </div>
 </template>
 
