@@ -16,11 +16,12 @@ class ColorSeeder extends Seeder
     public function run()
     {
         DB::table('colors')->truncate();
-        \App\Models\Color::factory()->create([
-            'value' => '#000000',
-        ]);
+
         \App\Models\Color::factory()->create([
             'value' => '#ffffff',
+        ]);
+        \App\Models\Color::factory()->create([
+            'value' => '#000000',
         ]);
     }
 }

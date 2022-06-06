@@ -70,6 +70,8 @@ class GapsMarksService
                             'mark' => $moduleMark
                         ]);
                     }
+
+
                     if ($tr->class == "bulletin_unit_row") {
                         $tds = $tr->findMulti("td");
                         $courseCode = $tds[0]->innerText;
@@ -88,6 +90,69 @@ class GapsMarksService
                         ]);
 
                         $marks[] = $mark;
+                    }
+
+
+                    continue;
+
+                    // CONTROLE CONTINU 
+
+                    $response = Http::withBasicAuth($user->username, $user->password)
+                        ->asForm()
+                        ->post("https://gaps.heig-vd.ch/consultation/controlescontinus/consultation.php?idst=" . $user->gaps_id, [
+                            "rs" => "getStudentCCs",
+                            "rsargs" => "[17486, 2021, null]"
+                        ]);
+
+                    $res =  str_replace('\\', '', $response->body());
+                    $res = str_replace('+:"', '', $res);
+                    $res =  str_replace('&nbsp', '', $res);
+                    $res =  str_replace('u00e9', 'é', $res);
+                    $res =  str_replace('u00e0', 'à', $res);
+                    $res =  str_replace('u00e7', 'ç', $res);
+                    $res =  str_replace('u00e2', 'â', $res);
+                    $res =  str_replace('u00e4', 'ä', $res);
+                    $res =  str_replace('u00f6', 'ö', $res);
+                    $res =  str_replace('u00fc', 'ü', $res);
+                    $res =  str_replace('u00f1', 'ñ', $res);
+                    $res =  str_replace('u00e8', 'è', $res);
+                    $res =  str_replace('u00f4', 'ô', $res);
+                    $res =  str_replace('u00fb', 'û', $res);
+
+                    $res = substr_replace($res, "", -1);
+
+
+                    $dom = HtmlDomParser::str_get_html($res);
+
+                    $trs = $dom->find("table.displayArray")->findMulti("tr");
+
+                    $course = "";
+                    $course_code = "";
+                    $course_details = [];
+
+                    $marks = [];
+
+                    foreach ($trs as $tr) {
+                        $tds = $tr->findMulti("td");
+                        if ($tds[0]->class == "bigheader") {
+                            $course = $tds[0]->innerText;
+                            $course_code = explode(" - ", $course)[0];
+                            $marks[$course_code] = [
+                                'course_name' => $course,
+                                'course_code' => $course_code,
+                            ];
+                        }
+                        if ($tds[0]->class == "bodyCC") {
+                            $course_details = [
+                                'date' => $tds[0]->innerText,
+                                'name' => $tds[1]->find('div')[0]->innerText,
+                                'class_average' => $tds[2]->innerText,
+                                'poids' => $tds[3]->innerText,
+                                'note' => $tds[4]->innerText,
+
+                            ];
+                            $marks[$course_code]['details'][] = $course_details;
+                        }
                     }
                 }
             } catch (\Throwable $th) {
