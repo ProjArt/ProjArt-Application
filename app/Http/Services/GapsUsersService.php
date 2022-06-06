@@ -79,14 +79,12 @@ class GapsUsersService
                     $gaps_username = substr(explode(".", $gaps_username)[0], 0, 8) . "." . substr(explode(".", $gaps_username)[1], 0, 8);
 
                     GapsUser::firstOrCreate([
-                        'username' => $u_username,
+                        'username' => $gaps_username,
                     ], [
-                        'username' => $u_username,
                         'firstname' => explode(" ", $u_name)[1],
                         'name' => explode(" ", $u_name)[0],
                         'mail' => strtolower($u_mail),
                         'is_teacher' => $u_is_prof,
-                        'gaps_username' => $gaps_username,
                     ]);
                     $course->gapsUsers()->attach($u_username);
                 } catch (\Exception $e) {
