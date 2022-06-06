@@ -82,15 +82,15 @@ class GapsUsersService
                         'username' => $u_username,
                     ], [
                         'username' => $u_username,
-                        'firstname' => explode(" ", $u_name)[0],
-                        'name' => explode(" ", $u_name)[1],
+                        'firstname' => explode(" ", $u_name)[1],
+                        'name' => explode(" ", $u_name)[0],
                         'mail' => strtolower($u_mail),
                         'is_teacher' => $u_is_prof,
                         'gaps_username' => $gaps_username,
                     ]);
                     $course->gapsUsers()->attach($u_username);
                 } catch (\Exception $e) {
-                    echo $e->getMessage();
+                    //echo $e->getMessage();
                 }
             }
         }
