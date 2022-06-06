@@ -5,16 +5,19 @@ import { API } from "../stores/api";
 
 // At start of component, fetch the data
 async function setupMails() {
+  console.log("fetching mails");
   const response = await useFetch({
     url: API.getMails.path(),
     method: API.getMails.method,
   });
+  console.log("fetched mails");
   if (response.success === true) {
     console.log("Mails fetched", response.data.reverse());
     mails.value = response.data;
   } else {
     console.log(response, "error");
   }
+  console.log("done");
 }
 
 setupMails();

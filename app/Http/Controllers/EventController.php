@@ -93,6 +93,9 @@ class EventController extends Controller
      */
     public function store(StoreEventRequest $request)
     {
+        if ($request->start > $request->end) {
+            return httpError('start date must be before end date');
+        }
         $user = $request->user();
         $inputs = $request->all() + ['user_id' => $user->id];
         $calendar = Calendar::findOrFail($request->calendar_id);
@@ -128,6 +131,9 @@ class EventController extends Controller
      */
     public function update(UpdateEventRequest $request, Event $event)
     {
+        if ($request->start > $request->end) {
+            return httpError('start date must be before end date');
+        }
         $event->update($request->validated());
         return httpSuccess('Events', $event);
     }

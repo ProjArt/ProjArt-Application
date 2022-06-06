@@ -74,6 +74,7 @@ export function formatDayObject(ref) {
         local: ref.toLocaleDateString(),
         dayOfMonthNumber: ref.getDate(),
         dayOfWeekNumber: toSwissDay(ref.getDay()),
+        monthNumber: ref.getMonth(),
     };
 }
 
@@ -180,8 +181,8 @@ export function setDayCssClass(date) {
     );
     if (typeof date === "undefined") return "";
     else if (today.toLocaleDateString() === date.toLocaleDateString())
-        return `${CSS.clickable} ${CSS.currentDay}`;
-    else return CSS.clickable;
+        return `${CSS.currentDay}`;
+    else return "";
 }
 
 export function getAllDaysInMonthAndBeginning(year, month) {
@@ -190,15 +191,57 @@ export function getAllDaysInMonthAndBeginning(year, month) {
         typeof year !== "undefined" && typeof month !== "undefined"
             ? getAllDaysInMonth(year, month)
             : getAllDaysInMonth(TODAY.getFullYear(), TODAY.getMonth());
+
+    // get data from the previous month
+    let previousYear = month === 0 ? year - 1 : year;
+    let previousMonth = month === 0 ? 11 : month - 1;
+    const daysInPreviousMonth =
+        typeof year !== "undefined" && typeof month !== "undefined"
+            ? getAllDaysInMonth(previousYear, previousMonth)
+            : getAllDaysInMonth(
+                  TODAY.getFullYear() - (month === 0 ? 1 : 0),
+                  TODAY.getMonth() - (month === 0 ? 1 : 0)
+              );
+
     for (const [index, date] of Object.entries(daysInMonth)) {
         let i = 0;
         if (index === Object.keys(daysInMonth)[0]) {
             const day = Object.entries(daysInMonth)[0][1];
+
+            // get the keys (30/06/20XX) needed of the previous month to fill the beginning of the month
+            const daysInPreviousMonthToTake = Object.keys(
+                daysInPreviousMonth
+            ).slice(-1 * day.dayOfWeekNumber);
             for (let i = 0; i < day.dayOfWeekNumber; i++) {
-                days.push({});
+                // push the data with the key of the previous month
+                days.push(daysInPreviousMonth[daysInPreviousMonthToTake[i]]);
             }
         }
         days.push(date);
+    }
+
+    let nextYear = month === 11 ? year + 1 : year;
+    let nextMonth = month === 11 ? 0 : month + 1;
+    // get data from the next month
+    const daysInNextMonth =
+        typeof year !== "undefined" && typeof month !== "undefined"
+            ? getAllDaysInMonth(nextYear, nextMonth)
+            : getAllDaysInMonth(
+                  TODAY.getFullYear() + (month == 11 ? 1 : 0),
+                  TODAY.getMonth() == 11
+                      ? TODAY.getMonth()
+                      : TODAY.getMonth() + 1
+              );
+    const numberOfDayToTake =
+        6 - Object.entries(daysInMonth).slice(-1)[0][1].dayOfWeekNumber;
+    const daysInNextMonthToTake = Object.keys(daysInNextMonth).slice(
+        0,
+        numberOfDayToTake
+    );
+
+    for (let i = 0; i < daysInNextMonthToTake.length; i++) {
+        // get the keys (30/06/20XX) needed of the next month to fill the end of the month
+        days.push(daysInNextMonth[daysInNextMonthToTake[i]]);
     }
     return days;
 }
