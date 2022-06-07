@@ -21,3 +21,10 @@ if (!function_exists('httpError')) {
         ], $code);
     }
 }
+
+if (!function_exists('random_color')) {
+    function random_color()
+    {
+        return '#' . substr(str_shuffle('ABCDEF0123456789'), 0, 6);
+    }
+}

@@ -59,8 +59,20 @@ class GapsEventsService
 
         foreach ($users as $user) {
             $calendar = $user->calendars()->firstOrCreate([
-                'name' => "Horaires"
+                'name' => "Horaires",
             ]);
+
+            $user->calendars()->detach($calendar->id);
+
+            $user->calendars()->attach($calendar->id, [
+                'color' => random_color(),
+            ]);
+
+
+
+
+
+
             try {
                 $user->setPersonalNumber();
                 $ical = new ICal('ICal.ics', array(

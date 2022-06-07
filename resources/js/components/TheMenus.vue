@@ -20,39 +20,41 @@ async function setupMenus() {
 setupMenus();
 
 const menus = ref([]);
+
+const date = computed(() => {
+  const date = new Date(Date.parse(menus.value[0].date));
+
+  return date.toLocaleDateString("fr-CH");
+});
 </script>
 
 <template>
   <div class="page__title">Cafeteria</div>
+  <div class="page__subtitle">
+    <div class="page__subtitle--main">
+      {{ date }}
+    </div>
+  </div>
   <div class="menus__group">
-    <div v-for="day in Object.keys(menus)" :key="day.id">
-      <div class="menu__item">
-        <div class="menu__title">
-          {{ day }}
-        </div>
-        <div v-for="menu in menus[day]" :key="menu.id" class="menu__menu">
-          <div class="menu__group">
-            <div class="menu__title-item">Entrée</div>
-            <div class="menu__description-item">
-              {{ menu.entry }}
-            </div>
-          </div>
-          <div class="menu__group">
-            <div class="menu__title-item">Plat</div>
-            <div class="menu__description-item">
-              {{ menu.plate }}
-            </div>
-          </div>
-          <div class="menu__group">
-            <div class="menu__title-item">Dessert</div>
-            <div class="menu__description-item">
-              {{ menu.dessert }}
-            </div>
-          </div>
+    <div v-for="menu in menus" :key="menu.id" class="menu__menu">
+      <div class="menu__group">
+        <div class="menu__title-item">Entrée</div>
+        <div class="menu__description-item">
+          {{ menu.entry }}
         </div>
       </div>
-      <br />
-      <br />
+      <div class="menu__group">
+        <div class="menu__title-item">Plat</div>
+        <div class="menu__description-item">
+          {{ menu.plate }}
+        </div>
+      </div>
+      <div class="menu__group">
+        <div class="menu__title-item">Dessert</div>
+        <div class="menu__description-item">
+          {{ menu.dessert }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
