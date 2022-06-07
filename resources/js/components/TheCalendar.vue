@@ -18,7 +18,7 @@ useSwipe({
 // ======================================
 
 const TODAY = new Date();
-const DAY_LABELS = ["LU", "MA", "ME", "JE", "VE", "SA", "DI"];
+const DAY_LABELS = ["L", "M", "M", "J", "V", "S", "D"];
 const MONTH_LABELS = ["JANVIER", "FEVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOUT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DECEMBRE",];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
@@ -794,7 +794,7 @@ function showEventEditForm(startDate, id) {
     </header>
     <!--====  Calendar days names  ====-->
     <div class="calendar__days-names">
-      <div v-for="dayLabel in dayLabels">
+      <div v-for="dayLabel in dayLabels" class="calendar__days-name">
         {{ dayLabel }}
       </div>
     </div>
@@ -802,7 +802,7 @@ function showEventEditForm(startDate, id) {
     <div class="calendar__no-events" v-show="currentLayout === AVAILABLE_LAYOUT.LIST">
       <p>Aucun événements pour cette période</p>
     </div>
-    <!--====  Calendar days  ====-->
+    <!--====  Calendar days MONTH  ====-->
     <div class="calendar__days" :class="
       'calendar__days--' +
       getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
@@ -820,13 +820,16 @@ function showEventEditForm(startDate, id) {
           : ''
       " :key="index" :date-id="day?.local">
 
-        <p class="calendar__day-number">{{ day?.dayOfMonthNumber }}</p>
-        <p class="calendar__day-date">{{ day?.local }}</p>
-        <div v-for="event in sortEventsByDate(day?.local)">
-          <p class="calendar__event">{{ event.title }}</p>
+        <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">{{
+            day?.dayOfMonthNumber
+        }}</p>
+        <div class="calendar__dotes">
+          <div v-show="eventId < 5" v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__dot">
+          </div>
         </div>
       </div>
     </div>
+
   </div>
   <!--====  Popup new event  ====-->
   <div class="popup popup--new-event" v-show="currentPopup === AVAILABLE_POPUP.STORE_EVENT">
@@ -883,17 +886,16 @@ function showEventEditForm(startDate, id) {
   </div>
   <!--====  Popup edit event  ====-->
   <div class="popup popup--edit-events" v-show="currentPopup === AVAILABLE_POPUP.SHOW_EVENT">
-    <h2>Current Events</h2>
+    <h2 class="popup__title">A venir</h2>
     <article class="popup__event" v-for="(event, index) in newEventPopup">
       <div class="event">
         <div class="event__infos">
-          <p>edit: {{ event.can_edit }}</p>
-          <p>id: {{ event.id }}</p>
-          <p>titre: {{ event.title }}</p>
-          <p>lieu: {{ event.location }}</p>
-          <p>description: {{ event.description }}</p>
-          <p>début: {{ event.start }}</p>
-          <p>fin: {{ event.end }}</p>
+          <p class="event__dot"></p>
+          <div class="event__wrapper">
+            <p class="event__title">{{ event.title }}</p>
+            <p class="event__date">{{ event.start }}</p>
+          </div>
+          <p class="event__time">{{ event.start }}</p>
         </div>
         <button v-show="event.can_edit" @click="deleteEvent(event.start, event.id, event.calendar_id)">
           supprimer
@@ -923,26 +925,33 @@ function showEventEditForm(startDate, id) {
   </div>
 </template>
 <style lang="scss" scoped>
-.is-display-none {
-  display: none !important;
-}
+// ==========================================================================
+//*1# Calendar
+// ==========================================================================
 
-.calendar__no-events {}
+$dot-size: 4px;
+$calendar-gap: 2rem;
 
-.is-display-none {
-  display: none !important;
-}
-
-.calendar__no-events {
-  position: absolute;
-  z-index: -1;
-  width: 100%;
-  text-align: center;
+@mixin day-number-month-layout {
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 1.8rem;
+  line-height: 2.7rem;
+  text-transform: uppercase;
+  color: var(--text-color);
 }
 
 .calendar {
-  margin: 2rem;
   position: relative;
+  margin: 0 var(--column-gap);
+}
+
+//*2# Calendar Header
+// ==========================================================================
+
+.calendar__choose {
+  display: flex;
 }
 
 .calendar__header {
@@ -950,10 +959,23 @@ function showEventEditForm(startDate, id) {
   grid-template-columns: 1fr 1fr;
 }
 
+//*2# Calendar days
+// ==========================================================================
+
 .calendar__days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 1rem;
+  grid-gap: $calendar-gap;
+}
+
+.calendar__days-names {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: $calendar-gap;
+}
+
+.calendar__days-name {
+  text-align: center;
 }
 
 .calendar__days--list,
@@ -961,40 +983,47 @@ function showEventEditForm(startDate, id) {
   grid-template-columns: 1fr;
 }
 
+.calendar__dotes {
+  display: grid;
+  margin: 0 auto;
+  grid-auto-flow: column;
+  grid-gap: $dot-size;
+}
+
+.calendar__dot {
+  background-color: red;
+  width: $dot-size;
+  height: $dot-size;
+  border-radius: 50%;
+}
+
+//*2# Calendar day
+// ==========================================================================
+
 .calendar__day {
-  min-height: 100px;
   max-width: 100%;
   position: relative;
+  align-items: center;
   border: 1px solid #ccc;
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
   background-color: white;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   color: black;
 }
 
-.calendar__days-names {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: 1rem;
-}
-
-.calendar__choose {
-  display: flex;
-}
-
-:deep(.formkit-option .formkit-wrapper) {
-  display: grid;
-  grid-template-columns: auto 1fr;
-}
-
 .calendar__day-number {
+  margin: 0;
   font-size: 1.5rem;
-  text-align: left;
-  padding: 0.5rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 0 0 0.5rem 0;
 }
 
 .calendar__day-date {
@@ -1004,47 +1033,67 @@ function showEventEditForm(startDate, id) {
   opacity: 0.5;
 }
 
-.calendar__event {
-  font-size: 0.7rem;
-  text-align: left;
+//*2# Events
+// ==========================================================================
+
+.calendar__no-events {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  text-align: center;
 }
 
-.is-clickable-day {
-  cursor: pointer;
-  pointer-events: all;
-  background-color: white;
+
+.event__infos {
+  display: flex;
+  padding: 0.5rem;
 }
 
-.is-current-day {
-  cursor: pointer;
-  pointer-events: all;
-  background-color: lightblue;
+.event__wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.is-selected-day {
-  border: 1px solid lightcoral;
+.event__title {}
+
+.event__date {}
+
+.event__time {
+  background-color: red;
+  height: 1.8rem;
+  border-radius: 16px;
+  color: white;
+  padding: 0 0.5rem;
+  margin: auto 0;
+  text-align: center;
 }
+
+.event__dot {
+  width: $dot-size;
+  height: $dot-size;
+  background-color: red;
+  border-radius: 50%;
+  margin: auto 0.5rem;
+}
+
+//*2# Popup
+// ==========================================================================
 
 .popup {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--information-color);
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
 
-.event {
-  display: flex;
-  background-color: lightgray;
+.popup__title {
+  text-align: left;
   width: 100%;
-  margin: 2px 0;
-  box-sizing: content-box;
-}
-
-.event__infos {
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .popup--edit-events,
@@ -1052,6 +1101,16 @@ function showEventEditForm(startDate, id) {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+:deep(.formkit-option .formkit-wrapper) {
+  display: grid;
+  grid-template-columns: auto 1fr;
+}
+
+.calendar__event {
+  font-size: 0.7rem;
+  text-align: left;
 }
 
 .popup--share-calendar {
@@ -1069,11 +1128,54 @@ function showEventEditForm(startDate, id) {
 }
 
 .popup__event {
+  display: grid;
   width: 100%;
+  grid-template-columns: 1fr;
+  grid-gap: $calendar-gap;
+  margin: 0 0 1rem 0;
+}
+
+.event {
   margin: 0 1rem;
+  background-color: white;
+  border-radius: 6px;
+}
+
+// ==========================================================================
+//*1# Utility
+// ==========================================================================
+
+.is-display-none {
+  display: none !important;
+}
+
+.is-display-none {
+  display: none !important;
+}
+
+.is-clickable-day {
+  cursor: pointer;
+  pointer-events: all;
+  background-color: white;
+}
+
+.is-current-day {
+  cursor: pointer;
+  pointer-events: all;
+  background-color: lightblue;
 }
 
 .is-other-month {
   opacity: 0.5;
+}
+
+.is-selected-day {
+  border: 1px solid lightcoral;
+}
+
+.is-events {
+  background-color: red;
+  border-radius: 50%;
+  color: white;
 }
 </style>
