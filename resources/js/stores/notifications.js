@@ -30,17 +30,26 @@ export async function sendNotification({ title, message, to }) {
 }
 
 export async function registerToChannelNotification(channel) {
-    return; // desactivated for testing purpose
-    var isSafari = window.safari !== undefined;
+    //return; // desactivated for testing purpose
+    /*  var isSafari = window.safari !== undefined;
+ 
+     console.log("isSafari", isSafari);
+ 
+     var ua = window.navigator.userAgent;
+     console.log(ua);
+     var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
+     var webkit = !!ua.match(/WebKit/i);
+     var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+ 
+     console.log("safari", iOS, webkit);
+ 
+     if (isSafari || iOSSafari) {
+         return;
+     } */
 
-    var ua = window.navigator.userAgent;
-    var iOS = !!ua.match(/iPad/i) || !!ua.match(/iPhone/i);
-    var webkit = !!ua.match(/WebKit/i);
-    var iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
-    if (isSafari || iOSSafari) {
-        return;
-    }
-    await Notification.requestPermission(async function (permission) {
+    console.log("register to channel pass all tests for safari");
+
+    await Notification.requestPermission(async function(permission) {
         if (permission === "granted") {
             await beamsClient.start();
             await beamsClient.addDeviceInterest(channel);

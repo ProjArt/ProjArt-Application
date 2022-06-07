@@ -36,18 +36,23 @@ class DownloadFromGapsJob implements ShouldQueue
      */
     public function handle()
     {
-        GapsEventsService::fetchAllHoraires($this->user);
-        GapsMarksService::fetchAllNotes($this->user);
-        GapsAbsencesService::fetchAllAbsences($this->user);
+        try {
+            GapsEventsService::fetchAllHoraires($this->user);
+            GapsMarksService::fetchAllNotes($this->user);
+            GapsAbsencesService::fetchAllAbsences($this->user);
 
+            $channel = Channel::firstOrCreate([
+                'name' => $this->user->username
+            ]);
+            $notification = Notification::create([
+                'title' => 'Mise à jour des données depuis Gaps',
+                'text' => 'Les données ont été mises à jour depuis Gaps',
+                'channel_name' => $channel->name
+            ]);
 
-        $channel = Channel::firstOrCreate([
-            'name' => $this->user->username
-        ]);
-        Notification::create([
-            'title' => 'Mise à jour des données depuis Gaps',
-            'text' => 'Les données ont été mises à jour depuis Gaps',
-            'channel' => $channel->name
-        ]);
+            $notification->send();
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
     }
 }
