@@ -26,7 +26,6 @@ class Color extends Model
     {
         return Attribute::make(
             get: fn ($value) => $this->hexToRgb($value),
-            set: fn ($value) => $this->rgbToHex($value),
         );
     }
 
