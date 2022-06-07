@@ -41,13 +41,4 @@ class Color extends Model
         }
         return Arr::join($rgb, ",");
     }
-
-    public function rgbToHex($rgb)
-    {
-        $hex = '#';
-        $hex .= str_pad(dechex($rgb['r']), 2, '0', STR_PAD_LEFT);
-        $hex .= str_pad(dechex($rgb['g']), 2, '0', STR_PAD_LEFT);
-        $hex .= str_pad(dechex($rgb['b']), 2, '0', STR_PAD_LEFT);
-        return $hex;
-    }
 }
