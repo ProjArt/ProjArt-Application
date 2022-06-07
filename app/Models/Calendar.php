@@ -18,6 +18,13 @@ class Calendar extends Model
         "name"
     ];
 
+    protected $hidden = [
+        "pivot",
+        "created_at",
+        "updated_at",
+        "deleted_at"
+    ];
+
     public function events()
     {
         return $this->belongsToMany(Event::class)->orderBy('start');
@@ -25,6 +32,6 @@ class Calendar extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class)->withPivot(["rights"]);
+        return $this->belongsToMany(User::class)->withPivot(["rights", "color"]);
     }
 }

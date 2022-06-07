@@ -20,43 +20,75 @@ async function setupMenus() {
 setupMenus();
 
 const menus = ref([]);
+
+const date = computed(() => {
+  const date = new Date(Date.parse(menus.value[0].date));
+
+  return date.toLocaleDateString("fr-CH");
+});
 </script>
 
 <template>
-  <div class="menus-group">
-    <div v-for="day in Object.keys(menus)" :key="day.id">
-      <div class="day-group">
-        <div class="day-title">
-          {{ day }}
-        </div>
-        <div v-for="menu in menus[day]" :key="menu.id">
-          <div class="menu-group">
-            <div class="entry">
-              {{ menu.entry }}
-            </div>
-            <div class="plate">
-              {{ menu.plate }}
-            </div>
-            <div class="dessert">
-              {{ menu.dessert }}
-            </div>
-          </div>
+  <div class="page__title">Cafeteria</div>
+  <div class="page__subtitle">
+    <div class="page__subtitle--main">
+      {{ date }}
+    </div>
+  </div>
+  <div class="menus__group">
+    <div v-for="menu in menus" :key="menu.id" class="menu__menu">
+      <div class="menu__group">
+        <div class="menu__title-item">Entrée</div>
+        <div class="menu__description-item">
+          {{ menu.entry }}
         </div>
       </div>
-      <br />
-      <br />
+      <div class="menu__group">
+        <div class="menu__title-item">Plat</div>
+        <div class="menu__description-item">
+          {{ menu.plate }}
+        </div>
+      </div>
+      <div class="menu__group">
+        <div class="menu__title-item">Dessert</div>
+        <div class="menu__description-item">
+          {{ menu.dessert }}
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-.menu-group {
+.menu__menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.menu__group {
+  width: 90%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
-  border: 1px solid black;
-  margin-bottom: 2px;
+  padding: var(--default-padding);
+  margin-bottom: var(--default-padding);
+  border-radius: var(--border-radius-md);
+  background-color: var(--information-color);
+}
+
+.menu__title-item {
+  color: white;
+  background-color: var(--primary-color);
+  padding: var(--default-padding);
+  border-radius: var(--border-radius-md);
+  margin-right: var(--default-padding);
+  min-width: 5rem;
+}
+
+.menu__description-item {
+  text-align: right;
 }
 </style>

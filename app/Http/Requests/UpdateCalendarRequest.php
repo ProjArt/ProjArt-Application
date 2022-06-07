@@ -24,7 +24,8 @@ class UpdateCalendarRequest extends FormRequest
     public function rules()
     {
         return [
-            "name" => "required|string|max:255",
+            "name" => "string|max:255",
+            "color" => "string|max:20",
         ];
     }
 }
