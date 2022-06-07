@@ -54,6 +54,7 @@ class CalendarController extends Controller
         $user = $request->user();
         $calendars = $user->calendars->map(function ($c) {
             $c->can_edit = $c->pivot->rights == Calendar::EDIT_RIGHT;
+            $c->color = $c->pivot->color;
             return $c;
         });
         return httpSuccess('Calendars', $calendars);
@@ -71,7 +72,7 @@ class CalendarController extends Controller
     {
         $user = $request->user();
         $calendar = Calendar::create($request->validated());
-        $user->calendars()->attach($calendar, ["rights" => Calendar::EDIT_RIGHT]);
+        $user->calendars()->attach($calendar, ["rights" => Calendar::EDIT_RIGHT, "color" => random_color()]);
         return httpSuccess('Calendar added', $user->calendars, 201);
     }
 
@@ -100,7 +101,9 @@ class CalendarController extends Controller
     public function update(UpdateCalendarRequest $request, Calendar $calendar)
     {
         $user = $request->user();
+        $calendar = $user->calendars()->findOrFail($calendar->id);
         $calendar->update($request->validated());
+        $calendar->pivot->update(["color" => $request->color]);
         return httpSuccess('Calendar updated', $user->calendars);
     }
 

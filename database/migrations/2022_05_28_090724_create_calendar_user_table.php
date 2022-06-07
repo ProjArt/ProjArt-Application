@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->foreignIdFor(Calendar::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->integer("rights")->default(1);
+            $table->string("color")->default('#000000');
             $table->primary(['user_id', 'calendar_id']);
             $table->timestamps();
         });

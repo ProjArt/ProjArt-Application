@@ -131,7 +131,7 @@ class User extends Authenticatable
 
     public function calendars()
     {
-        return $this->belongsToMany(Calendar::class)->withPivot(['rights'])->orderBy('name');
+        return $this->belongsToMany(Calendar::class)->withPivot(['rights', 'color'])->orderBy('name');
     }
 
     public function classrooms()
