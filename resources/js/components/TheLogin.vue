@@ -50,7 +50,7 @@ const submitHandler = async () => {
       <FormKit
         type="text"
         name="username"
-        placeholder="unsername"
+        placeholder="username"
         validation="required"
         label="UserName"
       />

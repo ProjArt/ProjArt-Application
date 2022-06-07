@@ -12,13 +12,12 @@ export function changeCssColorsVariable() {
 
     styleForThemeNode.textContent = `
     :root{
-    --primary-color: ${user.value.theme.primary.value};
-    --secondary-color: ${user.value.theme.secondary.value};
+    --rgb-primary-color: ${user.value.theme.primary.value};
+    --rgb-secondary-color: ${user.value.theme.secondary.value};
+    --rgb-information-color: ${user.value.theme.information.value};
+    --rgb-background-color: ${user.value.theme.background.value};
+    --rgb-text-color: ${user.value.theme.text.value};
+    --rgb-accent-color: ${user.value.theme.accent.value};
     }
-    `
-    /*console.log(
-    "primary color from themeManager:", user.value.theme.primary.value,
-    "secondary color from themeManager:", user.value.theme.secondary.value,
-    "selected themeID", selectedThemeId.value
-    )*/
+    `;
 }

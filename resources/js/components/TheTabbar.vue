@@ -61,7 +61,7 @@ function buildMenu() {
   height: 100%;
 }
 .menu__item-link {
-  color: inherit;
+  color: var(--text-color);
   text-decoration: inherit;
 
   display: flex;
@@ -69,7 +69,7 @@ function buildMenu() {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: var(--default-pading);
+  padding: var(--default-padding);
 }
 
 .menu__item-link.router-link-active {

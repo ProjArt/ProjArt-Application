@@ -24,15 +24,17 @@ const absences = ref([]);
 </script>
 
 <template>
+  <div class="page__title">Absences</div>
+  <div class="page__subtitle">
+    <div class="page__subtitle--main">Matières</div>
+    <div class="page__subtitle--secondary">Taux</div>
+  </div>
   <div v-for="absence in absences" :key="absence.id">
-    <div class="absence-group">
-      <div class="orientation">
-        {{ absence.orientation }}
+    <div class="absence__item">
+      <div class="absence__unity">
+        {{ absence.unity.split(" - ")[0] }}
       </div>
-      <div class="unity">
-        {{ absence.unity }}
-      </div>
-      <div class="absolute_rate">
+      <div class="absence__absolute_rate">
         {{ absence.absolute_rate }}%
         <span class="material-symbols-outlined" v-if="absence.absolute_rate">
           warning
@@ -42,14 +44,18 @@ const absences = ref([]);
   </div>
 </template>
 
-<style scoped>
-.absence-group {
+<style scoped class="themeColorsUpdater">
+.absence__item {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
-  border: 1px solid black;
-  margin-bottom: 2px;
+  padding: var(--default-padding);
+  background-color: var(--information-color);
+  border-radius: var(--border-radius-md);
+}
+
+.absence__absolute_rate {
+  color: red;
 }
 </style>
