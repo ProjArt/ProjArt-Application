@@ -18,10 +18,12 @@ class NotificationSeeder extends Seeder
     {
         DB::table('notifications')->truncate();
 
-        Notification::create([
+        $notification = Notification::create([
             'title' => 'Welcome to Gaps!',
             'text' => 'This is a notification that will be sent to all users when the application is installed.',
             'channel_name' => config('gaps.username'),
         ]);
+
+        $notification->send();
     }
 }

@@ -10,6 +10,7 @@ class Mark extends Model
     use HasFactory;
 
     protected $fillable = [
+        'markmodule_id',
         'module_code',
         'course_code',
         'course_name',

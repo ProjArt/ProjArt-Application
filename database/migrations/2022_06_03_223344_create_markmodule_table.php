@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('status');
             $table->string('years');
-            $table->float('mark');
-            $table->integer('credits');
+            $table->string('mark');
+            $table->string('credits');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();
         });
