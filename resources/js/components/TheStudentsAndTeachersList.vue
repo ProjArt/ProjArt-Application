@@ -18,6 +18,7 @@ async function getList() {
     const usersList = response.data.classrooms[0].users;
     data.value.studentsList = usersList.filter((person) => person.role == "student");
     data.value.teachersList = usersList.filter((person) => person.role == "teacher");
+    console.log("list",  data.value.studentsList)
 }
 
 async function getClassRoom() {
