@@ -4,7 +4,6 @@ import TheAppBar from ".//TheAppBar.vue";
 import TheTabbar from "./TheTabbar.vue";
 import TheNotification from "./TheNotification.vue";
 import TheDrawer from "./TheDrawer.vue";
-
 const drawer = ref();
 
 function openDrawer() {
@@ -16,9 +15,6 @@ function openDrawer() {
 <template>
   <the-app-bar @open-drawer="openDrawer" />
   <div class="spacer-top">&nbsp;</div>
-  <Suspense>
-    <the-theme-manager />
-  </Suspense>
   <the-notification></the-notification>
   <main>
     <router-view v-slot="{ Component }">
