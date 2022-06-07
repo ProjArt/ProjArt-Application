@@ -10,7 +10,7 @@ function disconnectAndRedirect() {
 
 <template>
   <div class="settings-group">SETTINGS</div>
-  <!--<Suspense><the-theme-manager/></Suspense>-->
+  <Suspense><the-theme-manager/></Suspense>
   <br />
   <div class="user">{{ user }}</div>
   <div class="disconnect">

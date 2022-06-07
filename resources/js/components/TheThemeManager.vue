@@ -3,6 +3,7 @@ import { API } from "../stores/api.js";
 import useFetch from "../composables/useFetch";
 import { changeCssColorsVariable } from "../composables/changeCssColorsVariable.js"
 import { ref, computed, watchEffect, watch } from "vue";
+import { user } from "../stores/auth.js";
 
 async function getThemes() {
     const response = await useFetch({
