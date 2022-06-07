@@ -20,3 +20,17 @@ mix.webpackConfig({
         children: true,
     },
 });
+
+if (mix.inProduction()) {
+    mix.options({
+        terser: {
+            terserOptions: {
+                compress: {
+                    drop_console: true
+                }
+            }
+        }
+    });
+
+    mix.version();
+}
