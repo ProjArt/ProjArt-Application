@@ -8,7 +8,9 @@
 @import 'base/base';
 // Components
 @import 'components/tabbar';
-
+@import 'components/page';
+@import 'components/marks';
+@import 'components/menus';
 html,
 body {
     overscroll-behavior-x: none;

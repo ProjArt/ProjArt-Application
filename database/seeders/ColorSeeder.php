@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Color;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -17,11 +18,32 @@ class ColorSeeder extends Seeder
     {
         DB::table('colors')->truncate();
 
-        \App\Models\Color::factory()->create([
-            'value' => '#ffffff',
+        Color::factory()->create([
+            'value' => '#3A3C3D',
         ]);
-        \App\Models\Color::factory()->create([
-            'value' => '#000000',
+
+        Color::factory()->create([
+            'value' => '#929194',
+        ]);
+
+        Color::factory()->create([
+            'value' => '#F93B58',
+        ]);
+
+        Color::factory()->create([
+            'value' => '#E72128',
+        ]);
+
+        Color::factory()->create([
+            'value' => '#FFFFFF',
+        ]);
+
+        Color::factory()->create([
+            'value' => '#314178',
+        ]);
+
+        Color::factory()->create([
+            'value' => '#F0F0F0',
         ]);
     }
 }

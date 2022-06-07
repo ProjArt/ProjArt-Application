@@ -76,18 +76,42 @@ class GapsMarksService
                         $tds = $tr->findMulti("td");
                         $courseCode = $tds[0]->innerText;
                         $courseName = $tds[1]->innerText;
+                        $years = $tds[3]->innerText;
                         $note = $tds[4]->innerText;
-                        $yearStart = explode("-", $tds[3]->innerText)[0];
-                        $yearEnd = explode("-", $tds[3]->innerText)[1];
 
                         $mark = $user->marks()->firstOrCreate([
                             'markmodule_id' => $module->id,
                             'course_code' => $courseCode,
                             'course_name' => $courseName,
                             'value' => explode(" ", str_replace("<br>", " ", $note))[0],
-                            'year_start' => $yearStart,
-                            'year_end' => $yearEnd,
+                            'years' => $years,
                         ]);
+
+                        $datas = explode("<br>", $mark->course_name)[1];
+
+
+                        $details = explode("&nbsp;&nbsp;&nbsp;&nbsp;</b>&nbsp;&nbsp;", $datas);
+
+
+                        foreach ($details as $detail) {
+                            $detail = str_replace("<b>", "", $detail);
+                            $detail = str_replace("</b>", "", $detail);
+                            $detail = str_replace("&nbsp;", "", $detail);
+
+                            $value = explode(" : ", $detail)[1];
+                            $title = explode(" (", explode(" : ", $detail)[0])[0];
+                            $weight = explode(" ", explode(" : ", $detail)[0])[1];
+
+                            try {
+                                $mark->details()->firstOrCreate([
+                                    'title' => $title,
+                                    'weight' => $weight,
+                                    'value' => $value
+                                ]);
+                            } catch (\Exception $e) {
+                                echo $e->getMessage();
+                            }
+                        }
 
                         $marks[] = $mark;
                     }
