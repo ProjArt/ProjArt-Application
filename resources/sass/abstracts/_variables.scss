@@ -19,13 +19,24 @@ $line-height-base: 1.6;
     --footer-height: 3.5rem;
     --header-height: 6rem;
     --main-max-width: 992px;
-    // Colors
+
+    // RGB colors
+    --rgb-primary-color: 49, 65, 120;
+    --rgb-secondary-color: 231, 33, 40;
+    --rgb-accent-color: 249, 59, 88;
+    --rgb-text-color: 58, 60, 61;
+    --rgb-inactive-color: 146, 145, 148;
+    --rgb-background-color: 255, 255, 255;
+    --rgb-information-color: 240, 240, 240;
+    // RGBA colors
     --primary-color: rgba(var(--rgb-primary-color), 1);
-    --secondary-color: rgba(var( --rgb-secondary-color), 1);
+    --secondary-color: rgba(var(--rgb-secondary-color), 1);
+    --accent-color: rgba(var(--rgb-accent-color), 1);
+    --text-color: rgba(var(--rgb-text-color), 1);
+    --inactive-color: rgba(var(--rgb-inactive-color), 1);
     --background-color: rgba(var(--rgb-background-color), 1);
     --information-color: rgba(var(--rgb-information-color), 1);
-    --text-color: rgba(var(--rgb-text-color), 1);
-    --accent-color: rgba(var(--rgb-accent-color), 1);
+
     // Spacer
     --spacer-xxsm: 0.5rem;
     --spacer-xsm: 1rem;
