@@ -33,3 +33,11 @@
 </body>
 
 </html>
+
+<style>
+#app{
+    position:absolute;
+    width:100vw;
+    left:0px;
+}
+</style>
