@@ -44,6 +44,7 @@ $line-height-base: 1.6;
     --spacer-lg: 8rem;
     --spacer-xl: 10rem;
     --spacer-xxl: 12rem;
+    --column-gap: 2rem;
     // Border
     --border-size-rg: 1px;
     --border-radius-sm: 2px;
@@ -58,7 +59,7 @@ $line-height-base: 1.6;
     font-style: normal;
     font-family: Montserrat sans-serif;
     font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 10px;
+    line-height: 16px;
     box-sizing: border-box;
 }
