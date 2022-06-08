@@ -30,7 +30,9 @@ export async function sendNotification({ title, message, to }) {
 }
 
 export async function registerToChannelNotification(channel) {
-    //return; // desactivated for testing purpose
+    if (!process.env.MIX_ENABLED_NOTIFICATION) {
+        return;
+    } // desactivated for testing purpose
     /*  var isSafari = window.safari !== undefined;
  
      console.log("isSafari", isSafari);
