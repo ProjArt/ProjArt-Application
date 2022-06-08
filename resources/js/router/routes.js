@@ -62,6 +62,9 @@ const routes = [
         component: settings,
         icon: "home",
         is_visible: [],
+        is_secondary: true,
+        order: 1,
+        text: "Paramètres",
     },
     {
         name: "infos",
@@ -69,6 +72,9 @@ const routes = [
         component: infos,
         icon: "home",
         is_visible: [],
+        is_secondary: true,
+        order: 2,
+        text: "Informations",
     },
     {
         name: "students",

@@ -3,6 +3,7 @@ import { user } from "../stores/auth.js"
 
 //Crée une balise style qui définit des nouvelles valeurs aux variables de couleur
 export function changeCssColorsVariable() {
+    if (user.value == null) return;
     let styleForThemeNode = document.querySelector("style.themeColorsUpdater");
     if (styleForThemeNode == null) {
         styleForThemeNode = document.createElement("style");

@@ -5,6 +5,8 @@ import { API } from "../stores/api";
 import useFetch from "../composables/useFetch";
 import { ref, toRaw } from "vue";
 import { routesNames } from "./routes";
+import router from "../router/routes";
+
 const isAuthenticated = ref(false);
 (async function checkAuth() {
   const response = await useFetch({
@@ -15,7 +17,7 @@ const isAuthenticated = ref(false);
   if (response.success === true) {
     isAuthenticated.value = true;
     let route = routesNames().find((e) => e.name == "calendar");
-    window.location.href += route.path.replace("/", "");
+    router.push(route.path);
   } else {
     isAuthenticated.value = false;
   }
@@ -23,7 +25,7 @@ const isAuthenticated = ref(false);
 </script>
 <template>
   <the-login v-if="!isAuthenticated" />
-  <the-register v-if="!isAuthenticated" />
+  <!-- <the-register v-if="!isAuthenticated" /> -->
 </template>
 <style>
 </style>
