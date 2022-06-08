@@ -109,7 +109,7 @@ hardCodeStudentsList();
 
 <template>
     <div class="students">
-        <h1>Liste des étudiants</h2>
+        <h1>Liste des étudiants</h1>
         <h2> {{ currentCourse }} </h2>
         <ul class="studentsList">
         <h3> Etudiants </h3>
