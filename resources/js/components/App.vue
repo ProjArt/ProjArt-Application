@@ -1,10 +1,11 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import TheAppBar from ".//TheAppBar.vue";
 import TheTabbar from "./TheTabbar.vue";
 import TheNotification from "./TheNotification.vue";
 import TheDrawer from "./TheDrawer.vue";
 import { user } from "../stores/auth";
+import { isHome } from "../stores/route";
 
 const drawer = ref();
 
@@ -15,12 +16,12 @@ function openDrawer() {
 
 
 <template>
-  <the-app-bar @open-drawer="openDrawer" />
-  <div class="spacer-top">&nbsp;</div>
+  <the-app-bar @open-drawer="openDrawer" v-if="!isHome" />
+  <div class="spacer-top" v-if="!isHome">&nbsp;</div>
   <the-notification></the-notification>
   <main>
     <router-view v-slot="{ Component, name }">
-      <template v-if="name === 'mail'">
+      <template v-if="['mail', 'home'].includes(name)">
         <component :is="Component" />
       </template>
       <template v-else>
@@ -30,10 +31,10 @@ function openDrawer() {
       </template>
     </router-view>
   </main>
-  <div class="spacer-bottom">&nbsp;</div>
+  <div class="spacer-bottom" v-if="!isHome">&nbsp;</div>
   <the-tabbar />
 
-  <the-drawer ref="drawer" v-if="user" />
+  <the-drawer ref="drawer" v-if="!isHome" />
 </template>
 
 <style lang="scss" scoped>

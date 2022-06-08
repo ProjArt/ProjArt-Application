@@ -8,6 +8,7 @@ import {
 } from "../stores/notifications";
 import { user } from "../stores/auth";
 import { changeCssColorsVariable } from "../composables/changeCssColorsVariable.js";
+import { isHome } from "../stores/route";
 
 console.log(isAuthenticated.value);
 
@@ -40,7 +41,7 @@ function buildMenu() {
 }
 </script>
 <template>
-  <div class="menu" v-if="isAuthenticated">
+  <div class="menu" v-if="!isHome">
     <div
       v-for="route in buildMenu()"
       :key="route"
@@ -101,8 +102,8 @@ function buildMenu() {
   position: absolute;
   left: 50%;
   bottom: 20%;
-  width: 5.5vh;
-  height: 3.5vh;
+  width: 4.5rem;
+  height: 3.5rem;
   transform: translateX(-50%);
   border-radius: 50%;
   box-shadow: 1px -3px 10px rgb(0 0 0 / 20%);
