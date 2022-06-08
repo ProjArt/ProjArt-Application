@@ -27,7 +27,16 @@ function buildMenu() {
       route.is_visible.includes(user.value.role) ||
       route.is_visible.includes("*")
   );
-  return menu.sort((a, b) => a.order - b.order);
+  menu.sort((a, b) => a.order - b.order);
+  menu.splice(3, 0, {
+    name: "spacer",
+    path: "",
+    label: "",
+    is_visible: [],
+    order: 3,
+  });
+  console.log(menu);
+  return menu;
 }
 </script>
 <template>
@@ -37,9 +46,12 @@ function buildMenu() {
       :key="route"
       :class="route.order == 0 ? 'menu__main' : 'menu__item'"
     >
-      <router-link :to="route.path" class="menu__item-link">
-        <span class="menu-icon material-icons">{{ route.icon }}</span>
-      </router-link>
+      <div v-if="route.path">
+        <router-link :to="route.path" class="menu__item-link">
+          <span class="menu__icon material-icons">{{ route.icon }}</span>
+        </router-link>
+      </div>
+      <div v-else class="menu__item-link"></div>
     </div>
   </div>
 </template> 
@@ -48,6 +60,7 @@ function buildMenu() {
 <style scoped lang="scss">
 .menu {
   background-color: var(--tab-bar-bg-color);
+  box-shadow: 0px -2px 14px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -76,8 +89,12 @@ function buildMenu() {
   padding-bottom: var(--default-padding);
 }
 
-.menu__item-link.router-link-active {
-  background-color: var(--tab-bar-active-color);
+.menu__item-link .menu__icon {
+  color: var(--inactive-color);
+}
+
+.menu__item-link.router-link-active .menu__icon {
+  color: var(--tab-bar-active-color);
 }
 
 .menu__main .menu__item-link {
@@ -91,6 +108,18 @@ function buildMenu() {
 }
 
 .menu__main .menu__item-link {
-  background-color: red;
+  background-color: var(--inactive-color);
+}
+
+.menu__main .menu__item-link.router-link-active {
+  background-color: var(--tab-bar-active-color);
+}
+
+.menu__main .menu__item-link.router-link-active .menu__icon {
+  color: #fff;
+}
+
+.menu__main .menu__icon {
+  color: #fff;
 }
 </style>
