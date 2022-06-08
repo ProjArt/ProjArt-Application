@@ -42,11 +42,11 @@ class DatabaseSeeder extends Seeder
             User::find(1)->classrooms()->attach('M49-1');
             DB::table('calendars')->truncate();
             DB::table('calendar_user')->truncate();
-            $this->call(EventSeeder::class);
+            //$this->call(EventSeeder::class);
             $this->call(MarkSeeder::class);
             $this->call(CalendarSeeder::class);
             $this->call(AbsencesSeeder::class);
-            $this->call(MenuSeeder::class);
+            //$this->call(MenuSeeder::class);
             $this->call(GapsUsersSeeder::class);
 
            $this->call(ChannelSeeder::class);
