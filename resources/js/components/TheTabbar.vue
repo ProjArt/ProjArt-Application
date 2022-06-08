@@ -101,10 +101,11 @@ function buildMenu() {
   position: absolute;
   left: 50%;
   bottom: 20%;
-  width: 7vh;
-  height: 5vh;
+  width: 5.5vh;
+  height: 3.5vh;
   transform: translateX(-50%);
   border-radius: 50%;
+  box-shadow: 1px -3px 10px rgb(0 0 0 / 20%);
 }
 
 .menu__main .menu__item-link {
