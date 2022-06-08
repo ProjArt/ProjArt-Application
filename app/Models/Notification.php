@@ -17,16 +17,7 @@ class Notification extends Model
         'channel_name',
     ];
 
-    public static function boot()
-    {
-        parent::boot();
-
-        static::created(function ($notification) {
-            $notification->send($notification->title, $notification->text, $notification->channel);
-        });
-    }
-
-    private function send($title, $message, $to = "all")
+    public function send()
     {
         $response =  Http::withHeaders([
             'Accept' => 'application/json',
@@ -35,11 +26,11 @@ class Notification extends Model
         ])->post(
             'https://' . config('broadcasting.connections.pusher.app_id') . '.pushnotifications.pusher.com/publish_api/v1/instances/' . config('broadcasting.connections.pusher.app_id') . '/publishes',
             [
-                "interests" => [$to],
+                "interests" => [$this->channel_name],
                 "web" => [
                     "notification" => [
-                        "title" => $title,
-                        "body" => $message,
+                        "title" => $this->title,
+                        "body" => $this->text,
                     ],
                 ]
             ]

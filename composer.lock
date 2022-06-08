@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "07ba11bb0989aaa7a13c89181bdf0e4a",
+    "content-hash": "c9b2f67d2f6f8673086d7c08c831f0c5",
     "packages": [
         {
             "name": "brick/math",
@@ -1382,71 +1382,6 @@
             "time": "2022-03-20T21:55:58+00:00"
         },
         {
-            "name": "johngrogg/ics-parser",
-            "version": "v3.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/u01jmg3/ics-parser.git",
-                "reference": "8fd2099ed361cf1065d280e97b656726778b0779"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/u01jmg3/ics-parser/zipball/8fd2099ed361cf1065d280e97b656726778b0779",
-                "reference": "8fd2099ed361cf1065d280e97b656726778b0779",
-                "shasum": ""
-            },
-            "require": {
-                "ext-mbstring": "*",
-                "php": ">=5.3.9"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5",
-                "squizlabs/php_codesniffer": "~3.6.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "ICal": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jonathan Goode",
-                    "role": "Developer/Owner"
-                },
-                {
-                    "name": "John Grogg",
-                    "email": "john.grogg@gmail.com",
-                    "role": "Developer/Prior Owner"
-                }
-            ],
-            "description": "ICS Parser",
-            "homepage": "https://github.com/u01jmg3/ics-parser",
-            "keywords": [
-                "iCalendar",
-                "ical",
-                "ical-parser",
-                "ics",
-                "ics-parser",
-                "ifb"
-            ],
-            "support": {
-                "issues": "https://github.com/u01jmg3/ics-parser/issues",
-                "source": "https://github.com/u01jmg3/ics-parser/tree/v3.1.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/sponsors/u01jmg3",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-03-08T12:57:56+00:00"
-        },
-        {
             "name": "laravel-notification-channels/pusher-push-notifications",
             "version": "3.0.0",
             "source": {
@@ -1527,16 +1462,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v9.16.0",
+            "version": "v9.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "dbad869e737542734c48d36d4cb87ee90455c4b8"
+                "reference": "091e287678ac723c591509ca6374e4ded4a99b1c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/dbad869e737542734c48d36d4cb87ee90455c4b8",
-                "reference": "dbad869e737542734c48d36d4cb87ee90455c4b8",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/091e287678ac723c591509ca6374e4ded4a99b1c",
+                "reference": "091e287678ac723c591509ca6374e4ded4a99b1c",
                 "shasum": ""
             },
             "require": {
@@ -1702,7 +1637,7 @@
                 "issues": "https://github.com/laravel/framework/issues",
                 "source": "https://github.com/laravel/framework"
             },
-            "time": "2022-06-02T18:13:11+00:00"
+            "time": "2022-06-07T15:09:32+00:00"
         },
         {
             "name": "laravel/sanctum",
@@ -2833,30 +2768,31 @@
         },
         {
             "name": "php-imap/php-imap",
-            "version": "2.0.3",
+            "version": "2.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barbushin/php-imap.git",
-                "reference": "cc1a49a3f68090db182183c59ffbc09055d59f5b"
+                "reference": "3be0a7e1fbd99c4fd35b3ae3e90b130d44520b5d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barbushin/php-imap/zipball/cc1a49a3f68090db182183c59ffbc09055d59f5b",
-                "reference": "cc1a49a3f68090db182183c59ffbc09055d59f5b",
+                "url": "https://api.github.com/repos/barbushin/php-imap/zipball/3be0a7e1fbd99c4fd35b3ae3e90b130d44520b5d",
+                "reference": "3be0a7e1fbd99c4fd35b3ae3e90b130d44520b5d",
                 "shasum": ""
             },
             "require": {
+                "ext-imap": "*",
                 "php": ">=5.3.0"
             },
             "type": "library",
             "autoload": {
-                "psr-0": {
-                    "PhpImap": "src/"
+                "psr-4": {
+                    "PhpImap\\": "src/PhpImap/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "BSD 3-Clause"
+                "MIT"
             ],
             "authors": [
                 {
@@ -2865,18 +2801,21 @@
                     "homepage": "http://linkedin.com/in/barbushin"
                 }
             ],
-            "description": "PHP class to access mailbox by POP3/IMAP/NNTP using IMAP extension",
+            "description": "Manage mailboxes, filter/get/delete emails in PHP (supports IMAP/POP3/NNTP)",
             "homepage": "https://github.com/barbushin/php-imap",
             "keywords": [
                 "imap",
                 "mail",
-                "php"
+                "mailbox",
+                "php",
+                "pop3",
+                "receive emails"
             ],
             "support": {
                 "issues": "https://github.com/barbushin/php-imap/issues",
                 "source": "https://github.com/barbushin/php-imap/tree/master"
             },
-            "time": "2015-09-16T07:40:39+00:00"
+            "time": "2017-10-06T05:49:25+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -6977,16 +6916,16 @@
         },
         {
             "name": "laravel/sail",
-            "version": "v1.14.8",
+            "version": "v1.14.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sail.git",
-                "reference": "04b425968c6a76940bddd2cfa40bf9e9ce78eee8"
+                "reference": "8435763e7735f6eff15b03df014cea1217fc826e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sail/zipball/04b425968c6a76940bddd2cfa40bf9e9ce78eee8",
-                "reference": "04b425968c6a76940bddd2cfa40bf9e9ce78eee8",
+                "url": "https://api.github.com/repos/laravel/sail/zipball/8435763e7735f6eff15b03df014cea1217fc826e",
+                "reference": "8435763e7735f6eff15b03df014cea1217fc826e",
                 "shasum": ""
             },
             "require": {
@@ -7033,7 +6972,7 @@
                 "issues": "https://github.com/laravel/sail/issues",
                 "source": "https://github.com/laravel/sail"
             },
-            "time": "2022-05-31T14:48:21+00:00"
+            "time": "2022-06-06T14:28:04+00:00"
         },
         {
             "name": "mockery/mockery",

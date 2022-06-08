@@ -34,17 +34,15 @@ const absences = ref([]);
       <div class="absence__unity">
         {{ absence.unity.split(" - ")[0] }}
       </div>
-      <div class="absence__absolute_rate">
-        {{ absence.absolute_rate }}%
-        <span class="material-symbols-outlined" v-if="absence.absolute_rate">
-          warning
-        </span>
-      </div>
+      <span class="material-symbols-outlined" v-if="absence.absolute_rate > 15">
+        warning
+      </span>
+      <div class="absence__absolute_rate">{{ absence.absolute_rate }}%</div>
     </div>
   </div>
 </template>
 
-<style scoped class="themeColorsUpdater">
+<style scoped>
 .absence__item {
   display: flex;
   flex-direction: row;
@@ -56,6 +54,9 @@ const absences = ref([]);
 }
 
 .absence__absolute_rate {
-  color: red;
+  color: white;
+  background-color: var(--primary-color);
+  padding: var(--default-padding);
+  border-radius: var(--border-radius-md);
 }
 </style>

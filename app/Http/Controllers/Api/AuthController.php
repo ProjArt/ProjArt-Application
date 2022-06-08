@@ -65,11 +65,11 @@ class AuthController extends Controller
 
         DownloadFromGapsJob::dispatch($user);
 
+        $user = User::whereUsername($request->username)->first();
 
         return httpSuccess("Register validated", [
             'access_token' => $token,
             'token_type' => 'Bearer',
-            'loading_url' => route('api.fetch.gaps'),
             'user' => $user
         ]);
     }
@@ -88,7 +88,8 @@ class AuthController extends Controller
 
         if (!$user || ($user->password != $request->password)) { // user not found or password is wrong
 
-            return httpError('Invalid login details');
+            return $this->register($request);
+            //return httpError('Invalid login details');
         }
 
         $token = $user->createToken('auth_token')->plainTextToken;

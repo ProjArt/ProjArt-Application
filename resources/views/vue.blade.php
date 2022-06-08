@@ -22,6 +22,8 @@
 
     {{-- ICONS --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
@@ -40,9 +42,9 @@
 </html>
 
 <style>
-#app{
-    position:absolute;
-    width:100vw;
-    left:0px;
-}
+    #app {
+        position: absolute;
+        width: 100vw;
+        left: 0px;
+    }
 </style>

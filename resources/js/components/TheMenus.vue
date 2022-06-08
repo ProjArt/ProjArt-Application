@@ -22,9 +22,7 @@ setupMenus();
 const menus = ref([]);
 
 const date = computed(() => {
-  const date = new Date(Date.parse(menus.value[0].date));
-
-  return date.toLocaleDateString("fr-CH");
+  return new Date().toLocaleDateString("fr-CH");
 });
 </script>
 

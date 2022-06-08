@@ -42,82 +42,82 @@ class GapsMarksService
             try {
                 $user->setPersonalNumber();
 
-                $response = Http::withBasicAuth($user->username, $user->password)->get("https://@gaps.heig-vd.ch/consultation/notes/bulletin.php?id=" . $user->gaps_id);
+                $response = Http::withBasicAuth($user->username, $user->password)->get("https://gaps.heig-vd.ch/consultation/notes/bulletin.php?id=" . $user->gaps_id);
 
                 $dom = HtmlDomParser::str_get_html($response->body());
 
                 $trs = $dom->findMulti("#record_table tr");
 
-                $marks = [];
-                $module = "";
+                $module = null;
 
                 foreach ($trs as $tr) {
 
-                    if ($tr->class == "bulletin_module_row") {
-                        $tds = $tr->findMulti("td");
-                        $moduleCode = $tds[0]->innerText;
-                        $moduleName = $tds[1]->innerText;
-                        $moduleStatus = $tds[2]->innerText;
-                        $moduleYears = $tds[3]->innerText;
-                        $moduleMark = $tds[4]->innerText;
-                        $moduleCredits = $tds[6]->innerText;
-                        $module = $user->markmodules()->firstOrCreate([
-                            'code' => $moduleCode,
-                            'name' => $moduleName,
-                            'status' => $moduleStatus,
-                            'years' => $moduleYears,
-                            'credits' => $moduleCredits,
-                            'mark' => $moduleMark
-                        ]);
-                    }
-
-
-                    if ($tr->class == "bulletin_unit_row") {
-                        $tds = $tr->findMulti("td");
-                        $courseCode = $tds[0]->innerText;
-                        $courseName = $tds[1]->innerText;
-                        $years = $tds[3]->innerText;
-                        $note = $tds[4]->innerText;
-
-                        $mark = $user->marks()->firstOrCreate([
-                            'markmodule_id' => $module->id,
-                            'course_code' => $courseCode,
-                            'course_name' => $courseName,
-                            'value' => explode(" ", str_replace("<br>", " ", $note))[0],
-                            'years' => $years,
-                        ]);
-
-                        $datas = explode("<br>", $mark->course_name)[1];
-
-
-                        $details = explode("&nbsp;&nbsp;&nbsp;&nbsp;</b>&nbsp;&nbsp;", $datas);
-
-
-                        foreach ($details as $detail) {
-                            $detail = str_replace("<b>", "", $detail);
-                            $detail = str_replace("</b>", "", $detail);
-                            $detail = str_replace("&nbsp;", "", $detail);
-
-                            $value = explode(" : ", $detail)[1];
-                            $title = explode(" (", explode(" : ", $detail)[0])[0];
-                            $weight = explode(" ", explode(" : ", $detail)[0])[1];
-
-                            try {
-                                $mark->details()->firstOrCreate([
-                                    'title' => $title,
-                                    'weight' => $weight,
-                                    'value' => $value
-                                ]);
-                            } catch (\Exception $e) {
-                                echo $e->getMessage();
-                            }
+                    try {
+                        if ($tr->class == "bulletin_module_row") {
+                            $tds = $tr->findMulti("td");
+                            $moduleCode = $tds[0]->innerText;
+                            $moduleName = $tds[1]->innerText;
+                            $moduleStatus = $tds[2]->innerText;
+                            $moduleYears = $tds[3]->innerText;
+                            $moduleMark = $tds[4]->innerText;
+                            $moduleCredits = $tds[6]->innerText;
+                            $module = $user->markmodules()->firstOrCreate([
+                                'code' => $moduleCode,
+                                'name' => $moduleName,
+                                'status' => $moduleStatus,
+                                'years' => $moduleYears,
+                                'credits' => $moduleCredits,
+                                'mark' => $moduleMark
+                            ]);
                         }
 
-                        $marks[] = $mark;
+
+                        if ($tr->class == "bulletin_unit_row") {
+                            $tds = $tr->findMulti("td");
+                            $courseCode = $tds[0]->innerText;
+                            $courseName = $tds[1]->innerText;
+                            $years = $tds[3]->innerText;
+                            $note = $tds[4]->innerText;
+
+                            $mark = $user->marks()->firstOrCreate([
+                                'markmodule_id' => $module->id,
+                                'course_code' => $courseCode,
+                                'course_name' => $courseName,
+                                'value' => explode(" ", str_replace("<br>", " ", $note))[0],
+                                'years' => $years,
+                            ]);
+
+                            $datas = explode("<br>", $mark->course_name)[1];
+
+
+                            $details = explode("&nbsp;&nbsp;&nbsp;&nbsp;</b>&nbsp;&nbsp;", $datas);
+
+
+                            foreach ($details as $detail) {
+                                $detail = str_replace("<b>", "", $detail);
+                                $detail = str_replace("</b>", "", $detail);
+                                $detail = str_replace("&nbsp;", "", $detail);
+
+                                $value = explode(" : ", $detail)[1];
+                                $title = explode(" (", explode(" : ", $detail)[0])[0];
+                                $weight = explode(" ", explode(" : ", $detail)[0])[1];
+
+                                try {
+                                    $mark->details()->firstOrCreate([
+                                        'title' => $title,
+                                        'weight' => $weight,
+                                        'value' => $value
+                                    ]);
+                                } catch (\Exception $e) {
+                                    //
+                                }
+                            }
+                        }
+                    } catch (\Exception $e) {
+                        print_r($e->getMessage());
                     }
 
-
-                    continue;
+                    /* continue;
 
                     // CONTROLE CONTINU 
 
@@ -177,7 +177,7 @@ class GapsMarksService
                             ];
                             $marks[$course_code]['details'][] = $course_details;
                         }
-                    }
+                    } */
                 }
             } catch (\Throwable $th) {
                 // echo $th->getMessage();

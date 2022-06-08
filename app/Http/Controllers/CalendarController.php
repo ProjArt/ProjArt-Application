@@ -103,7 +103,9 @@ class CalendarController extends Controller
         $user = $request->user();
         $calendar = $user->calendars()->findOrFail($calendar->id);
         $calendar->update($request->validated());
-        $calendar->pivot->update(["color" => $request->color]);
+        if ($request->has('color')) {
+            $user->calendars()->updateExistingPivot($calendar->id, ['color' => $request->color]);
+        }
         return httpSuccess('Calendar updated', $user->calendars);
     }
 
