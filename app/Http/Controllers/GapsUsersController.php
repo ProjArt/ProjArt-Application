@@ -7,6 +7,10 @@ use App\Models\GapsUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 
+/**
+ * 
+ * @group Liste Gaps Users
+ */
 class GapsUsersController extends Controller
 {
     /**
@@ -42,7 +46,7 @@ class GapsUsersController extends Controller
 
     /**
      * 
-     * Get students of my section
+     * Get students of my courses
      * 
      * Récupère les étudiants de ma section
      * 
