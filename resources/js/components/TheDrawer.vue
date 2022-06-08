@@ -51,7 +51,9 @@ function buildMenu() {
         class="drawer__content-item"
         @click="changePage(route.path)"
       >
-        {{ route.text }}
+        <div class="drawer__content-item-text">
+          {{ route.text }}
+        </div>
         <span class="material-icons">keyboard_arrow_right</span>
       </div>
     </div>
@@ -111,13 +113,16 @@ function buildMenu() {
 }
 
 .drawer__content-item {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-left: 2rem;
   margin-bottom: 1rem;
+}
+
+.drawer__content-item-text {
+  padding-left: var(--default-padding);
 }
 
 .icon {
