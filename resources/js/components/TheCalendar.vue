@@ -19,6 +19,7 @@ useSwipe({
 
 const TODAY = new Date();
 const DAY_LABELS = ["L", "M", "M", "J", "V", "S", "D"];
+const DAY_LABELS_SHORT = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
 const MONTH_LABELS = ["JANVIER", "FEVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOUT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DECEMBRE",];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
@@ -803,22 +804,15 @@ function showEventEditForm(startDate, id) {
       <p>Aucun événements pour cette période</p>
     </div>
     <!--====  Calendar days MONTH  ====-->
-    <div class="calendar__days" :class="
-      'calendar__days--' +
-      getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
-    ">
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.MONTH" class="calendar__days"
+      :class="'calendar__days--' + getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()">
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
-        selectedDate === index ? 'is-selected-day' : '',
-        day?.class,
-        currentLayout === AVAILABLE_LAYOUT.LIST &&
-          !events.hasOwnProperty(day?.local)
-          ? 'is-display-none'
-          : '',
-        currentLayout === AVAILABLE_LAYOUT.MONTH &&
-          MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
-          ? 'is-other-month'
-          : ''
-      " :key="index" :date-id="day?.local">
+    selectedDate === index ? 'is-selected-day' : '',
+    day?.class,
+    currentLayout === AVAILABLE_LAYOUT.MONTH &&
+      MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
+      ? 'is-other-month'
+      : ''" :key="index" :date-id="day?.local">
 
         <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">{{
             day?.dayOfMonthNumber
@@ -827,6 +821,65 @@ function showEventEditForm(startDate, id) {
           <div v-show="eventId < 5" v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__dot">
           </div>
         </div>
+      </div>
+    </div>
+    <!--====  Calendar days WEEK  ====-->
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.WEEK" class="calendar__days"
+      :class="'calendar__days--' + getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()">
+      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
+      selectedDate === index ? 'is-selected-day' : '',
+      day?.class" :key="index" :date-id="day?.local">
+
+        <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">{{
+            day?.dayOfMonthNumber
+        }}</p>
+        <div class="calendar__dotes">
+          <div v-show="eventId < 5" v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__dot">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--====  Calendar days LIST  ====-->
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.LIST" class="calendar__days"
+      :class="'calendar__days--' + getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()">
+      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
+    selectedDate === index ? 'is-selected-day' : '',
+    day?.class,
+    currentLayout === AVAILABLE_LAYOUT.LIST &&
+      !events.hasOwnProperty(day?.local)
+      ? 'is-display-none'
+      : ''" :key="index" :date-id="day?.local">
+
+        <article class="calendar__events">
+          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event"
+            :data-date="day?.dayOfMonthNumber + ' ' + DAY_LABELS_SHORT[day?.dayOfWeekNumber]">
+            <p>{{ event.title }}</p>
+            <p>{{ event.start }}</p>
+          </div>
+        </article>
+      </div>
+    </div>
+    <!--====  Calendar days DAY  ====-->
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.DAY" class="calendar__days"
+      :class="'calendar__days--' + getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()">
+      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
+      selectedDate === index ? 'is-selected-day' : '',
+      day?.class" :key="index" :date-id="day?.local">
+
+        <article class="calendar__events">
+          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event"
+            :data-time="useDate.toEventTime(event?.start)" :class="event.calendar_id == 1 ? 'is-heig-calendar' : ''">
+            <p class="event__header">
+              <span class="event__title">{{ event.title }}</span>
+              <span class="event__location">{{ event.location }}</span>
+              <span v-if="event.calendar_id == 1" class="event__time">{{ useDate.toEventTime(event.start, event.end)
+              }}</span>
+              <span v-if="event.calendar_id !== 1" class="event__time">{{ useDate.toEventTime(event.start) }}</span>
+            </p>
+            <p v-show="event.calendar_id !== 1" class="event__description">{{ event.description }}</p>
+            <p v-show="event.calendar_id !== 1" class="event__calendar">{{ calendarsNames[event.calendar_id] }}</p>
+          </div>
+        </article>
       </div>
     </div>
 
@@ -931,6 +984,9 @@ function showEventEditForm(startDate, id) {
 
 $dot-size: 4px;
 $calendar-gap: 2rem;
+$border-radius: 6px;
+$border-width: 3px;
+$heig-planning-color: var(--information-color);
 
 @mixin day-number-month-layout {
   font-family: 'Poppins';
@@ -962,12 +1018,6 @@ $calendar-gap: 2rem;
 //*2# Calendar days
 // ==========================================================================
 
-.calendar__days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: $calendar-gap;
-}
-
 .calendar__days-names {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -977,28 +1027,6 @@ $calendar-gap: 2rem;
 .calendar__days-name {
   text-align: center;
 }
-
-.calendar__days--list,
-.calendar__days--day {
-  grid-template-columns: 1fr;
-}
-
-.calendar__dotes {
-  display: grid;
-  margin: 0 auto;
-  grid-auto-flow: column;
-  grid-gap: $dot-size;
-}
-
-.calendar__dot {
-  background-color: red;
-  width: $dot-size;
-  height: $dot-size;
-  border-radius: 50%;
-}
-
-//*2# Calendar day
-// ==========================================================================
 
 .calendar__day {
   max-width: 100%;
@@ -1012,19 +1040,244 @@ $calendar-gap: 2rem;
   color: black;
 }
 
-.calendar__day-number {
-  margin: 0;
-  font-size: 1.5rem;
-  width: 2.8rem;
-  height: 2.8rem;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 27px;
-  text-align: center;
-  text-transform: uppercase;
-  margin: 0 0 0.5rem 0;
+//*2# Calendar days MONTH
+// ==========================================================================
+
+.calendar__days--month {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: $calendar-gap;
+
+  .calendar__dotes {
+    display: grid;
+    margin: 0 auto;
+    grid-auto-flow: column;
+    grid-gap: $dot-size;
+  }
+
+  .calendar__dot {
+    background-color: red;
+    width: $dot-size;
+    height: $dot-size;
+    border-radius: 50%;
+  }
+
+  .calendar__day-number {
+    margin: 0;
+    font-size: 1.5rem;
+    width: 2.8rem;
+    height: 2.8rem;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 27px;
+    text-align: center;
+    text-transform: uppercase;
+    margin: 0 0 0.5rem 0;
+  }
+
+  .is-events {
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+  }
 }
+
+//*2# Calendar days WEEK
+// ==========================================================================
+
+.calendar__days--week {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: $calendar-gap;
+}
+
+//*2# Calendar days LIST
+// ==========================================================================
+
+.calendar__days--list {
+  grid-template-columns: 1fr;
+
+  .calendar__day {
+    flex-direction: row;
+    border: none;
+    position: relative;
+    text-align: center;
+    margin: 0 0 0 6rem;
+  }
+
+  .calendar__day-number {
+    width: 4rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: -6rem;
+  }
+
+  .calendar__events {
+    width: 100%;
+    border-left: $border-width solid var(--text-color);
+  }
+
+  .calendar__event {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 1rem 0 0 3.8rem;
+    background-color: red;
+    color: white;
+    border-radius: $border-radius;
+    text-overflow: ellipsis;
+    position: relative;
+  }
+
+  .calendar__event:first-child::before {
+    content: attr(data-date);
+    position: absolute;
+    left: -10rem;
+    width: 36px;
+    height: 30px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-color)
+  }
+
+  .calendar__event:first-child::after {
+    $size: 1.6rem;
+    content: "";
+    position: absolute;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background-color: var(--text-color);
+    top: calc(50% - ($size / 2));
+    left: calc((3.8rem * -1) - ($size/2) - 1px);
+  }
+
+  .is-current-day {
+    background-color: unset;
+  }
+}
+
+//*2# Calendar days DAY
+// ==========================================================================
+
+.calendar__days--day {
+  grid-template-columns: 1fr;
+
+  .calendar__day {
+    flex-direction: row;
+    border: none;
+    position: relative;
+    text-align: center;
+    margin: 0 0 0 6rem;
+  }
+
+  .calendar__day-number {
+    width: 4rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    left: -6rem;
+  }
+
+  .calendar__events {
+    width: 100%;
+    border-left: $border-width solid var(--text-color);
+  }
+
+
+  .calendar__event {
+    display: flex;
+    color: var(--text-color);
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1rem;
+    margin: 1rem 0 0 3.8rem;
+    background-color: red;
+    border-radius: $border-radius;
+    text-overflow: ellipsis;
+    position: relative;
+  }
+
+  .calendar__event:not(.is-heig-calendar) {
+    color: white;
+  }
+
+  .calendar__event:first-child::before {
+    $height: 30px;
+    content: attr(data-time);
+    position: absolute;
+    left: -10rem;
+    width: 36px;
+    top: calc(50% - ($height / 2));
+    height: $height;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 15px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-color)
+  }
+
+  .calendar__event:first-child::after {
+    $size: 1.6rem;
+    content: "";
+    position: absolute;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+    background-color: var(--text-color);
+    top: calc(50% - ($size / 2));
+    left: calc((3.8rem * -1) - ($size/2) - 1px);
+  }
+
+  .event__header {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .event__title {
+    grid-column: 1 /3;
+  }
+
+  .event__location {
+    grid-column: 3 / 4;
+  }
+
+  .event__time {
+    grid-column: 4 / 6;
+    width: fit-content;
+    margin: 0 0 0 auto;
+  }
+
+  .event__calendar {
+    margin: 0 0 0 auto;
+  }
+
+  .is-current-day {
+    background-color: unset;
+  }
+
+  .is-heig-calendar {
+    background-color: $heig-planning-color;
+  }
+}
+
+
+
+//*2# Calendar day
+// ==========================================================================
+
+
 
 .calendar__day-date {
   font-size: 0.8rem;
@@ -1032,6 +1285,7 @@ $calendar-gap: 2rem;
   padding: 0.5rem;
   opacity: 0.5;
 }
+
 
 //*2# Events
 // ==========================================================================
@@ -1171,11 +1425,5 @@ $calendar-gap: 2rem;
 
 .is-selected-day {
   border: 1px solid lightcoral;
-}
-
-.is-events {
-  background-color: red;
-  border-radius: 50%;
-  color: white;
 }
 </style>
