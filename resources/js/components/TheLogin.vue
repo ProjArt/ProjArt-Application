@@ -6,6 +6,7 @@ import { routesNames } from "../router/routes";
 import { user } from "../stores/auth";
 import { registerToChannelNotification } from "../stores/notifications";
 import { theme } from "../stores/preferences";
+import router from "../router/routes";
 
 const isSubmitted = ref(false);
 const formData = ref({});
@@ -30,7 +31,7 @@ const submitHandler = async () => {
 
     console.log(routesNames());
     let route = routesNames().find((e) => e.name == "calendar");
-    window.location.href += route.path.replace("/", "");
+    router.push(route.path);
   } else {
     isAuthenticated.value = false;
     errorMessage.value = response.message;

@@ -1,5 +1,33 @@
 <script setup>
-console.log("notFound");
+//console.log("notFound");
+
+//Remove top and bottom menus
+function removeMenus(){
+let botMenu = document.querySelector('.menu');
+let parent = botMenu.parentNode; 
+parent.removeChild(botMenu);
+
+let spaceMenu = document.querySelector('.spacer-bottom')
+parent = spaceMenu.parentNode
+parent.removeChild(spaceMenu)
+
+let topMenu = document.querySelector('.app-bar')
+parent = topMenu.parentNode
+parent.removeChild(topMenu)
+
+let spacerTop = document.querySelector('.spacer-top')
+parent = spacerTop.parentNode
+parent.removeChild(spacerTop)
+}
+
+function removeTopWhiteSpace(){
+    let body = document.querySelector('body')
+    body.classList.add('top-to-remove')
+    body.setAttribute("style", "margin: 0 0 0 0")
+}
+
+removeMenus()
+removeTopWhiteSpace()
 </script>
 
 <template>
@@ -19,7 +47,7 @@ console.log("notFound");
             <img
                 class="anchor-back-to-home"
                 src="/storage/images/logo.png"
-                width="27.4%"
+                width="50%"
                 style="position: relative"
             />
         </div>
@@ -31,38 +59,58 @@ console.log("notFound");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap");
 
 
-@media (max-width:600px){
+
 main {
     width: 100vw;
 }
+
+.app-bar{
+    display:none;
+}
+
+.menu{
+    display:none !important;
+}
+
+.spacer-bottom{
+    display:none;
+}
+
+.top-to-remove {
+    margin: 0 0 0 0;
+}
+
 .main-body {
+    display: flex;
+    flex-direction: column;
     background-color: var(--primary-color);
     color: var(--background-color);
     font-family: Poppins;
     height: 100vh;
     width: 100vw;
+    align-items: center;
 }
 
-.title-wrapper{
-    position:absolute;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
+
+.title-wrapper {
+    /* position: absolute; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     transform: rotate(-33.55deg);
-    left:20%;
+    margin: 3em 0 2em 0;
 }
 
 /* ERREUR */
 .erreur-quatre-zero-quatre {
-    position: relative;
-    left:10%;
-    right: 39.13%;
     bottom: 65.92%;
-    top:3%;
-
+    /* top: 3%; */
     margin-bottom: 0px;
+    width: -webkit-fit-content;
+    margin: 0 8rem 0 0;
+    margin: -moz-fit-content;
     width: fit-content;
-
     font-family: "Poppins";
     font-style: bold;
     font-weight: 700;
@@ -71,7 +119,6 @@ main {
     display: flex;
     align-items: flex-end;
     text-align: center;
-
     color: #ffffff;
 }
 
@@ -79,13 +126,10 @@ main {
 .quatre-zero-quatre-chiffre {
     position: relative;
     line-height: 5rem;
-    left: 35.27%;
-    right: 7.73%;
-    top: -5%;
-
-    margin-top: 0px;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    margin: 0 0 0 5rem;
     width: fit-content;
-
     font-family: "Poppins";
     font-style: bold;
     font-weight: 700;
@@ -93,21 +137,13 @@ main {
     display: flex;
     align-items: flex-end;
     text-align: center;
-
     color: #ffffff;
 }
 
 /* La page que vous recherchez est malheureusement indisponible */
 .indisponible-text {
-    position: relative;
-    left: 22.5%;
-    right: 22.5%;
-    bottom: 57.47%;
-    margin: 0px;
-    width: 55%;
-    top: 35%;
-
-    font-family: "Poppins";
+    width: 4em;
+    margin: 2em auto 3em auto;
     font-style: "semi-bold";
     font-weight: 600;
     font-size: 20px;
@@ -115,20 +151,17 @@ main {
     display: flex;
     align-items: flex-end;
     text-align: center;
-
     color: #ffffff;
+    justify-content:center;
 }
 
 .back-to-home-link {
     color: var(--background-color);
-    position: relative;
-    top: 46%;
     display: flex;
+    margin: 0 0 2em 0;
     align-items: center;
     justify-content: center;
     background-color: var(--accent-color);
-    left: 30%;
-    right: 30%;
     width: 40%;
     height: 6.8%;
     border-radius: 1em;
@@ -137,15 +170,14 @@ main {
 }
 
 .logo {
-    position: relative;
-    top: 58%;
     display: flex;
     justify-content: center;
+    margin: 3em 0 0 0;
 }
 
 .anchor-back-to-home {
     text-decoration: none;
     color: white;
 }
-}
+
 </style>
