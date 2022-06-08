@@ -17,10 +17,15 @@ function openDrawer() {
   <div class="spacer-top">&nbsp;</div>
   <the-notification></the-notification>
   <main>
-    <router-view v-slot="{ Component }">
-      <keep-alive>
+    <router-view v-slot="{ Component, name }">
+      <template v-if="name === 'mail'">
         <component :is="Component" />
-      </keep-alive>
+      </template>
+      <template v-else>
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
+      </template>
     </router-view>
   </main>
   <div class="spacer-bottom">&nbsp;</div>
@@ -44,7 +49,5 @@ main {
   width: 100%;
   height: 5rem;
 }
-
-
 </style>
 

@@ -39,7 +39,6 @@ function buildMenu() {
     >
       <router-link :to="route.path" class="menu__item-link">
         <span class="menu-icon material-icons">{{ route.icon }}</span>
-        <span class="menu-title">{{ route.name }}</span>
       </router-link>
     </div>
   </div>
@@ -73,20 +72,25 @@ function buildMenu() {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: var(--default-padding);
+  padding-top: var(--default-padding);
+  padding-bottom: var(--default-padding);
 }
 
 .menu__item-link.router-link-active {
   background-color: var(--tab-bar-active-color);
 }
 
-.menu__main {
+.menu__main .menu__item-link {
   position: absolute;
   left: 50%;
-  bottom: 30%;
-  width: 10vh;
-  height: 10vh;
+  bottom: 20%;
+  width: 7vh;
+  height: 5vh;
   transform: translateX(-50%);
   border-radius: 50%;
+}
+
+.menu__main .menu__item-link {
+  background-color: red;
 }
 </style>
