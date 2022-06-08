@@ -6,8 +6,7 @@ import { ref, computed, watchEffect } from "vue";
 
 const data = ref({
     studentsList: [],
-    teachersList: [],
-    classroom: "dsasàsld",
+    currentCourse: "WebMobUI"
 });
 
 async function getList() {
@@ -41,6 +40,10 @@ const teachersList = computed({
 const classroom = computed({
     get: () => data.value.classroom,
 });
+
+const currentCourse = computed ({
+    get: () => data.value.currentCourse
+})
 
 console.log('dataBeforeScrap', data.value)
 await getList();
@@ -105,8 +108,9 @@ hardCodeStudentsList();
 </script>
 
 <template>
-    <div class="studentsAndTeachers">
-        <h2>Membres de la classe {{ classroom }}</h2>
+    <div class="students">
+        <h1>Liste des étudiants</h2>
+        <h2> {{ currentCourse }} </h2>
         <ul class="studentsList">
         <h3> Etudiants </h3>
               <li v-for="student in data.studentsList">

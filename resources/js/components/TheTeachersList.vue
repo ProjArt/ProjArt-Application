@@ -5,7 +5,6 @@ import useFetch from "../composables/useFetch";
 import { ref, computed, watchEffect } from "vue";
 
 const data = ref({
-    studentsList: [],
     teachersList: [],
     classroom: "dsasàsld",
 });
@@ -107,17 +106,6 @@ hardCodeStudentsList();
 <template>
     <div class="studentsAndTeachers">
         <h2>Membres de la classe {{ classroom }}</h2>
-        <ul class="studentsList">
-        <h3> Etudiants </h3>
-              <li v-for="student in data.studentsList">
-                <div class="nom-utilisateur">
-                <span>{{ student.gaps_user.firstname }} {{ student.gaps_user.name }}</span>
-                </div>
-                <div class="mail-et-classe">
-                <span>{{ student.gaps_user.mail }} </span><br/>
-                </div>
-             </li>
-        </ul>
          <ul class="teachersList">
                 <h3>Enseignants </h3>
               <li v-for="teacher in data.teachersList">
