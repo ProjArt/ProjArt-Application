@@ -7,7 +7,8 @@ import menus from "./MenusRoute.vue";
 import notFound from "./404Route.vue";
 import settings from "./SettingsRoute.vue";
 import infos from "./InfosRoute.vue";
-import classRoom from "./StudentsAndTeachersListRoute.vue";
+import students from "./StudentsListRoute.vue";
+import teachers from "./TeachersListRoute.vue";
 import { user } from "../stores/auth";
 import register from "./RegisterRoute.vue";
 import mails from "./MailsRoute.vue";
@@ -61,6 +62,9 @@ const routes = [
         component: settings,
         icon: "home",
         is_visible: [],
+        is_secondary: true,
+        order: 1,
+        text: "Paramètres",
     },
     {
         name: "infos",
@@ -68,13 +72,23 @@ const routes = [
         component: infos,
         icon: "home",
         is_visible: [],
+        is_secondary: true,
+        order: 2,
+        text: "Informations",
     },
     {
-        name: "classList",
-        path: "/class-list",
-        component: classRoom,
+        name: "students",
+        path: "/students",
+        component: students,
         icon: "group",
-        is_visible: ["teacher"],
+        is_visible: [],
+    },
+    {
+        name: "teachers",
+        path: "/teachers",
+        component: teachers,
+        icon: "group",
+        is_visible: [],
     },
     {
         name: "register",
