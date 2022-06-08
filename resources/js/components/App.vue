@@ -45,12 +45,12 @@ main {
 
 .spacer-top {
   width: 100%;
-  height: 4.5rem;
+  height: 6rem;
 }
 
 .spacer-bottom {
   width: 100%;
-  height: 5rem;
+  height: 7rem;
 }
 </style>
 

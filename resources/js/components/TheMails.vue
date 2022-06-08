@@ -26,7 +26,7 @@ const mails = ref([]);
 </script>
 
 <template>
-  <h1 class="title">Mails</h1>
+  <h1 class="page__title">Mails</h1>
   <router-link :to="'/mails/send'">Envoyer</router-link>
 
   <div v-for="mail in mails" :key="mail.uid">
