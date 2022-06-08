@@ -5,7 +5,7 @@ import useFetch from "../composables/useFetch";
 import { ref, computed, watchEffect } from "vue";
 
 const data = ref({
-    studentsList: [],
+    students_list: [],
     current_course: "WebMobUI",
     available_courses: [],
     complete_list: NaN
@@ -17,9 +17,9 @@ async function getList() {
         method: API.getClassrooms.method,
     });
     const usersList = response.data.classrooms[0].users;
-    data.value.studentsList = usersList.filter((person) => person.role == "student");
+    data.value.students_list = usersList.filter((person) => person.role == "student");
     data.value.teachersList = usersList.filter((person) => person.role == "teacher");
-    console.log("list",  data.value.studentsList)
+    console.log("list",  data.value.students_list)
 }
 
 async function getClassRoom() {
@@ -45,11 +45,11 @@ async function getCoursesList(){
 
     data.value.complete_list = courses;
 
-    console.log("nomCours", data.value.available_courses);
+    console.log("completeList", data.value.complete_list);
 }
 
-const studentsList = computed({
-    get: () => data.value.studentsList
+const students_list = computed({
+    get: () => data.value.students_list
 });
 
 const teachersList = computed({
@@ -73,7 +73,7 @@ console.log("class", classroom.value)
 
 
 function hardCodeStudentsList (){
-    data.value.studentsList.shift();
+    data.value.students_list.shift();
     const simulatedUser =  {
         "id": 1,
         "username": "timothee.dione",
@@ -119,15 +119,17 @@ function hardCodeStudentsList (){
     }
 
     for (let i = 0; i< 20; i++){
-        data.value.studentsList.push(simulatedUser)
+        data.value.students_list.push(simulatedUser)
     }
-    console.log('newListHardCodee', data.value.studentsList)
+    console.log('newListHardCodee', data.value.students_list)
 }
 
 function updateStudentsList(){
-    console.log("ancient", data.value.studentsList)
-    data.value.studentsList = data.value.complete_list.filter(list => list.code == data.value.current_course)
-    console.log("newList", data.value.studentsList)
+    console.log("ancient", data.value.students_list)
+    let helloList = data.value.complete_list.filter(list => list.code == data.value.current_course)
+    console.log("helloList", helloList[0])
+    let  newList = data.value.complete_list.filter(list => { list.code == data.value.current_course})
+    data.value.students_list = newList[0];
 }
 
 hardCodeStudentsList();
@@ -138,19 +140,18 @@ hardCodeStudentsList();
         <h1>Liste des étudiants</h1>
         <h2> {{ data.current_course }} </h2>
         <div class="course-selection">
-        <form class="course-selection-form" @change="updateStudentsList()">
-            <select class="course-select">
+        <form class="course-selection-form" @change="updateStudentsList()" >
+            <select class="course-select"  v-model="data.current_course">
                 <option value="Filtrer par cours">Filtrer par cours </option>
                 <option v-for="course in available_courses"
                  v-bind:value="course"
-                 ref="data.value.current_course"
                  >{{ course }}</option>
             </select>
         </form>
         </div>
         <ul class="class-students-list">
         <h3> Etudiants </h3>
-              <li v-for="student in data.studentsList">
+              <li v-for="student in data.students_list">
                 <div class="nom-utilisateur">
                 <span>{{ student.gaps_user.firstname }} {{ student.gaps_user.name }}</span>
                 </div>
