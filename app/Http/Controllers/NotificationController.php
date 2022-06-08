@@ -83,11 +83,14 @@ class NotificationController extends Controller
     {
         $channel = Channel::firstOrCreate(['name' => $request->to]);
 
-        Notification::create([
+        $notification = Notification::create([
             'title' => $request->title,
             'text' => $request->message,
             'channel_name' => $channel->name,
         ]);
+
+        $notification->send();
+
 
         return httpSuccess('Notifications sent');
     }

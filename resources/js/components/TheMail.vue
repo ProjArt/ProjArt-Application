@@ -5,11 +5,14 @@ import { API } from "../stores/api";
 
 // At start of component, fetch the data
 
+const mail = ref();
+
 const mailID = window.location.href.substring(
   window.location.href.lastIndexOf("/") + 1
 );
 console.log(mailID);
 async function setupMail() {
+  mail.value = undefined;
   const response = await useFetch({
     url: API.showMail.path(mailID),
     method: API.showMail.method,
@@ -23,8 +26,6 @@ async function setupMail() {
 }
 
 setupMail();
-
-const mail = ref();
 </script>
 
 <template>
@@ -44,9 +45,11 @@ const mail = ref();
       <div
         class="mail-message"
         v-html="
-          mail.textPlain
-            .replace(/<\/?[^>]+(>|$)/g, '')
-            .replace(/(?:\r\n|\r|\n)/g, '<br />')
+          mail.textPlain != null
+            ? mail.textPlain
+                .replace(/<\/?[^>]+(>|$)/g, '')
+                .replace(/(?:\r\n|\r|\n)/g, '<br />')
+            : mail.textHtml.replace('<script>', '').replace('</script>', '')
         "
       ></div>
     </div>

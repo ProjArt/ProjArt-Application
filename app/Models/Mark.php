@@ -10,20 +10,21 @@ class Mark extends Model
     use HasFactory;
 
     protected $fillable = [
+        'markmodule_id',
         'module_code',
         'course_code',
         'course_name',
         'value',
-        'year_start',
-        'year_end',
+        'years',
     ];
 
     protected $with = [
-        //'user',
+        'details',
     ];
 
     protected $hidden = [
         'user_id',
+        'markmodule_id',
         'created_at',
         'updated_at',
     ];
@@ -46,5 +47,10 @@ class Mark extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function details()
+    {
+        return $this->hasMany(Markdetail::class);
     }
 }

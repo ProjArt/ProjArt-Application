@@ -22,14 +22,29 @@
 
     {{-- ICONS --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
-    <link rel="stylesheet" href="{{mix('/css/app.css')}}">
+    <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
+
+    {{-- Fonts --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
     <div id="app"></div>
-    <script src="{{mix('js/app.js')}}"></script>
+    <script src="{{ mix('js/app.js') }}"></script>
 </body>
 
 </html>
+
+<style>
+    #app {
+        position: absolute;
+        width: 100vw;
+        left: 0px;
+    }
+</style>

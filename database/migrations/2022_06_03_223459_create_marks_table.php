@@ -19,9 +19,8 @@ return new class extends Migration
             $table->id();
             $table->string('course_code');
             $table->string('course_name');
-            $table->float('value');
-            $table->integer('year_start');
-            $table->integer('year_end');
+            $table->string('value');
+            $table->string('years');
             $table->foreignId('markmodule_id')->constrained('markmodules')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

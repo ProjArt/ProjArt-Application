@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Mark;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -14,15 +14,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('markmodules', function (Blueprint $table) {
+        Schema::create('markdetails', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('name');
-            $table->string('status');
-            $table->string('years');
-            $table->string('mark');
-            $table->string('credits');
-            $table->foreignIdFor(User::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignIdFor(Mark::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->string('title');
+            $table->string('weight');
+            $table->float('value');
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('markmodule');
+        Schema::dropIfExists('markdetails');
     }
 };

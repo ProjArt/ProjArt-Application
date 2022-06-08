@@ -15,13 +15,14 @@ import mail from "./MailRoute.vue";
 import sendMail from "./SendMailRoute.vue";
 
 const routes = [
-    { name: "home", path: "/", component: home, icon: "home", is_visible: [] },
+    { name: "home", path: "/", component: home, icon: "home", is_visible: [], order: 0, },
     {
         name: "calendar",
         path: "/calendar",
         component: calendar,
         icon: "calendar_month",
         is_visible: ["*"],
+        order: 0,
     },
     {
         name: "absences",
@@ -29,6 +30,7 @@ const routes = [
         component: absences,
         icon: "person_off",
         is_visible: ["student"],
+        order: 4,
     },
     {
         name: "marks",
@@ -36,6 +38,7 @@ const routes = [
         component: marks,
         icon: "format_list_bulleted",
         is_visible: ["student"],
+        order: 3,
     },
     {
         name: "menus",
@@ -43,6 +46,7 @@ const routes = [
         component: menus,
         icon: "restaurant_menu",
         is_visible: ["*"],
+        order: 2,
     },
     {
         name: "notFound",
@@ -85,6 +89,7 @@ const routes = [
         component: mails,
         icon: "mail",
         is_visible: ["*"],
+        order: 1,
     },
     {
         name: "mail",

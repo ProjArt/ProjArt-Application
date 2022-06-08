@@ -50,7 +50,7 @@ const submitHandler = async () => {
       <FormKit
         type="text"
         name="username"
-        placeholder="unsername"
+        placeholder="username"
         validation="required"
         label="UserName"
       />
@@ -69,7 +69,7 @@ const submitHandler = async () => {
       </h2>
       <p>{{ errorMessage }}</p>
     </div>
-    <a class="forgot-password" href="#">Forgot password ?</a>
+    <!--  <a class="forgot-password" href="#">Forgot password ?</a> -->
   </div>
 </template>
 <style scoped lang="scss">

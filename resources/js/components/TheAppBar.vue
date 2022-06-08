@@ -26,7 +26,8 @@ function openDrawer() {
   width: 100%;
   height: var(--app-bar-height);
   background-color: var(--app-bar-bg-color);
-  padding: var(--default-pading);
+  margin-left: var(--default-pading);
+  margin-right: var(--default-pading);
   z-index: 100;
 }
 

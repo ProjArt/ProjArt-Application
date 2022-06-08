@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Http;
 use Laravel\Sanctum\HasApiTokens;
 use voku\helper\HtmlDomParser;
 use \Staudenmeir\EloquentHasManyDeep\HasRelationships;
@@ -102,9 +103,9 @@ class User extends Authenticatable
 
     public function getActualHoraireLink()
     {
-        $url = "https://" . $this->username . ":" . urlencode($this->password) . "@gaps.heig-vd.ch/consultation/horaires/";
-        $content = file_get_contents($url);
-        $dom = HtmlDomParser::str_get_html($content);
+        $url = "https://gaps.heig-vd.ch/consultation/horaires/";
+        $response = Http::withBasicAuth($this->username, $this->password)->get($url);
+        $dom = HtmlDomParser::str_get_html($response->body());
         $links = $dom->findMulti("a");
         $found = "";
         foreach ($links as $link) {
@@ -131,7 +132,7 @@ class User extends Authenticatable
 
     public function calendars()
     {
-        return $this->belongsToMany(Calendar::class)->withPivot(['rights'])->orderBy('name');
+        return $this->belongsToMany(Calendar::class)->withPivot(['rights', 'color'])->orderBy('name');
     }
 
     public function classrooms()

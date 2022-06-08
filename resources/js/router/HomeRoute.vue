@@ -23,7 +23,7 @@ const isAuthenticated = ref(false);
 </script>
 <template>
   <the-login v-if="!isAuthenticated" />
-  <the-register v-if="!isAuthenticated" />
+  <!-- <the-register v-if="!isAuthenticated" /> -->
 </template>
 <style>
 </style>
