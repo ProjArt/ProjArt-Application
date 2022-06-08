@@ -11,6 +11,8 @@ class GapsUsersController extends Controller
 {
     /**
      * Get profs of my section
+     * 
+     * Récupère les profs de ma section
      *
      * @return \Illuminate\Http\Response
      */
@@ -38,6 +40,13 @@ class GapsUsersController extends Controller
         return httpSuccess('Liste des profs', $professors);
     }
 
+    /**
+     * 
+     * Get students of my section
+     * 
+     * Récupère les étudiants de ma section
+     * 
+     */
     public function getStudentsMyCourses(Request $request)
     {
         $courses = $request->user()->gaps_user->courses;
