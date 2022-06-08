@@ -10,6 +10,7 @@ use App\Http\Controllers\GapsAbsenceController;
 use App\Http\Controllers\GapsController;
 use App\Http\Controllers\GapsEventsController;
 use App\Http\Controllers\GapsMarksController;
+use App\Http\Controllers\GapsUsersController;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\MarkController;
 use App\Http\Controllers\MenuController;
@@ -94,6 +95,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get("/users", [UserController::class, 'index'])->name("api.users.index");
 
     Route::delete("/user", [UserController::class, 'destroy'])->name("api.users.destroy");
+
+    Route::get('/gapsUsers/profs', [GapsUsersController::class, 'getProfessorsMySection'])->name('api.gapsUsers.profs');
+    Route::get('/gapsUsers/students', [GapsUsersController::class, 'getStudentsMyCourses'])->name('api.gapsUsers.profs');
 });
 
 Route::get('/', function () {

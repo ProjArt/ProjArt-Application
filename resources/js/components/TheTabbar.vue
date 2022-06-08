@@ -27,16 +27,31 @@ function buildMenu() {
       route.is_visible.includes(user.value.role) ||
       route.is_visible.includes("*")
   );
+  menu.sort((a, b) => a.order - b.order);
+  menu.splice(3, 0, {
+    name: "spacer",
+    path: "",
+    label: "",
+    is_visible: [],
+    order: 3,
+  });
+  console.log(menu);
   return menu;
 }
 </script>
 <template>
   <div class="menu" v-if="isAuthenticated">
-    <div v-for="route in buildMenu()" :key="route" class="menu__item">
-      <router-link :to="route.path" class="menu__item-link">
-        <span class="menu-icon material-icons">{{ route.icon }}</span>
-        <span class="menu-title">{{ route.name }}</span>
-      </router-link>
+    <div
+      v-for="route in buildMenu()"
+      :key="route"
+      :class="route.order == 0 ? 'menu__main' : 'menu__item'"
+    >
+      <div v-if="route.path">
+        <router-link :to="route.path" class="menu__item-link">
+          <span class="menu__icon material-icons">{{ route.icon }}</span>
+        </router-link>
+      </div>
+      <div v-else class="menu__item-link"></div>
     </div>
   </div>
 </template> 
@@ -45,6 +60,7 @@ function buildMenu() {
 <style scoped lang="scss">
 .menu {
   background-color: var(--tab-bar-bg-color);
+  box-shadow: 0px -2px 14px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -69,10 +85,42 @@ function buildMenu() {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: var(--default-padding);
+  padding-top: var(--default-padding);
+  padding-bottom: var(--default-padding);
 }
 
-.menu__item-link.router-link-active {
+.menu__item-link .menu__icon {
+  color: var(--inactive-color);
+}
+
+.menu__item-link.router-link-active .menu__icon {
+  color: var(--tab-bar-active-color);
+}
+
+.menu__main .menu__item-link {
+  position: absolute;
+  left: 50%;
+  bottom: 20%;
+  width: 5.5vh;
+  height: 3.5vh;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  box-shadow: 1px -3px 10px rgb(0 0 0 / 20%);
+}
+
+.menu__main .menu__item-link {
+  background-color: var(--inactive-color);
+}
+
+.menu__main .menu__item-link.router-link-active {
   background-color: var(--tab-bar-active-color);
+}
+
+.menu__main .menu__item-link.router-link-active .menu__icon {
+  color: #fff;
+}
+
+.menu__main .menu__icon {
+  color: #fff;
 }
 </style>

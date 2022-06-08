@@ -23,6 +23,10 @@ class GapsUser extends Model
         'mail'
     ];
 
+    protected $append = [
+        'courses'
+    ];
+
     protected $hidden = [
         'created_at',
         'updated_at',

@@ -7,7 +7,8 @@ import menus from "./MenusRoute.vue";
 import notFound from "./404Route.vue";
 import settings from "./SettingsRoute.vue";
 import infos from "./InfosRoute.vue";
-import classRoom from "./StudentsAndTeachersListRoute.vue";
+import students from "./StudentsListRoute.vue";
+import teachers from "./TeachersListRoute.vue";
 import { user } from "../stores/auth";
 import register from "./RegisterRoute.vue";
 import mails from "./MailsRoute.vue";
@@ -15,13 +16,14 @@ import mail from "./MailRoute.vue";
 import sendMail from "./SendMailRoute.vue";
 
 const routes = [
-    { name: "home", path: "/", component: home, icon: "home", is_visible: [] },
+    { name: "home", path: "/", component: home, icon: "home", is_visible: [], order: 0, },
     {
         name: "calendar",
         path: "/calendar",
         component: calendar,
         icon: "calendar_month",
         is_visible: ["*"],
+        order: 0,
     },
     {
         name: "absences",
@@ -29,6 +31,7 @@ const routes = [
         component: absences,
         icon: "person_off",
         is_visible: ["student"],
+        order: 4,
     },
     {
         name: "marks",
@@ -36,6 +39,7 @@ const routes = [
         component: marks,
         icon: "format_list_bulleted",
         is_visible: ["student"],
+        order: 3,
     },
     {
         name: "menus",
@@ -43,6 +47,7 @@ const routes = [
         component: menus,
         icon: "restaurant_menu",
         is_visible: ["*"],
+        order: 2,
     },
     {
         name: "notFound",
@@ -57,6 +62,9 @@ const routes = [
         component: settings,
         icon: "home",
         is_visible: [],
+        is_secondary: true,
+        order: 1,
+        text: "Paramètres",
     },
     {
         name: "infos",
@@ -64,13 +72,23 @@ const routes = [
         component: infos,
         icon: "home",
         is_visible: [],
+        is_secondary: true,
+        order: 2,
+        text: "Informations",
     },
     {
-        name: "classList",
-        path: "/class-list",
-        component: classRoom,
+        name: "students",
+        path: "/students",
+        component: students,
         icon: "group",
-        is_visible: ["teacher"],
+        is_visible: [],
+    },
+    {
+        name: "teachers",
+        path: "/teachers",
+        component: teachers,
+        icon: "group",
+        is_visible: [],
     },
     {
         name: "register",
@@ -85,6 +103,7 @@ const routes = [
         component: mails,
         icon: "mail",
         is_visible: ["*"],
+        order: 1,
     },
     {
         name: "mail",

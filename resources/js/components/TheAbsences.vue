@@ -25,7 +25,7 @@ const absences = ref([]);
 
 <template>
   <div class="page__title">Absences</div>
-  <div class="page__subtitle">
+  <div class="page__subtitle" v-if="absences.length != 0">
     <div class="page__subtitle--main">Matières</div>
     <div class="page__subtitle--secondary">Taux</div>
   </div>
@@ -40,6 +40,8 @@ const absences = ref([]);
       <div class="absence__absolute_rate">{{ absence.absolute_rate }}%</div>
     </div>
   </div>
+
+  <div class="" v-if="absences.length == 0">Tu n'as pas d'absences</div>
 </template>
 
 <style scoped>
