@@ -30,6 +30,7 @@ export async function sendNotification({ title, message, to }) {
 }
 
 export async function registerToChannelNotification(channel) {
+    return;
     if (!process.env.MIX_ENABLED_NOTIFICATION) {
         return;
     } // desactivated for testing purpose
