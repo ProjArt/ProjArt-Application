@@ -27,12 +27,16 @@ function buildMenu() {
       route.is_visible.includes(user.value.role) ||
       route.is_visible.includes("*")
   );
-  return menu;
+  return menu.sort((a, b) => a.order - b.order);
 }
 </script>
 <template>
   <div class="menu" v-if="isAuthenticated">
-    <div v-for="route in buildMenu()" :key="route" class="menu__item">
+    <div
+      v-for="route in buildMenu()"
+      :key="route"
+      :class="route.order == 0 ? 'menu__main' : 'menu__item'"
+    >
       <router-link :to="route.path" class="menu__item-link">
         <span class="menu-icon material-icons">{{ route.icon }}</span>
         <span class="menu-title">{{ route.name }}</span>
@@ -74,5 +78,15 @@ function buildMenu() {
 
 .menu__item-link.router-link-active {
   background-color: var(--tab-bar-active-color);
+}
+
+.menu__main {
+  position: absolute;
+  left: 50%;
+  bottom: 30%;
+  width: 10vh;
+  height: 10vh;
+  transform: translateX(-50%);
+  border-radius: 50%;
 }
 </style>
