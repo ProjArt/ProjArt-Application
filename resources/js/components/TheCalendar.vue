@@ -830,11 +830,21 @@ function showEventEditForm(startDate, id) {
       selectedDate === index ? 'is-selected-day' : '',
       day?.class" :key="index" :date-id="day?.local">
 
-        <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">{{
-            day?.dayOfMonthNumber
-        }}</p>
-        <div class="calendar__dotes">
-          <div v-show="eventId < 5" v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__dot">
+        <div class="calendar__day-header">
+          <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">{{
+              day?.dayOfMonthNumber
+          }} {{ DAY_LABELS_SHORT[day.dayOfWeekNumber] }}</p>
+          <div class="calendar__dotes">
+            <div v-show="eventId < 5" v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__dot">
+            </div>
+          </div>
+
+        </div>
+        <div class="calendar__events">
+          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event">
+            <p class="event__title">{{ event.title }}</p>
+            <p class="event__time">{{ useDate.toEventTime(event.start, event.end) }}</p>
+            <p class="event__location">{{ event.location }}</p>
           </div>
         </div>
       </div>
@@ -1040,6 +1050,20 @@ $heig-planning-color: var(--information-color);
   color: black;
 }
 
+.calendar__dotes {
+  display: grid;
+  margin: 0 auto;
+  grid-auto-flow: column;
+  grid-gap: $dot-size;
+}
+
+.calendar__dot {
+  background-color: red;
+  width: $dot-size;
+  height: $dot-size;
+  border-radius: 50%;
+}
+
 //*2# Calendar days MONTH
 // ==========================================================================
 
@@ -1048,19 +1072,6 @@ $heig-planning-color: var(--information-color);
   grid-template-columns: repeat(7, 1fr);
   grid-gap: $calendar-gap;
 
-  .calendar__dotes {
-    display: grid;
-    margin: 0 auto;
-    grid-auto-flow: column;
-    grid-gap: $dot-size;
-  }
-
-  .calendar__dot {
-    background-color: red;
-    width: $dot-size;
-    height: $dot-size;
-    border-radius: 50%;
-  }
 
   .calendar__day-number {
     margin: 0;
@@ -1088,8 +1099,43 @@ $heig-planning-color: var(--information-color);
 
 .calendar__days--week {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: $calendar-gap;
+  grid-template-columns: 1fr;
+  grid-gap: 0;
+
+  .calendar__day {
+    display: grid;
+    grid-template-columns: 1fr 6fr;
+    grid-auto-flow: column;
+    grid-gap: $calendar-gap;
+    padding: 1rem;
+    border: none;
+    border-bottom: $border-width solid var(--primary-color);
+  }
+
+  .calendar__events {
+    display: flex;
+    grid-column: 2/3;
+  }
+
+  .calendar__day-header {
+    grid-column: 1 /2;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .calendar__dotes {
+    margin: 0 auto 0 0;
+  }
+
+  .calendar__event {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 100px;
+    background: var(--information-color);
+    border-radius: $border-radius;
+    margin: 0 $calendar-gap;
+  }
 }
 
 //*2# Calendar days LIST
@@ -1272,12 +1318,8 @@ $heig-planning-color: var(--information-color);
   }
 }
 
-
-
 //*2# Calendar day
 // ==========================================================================
-
-
 
 .calendar__day-date {
   font-size: 0.8rem;
@@ -1285,7 +1327,6 @@ $heig-planning-color: var(--information-color);
   padding: 0.5rem;
   opacity: 0.5;
 }
-
 
 //*2# Events
 // ==========================================================================
