@@ -1,5 +1,8 @@
+import router from "../router/routes";
+
+
 const useLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = window.location.origin + "/register";
+    router.push("/");
 };
 export default useLogout;
