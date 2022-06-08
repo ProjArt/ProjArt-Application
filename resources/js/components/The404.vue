@@ -1,5 +1,5 @@
 <script setup>
-console.log("notFound");
+//console.log("notFound");
 </script>
 
 <template>
@@ -31,7 +31,7 @@ console.log("notFound");
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;800&display=swap");
 
 
-@media (max-width:600px){
+
 main {
     width: 100vw;
 }
@@ -42,6 +42,7 @@ main {
     height: 100vh;
     width: 100vw;
 }
+
 
 .title-wrapper{
     position:absolute;
@@ -147,5 +148,5 @@ main {
     text-decoration: none;
     color: white;
 }
-}
+
 </style>

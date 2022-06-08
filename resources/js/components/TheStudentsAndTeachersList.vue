@@ -47,6 +47,61 @@ await getList();
 await getClassRoom();
 console.log("dataAfterScrap", data.value);
 console.log("class", classroom.value)
+
+
+function hardCodeStudentsList (){
+    data.value.studentsList.shift();
+    const simulatedUser =  {
+        "id": 1,
+        "username": "timothee.dione",
+        "gaps_id": 17449,
+        "role": "student",
+        "card_money": 10,
+        "gaps_user": {
+		"username": "timothee.dione",
+		"gaps_id": 17486,
+		"firstname": "Timothée",
+		"name": "Dione",
+		"mail": "timothee.dione@heig-vd.ch",
+		"is_teacher": 0
+	  },
+        "pivot": {
+            "classroom_name": "M49-1",
+            "user_id": 1
+        },
+        "theme": {
+            "id": 1,
+            "primary": {
+                "value": "49,65,120"
+            },
+            "secondary": {
+                "value": "231,33,40"
+            },
+            "accent": {
+                "value": "249,59,88"
+            },
+            "inactive": {
+                "value": "146,145,148"
+            },
+            "text": {
+                "value": "58,60,61"
+            },
+            "background": {
+                "value": "255,255,255"
+            },
+            "information": {
+                "value": "240,240,240"
+            }
+        }
+    }
+
+    for (let i = 0; i< 20; i++){
+        data.value.studentsList.push(simulatedUser)
+    }
+    console.log('newList', data.value.studentsList)
+}
+
+hardCodeStudentsList();
 </script>
 
 <template>
@@ -55,14 +110,35 @@ console.log("class", classroom.value)
         <ul class="studentsList">
         <h3> Etudiants </h3>
               <li v-for="student in data.studentsList">
-                <span>Nom d'utilisateur: {{ student.username }}</span>
+                <div class="nom-utilisateur">
+                <span>{{ student.gaps_user.firstname }} {{ student.gaps_user.name }}</span>
+                </div>
+                <div class="mail-et-classe">
+                <span>{{ student.gaps_user.mail }} </span><br/>
+                </div>
              </li>
         </ul>
          <ul class="teachersList">
                 <h3>Enseignants </h3>
               <li v-for="teacher in data.teachersList">
-                <span>Nom d'utilisateur: {{ teacher.username }}</span>
+                <div class="nom-utilisateur">
+                <span>{{ teacher.gaps_user.firstname }} {{ teacher.gaps_user.name }}</span>
+                </div>
+                <div class="mail-et-classe">
+                <span>{{ teacher.gaps_user.mail }} </span><br/>
+                </div>
              </li>
         </ul>
     </div>
 </template>
+
+
+<style scoped>
+.studentsAndTeachers {
+    list-style-type: none;
+}
+
+
+
+
+</style>
