@@ -4,6 +4,8 @@ import TheAppBar from ".//TheAppBar.vue";
 import TheTabbar from "./TheTabbar.vue";
 import TheNotification from "./TheNotification.vue";
 import TheDrawer from "./TheDrawer.vue";
+import { user } from "../stores/auth";
+
 const drawer = ref();
 
 function openDrawer() {
@@ -31,7 +33,7 @@ function openDrawer() {
   <div class="spacer-bottom">&nbsp;</div>
   <the-tabbar />
 
-  <the-drawer ref="drawer" />
+  <the-drawer ref="drawer" v-if="user" />
 </template>
 
 <style lang="scss" scoped>
