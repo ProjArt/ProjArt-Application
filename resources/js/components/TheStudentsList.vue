@@ -6,7 +6,9 @@ import { ref, computed, watchEffect } from "vue";
 
 const data = ref({
     studentsList: [],
-    currentCourse: "WebMobUI"
+    current_course: "WebMobUI",
+    available_courses: [],
+    complete_list: NaN
 });
 
 async function getList() {
@@ -29,6 +31,23 @@ async function getClassRoom() {
     data.value.classroom = classRoomName;
 }
 
+async function getCoursesList(){
+    const response = await useFetch({
+    url: API.getStudentsOfMyCourses.path(),
+    method: API.getStudentsOfMyCourses.method,
+    });
+
+    const courses = response.data;
+    //Récupération du nom de chaque cours
+    courses.forEach(course => {
+        data.value.available_courses.push(course.code)
+    });
+
+    data.value.complete_list = courses;
+
+    console.log("nomCours", data.value.available_courses);
+}
+
 const studentsList = computed({
     get: () => data.value.studentsList
 });
@@ -41,13 +60,14 @@ const classroom = computed({
     get: () => data.value.classroom,
 });
 
-const currentCourse = computed ({
-    get: () => data.value.currentCourse
+const available_courses = computed ({
+    get: () => data.value.available_courses
 })
 
 console.log('dataBeforeScrap', data.value)
 await getList();
 await getClassRoom();
+await getCoursesList();
 console.log("dataAfterScrap", data.value);
 console.log("class", classroom.value)
 
@@ -101,7 +121,13 @@ function hardCodeStudentsList (){
     for (let i = 0; i< 20; i++){
         data.value.studentsList.push(simulatedUser)
     }
-    console.log('newList', data.value.studentsList)
+    console.log('newListHardCodee', data.value.studentsList)
+}
+
+function updateStudentsList(){
+    console.log("ancient", data.value.studentsList)
+    data.value.studentsList = data.value.complete_list.filter(list => list.code == data.value.current_course)
+    console.log("newList", data.value.studentsList)
 }
 
 hardCodeStudentsList();
@@ -110,8 +136,19 @@ hardCodeStudentsList();
 <template>
     <div class="students">
         <h1>Liste des étudiants</h1>
-        <h2> {{ currentCourse }} </h2>
-        <ul class="studentsList">
+        <h2> {{ data.current_course }} </h2>
+        <div class="course-selection">
+        <form class="course-selection-form" @change="updateStudentsList()">
+            <select class="course-select">
+                <option value="Filtrer par cours">Filtrer par cours </option>
+                <option v-for="course in available_courses"
+                 v-bind:value="course"
+                 ref="data.value.current_course"
+                 >{{ course }}</option>
+            </select>
+        </form>
+        </div>
+        <ul class="class-students-list">
         <h3> Etudiants </h3>
               <li v-for="student in data.studentsList">
                 <div class="nom-utilisateur">

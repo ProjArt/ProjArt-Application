@@ -162,8 +162,7 @@ main {
     align-items: center;
     justify-content: center;
     background-color: var(--accent-color);
-    width: 40%;
-    height: 6.8%;
+    padding: 1em 1em 1em 1em;
     border-radius: 1em;
     color: var(--background-color);
     text-decoration: none;
