@@ -47,14 +47,18 @@ export async function registerToChannelNotification(channel) {
          return;
      } */
 
-    console.log("register to channel pass all tests for safari");
+    try {
+        console.log("register to channel pass all tests for safari");
 
-    await Notification.requestPermission(async function(permission) {
-        if (permission === "granted") {
-            await beamsClient.start();
-            await beamsClient.addDeviceInterest(channel);
-            const deviceInterests = await beamsClient.getDeviceInterests();
-            console.log("Device registered to channels: " + deviceInterests);
-        }
-    });
+        await Notification.requestPermission(async function(permission) {
+            if (permission === "granted") {
+                await beamsClient.start();
+                await beamsClient.addDeviceInterest(channel);
+                const deviceInterests = await beamsClient.getDeviceInterests();
+                console.log("Device registered to channels: " + deviceInterests);
+            }
+        });
+    } catch (e) {
+        console.log("error", e);
+    }
 }
