@@ -86,8 +86,8 @@ function buildMenu() {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding-top: var(--default-padding);
-  padding-bottom: var(--default-padding);
+  padding-top: var(--spacer-sm);
+  padding-bottom: var(--spacer-sm);
 }
 
 .menu__item-link .menu__icon {
@@ -101,9 +101,9 @@ function buildMenu() {
 .menu__main .menu__item-link {
   position: absolute;
   left: 50%;
-  bottom: 20%;
-  width: 4.5rem;
-  height: 3.5rem;
+  bottom: 2rem;
+  width: 6rem;
+  height: 2rem;
   transform: translateX(-50%);
   border-radius: 50%;
   box-shadow: 1px -3px 10px rgb(0 0 0 / 20%);
