@@ -47,7 +47,9 @@ async function registerUserThemeInDb(themeId) {
 
 <template>
   <div class="themeSelection">
-    <h2>Sélectionner un thème</h2>
+    <div class="page__subtitle">
+      <div class="page__subtitle--main">Selectionner un thème</div>
+    </div>
     <form class="themeSlectionForm" @change="updateUserTheme()">
       <!-- Cette procédure fait en sorte que seul le tème correspondant à celui sélectionné est checké par défaut.
         Elle permet de contourner le problème lié au fait que le backend ne retourne pas le nom du thème concerné mais des
@@ -94,10 +96,12 @@ async function registerUserThemeInDb(themeId) {
   </div>
 </template>
 
-<style>
+<style scoped lang="scss">
+@import "../../sass/components/_page.scss";
 .themeSlectionForm {
-  background-color: var(--primary-color);
-  color: var(--secondary-color);
-  border-color: var(--secondary-color);
+}
+
+.themeSelection h2 {
+  @extend .page__subtitle--main;
 }
 </style>

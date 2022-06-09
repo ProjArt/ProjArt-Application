@@ -30,12 +30,16 @@ function openDrawer() {
   width: 100vw;
   height: var(--app-bar-height);
   background-color: var(--app-bar-bg-color);
-  margin-left: var(--default-pading);
-  margin-right: var(--default-pading);
   z-index: 100;
 }
 
 .icon {
   width: 50px;
+}
+
+.app-bar .material-icons {
+  margin-left: var(--default-padding);
+  margin-right: var(--default-padding);
+  color: var(--accent-color);
 }
 </style>

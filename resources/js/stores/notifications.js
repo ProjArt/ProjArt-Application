@@ -2,10 +2,10 @@ import { ref, computed } from "vue";
 import { API } from "./api";
 import useFetch from "../composables/useFetch";
 
-const beamsClient = new PusherPushNotifications.Client({
+/* const beamsClient = new PusherPushNotifications.Client({
     instanceId: process.env.MIX_PUSHER_APP_ID,
 });
-
+ */
 const _notifications = ref([]);
 
 export const notification = computed({

@@ -178,6 +178,28 @@ class GapsMarksService
                             $marks[$course_code]['details'][] = $course_details;
                         }
                     } */
+
+                    // pourcentage 
+
+                    $response = Http::withBasicAuth($user->username, $user->password)
+                        ->asForm()
+                        ->post("https://gaps.heig-vd.ch/consultation/etudiant", [
+                            "rs" => "smartReplacePart",
+                            "rsargs" => '["STUDENT_SELECT_ID","studentDataDiv","2830971874312375411",null,null,' . $user->gaps_id . ',null]'
+                        ]);
+
+                    $res = str_replace('\u00a3', '', $response->body());
+                    $res = str_replace('\n', '', $res);
+                    $res = str_replace('\r', '', $res);
+                    $res = str_replace('\t', '', $res);
+                    $res = str_replace('\"', '"', $res);
+                    $res = str_replace('@@', '', $res);
+                    $res = str_replace('+:"', '', $res);
+                    $res = str_replace('&nbsp', '', $res);
+                    $res = str_replace('\\', '', $res);
+                    $res = str_replace('u00e9', 'é', $res);
+
+                    $res = substr_replace($res, "", -1);
                 }
             } catch (\Throwable $th) {
                 // echo $th->getMessage();
