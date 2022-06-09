@@ -1,4 +1,5 @@
 <script setup>
+import { is404 } from "../stores/route";
 //console.log("notFound");
 
 //Remove top and bottom menus
@@ -26,8 +27,9 @@ function removeTopWhiteSpace(){
     body.setAttribute("style", "margin: 0 0 0 0")
 }
 
-removeMenus()
-removeTopWhiteSpace()
+console.log("is404", is404)
+// removeMenus()
+// removeTopWhiteSpace()
 </script>
 
 <template>

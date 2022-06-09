@@ -6,7 +6,12 @@ import TheNotification from "./TheNotification.vue";
 import TheDrawer from "./TheDrawer.vue";
 import { user } from "../stores/auth";
 import { isHome } from "../stores/route";
+import { is404 } from "../stores/route";
 import router from "../router/routes";
+
+console.log("is404App", is404)
+
+
 
 const drawer = ref();
 const getLocation = (() => {
@@ -23,8 +28,8 @@ const route = computed(() => router.currentRoute.value.name);
 
 
 <template>
-  <the-app-bar @open-drawer="openDrawer" v-if="!isHome" />
-  <div class="spacer-top" v-if="!isHome">&nbsp;</div>
+  <the-app-bar @open-drawer="openDrawer" v-if="!isHome && !is404" />
+  <div class="spacer-top" v-if="!isHome && !is404">&nbsp;</div>
   <the-notification></the-notification>
   <router-view v-slot="{ Component }">
     <main :class="'main--' + getLocation()">
@@ -36,11 +41,12 @@ const route = computed(() => router.currentRoute.value.name);
           <component :is="Component" />
         </keep-alive>
       </template>
-    </main>
-  </router-view>
+    </router-view>
+  </main>
+  <div class="spacer-bottom" v-if="!isHome && !is404">&nbsp;</div>
   <the-tabbar />
 
-  <the-drawer ref="drawer" v-if="!isHome" />
+  <the-drawer ref="drawer" v-if="!isHome && !is404"/>
 </template>
 
 <style lang="scss" >
