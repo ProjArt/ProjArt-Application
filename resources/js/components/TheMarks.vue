@@ -146,6 +146,6 @@ function changeDate(event) {
 .mark__detail_value {
   display: flex;
   align-items: flex-end;
-  justify-content: end;
+  justify-content: flex-end;
 }
 </style>

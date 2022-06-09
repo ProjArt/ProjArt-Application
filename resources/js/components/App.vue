@@ -6,12 +6,15 @@ import TheNotification from "./TheNotification.vue";
 import TheDrawer from "./TheDrawer.vue";
 import { user } from "../stores/auth";
 import { isHome } from "../stores/route";
+import router from "../router/routes";
 
 const drawer = ref();
 
 function openDrawer() {
   drawer.value.toggle();
 }
+
+const route = computed(() => router.currentRoute.value.name);
 </script>
 
 
@@ -20,8 +23,8 @@ function openDrawer() {
   <div class="spacer-top" v-if="!isHome">&nbsp;</div>
   <the-notification></the-notification>
   <main>
-    <router-view v-slot="{ Component, name }">
-      <template v-if="['mail', 'home'].includes(name)">
+    <router-view v-slot="{ Component }">
+      <template v-if="['mail', ''].includes(route)">
         <component :is="Component" />
       </template>
       <template v-else>
