@@ -1,4 +1,5 @@
 <script setup>
+import { user } from "../stores/auth";
 const emits = defineEmits(["open-drawer"]);
 
 function openDrawer() {
@@ -15,6 +16,9 @@ function openDrawer() {
 </template>
 
 <style scoped>
+.icon-transparent {
+  color: transparent;
+}
 .app-bar {
   display: flex;
   position: fixed;
@@ -23,15 +27,19 @@ function openDrawer() {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 100vw;
   height: var(--app-bar-height);
   background-color: var(--app-bar-bg-color);
-  margin-left: var(--default-pading);
-  margin-right: var(--default-pading);
   z-index: 100;
 }
 
 .icon {
   width: 50px;
+}
+
+.app-bar .material-icons {
+  margin-left: var(--default-padding);
+  margin-right: var(--default-padding);
+  color: var(--accent-color);
 }
 </style>

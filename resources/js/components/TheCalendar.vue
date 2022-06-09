@@ -20,7 +20,20 @@ useSwipe({
 const TODAY = new Date();
 const DAY_LABELS = ["L", "M", "M", "J", "V", "S", "D"];
 const DAY_LABELS_SHORT = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
-const MONTH_LABELS = ["JANVIER", "FEVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOUT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DECEMBRE",];
+const MONTH_LABELS = [
+  "JANVIER",
+  "FEVRIER",
+  "MARS",
+  "AVRIL",
+  "MAI",
+  "JUIN",
+  "JUILLET",
+  "AOUT",
+  "SEPTEMBRE",
+  "OCTOBRE",
+  "NOVEMBRE",
+  "DECEMBRE",
+];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
 const AVAILABLE_POPUP = {
@@ -53,12 +66,12 @@ const currDateCursor = ref(TODAY);
 const dayLabels = DAY_LABELS.slice();
 const events = ref([]);
 const calendarIdWhereToAddTheNewEvent = ref(2);
-const currentPopup = ref(null)
-const users = ref([])
-const userSearch = ref("")
-const searchedUser = ref([])
-const usersForm = ref({})
-const newEventStart = ref("08:00")
+const currentPopup = ref(null);
+const users = ref([]);
+const userSearch = ref("");
+const searchedUser = ref([]);
+const usersForm = ref({});
+const newEventStart = ref("08:00");
 
 // Computed
 // ======================================
@@ -154,11 +167,11 @@ const selectedCalendarsIdStorage = computed({
 });
 
 const getCurrentDateForForm = computed(() => {
-  const dateParts = TODAY.toLocaleDateString().split('/')
-  const date = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`
-  return date.replace(/\//g, '-')
-})
-console.log(getCurrentDateForForm.value)
+  const dateParts = TODAY.toLocaleDateString().split("/");
+  const date = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
+  return date.replace(/\//g, "-");
+});
+console.log(getCurrentDateForForm.value);
 
 // Helpers
 // ======================================
@@ -367,6 +380,7 @@ async function getCalendars() {
     method: API.getEvents.method,
   });
   if (response.success === true) {
+    console.log("calendars", response.data);
     return response.data;
   } else {
     console.log(response, "error");
@@ -401,7 +415,9 @@ async function deleteCalendar(calendarId) {
   });
   if (response.success === true) {
     try {
-      const calendars = allCalendars.value.filter((calendar) => calendar.id !== calendarId);
+      const calendars = allCalendars.value.filter(
+        (calendar) => calendar.id !== calendarId
+      );
       const newIds = calendars.map((calendar) => calendar.id);
       selectedCalendarsIdStorage.value = newIds;
       currentsCalendarIds.value = newIds;
@@ -458,19 +474,18 @@ async function setAllUsers() {
     return classroom.users.map((user) => {
       return user;
     });
-  })
+  });
   users.value = [...allUsers].flat();
 }
 
 async function shareCalendar(form) {
-  console.log(form)
+  console.log(form);
   const response = await useFetch({
     url: API.shareCalendar.path(form.calendar_id),
     method: API.shareCalendar.method,
     data: { form },
   });
   if (response.success === true) {
-
   } else {
     console.log(response, "error: sharing calendar");
   }
@@ -677,7 +692,7 @@ function showEventEditForm(startDate, id) {
   currentLayout.value = layoutStorage.value || AVAILABLE_LAYOUT.MONTH;
   const calendars = await getCalendars();
   await setCalendars(calendars);
-  await setAllUsers()
+  await setAllUsers();
   setEvents(getEvents());
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
     dates.value = useDate.getAllDaysInMonthAndBeginning(
@@ -725,16 +740,20 @@ function showEventEditForm(startDate, id) {
   });
 
   watch(userSearch, () => {
-    const resultOfsearch = []
-    if (userSearch.value != '') {
+    const resultOfsearch = [];
+    if (userSearch.value != "") {
       users.value.forEach((user) => {
-        if (user.username.toLowerCase().includes(toRaw(userSearch.value.toLowerCase()))) {
-          resultOfsearch.push(user.username)
-        };
-      })
+        if (
+          user.username
+            .toLowerCase()
+            .includes(toRaw(userSearch.value.toLowerCase()))
+        ) {
+          resultOfsearch.push(user.username);
+        }
+      });
     }
     searchedUser.value = resultOfsearch;
-  })
+  });
 })();
 </script>
 <template>
@@ -743,7 +762,8 @@ function showEventEditForm(startDate, id) {
     <div v-if="currentLayout === AVAILABLE_LAYOUT.MONTH">
       <h3 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
-        <span>{{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}</span>
+        <span>{{ displayedDateManager.day1 }}
+          {{ displayedDateManager.month1 }}</span>
       </h3>
     </div>
 
@@ -764,7 +784,8 @@ function showEventEditForm(startDate, id) {
     <div v-if="currentLayout === AVAILABLE_LAYOUT.DAY">
       <h3 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
-        <span>{{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}</span>
+        <span>{{ displayedDateManager.day1 }}
+          {{ displayedDateManager.month1 }}</span>
       </h3>
     </div>
 
@@ -807,19 +828,21 @@ function showEventEditForm(startDate, id) {
       <p>Aucun événements <br /> pour cette période</p>
     </div>
     <!--====  Calendar days MONTH  ====-->
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.MONTH" class="calendar__days"
-      :class="'calendar__days--' + getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()">
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.MONTH" class="calendar__days" :class="
+      'calendar__days--' +
+      getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
+    ">
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
-    selectedDate === index ? 'is-selected-day' : '',
-    day?.class,
-    currentLayout === AVAILABLE_LAYOUT.MONTH &&
-      MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
-      ? 'is-other-month'
-      : ''" :key="index" :date-id="day?.local">
-
-        <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">{{
-            day?.dayOfMonthNumber
-        }}</p>
+        (selectedDate === index ? 'is-selected-day' : '',
+          day?.class,
+          currentLayout === AVAILABLE_LAYOUT.MONTH &&
+            MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
+            ? 'is-other-month'
+            : '')
+      " :key="index" :date-id="day?.local">
+        <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">
+          {{ day?.dayOfMonthNumber }}
+        </p>
         <div class="calendar__dotes">
           <div v-show="eventId < 5" v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__dot">
           </div>
@@ -827,46 +850,56 @@ function showEventEditForm(startDate, id) {
       </div>
     </div>
     <!--====  Calendar days WEEK  ====-->
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.WEEK" class="calendar__days"
-      :class="'calendar__days--' + getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()">
-      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
-      selectedDate === index ? 'is-selected-day' : '',
-      day?.class" :key="index" :date-id="day?.local">
-
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.WEEK" class="calendar__days" :class="
+      'calendar__days--' +
+      getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
+    ">
+      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)"
+        :class="(selectedDate === index ? 'is-selected-day' : '', day?.class)" :key="index" :date-id="day?.local">
         <div class="calendar__day-header">
           <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">
-            <span class="calendar__day-of-month">{{ day?.dayOfMonthNumber }}</span>
-            <span class="calendar__day-of-week">{{ DAY_LABELS_SHORT[day.dayOfWeekNumber] }}</span>
+            <span class="calendar__day-of-month">{{
+                day?.dayOfMonthNumber
+            }}</span>
+            <span class="calendar__day-of-week">{{
+                DAY_LABELS_SHORT[day.dayOfWeekNumber]
+            }}</span>
           </p>
           <div class="calendar__dotes">
             <div v-show="eventId < 5" v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__dot">
             </div>
           </div>
-
         </div>
         <div class="calendar__events">
           <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event">
             <p class="event__title">{{ event.title }}</p>
-            <p class="event__time">{{ useDate.toEventTime(event.start, event.end) }}</p>
+            <p class="event__time">
+              {{ useDate.toEventTime(event.start, event.end) }}
+            </p>
             <p class="event__location">{{ event.location }}</p>
           </div>
         </div>
       </div>
     </div>
     <!--====  Calendar days LIST  ====-->
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.LIST" class="calendar__days"
-      :class="'calendar__days--' + getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()">
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.LIST" class="calendar__days" :class="
+      'calendar__days--' +
+      getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
+    ">
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
-    selectedDate === index ? 'is-selected-day' : '',
-    day?.class,
-    currentLayout === AVAILABLE_LAYOUT.LIST &&
-      !events.hasOwnProperty(day?.local)
-      ? 'is-display-none'
-      : ''" :key="index" :date-id="day?.local">
-
+        (selectedDate === index ? 'is-selected-day' : '',
+          day?.class,
+          currentLayout === AVAILABLE_LAYOUT.LIST &&
+            !events.hasOwnProperty(day?.local)
+            ? 'is-display-none'
+            : '')
+      " :key="index" :date-id="day?.local">
         <article class="calendar__events">
-          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event"
-            :data-date="day?.dayOfMonthNumber + ' ' + DAY_LABELS_SHORT[day?.dayOfWeekNumber]">
+          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event" :data-date="
+            day?.dayOfMonthNumber +
+            ' ' +
+            DAY_LABELS_SHORT[day?.dayOfWeekNumber]
+          ">
             <p>{{ event.title }}</p>
             <p>{{ event.start }}</p>
           </div>
@@ -874,29 +907,35 @@ function showEventEditForm(startDate, id) {
       </div>
     </div>
     <!--====  Calendar days DAY  ====-->
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.DAY" class="calendar__days"
-      :class="'calendar__days--' + getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()">
-      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
-      selectedDate === index ? 'is-selected-day' : '',
-      day?.class" :key="index" :date-id="day?.local">
-
+    <div v-if="currentLayout === AVAILABLE_LAYOUT.DAY" class="calendar__days" :class="
+      'calendar__days--' +
+      getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
+    ">
+      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)"
+        :class="(selectedDate === index ? 'is-selected-day' : '', day?.class)" :key="index" :date-id="day?.local">
         <article class="calendar__events">
           <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event"
             :data-time="useDate.toEventTime(event?.start)" :class="event.calendar_id == 1 ? 'is-heig-calendar' : ''">
             <p class="event__header">
               <span class="event__title">{{ event.title }}</span>
               <span class="event__location">{{ event.location }}</span>
-              <span v-if="event.calendar_id == 1" class="event__time">{{ useDate.toEventTime(event.start, event.end)
+              <span v-if="event.calendar_id == 1" class="event__time">{{
+                  useDate.toEventTime(event.start, event.end)
               }}</span>
-              <span v-if="event.calendar_id !== 1" class="event__time">{{ useDate.toEventTime(event.start) }}</span>
+              <span v-if="event.calendar_id !== 1" class="event__time">{{
+                  useDate.toEventTime(event.start)
+              }}</span>
             </p>
-            <p v-show="event.calendar_id !== 1" class="event__description">{{ event.description }}</p>
-            <p v-show="event.calendar_id !== 1" class="event__calendar">{{ calendarsNames[event.calendar_id] }}</p>
+            <p v-show="event.calendar_id !== 1" class="event__description">
+              {{ event.description }}
+            </p>
+            <p v-show="event.calendar_id !== 1" class="event__calendar">
+              {{ calendarsNames[event.calendar_id] }}
+            </p>
           </div>
         </article>
       </div>
     </div>
-
   </div>
   <!--====  Popup new event  ====-->
   <div class="popup popup--new-event" v-show="currentPopup === AVAILABLE_POPUP.STORE_EVENT">
@@ -1032,7 +1071,7 @@ $footer-height: 50px;
 }
 
 @mixin day-number-month-layout {
-  font-family: 'Poppins';
+  font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
   font-size: 1.8rem;
@@ -1245,7 +1284,7 @@ $footer-height: 50px;
     display: flex;
     align-items: center;
     text-align: center;
-    color: var(--text-color)
+    color: var(--text-color);
   }
 
   .calendar__event:first-child::after {
@@ -1324,7 +1363,7 @@ $footer-height: 50px;
     display: flex;
     align-items: center;
     text-align: center;
-    color: var(--text-color)
+    color: var(--text-color);
   }
 
   .calendar__event::after {
@@ -1391,7 +1430,6 @@ $footer-height: 50px;
   width: 100%;
   text-align: center;
 }
-
 
 .event__infos {
   display: flex;

@@ -51,6 +51,7 @@ const absences = ref([]);
   justify-content: space-between;
   align-items: center;
   padding: var(--default-padding);
+  margin: var(--default-padding);
   background-color: var(--information-color);
   border-radius: var(--border-radius-md);
 }
@@ -60,5 +61,13 @@ const absences = ref([]);
   background-color: var(--primary-color);
   padding: var(--default-padding);
   border-radius: var(--border-radius-md);
+}
+
+.absence__item {
+  font-size: 1.2rem;
+}
+.absence__absolute_rate {
+  font-size: 2rem;
+  padding: var(--spacer-xsm);
 }
 </style>

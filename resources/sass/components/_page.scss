@@ -1,17 +1,20 @@
 .page__title {
-    font-size: 1.5rem;
+    font-size: 2.6rem;
     font-weight: 800;
     margin-bottom: 1rem;
+    line-height: 2.6rem;
+    margin-left: var(--default-padding);
 }
 
 .page__subtitle {
-    width: 100%;
-    padding-left: var(--default-padding);
-    padding-right: var(--default-padding);
+    margin-left: var(--default-padding);
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
     justify-content: space-between;
+    font-size: 2rem;
+    font-weight: 600;
+    line-height: 3rem;
 }
 
 .border-bottom {
@@ -20,11 +23,13 @@
 
 .page__subtitle--main {
     width: 100%;
-    margin-right: 5vw;
+    margin-right: var(--default-padding);
     @extend .border-bottom;
 }
 
 .page__subtitle--secondary {
     width: 25vw;
+    margin-left: var(--default-padding);
+    margin-right: var(--default-padding);
     @extend .border-bottom
 }

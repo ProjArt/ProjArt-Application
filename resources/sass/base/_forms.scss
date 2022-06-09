@@ -1,0 +1,23 @@
+.login .formkit-form {
+    .formkit-input {
+        all: unset;
+        border-radius: var(--border-radius-md);
+        background-color: #182047;
+        padding: var(--default-padding);
+        margin-bottom: 2rem;
+        color: #5E6C9D;
+        width: 70vw;
+        margin-top: 1rem;
+    }
+    .formkit-label {
+        color: #fff;
+    }
+    .formkit-outer {
+        margin-top: 4rem;
+    }
+    button.formkit-input {
+        background-color: var(--secondary-color);
+        color: #fff;
+        text-align: center;
+    }
+}

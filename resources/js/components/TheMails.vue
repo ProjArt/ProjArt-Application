@@ -26,7 +26,7 @@ const mails = ref([]);
 </script>
 
 <template>
-  <h1 class="title">Mails</h1>
+  <div class="page__title">Mails</div>
   <router-link :to="'/mails/send'">Envoyer</router-link>
 
   <div v-for="mail in mails" :key="mail.uid">
@@ -52,6 +52,7 @@ const mails = ref([]);
   justify-content: space-between;
   padding: 10px;
   border-bottom: 1px solid #e0e0e0;
+  font-size: 1.2rem;
 }
 .mail-group .seen {
   background-color: #00ff00;

@@ -46,7 +46,9 @@ function buildMenu() {
     <div class="hr"></div>
     <div class="drawer__content">
       <div v-for="route in buildMenu()" :key="route.path" class="drawer__content-item" @click="changePage(route.path)">
-        {{ route.text }}
+        <div class="drawer__content-item-text">
+          {{ route.text }}
+        </div>
         <span class="material-icons">keyboard_arrow_right</span>
       </div>
     </div>
@@ -69,6 +71,7 @@ function buildMenu() {
   height: 100%;
   width: 75%;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  font-size: 1.2rem;
 }
 
 .drawer-invisible {
@@ -106,13 +109,16 @@ function buildMenu() {
 }
 
 .drawer__content-item {
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-left: 2rem;
   margin-bottom: 1rem;
+}
+
+.drawer__content-item-text {
+  padding-left: var(--default-padding);
 }
 
 .icon {
