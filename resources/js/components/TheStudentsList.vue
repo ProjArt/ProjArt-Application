@@ -56,7 +56,12 @@ const available_courses = computed({
 });
 
 const renamedCourse = computed({
-    get: () => data.value.current_course.split("-")[0],
+    get: () => {
+        if(data.value.current_course != "Filtrer par cours") {
+            return data.value.current_course.split("-")[0]
+        } else {
+             return data.value.available_courses[0].split("-")[0]
+        }},
 });
 
 await getCoursesList();
