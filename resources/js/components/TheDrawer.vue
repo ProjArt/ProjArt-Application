@@ -45,12 +45,7 @@ function buildMenu() {
     </div>
     <div class="hr"></div>
     <div class="drawer__content">
-      <div
-        v-for="route in buildMenu()"
-        :key="route.path"
-        class="drawer__content-item"
-        @click="changePage(route.path)"
-      >
+      <div v-for="route in buildMenu()" :key="route.path" class="drawer__content-item" @click="changePage(route.path)">
         <div class="drawer__content-item-text">
           {{ route.text }}
         </div>
