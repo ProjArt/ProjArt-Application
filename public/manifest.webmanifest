@@ -2,13 +2,13 @@
     "short_name": "Redy",
     "name": "Redy - HEIG",
     "icons": [{
-        "src": "/images/logo_REDY.png",
+        "src": "/images/icon.png",
         "type": "image/png",
         "sizes": "512x512"
     }],
     "start_url": "/",
-    "background_color": "#fafafa",
+    "background_color": "#ffffff",
     "display": "standalone",
     "scope": "/",
-    "theme_color": "#ff6900"
+    "theme_color": "#E72128"
 }
