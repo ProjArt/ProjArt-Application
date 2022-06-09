@@ -22,24 +22,26 @@ class GapsUsersController extends Controller
      */
     public function getProfessorsMySection(Request $request)
     {
-        $factulties = $request->user()->gaps_user->courses()->pluck('faculty')->unique();
+        $factulties = $request->user()->gaps_user->courses()->pluck('faculty')->unique()->toArray();
 
         $courses = Course::whereIn('faculty', $factulties)->get();
 
         $professors = [];
         foreach ($courses as $course) {
             foreach ($course->professors as $professor) {
-                $professor->lessons = $professor->courses()->pluck('name')->unique();
+                $lessons = $professor->courses()->pluck('name')->unique()->toArray();
+                $professor->lessons = [...$lessons];
                 $professor->faculty = $course->faculty;
+                $professor->faculties = $professor->courses()->pluck('faculty')->unique()->toArray();
                 $professors[] = $professor;
             }
         }
 
-        $professors = collect($professors)->unique('username')->groupBy('faculty')->toArray();
+        $professors = collect($professors)->unique('username')->groupBy('faculty');
 
-        usort($professors, function ($a, $b) {
+        /*  usort($professors, function ($a, $b) {
             return $a["name"] <=> $b["name"];
-        });
+        }); */
 
         return httpSuccess('Liste des profs', $professors);
     }

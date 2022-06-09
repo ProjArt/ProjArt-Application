@@ -64,7 +64,7 @@ const routes = [
         is_visible: [],
         is_secondary: true,
         order: 1,
-        text: "Paramètres",
+        text: "Réglages",
     },
     {
         name: "infos",

@@ -9,10 +9,12 @@ function disconnectAndRedirect() {
 </script>
 
 <template>
-  <div class="settings-group">SETTINGS</div>
+  <div class="settings__group">Réglages</div>
   <Suspense><the-theme-manager /></Suspense>
   <br />
-  <div class="user">{{ user }}</div>
+  <div class="page__subtitle">
+    <div class="page__subtitle--main">Déconnexion</div>
+  </div>
   <div class="disconnect">
     <form
       class="disconnectForm"
@@ -25,5 +27,13 @@ function disconnectAndRedirect() {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../sass/components/_page.scss";
+.settings__group {
+  @extend .page__title;
+}
+
+.disconnectForm {
+  padding-left: var(--default-padding);
+}
 </style>

@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon" href="link to the smaller icon">
 
     {{-- PUSHER --}}
-    <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script>
+    {{-- <script src="https://js.pusher.com/beams/1.0/push-notifications-cdn.js"></script> --}}
 
     {{-- ICONS --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
