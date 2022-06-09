@@ -109,6 +109,7 @@ function changeDate(event) {
   justify-content: space-between;
   align-items: flex-start;
   margin-right: 1rem;
+  min-width: 20vw;
 }
 
 .mark__module_code {
@@ -133,12 +134,18 @@ function changeDate(event) {
 
 .mark__detail_item {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 60% 20% 20%;
+
   align-items: center;
   padding: 0.5rem;
   margin-bottom: 2px;
   border-radius: var(--border-radius-md);
+}
+
+.mark__detail_value {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
 }
 </style>

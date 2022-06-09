@@ -1,5 +1,10 @@
+import router from "../router/routes";
+import { user } from "../stores/auth";
+
+
 const useLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = window.location.origin + "/register";
+    user.value = null;
+    router.push("/");
 };
 export default useLogout;

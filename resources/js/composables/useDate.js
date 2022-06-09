@@ -121,6 +121,18 @@ export function toSwissDate(date) {
     return date;
 }
 
+export function toEventTime(startDate, endDate) {
+    const timeStart = startDate.split(" ")[1];
+    const timePartsStart = timeStart.split(":");
+    if (typeof endDate === "undefined") {
+        return `${timePartsStart[0]}:${timePartsStart[1]}`;
+    } else {
+        const timeEnd = endDate.split(" ")[1];
+        const timePartsEnd = timeEnd.split(":");
+        return `${timePartsStart[0]}:${timePartsStart[1]} - ${timePartsEnd[0]}:${timePartsEnd[1]}`;
+    }
+}
+
 export function getDaysRelativeToDate(date, numberOfDays) {
     return date.setDate(date.getDate() + parseInt(numberOfDays));
 }
