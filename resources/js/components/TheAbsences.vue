@@ -51,6 +51,7 @@ const absences = ref([]);
   justify-content: space-between;
   align-items: center;
   padding: var(--default-padding);
+  margin: var(--default-padding);
   background-color: var(--information-color);
   border-radius: var(--border-radius-md);
 }
