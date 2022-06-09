@@ -24,7 +24,10 @@ async function getCoursesList() {
     });
 
     data.value.complete_list = courses;
-    console.log("completeList", data.value.complete_list);
+    data.value.current_course = courses[0].code;
+    updateStudentsList();
+    data.value.current_course = "Filtrer par cours";
+    console.log("completeList", courses);
 }
 
 function updateStudentsList() {
@@ -62,11 +65,8 @@ await getCoursesList();
 <template>
     <div class="page__title">Liste des étudiants</div>
     <div class="subtitle_and_lesson_selection">
-        <div class="page__subtitle_big" v-if="data.current_course != 'Filtrer par cours'">
+        <div class="page__subtitle_big">
             {{ renamedCourse }}
-        </div>
-        <div class="page__subtitle_big" v-if="data.current_course == 'Filtrer par cours'">
-            Aucun cours sélectionné
         </div>
         <div class="course-selection">
                 <form  class="course-selection-form" @change="updateStudentsList()">
