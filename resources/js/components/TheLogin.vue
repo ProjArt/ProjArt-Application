@@ -56,9 +56,9 @@ const submitHandler = async () => {
       <FormKit
         type="password"
         name="password"
-        placeholder="Mot de passe"
+        placeholder="Mot de passe Gaps"
         validation="required"
-        label="Mot de passe"
+        label="Mot de passe Gaps"
       />
     </FormKit>
     <div>
