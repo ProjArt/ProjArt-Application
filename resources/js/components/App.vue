@@ -24,7 +24,6 @@ const route = computed(() => router.currentRoute.value.name);
 
 <template>
   <the-app-bar @open-drawer="openDrawer" v-if="!isHome" />
-  <div class="spacer-top" v-if="!isHome">&nbsp;</div>
   <the-notification></the-notification>
   <router-view v-slot="{ Component }">
     <main :class="'main--' + getLocation()">
@@ -45,8 +44,6 @@ const route = computed(() => router.currentRoute.value.name);
 
 <style lang="scss" >
 #app {
-  display: flex;
-  flex-direction: column;
   height: calc(100vh - var(--app-bar-height));
 }
 </style>

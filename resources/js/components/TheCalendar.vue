@@ -1,3 +1,4 @@
+
 <script setup>
 import { ref, computed, toRaw, watch, onMounted } from "vue";
 import useFetch from "../composables/useFetch";
@@ -42,6 +43,7 @@ const AVAILABLE_POPUP = {
   SHOW_EVENT: 2,
   EDIT_CALENDAR: 3,
   SHARE_CALENDAR: 4,
+  FILTER: 5,
 };
 
 // Ref
@@ -316,7 +318,7 @@ async function deleteEvent(dayId, eventId, calendarId) {
   });
   if (response.success === true) {
     try {
-      const date = toSwissDate(dayId);
+      const date = useDate.toSwissDate(dayId);
       const filtredEvents = events.value[date].filter(
         (event) => event.id !== eventId
       );
@@ -760,15 +762,15 @@ function showEventEditForm(startDate, id) {
   <div class="calendar">
     <!--====  Calendar Header  ====-->
     <div v-if="currentLayout === AVAILABLE_LAYOUT.MONTH">
-      <h3 class="calendar__date">
+      <h1 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
         <span>{{ displayedDateManager.day1 }}
           {{ displayedDateManager.month1 }}</span>
-      </h3>
+      </h1>
     </div>
 
     <div v-if="currentLayout === AVAILABLE_LAYOUT.WEEK">
-      <h3 class="calendar__date">
+      <h1 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
         <p>
           {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
@@ -778,19 +780,19 @@ function showEventEditForm(startDate, id) {
           }}
           {{ displayedDateManager.year2 }}
         </p>
-      </h3>
+      </h1>
     </div>
 
     <div v-if="currentLayout === AVAILABLE_LAYOUT.DAY">
-      <h3 class="calendar__date">
+      <h1 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
         <span>{{ displayedDateManager.day1 }}
           {{ displayedDateManager.month1 }}</span>
-      </h3>
+      </h1>
     </div>
 
     <div v-if="currentLayout === AVAILABLE_LAYOUT.LIST">
-      <h3 class="calendar__date">{{ displayedDateManager.year1 }}</h3>
+      <h1 class="calendar__date">{{ displayedDateManager.year1 }}</h1>
       <p>
         {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
         {{ displayedDateManager.year1 }}
@@ -801,21 +803,18 @@ function showEventEditForm(startDate, id) {
       </p>
     </div>
 
-    <div class="calendar__choose">
-      <FormKit v-model="currentsCalendarIds" type="checkbox" label="Calendrier" :options="calendarsNames" />
-    </div>
     <header class="calendar__header">
-      <button @click="previousPeriod">&lt;&lt;</button>
-      <button @click="nextPeriod">&gt;&gt;</button>
-      <button @click="currentLayout = AVAILABLE_LAYOUT.MONTH">Mois</button>
-      <button @click="currentLayout = AVAILABLE_LAYOUT.WEEK">Semaines</button>
-      <button @click="currentLayout = AVAILABLE_LAYOUT.LIST">List</button>
-      <button @click="currentLayout = AVAILABLE_LAYOUT.DAY">Jour</button>
-      <button @click="actualPeriod">Aujourd'hui</button>
       <button @click="showNewEventForm">Ajouter événement</button>
       <button @click="showNewCalendarForm">Ajouter un calendrier</button>
       <button @click="showEditCalendarForm">Editer les calendrier</button>
       <button @click="showShareCalendarForm">Partager un calendrier</button>
+    </header>
+
+    <header class="calendar__header">
+      <button @click="currentPopup = AVAILABLE_POPUP.FILTER"><span class="material-icons">filter_alt</span></button>
+      <button @click="actualPeriod"><span class="material-icons">today</span></button>
+      <button @click="showNewEventForm"><span class="material-icons">add_circle_outline</span></button>
+      <button @click="showNewCalendarForm"><span class="material-icons">edit_calendar</span></button>
     </header>
     <!--====  Calendar days names  ====-->
     <div class="calendar__days-names">
@@ -900,11 +899,12 @@ function showEventEditForm(startDate, id) {
             ' ' +
             DAY_LABELS_SHORT[day?.dayOfWeekNumber]
           ">
-            <p>{{ event.title }}</p>
-            <p>{{ event.start }}</p>
+            <p class="calendar__event-text">{{ event.title }}</p>
+            <p class="calendar__event-text">{{ event.start }}</p>
           </div>
         </article>
       </div>
+
     </div>
     <!--====  Calendar days DAY  ====-->
     <div v-if="currentLayout === AVAILABLE_LAYOUT.DAY" class="calendar__days" :class="
@@ -914,8 +914,10 @@ function showEventEditForm(startDate, id) {
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)"
         :class="(selectedDate === index ? 'is-selected-day' : '', day?.class)" :key="index" :date-id="day?.local">
         <article class="calendar__events">
-          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event"
-            :data-time="useDate.toEventTime(event?.start)" :class="event.calendar_id == 1 ? 'is-heig-calendar' : ''">
+          <div v-for="(event, eventId ) in sortEventsByDate(day?.local)" class="calendar__event"
+            :data-time="useDate.toEventTime(event?.start)" :class="event.calendar_id == 1 ? 'is-heig-calendar' : ''"
+            :data-bullet="useDate.toEventTime(events[day?.local][eventId - 1]?.start || ' ') != useDate.toEventTime(event.start) ? 'true' : 'false'">
+
             <p class="event__header">
               <span class="event__title">{{ event.title }}</span>
               <span class="event__location">{{ event.location }}</span>
@@ -930,7 +932,7 @@ function showEventEditForm(startDate, id) {
               {{ event.description }}
             </p>
             <p v-show="event.calendar_id !== 1" class="event__calendar">
-              {{ calendarsNames[event.calendar_id] }}
+              <span class="material-icons">calendar_month</span><span>{{ calendarsNames[event.calendar_id] }}</span>
             </p>
           </div>
         </article>
@@ -1006,6 +1008,50 @@ function showEventEditForm(startDate, id) {
       </FormKit>
     </div>
   </div>
+  <!--====  Popup Filter ====-->
+  <div class="popup popup--filter" v-show="currentPopup === AVAILABLE_POPUP.FILTER">
+    <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
+    <h1 class="popup__title">
+      <span>Filtres</span>
+    </h1>
+    <hr>
+    <h3 class="popup__subtitle">Affichage</h3>
+    <ul class="popup__layout-options">
+      <li class="popup__layout-option">
+        <button :class="currentLayout == AVAILABLE_LAYOUT.MONTH ? 'is-selected-layout' : ''"
+          class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.MONTH"><span
+            class="material-icons">calendar_month</span><span class="popup__text">Mois</span></button>
+      </li>
+      <li class="popup__layout-option">
+        <button :class="currentLayout == AVAILABLE_LAYOUT.WEEK ? 'is-selected-layout' : ''" class="popup__layout-button"
+          @click="currentLayout = AVAILABLE_LAYOUT.WEEK"><span
+            class="material-icons is-90-deg">calendar_view_week</span><span class="popup__text">Semaine</span></button>
+      </li>
+      <li class="popup__layout-option">
+        <button :class="currentLayout == AVAILABLE_LAYOUT.LIST ? 'is-selected-layout' : ''" class="popup__layout-button"
+          @click="currentLayout = AVAILABLE_LAYOUT.LIST"><span class="material-icons">event_note</span><span
+            class="popup__text">List</span></button>
+      </li>
+      <li class="popup__layout-option">
+        <button :class="currentLayout == AVAILABLE_LAYOUT.DAY ? 'is-selected-layout' : ''" class="popup__layout-button"
+          @click="currentLayout = AVAILABLE_LAYOUT.DAY"><span class="material-icons">date_range</span><span
+            class="popup__text">Jour</span></button>
+      </li>
+    </ul>
+    <hr>
+    <h3 class="popup__subtitle">Mes calendriers</h3>
+    <div class="calendar__choose">
+      <FormKit v-model="currentsCalendarIds" type="checkbox" label="Calendrier" :options="calendarsNames"
+        :sections-schema="{
+          input: {
+            attrs: {
+              class: { 'material-icons': 'material-icons' }
+            },
+          }
+        }" />
+    </div>
+
+  </div>
   <!--====  Popup edit event  ====-->
   <div class="popup popup--edit-events" v-show="currentPopup === AVAILABLE_POPUP.SHOW_EVENT">
     <h2 class="popup__title">
@@ -1063,10 +1109,11 @@ $border-width: 3px;
 $heig-planning-color: var(--information-color);
 $header-height: 60px;
 $footer-height: 50px;
+@import '../../sass/abstracts/mixins';
 
 :global(.main--calendar) {
   display: grid;
-  grid-template-rows: 2fr 1fr;
+  grid-template-rows: 1fr auto;
   grid-auto-flow: column;
 }
 
@@ -1091,18 +1138,40 @@ $footer-height: 50px;
 .calendar__date {
   display: flex;
   justify-content: space-between;
+  @include font-h1(var(--text-color), unset)
 }
 
 //*2# Calendar Header
 // ==========================================================================
 
-.calendar__choose {
-  display: flex;
-}
-
 .calendar__header {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: $calendar-gap;
+
+  button {
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--accent-color);
+  }
+
+  button:nth-child(1) {
+    grid-column: 1 / 2;
+  }
+
+  button:nth-child(2) {
+    grid-column: 3 / 4;
+  }
+
+  button:nth-child(3) {
+    grid-column: 5 / 6;
+  }
+
+  button:nth-child(4) {
+    grid-column: 7 / 8;
+  }
 }
 
 //*2# Calendar days
@@ -1111,7 +1180,9 @@ $footer-height: 50px;
 .calendar__days-names {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
+  @include font-h3-uppercase(var(--text-color), center);
   grid-gap: $calendar-gap;
+  margin: 3rem 0;
 }
 
 .calendar__days-name {
@@ -1157,17 +1228,10 @@ $footer-height: 50px;
   }
 
   .calendar__day-number {
-    margin: 0;
-    font-size: 1.5rem;
     width: 2.8rem;
     height: 2.8rem;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 27px;
-    text-align: center;
-    text-transform: uppercase;
     margin: 0 0 0.5rem 0;
+    @include font-text-calendar(var(--text-color), center);
   }
 
   .is-events {
@@ -1237,6 +1301,8 @@ $footer-height: 50px;
 
 .calendar__days--list {
   grid-template-columns: 1fr;
+  overflow: scroll;
+  /* height: calc(100vh - calendarHeaderSize); */
 
   .calendar__day {
     flex-direction: row;
@@ -1276,15 +1342,11 @@ $footer-height: 50px;
     position: absolute;
     left: -10rem;
     width: 36px;
+    top: 2rem;
     height: 30px;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 15px;
     display: flex;
     align-items: center;
-    text-align: center;
-    color: var(--text-color);
+    @include font-calendar-list-date(var(--text-color), center);
   }
 
   .calendar__event:first-child::after {
@@ -1297,6 +1359,10 @@ $footer-height: 50px;
     background-color: var(--text-color);
     top: calc(50% - ($size / 2));
     left: calc((3.8rem * -1) - ($size/2) - 1px);
+  }
+
+  .calendar__event-text {
+    @include font-calendar-month-name-time-event(white, unset)
   }
 
   .is-current-day {
@@ -1348,7 +1414,7 @@ $footer-height: 50px;
     color: white;
   }
 
-  .calendar__event::before {
+  .calendar__event[data-bullet="true"]::before {
     $height: 30px;
     content: attr(data-time);
     position: absolute;
@@ -1356,17 +1422,12 @@ $footer-height: 50px;
     width: 36px;
     top: calc(50% - ($height / 2));
     height: $height;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 18px;
-    line-height: 15px;
     display: flex;
     align-items: center;
-    text-align: center;
-    color: var(--text-color);
+    @include font-calendar-month-name-time-event(var(--text-color), center);
   }
 
-  .calendar__event::after {
+  .calendar__event[data-bullet="true"]::after {
     $size: 1.6rem;
     content: "";
     position: absolute;
@@ -1382,6 +1443,7 @@ $footer-height: 50px;
     display: grid;
     width: 100%;
     grid-template-columns: repeat(5, 1fr);
+    @include font-calendar-month-name-time-event(var(--text-color), unset)
   }
 
   .event__title {
@@ -1392,6 +1454,10 @@ $footer-height: 50px;
     grid-column: 3 / 4;
   }
 
+  .event__description {
+    @include font-calendar-day-description-event(white, left)
+  }
+
   .event__time {
     grid-column: 4 / 6;
     width: fit-content;
@@ -1400,6 +1466,9 @@ $footer-height: 50px;
 
   .event__calendar {
     margin: 0 0 0 auto;
+    display: flex;
+    align-items: center;
+    @include font-calendar-day-description-event(white, right)
   }
 
   .is-current-day {
@@ -1503,13 +1572,130 @@ $footer-height: 50px;
 }
 
 .popup__title {
-  text-align: left;
   width: 100%;
   box-sizing: border-box;
+  @include font-h1(var(--text-color), left)
 }
 
 :deep(.formkit-form) {
   width: 100%;
+}
+
+//*2# Popup Filter
+// ==========================================================================
+
+.popup--filter {
+
+  .popup__subtitle {
+    @include font-h1-menu-burger(var(--text-color), center);
+    margin: 0 auto 3rem auto;
+  }
+
+  .popup__layout-options {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  .popup__layout-option {
+    list-style: none;
+    margin: 0 0 1rem 0;
+  }
+
+  .popup__layout-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    @include font-text-calendar-content(var(--text-color), center);
+  }
+
+  hr {
+    border-top: 1px solid var(--text-color);
+    width: 100%;
+    margin: 3rem 0;
+  }
+
+  .material-icons {
+    padding: 0 0.5rem 0;
+  }
+
+  .is-90-deg {
+    transform: rotate(90deg);
+  }
+
+  .is-selected-layout {
+    border: none;
+    border-radius: $border-radius;
+    background-color: var(--accent-color);
+    color: white !important;
+  }
+}
+
+//*3# calendar choose
+// ====================================== 
+
+.calendar__choose {
+  display: flex;
+  width: 40%;
+  margin: 0 auto;
+  position: relative;
+  right: -2.5rem;
+
+  :deep(.formkit-options) {
+    list-style: none;
+  }
+
+  :deep(.formkit-input) {
+    width: 0;
+  }
+
+  :deep(.formkit-input) {
+    width: 0;
+  }
+
+  :deep(.formkit-wrapper) {
+    position: relative;
+  }
+
+  :deep(input[type="checkbox"]) {
+    width: 0
+  }
+
+  :deep(.formkit-legend) {
+    display: none;
+  }
+
+  :deep(.formkit-fieldset) {
+    border: none;
+  }
+
+  :deep(.formkit-options) {
+    padding: 0;
+    margin: 0;
+  }
+
+  :deep(.formkit-label) {
+    @include font-text-calendar-content(var(--text-color), left);
+  }
+
+  :deep(.material-icons::before) {
+    content: "check_box_outline_blank";
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 0.3rem;
+    left: -2rem;
+  }
+
+  :deep(.material-icons:checked::before) {
+    content: "check_box";
+  }
 }
 
 //*2# Popup edit event
@@ -1517,6 +1703,10 @@ $footer-height: 50px;
 .popup--edit-events {
   overflow: hidden;
   background-color: var(--information-color);
+  position: relative;
+  height: unset;
+  z-index: 1;
+  padding: 1rem;
 
   .popup__title {
     display: flex;
