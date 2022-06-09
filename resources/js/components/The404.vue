@@ -2,6 +2,8 @@
 import { is404 } from "../stores/route";
 //console.log("notFound");
 
+document.querySelector('main').setAttribute('style', 'margin: 0 0 0 0');
+
 //Remove top and bottom menus
 function removeMenus(){
 let botMenu = document.querySelector('.menu');
@@ -64,6 +66,7 @@ console.log("is404", is404)
 
 main {
     width: 100vw;
+    margin: 0 0 0 0 !important;
 }
 
 .app-bar{
