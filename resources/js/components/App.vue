@@ -1,10 +1,14 @@
 <script setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import TheAppBar from ".//TheAppBar.vue";
 import TheTabbar from "./TheTabbar.vue";
 import TheNotification from "./TheNotification.vue";
 import TheDrawer from "./TheDrawer.vue";
 const drawer = ref();
+const getLocation = (() => {
+  console.log("getLocation");
+  return window.location.pathname.replace(/^\//, "");
+})
 
 function openDrawer() {
   drawer.value.toggle();
@@ -14,10 +18,9 @@ function openDrawer() {
 
 <template>
   <the-app-bar @open-drawer="openDrawer" />
-  <div class="spacer-top">&nbsp;</div>
   <the-notification></the-notification>
-  <main>
-    <router-view v-slot="{ Component, name }">
+  <router-view v-slot="{ Component, name }">
+    <main :class="'main--' + getLocation()">
       <template v-if="name === 'mail'">
         <component :is="Component" />
       </template>
@@ -26,28 +29,18 @@ function openDrawer() {
           <component :is="Component" />
         </keep-alive>
       </template>
-    </router-view>
-  </main>
-  <div class="spacer-bottom">&nbsp;</div>
+    </main>
+  </router-view>
   <the-tabbar />
 
   <the-drawer ref="drawer" />
 </template>
 
-<style lang="scss" scoped>
-main {
-  width: 100%;
-  overflow-y: hidden;
-}
-
-.spacer-top {
-  width: 100%;
-  height: 4.5rem;
-}
-
-.spacer-bottom {
-  width: 100%;
-  height: 5rem;
+<style lang="scss" >
+#app {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--app-bar-height));
 }
 </style>
 

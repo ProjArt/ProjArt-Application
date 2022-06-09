@@ -45,12 +45,7 @@ function buildMenu() {
     </div>
     <div class="hr"></div>
     <div class="drawer__content">
-      <div
-        v-for="route in buildMenu()"
-        :key="route.path"
-        class="drawer__content-item"
-        @click="changePage(route.path)"
-      >
+      <div v-for="route in buildMenu()" :key="route.path" class="drawer__content-item" @click="changePage(route.path)">
         {{ route.text }}
         <span class="material-icons">keyboard_arrow_right</span>
       </div>
@@ -103,7 +98,7 @@ function buildMenu() {
 .drawer__content {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
   height: 100%;
