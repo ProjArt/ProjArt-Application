@@ -1,192 +1,123 @@
 <script setup>
+const emits = defineEmits(["onChange"]);
+
+function onChange(event) {
+  emits("onChange", event.target.id);
+}
+
+const props = defineProps(["options"]);
 </script>
 
 <template>
-  <div class="select animated zoomIn">
-    <!-- You can toggle select (disabled) -->
-    <input type="radio" name="option" />
-    <i class="toggle icon icon-arrow-down"></i>
-    <i class="toggle icon icon-arrow-up"></i>
-    <span class="placeholder">Choose...</span>
-    <div class="options">
-      <label class="option">
-        <input type="radio" name="option" />
-        <span class="title animated">Speedometer</span>
-      </label>
-      <label class="option">
-        <input type="radio" name="option" />
-        <span class="title animated">Fire</span>
-      </label>
-      <label class="option">
-        <input type="radio" name="option" disabled />
-        <span class="title animated">Handbag</span>
-      </label>
-      <label class="option">
-        <input type="radio" name="option" />
-        <span class="title animated">Badge</span>
-      </label>
-    </div>
+  <div class="select" tabindex="1">
+    <template v-for="(a, index) in props.options" :key="a">
+      <input
+        class="selectopt"
+        name="test"
+        type="radio"
+        :id="a"
+        @change="onChange($event)"
+        :checked="index === 0"
+      />
+      <label :for="a" class="option">{{ a }}</label>
+    </template>
   </div>
 </template>
 
-<style scoped lang="scss">
-@import "https://fonts.googleapis.com/css?family=Roboto:100,300";
-@import "https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.3.2/css/simple-line-icons.min.css";
-@import "https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css";
-@import "https://fonts.googleapis.com/css?family=Roboto+Mono:300,700";
-h1 {
-  text-align: center;
-  color: #fff;
-  font-weight: 600;
-  font-size: 3em;
-  letter-spacing: 0px;
-  text-shadow: 1px 1px rgba(0, 0, 0, 0.02), 2px 2px rgba(0, 0, 0, 0.02),
-    3px 3px rgba(0, 0, 0, 0.02), 4px 4px rgba(0, 0, 0, 0.02),
-    5px 5px rgba(0, 0, 0, 0.02), 6px 6px rgba(0, 0, 0, 0.02),
-    7px 7px rgba(0, 0, 0, 0.02);
-}
-h1 i {
-  position: relative;
-  font-size: 70px;
-}
-p {
-  text-align: center;
-  color: #fff;
-  font-size: 14px;
-  margin-bottom: 2em;
-  line-height: 30px;
-}
-p img {
-  position: relative;
-  top: 8px;
-  right: 10px;
-}
-.select {
-  z-index: 500;
-  position: relative;
-  display: block;
-  width: 40vw;
-  height: 2rem;
-  border-bottom: 0px;
-  border-radius: 3px;
-  font-size: 12px;
-  box-shadow: 0px 1em 2em -1.5em rgba(0, 0, 0, 0.5);
-  color: white;
-  background-color: var(--accent-color);
-}
-.select > i.toggle {
-  position: absolute;
-  z-index: 4;
-  right: 1.5em;
-  top: 1.1rem;
-  color: #fff;
-}
-.select .title,
-.select .placeholder {
-  position: relative;
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 1);
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
-  cursor: pointer;
-}
-.select > input {
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
-  display: block;
-  opacity: 0;
-  cursor: pointer;
-}
-.select > input:checked ~ i.toggle.icon-arrow-down {
-  display: none;
-}
-.select > input:checked ~ i.toggle.icon-arrow-up {
-  display: block;
-}
-.select > input:checked div.options label.option .title {
-  display: none !important;
-}
-.select > input:not(:checked) {
-  z-index: 4;
-}
-.select > input:not(:checked) ~ div label.option > span.title {
-  display: none;
-  color: black;
-}
-.select > input:not(:checked) ~ i.toggle.icon-arrow-up {
-  display: none;
-}
-.select > input:not(:checked) ~ i.toggle.icon-arrow-down {
-  display: block;
-}
-.select > input:disabled {
-  cursor: no-drop;
-}
-.select > span.placeholder {
-  position: relative;
-  z-index: 0;
-  display: inline-block;
-  width: 100%;
-  color: #fff;
-  border-top: 0px;
-  background-color: var(--accent-color);
-}
-.select label.option {
-  display: block;
-  overflow: hidden;
-  z-index: 1;
-  width: 100%;
-  background-color: var(--accent-color);
-}
-.select label.option span.title {
-  position: relative;
-  z-index: 2;
-  color: black;
-}
-.select label.option span.title i.icon {
-  padding-right: 8px;
-  color: #fff;
-}
-.select label.option span.title:hover {
-  color: #fff;
+<style scoped lang="css">
+body {
   background: var(--accent-color);
-  box-shadow: inset 0px 1px 0px rgba(0, 0, 0, 0.1);
-}
-.select label.option input {
-  display: none;
-}
-.select label.option input:checked ~ span.title {
-  position: absolute;
-  display: block;
-  z-index: 3;
-  top: 0px;
-  font-size: 12px;
-  background: var(--accent-color);
-  border-top: 0px;
-  box-shadow: none;
-  color: inherit;
-  width: 100%;
-}
-.select label.option input:disabled ~ span.title {
-  background: #f9f9f9 !important;
-  color: #aaa;
-}
-.select label.option input:disabled ~ span.title:hover {
-  color: #aaa;
-  background: none;
-  cursor: no-drop;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  font-family: sans-serif;
+  color: #fff;
 }
 
-.select div.options {
+.select {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  height: 40px;
+  border-radius: 15px;
+}
+
+.option {
+  padding: var(--default-padding);
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  background: var(--accent-color);
+  color: white;
+  border-top: #222 solid 1px;
   position: absolute;
-  top: 4rem;
-  left: 0;
-  z-index: 500;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+  order: 2;
+  z-index: 1;
+  box-sizing: border-box;
+  overflow: hidden;
+  white-space: nowrap;
+  border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+.option:hover {
+  background: var(--accent-color);
+}
+
+.select:focus .option {
+  position: relative;
+  pointer-events: all;
+}
+
+input {
+  opacity: 0;
+  position: absolute;
+  left: -99999px;
+}
+
+input:checked + label {
+  order: 1;
+  z-index: 2;
+  background: var(--accent-color);
+  border-top: none;
+  position: relative;
+}
+
+input:not(:checked) + label {
+  background-color: #fff;
+  border: 1px solid var(--accent-color);
+  color: var(--text-color);
+}
+
+input:checked + label:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid white;
+  position: absolute;
+  right: 10px;
+  top: calc(50% - 2.5px);
+  pointer-events: none;
+  z-index: 3;
+}
+
+input:checked + label:before {
+  position: absolute;
+  right: 0;
+  height: 40px;
+  width: 40px;
+  content: "";
+  background: var(--accent-color);
 }
 </style>
