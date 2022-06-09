@@ -3,6 +3,7 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
 import useFetch from "../composables/useFetch";
 import AbsencesRouteVue from "../router/AbsencesRoute.vue";
 import { API } from "../stores/api";
+import TheEmptyPage from "./TheEmptyPage";
 
 // At start of component, fetch the data
 async function setupAbsences() {
@@ -25,23 +26,37 @@ const absences = ref([]);
 
 <template>
   <div class="page__title">Absences</div>
-  <div class="page__subtitle" v-if="absences.length != 0">
-    <div class="page__subtitle--main">Matières</div>
-    <div class="page__subtitle--secondary">Taux</div>
-  </div>
-  <div v-for="absence in absences" :key="absence.id">
-    <div class="absence__item">
-      <div class="absence__unity">
-        {{ absence.unity.split(" - ")[0] }}
-      </div>
-      <span class="material-symbols-outlined" v-if="absence.absolute_rate > 15">
-        warning
-      </span>
-      <div class="absence__absolute_rate">{{ absence.absolute_rate }}%</div>
-    </div>
-  </div>
 
-  <div class="" v-if="absences.length == 0">Tu n'as pas d'absences</div>
+  <the-empty-page
+    v-if="absences.length == 0"
+    image="/images/logo_REDY.svg"
+    text="Vous n'avez pas d'absences"
+  >
+  </the-empty-page>
+  <template v-else>
+    <div class="page__subtitle" v-if="absences.length != 0">
+      <div class="page__subtitle--main">Matières</div>
+      <div class="page__subtitle--secondary">Taux</div>
+    </div>
+    <div v-for="absence in absences" :key="absence.id">
+      <div class="absence__item">
+        <div class="absence__unity">
+          {{ absence.unity.split(" - ")[0] }}
+        </div>
+        <div class="absences__right">
+          <span
+            class="material-symbols-outlined"
+            v-if="absence.absolute_rate > 15"
+          >
+            warning
+          </span>
+          <div class="absence__absolute_rate">{{ absence.absolute_rate }}%</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="" v-if="absences.length == 0">Tu n'as pas d'absences</div>
+  </template>
 </template>
 
 <style scoped>
@@ -69,5 +84,13 @@ const absences = ref([]);
 .absence__absolute_rate {
   font-size: 2rem;
   padding: var(--spacer-xsm);
+  margin-left: var(--spacer-sm);
+}
+
+.absences__right {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 </style>

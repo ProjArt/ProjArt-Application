@@ -14,6 +14,10 @@ console.log("is404App", is404)
 
 
 const drawer = ref();
+const getLocation = (() => {
+  console.log("getLocation");
+  return window.location.pathname.replace(/^\//, "");
+})
 
 function openDrawer() {
   drawer.value.toggle();
@@ -27,8 +31,8 @@ const route = computed(() => router.currentRoute.value.name);
   <the-app-bar @open-drawer="openDrawer" v-if="!isHome && !is404" />
   <div class="spacer-top" v-if="!isHome && !is404">&nbsp;</div>
   <the-notification></the-notification>
-  <main>
-    <router-view v-slot="{ Component }">
+  <router-view v-slot="{ Component }">
+    <main :class="'main--' + getLocation()">
       <template v-if="['mail', ''].includes(route)">
         <component :is="Component" />
       </template>
@@ -45,20 +49,11 @@ const route = computed(() => router.currentRoute.value.name);
   <the-drawer ref="drawer" v-if="!isHome && !is404"/>
 </template>
 
-<style lang="scss" scoped>
-main {
-  width: 100%;
-  overflow-y: hidden;
-}
-
-.spacer-top {
-  width: 100%;
-  height: 7rem;
-}
-
-.spacer-bottom {
-  width: 100%;
-  height: 7rem;
+<style lang="scss" >
+#app {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--app-bar-height));
 }
 </style>
 
