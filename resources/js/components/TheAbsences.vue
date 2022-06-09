@@ -62,4 +62,9 @@ const absences = ref([]);
   padding: var(--default-padding);
   border-radius: var(--border-radius-md);
 }
+
+.absence__unity,
+.absence__absolute_rate {
+  font-size: 1.2rem;
+}
 </style>
