@@ -87,7 +87,12 @@ function changeDate(event) {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../sass/components/_page.scss";
+.module__title {
+  @extend .page__subtitle;
+  margin-right: var(--default-padding);
+}
 .marks__header {
   display: flex;
   justify-content: space-between;
@@ -101,6 +106,7 @@ function changeDate(event) {
   margin-bottom: 2px;
   border-radius: var(--border-radius-md);
   background-color: var(--information-color);
+  margin: var(--default-padding);
 }
 
 .mark__title {
@@ -109,18 +115,21 @@ function changeDate(event) {
   justify-content: space-between;
   align-items: flex-start;
   margin-right: 1rem;
-  min-width: 20vw;
+  min-width: 40vw;
 }
 
 .mark__module_code {
   color: white;
   background-color: var(--primary-color);
-  padding: var(--default-padding);
-  border-radius: var(--border-radius-sm);
+  padding: calc(2 * var(--default-padding));
+  border-radius: var(--border-radius-md);
+  font-size: 2rem;
 }
 
 .mark__value {
   font-weight: 500;
+  font-size: 2rem;
+  padding: var(--spacer-xsm);
 }
 
 .module__description {
@@ -135,17 +144,21 @@ function changeDate(event) {
 .mark__detail_item {
   width: 100%;
   display: grid;
-  grid-template-columns: 60% 20% 20%;
+  grid-template-columns: 50% 30% 20%;
 
   align-items: center;
   padding: 0.5rem;
   margin-bottom: 2px;
-  border-radius: var(--border-radius-md);
+  font-size: 1.2rem;
+}
+
+.mark__detail_item:not(:last-child) {
+  border-bottom: 1px solid var(--text-color);
 }
 
 .mark__detail_value {
   display: flex;
   align-items: flex-end;
-  justify-content: end;
+  justify-content: flex-end;
 }
 </style>

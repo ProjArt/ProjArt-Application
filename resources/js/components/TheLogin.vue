@@ -92,8 +92,8 @@ const submitHandler = async () => {
 
 .login__logo {
   margin-top: 10rem;
-  width: 100%;
-  max-width: 40vw;
+  width: 40vw;
+  max-width: 200px;
   margin-bottom: 1rem;
 }
 </style>
