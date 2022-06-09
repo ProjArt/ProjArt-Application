@@ -2,6 +2,7 @@
 import { ref, computed, toRaw, watch, watchEffect } from "vue";
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
+import TheSelect from "./TheSelect";
 
 // At start of component, fetch the data
 async function setupMarks() {
@@ -38,12 +39,13 @@ function changeDate(event) {
 <template>
   <div class="marks__header">
     <div class="page__title">Notes</div>
+    <the-select></the-select>
 
-    <div class="page__select">
+    <!-- <div class="page__select">
       <select @change="changeDate($event)">
         <option v-for="year in years" :key="year.id">{{ year }}</option>
       </select>
-    </div>
+    </div> -->
   </div>
 
   <!-- {{ marks }} -->

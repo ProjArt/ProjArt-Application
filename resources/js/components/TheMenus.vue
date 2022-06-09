@@ -64,6 +64,7 @@ const date = computed(() => {
   justify-content: center;
   align-items: center;
   margin-bottom: 2rem;
+  font-size: 1.2rem;
 }
 .menu__group {
   width: 90%;
@@ -80,10 +81,11 @@ const date = computed(() => {
 .menu__title-item {
   color: white;
   background-color: var(--primary-color);
-  padding: var(--default-padding);
+  padding: calc(2 * var(--default-padding));
   border-radius: var(--border-radius-md);
   margin-right: var(--default-padding);
   min-width: 5rem;
+  font-size: 2rem;
 }
 
 .menu__description-item {
