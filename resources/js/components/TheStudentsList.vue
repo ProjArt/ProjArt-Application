@@ -33,7 +33,7 @@ function updateStudentsList() {
     )[0];
     data.value.students_list = newStudentsList;
     data.value.current_course = newStudentsList.code;
-    console.log("newStudentList", data.value.students_list);
+    //console.log("newCourse", data.value.current_course.split('-')[0]);
 }
 
 const students_list = computed({
@@ -52,37 +52,33 @@ const available_courses = computed({
     get: () => data.value.available_courses,
 });
 
+const renamedCourse = computed({
+    get: () => data.value.current_course.split("-")[0],
+});
+
 await getCoursesList();
 </script>
 
 <template>
     <div class="page__title">Liste des étudiants</div>
     <div class="subtitle_and_lesson_selection">
-        <div class="page__subtitle">
-            <div
-                class="page__subtitle--main"
-                v-if="data.current_course != 'Filtrer par cours'"
-            >
-                {{ data.current_course }}
-            </div>
-            <div
-                class="page__subtitle--main"
-                v-if="data.current_course == 'Filtrer par cours'"
-            >
-                Aucun cours sélectionné
-            </div>
+        <div class="page__subtitle_big" v-if="data.current_course != 'Filtrer par cours'">
+            {{ renamedCourse }}
         </div>
-        <div class="students">
-            <div class="course-selection">
-                <form
-                    class="course-selection-form"
-                    @change="updateStudentsList()"
-                >
+        <div class="page__subtitle_big" v-if="data.current_course == 'Filtrer par cours'">
+            Aucun cours sélectionné
+        </div>
+        <div class="course-selection">
+                <form  class="course-selection-form" @change="updateStudentsList()">
                     <select class="course-select" v-model="data.current_course">
-                        <option value="Filtrer par cours">
+                        <option class="option"
+                            value="Filtrer par cours"
+                            selected="true"
+                            disabled="disabled"
+                        >
                             Filtrer par cours
                         </option>
-                        <option
+                        <option class="option"
                             v-for="course in available_courses"
                             v-bind:value="course"
                         >
@@ -90,16 +86,16 @@ await getCoursesList();
                         </option>
                     </select>
                 </form>
-            </div>
         </div>
-        <ul class="class-students-list">
-            <h3>Etudiants</h3>
-            <li v-for="student in data.students_list.gapsUsers">
+    </div>
+    <div class="students">
+        <ul class="students-list">
+            <li class="student" v-for="student in data.students_list.gapsUsers">
                 <div class="nom-utilisateur">
-                    <span>{{ student.firstname }} {{ student.name }}</span>
+                    <span class="span-nom-prenom">{{ student.firstname }} </span> <span class="span-nom-prenom"> {{ student.name }}</span>
                 </div>
-                <div class="mail-et-classe">
-                    <span>{{ student.mail }} </span><br />
+                <div class="mail">
+                    <span>{{ student.mail }} </span>
                 </div>
             </li>
         </ul>
@@ -107,35 +103,99 @@ await getCoursesList();
 </template>
 
 <style scoped>
-.menu__menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap');
+.page__title {
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 900;
+    font-size: 26px;
+    line-height: 39px;
+    color: var(--rg-text-color);
 }
-.menu__group {
-    width: 90%;
+.page__subtitle_big {
+    font-size: 23px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 900;
+    margin: 0em 0em 0.44em 0.22em;
+    line-height: 23px;
+}
+
+.subtitle_and_lesson_selection {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
-    padding: var(--default-padding);
-    margin-bottom: var(--default-padding);
-    border-radius: var(--border-radius-md);
+    margin: 3.1em 0 0 0 ;
+}
+
+.course-selection {
+    margin: 0em 0.44em 0.22em 0;
+}
+
+
+.course-select {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    padding: 0.1em 0.1em;
+    border-radius: 0.3em;
+    border-color: var(--accent-color);
+    font-family: Poppins;
+}
+
+.option {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.option:hover {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+}
+
+.students {
+    margin: 4.1em 1em 0 1em;
+}
+
+.students-list {
+     list-style-type: none;
+     padding: 0 0 0 0;
+}
+.student {
+    margin: 0 0 1em 0;
+    display: flex;
+    flex-direction: row;
     background-color: var(--information-color);
+    border-radius: 1em;
 }
 
-.menu__title-item {
-    color: white;
-    background-color: var(--primary-color);
-    padding: var(--default-padding);
-    border-radius: var(--border-radius-md);
-    margin-right: var(--default-padding);
-    min-width: 5rem;
+.nom-utilisateur {
+   background-color: var(--primary-color);
+    margin: 0.7em 0 0.7em 0.7em;
+    border-radius: 1rem;
+    width: 11.1rem;
+    height: 4.8rem;
+    font-size: 1.4rem;
+    color: var(--background-color);
+    font-family: 'Poppins';
+    display: flex;
+    align-items: flex-start;
+    font-weight: 700;
+    line-height: 2.1rem;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.menu__description-item {
-    text-align: right;
+.span-nom-prenom {
+    margin: 0 0 0 1rem;
+}
+
+.mail{
+    margin: 0 0 0 3.9rem;
+    display: flex;
+    text-align: justify;
+    font-weight: 400;
+    font-family: Poppins;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    align-items: center;
 }
 </style>
