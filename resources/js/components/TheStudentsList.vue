@@ -27,6 +27,13 @@ async function getCoursesList(){
     console.log("completeList", data.value.complete_list);
 }
 
+function updateStudentsList(){
+    const newStudentsList = data.value.complete_list.filter(list => list.code == data.value.current_course)[0]
+    data.value.students_list = newStudentsList;
+    data.value.current_course = newStudentsList.code;
+    console.log("newStudentList", data.value.students_list)
+}
+
 const students_list = computed({
     get: () => data.value.students_list
 });
@@ -43,22 +50,16 @@ const available_courses = computed ({
     get: () => data.value.available_courses
 })
 
-function updateStudentsList(){
-    const newStudentsList = data.value.complete_list.filter(list => list.code == data.value.current_course)[0]
-    data.value.students_list = newStudentsList;
-    data.value.current_course = newStudentsList.code;
-    console.log("newStudentList", data.value.students_list)
-}
-
-
-
 await getCoursesList();
 </script>
 
 <template>
-    <div class="students">
-        <h1>Liste des étudiants</h1>
-        <h2> {{ data.current_course }} </h2>
+        <div class="page__title">Liste des étudiants</div>
+        <div class="page__subtitle">
+        <div class="page__subtitle--main" v-if="data.current_course != 'Filtrer par cours'"> {{ data.current_course }} </div>
+        <div class="page__subtitle--main" v-if="data.current_course == 'Filtrer par cours'"> Sélectionnez un cours </div>
+        </div>
+        <div class="students">
         <div class="course-selection">
         <form class="course-selection-form" @change="updateStudentsList()" >
             <select class="course-select"  v-model="data.current_course">
@@ -85,11 +86,36 @@ await getCoursesList();
 
 
 <style scoped>
-.studentsAndTeachers {
-    list-style-type: none;
+.menu__menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.menu__group {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--default-padding);
+  margin-bottom: var(--default-padding);
+  border-radius: var(--border-radius-md);
+  background-color: var(--information-color);
 }
 
+.menu__title-item {
+  color: white;
+  background-color: var(--primary-color);
+  padding: var(--default-padding);
+  border-radius: var(--border-radius-md);
+  margin-right: var(--default-padding);
+  min-width: 5rem;
+}
 
-
+.menu__description-item {
+  text-align: right;
+}
 
 </style>

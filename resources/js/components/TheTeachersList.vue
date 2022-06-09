@@ -5,115 +5,78 @@ import useFetch from "../composables/useFetch";
 import { ref, computed, watchEffect } from "vue";
 
 const data = ref({
-    teachersList: [],
-    classroom: "dsasàsld",
+    teachers_list: [],
+    current_filiere: "Filtrer par filière",
+    available_filieres: [],
+    complete_list: NaN
 });
 
-async function getList() {
+async function getFilieresList(){
     const response = await useFetch({
-        url: API.getClassrooms.path(),
-        method: API.getClassrooms.method,
+    url: API.getProfsOfMySection.path(),
+    method: API.getProfsOfMySection.method,
     });
-    const usersList = response.data.classrooms[0].users;
-    data.value.studentsList = usersList.filter((person) => person.role == "student");
-    data.value.teachersList = usersList.filter((person) => person.role == "teacher");
-    console.log("list",  data.value.studentsList)
-}
 
-async function getClassRoom() {
-    const response = await useFetch({
-        url: API.getClassrooms.path(),
-        method: API.getClassrooms.method,
+    const filieres = response.data[0][0].faculty;
+    console.log("filieres", filieres)
+    //Récupération du nom de chaque cours
+    filieres.forEach(filiere => {
+        data.value.available_filieres.push(filiere.code)
     });
-    const classRoomName = response.data.classrooms[0].name;
-    data.value.classroom = classRoomName;
+
+    data.value.complete_list = filieres;
+    console.log("completeList", data.value.complete_list);
 }
 
-const studentsList = computed({
-    get: () => data.value.studentsList
-});
-
-const teachersList = computed({
-    get: () => data.value.teacherslist,
-});
-
-const classroom = computed({
-    get: () => data.value.classroom,
-});
-
-console.log('dataBeforeScrap', data.value)
-await getList();
-await getClassRoom();
-console.log("dataAfterScrap", data.value);
-console.log("class", classroom.value)
-
-
-function hardCodeStudentsList (){
-    data.value.studentsList.shift();
-    const simulatedUser =  {
-        "id": 1,
-        "username": "timothee.dione",
-        "gaps_id": 17449,
-        "role": "student",
-        "card_money": 10,
-        "gaps_user": {
-		"username": "timothee.dione",
-		"gaps_id": 17486,
-		"firstname": "Timothée",
-		"name": "Dione",
-		"mail": "timothee.dione@heig-vd.ch",
-		"is_teacher": 0
-	  },
-        "pivot": {
-            "classroom_name": "M49-1",
-            "user_id": 1
-        },
-        "theme": {
-            "id": 1,
-            "primary": {
-                "value": "49,65,120"
-            },
-            "secondary": {
-                "value": "231,33,40"
-            },
-            "accent": {
-                "value": "249,59,88"
-            },
-            "inactive": {
-                "value": "146,145,148"
-            },
-            "text": {
-                "value": "58,60,61"
-            },
-            "background": {
-                "value": "255,255,255"
-            },
-            "information": {
-                "value": "240,240,240"
-            }
-        }
-    }
-
-    for (let i = 0; i< 20; i++){
-        data.value.studentsList.push(simulatedUser)
-    }
-    console.log('newList', data.value.studentsList)
+function updateTeachersList(){
+    const new_teachers_list = data.value.complete_list.filter(list => list.code == data.value.current_filiere)[0]
+    data.value.teachers = new_teachers_list;
+    data.value.current_filiere = new_teachers_list.code;
+    console.log("newteacherList", data.value.teachers_list)
 }
 
-hardCodeStudentsList();
+const teachers_list = computed({
+    get: () => data.value.teachers_list
+});
+
+const current_filiere = computed({
+    get: () => data.value.current_filiere,
+});
+
+const available_filieres = computed ({
+    get: () => data.value.available_filieres
+})
+
+
+await getFilieresList();
 </script>
 
 <template>
-    <div class="studentsAndTeachers">
-        <h2>Membres de la classe {{ classroom }}</h2>
-         <ul class="teachersList">
-                <h3>Enseignants </h3>
-              <li v-for="teacher in data.teachersList">
+    <div class="teachers">
+        <h1>LISTE DES PROFESSEURS</h1>
+        <h2> {{ data.current_filiere }} </h2>
+        <div class="filiere-selection">
+        <form class="filiere-selection-form" @change="updateTeachersList()" >
+            <select class="filiere-select"  v-model="data.current_filiere">
+                <option value="Filtrer par cours">Filtrer par cours </option>
+                <option v-for="filiere in available_filieres"
+                 v-bind:value="filiere"
+                 >{{ filiere }}</option>
+            </select>
+        </form>
+        </div>
+        <ul class="class-teachers-list">
+                <li v-for="teacher in data.teachers_list.gapsUsers">
                 <div class="nom-utilisateur">
-                <span>{{ teacher.gaps_user.firstname }} {{ teacher.gaps_user.name }}</span>
+                <span>{{ teacher.firstname }} {{ teacher.name }}</span>
                 </div>
                 <div class="mail-et-classe">
-                <span>{{ teacher.gaps_user.mail }} </span><br/>
+                <span>{{ teacher.mail }} </span><br/>
+                <div class="cours_donnes">
+                    <span v-for="cours in teacher.lessons">
+                        {{ cours }}
+                    </span>
+                </div>
                 </div>
              </li>
         </ul>
@@ -122,11 +85,5 @@ hardCodeStudentsList();
 
 
 <style scoped>
-.studentsAndTeachers {
-    list-style-type: none;
-}
-
-
-
 
 </style>
