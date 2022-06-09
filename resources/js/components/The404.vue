@@ -1,4 +1,5 @@
 <script setup>
+import { is404 } from "../stores/route";
 //console.log("notFound");
 
 //Remove top and bottom menus
@@ -26,8 +27,9 @@ function removeTopWhiteSpace(){
     body.setAttribute("style", "margin: 0 0 0 0")
 }
 
-removeMenus()
-removeTopWhiteSpace()
+console.log("is404", is404)
+// removeMenus()
+// removeTopWhiteSpace()
 </script>
 
 <template>
@@ -162,8 +164,7 @@ main {
     align-items: center;
     justify-content: center;
     background-color: var(--accent-color);
-    width: 40%;
-    height: 6.8%;
+    padding: 1em 1em 1em 1em;
     border-radius: 1em;
     color: var(--background-color);
     text-decoration: none;
