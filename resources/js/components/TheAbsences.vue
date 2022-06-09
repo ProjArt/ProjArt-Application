@@ -63,8 +63,11 @@ const absences = ref([]);
   border-radius: var(--border-radius-md);
 }
 
-.absence__unity,
-.absence__absolute_rate {
+.absence__item {
   font-size: 1.2rem;
+}
+.absence__absolute_rate {
+  font-size: 2rem;
+  padding: var(--spacer-xsm);
 }
 </style>

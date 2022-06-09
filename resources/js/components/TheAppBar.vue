@@ -40,5 +40,6 @@ function openDrawer() {
 .app-bar .material-icons {
   margin-left: var(--default-padding);
   margin-right: var(--default-padding);
+  color: var(--accent-color);
 }
 </style>

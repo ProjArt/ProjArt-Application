@@ -76,6 +76,7 @@ function buildMenu() {
   height: 100%;
   width: 75%;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+  font-size: 1.2rem;
 }
 
 .drawer-invisible {
