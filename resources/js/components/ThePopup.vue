@@ -1,22 +1,21 @@
 <script setup>
 import { showPopup, options, useClosePopup } from "../composables/usePopup";
 import { ref, computed, toRaw, watch, watchEffect } from "vue";
-
-watch(showPopup, (newValue) => {
-  console.log("showPopup", showPopup.value);
-});
 </script>
 
 <template>
   <div v-if="showPopup">
-    <div class="popup__bg"></div>
+    <div class="popup__bg" @click="useClosePopup()"></div>
     <div class="popup__container">
       <div class="popup__title">{{ options.title }}</div>
       <div class="popup__body">{{ options.body }}</div>
       <div class="popup__footer">
         <button
           :class="'popup__button--' + (button.main ? 'main' : 'secondary')"
-          @click="button.onClick()"
+          @click="
+            button.onClick();
+            useClosePopup();
+          "
           v-for="button in options.buttons"
           :key="button.title"
         >
