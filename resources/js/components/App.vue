@@ -28,11 +28,10 @@ const route = computed(() => router.currentRoute.value.name);
 
 <template>
   <the-app-bar @open-drawer="openDrawer" v-if="!isHome && !is404" />
-  <div class="spacer-top" v-if="!isHome && !is404">&nbsp;</div>
   <the-notification></the-notification>
   <router-view v-slot="{ Component }">
-    <main :class="'main--' + getLocation()" v-if="!is404 && !isHome"> 
-    <template v-if="['mail', ''].includes(route)">
+    <main :class="'main--' + getLocation()" v-if="!is404 && !isHome">
+      <template v-if="['mail', ''].includes(route)">
         <component :is="Component" />
       </template>
       <template v-else>
@@ -40,8 +39,8 @@ const route = computed(() => router.currentRoute.value.name);
           <component :is="Component" />
         </keep-alive>
       </template>
-      </main>
-    <main :class="'main-no-space-top'">
+    </main>
+    <main v-else :class="'main-no-space-top'">
       <template v-if="['mail', ''].includes(route)">
         <component :is="Component" />
       </template>
@@ -52,22 +51,18 @@ const route = computed(() => router.currentRoute.value.name);
       </template>
     </main>
   </router-view>
-  <div class="spacer-bottom" v-if="!isHome && !is404">&nbsp;</div>
   <the-tabbar />
 
-  <the-drawer ref="drawer" v-if="!isHome && !is404"/>
+  <the-drawer ref="drawer" v-if="!isHome && !is404" />
 </template>
 
 <style lang="scss" >
 #app {
-  display: flex;
-  flex-direction: column;
   height: calc(100vh - var(--app-bar-height));
 }
 
 .main-no-space-top {
   margin: 0 0 0 0;
 }
-
 </style>
 
