@@ -21,20 +21,7 @@ useSwipe({
 const TODAY = new Date();
 const DAY_LABELS = ["L", "M", "M", "J", "V", "S", "D"];
 const DAY_LABELS_SHORT = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
-const MONTH_LABELS = [
-  "JANVIER",
-  "FEVRIER",
-  "MARS",
-  "AVRIL",
-  "MAI",
-  "JUIN",
-  "JUILLET",
-  "AOUT",
-  "SEPTEMBRE",
-  "OCTOBRE",
-  "NOVEMBRE",
-  "DECEMBRE",
-];
+const MONTH_LABELS = ["JANVIER", "FEVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOUT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DECEMBRE",];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
 const AVAILABLE_POPUP = {
@@ -44,7 +31,10 @@ const AVAILABLE_POPUP = {
   EDIT_CALENDAR: 3,
   SHARE_CALENDAR: 4,
   FILTER: 5,
+  EVENT: 6,
 };
+const EVENT_POPUP = 0
+const eventPopup = ref(null)
 
 // Ref
 // ======================================
@@ -982,6 +972,24 @@ function showEventEditForm(startDate, id) {
       <button class="button button--save" type="submit">Enregistrer</button>
     </div>
   </div>
+  <!--====  Popup Event ====-->
+  <div class="popup popup--event" v-show="eventPopup === EVENT_POPUP">
+    <button @click="eventPopup = null" class="popup__close"><span class="material-icons">close</span></button>
+    <h2 class="popup__title">
+      <span>Event</span>
+    </h2>
+    {{ selectedDate }}<br />
+    {{ indexUnderEdition }}<br />
+    {{ currDateCursor }}<br />
+    <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
+      submit-label="Enregistrer" @submit="storeCalendar">
+      <FormKit type="text" name="name" validation="required" label="Nom" />
+    </FormKit>
+    <div class="popup__button-wrapper">
+      <button class="button button--cancel" @click.prevent="currentPopup = null">Annuler</button>
+      <button class="button button--save" type="submit">Enregistrer</button>
+    </div>
+  </div>
   <!--====  Popup share Calendar  ====-->
   <div class="popup popup--share-calendar" v-show="currentPopup === AVAILABLE_POPUP.SHARE_CALENDAR">
     <h2>Partager un Calendrier</h2>
@@ -1059,15 +1067,15 @@ function showEventEditForm(startDate, id) {
       <p>{{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}</p>
     </h2>
     <div class="popup__events">
-      <article class="popup__event" v-for="(event, index) in newEventPopup">
+      <article class="popup__event" v-for="(event, index) in newEventPopup" @click="eventPopup = EVENT_POPUP">
         <div class="event">
           <div class="event__infos">
             <p class="event__dot"></p>
             <div class="event__wrapper">
               <p class="event__title">{{ event.title }}</p>
-              <p class="event__date">{{ event.start }}</p>
+              <p class="event__date">{{ useDate.toEventDate(event.start) }}</p>
             </div>
-            <p class="event__time">{{ event.start }}</p>
+            <p class="event__time">{{ useDate.toEventTime(event.start) }}</p>
           </div>
           <button v-show="event.can_edit" @click="deleteEvent(event.start, event.id, event.calendar_id)">
             supprimer
@@ -1751,6 +1759,20 @@ $footer-height: 50px;
   margin: 0 0 2.4rem 0;
   position: absolute;
   bottom: 0;
+}
+
+.event__title {
+  @include font-calendar-month-name-time-event(var(--text-color), left);
+}
+
+.event__date {
+  @include font-calendar-month-date-event(var(--inactive-color), left);
+}
+
+.event__time {
+  @include font-calendar-month-name-time-event(white, center);
+  padding: 0.5rem;
+  width: 5rem;
 }
 
 .button--cancel {

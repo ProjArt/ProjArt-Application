@@ -1,5 +1,19 @@
 const TODAY = new Date();
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
+const MONTH_LABELS = [
+    "JANVIER",
+    "FEVRIER",
+    "MARS",
+    "AVRIL",
+    "MAI",
+    "JUIN",
+    "JUILLET",
+    "AOUT",
+    "SEPTEMBRE",
+    "OCTOBRE",
+    "NOVEMBRE",
+    "DECEMBRE",
+];
 const CSS = {
     currentDay: "is-current-day",
     clickable: "is-clickable-day",
@@ -68,6 +82,10 @@ export function toSwissDay(day) {
     return day - 1 < 0 ? 6 : day - 1; // si dimanche, on ajoute sinon on retire un jour
 }
 
+export function toBritishDay(day) {
+    return day + 1 > 6 ? 0 : day + 1; // si samedi, on ajoute sinon on retire un jour
+}
+
 export function formatDayObject(ref) {
     return {
         class: setDayCssClass(ref),
@@ -131,6 +149,26 @@ export function toEventTime(startDate, endDate) {
         const timePartsEnd = timeEnd.split(":");
         return `${timePartsStart[0]}:${timePartsStart[1]} - ${timePartsEnd[0]}:${timePartsEnd[1]}`;
     }
+}
+
+export function toEventDate(startDate) {
+    const date = startDate.split(" ")[0];
+    const dateParts = date.split("-");
+    console.log({ dateParts });
+    const newDate = new Date(
+        dateParts[0],
+        dateParts[1] - 1,
+        toBritishDay(dateParts[2])
+    );
+    let month = MONTH_LABELS[newDate.getMonth()];
+    month =
+        month.substring(0, 1).toUpperCase() +
+        month.substring(1, 3).toLowerCase() +
+        ".";
+    let day = newDate.getDate().toString();
+    day = day.replace(/^0+/, "");
+    const year = newDate.getFullYear().toString().substring(2);
+    return `${day} ${month} ${year}`;
 }
 
 export function getDaysRelativeToDate(date, numberOfDays) {
