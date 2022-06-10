@@ -98,6 +98,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/gapsUsers/profs', [GapsUsersController::class, 'getProfessorsMySection'])->name('api.gapsUsers.profs');
     Route::get('/gapsUsers/students', [GapsUsersController::class, 'getStudentsMyCourses'])->name('api.gapsUsers.profs');
+
+    Route::get("/test", [MarkController::class, 'test'])->name("api.test");
 });
 
 Route::get('/', function () {
