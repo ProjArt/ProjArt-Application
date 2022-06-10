@@ -7,7 +7,7 @@ import {
     registerToChannelNotification,
 } from "./stores/notifications";
 
-navigator.serviceWorker.register('/workerCacheFetched.js');
+//navigator.serviceWorker.register('/workerCacheFetched.js');
 
 
 const app = createApp(App).use(router);

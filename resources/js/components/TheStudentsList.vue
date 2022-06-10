@@ -34,6 +34,9 @@ function updateStudentsList() {
     const newStudentsList = data.value.complete_list.filter(
         (list) => list.code == data.value.current_course
     )[0];
+    const newStudentsListFiltered = newStudentsList.gapsUsers.filter(person => person.is_teacher == 0);
+    newStudentsList.gapsUsers = newStudentsListFiltered;
+
     data.value.students_list = newStudentsList;
     data.value.current_course = newStudentsList.code;
     //console.log("newCourse", data.value.current_course.split('-')[0]);
@@ -68,7 +71,7 @@ await getCoursesList();
 </script>
 
 <template>
-    <div class="page__title">Liste des étudiants</div>
+    <div class="page__title">LISTE DES ETUDIANTS</div>
     <div class="subtitle_and_lesson_selection">
         <div class="page__subtitle_big">
             {{ renamedCourse }}
@@ -105,6 +108,7 @@ await getCoursesList();
             </li>
         </ul>
     </div>
+    <div class="bottom-space-adder"></div>
 </template>
 
 <style scoped>
@@ -177,7 +181,6 @@ await getCoursesList();
     margin: 0.7em 0 0.7em 0.7em;
     border-radius: 1rem;
     width: 11.1rem;
-    height: 4.8rem;
     font-size: 1.4rem;
     color: var(--background-color);
     font-family: 'Poppins';
@@ -187,6 +190,7 @@ await getCoursesList();
     line-height: 2.1rem;
     flex-direction: column;
     justify-content: center;
+    padding: 0.75rem 0 0.75rem 0;
 }
 
 .span-nom-prenom {
@@ -202,5 +206,9 @@ await getCoursesList();
     font-size: 1.2rem;
     line-height: 1.8rem;
     align-items: center;
+}
+
+.bottom-space-adder {
+    height: 7.6rem;
 }
 </style>
