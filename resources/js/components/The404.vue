@@ -37,9 +37,11 @@ console.log("is404", is404)
 <template>
     <div class="main-body">
         <router-view />
+        <div class="title-wrapper-wrapper">
         <div class="title-wrapper">
         <h2 class="erreur-quatre-zero-quatre">ERREUR</h2>
         <h1 class="quatre-zero-quatre-chiffre">404</h1>
+        </div>
         </div>
         <div class="indisponible-text">
             La page que vous cherchez est malheureusement indisponible
@@ -96,6 +98,9 @@ main {
     align-items: center;
 }
 
+.title-wrapper-wrapper{
+    margin: 4.8rem 0 0 0;
+}
 
 .title-wrapper {
     /* position: absolute; */
@@ -109,18 +114,16 @@ main {
 
 /* ERREUR */
 .erreur-quatre-zero-quatre {
-    bottom: 65.92%;
-    /* top: 3%; */
-    margin-bottom: 0px;
     width: -webkit-fit-content;
     margin: 0 8rem 0 0;
     margin: -moz-fit-content;
+    width: -moz-fit-content;
     width: fit-content;
     font-family: "Poppins";
-    font-style: bold;
+    font-style: normal;
     font-weight: 700;
-    font-size: 3.3em;
-    line-height: 5rem;
+    font-size: 6rem;
+    line-height: 9rem;
     display: flex;
     align-items: flex-end;
     text-align: center;
@@ -129,16 +132,16 @@ main {
 
 /* 404 */
 .quatre-zero-quatre-chiffre {
-    position: relative;
-    line-height: 5rem;
+        position: relative;
     width: -webkit-fit-content;
     width: -moz-fit-content;
-    margin: 0 0 0 5rem;
+    margin: 0 0 0 15rem;
     width: fit-content;
-    font-family: "Poppins";
+    font-family: "Poppins", normal;
     font-style: bold;
     font-weight: 700;
-    font-size: 5.8em;
+    font-size: 10rem;
+    line-height: 7.5rem;
     display: flex;
     align-items: flex-end;
     text-align: center;
@@ -148,35 +151,39 @@ main {
 /* La page que vous recherchez est malheureusement indisponible */
 .indisponible-text {
     width: 4em;
-    margin: 2em auto 3em auto;
+    margin: 5.7rem auto 0 auto;
+    font-family: Poppins, normal;
     font-style: "semi-bold";
-    font-weight: 600;
-    font-size: 20px;
-    line-height: 30px;
+    font-weight: 500;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
     display: flex;
     align-items: flex-end;
     text-align: center;
     color: #ffffff;
-    justify-content:center;
+    justify-content: center;
 }
 
 .back-to-home-link {
     color: var(--background-color);
     display: flex;
-    margin: 0 0 2em 0;
+    margin: 5.1rem 0 0 0;
     align-items: center;
     justify-content: center;
+    font-size: 1.4rem;
     background-color: var(--accent-color);
     padding: 1em 1em 1em 1em;
-    border-radius: 1em;
+    border-radius: 0.6rem;
     color: var(--background-color);
+    padding: 1.4rem 2.3rem;
     text-decoration: none;
+    line-height: 1rem;
 }
 
 .logo {
     display: flex;
     justify-content: center;
-    margin: 3em 0 0 0;
+    margin: 8.4rem 0 0 0;
 }
 
 .anchor-back-to-home {
