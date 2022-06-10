@@ -7,6 +7,7 @@ import {
     registerToChannelNotification,
 } from "./stores/notifications";
 
+
 /* navigator.serviceWorker.register('/workerCacheFetched.js');
  */
 

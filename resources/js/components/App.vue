@@ -39,8 +39,8 @@ const route = computed(() => router.currentRoute.value.name);
           <component :is="Component" />
         </keep-alive>
       </template>
-    </main>
-    <main v-else :class="'main-no-space-top'">
+      </main>
+    <main :class="'main-no-space-top'" v-else>
       <template v-if="['mail', ''].includes(route)">
         <component :is="Component" />
       </template>

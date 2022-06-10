@@ -30,6 +30,7 @@ async function getFilieresList() {
 
     data.value.current_filiere = data.value.available_filieres[0]
     updateTeachersList();
+    data.value.current_filiere = "Filtrer par filière";
 
 }
 
@@ -38,7 +39,7 @@ function updateTeachersList() {
     console.log("complete_list", complete_list, "current_filiere", data.value.current_filiere)
     const new_teachers_list = complete_list.filter(jsonList => jsonList.code == data.value.current_filiere)[0].teachers
 
-    data.value.teachers_list_to_show = new_teachers_list;
+    data.value.teachers_list_to_show = new_teachers_list
     console.log(data.value.teachers_list_to_show)
 }
 
@@ -52,16 +53,26 @@ const teachers_list_to_show = computed ({
     get: () => data.value.teachers_list,
 })
 
+const current_filiere = computed({
+    get: () => {
+        if(data.value.current_filiere != "Filtrer par filière") {
+            return data.value.current_filiere
+        } else {
+             return data.value.available_filieres[0]
+        }},
+});
+
 await getFilieresList();
 </script>
 
 <template>
-        <h1>LISTE DES PROFESSEURS</h1>
-        <h2>{{ data.current_filiere }}</h2>
+        <div class="page__title">LISTE DES PROFESSEURS</div>
+        <div class="subtitle_and_filiere_selection">
+        <div class="page__subtitle_big">{{ current_filiere }}</div>
         <div class="filiere-selection">
             <form class="filiere-selection-form" @change="updateTeachersList()">
                 <select class="filiere-select" v-model="data.current_filiere">
-                    <option value="Filtrer par filière" disabled="disabled">
+                    <option class="option" value="Filtrer par filière" disabled="disabled" selected="true">
                         Filtrer par filière
                     </option>
                     <option
@@ -73,21 +84,7 @@ await getFilieresList();
                 </select>
             </form>
         </div>
-        <!-- <ul class="class-teachers-list">
-            <li v-for="teacher in data.teachers_list.gapsUsers">
-                <div class="nom-utilisateur">
-                    <span>{{ teacher.firstname }} {{ teacher.name }}</span>
-                </div>
-                <div class="mail-et-classe">
-                    <span>{{ teacher.mail }} </span><br />
-                    <div class="cours_donnes">
-                        <span v-for="cours in teacher.lessons">
-                            {{ cours }}
-                        </span>
-                    </div>
-                </div>
-            </li>
-        </ul> -->
+        </div>
         <div class="teachers">
         <ul class="teachers-list">
             <li class="teacher" v-for="teacher in data.teachers_list_to_show">
@@ -100,6 +97,7 @@ await getFilieresList();
             </li>
         </ul>
     </div>
+    <div class="bottom-space-adder"></div>
 </template>
 
 <style scoped>
@@ -120,19 +118,19 @@ await getFilieresList();
     line-height: 23px;
 }
 
-.subtitle_and_lesson_selection {
+.subtitle_and_filiere_selection {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin: 3.1em 0 0 0 ;
 }
 
-.course-selection {
+.filiere-selection {
     margin: 0em 0.44em 0.22em 0;
 }
 
 
-.course-select {
+.filiere-select {
     background-color: var(--accent-color);
     color: var(--background-color);
     padding: 0.1em 0.1em;
@@ -172,7 +170,6 @@ await getFilieresList();
     margin: 0.7em 0 0.7em 0.7em;
     border-radius: 1rem;
     width: 11.1rem;
-    height: 4.8rem;
     font-size: 1.4rem;
     color: var(--background-color);
     font-family: 'Poppins';
@@ -182,6 +179,7 @@ await getFilieresList();
     line-height: 2.1rem;
     flex-direction: column;
     justify-content: center;
+    padding: 0.75rem 0 0.75rem 0;
 }
 
 .span-nom-prenom {
@@ -197,6 +195,10 @@ await getFilieresList();
     font-size: 1.2rem;
     line-height: 1.8rem;
     align-items: center;
+}
+
+.bottom-space-adder {
+    height: 7.6rem;
 }
 </style>
 
