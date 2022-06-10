@@ -153,13 +153,7 @@ export function toEventTime(startDate, endDate) {
 
 export function toEventDate(startDate) {
     const date = startDate.split(" ")[0];
-    const dateParts = date.split("-");
-    console.log({ dateParts });
-    const newDate = new Date(
-        dateParts[0],
-        dateParts[1] - 1,
-        toBritishDay(dateParts[2])
-    );
+    const newDate = new Date(date);
     let month = MONTH_LABELS[newDate.getMonth()];
     month =
         month.substring(0, 1).toUpperCase() +

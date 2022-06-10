@@ -11,8 +11,6 @@ import { changeCssColorsVariable } from "../composables/changeCssColorsVariable.
 import { isHome } from "../stores/route";
 import { is404 } from "../stores/route";
 
-console.log(isAuthenticated.value);
-
 changeCssColorsVariable();
 
 async function _send() {
@@ -37,17 +35,12 @@ function buildMenu() {
     is_visible: [],
     order: 3,
   });
-  console.log(menu);
   return menu;
 }
 </script>
 <template>
   <div class="menu" v-if="!isHome && !is404">
-    <div
-      v-for="route in buildMenu()"
-      :key="route"
-      :class="route.order == 0 ? 'menu__main' : 'menu__item'"
-    >
+    <div v-for="route in buildMenu()" :key="route" :class="route.order == 0 ? 'menu__main' : 'menu__item'">
       <div v-if="route.path">
         <router-link :to="route.path" class="menu__item-link">
           <span class="menu__icon material-icons">{{ route.icon }}</span>
@@ -78,6 +71,7 @@ function buildMenu() {
   width: 100%;
   height: 100%;
 }
+
 .menu__item-link {
   color: var(--text-color);
   text-decoration: inherit;

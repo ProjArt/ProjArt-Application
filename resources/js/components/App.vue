@@ -14,7 +14,6 @@ import router from "../router/routes";
 
 const drawer = ref();
 const getLocation = (() => {
-  console.log("getLocation");
   return window.location.pathname.replace(/^\//, "");
 })
 
@@ -40,7 +39,7 @@ const route = computed(() => router.currentRoute.value.name);
         </keep-alive>
       </template>
     </main>
-    <main :class="'main-no-space-top'">
+    <main v-else :class="'main-no-space-top'">
       <template v-if="['mail', ''].includes(route)">
         <component :is="Component" />
       </template>

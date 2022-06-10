@@ -5,6 +5,7 @@ import useFetch from "../composables/useFetch";
 import * as useDate from "../composables/useDate";
 import { API } from "../stores/api";
 import useSwipe from "../composables/useSwipe";
+import useLog from "../composables/useLog";
 
 useSwipe({
   onSwipeLeft: () => {
@@ -27,11 +28,12 @@ const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
 const AVAILABLE_POPUP = {
   STORE_EVENT: 0,
   STORE_CALENDAR: 1,
-  SHOW_EVENT: 2,
+  MONTH_EVENTS: 2,
   EDIT_CALENDAR: 3,
   SHARE_CALENDAR: 4,
   FILTER: 5,
   EVENT: 6,
+  EDIT_EVENT: 7,
 };
 const EVENT_POPUP = 0
 const eventPopup = ref(null)
@@ -64,6 +66,7 @@ const userSearch = ref("");
 const searchedUser = ref([]);
 const usersForm = ref({});
 const newEventStart = ref("08:00");
+const selectedEvent = ref(null);
 
 // Computed
 // ======================================
@@ -163,7 +166,7 @@ const getCurrentDateForForm = computed(() => {
   const date = `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`;
   return date.replace(/\//g, "-");
 });
-console.log(getCurrentDateForForm.value);
+
 
 // Helpers
 // ======================================
@@ -282,7 +285,6 @@ async function storeCalendar(form) {
 }
 
 async function storeEvent(form) {
-  console.log('newEvent')
   form = prepareFormBeforeSending(form);
   const response = await useFetch({
     url: API.storeEvent.path(),
@@ -302,6 +304,7 @@ async function storeEvent(form) {
 }
 
 async function deleteEvent(dayId, eventId, calendarId) {
+  eventPopup.value = null;
   const response = await useFetch({
     url: API.deleteEvent.path(eventId),
     method: API.deleteEvent.method,
@@ -375,7 +378,7 @@ async function getCalendars() {
     console.log("calendars", response.data);
     return response.data;
   } else {
-    console.log(response, "error");
+    console.log(response, "error no calendars");
     return [];
   }
 }
@@ -643,12 +646,13 @@ function showCurrentEvent(index, dayIndex) {
     selectedDate.value = dayIndex;
     currentEventPopupIndex.value = index;
     newEventPopup.value = sortEventsByDate(index);
-    currentPopup.value = AVAILABLE_POPUP.SHOW_EVENT;
+    currentPopup.value = AVAILABLE_POPUP.MONTH_EVENTS;
   }
 }
 
 function showEventEditForm(startDate, id) {
   const date = useDate.toSwissDate(startDate);
+  /* eventPopup.value = null */
   indexUnderEdition.value = id !== indexUnderEdition.value ? id : undefined;
   let newEvent = toRaw(events.value[date]);
   newEvent = newEvent.filter((event) => {
@@ -973,21 +977,30 @@ function showEventEditForm(startDate, id) {
     </div>
   </div>
   <!--====  Popup Event ====-->
-  <div class="popup popup--event" v-show="eventPopup === EVENT_POPUP">
+  <div class="popup popup--event" v-if="eventPopup === EVENT_POPUP">
     <button @click="eventPopup = null" class="popup__close"><span class="material-icons">close</span></button>
-    <h2 class="popup__title">
-      <span>Event</span>
-    </h2>
-    {{ selectedDate }}<br />
-    {{ indexUnderEdition }}<br />
-    {{ currDateCursor }}<br />
-    <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
-      submit-label="Enregistrer" @submit="storeCalendar">
-      <FormKit type="text" name="name" validation="required" label="Nom" />
-    </FormKit>
+    <h1 class="event__title">
+      <span>{{ selectedEvent.title }}</span>
+    </h1>
+    <div class="event__wrapper">
+      <p class="event__date">{{ useDate.toEventDate(selectedEvent.start) }}</p>
+      <p class="event__location">Lieu: {{ selectedEvent.location }}</p>
+      <p class="event__start">Début {{ useDate.toEventTime(selectedEvent.start) }}</p>
+      <p class="event__end">Fin {{ useDate.toEventTime(selectedEvent.end) }}</p>
+      <p class="event__calendar">{{ calendarsNames[selectedEvent.calendar_id] }}<span
+          class="material-icons">calendar_month</span> </p>
+    </div>
+    <hr />
+    <p class="event__description">{{ selectedEvent.description }}</p>
     <div class="popup__button-wrapper">
-      <button class="button button--cancel" @click.prevent="currentPopup = null">Annuler</button>
-      <button class="button button--save" type="submit">Enregistrer</button>
+      <button class="button button--edit" v-show="selectedEvent.can_edit"
+        @click="showEventEditForm(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id), currentPopup = AVAILABLE_POPUP.EDIT_EVENT">
+        Modifier
+      </button>
+      <button class="button button--delete" v-show="selectedEvent.can_edit"
+        @click="deleteEvent(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id)">
+        supprimer
+      </button>
     </div>
   </div>
   <!--====  Popup share Calendar  ====-->
@@ -1058,16 +1071,16 @@ function showEventEditForm(startDate, id) {
           }
         }" />
     </div>
-
   </div>
-  <!--====  Popup edit event  ====-->
-  <div class="popup popup--edit-events" v-show="currentPopup === AVAILABLE_POPUP.SHOW_EVENT">
+  <!--====  Popup month events  ====-->
+  <div class="popup popup--month-events" v-show="currentPopup === AVAILABLE_POPUP.MONTH_EVENTS">
     <h2 class="popup__title">
       <p>A venir</p>
       <p>{{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}</p>
     </h2>
     <div class="popup__events">
-      <article class="popup__event" v-for="(event, index) in newEventPopup" @click="eventPopup = EVENT_POPUP">
+      <article class="popup__event" v-for="(event, index) in newEventPopup"
+        @click="eventPopup = EVENT_POPUP; selectedEvent = event">
         <div class="event">
           <div class="event__infos">
             <p class="event__dot"></p>
@@ -1077,33 +1090,45 @@ function showEventEditForm(startDate, id) {
             </div>
             <p class="event__time">{{ useDate.toEventTime(event.start) }}</p>
           </div>
-          <button v-show="event.can_edit" @click="deleteEvent(event.start, event.id, event.calendar_id)">
-            supprimer
-          </button>
-          <button v-show="event.can_edit" @click="showEventEditForm(event.start, event.id, event.calendar_id)">
-            editer
-          </button>
-          <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
-            v-if="indexUnderEdition === event.id" :key="event.id">
-            <FormKit type="text" name="title" validation="required" label="Titre" />
-            <FormKit type="text" name="location" validation="required" label="Lieu" />
-            <FormKit type="textarea" name="description" validation="required" label="Description" />
-            <FormKit type="time" name="start" label="Début" />
-            <FormKit type="time" name="end" label="Fin" />
-            <FormKit name="end_date" type="hidden" :value="event.start" />
-            <FormKit name="start_date" type="hidden" :value="event.start" />
-            <FormKit name="id" type="hidden" :value="event.id" />
-            <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
-              validation="required">
-              <option v-for="(name, id) in editableCalendarsNames" :value="id">
-                {{ name }}
-              </option>
-            </FormKit>
-          </FormKit>
         </div>
       </article>
     </div>
   </div>
+  <!--====  Popup edit event  ====-->
+  <div class="popup popup--edit-event" v-if="currentPopup === AVAILABLE_POPUP.EDIT_EVENT">
+    <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
+    <h1 class="event__title">
+      <span>Modifier un événement</span>
+    </h1>
+    <article class="popup__event">
+      <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
+        :key="newEventPopup.id">
+        <FormKit type="text" name="title" validation="required" label="Titre" />
+        <FormKit type="text" name="location" validation="required" label="Lieu" />
+        <FormKit type="textarea" name="description" validation="required" label="Description" />
+        <FormKit type="time" name="start" label="Début" />
+        <FormKit type="time" name="end" label="Fin" />
+        <FormKit name="end_date" type="hidden" :value="newEventPopup.start" />
+        <FormKit name="start_date" type="hidden" :value="newEventPopup.start" />
+        <FormKit name="id" type="hidden" :value="newEventPopup.id" />
+        <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
+          validation="required">
+          <option v-for="(name, id) in editableCalendarsNames" :value="id">
+            {{ name }}
+          </option>
+        </FormKit>
+      </FormKit>
+      <div class="popup__button-wrapper">
+        <button class="button button--cancel">
+          Annuler
+        </button>
+        <button class="button button--edit" type="submit">
+          Modifier
+        </button>
+      </div>
+    </article>
+  </div>
+
 </template>
 <style lang="scss" scoped>
 // ==========================================================================
@@ -1133,6 +1158,10 @@ $footer-height: 50px;
   line-height: 2.7rem;
   text-transform: uppercase;
   color: var(--text-color);
+}
+
+:deep(.formkit-label) {
+  @include font-title-subject(var(--text-color), left);
 }
 
 .calendar {
@@ -1205,7 +1234,7 @@ $footer-height: 50px;
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
-  background-color: white;
+  background-color: transpartent;
   color: black;
 }
 
@@ -1574,7 +1603,6 @@ $footer-height: 50px;
   min-height: 4.1rem;
 }
 
-
 :deep(.formkit-outer) {
   width: 100%;
 }
@@ -1588,6 +1616,96 @@ $footer-height: 50px;
 :deep(.formkit-form) {
   width: 100%;
 }
+
+//*2# Popup Event
+// ==========================================================================
+
+.popup--event {
+
+  .event__wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: $calendar-gap ;
+  }
+
+  p {
+    margin: 1rem 0;
+  }
+
+  .event__title {
+    @include font-h1(var(--accent-color), left);
+    margin: 1rem 0 0 0;
+  }
+
+  .event__start {
+    @include font-title-subject(var(--text-color), left)
+  }
+
+  .event__end {
+    @include font-title-subject(var(--text-color), right)
+  }
+
+  .event__date {
+    @include font-title-subject(var(--text-color), left)
+  }
+
+  .event__location {
+    @include font-title-subject(var(--text-color), right)
+  }
+
+  .event__description {
+    @include font-title-subject(var(--text-color), left)
+  }
+
+  .event__calendar {
+    @include font-title-subject(var(--accent-color), left);
+    display: flex;
+    align-items: center;
+  }
+
+  .event__calendar span {
+    font-size: 2rem;
+    width: 2rem rem;
+    height: 2rem;
+  }
+
+  .popup__button-wrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-flow: column;
+    grid-gap: $border-radius;
+    width: calc(100% - 2rem);
+    padding: 0 1rem;
+    margin: 0 0 2.4rem 0;
+    position: absolute;
+    justify-content: center;
+    bottom: 0;
+    box-sizing: border-box;
+  }
+
+  .button {
+    @include button;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 16rem;
+  }
+
+  .button--delete {
+    grid-column: 1 / 4;
+  }
+
+  .button--edit {
+    grid-column: 5 / 8;
+  }
+
+
+
+  hr {
+    border-top: 1px solid var(--primary-color);
+    width: 100%;
+  }
+}
+
 
 //*2# Popup Filter
 // ==========================================================================
@@ -1706,9 +1824,9 @@ $footer-height: 50px;
   }
 }
 
-//*2# Popup edit event
+//*2# Popup month events
 // ==========================================================================
-.popup--edit-events {
+.popup--month-events {
   overflow: hidden;
   background-color: var(--information-color);
   position: relative;
@@ -1721,6 +1839,7 @@ $footer-height: 50px;
     justify-content: space-between;
     text-align: left;
     padding: 1rem;
+    margin: 0;
   }
 
   .popup__title p {
@@ -1734,7 +1853,7 @@ $footer-height: 50px;
   }
 }
 
-.popup--edit-events,
+.popup--month-events,
 :deep(.formkit-form) {
   display: flex;
   flex-direction: column;
@@ -1795,14 +1914,6 @@ $footer-height: 50px;
   align-items: center;
 }
 
-/* .popup--edit-calendar { */
-/*   flex-direction: column; */
-/* } */
-
-/* .popup--edit-calendar :deep(.formkit-form) { */
-/*   flex-direction: row; */
-/* } */
-
 .popup__event {
   display: grid;
   width: 100%;
@@ -1815,6 +1926,45 @@ $footer-height: 50px;
   margin: 0 1rem;
   background-color: white;
   border-radius: 6px;
+}
+
+//*2# Popup edit event
+// ==========================================================================
+
+.popup--edit-event {
+
+  .event__title {
+    @include font-h1(var(--text-color), left);
+  }
+
+  .popup__button-wrapper {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-auto-flow: column;
+    grid-gap: $border-radius;
+    width: calc(100% - 2rem);
+    padding: 0 1rem;
+    margin: 0 0 2.4rem 0;
+    position: absolute;
+    justify-content: center;
+    bottom: 0;
+    box-sizing: border-box;
+  }
+
+  .button {
+    @include button;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 16rem;
+  }
+
+  .button--cancel {
+    grid-column: 1 / 4;
+  }
+
+  .button--edit {
+    grid-column: 5 / 8;
+  }
 }
 
 // ==========================================================================
