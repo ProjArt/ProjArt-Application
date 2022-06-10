@@ -44,7 +44,8 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
   transform: translate(-50%, -50%);
   width: 95vw;
   max-width: 400px;
-  background-color: #fff;
+  background-color: var(--background-color);
+  color: var(--text-color);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -66,7 +67,6 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
 
 .popup__button--main {
   background-color: var(--accent-color);
-  color: white;
   border-radius: var(--border-radius-md);
   height: 3.4rem;
   width: 15.8rem;
@@ -75,7 +75,7 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
 }
 
 .popup__button--secondary {
-  background-color: #fff;
+  background-color: var(--background-color);
   color: var(--accent-color);
   border-radius: var(--border-radius-md);
   border: 3px solid var(--accent-color);

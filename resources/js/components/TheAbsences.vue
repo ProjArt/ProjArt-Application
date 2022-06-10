@@ -92,10 +92,11 @@ function popup() {
   margin: var(--default-padding);
   background-color: var(--information-color);
   border-radius: var(--border-radius-md);
+  color: var(--text-color);
 }
 
 .absence__absolute_rate {
-  color: white;
+  color: var(--text-secondary-color);
   background-color: var(--primary-color);
   padding: var(--default-padding);
   border-radius: var(--border-radius-md);

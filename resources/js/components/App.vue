@@ -39,7 +39,7 @@ const route = computed(() => router.currentRoute.value.name);
           <component :is="Component" />
         </keep-alive>
       </template>
-      </main>
+    </main>
     <main :class="'main-no-space-top'" v-else>
       <template v-if="['mail', ''].includes(route)">
         <component :is="Component" />
@@ -60,6 +60,7 @@ const route = computed(() => router.currentRoute.value.name);
 <style lang="scss" >
 #app {
   height: calc(100vh - var(--app-bar-height));
+  background-color: var(--background-color);
 }
 
 .main-no-space-top {

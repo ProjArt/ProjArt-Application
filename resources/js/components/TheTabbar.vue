@@ -61,7 +61,7 @@ function buildMenu() {
 
 <style scoped lang="scss">
 .menu {
-  background-color: var(--tab-bar-bg-color);
+  background-color: var(--background-color);
   box-shadow: 0px -2px 14px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: row;
