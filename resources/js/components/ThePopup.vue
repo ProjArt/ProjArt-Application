@@ -45,7 +45,6 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
   width: 95vw;
   max-width: 400px;
   background-color: var(--background-color);
-  color: var(--text-color);
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -56,13 +55,17 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
 }
 
 .popup__title {
-  @include font-h1("black", center);
+  @include font-h1(var(--text-color), center);
 }
 
 .popup__body {
   font-size: 1.8rem;
-  margin-bottom: 2rem;
+  margin-top: var(--spacer-sm);
+  margin-bottom: var(--spacer-sm);
+  margin-left: var(--spacer-sm);
+  margin-right: var(--spacer-sm);
   text-align: center;
+  color: var(--text-color);
 }
 
 .popup__button--main {
@@ -72,6 +75,7 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
   width: 15.8rem;
   border: none;
   margin: var(--spacer-xsm);
+  color: var(--text-secondary-color);
 }
 
 .popup__button--secondary {

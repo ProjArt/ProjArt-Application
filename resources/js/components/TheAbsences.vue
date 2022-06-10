@@ -78,7 +78,6 @@ function popup() {
         </div>
       </div>
     </div>
-    <button @click="popup()">showPopup</button>
   </template>
 </template>
 
