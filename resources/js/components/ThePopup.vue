@@ -61,6 +61,7 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
 .popup__body {
   font-size: 1.8rem;
   margin-bottom: 2rem;
+  text-align: center;
 }
 
 .popup__button--main {
