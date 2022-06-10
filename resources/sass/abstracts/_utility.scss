@@ -1,14 +1,1 @@
-// ==========================================================================
-//   0. Typography
-// ==========================================================================
-@mixin font-style($color, $text-align) {
-    color: $color;
-    text-align: $text-align;
-}
 
-@mixin font-style-h1($color, $text-align) {
-    font-size: 2.5rem;
-    font-weight: 400;
-    ligne-height: 1.2;
-    @include font-style-h1($color, $text-align);
-}
