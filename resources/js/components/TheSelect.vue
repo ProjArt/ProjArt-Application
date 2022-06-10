@@ -104,7 +104,7 @@ input:checked + label:after {
   height: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
-  border-top: 5px solid white;
+  border-top: 5px solid var(--text-secondary-color);
   position: absolute;
   right: 10px;
   top: calc(50% - 2.5px);
