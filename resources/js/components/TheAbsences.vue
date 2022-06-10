@@ -53,7 +53,7 @@ function popup() {
 
   <the-empty-page
     v-if="absences.length == 0"
-    image="/images/logo_REDY.svg"
+    image="/images/no_absence.svg"
     text="Vous n'avez pas d'absences"
   >
   </the-empty-page>

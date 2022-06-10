@@ -51,7 +51,7 @@ function changeDate(id) {
   <the-empty-page
     v-if="selectedModules.length == 0"
     model=""
-    image="/images/logo_REDY.svg"
+    image="/images/no_mark.svg"
     text="Vous n'avez pas encore de notes"
   >
   </the-empty-page>
