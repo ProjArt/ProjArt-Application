@@ -64,7 +64,7 @@ const routes = [
         icon: "home",
         is_visible: [],
         is_secondary: true,
-        order: 1,
+        order: 4,
         text: "Réglages",
     },
     {
@@ -74,7 +74,7 @@ const routes = [
         icon: "home",
         is_visible: [],
         is_secondary: true,
-        order: 2,
+        order: 3,
         text: "Informations",
     },
     {
@@ -83,6 +83,9 @@ const routes = [
         component: students,
         icon: "group",
         is_visible: [],
+        is_secondary: true,
+        order: 2,
+        text: "Liste des étudiants",
     },
     {
         name: "teachers",
@@ -90,6 +93,9 @@ const routes = [
         component: teachers,
         icon: "group",
         is_visible: [],
+        is_secondary: true,
+        order: 1,
+        text: "Liste des enseignants",
     },
     {
         name: "register",
@@ -127,9 +133,10 @@ const routes = [
         icon: "home",
         is_visible: [],
         is_secondary: true,
-        order: 3,
+        order: 5,
         text: "Crédits",
     },
+
 ];
 
 export const routesNames = () => {
