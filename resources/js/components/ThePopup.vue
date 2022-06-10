@@ -28,6 +28,7 @@ watch(showPopup, (newValue) => {
 </template>
 
 <style scoped lang="scss">
+@import "../../sass/abstracts/_mixins";
 .popup__bg {
   position: fixed;
   top: 0;
@@ -55,9 +56,7 @@ watch(showPopup, (newValue) => {
 }
 
 .popup__title {
-  font-size: 2.6rem;
-  font-weight: 800;
-  margin-bottom: 2rem;
+  @include font-h1("black", center);
 }
 
 .popup__body {
