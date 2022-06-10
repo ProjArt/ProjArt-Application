@@ -18,7 +18,10 @@ export function changeCssColorsVariable() {
     --rgb-information-color: ${user.value.theme.information.value};
     --rgb-background-color: ${user.value.theme.background.value};
     --rgb-text-color: ${user.value.theme.text.value};
+    --rgb-text-color-secondary: ${user.value.theme.text_secondary.value};
     --rgb-accent-color: ${user.value.theme.accent.value};
+    --rgb-inactive-color: ${user.value.theme.inactive.value};
+    --rgb-border-color: ${user.value.theme.border.value};
     }
     `;
 }

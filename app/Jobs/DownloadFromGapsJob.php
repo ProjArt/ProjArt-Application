@@ -38,8 +38,10 @@ class DownloadFromGapsJob implements ShouldQueue
     {
         try {
             GapsEventsService::fetchAllHoraires($this->user);
-            GapsMarksService::fetchAllNotes($this->user);
-            GapsAbsencesService::fetchAllAbsences($this->user);
+            if ($this->user->role == User::ROLE_STUDENT) {
+                GapsMarksService::fetchAllNotes($this->user);
+                GapsAbsencesService::fetchAllAbsences($this->user);
+            }
 
             $channel = Channel::firstOrCreate([
                 'name' => $this->user->username

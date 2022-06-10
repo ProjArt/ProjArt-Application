@@ -19,31 +19,43 @@ class ColorSeeder extends Seeder
         DB::table('colors')->truncate();
 
         Color::factory()->create([
-            'value' => '#3A3C3D',
+            'value' => '#3A3C3D', //1
         ]);
 
         Color::factory()->create([
-            'value' => '#929194',
+            'value' => '#FFFFFF', //2
         ]);
 
         Color::factory()->create([
-            'value' => '#F93B58',
+            'value' => '#929194', //3
         ]);
 
         Color::factory()->create([
-            'value' => '#E72128',
+            'value' => '#F93B58', //4
         ]);
 
         Color::factory()->create([
-            'value' => '#FFFFFF',
+            'value' => '#314178', //5
         ]);
 
         Color::factory()->create([
-            'value' => '#314178',
+            'value' => '#E72128', //6
         ]);
 
         Color::factory()->create([
-            'value' => '#F0F0F0',
+            'value' => '#F0F0F0', //7
+        ]);
+
+        Color::factory()->create([
+            'value' => '#5E6C9D', // 8
+        ]);
+
+        Color::factory()->create([
+            'value' => '#182047', // 9
+        ]);
+
+        Color::factory()->create([
+            'value' => '#000000', // 10
         ]);
     }
 }

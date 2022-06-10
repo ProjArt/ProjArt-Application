@@ -35,5 +35,6 @@ const props = defineProps(["image", "text"]);
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 1.4rem;
+  color: var(--text-color);
 }
 </style>

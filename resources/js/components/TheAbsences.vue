@@ -4,6 +4,7 @@ import useFetch from "../composables/useFetch";
 import AbsencesRouteVue from "../router/AbsencesRoute.vue";
 import { API } from "../stores/api";
 import TheEmptyPage from "./TheEmptyPage";
+import { usePopup } from "../composables/usePopup";
 
 // At start of component, fetch the data
 async function setupAbsences() {
@@ -22,6 +23,29 @@ async function setupAbsences() {
 setupAbsences();
 
 const absences = ref([]);
+
+function popup() {
+  usePopup({
+    title: "Absences",
+    body: "Ceci est le body",
+    buttons: [
+      {
+        title: "Button 2",
+        onClick: () => {
+          console.log("Button 2 clicked");
+        },
+        main: false,
+      },
+      {
+        title: "Button 1",
+        onClick: () => {
+          console.log("Button 1 clicked");
+        },
+        main: true,
+      },
+    ],
+  });
+}
 </script>
 
 <template>
@@ -29,7 +53,7 @@ const absences = ref([]);
 
   <the-empty-page
     v-if="absences.length == 0"
-    image="/images/logo_REDY.svg"
+    image="/images/no_absence.svg"
     text="Vous n'avez pas d'absences"
   >
   </the-empty-page>
@@ -54,8 +78,7 @@ const absences = ref([]);
         </div>
       </div>
     </div>
-
-    <div class="" v-if="absences.length == 0">Tu n'as pas d'absences</div>
+    <button @click="popup()">showPopup</button>
   </template>
 </template>
 
@@ -69,10 +92,11 @@ const absences = ref([]);
   margin: var(--default-padding);
   background-color: var(--information-color);
   border-radius: var(--border-radius-md);
+  color: var(--text-color);
 }
 
 .absence__absolute_rate {
-  color: white;
+  color: var(--text-secondary-color);
   background-color: var(--primary-color);
   padding: var(--default-padding);
   border-radius: var(--border-radius-md);

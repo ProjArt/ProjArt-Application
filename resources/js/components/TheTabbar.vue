@@ -9,6 +9,7 @@ import {
 import { user } from "../stores/auth";
 import { changeCssColorsVariable } from "../composables/changeCssColorsVariable.js";
 import { isHome } from "../stores/route";
+import { is404 } from "../stores/route";
 
 console.log(isAuthenticated.value);
 
@@ -41,7 +42,7 @@ function buildMenu() {
 }
 </script>
 <template>
-  <div class="menu" v-if="!isHome">
+  <div class="menu" v-if="!isHome && !is404">
     <div
       v-for="route in buildMenu()"
       :key="route"
@@ -60,7 +61,7 @@ function buildMenu() {
 
 <style scoped lang="scss">
 .menu {
-  background-color: var(--tab-bar-bg-color);
+  background-color: var(--background-color);
   box-shadow: 0px -2px 14px rgba(0, 0, 0, 0.06);
   display: flex;
   flex-direction: row;

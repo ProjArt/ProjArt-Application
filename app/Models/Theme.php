@@ -15,8 +15,10 @@ class Theme extends Model
         'accent',
         'inactive',
         'text',
+        'text_secondary',
         'background',
         'information',
+        'border',
     ];
 
     protected $hidden = [
@@ -24,9 +26,11 @@ class Theme extends Model
         'secondary_color_id',
         'accent_color_id',
         'inactive_color_id',
-        'text_color_id',
+        'text_color_primary_id',
+        'text_color_secondary_id',
         'background_color_id',
         'information_color_id',
+        'border_color_id',
         'created_at',
         'updated_at',
     ];
@@ -53,7 +57,12 @@ class Theme extends Model
 
     public function text()
     {
-        return $this->belongsTo(Color::class, 'text_color_id', 'id');
+        return $this->belongsTo(Color::class, 'text_color_primary_id', 'id');
+    }
+
+    public function text_secondary()
+    {
+        return $this->belongsTo(Color::class, 'text_color_secondary_id', 'id');
     }
 
     public function background()
@@ -64,5 +73,10 @@ class Theme extends Model
     public function information()
     {
         return $this->belongsTo(Color::class, 'information_color_id', 'id');
+    }
+
+    public function border()
+    {
+        return $this->belongsTo(Color::class, 'border_color_id', 'id');
     }
 }

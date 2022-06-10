@@ -36,7 +36,7 @@ body {
   height: 100vh;
   width: 100vw;
   font-family: sans-serif;
-  color: #fff;
+  color: var(--text-secondary-color);
 }
 
 .select {
@@ -54,7 +54,7 @@ body {
   display: flex;
   align-items: center;
   background: var(--accent-color);
-  color: white;
+  color: var(--text-secondary-color);
   border-top: #222 solid 1px;
   position: absolute;
   top: 0;
@@ -93,7 +93,7 @@ input:checked + label {
 }
 
 input:not(:checked) + label {
-  background-color: #fff;
+  background-color: var(--background-color);
   border: 1px solid var(--accent-color);
   color: var(--text-color);
 }
@@ -110,6 +110,7 @@ input:checked + label:after {
   top: calc(50% - 2.5px);
   pointer-events: none;
   z-index: 3;
+  color: var(--text-secondary-color);
 }
 
 input:checked + label:before {

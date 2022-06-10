@@ -45,7 +45,12 @@ function buildMenu() {
     </div>
     <div class="hr"></div>
     <div class="drawer__content">
-      <div v-for="route in buildMenu()" :key="route.path" class="drawer__content-item" @click="changePage(route.path)">
+      <div
+        v-for="route in buildMenu()"
+        :key="route.path"
+        class="drawer__content-item"
+        @click="changePage(route.path)"
+      >
         <div class="drawer__content-item-text">
           {{ route.text }}
         </div>
@@ -58,8 +63,8 @@ function buildMenu() {
 
 <style scoped lang="scss">
 .drawer {
-  background-color: var(--drawer-bg-color);
-
+  background-color: var(--background-color);
+  color: var(--text-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -128,7 +133,7 @@ function buildMenu() {
 .hr {
   width: 100%;
   height: 1px;
-  background-color: black;
+  background-color: var(--text-color);
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
