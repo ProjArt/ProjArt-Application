@@ -14,6 +14,7 @@ import register from "./RegisterRoute.vue";
 import mails from "./MailsRoute.vue";
 import mail from "./MailRoute.vue";
 import sendMail from "./SendMailRoute.vue";
+import credits from "./CreditsRoute.vue";
 
 const routes = [
     { name: "home", path: "/", component: home, icon: "home", is_visible: [], order: 0, },
@@ -118,6 +119,16 @@ const routes = [
         component: sendMail,
         icon: "home",
         is_visible: [],
+    },
+    {
+        name: "credits",
+        path: "/credits",
+        component: credits,
+        icon: "home",
+        is_visible: [],
+        is_secondary: true,
+        order: 3,
+        text: "Crédits",
     },
 ];
 
