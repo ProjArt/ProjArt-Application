@@ -14,7 +14,7 @@
 
     <title>{{ config('app.name') }}</title>
 
-    <link rel="manifest" href="{{ asset('manifest.json') }} " />
+    <link rel="manifest" href="{{ asset('manifest.webmanifest') }} " />
     <link rel="apple-touch-icon" href="link to the smaller icon">
 
     {{-- PUSHER --}}
