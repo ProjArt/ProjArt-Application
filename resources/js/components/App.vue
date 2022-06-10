@@ -7,12 +7,13 @@ import TheDrawer from "./TheDrawer.vue";
 import { user } from "../stores/auth";
 import { isHome } from "../stores/route";
 import router from "../router/routes";
+import ThePopup from "./ThePopup.vue";
 
 const drawer = ref();
-const getLocation = (() => {
+const getLocation = () => {
   console.log("getLocation");
   return window.location.pathname.replace(/^\//, "");
-})
+};
 
 function openDrawer() {
   drawer.value.toggle();
@@ -41,6 +42,8 @@ const route = computed(() => router.currentRoute.value.name);
   <the-tabbar />
 
   <the-drawer ref="drawer" v-if="!isHome" />
+
+  <the-popup />
 </template>
 
 <style lang="scss" >
