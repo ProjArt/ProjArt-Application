@@ -9,6 +9,7 @@ import {
 import { user } from "../stores/auth";
 import { changeCssColorsVariable } from "../composables/changeCssColorsVariable.js";
 import { isHome } from "../stores/route";
+import { is404 } from "../stores/route";
 
 console.log(isAuthenticated.value);
 
@@ -41,7 +42,7 @@ function buildMenu() {
 }
 </script>
 <template>
-  <div class="menu" v-if="!isHome">
+  <div class="menu" v-if="!isHome && !is404">
     <div
       v-for="route in buildMenu()"
       :key="route"

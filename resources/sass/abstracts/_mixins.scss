@@ -1,0 +1,105 @@
+//⚠️ To use theses mixins in vue component, you need to import them in the component
+// in the style part of the component with "@import './path/to/this/file';"
+
+// ==========================================================================
+//   0. Typography
+// ==========================================================================
+
+@mixin font-style($color, $text-align) {
+    color: $color;
+    text-align: $text-align;
+}
+
+// "H1" in figma
+@mixin font-h1($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 900;
+    font-size: 2.6rem;
+    line-height: 3.9rem;
+    text-transform: uppercase;
+}
+
+// "text calendrier" in figma
+@mixin font-text-calendar($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+    text-transform: uppercase;
+}
+
+// "H3 capital" in figma
+@mixin font-h3-uppercase($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 2.1rem;
+    line-height: 3.2rem;
+    text-transform: uppercase;
+}
+
+// "text-calendar-content" in figma
+@mixin font-text-calendar-content($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+}
+
+// "calendarMois_NomHeure_EVENT" in figma
+@mixin font-calendar-month-name-time-event($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+}
+
+// "calendarMois_DateEvent" in figma
+@mixin font-calendar-month-date-event($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+}
+
+// "calendarJour_DescriptionEvent" in figma
+@mixin font-calendar-day-description-event($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+}
+
+// "calandar_liste_date" in figma
+@mixin font-calendar-list-date($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 1.5rem;
+    text-transform: uppercase;
+}
+
+// "calendarWEEK" in figma
+@mixin font-calendar-week($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1rem;
+    line-height: 1.5rem;
+}
+
+// "H1-menu-burger" in figma
+@mixin font-h1-menu-burger($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 800;
+    font-size: 1.8rem;
+    line-height: 1.5rem;
+}
