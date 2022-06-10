@@ -2,6 +2,7 @@
 import { ref, computed, toRaw, watch, watchEffect } from "vue";
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
+import TheEmptyPage from "./TheEmptyPage";
 
 // At start of component, fetch the data
 async function setupMails() {
@@ -29,19 +30,27 @@ const mails = ref([]);
   <div class="page__title">Mails</div>
   <router-link :to="'/mails/send'">Envoyer</router-link>
 
-  <div v-for="mail in mails" :key="mail.uid">
-    <router-link :to="'/mails/' + mail.uid" class="menu__item-link">
-      <div class="mail-group">
-        <div class="mail-content">
-          <div :class="mail.seen ? 'seen' : 'not-seen'"></div>
-          <div class="from">{{ mail.from }}</div>
-          <div class="subject">{{ mail.subject }}</div>
-          <div class="date">{{ mail.date }}</div>
+  <the-empty-page
+    v-if="mails.length == 0"
+    image="/images/logo_REDY.svg"
+    text="Vous n'avez pas de mails"
+  >
+  </the-empty-page>
+  <template v-else>
+    <div v-for="mail in mails" :key="mail.uid">
+      <router-link :to="'/mails/' + mail.uid" class="menu__item-link">
+        <div class="mail-group">
+          <div class="mail-content">
+            <div :class="mail.seen ? 'seen' : 'not-seen'"></div>
+            <div class="from">{{ mail.from }}</div>
+            <div class="subject">{{ mail.subject }}</div>
+            <div class="date">{{ mail.date }}</div>
+          </div>
+          <span class="material-icons">arrow_right</span>
         </div>
-        <span class="material-icons">arrow_right</span>
-      </div>
-    </router-link>
-  </div>
+      </router-link>
+    </div>
+  </template>
 </template>
 
 <style scoped>

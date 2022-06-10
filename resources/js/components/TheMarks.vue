@@ -2,6 +2,8 @@
 import { ref, computed, toRaw, watch, watchEffect } from "vue";
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
+import TheSelect from "./TheSelect";
+import TheEmptyPage from "./TheEmptyPage";
 
 // At start of component, fetch the data
 async function setupMarks() {
@@ -29,54 +31,69 @@ const selectedModules = computed(() => {
   return modules.value.filter((module) => module.years == selectedYear.value);
 });
 
-function changeDate(event) {
-  console.log("Changing date to", event.target.value);
-  selectedYear.value = event.target.value;
+function changeDate(id) {
+  console.log("Changing date to", id);
+  selectedYear.value = id;
 }
 </script>
 
 <template>
   <div class="marks__header">
     <div class="page__title">Notes</div>
-
-    <div class="page__select">
-      <select @change="changeDate($event)">
-        <option v-for="year in years" :key="year.id">{{ year }}</option>
-      </select>
+    <div class="marks__select">
+      <the-select
+        :options="years"
+        @onChange="(value) => changeDate(value)"
+      ></the-select>
     </div>
   </div>
 
-  <!-- {{ marks }} -->
-  <div v-for="module in selectedModules" :key="module.id">
-    <div class="module__group">
-      <div class="module__title">
-        {{ module.code }}
-      </div>
-      <div class="year-group">
-        <div v-for="mark in module.marks" :key="mark.id">
-          <div class="mark__group">
-            <div class="mark__title">
-              <div class="mark__module_code">
-                {{ mark.course_code }}
-              </div>
-              <div class="mark__value">
-                {{ mark.value }}
-              </div>
-            </div>
-            <div class="module__description">
-              <div
-                v-for="detail in mark.details"
-                :key="detail.id"
-                class="mark__detail_item"
-              >
-                <div class="mark__detail_title">
-                  {{ detail.title }}
+  <the-empty-page
+    v-if="selectedModules.length == 0"
+    model=""
+    image="/images/logo_REDY.svg"
+    text="Vous n'avez pas encore de notes"
+  >
+  </the-empty-page>
+
+  <template v-else>
+    <!-- {{ marks }} -->
+    <div v-for="module in selectedModules" :key="module.id">
+      <div class="module__group">
+        <div class="module__title">
+          <div class="module__code">
+            {{ module.code }}
+          </div>
+          <div class="module_mark">
+            {{ module.mark }}
+          </div>
+        </div>
+        <div class="year-group">
+          <div v-for="mark in module.marks" :key="mark.id">
+            <div class="mark__group">
+              <div class="mark__title">
+                <div class="mark__module_code">
+                  {{ mark.course_code }}
                 </div>
-                <div class="mark__detail_weight">
-                  {{ detail.weight }}
+                <div class="mark__value">
+                  {{ mark.value }}
                 </div>
-                <div class="mark__detail_value">
-                  {{ detail.value }}
+              </div>
+              <div class="module__description">
+                <div
+                  v-for="detail in mark.details"
+                  :key="detail.id"
+                  class="mark__detail_item"
+                >
+                  <div class="mark__detail_title">
+                    {{ detail.title }}
+                  </div>
+                  <div class="mark__detail_weight">
+                    {{ detail.weight }}
+                  </div>
+                  <div class="mark__detail_value">
+                    {{ detail.value }}
+                  </div>
                 </div>
               </div>
             </div>
@@ -84,7 +101,7 @@ function changeDate(event) {
         </div>
       </div>
     </div>
-  </div>
+  </template>
 </template>
 
 <style scoped lang="scss">
@@ -92,6 +109,7 @@ function changeDate(event) {
 .module__title {
   @extend .page__subtitle;
   margin-right: var(--default-padding);
+  margin-top: var(--spacer-xsm);
 }
 .marks__header {
   display: flex;
@@ -149,7 +167,7 @@ function changeDate(event) {
   align-items: center;
   padding: 0.5rem;
   margin-bottom: 2px;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
 }
 
 .mark__detail_item:not(:last-child) {
@@ -160,5 +178,10 @@ function changeDate(event) {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+}
+
+.marks__select {
+  width: 40vw;
+  margin-right: var(--default-padding);
 }
 </style>
