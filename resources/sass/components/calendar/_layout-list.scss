@@ -1,0 +1,74 @@
+//*2# Calendar days LIST
+// ==========================================================================
+@use '../../abstracts/variables'as v;
+
+.calendar__days--list {
+    grid-template-columns: 1fr;
+    overflow: scroll;
+    /* height: calc(100vh - calendarHeaderSize); */
+
+    .calendar__day {
+        flex-direction: row;
+        border: none;
+        position: relative;
+        text-align: center;
+        margin: 0 0 0 6rem;
+    }
+
+    .calendar__day-number {
+        width: 4rem;
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        left: -6rem;
+    }
+
+    .calendar__events {
+        width: 100%;
+        border-left: v.$border-width solid var(--text-color);
+    }
+
+    .calendar__event {
+        display: flex;
+        justify-content: space-between;
+        padding: 1rem;
+        margin: 1rem 0 0 3.8rem;
+        background-color: red;
+        color: white;
+        border-radius: v.$border-radius;
+        text-overflow: ellipsis;
+        position: relative;
+    }
+
+    .calendar__event:first-child::before {
+        content: attr(data-date);
+        position: absolute;
+        left: -10rem;
+        width: 36px;
+        top: 2rem;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        @include font-calendar-list-date(var(--text-color), center);
+    }
+
+    .calendar__event:first-child::after {
+        $size: 1.6rem;
+        content: "";
+        position: absolute;
+        width: $size;
+        height: $size;
+        border-radius: 50%;
+        background-color: var(--text-color);
+        top: calc(50% - ($size / 2));
+        left: calc((3.8rem * -1) - ($size/2) - 1px);
+    }
+
+    .calendar__event-text {
+        @include font-calendar-month-name-time-event(white, unset);
+    }
+
+    .is-current-day {
+        background-color: unset;
+    }
+}

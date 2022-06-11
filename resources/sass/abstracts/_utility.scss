@@ -1,1 +1,25 @@
+.is-display-none {
+    display: none !important;
+}
 
+.is-display-none {
+    display: none !important;
+}
+
+.is-clickable-day {
+    cursor: pointer;
+    pointer-events: all;
+    background-color: white;
+}
+
+.is-current-day {
+    cursor: pointer;
+    pointer-events: all;
+    background-color: rgba(var(--rgb-inactive-color), 0.1);
+}
+
+.is-other-month {
+    opacity: 0.5;
+}
+
+.is-selected-day {}

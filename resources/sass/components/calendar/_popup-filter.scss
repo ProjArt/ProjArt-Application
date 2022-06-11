@@ -1,0 +1,122 @@
+//*2# Popup Filter
+// ==========================================================================
+
+@use '../../abstracts/variables'as v;
+
+.popup--filter {
+    .popup__subtitle {
+        @include font-h1-menu-burger(var(--text-color), center);
+        margin: 0 auto 3rem auto;
+    }
+
+    .popup__layout-options {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 40%;
+        margin: 0 auto;
+        padding: 0;
+    }
+
+    .formkit-fieldset {
+        width: 100%;
+    }
+
+    .popup__layout-option {
+        list-style: none;
+        margin: 0 0 1rem 0;
+    }
+
+    .popup__layout-button {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        background-color: transparent;
+        border: none;
+        @include font-text-calendar-content(var(--text-color), center);
+    }
+
+    hr {
+        border-top: 1px solid var(--text-color);
+        width: 100%;
+        margin: 3rem 0;
+    }
+
+    .material-icons {
+        padding: 0 0.5rem 0;
+    }
+
+    .is-90-deg {
+        transform: rotate(90deg);
+    }
+
+    .is-selected-layout {
+        border: none;
+        border-radius: v.$border-radius;
+        background-color: var(--accent-color);
+        color: white !important;
+    }
+}
+
+//*3# calendar choose
+// ======================================
+
+.calendar__choose {
+    display: flex;
+    width: 40%;
+    margin: 0 auto;
+    position: relative;
+    right: -2.5rem;
+    top: -2.5rem;
+
+    .formkit-options {
+        list-style: none;
+    }
+
+    .formkit-input {
+        width: 0;
+    }
+
+    .formkit-input {
+        width: 0;
+    }
+
+    .formkit-wrapper {
+        position: relative;
+    }
+
+    input[type="checkbox"] {
+        width: 0;
+    }
+
+    .formkit-legend {
+        display: none;
+    }
+
+    .formkit-fieldset {
+        border: none;
+    }
+
+    .formkit-options {
+        padding: 0;
+        margin: 0;
+    }
+
+    .formkit-label {
+        @include font-text-calendar-content(var(--text-color), left);
+    }
+
+    .material-icons::before {
+        content: "check_box_outline_blank";
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+        position: absolute;
+        top: 2.4rem;
+        left: -2.4rem;
+    }
+
+    .material-icons:checked::before {
+        content: "check_box";
+    }
+}

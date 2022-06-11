@@ -1,0 +1,82 @@
+//*2# Popup month events
+// ==========================================================================
+@use '../../abstracts/variables'as v;
+
+.popup--month-events {
+    overflow: hidden;
+    background-color: var(--information-color);
+    position: relative;
+    height: unset;
+    z-index: 1;
+    padding: 1rem;
+
+    .popup__title {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        padding: 1rem;
+        margin: 0;
+    }
+
+    .popup__title p {
+        margin: 0;
+    }
+
+    .popup__events {
+        overflow-y: scroll;
+        width: 100%;
+        padding: 0 0 calc(var(--app-footer-height) + 0.5rem) 0;
+    }
+
+    .formkit-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .formkit-option .formkit-wrapper {
+        display: grid;
+        grid-template-columns: auto 1fr;
+    }
+
+    .event__title {
+        @include font-calendar-month-name-time-event(var(--text-color), left);
+    }
+
+    .event__date {
+        @include font-calendar-month-date-event(var(--inactive-color), left);
+        display: flex;
+        align-items: center
+    }
+
+    .event__time {
+        @include font-calendar-month-name-time-event(white, center);
+        padding: 0.5rem;
+        width: 5rem;
+    }
+
+    .calendar__event {
+        font-size: 0.7rem;
+        text-align: left;
+    }
+
+    .popup--share-calendar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .popup__event {
+        display: grid;
+        width: 100%;
+        grid-template-columns: 1fr;
+        grid-gap: v.$calendar-gap;
+        margin: 0 0 1rem 0;
+    }
+
+    .event {
+        margin: 0 1rem;
+        background-color: white;
+        border-radius: 6px;
+    }
+}

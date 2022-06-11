@@ -1,0 +1,54 @@
+//*2# Popup Event
+// ==========================================================================
+
+@use '../../abstracts/variables'as v;
+
+.popup--event {
+
+    .event__wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: v.$calendar-gap;
+    }
+
+    p {
+        margin: 1rem 0;
+    }
+
+    .event__title {
+        @include font-h1(var(--accent-color), left);
+        margin: 1rem 0 0 0;
+    }
+
+    .event__start {
+        @include font-title-subject(var(--text-color), left)
+    }
+
+    .event__end {
+        @include font-title-subject(var(--text-color), right)
+    }
+
+    .event__date {
+        @include font-title-subject(var(--text-color), left)
+    }
+
+    .event__location {
+        @include font-title-subject(var(--text-color), right)
+    }
+
+    .event__description {
+        @include font-title-subject(var(--text-color), left)
+    }
+
+    .event__calendar {
+        @include font-title-subject(var(--accent-color), left);
+        display: flex;
+        align-items: center;
+    }
+
+    .event__calendar span {
+        font-size: 2rem;
+        width: 2rem rem;
+        height: 2rem;
+    }
+}

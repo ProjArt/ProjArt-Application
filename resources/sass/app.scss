@@ -1,7 +1,6 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
 // Abstracts
-@import 'abstracts/variables';
+@use 'abstracts/variables';
 @import 'abstracts/mixins';
 @import 'abstracts/utility';
 // Base
@@ -12,3 +11,17 @@
 @import 'components/page';
 @import 'components/marks';
 @import 'components/menus';
+// Calendar
+@import 'components/calendar/calendar';
+@import 'components/calendar/layout-day';
+@import 'components/calendar/layout-list';
+@import 'components/calendar/layout-month';
+@import 'components/calendar/layout-week';
+@import 'components/calendar/popup';
+@import 'components/calendar/popup-edit-event';
+@import 'components/calendar/popup-event';
+@import 'components/calendar/popup-filter';
+@import 'components/calendar/popup-month-event';
+@import 'components/calendar/popup-new-event';
+
+@import url('https://fonts.googleapis.com/css?family=Nunito');
