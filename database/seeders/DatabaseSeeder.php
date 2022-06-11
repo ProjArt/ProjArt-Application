@@ -36,6 +36,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ColorSeeder::class);
         $this->call(ThemeSeeder::class);
         $this->call(ClassroomSeeder::class);
+        $this->call(GapsUsersSeeder::class);
+        $this->call(MenuSeeder::class);
+
         if ($all == 1) {
             $this->call(UsersSeeder::class);
             DB::table('classroom_user')->truncate();
@@ -46,8 +49,6 @@ class DatabaseSeeder extends Seeder
             $this->call(MarkSeeder::class);
             $this->call(CalendarSeeder::class);
             $this->call(AbsencesSeeder::class);
-            $this->call(MenuSeeder::class);
-            $this->call(GapsUsersSeeder::class);
 
             $this->call(ChannelSeeder::class);
             //$this->call(NotificationSeeder::class);
