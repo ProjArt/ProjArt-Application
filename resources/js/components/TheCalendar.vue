@@ -24,17 +24,8 @@ const DAY_LABELS_SHORT = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
 const MONTH_LABELS = ["JANVIER", "FEVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOUT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DECEMBRE",];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
-const AVAILABLE_POPUP = {
-  STORE_EVENT: 0,
-  STORE_CALENDAR: 1,
-  SHOW_EVENT: 2,
-  EDIT_CALENDAR: 3,
-  SHARE_CALENDAR: 4,
-  FILTER: 5,
-  EVENT: 6,
-};
 const EVENT_POPUP = 0
-const eventPopup = ref(null)
+const AVAILABLE_POPUP = { STORE_EVENT: 0, STORE_CALENDAR: 1, SHOW_EVENT: 2, EDIT_CALENDAR: 3, SHARE_CALENDAR: 4, FILTER: 5, EVENT: 6, };
 
 // Ref
 // ======================================
@@ -64,6 +55,7 @@ const userSearch = ref("");
 const searchedUser = ref([]);
 const usersForm = ref({});
 const newEventStart = ref("08:00");
+const eventPopup = ref(null)
 
 // Computed
 // ======================================
