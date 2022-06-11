@@ -1138,6 +1138,7 @@ function showEventEditForm(startDate, id) {
       <p>A venir</p>
       <p>{{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}</p>
     </h2>
+    {{ currDateCursor }}
     <div class="popup__events">
       <article class="popup__event" v-for="(event, index) in newEventPopup"
         @click="eventPopup = EVENT_POPUP; selectedEvent = event">
@@ -1958,7 +1959,6 @@ hr {
     grid-template-columns: auto 1fr;
   }
 
-
   .event__title {
     @include font-calendar-month-name-time-event(var(--text-color), left);
   }
@@ -1972,7 +1972,6 @@ hr {
     padding: 0.5rem;
     width: 5rem;
   }
-
 
   .calendar__event {
     font-size: 0.7rem;
@@ -1998,9 +1997,7 @@ hr {
     background-color: white;
     border-radius: 6px;
   }
-
 }
-
 
 //*2# Popup edit event
 // ==========================================================================
@@ -2010,8 +2007,6 @@ hr {
   .event__title {
     @include font-h1(var(--text-color), left);
   }
-
-
 }
 
 //*2# Popup add event
@@ -2059,8 +2054,6 @@ hr {
   :deep(.formkit-wrapper) {
     align-items: center;
   }
-
-
 
   :deep(input[type="radio"]) {
     width: 0;
