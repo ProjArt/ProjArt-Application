@@ -30,5 +30,7 @@ navigator.serviceWorker.addEventListener("message", (event) => {
 } */
 
 document.querySelector("#app").addEventListener("touchstart", (e) => {
+    var xPos = e.touches[0].clientX;
+    if (xPos > 10 && xPos < window.innerWidth - 10) return;
     e.preventDefault();
 });

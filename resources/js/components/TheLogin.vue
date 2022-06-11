@@ -8,6 +8,7 @@ import { registerToChannelNotification } from "../stores/notifications";
 import { theme } from "../stores/preferences";
 import router from "../router/routes";
 import { usePopup } from "../composables/usePopup";
+import TheLogo from "./TheLogo.vue";
 
 const isSubmitted = ref(false);
 const formData = ref({});
@@ -63,7 +64,9 @@ async function proceedLogin() {
 </script>
 <template>
   <div class="wrapper login">
-    <img src="images/logo_REDY.svg" class="login__logo" />
+    <div class="login__logo">
+      <the-logo />
+    </div>
     <FormKit
       type="form"
       v-model="formData"
