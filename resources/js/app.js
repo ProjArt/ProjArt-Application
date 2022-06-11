@@ -31,8 +31,7 @@ navigator.serviceWorker.addEventListener("message", (event) => {
 
 document.querySelector("#app").addEventListener("touchstart", (e) => {
     const xPos = e.touches[0].clientX;
-    const minX = window.innerWidth * 0.05;
-    console.log(xPos, minX);
+    const minX = window.innerWidth * 0.1;
     if (xPos > minX && xPos < window.innerWidth - minX) return;
     e.preventDefault();
 });
