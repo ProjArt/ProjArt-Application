@@ -280,7 +280,7 @@ async function storeCalendar(form) {
       console.log(error);
     }
   } else {
-    console.log("error");
+    useLog('storeCalendar: Request failed with status code ' + response.status, 'error');
   }
 }
 
@@ -299,7 +299,7 @@ async function storeEvent(form) {
       console.log(error);
     }
   } else {
-    console.log("error");
+    useLog('storeEvent: Request failed with status code ' + response.status, 'error');
   }
 }
 
@@ -327,11 +327,12 @@ async function deleteEvent(dayId, eventId, calendarId) {
       console.log(error);
     }
   } else {
-    console.log("error");
+    useLog('deleteEvent: Request failed with status code ' + response.status, 'error');
   }
 }
 
 async function updateEvent(form) {
+  useLog('updateEvent', 'success');
   const date = form.start_date;
   form.start_date = useDate.swissDateToYMD(form.start_date, "-");
   form.end_date = useDate.swissDateToYMD(form.start_date, "-");
@@ -361,11 +362,13 @@ async function updateEvent(form) {
         }
       });
       indexUnderEdition.value = null;
+      currentPopup.value = AVAILABLE_POPUP.MONTH_EVENTS;
+      eventPopup.value = null;
     } catch (error) {
       console.log(error);
     }
   } else {
-    console.log("error");
+    useLog('updateEvent: Request failed with status code ' + response.status, 'error');
   }
 }
 
@@ -378,7 +381,7 @@ async function getCalendars() {
     console.log("calendars", response.data);
     return response.data;
   } else {
-    console.log(response, "error no calendars");
+    useLog('getCalendars: Request failed with status code ' + response.status, 'error');
     return [];
   }
 }
@@ -399,7 +402,7 @@ async function setCalendars(calendars, setIds = true) {
           : [calendars[0].id.toString()];
     }
   } catch (error) {
-    console.log(error);
+    useLog('setCalendars: Request failed with status code ' + response.status, 'error');
   }
 }
 
@@ -421,7 +424,7 @@ async function deleteCalendar(calendarId) {
       console.log(error);
     }
   } else {
-    console.log("error");
+    useLog('deleteCalendar: Request failed with status code ' + response.status, 'error');
   }
 }
 
@@ -446,7 +449,7 @@ async function updateCalendar(form) {
       console.log(error);
     }
   } else {
-    console.log("error");
+    useLog('updateCalendar: Request failed with status code ' + response.status, 'error');
   }
 }
 
@@ -482,7 +485,7 @@ async function shareCalendar(form) {
   });
   if (response.success === true) {
   } else {
-    console.log(response, "error: sharing calendar");
+    useLog('shareCalendar: Request failed with status code ' + response.status, 'error');
   }
 }
 
@@ -677,6 +680,7 @@ function showEventEditForm(startDate, id) {
     end: end,
     start_date: date,
     end_date: date,
+    id: id,
   };
 }
 
@@ -970,11 +974,11 @@ function showEventEditForm(startDate, id) {
     <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
       submit-label="Enregistrer" @submit="storeCalendar">
       <FormKit type="text" name="name" validation="required" label="Nom" />
+      <div class="popup__button-wrapper">
+        <button class="button button--cancel" @click.prevent="currentPopup = null">Annuler</button>
+        <button class="button button--save" type="submit">Enregistrer</button>
+      </div>
     </FormKit>
-    <div class="popup__button-wrapper">
-      <button class="button button--cancel" @click.prevent="currentPopup = null">Annuler</button>
-      <button class="button button--save" type="submit">Enregistrer</button>
-    </div>
   </div>
   <!--====  Popup Event ====-->
   <div class="popup popup--event" v-if="eventPopup === EVENT_POPUP">
@@ -1101,31 +1105,30 @@ function showEventEditForm(startDate, id) {
       <span>Modifier un événement</span>
     </h1>
     <article class="popup__event">
-      <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent"
-        :key="newEventPopup.id">
+      <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent">
         <FormKit type="text" name="title" validation="required" label="Titre" />
         <FormKit type="text" name="location" validation="required" label="Lieu" />
         <FormKit type="textarea" name="description" validation="required" label="Description" />
         <FormKit type="time" name="start" label="Début" />
         <FormKit type="time" name="end" label="Fin" />
-        <FormKit name="end_date" type="hidden" :value="newEventPopup.start" />
-        <FormKit name="start_date" type="hidden" :value="newEventPopup.start" />
-        <FormKit name="id" type="hidden" :value="newEventPopup.id" />
+        <FormKit name="end_date" type="hidden" :value="formUpdate.start" />
+        <FormKit name="start_date" type="hidden" :value="formUpdate.start" />
+        <FormKit name="id" type="hidden" :value="formUpdate.id" />
         <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
           validation="required">
           <option v-for="(name, id) in editableCalendarsNames" :value="id">
             {{ name }}
           </option>
         </FormKit>
+        <div class="popup__button-wrapper">
+          <button class="button button--cancel">
+            Annuler
+          </button>
+          <button class="button button--edit" type="submit">
+            Modifier
+          </button>
+        </div>
       </FormKit>
-      <div class="popup__button-wrapper">
-        <button class="button button--cancel">
-          Annuler
-        </button>
-        <button class="button button--edit" type="submit">
-          Modifier
-        </button>
-      </div>
     </article>
   </div>
 
