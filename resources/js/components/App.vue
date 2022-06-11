@@ -9,6 +9,7 @@ import { isHome } from "../stores/route";
 import { is404 } from "../stores/route";
 import router from "../router/routes";
 import ThePopup from "./ThePopup.vue";
+import TheLoader from "./TheLoader.vue";
 
 //console.log("is404App", is404")
 
@@ -45,9 +46,9 @@ const route = computed(() => router.currentRoute.value.name);
         <component :is="Component" />
       </template>
       <template v-else>
-        <keep-alive>
-          <component :is="Component" />
-        </keep-alive>
+        <!-- <keep-alive> -->
+        <component :is="Component" />
+        <!-- </keep-alive> -->
       </template>
     </main>
   </router-view>

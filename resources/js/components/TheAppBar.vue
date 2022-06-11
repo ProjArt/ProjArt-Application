@@ -1,5 +1,6 @@
 <script setup>
 import { user } from "../stores/auth";
+
 const emits = defineEmits(["open-drawer"]);
 
 function openDrawer() {

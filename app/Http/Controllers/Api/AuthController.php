@@ -63,7 +63,7 @@ class AuthController extends Controller
             $user->calendars()->sync([$calendar->id]);
         }
 
-        DownloadFromGapsJob::dispatch($user);
+        //DownloadFromGapsJob::dispatch($user);
 
         $user = User::whereUsername($request->username)->first();
 
