@@ -14,6 +14,7 @@ import register from "./RegisterRoute.vue";
 import mails from "./MailsRoute.vue";
 import mail from "./MailRoute.vue";
 import sendMail from "./SendMailRoute.vue";
+import credits from "./CreditsRoute.vue";
 
 const routes = [
     { name: "home", path: "/", component: home, icon: "home", is_visible: [], order: 0, },
@@ -63,7 +64,7 @@ const routes = [
         icon: "home",
         is_visible: [],
         is_secondary: true,
-        order: 1,
+        order: 4,
         text: "Réglages",
     },
     {
@@ -73,7 +74,7 @@ const routes = [
         icon: "home",
         is_visible: [],
         is_secondary: true,
-        order: 2,
+        order: 3,
         text: "Informations",
     },
     {
@@ -82,6 +83,9 @@ const routes = [
         component: students,
         icon: "group",
         is_visible: [],
+        is_secondary: true,
+        order: 2,
+        text: "Liste des étudiants",
     },
     {
         name: "teachers",
@@ -89,6 +93,9 @@ const routes = [
         component: teachers,
         icon: "group",
         is_visible: [],
+        is_secondary: true,
+        order: 1,
+        text: "Liste des enseignants",
     },
     {
         name: "register",
@@ -119,6 +126,17 @@ const routes = [
         icon: "home",
         is_visible: [],
     },
+    {
+        name: "credits",
+        path: "/credits",
+        component: credits,
+        icon: "home",
+        is_visible: [],
+        is_secondary: true,
+        order: 5,
+        text: "Crédits",
+    },
+
 ];
 
 export const routesNames = () => {

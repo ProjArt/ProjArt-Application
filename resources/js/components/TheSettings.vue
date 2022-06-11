@@ -2,9 +2,27 @@
 import { user } from "../stores/auth";
 import TheThemeManager from "./TheThemeManager.vue";
 import useLogout from "../composables/useLogout.js";
+import { usePopup } from "../composables/usePopup";
 
 function disconnectAndRedirect() {
-  useLogout();
+  usePopup({
+    title: "Déconnexion",
+    body: "Souhaitez-vous vraiment vous déconnecter de l’application RedY ?",
+    buttons: [
+      {
+        title: "Non",
+        onClick: () => {},
+        main: false,
+      },
+      {
+        title: "Oui",
+        onClick: () => {
+          useLogout();
+        },
+        main: true,
+      },
+    ],
+  });
 }
 </script>
 

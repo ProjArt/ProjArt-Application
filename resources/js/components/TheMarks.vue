@@ -51,7 +51,7 @@ function changeDate(id) {
   <the-empty-page
     v-if="selectedModules.length == 0"
     model=""
-    image="/images/logo_REDY.svg"
+    image="/images/no_mark.svg"
     text="Vous n'avez pas encore de notes"
   >
   </the-empty-page>
@@ -125,6 +125,7 @@ function changeDate(id) {
   border-radius: var(--border-radius-md);
   background-color: var(--information-color);
   margin: var(--default-padding);
+  color: var(--text-color);
 }
 
 .mark__title {
@@ -137,10 +138,12 @@ function changeDate(id) {
 }
 
 .mark__module_code {
-  color: white;
-  background-color: var(--primary-color);
+  color: var(--text-color);
+  background-color: var(--information-color);
   padding: calc(2 * var(--default-padding));
   border-radius: var(--border-radius-md);
+  border: 1px solid var(--text-color);
+
   font-size: 2rem;
 }
 

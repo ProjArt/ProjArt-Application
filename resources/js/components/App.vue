@@ -8,14 +8,14 @@ import { user } from "../stores/auth";
 import { isHome } from "../stores/route";
 import { is404 } from "../stores/route";
 import router from "../router/routes";
+import ThePopup from "./ThePopup.vue";
 
 //console.log("is404App", is404")
-
 
 const drawer = ref();
 const getLocation = (() => {
   return window.location.pathname.replace(/^\//, "");
-})
+});
 
 function openDrawer() {
   drawer.value.toggle();
@@ -39,25 +39,30 @@ const route = computed(() => router.currentRoute.value.name);
         </keep-alive>
       </template>
     </main>
-    <main v-else :class="'main-no-space-top'">
-      <template v-if="['mail', ''].includes(route)">
-        <component :is="Component" />
-      </template>
-      <template v-else>
-        <keep-alive>
+    <<<<<<< HEAD <main v-else :class="'main-no-space-top'">
+      =======
+      <main :class="'main-no-space-top'" v-else>
+        >>>>>>> develop
+        <template v-if="['mail', ''].includes(route)">
           <component :is="Component" />
-        </keep-alive>
-      </template>
-    </main>
+        </template>
+        <template v-else>
+          <keep-alive>
+            <component :is="Component" />
+          </keep-alive>
+        </template>
+      </main>
   </router-view>
   <the-tabbar />
 
   <the-drawer ref="drawer" v-if="!isHome && !is404" />
+  <the-popup />
 </template>
 
 <style lang="scss" >
 #app {
   height: calc(100vh - var(--app-bar-height));
+  background-color: var(--background-color);
 }
 
 .main-no-space-top {

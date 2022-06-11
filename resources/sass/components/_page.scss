@@ -4,6 +4,7 @@
     margin-bottom: 1rem;
     line-height: 2.6rem;
     margin-left: var(--default-padding);
+    color: var(--text-color);
 }
 
 .page__subtitle {
@@ -24,6 +25,7 @@
 .page__subtitle--main {
     width: 100%;
     margin-right: var(--default-padding);
+    color: var(--text-color);
     @extend .border-bottom;
 }
 
@@ -31,5 +33,6 @@
     width: 25vw;
     margin-left: var(--default-padding);
     margin-right: var(--default-padding);
+    color: var(--text-color);
     @extend .border-bottom
 }

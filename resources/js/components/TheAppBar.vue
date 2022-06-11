@@ -29,7 +29,7 @@ function openDrawer() {
   align-items: center;
   width: 100vw;
   height: var(--app-bar-height);
-  background-color: var(--app-bar-bg-color);
+  background-color: var(--background-color);
   z-index: 100;
 }
 

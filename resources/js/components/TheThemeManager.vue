@@ -54,44 +54,19 @@ async function registerUserThemeInDb(themeId) {
       <!-- Cette procédure fait en sorte que seul le tème correspondant à celui sélectionné est checké par défaut.
         Elle permet de contourner le problème lié au fait que le backend ne retourne pas le nom du thème concerné mais des
         couleurs en hexadecimal, ce qui est illisible pour un humain.       -->
-      <input
-        v-if="initialThemeId == 1"
-        checked
-        type="radio"
-        name="theme"
-        value="1"
-        v-model="selectedThemeId"
-        data-colors="black-white"
-      />
-      <input
-        v-if="initialThemeId != 1"
-        type="radio"
-        name="theme"
-        value="1"
-        v-model="selectedThemeId"
-        data-colors="black-white"
-      />
-      <label for="red-white">Black-white</label><br />
-      <input
-        v-if="initialThemeId == 2"
-        checked
-        type="radio"
-        name="theme"
-        value="2"
-        selected="true"
-        v-model="selectedThemeId"
-        data-colors="black-white"
-      />
-      <input
-        v-if="initialThemeId != 2"
-        type="radio"
-        name="theme"
-        value="2"
-        selected="true"
-        v-model="selectedThemeId"
-        data-colors="black-white"
-      />
-      <label for="black-white">White-black</label><br />
+
+      <div v-for="theme in themesList" :key="theme.id" class="theme__input">
+        <input
+          type="radio"
+          name="theme"
+          :value="theme.id"
+          v-model="selectedThemeId"
+          :data-colors="theme.name"
+          :id="theme.id"
+        />
+
+        <label :for="theme.id">{{ theme.name }}</label>
+      </div>
     </form>
   </div>
 </template>
@@ -103,5 +78,9 @@ async function registerUserThemeInDb(themeId) {
 
 .themeSelection h2 {
   @extend .page__subtitle--main;
+}
+
+.theme__input {
+  color: var(--text-color);
 }
 </style>

@@ -37,7 +37,7 @@ const date = computed(() => {
 
   <the-empty-page
     v-if="menus.length == 0"
-    image="/images/logo_REDY.svg"
+    image="/images/no_meal.svg"
     text="Il n'y a pas de menus disponibles pour le moment, revenez à 11h."
   >
   </the-empty-page>
