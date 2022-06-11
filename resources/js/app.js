@@ -28,3 +28,7 @@ navigator.serviceWorker.addEventListener("message", (event) => {
         history.go(1);
     }
 } */
+
+document.querySelector("#app").addEventListener("touchstart", (e) => {
+    e.preventDefault();
+});
