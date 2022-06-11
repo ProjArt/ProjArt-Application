@@ -46,9 +46,9 @@ const route = computed(() => router.currentRoute.value.name);
         <component :is="Component" />
       </template>
       <template v-else>
-        <!-- <keep-alive> -->
-        <component :is="Component" />
-        <!-- </keep-alive> -->
+        <keep-alive>
+          <component :is="Component" />
+        </keep-alive>
       </template>
     </main>
   </router-view>
