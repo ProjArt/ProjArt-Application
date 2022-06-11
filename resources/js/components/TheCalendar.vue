@@ -27,13 +27,16 @@ const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
 const AVAILABLE_POPUP = {
   STORE_EVENT: 0,
-  STORE_CALENDAR: 1,
-  MONTH_EVENTS: 2,
-  EDIT_CALENDAR: 3,
-  SHARE_CALENDAR: 4,
-  FILTER: 5,
-  EVENT: 6,
-  EDIT_EVENT: 7,
+  MONTH_EVENTS: 1,
+  CALENDAR_OPTIONS: 2,
+  FILTER: 3,
+  EVENT: 5,
+  EDIT_EVENT: 6,
+};
+const AVAILABLE_CALENDAR_POPUP = {
+  STORE: 0,
+  EDIT: 1,
+  SHARE: 2,
 };
 const EVENT_POPUP = 0
 const eventPopup = ref(null)
@@ -67,6 +70,7 @@ const searchedUser = ref([]);
 const usersForm = ref({});
 const newEventStart = ref("08:00");
 const selectedEvent = ref(null);
+const currentCalendarPopupOption = ref(AVAILABLE_CALENDAR_POPUP.STORE);
 
 // Computed
 // ======================================
@@ -758,8 +762,12 @@ function showEventEditForm(startDate, id) {
 </script>
 <template>
   <div class="calendar">
-    <!--====  Calendar Header  ====-->
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.MONTH">
+
+    <!--==================================-->
+    <!-- Calendar Header -->
+    <!--==================================-->
+
+    <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.MONTH">
       <h1 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
         <span>{{ displayedDateManager.day1 }}
@@ -767,7 +775,7 @@ function showEventEditForm(startDate, id) {
       </h1>
     </div>
 
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.WEEK">
+    <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.WEEK">
       <h1 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
         <p>
@@ -781,7 +789,7 @@ function showEventEditForm(startDate, id) {
       </h1>
     </div>
 
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.DAY">
+    <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.DAY">
       <h1 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
         <span>{{ displayedDateManager.day1 }}
@@ -789,7 +797,7 @@ function showEventEditForm(startDate, id) {
       </h1>
     </div>
 
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.LIST">
+    <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.LIST">
       <h1 class="calendar__date">{{ displayedDateManager.year1 }}</h1>
       <p>
         {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
@@ -801,18 +809,13 @@ function showEventEditForm(startDate, id) {
       </p>
     </div>
 
-    <header class="calendar__header">
-      <button @click="showNewEventForm">Ajouter événement</button>
-      <button @click="showNewCalendarForm">Ajouter un calendrier</button>
-      <button @click="showEditCalendarForm">Editer les calendrier</button>
-      <button @click="showShareCalendarForm">Partager un calendrier</button>
-    </header>
-
+    <!--====  calendar navigations  ====-->
     <header class="calendar__header">
       <button @click="currentPopup = AVAILABLE_POPUP.FILTER"><span class="material-icons">filter_alt</span></button>
       <button @click="actualPeriod"><span class="material-icons">today</span></button>
       <button @click="showNewEventForm"><span class="material-icons">add_circle_outline</span></button>
-      <button @click="showNewCalendarForm"><span class="material-icons">edit_calendar</span></button>
+      <button @click="currentPopup = AVAILABLE_POPUP.CALENDAR_OPTIONS"><span
+          class="material-icons">edit_calendar</span></button>
     </header>
     <!--====  Calendar days names  ====-->
     <div class="calendar__days-names">
@@ -824,18 +827,23 @@ function showEventEditForm(startDate, id) {
     <div class="calendar__no-events" v-show="currentLayout === AVAILABLE_LAYOUT.LIST">
       <p>Aucun événements <br /> pour cette période</p>
     </div>
+
+    <!--==================================-->
+    <!-- Calendar layout -->
+    <!--==================================-->
+
     <!--====  Calendar days MONTH  ====-->
     <div v-if="currentLayout === AVAILABLE_LAYOUT.MONTH" class="calendar__days" :class="
       'calendar__days--' +
       getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
     ">
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
-        (selectedDate === index ? 'is-selected-day' : '',
-          day?.class,
-          currentLayout === AVAILABLE_LAYOUT.MONTH &&
-            MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
-            ? 'is-other-month'
-            : '')
+        selectedDate === index ? 'is-selected-day' : '',
+        day?.class,
+        currentLayout === AVAILABLE_LAYOUT.MONTH &&
+          MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
+          ? 'is-other-month'
+          : ''
       " :key="index" :date-id="day?.local">
         <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">
           {{ day?.dayOfMonthNumber }}
@@ -937,7 +945,11 @@ function showEventEditForm(startDate, id) {
       </div>
     </div>
   </div>
-  <!--====  Popup new event  ====-->
+
+  <!--==================================-->
+  <!-- Popup new event -->
+  <!--==================================-->
+
   <div class="popup popup--new-event" v-show="currentPopup === AVAILABLE_POPUP.STORE_EVENT">
     <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
     <h2 class="popup__title">
@@ -965,22 +977,11 @@ function showEventEditForm(startDate, id) {
       </div>
     </FormKit>
   </div>
-  <!--====  Popup store Calendar  ====-->
-  <div class="popup popup--new-calendar" v-show="currentPopup === AVAILABLE_POPUP.STORE_CALENDAR">
-    <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
-    <h2 class="popup__title">
-      <span>Ajouter un Calendrier</span>
-    </h2>
-    <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
-      submit-label="Enregistrer" @submit="storeCalendar">
-      <FormKit type="text" name="name" validation="required" label="Nom" />
-      <div class="popup__button-wrapper">
-        <button class="button button--cancel" @click.prevent="currentPopup = null">Annuler</button>
-        <button class="button button--save" type="submit">Enregistrer</button>
-      </div>
-    </FormKit>
-  </div>
-  <!--====  Popup Event ====-->
+
+  <!--==================================-->
+  <!-- Popup Event -->
+  <!--==================================-->
+
   <div class="popup popup--event" v-if="eventPopup === EVENT_POPUP">
     <button @click="eventPopup = null" class="popup__close"><span class="material-icons">close</span></button>
     <h1 class="event__title">
@@ -1007,33 +1008,84 @@ function showEventEditForm(startDate, id) {
       </button>
     </div>
   </div>
-  <!--====  Popup share Calendar  ====-->
-  <div class="popup popup--share-calendar" v-show="currentPopup === AVAILABLE_POPUP.SHARE_CALENDAR">
-    <h2>Partager un Calendrier</h2>
+
+  <!--==================================-->
+  <!-- Popup Calendar -->
+  <!--==================================-->
+
+  <div class="popup popup--calendar" v-show="currentPopup === AVAILABLE_POPUP.CALENDAR_OPTIONS">
     <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
-    <FormKit type="search" placeholder="prenom.nom..." label="Search" v-model="userSearch" />
-    <FormKit type="form" v-model="usersForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Partager"
-      @submit="shareCalendar">
-      <FormKit type="checkbox" name="users" :options="searchedUser" validation="required"
-        v-if="searchedUser.length > 0" />
-      <FormKit type="select" label="calendrier" name="calendar_id" :options="calendarsNames" />
-      <FormKit type="checkbox" label="Droit de modification" name="can_own" />
-    </FormKit>
-  </div>
-  <!--====  Popup Edit Calendar  ====-->
-  <div class="popup popup--edit-calendar" v-show="currentPopup === AVAILABLE_POPUP.EDIT_CALENDAR">
-    <h2 class="popup__title">Editer les calendrier</h2>
-    <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
-    <div v-for="calendar in getCalendarsData">
-      <FormKit v-if="calendar.can_edit" type="form" :form-class="isSubmitted ? 'hide' : 'show'"
-        submit-label="Enregistrer" @submit="updateCalendar">
-        <FormKit type="text" name="name" validation="required" :value="calendar.name" />
-        <FormKit type="hidden" name="calendar_id" :value="calendar.id" />
-        <button @click="deleteCalendar(calendar.id)">supprimer</button>
+    <h2 class="popup__subtitle">Options de calendrier</h2>
+    <div class="popup__choose">
+      <FormKit v-model="currentCalendarPopupOption" type="radio" :options="[
+        { label: 'Créer', value: 0 },
+        { label: 'Modifier', value: 1 },
+        { label: 'Partager', value: 2 },
+      ]" :sections-schema="{
+  input: {
+    attrs: {
+      class: { 'material-icons': 'material-icons' }
+    },
+  }
+}" />
+    </div>
+    <hr />
+    <!--====  Popup share Calendar  ====-->
+    <div class="popup--share-calendar" v-show="currentCalendarPopupOption == AVAILABLE_CALENDAR_POPUP.SHARE">
+      <h1>Partager un Calendrier</h1>
+      <FormKit type="search" placeholder="prenom.nom..." label="Search" v-model="userSearch" />
+      <FormKit type="form" v-model="usersForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Partager"
+        @submit="shareCalendar">
+        <FormKit type="checkbox" name="users" :options="searchedUser" validation="required"
+          v-if="searchedUser.length > 0" />
+        <FormKit type="select" label="calendrier" name="calendar_id" :options="calendarsNames" />
+        <FormKit type="checkbox" label="Droit de modification" name="can_own" />
+      </FormKit>
+    </div>
+    <!--====  Popup Edit Calendar  ====-->
+    <div class="popup--edit-calendar" v-show="currentCalendarPopupOption == AVAILABLE_CALENDAR_POPUP.EDIT">
+      <h1 class="popup__title">Editer les calendrier</h1>
+      <div v-for="calendar in getCalendarsData">
+        <FormKit v-if="calendar.can_edit" type="form" :form-class="isSubmitted ? 'hide' : 'show'"
+          submit-label="Enregistrer" @submit="updateCalendar">
+          <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
+            validation="required" />
+          <FormKit type="text" label="Nom" name="name" validation="required" :value="calendar.name" />
+          <FormKit type="color" value="#00FF00" label="Couleur" />
+          <button class="button" @click="deleteCalendar(calendar.id)">supprimer</button>
+        </FormKit>
+        <div class="popup__button-wrapper">
+          <button class="button button--edit"
+            @click="showEventEditForm(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id), currentPopup = AVAILABLE_POPUP.EDIT_EVENT">
+            Modifier
+          </button>
+          <button class="button button--delete"
+            @click="deleteEvent(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id)">
+            supprimer
+          </button>
+        </div>
+      </div>
+    </div>
+    <!--====  Popup store Calendar  ====-->
+    <div class="popup--new-calendar" v-show="currentCalendarPopupOption == AVAILABLE_CALENDAR_POPUP.STORE">
+      <h1 class="popup__title">
+        <span>Ajouter un Calendrier</span>
+      </h1>
+      <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
+        submit-label="Enregistrer" @submit="storeCalendar">
+        <FormKit type="text" name="name" validation="required" label="Nom" />
+        <div class="popup__button-wrapper">
+          <button class="button button--cancel" @click.prevent="currentPopup = null">Annuler</button>
+          <button class="button button--save" type="submit">Enregistrer</button>
+        </div>
       </FormKit>
     </div>
   </div>
-  <!--====  Popup Filter ====-->
+
+  <!--==================================-->
+  <!-- Popup Filter -->
+  <!--==================================-->
+
   <div class="popup popup--filter" v-show="currentPopup === AVAILABLE_POPUP.FILTER">
     <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
     <h1 class="popup__title">
@@ -1076,8 +1128,12 @@ function showEventEditForm(startDate, id) {
         }" />
     </div>
   </div>
-  <!--====  Popup month events  ====-->
-  <div class="popup popup--month-events" v-show="currentPopup === AVAILABLE_POPUP.MONTH_EVENTS">
+
+  <!--==================================-->
+  <!-- Popup month events -->
+  <!--==================================-->
+
+  <div class="popup popup--month-events" v-show="currentLayout === AVAILABLE_LAYOUT.MONTH">
     <h2 class="popup__title">
       <p>A venir</p>
       <p>{{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}</p>
@@ -1098,7 +1154,11 @@ function showEventEditForm(startDate, id) {
       </article>
     </div>
   </div>
-  <!--====  Popup edit event  ====-->
+
+  <!--==================================-->
+  <!-- Popup edit event -->
+  <!--==================================-->
+
   <div class="popup popup--edit-event" v-if="currentPopup === AVAILABLE_POPUP.EDIT_EVENT">
     <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
     <h1 class="event__title">
@@ -1135,9 +1195,8 @@ function showEventEditForm(startDate, id) {
 </template>
 <style lang="scss" scoped>
 // ==========================================================================
-//*1# Calendar
+//*1# Abstracts
 // ==========================================================================
-
 $dot-size: 4px;
 $calendar-gap: 2rem;
 $border-radius: 6px;
@@ -1145,12 +1204,15 @@ $border-width: 3px;
 $heig-planning-color: var(--information-color);
 $header-height: 60px;
 $footer-height: 50px;
+$date-wrapper-height: 6rem;
+$navigation-height: 3rem;
 @import '../../sass/abstracts/mixins';
 
 :global(.main--calendar) {
   display: grid;
-  grid-template-rows: 1fr auto;
+  grid-template-rows: 1fr 0.82fr;
   grid-auto-flow: column;
+  height: 100%;
 }
 
 @mixin day-number-month-layout {
@@ -1163,13 +1225,79 @@ $footer-height: 50px;
   color: var(--text-color);
 }
 
-:deep(.formkit-label) {
-  @include font-title-subject(var(--text-color), left);
-}
+// ==========================================================================
+//*1# Calendar
+// ==========================================================================
 
 .calendar {
   position: relative;
   margin: 0 var(--column-gap);
+}
+
+:deep(.formkit-label) {
+  @include font-title-subject(var(--text-color), left);
+}
+
+.popup__button-wrapper {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-flow: column;
+  grid-gap: $border-radius;
+  width: calc(100% - 2rem);
+  padding: 0 1rem;
+  margin: 0 0 2.4rem 0;
+  position: absolute;
+  justify-content: center;
+  bottom: 0;
+  box-sizing: border-box;
+}
+
+.button {
+  @include button;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 16rem;
+}
+
+.button--cancel {
+  grid-column: 1 / 4;
+}
+
+.button--edit {
+  grid-column: 5 / 8;
+}
+
+.button--delete {
+  grid-column: 1 / 4;
+}
+
+.button--save {
+  grid-column: 5 /8;
+}
+
+hr {
+  border-top: 1px solid var(--primary-color);
+  width: 100%;
+}
+
+:deep(.formkit-input) {
+  width: 100%;
+  background-color: var(--information-color);
+  border: none;
+  border-radius: $border-radius;
+  min-height: 4.1rem;
+}
+
+:deep(.formkit-input[type="submit"]) {
+  display: none;
+}
+
+:deep(.formkit-outer) {
+  width: 100%;
+}
+
+:deep(.formkit-form) {
+  width: 100%;
 }
 
 //*2# Calendar date
@@ -1178,6 +1306,9 @@ $footer-height: 50px;
 .calendar__date {
   display: flex;
   justify-content: space-between;
+  margin: 0;
+  align-items: center;
+  height: $date-wrapper-height;
   @include font-h1(var(--text-color), unset)
 }
 
@@ -1188,6 +1319,7 @@ $footer-height: 50px;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: $calendar-gap;
+  height: $navigation-height;
 
   button {
     border: none;
@@ -1271,6 +1403,8 @@ $footer-height: 50px;
     width: 2.8rem;
     height: 2.8rem;
     margin: 0 0 0.5rem 0;
+    border: 3px solid transparent;
+    border-radius: 50%;
     @include font-text-calendar(var(--text-color), center);
   }
 
@@ -1278,6 +1412,10 @@ $footer-height: 50px;
     background-color: red;
     border-radius: 50%;
     color: white;
+  }
+
+  .is-selected-day .calendar__day-number {
+    border: 3px solid var(--text-color) !important;
   }
 }
 
@@ -1552,9 +1690,10 @@ $footer-height: 50px;
   justify-content: space-between;
 }
 
-.event__title {}
-
-.event__date {}
+.event__title,
+.event__date {
+  margin: 0.2rem 0;
+}
 
 .event__time {
   background-color: red;
@@ -1598,26 +1737,11 @@ $footer-height: 50px;
   margin: 0 0 0 auto;
 }
 
-:deep(.formkit-input) {
-  width: 100%;
-  background-color: var(--information-color);
-  border: none;
-  border-radius: $border-radius;
-  min-height: 4.1rem;
-}
-
-:deep(.formkit-outer) {
-  width: 100%;
-}
 
 .popup__title {
   width: 100%;
   box-sizing: border-box;
   @include font-h1(var(--text-color), left)
-}
-
-:deep(.formkit-form) {
-  width: 100%;
 }
 
 //*2# Popup Event
@@ -1671,44 +1795,7 @@ $footer-height: 50px;
     width: 2rem rem;
     height: 2rem;
   }
-
-  .popup__button-wrapper {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-auto-flow: column;
-    grid-gap: $border-radius;
-    width: calc(100% - 2rem);
-    padding: 0 1rem;
-    margin: 0 0 2.4rem 0;
-    position: absolute;
-    justify-content: center;
-    bottom: 0;
-    box-sizing: border-box;
-  }
-
-  .button {
-    @include button;
-    width: 100%;
-    margin: 0 auto;
-    max-width: 16rem;
-  }
-
-  .button--delete {
-    grid-column: 1 / 4;
-  }
-
-  .button--edit {
-    grid-column: 5 / 8;
-  }
-
-
-
-  hr {
-    border-top: 1px solid var(--primary-color);
-    width: 100%;
-  }
 }
-
 
 //*2# Popup Filter
 // ==========================================================================
@@ -1727,6 +1814,10 @@ $footer-height: 50px;
     width: 40%;
     margin: 0 auto;
     padding: 0;
+  }
+
+  :deep(.formkit-fieldset) {
+    width: 100%;
   }
 
   .popup__layout-option {
@@ -1774,6 +1865,7 @@ $footer-height: 50px;
   margin: 0 auto;
   position: relative;
   right: -2.5rem;
+  top: -2.5rem;
 
   :deep(.formkit-options) {
     list-style: none;
@@ -1818,8 +1910,8 @@ $footer-height: 50px;
     width: 2rem;
     height: 2rem;
     position: absolute;
-    top: 0.3rem;
-    left: -2rem;
+    top: 2.4rem;
+    left: -2.4rem;
   }
 
   :deep(.material-icons:checked::before) {
@@ -1854,82 +1946,61 @@ $footer-height: 50px;
     width: 100%;
     padding: 0 0 calc(var(--app-footer-height) + 0.5rem) 0;
   }
-}
 
-.popup--month-events,
-:deep(.formkit-form) {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+  :deep(.formkit-form) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-:deep(.formkit-option .formkit-wrapper) {
-  display: grid;
-  grid-template-columns: auto 1fr;
-}
-
-:deep(.formkit-input[type="submit"]) {
-  display: none;
-}
-
-.popup__button-wrapper {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-gap: $border-radius;
-  width: calc(100% - 2rem);
-  padding: 0 1rem;
-  margin: 0 0 2.4rem 0;
-  position: absolute;
-  bottom: 0;
-}
-
-.event__title {
-  @include font-calendar-month-name-time-event(var(--text-color), left);
-}
-
-.event__date {
-  @include font-calendar-month-date-event(var(--inactive-color), left);
-}
-
-.event__time {
-  @include font-calendar-month-name-time-event(white, center);
-  padding: 0.5rem;
-  width: 5rem;
-}
-
-.button--cancel {
-  grid-column: 1 /4;
-}
-
-.button--save {
-  grid-column: 5 /8;
-}
+  :deep(.formkit-option .formkit-wrapper) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+  }
 
 
-.calendar__event {
-  font-size: 0.7rem;
-  text-align: left;
+  .event__title {
+    @include font-calendar-month-name-time-event(var(--text-color), left);
+  }
+
+  .event__date {
+    @include font-calendar-month-date-event(var(--inactive-color), left);
+  }
+
+  .event__time {
+    @include font-calendar-month-name-time-event(white, center);
+    padding: 0.5rem;
+    width: 5rem;
+  }
+
+
+  .calendar__event {
+    font-size: 0.7rem;
+    text-align: left;
+  }
+
+  .popup--share-calendar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .popup__event {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-gap: $calendar-gap;
+    margin: 0 0 1rem 0;
+  }
+
+  .event {
+    margin: 0 1rem;
+    background-color: white;
+    border-radius: 6px;
+  }
+
 }
 
-.popup--share-calendar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.popup__event {
-  display: grid;
-  width: 100%;
-  grid-template-columns: 1fr;
-  grid-gap: $calendar-gap;
-  margin: 0 0 1rem 0;
-}
-
-.event {
-  margin: 0 1rem;
-  background-color: white;
-  border-radius: 6px;
-}
 
 //*2# Popup edit event
 // ==========================================================================
@@ -1940,33 +2011,75 @@ $footer-height: 50px;
     @include font-h1(var(--text-color), left);
   }
 
-  .popup__button-wrapper {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    grid-auto-flow: column;
-    grid-gap: $border-radius;
-    width: calc(100% - 2rem);
+
+}
+
+//*2# Popup add event
+// ==========================================================================
+.popup--new-event {
+
+  :deep(.formkit-input[type="submit"]) {
+    display: none;
+  }
+}
+
+// ==========================================================================
+//*1# Calendar popup options
+// ==========================================================================
+
+.popup--calendar {
+
+  .popup__subtitle {
+    @include font-h2(var(--text-color), left);
+  }
+
+  :deep(.formkit-fieldset) {
+    border: none;
+  }
+
+  :deep(.popup__choose .formkit-wrapper) {
+    display: flex;
+  }
+
+  :deep(.popup__choose .formkit-inner) {
     padding: 0 1rem;
-    margin: 0 0 2.4rem 0;
+  }
+
+  :deep(.popup__choose .formkit-input) {
+    width: 2.4rem;
+  }
+
+  :deep(.formkit-options) {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0;
+  }
+
+  :deep(.formkit-wrapper) {
+    align-items: center;
+  }
+
+
+
+  :deep(input[type="radio"]) {
+    width: 0;
+    position: relative;
+  }
+
+  :deep(fieldset .material-icons::before) {
+    content: "radio_button_unchecked";
+    font-size: 2.4rem;
+    width: 2.4rem;
+    height: 2.4rem;
     position: absolute;
-    justify-content: center;
-    bottom: 0;
-    box-sizing: border-box;
+    top: -0.5rem;
+    left: -2rem;
+    color: var(--accent-color);
   }
 
-  .button {
-    @include button;
-    width: 100%;
-    margin: 0 auto;
-    max-width: 16rem;
-  }
-
-  .button--cancel {
-    grid-column: 1 / 4;
-  }
-
-  .button--edit {
-    grid-column: 5 / 8;
+  :deep(fieldset .material-icons:checked::before) {
+    content: "radio_button_checked";
   }
 }
 
@@ -1991,14 +2104,12 @@ $footer-height: 50px;
 .is-current-day {
   cursor: pointer;
   pointer-events: all;
-  background-color: lightblue;
+  background-color: rgba(var(--rgb-inactive-color), 0.1);
 }
 
 .is-other-month {
   opacity: 0.5;
 }
 
-.is-selected-day {
-  border: 1px solid lightcoral;
-}
+.is-selected-day {}
 </style>

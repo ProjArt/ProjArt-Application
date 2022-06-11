@@ -39,19 +39,16 @@ const route = computed(() => router.currentRoute.value.name);
         </keep-alive>
       </template>
     </main>
-    <<<<<<< HEAD <main v-else :class="'main-no-space-top'">
-      =======
-      <main :class="'main-no-space-top'" v-else>
-        >>>>>>> develop
-        <template v-if="['mail', ''].includes(route)">
+    <main :class="'main-no-space-top'" v-else>
+      <template v-if="['mail', ''].includes(route)">
+        <component :is="Component" />
+      </template>
+      <template v-else>
+        <keep-alive>
           <component :is="Component" />
-        </template>
-        <template v-else>
-          <keep-alive>
-            <component :is="Component" />
-          </keep-alive>
-        </template>
-      </main>
+        </keep-alive>
+      </template>
+    </main>
   </router-view>
   <the-tabbar />
 

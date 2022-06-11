@@ -20,6 +20,15 @@
     text-transform: uppercase;
 }
 
+// "H2" in figma
+@mixin font-h2($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 3rem;
+}
+
 // "text calendrier" in figma
 @mixin font-text-calendar($color, $text-align) {
     @include font-style($color, $text-align);
