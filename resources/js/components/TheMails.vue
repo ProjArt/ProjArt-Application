@@ -28,7 +28,6 @@ const mails = ref([]);
 
 <template>
   <div class="page__title">Mails</div>
-  <router-link :to="'/mails/send'">Envoyer</router-link>
 
   <the-empty-page
     v-if="mails.length == 0"
@@ -39,29 +38,49 @@ const mails = ref([]);
   <template v-else>
     <div v-for="mail in mails" :key="mail.uid">
       <router-link :to="'/mails/' + mail.uid" class="menu__item-link">
-        <div class="mail-group">
+        <div
+          class="mail-group"
+          :class="mail.seen ? '' : 'mail-group--not-seen'"
+        >
           <div class="mail-content">
-            <div :class="mail.seen ? 'seen' : 'not-seen'"></div>
-            <div class="from">{{ mail.from }}</div>
-            <div class="subject">{{ mail.subject }}</div>
-            <div class="date">{{ mail.date }}</div>
+            <div class="mail__from">{{ mail.from.split("<")[0] }}</div>
           </div>
-          <span class="material-icons">arrow_right</span>
+          <div class="mail__content-group">
+            <div class="mail__content--message">
+              <div class="mail__subject">{{ mail.subject }}</div>
+              <div class="mail__date">
+                {{ new Date(Date.parse(mail.date)).toLocaleString("ch-FR") }}
+              </div>
+            </div>
+            <span class="material-icons">arrow_right</span>
+          </div>
         </div>
       </router-link>
     </div>
+    <router-link :to="'/mails/send'" class="mail__send-button"
+      >Envoyer</router-link
+    >
   </template>
 </template>
 
 <style scoped>
+.mail-group--not-seen {
+  border: 1px solid var(--secondary-color);
+}
+.mail-group--not-seen .material-icons {
+  color: var(--secondary-color);
+}
 .mail-group {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
-  border-bottom: 1px solid #e0e0e0;
+  padding: var(--spacer-xxsm);
   font-size: 1.2rem;
+  background-color: var(--information-color);
+  margin: var(--spacer-sm) var(--default-padding) var(--spacer-sm)
+    var(--default-padding);
+  border-radius: var(--border-radius-md);
 }
 .mail-group .seen {
   background-color: #00ff00;
@@ -74,5 +93,39 @@ const mails = ref([]);
 .menu__item-link {
   color: inherit;
   text-decoration: inherit;
+}
+
+.mail__from {
+  background-color: var(--primary-color);
+  color: var(--text-secondary-color);
+  padding: var(--spacer-xsm);
+  border-radius: var(--border-radius-md);
+  font-size: 1.2rem;
+
+  width: 30vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mail__content-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.mail__content--message {
+  text-align: right;
+}
+
+.mail__send-button {
+  position: fixed;
+  right: var(--spacer-sm);
+  bottom: var(--spacer-lg);
+  background-color: var(--accent-color);
+  padding: var(--spacer-sm);
+  border-radius: var(--border-radius-md);
+  color: var(--text-secondary-color);
+  text-decoration: none;
+  font-size: 1.4rem;
 }
 </style>

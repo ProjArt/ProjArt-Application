@@ -1,4 +1,4 @@
-importScripts("https://js.pusher.com/beams/service-worker.js");
+/*importScripts("https://js.pusher.com/beams/service-worker.js");
 
 PusherPushNotifications.onNotificationReceived = ({ pushEvent, payload }) => {
     // NOTE: Overriding this method will disable the default notification

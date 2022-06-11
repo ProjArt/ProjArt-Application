@@ -14,10 +14,9 @@ import TheLoader from "./TheLoader.vue";
 //console.log("is404App", is404")
 
 const drawer = ref();
-const getLocation = () => {
-  console.log("getLocation");
+const getLocation = (() => {
   return window.location.pathname.replace(/^\//, "");
-};
+});
 
 function openDrawer() {
   drawer.value.toggle();
