@@ -83,6 +83,8 @@ class GapsMarksService
                                 'markmodule_id' => $module->id,
                                 'course_code' => $courseCode,
                                 'course_name' => $courseName,
+                                'weight' =>  0,
+                                'weight_percentage' => 0,
                                 'value' => explode(" ", str_replace("<br>", " ", $note))[0],
                                 'years' => $years,
                             ]);
@@ -116,90 +118,105 @@ class GapsMarksService
                     } catch (\Exception $e) {
                         print_r($e->getMessage());
                     }
+                }
 
-                    /* continue;
-
-                    // CONTROLE CONTINU 
-
-                    $response = Http::withBasicAuth($user->username, $user->password)
-                        ->asForm()
-                        ->post("https://gaps.heig-vd.ch/consultation/controlescontinus/consultation.php?idst=" . $user->gaps_id, [
-                            "rs" => "getStudentCCs",
-                            "rsargs" => "[17486, 2021, null]"
-                        ]);
-
-                    $res =  str_replace('\\', '', $response->body());
-                    $res = str_replace('+:"', '', $res);
-                    $res =  str_replace('&nbsp', '', $res);
-                    $res =  str_replace('u00e9', 'é', $res);
-                    $res =  str_replace('u00e0', 'à', $res);
-                    $res =  str_replace('u00e7', 'ç', $res);
-                    $res =  str_replace('u00e2', 'â', $res);
-                    $res =  str_replace('u00e4', 'ä', $res);
-                    $res =  str_replace('u00f6', 'ö', $res);
-                    $res =  str_replace('u00fc', 'ü', $res);
-                    $res =  str_replace('u00f1', 'ñ', $res);
-                    $res =  str_replace('u00e8', 'è', $res);
-                    $res =  str_replace('u00f4', 'ô', $res);
-                    $res =  str_replace('u00fb', 'û', $res);
-
-                    $res = substr_replace($res, "", -1);
+                // pourcentage 
 
 
-                    $dom = HtmlDomParser::str_get_html($res);
+                $response = Http::withBasicAuth($user->username, $user->password)->asForm()->post('https://gaps.heig-vd.ch/consultation/etudiant/', [
+                    "rs" => "smartReplacePart",
+                    "rsargs" => '["STUDENT_SELECT_ID","studentDataDiv",null,null,null,' . $user->gaps_id . ',null]'
+                ]);
 
-                    $trs = $dom->find("table.displayArray")->findMulti("tr");
+                $res = $response->body();
 
-                    $course = "";
-                    $course_code = "";
-                    $course_details = [];
+                $res =  str_replace('\u00a3', '', $response->body());
+                $res =  str_replace('@', '', $res);
+                $res =  str_replace('+:"', '', $res);
+                $res =  str_replace('\n', '', $res);
+                $res =  str_replace('\\', '', $res);
+                $res =  str_replace('&nbsp', '', $res);
+                $res =  str_replace('u00e9', 'é', $res);
+                $res =  str_replace('u00e0', 'à', $res);
+                $res =  str_replace('u00e7', 'ç', $res);
+                $res =  str_replace('u00e2', 'â', $res);
+                $res =  str_replace('u00e4', 'ä', $res);
+                $res =  str_replace('u00f6', 'ö', $res);
+                $res =  str_replace('u00fc', 'ü', $res);
+                $res =  str_replace('u00f1', 'ñ', $res);
+                $res =  str_replace('u00e8', 'è', $res);
+                $res =  str_replace('u00f4', 'ô', $res);
+                $res =  str_replace('u00fb', 'û', $res);
+                $res =  str_replace('%', '', $res);
 
-                    $marks = [];
+                $res = substr_replace($res, "", -1);
 
-                    foreach ($trs as $tr) {
-                        $tds = $tr->findMulti("td");
-                        if ($tds[0]->class == "bigheader") {
-                            $course = $tds[0]->innerText;
-                            $course_code = explode(" - ", $course)[0];
-                            $marks[$course_code] = [
-                                'course_name' => $course,
-                                'course_code' => $course_code,
-                            ];
+                $dom = HtmlDomParser::str_get_html($res);
+
+                $trs = $dom->find("div#the_div_2")[0]->findMulti("tr");
+
+                $module = [];
+                $module_code = "";
+                $lesson = "";
+                $weightRaw = 0;
+
+                foreach ($trs as $tr) {
+
+                    if ($tr->hasAttribute("id") && $tr->getAttribute("id") == "uniteVirtuelle") {
+                        continue;
+                    }
+
+
+                    $tds = $tr->findMulti("td");
+                    foreach ($tds as $td) {
+                        if ($td->hasAttribute('colspan')) {
+                            if ($td->getAttribute('colspan') == 100) {
+                                $module_code = explode(")", explode("(", $td->find("a")[0]->innertext)[1])[0];
+                                $lesson = ""; //to clean new line
+                            }
                         }
-                        if ($tds[0]->class == "bodyCC") {
-                            $course_details = [
-                                'date' => $tds[0]->innerText,
-                                'name' => $tds[1]->find('div')[0]->innerText,
-                                'class_average' => $tds[2]->innerText,
-                                'poids' => $tds[3]->innerText,
-                                'note' => $tds[4]->innerText,
 
-                            ];
-                            $marks[$course_code]['details'][] = $course_details;
+                        if ($td->hasAttribute('style')) {
+                            if (str_contains($td->getAttribute('style'), "padding-left:3px; padding-top:2px; padding-bottom:2px;")) {
+                                $lesson = explode(")", explode("(", $td->find("a")[0]->innertext)[1])[0];
+                            }
                         }
-                    } */
 
-                    // pourcentage 
+                        if ($td->hasAttribute('colspan')) {
+                            if ($td->getAttribute('colspan') == 2) {
+                                if (($td->innerText)) {
+                                    $weightRaw = $td->innertext;
+                                }
+                            }
+                        }
+                    }
 
-                    $response = Http::withBasicAuth($user->username, $user->password)
-                        ->asForm()
-                        ->post("https://gaps.heig-vd.ch/consultation/etudiant", [
-                            "rs" => "smartReplacePart",
-                            "rsargs" => '["STUDENT_SELECT_ID","studentDataDiv","2830971874312375411",null,null,' . $user->gaps_id . ',null]'
-                        ]);
+                    if ($lesson && $weightRaw) {
+                        $module[$module_code][] = [
+                            "lesson" => $lesson,
+                            "weight" => $weightRaw
+                        ];
+                    }
+                }
 
-                    $res = str_replace('\u00a3', '', $response->body());
-                    $res = str_replace('\n', '', $res);
-                    $res = str_replace('\r', '', $res);
-                    $res = str_replace('\t', '', $res);
-                    $res = str_replace('\"', '"', $res);
-                    $res = str_replace('@@', '', $res);
-                    $res = str_replace('+:"', '', $res);
-                    $res = str_replace('&nbsp', '', $res);
-                    $res = str_replace('\\', '', $res);
-                    $res = str_replace('u00e9', 'é', $res);
+                $modules = collect($module)->map(function ($m) {
+                    $total = collect($m)->sum("weight");
+                    foreach ($m as $key => $value) {
+                        $m[$key]["percent"] = intval(($value["weight"] / $total) * 100);
+                    }
+                    return $m;
+                });
 
-                    $res = substr_replace($res, "", -1);
+                foreach ($modules as $module) {
+                    foreach ($module as $lesson) {
+                        $mark = $user->marks()->where('course_code', $lesson["lesson"])->first();
+                        if ($mark) {
+                            $mark->update([
+                                'weight' => $lesson['weight'],
+                                'weight_percentage' => $lesson['percent']
+                            ]);
+                        }
+                    }
                 }
             } catch (\Throwable $th) {
                 // echo $th->getMessage();

@@ -16,6 +16,8 @@ class Mark extends Model
         'course_name',
         'value',
         'years',
+        'weight',
+        'weight_percentage',
     ];
 
     protected $with = [
