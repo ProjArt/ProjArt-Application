@@ -39,6 +39,11 @@ class GapsMarksService
         $users = $user != null ? [$user] : User::all();
 
         foreach ($users as $user) {
+
+            if ($user->role != User::ROLE_STUDENT) {
+                continue;
+            }
+
             try {
                 $user->setPersonalNumber();
 

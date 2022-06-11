@@ -3,6 +3,12 @@ import { user } from "../stores/auth";
 import TheThemeManager from "./TheThemeManager.vue";
 import useLogout from "../composables/useLogout.js";
 import { usePopup } from "../composables/usePopup";
+import useFetch from "../composables/useFetch";
+import { API } from "../stores/api";
+import { useLoading } from "../composables/useLoading";
+import { ref } from "vue";
+
+const canUploadDatas = ref(true);
 
 function disconnectAndRedirect() {
   usePopup({
@@ -24,6 +30,38 @@ function disconnectAndRedirect() {
     ],
   });
 }
+
+function updateGaps() {
+  usePopup({
+    title: "Mise à jour des données",
+    body: "Souhaitez-vous vraiment mettre à jour les données de l’école ?",
+    buttons: [
+      {
+        title: "Non",
+        onClick: () => {},
+        main: false,
+      },
+      {
+        title: "Oui",
+        main: true,
+        onClick: async () => {
+          canUploadDatas.value = false;
+
+          await useFetch({
+            url: API.updateAllGaps.path(),
+            method: API.updateAllGaps.method,
+          });
+          console.log("loaded");
+          usePopup({
+            title: "Mise à jour des données",
+            body: "Mise à jour des données terminée",
+          });
+          canUploadDatas.value = true;
+        },
+      },
+    ],
+  });
+}
 </script>
 
 <template>
@@ -40,7 +78,17 @@ function disconnectAndRedirect() {
     </div>
     <div class="settings__item__content">
       <div class="settings-button">
-        <button class="button--main">Mettre à jour</button>
+        <button
+          class="button--main"
+          @click="canUploadDatas ? updateGaps() : null"
+          v-if="canUploadDatas"
+        >
+          Mettre à jour
+        </button>
+        <div v-else>
+          Nous mettons à jour vos données. Vous pouvez continuer à utiliser
+          l'application.
+        </div>
       </div>
     </div>
   </div>
@@ -77,5 +125,7 @@ function disconnectAndRedirect() {
 .settings-button {
   display: flex;
   justify-content: center;
+  text-align: center;
+  font-size: 1.4rem;
 }
 </style>
