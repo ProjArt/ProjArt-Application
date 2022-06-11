@@ -5,7 +5,10 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
 
 <template>
   <div v-if="showPopup">
-    <div class="popup__bg" @click="useClosePopup()"></div>
+    <div
+      class="popup__bg"
+      @click="options.barrierDismissible ? useClosePopup() : null"
+    ></div>
     <div class="popup__container">
       <div class="popup__title">{{ options.title }}</div>
       <div class="popup__body" v-html="options.body"></div>
