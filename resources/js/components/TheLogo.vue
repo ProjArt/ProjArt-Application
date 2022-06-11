@@ -49,7 +49,7 @@
   fill: var(--secondary-color);
 }
 .st1 {
-  fill: var(--text-color);
+  fill: var(--text-color, white);
 }
 .st2 {
   fill: var(--secondary-color);
