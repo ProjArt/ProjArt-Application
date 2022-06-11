@@ -1,11 +1,20 @@
-//*2# Calendar days LIST
-// ==========================================================================
 @use '../../abstracts/variables'as v;
+
+.calendar--list {
+    height: 100%;
+    grid-row: 1/3;
+    overflow: hidden;
+    display: inline-grid;
+    height: 100%;
+    grid-template-rows: min-content min-content;
+
+}
 
 .calendar__days--list {
     grid-template-columns: 1fr;
     overflow: scroll;
-    /* height: calc(100vh - calendarHeaderSize); */
+    margin: 0 0 calc(var(--footer-height) * 2) 0;
+
 
     .calendar__day {
         flex-direction: row;

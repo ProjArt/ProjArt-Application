@@ -1,6 +1,19 @@
-//*2# Calendar days DAY
-// ==========================================================================
 @use '../../abstracts/variables'as v;
+
+.calendar--day {
+    display: grid;
+    height: 100%;
+    grid-row: 1/3;
+    overflow: hidden;
+    display: inline-grid;
+    height: 100%;
+    grid-template-rows: min-content min-content;
+
+    .calendar__days-names {
+        display: none;
+    }
+}
+
 
 .calendar__days--day {
     grid-template-columns: 1fr;
@@ -77,6 +90,7 @@
 
     .event__title {
         grid-column: 1 /3;
+        text-align: left;
     }
 
     .event__location {
@@ -91,6 +105,15 @@
         grid-column: 4 / 6;
         width: fit-content;
         margin: 0 0 0 auto;
+        padding: 0.2rem 0.5rem;
+    }
+
+    .calendar__event:not(.is-heig-calendar) .event__location {
+        display: none;
+    }
+
+    .calendar__event:not(.is-heig-calendar) .event__title {
+        color: white;
     }
 
     .event__calendar {

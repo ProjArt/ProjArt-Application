@@ -1,6 +1,6 @@
 
 <script setup>
-import { ref, computed, toRaw, watch, onMounted } from "vue";
+import { ref, computed, toRaw, watch } from "vue";
 import useFetch from "../composables/useFetch";
 import * as useDate from "../composables/useDate";
 import { API } from "../stores/api";
@@ -8,6 +8,7 @@ import useSwipe from "../composables/useSwipe";
 import useLog from "../composables/useLog";
 import { useLoading } from "../composables/useLoading";
 import { usePopup } from "../composables/usePopup";
+import theEmptyPage from "./TheEmptyPage";
 
 useSwipe({
   onSwipeLeft: () => {
@@ -855,8 +856,7 @@ function showEventEditForm(startDate, id) {
 
     <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.MONTH">
       <h1 class="calendar__date">
-        <span>{{ displayedDateManager.year1 }}</span>
-        <span>{{ displayedDateManager.month1 }}</span>
+        <span>{{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}</span>
       </h1>
     </div>
 
@@ -875,22 +875,16 @@ function showEventEditForm(startDate, id) {
 
     <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.DAY">
       <h1 class="calendar__date">
-        <span>{{ displayedDateManager.year1 }}</span>
-        <span>{{ displayedDateManager.day1 }}
-          {{ displayedDateManager.month1 }}</span>
+        <span>{{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}</span>
       </h1>
     </div>
 
     <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.LIST">
-      <h1 class="calendar__date">{{ displayedDateManager.year1 }}</h1>
-      <p>
-        {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
-        {{ displayedDateManager.year1 }}
-        <span v-show="displayedDateManager.day2"> - </span>{{ displayedDateManager.day2 }} {{
-            displayedDateManager.month2
-        }}
-        {{ displayedDateManager.year2 }}
-      </p>
+      <h1 class="calendar__date">
+        {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}
+        <span class="date-separator" v-show="displayedDateManager.day2"> - </span>
+        {{ displayedDateManager.day2 }} {{ displayedDateManager.month2 }} {{ displayedDateManager.year2 }}
+      </h1>
     </div>
 
     <!--====  calendar navigations  ====-->
@@ -1003,8 +997,12 @@ function showEventEditForm(startDate, id) {
       'calendar__days--' +
       getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
     ">
+      <the-empty-page v-if="sortEventsByDate(dates[Object.keys(dates)[0]]?.local)?.length == 0"
+        text="Tu n'as aucun événement de programmé, tu peux profiter de ta journée !!!"
+        image="/images/no_absence.svg" />
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)"
         :class="(selectedDate === index ? 'is-selected-day' : '', day?.class)" :key="index" :date-id="day?.local">
+
         <article class="calendar__events">
           <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event"
             :data-time="useDate.toEventTime(event?.start)" :class="event.calendar_id == 1 ? 'is-heig-calendar' : ''"

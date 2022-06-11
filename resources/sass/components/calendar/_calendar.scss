@@ -17,10 +17,12 @@
     color: var(--text-color);
 }
 
+
 .calendar {
     position: relative;
     margin: 0 var(--column-gap);
 }
+
 
 .formkit-label {
     @include font-title-subject(var(--text-color), left);
@@ -126,16 +128,16 @@ hr {
     }
 }
 
-
 .calendar__date {
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
+    display: block;
     align-items: center;
     height: v.$date-wrapper-height;
     @include font-h1(var(--text-color), unset)
 }
 
+.date-separator {
+    margin: 0 1rem;
+}
 
 //*2# Calendar day
 // ==========================================================================
