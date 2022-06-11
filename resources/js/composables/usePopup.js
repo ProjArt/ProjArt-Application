@@ -4,8 +4,8 @@ export const showPopup = ref(false);
 
 export const options = ref({});
 
-export function usePopup({ title = '', body = '', buttons = [] } = {}) {
-    options.value = { title, body, buttons };
+export function usePopup({ title = '', body = '', buttons = [], barrierDismissible = true } = {}) {
+    options.value = { title, body, buttons, barrierDismissible };
     showPopup.value = true;
 }
 

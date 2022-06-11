@@ -7,6 +7,7 @@ export function useLoading({ waitFor = () => {}, then = () => {} } = {}) {
         title: "Téléchargement des données",
         body: "Nous téléchargeons les données... Veuillez patienter.",
         buttons: [],
+        barrierDismissible: false,
     });
 
     watch(loaded, (newVal) => {
