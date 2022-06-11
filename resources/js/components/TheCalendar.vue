@@ -6,6 +6,7 @@ import * as useDate from "../composables/useDate";
 import { API } from "../stores/api";
 import useSwipe from "../composables/useSwipe";
 import useLog from "../composables/useLog";
+import { useLoading } from "../composables/useLoading";
 
 useSwipe({
   onSwipeLeft: () => {
@@ -16,30 +17,53 @@ useSwipe({
   },
 });
 
+function waitingForData() {
+  useLoading({
+    waitFor: async () => {
+      console.log("waiting....");
+      await useFetch({
+        url: API.updateAllGaps.path(),
+        method: API.updateAllGaps.method,
+      });
+      console.log("waiting done");
+    },
+    then: async () => {
+      console.log("reloading");
+      location.reload();
+      console.log("reloaded");
+    },
+  });
+}
+
 // Constants
 // ======================================
 
 const TODAY = new Date();
 const DAY_LABELS = ["L", "M", "M", "J", "V", "S", "D"];
 const DAY_LABELS_SHORT = ["Lun", "Mar", "Mer", "Jeu", "Ven", "Sam", "Dim"];
-const MONTH_LABELS = ["JANVIER", "FEVRIER", "MARS", "AVRIL", "MAI", "JUIN", "JUILLET", "AOUT", "SEPTEMBRE", "OCTOBRE", "NOVEMBRE", "DECEMBRE",];
+const MONTH_LABELS = [
+  "JANVIER",
+  "FEVRIER",
+  "MARS",
+  "AVRIL",
+  "MAI",
+  "JUIN",
+  "JUILLET",
+  "AOUT",
+  "SEPTEMBRE",
+  "OCTOBRE",
+  "NOVEMBRE",
+  "DECEMBRE",
+];
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
-const AVAILABLE_POPUP = {
-  STORE_EVENT: 0,
-  MONTH_EVENTS: 1,
-  CALENDAR_OPTIONS: 2,
-  FILTER: 3,
-  EVENT: 5,
-  EDIT_EVENT: 6,
-};
 const AVAILABLE_CALENDAR_POPUP = {
   STORE: 0,
   EDIT: 1,
   SHARE: 2,
 };
 const EVENT_POPUP = 0
-const eventPopup = ref(null)
+const AVAILABLE_POPUP = { STORE_EVENT: 0, STORE_CALENDAR: 1, SHOW_EVENT: 2, EDIT_CALENDAR: 3, SHARE_CALENDAR: 4, FILTER: 5, EVENT: 6, };
 
 // Ref
 // ======================================
@@ -71,6 +95,7 @@ const usersForm = ref({});
 const newEventStart = ref("08:00");
 const selectedEvent = ref(null);
 const currentCalendarPopupOption = ref(AVAILABLE_CALENDAR_POPUP.STORE);
+const eventPopup = ref(null)
 
 // Computed
 // ======================================
@@ -603,15 +628,20 @@ function previousPeriod() {
 }
 
 function getEvents() {
-  const calendars = [];
-  for (const [key, value] of Object.entries(currentsCalendarIds.value)) {
-    allCalendars.value.forEach((calendar) => {
-      if (calendar.id == value) {
-        calendars.push(calendar);
-      }
-    });
+  try {
+    const calendars = [];
+    for (const [key, value] of Object.entries(currentsCalendarIds.value)) {
+      allCalendars.value.forEach((calendar) => {
+        if (calendar.id == value) {
+          calendars.push(calendar);
+        }
+      });
+    }
+    return calendars;
+  } catch (e) {
+    console.log("ERROR", e);
+    waitingForData();
   }
-  return calendars;
 }
 
 function setEvents(calendars) {
@@ -825,7 +855,10 @@ function showEventEditForm(startDate, id) {
     </div>
     <!--====  Calendar no events message  ====-->
     <div class="calendar__no-events" v-show="currentLayout === AVAILABLE_LAYOUT.LIST">
-      <p>Aucun événements <br /> pour cette période</p>
+      <p>
+        Aucun événements <br />
+        pour cette période
+      </p>
     </div>
 
     <!--==================================-->
@@ -910,7 +943,6 @@ function showEventEditForm(startDate, id) {
           </div>
         </article>
       </div>
-
     </div>
     <!--====  Calendar days DAY  ====-->
     <div v-if="currentLayout === AVAILABLE_LAYOUT.DAY" class="calendar__days" :class="
@@ -920,10 +952,15 @@ function showEventEditForm(startDate, id) {
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)"
         :class="(selectedDate === index ? 'is-selected-day' : '', day?.class)" :key="index" :date-id="day?.local">
         <article class="calendar__events">
-          <div v-for="(event, eventId ) in sortEventsByDate(day?.local)" class="calendar__event"
+          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event"
             :data-time="useDate.toEventTime(event?.start)" :class="event.calendar_id == 1 ? 'is-heig-calendar' : ''"
-            :data-bullet="useDate.toEventTime(events[day?.local][eventId - 1]?.start || ' ') != useDate.toEventTime(event.start) ? 'true' : 'false'">
-
+            :data-bullet="
+              useDate.toEventTime(
+                events[day?.local][eventId - 1]?.start || ' '
+              ) != useDate.toEventTime(event.start)
+                ? 'true'
+                : 'false'
+            ">
             <p class="event__header">
               <span class="event__title">{{ event.title }}</span>
               <span class="event__location">{{ event.location }}</span>
@@ -951,7 +988,9 @@ function showEventEditForm(startDate, id) {
   <!--==================================-->
 
   <div class="popup popup--new-event" v-show="currentPopup === AVAILABLE_POPUP.STORE_EVENT">
-    <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
+    <button @click="currentPopup = null" class="popup__close">
+      <span class="material-icons">close</span>
+    </button>
     <h2 class="popup__title">
       <span>Ajouter un événement</span>
     </h2>
@@ -972,7 +1011,9 @@ function showEventEditForm(startDate, id) {
         </option>
       </FormKit>
       <div class="popup__button-wrapper">
-        <button class="button button--cancel" @click.prevent="currentPopup = null">Annuler</button>
+        <button class="button button--cancel" @click.prevent="currentPopup = null">
+          Annuler
+        </button>
         <button class="button button--save" type="submit">Enregistrer</button>
       </div>
     </FormKit>
@@ -1087,44 +1128,54 @@ function showEventEditForm(startDate, id) {
   <!--==================================-->
 
   <div class="popup popup--filter" v-show="currentPopup === AVAILABLE_POPUP.FILTER">
-    <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
+    <button @click="currentPopup = null" class="popup__close">
+      <span class="material-icons">close</span>
+    </button>
     <h1 class="popup__title">
       <span>Filtres</span>
     </h1>
-    <hr>
+    <hr />
     <h3 class="popup__subtitle">Affichage</h3>
     <ul class="popup__layout-options">
       <li class="popup__layout-option">
-        <button :class="currentLayout == AVAILABLE_LAYOUT.MONTH ? 'is-selected-layout' : ''"
-          class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.MONTH"><span
-            class="material-icons">calendar_month</span><span class="popup__text">Mois</span></button>
+        <button :class="
+          currentLayout == AVAILABLE_LAYOUT.MONTH ? 'is-selected-layout' : ''
+        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.MONTH">
+          <span class="material-icons">calendar_month</span><span class="popup__text">Mois</span>
+        </button>
       </li>
       <li class="popup__layout-option">
-        <button :class="currentLayout == AVAILABLE_LAYOUT.WEEK ? 'is-selected-layout' : ''" class="popup__layout-button"
-          @click="currentLayout = AVAILABLE_LAYOUT.WEEK"><span
-            class="material-icons is-90-deg">calendar_view_week</span><span class="popup__text">Semaine</span></button>
+        <button :class="
+          currentLayout == AVAILABLE_LAYOUT.WEEK ? 'is-selected-layout' : ''
+        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.WEEK">
+          <span class="material-icons is-90-deg">calendar_view_week</span><span class="popup__text">Semaine</span>
+        </button>
       </li>
       <li class="popup__layout-option">
-        <button :class="currentLayout == AVAILABLE_LAYOUT.LIST ? 'is-selected-layout' : ''" class="popup__layout-button"
-          @click="currentLayout = AVAILABLE_LAYOUT.LIST"><span class="material-icons">event_note</span><span
-            class="popup__text">List</span></button>
+        <button :class="
+          currentLayout == AVAILABLE_LAYOUT.LIST ? 'is-selected-layout' : ''
+        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.LIST">
+          <span class="material-icons">event_note</span><span class="popup__text">List</span>
+        </button>
       </li>
       <li class="popup__layout-option">
-        <button :class="currentLayout == AVAILABLE_LAYOUT.DAY ? 'is-selected-layout' : ''" class="popup__layout-button"
-          @click="currentLayout = AVAILABLE_LAYOUT.DAY"><span class="material-icons">date_range</span><span
-            class="popup__text">Jour</span></button>
+        <button :class="
+          currentLayout == AVAILABLE_LAYOUT.DAY ? 'is-selected-layout' : ''
+        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.DAY">
+          <span class="material-icons">date_range</span><span class="popup__text">Jour</span>
+        </button>
       </li>
     </ul>
-    <hr>
+    <hr />
     <h3 class="popup__subtitle">Mes calendriers</h3>
     <div class="calendar__choose">
       <FormKit v-model="currentsCalendarIds" type="checkbox" label="Calendrier" :options="calendarsNames"
         :sections-schema="{
           input: {
             attrs: {
-              class: { 'material-icons': 'material-icons' }
+              class: { 'material-icons': 'material-icons' },
             },
-          }
+          },
         }" />
     </div>
   </div>
@@ -1136,7 +1187,10 @@ function showEventEditForm(startDate, id) {
   <div class="popup popup--month-events" v-show="currentLayout === AVAILABLE_LAYOUT.MONTH">
     <h2 class="popup__title">
       <p>A venir</p>
-      <p>{{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}</p>
+      <p>
+        {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
+        {{ displayedDateManager.year1 }}
+      </p>
     </h2>
     {{ currDateCursor }}
     <div class="popup__events">
@@ -1541,7 +1595,7 @@ hr {
   }
 
   .calendar__event-text {
-    @include font-calendar-month-name-time-event(white, unset)
+    @include font-calendar-month-name-time-event(white, unset);
   }
 
   .is-current-day {
@@ -1622,7 +1676,7 @@ hr {
     display: grid;
     width: 100%;
     grid-template-columns: repeat(5, 1fr);
-    @include font-calendar-month-name-time-event(var(--text-color), unset)
+    @include font-calendar-month-name-time-event(var(--text-color), unset);
   }
 
   .event__title {
@@ -1634,7 +1688,7 @@ hr {
   }
 
   .event__description {
-    @include font-calendar-day-description-event(white, left)
+    @include font-calendar-day-description-event(white, left);
   }
 
   .event__time {
@@ -1647,7 +1701,7 @@ hr {
     margin: 0 0 0 auto;
     display: flex;
     align-items: center;
-    @include font-calendar-day-description-event(white, right)
+    @include font-calendar-day-description-event(white, right);
   }
 
   .is-current-day {
@@ -1742,7 +1796,7 @@ hr {
 .popup__title {
   width: 100%;
   box-sizing: border-box;
-  @include font-h1(var(--text-color), left)
+  @include font-h1(var(--text-color), left);
 }
 
 //*2# Popup Event
@@ -1802,7 +1856,6 @@ hr {
 // ==========================================================================
 
 .popup--filter {
-
   .popup__subtitle {
     @include font-h1-menu-burger(var(--text-color), center);
     margin: 0 auto 3rem auto;
@@ -1858,7 +1911,7 @@ hr {
 }
 
 //*3# calendar choose
-// ====================================== 
+// ======================================
 
 .calendar__choose {
   display: flex;
@@ -1885,7 +1938,7 @@ hr {
   }
 
   :deep(input[type="checkbox"]) {
-    width: 0
+    width: 0;
   }
 
   :deep(.formkit-legend) {

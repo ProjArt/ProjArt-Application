@@ -9,6 +9,7 @@ import { isHome } from "../stores/route";
 import { is404 } from "../stores/route";
 import router from "../router/routes";
 import ThePopup from "./ThePopup.vue";
+import TheLoader from "./TheLoader.vue";
 
 //console.log("is404App", is404")
 

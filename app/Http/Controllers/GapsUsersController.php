@@ -37,11 +37,13 @@ class GapsUsersController extends Controller
             }
         }
 
+        usort($professors, function ($a, $b) {
+            return $a["name"] <=> $b["name"];
+        });
+
         $professors = collect($professors)->unique('username')->groupBy('faculty');
 
-        /*  usort($professors, function ($a, $b) {
-            return $a["name"] <=> $b["name"];
-        }); */
+
 
         return httpSuccess('Liste des profs', $professors);
     }

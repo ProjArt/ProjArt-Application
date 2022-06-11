@@ -7,12 +7,39 @@ import { user } from "../stores/auth";
 import { registerToChannelNotification } from "../stores/notifications";
 import { theme } from "../stores/preferences";
 import router from "../router/routes";
+import { usePopup } from "../composables/usePopup";
 
 const isSubmitted = ref(false);
 const formData = ref({});
 const errorMessage = ref("");
 
 const submitHandler = async () => {
+  if (localStorage.getItem("hasAcceptedDatas") != "true") {
+    usePopup({
+      title: "Acceptez-vous ?",
+      body: "Pour le bon fonctionnnement de l’application RedY nous devons accéder et télécharger vos données Gaps sur le serveur de l'école. <br> <br>Etes-vous d’accord ? <br><br> (Le téléchargement va prendre environ 2 minutes, soyez patients et actualiser la page pour obtenir les données.)",
+      buttons: [
+        {
+          title: "Non",
+          onClick: () => {},
+          main: false,
+        },
+        {
+          title: "Oui",
+          onClick: async () => {
+            localStorage.setItem("hasAcceptedDatas", "true");
+            await proceedLogin();
+          },
+          main: true,
+        },
+      ],
+    });
+  } else {
+    await proceedLogin();
+  }
+};
+
+async function proceedLogin() {
   isSubmitted.value = true;
   const response = await useFetch({
     url: API.login.path(),
@@ -20,20 +47,19 @@ const submitHandler = async () => {
     data: toRaw(formData.value),
   });
   if (response.success === true) {
-    await registerToChannelNotification(response.data.user.username);
-
+    /*     await registerToChannelNotification(response.data.user.username);
+     */
     localStorage.setItem("token", response.data.access_token);
     user.value = response.data.user;
     theme.value = response.data.user.theme;
     errorMessage.value = "";
 
-    console.log(routesNames());
     let route = routesNames().find((e) => e.name == "calendar");
     router.push(route.path);
   } else {
     errorMessage.value = response.message;
   }
-};
+}
 </script>
 <template>
   <div class="wrapper login">

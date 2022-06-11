@@ -8,7 +8,7 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
     <div class="popup__bg" @click="useClosePopup()"></div>
     <div class="popup__container">
       <div class="popup__title">{{ options.title }}</div>
-      <div class="popup__body">{{ options.body }}</div>
+      <div class="popup__body" v-html="options.body"></div>
       <div class="popup__footer">
         <button
           :class="'popup__button--' + (button.main ? 'main' : 'secondary')"

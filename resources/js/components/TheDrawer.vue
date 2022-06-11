@@ -38,10 +38,9 @@ function buildMenu() {
   <div class="drawer">
     <div class="drawer__header">
       <span class="material-icons" @click="toggle">close</span>
-      <img class="icon" src="/images/logo_REDY.svg" />
     </div>
     <div class="drawer__header-name">
-      {{ user.gaps_user.firstname }} {{ user.gaps_user.name }}
+      {{ user.gaps_user.name }} {{ user.gaps_user.firstname }}
     </div>
     <div class="hr"></div>
     <div class="drawer__content">
@@ -61,11 +60,11 @@ function buildMenu() {
         <div class="hr"></div>
 
         <div class="drawer__content-telegram-text">
-          Telegram la messagerie pour connaitre ses informations.
+          L'application RedY est aussi disponible sur Telegram. Rejoingez-nous !
         </div>
         <div class="drawer__content-telegram-link">
           <a href="https://t.me/redy_gaps_bot"
-            >Télégram <span class="material-icons">telegram</span></a
+            >Telegram <span class="material-icons">telegram</span></a
           >
         </div>
       </div>
@@ -110,11 +109,15 @@ function buildMenu() {
 .drawer__header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
   height: var(--drawer-header-height);
   padding: var(--default-pading);
+}
+
+.drawer__header span {
+  color: var(--secondary-color);
 }
 
 .drawer__header-name {
@@ -130,6 +133,7 @@ function buildMenu() {
   width: 100%;
   height: 100%;
   padding: var(--default-pading);
+  color: var(--primary-color);
 }
 
 .drawer__content-item {
@@ -158,6 +162,7 @@ function buildMenu() {
   font-weight: 600;
   font-size: 1.8rem;
   color: var(--text-color);
+  line-height: 1.5;
 }
 
 .drawer__content-telegram-link {
