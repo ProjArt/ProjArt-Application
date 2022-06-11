@@ -13,15 +13,10 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
       <div class="popup__title">{{ options.title }}</div>
       <div class="popup__body" v-html="options.body"></div>
       <div class="popup__footer">
-        <button
-          :class="'popup__button--' + (button.main ? 'main' : 'secondary')"
-          @click="
-            button.onClick();
-            useClosePopup();
-          "
-          v-for="button in options.buttons"
-          :key="button.title"
-        >
+        <button :class="'popup__button--' + (button.main ? 'main' : 'secondary')" @click="
+          button.onClick();
+        useClosePopup();
+        " v-for="button in options.buttons" :key="button.title">
           {{ button.title }}
         </button>
       </div>
@@ -31,6 +26,7 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
 
 <style scoped lang="scss">
 @import "../../sass/abstracts/_mixins";
+
 .popup__bg {
   position: fixed;
   top: 0;
@@ -38,8 +34,9 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
+  z-index: 999;
 }
+
 .popup__container {
   position: fixed;
   top: 50%;

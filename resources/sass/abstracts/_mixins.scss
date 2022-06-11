@@ -20,6 +20,15 @@
     text-transform: uppercase;
 }
 
+// "H2" in figma
+@mixin font-h2($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2rem;
+    line-height: 3rem;
+}
+
 // "text calendrier" in figma
 @mixin font-text-calendar($color, $text-align) {
     @include font-style($color, $text-align);
@@ -102,4 +111,42 @@
     font-weight: 800;
     font-size: 1.8rem;
     line-height: 1.5rem;
+}
+
+// "title matiere" in figma
+@mixin font-title-subject($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+}
+
+// "text_PageEvent" in figma
+@mixin font-text-page-event($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.8rem;
+    line-height: 2.7rem;
+}
+
+@mixin font-button($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.4rem;
+    line-height: 2.1rem;
+}
+
+// ==========================================================================
+//   1. OTHERS
+// ==========================================================================
+
+@mixin button {
+    @include font-button(white, center);
+    height: 3.4rem;
+    background: var(--accent-color);
+    border-radius: var(--border-radius-rg);
+    border: none;
 }
