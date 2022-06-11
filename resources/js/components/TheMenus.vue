@@ -90,7 +90,7 @@ const date = computed(() => {
 }
 
 .menu__title-item {
-  color: white;
+  color: var(--text-secondary-color);
   background-color: var(--primary-color);
   padding: calc(2 * var(--default-padding));
   border-radius: var(--border-radius-md);
