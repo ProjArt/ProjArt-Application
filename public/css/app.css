@@ -37,7 +37,7 @@
   --spacer-xl: 10rem;
   --spacer-xxl: 12rem;
   --column-gap: 2rem;
-  --border-size-rg: 1px;
+  --border-radius-rg: 6px;
   --border-radius-sm: 2px;
   --border-radius-md: 4px;
   --border-radius-lg: 32px;
@@ -70,7 +70,6 @@ body {
 
 main {
   margin: var(--app-bar-height) 0 0 0;
-  height: calc(100vh - var(--app-bar-height));
 }
 
 .login .formkit-form .formkit-input {

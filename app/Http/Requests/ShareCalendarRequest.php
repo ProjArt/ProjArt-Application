@@ -26,7 +26,7 @@ class ShareCalendarRequest extends FormRequest
         return [
             'calendar_id' => 'required|exists:calendars,id',
             'users' => 'required|array',
-            'users.*' => 'required|exists:users,id',
+            'users.*' => 'required|exists:users,username',
             "can_own" => "required|boolean",
         ];
     }

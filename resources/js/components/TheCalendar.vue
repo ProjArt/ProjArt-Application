@@ -59,12 +59,21 @@ const MONTH_LABELS = [
 const DATE_OPTION = ["fr-ch", { year: "numeric", month: "long" }];
 const AVAILABLE_LAYOUT = { MONTH: 0, WEEK: 1, LIST: 3, DAY: 4 };
 const AVAILABLE_CALENDAR_POPUP = {
-  STORE: 0,
-  EDIT: 1,
-  SHARE: 2,
+  STORE: "calendar_store_calendar",
+  EDIT: "calendar_edit_calendar",
+  SHARE: "calendar_share_calendar",
 };
-const EVENT_POPUP = 0
-const AVAILABLE_POPUP = { STORE_EVENT: 0, STORE_CALENDAR: 1, SHOW_EVENT: 2, EDIT_CALENDAR: 3, SHARE_CALENDAR: 4, FILTER: 5, EVENT: 6, };
+const EVENT_POPUP = 0;
+const AVAILABLE_POPUP = {
+  STORE_EVENT: "store_event",
+  STORE_CALENDAR: "store_calendar",
+  SHOW_EVENT: "show_event",
+  EDIT_CALENDAR: "edit_calendar",
+  SHARE_CALENDAR: "share_calendar",
+  FILTER: "filter",
+  EVENT: "event",
+  CALENDAR_OPTIONS: "calendar_options",
+};
 
 // Ref
 // ======================================
@@ -96,7 +105,7 @@ const usersForm = ref({});
 const newEventStart = ref("08:00");
 const selectedEvent = ref(null);
 const currentCalendarPopupOption = ref(AVAILABLE_CALENDAR_POPUP.STORE);
-const eventPopup = ref(null)
+const eventPopup = ref(null);
 
 // Computed
 // ======================================
@@ -197,7 +206,6 @@ const getCurrentDateForForm = computed(() => {
   return date.replace(/\//g, "-");
 });
 
-
 // Helpers
 // ======================================
 
@@ -208,13 +216,13 @@ function deleteEventPopup(dayId, eventId, calendarId) {
     buttons: [
       {
         title: "Annuler",
-        onClick: () => { },
+        onClick: () => {},
         main: false,
       },
       {
         title: "Supprimer",
         onClick: async () => {
-          deleteEvent(dayId, eventId, calendarId)
+          deleteEvent(dayId, eventId, calendarId);
         },
         main: true,
       },
@@ -229,13 +237,13 @@ function deleteCalendarPopup(calendarId) {
     buttons: [
       {
         title: "Annuler",
-        onClick: () => { },
+        onClick: () => {},
         main: false,
       },
       {
         title: "Supprimer",
         onClick: async () => {
-          deleteCalendar(calendarId)
+          deleteCalendar(calendarId);
         },
         main: true,
       },
@@ -348,11 +356,15 @@ async function storeCalendar(form) {
       calendarsNames.value = userCalendars;
       currentsCalendarIds.value.push(newId);
       selectedCalendarsIdStorage.value = toRaw(currentsCalendarIds.value);
+      currentPopup.value = null;
     } catch (error) {
       console.log(error);
     }
   } else {
-    useLog('storeCalendar: Request failed with status code ' + response.status, 'error');
+    useLog(
+      "storeCalendar: Request failed with status code " + response.status,
+      "error"
+    );
   }
 }
 
@@ -371,7 +383,10 @@ async function storeEvent(form) {
       console.log(error);
     }
   } else {
-    useLog('storeEvent: Request failed with status code ' + response.status, 'error');
+    useLog(
+      "storeEvent: Request failed with status code " + response.status,
+      "error"
+    );
   }
 }
 
@@ -399,12 +414,15 @@ async function deleteEvent(dayId, eventId, calendarId) {
       console.log(error);
     }
   } else {
-    useLog('deleteEvent: Request failed with status code ' + response.status, 'error');
+    useLog(
+      "deleteEvent: Request failed with status code " + response.status,
+      "error"
+    );
   }
 }
 
 async function updateEvent(form) {
-  useLog('updateEvent', 'success');
+  useLog("updateEvent", "success");
   const date = form.start_date;
   form.start_date = useDate.swissDateToYMD(form.start_date, "-");
   form.end_date = useDate.swissDateToYMD(form.start_date, "-");
@@ -440,7 +458,10 @@ async function updateEvent(form) {
       console.log(error);
     }
   } else {
-    useLog('updateEvent: Request failed with status code ' + response.status, 'error');
+    useLog(
+      "updateEvent: Request failed with status code " + response.status,
+      "error"
+    );
   }
 }
 
@@ -453,7 +474,10 @@ async function getCalendars() {
     console.log("calendars", response.data);
     return response.data;
   } else {
-    useLog('getCalendars: Request failed with status code ' + response.status, 'error');
+    useLog(
+      "getCalendars: Request failed with status code " + response.status,
+      "error"
+    );
     return [];
   }
 }
@@ -474,7 +498,10 @@ async function setCalendars(calendars, setIds = true) {
           : [calendars[0].id.toString()];
     }
   } catch (error) {
-    useLog('setCalendars: Request failed with status code ' + response.status, 'error');
+    useLog(
+      "setCalendars: Request failed with status code " + response.status,
+      "error"
+    );
   }
 }
 
@@ -496,7 +523,10 @@ async function deleteCalendar(calendarId) {
       console.log(error);
     }
   } else {
-    useLog('deleteCalendar: Request failed with status code ' + response.status, 'error');
+    useLog(
+      "deleteCalendar: Request failed with status code " + response.status,
+      "error"
+    );
   }
 }
 
@@ -506,6 +536,7 @@ async function updateCalendar(form) {
     method: API.updateCalendar.method,
     data: {
       name: form.name,
+      color: form.color,
     },
   });
   if (response.success === true) {
@@ -517,21 +548,26 @@ async function updateCalendar(form) {
         return calendar;
       });
       setCalendars(calendars, false);
+      initData();
     } catch (error) {
       console.log(error);
     }
   } else {
-    useLog('updateCalendar: Request failed with status code ' + response.status, 'error');
+    useLog(
+      "updateCalendar: Request failed with status code " + response.status,
+      "error"
+    );
   }
 }
 
 async function getAllUsers() {
   const response = await useFetch({
-    url: API.getClassrooms.path(),
-    method: API.getClassrooms.method,
+    url: API.getUsers.path(),
+    method: API.getUsers.method,
   });
   if (response.success === true) {
-    return response.data.classrooms;
+    console.log("users", response.data);
+    return response.data;
   } else {
     console.log(response, "error: no users");
     return [];
@@ -539,12 +575,12 @@ async function getAllUsers() {
 }
 
 async function setAllUsers() {
-  const classrooms = await getAllUsers();
-  const allUsers = classrooms.map((classroom) => {
+  const allUsers = await getAllUsers();
+  /* const allUsers = classrooms.map((classroom) => {
     return classroom.users.map((user) => {
       return user;
     });
-  });
+  }); */
   users.value = [...allUsers].flat();
 }
 
@@ -553,11 +589,18 @@ async function shareCalendar(form) {
   const response = await useFetch({
     url: API.shareCalendar.path(form.calendar_id),
     method: API.shareCalendar.method,
-    data: { form },
+    data: {
+      users: form.users,
+      can_own: form.can_own,
+      calendar_id: form.calendar_id,
+    },
   });
   if (response.success === true) {
   } else {
-    useLog('shareCalendar: Request failed with status code ' + response.status, 'error');
+    useLog(
+      "shareCalendar: Request failed with status code " + response.status,
+      "error"
+    );
   }
 }
 
@@ -761,9 +804,7 @@ function showEventEditForm(startDate, id) {
 // At startup
 // ======================================
 
-(async function startUp() {
-  displayedDateManager.value = { dateStart: TODAY };
-  currentLayout.value = layoutStorage.value || AVAILABLE_LAYOUT.MONTH;
+async function initData() {
   const calendars = await getCalendars();
   if (calendars.length == 0) {
     waitingForData();
@@ -771,6 +812,12 @@ function showEventEditForm(startDate, id) {
   await setCalendars(calendars);
   await setAllUsers();
   setEvents(getEvents());
+}
+
+(async function startUp() {
+  displayedDateManager.value = { dateStart: TODAY };
+  currentLayout.value = layoutStorage.value || AVAILABLE_LAYOUT.MONTH;
+  await initData();
   if (currentLayout.value === AVAILABLE_LAYOUT.MONTH) {
     dates.value = useDate.getAllDaysInMonthAndBeginning(
       TODAY.getFullYear(),
@@ -818,12 +865,15 @@ function showEventEditForm(startDate, id) {
 
   watch(userSearch, () => {
     const resultOfsearch = [];
+    console.log(userSearch.value);
+    console.log(users.value);
     if (userSearch.value != "") {
       users.value.forEach((user) => {
         if (
           user.username
             .toLowerCase()
-            .includes(toRaw(userSearch.value.toLowerCase()))
+            .includes(toRaw(userSearch.value.toLowerCase())) &&
+          user.is_shareable
         ) {
           resultOfsearch.push(user.username);
         }
@@ -835,68 +885,93 @@ function showEventEditForm(startDate, id) {
 </script>
 <template>
   <div class="calendar">
-
     <!--==================================-->
     <!-- Calendar Header -->
     <!--==================================-->
 
-    <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.MONTH">
+    <div
+      class="calendar__wrapper-date"
+      v-if="currentLayout === AVAILABLE_LAYOUT.MONTH"
+    >
       <h1 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
         <span>{{ displayedDateManager.month1 }}</span>
       </h1>
     </div>
 
-    <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.WEEK">
+    <div
+      class="calendar__wrapper-date"
+      v-if="currentLayout === AVAILABLE_LAYOUT.WEEK"
+    >
       <h1 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
         <p>
           {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
           {{ displayedDateManager.year1 }}
-          <span v-show="displayedDateManager.day2"> - </span>{{ displayedDateManager.day2 }} {{
-              displayedDateManager.month2
-          }}
+          <span v-show="displayedDateManager.day2"> - </span
+          >{{ displayedDateManager.day2 }} {{ displayedDateManager.month2 }}
           {{ displayedDateManager.year2 }}
         </p>
       </h1>
     </div>
 
-    <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.DAY">
+    <div
+      class="calendar__wrapper-date"
+      v-if="currentLayout === AVAILABLE_LAYOUT.DAY"
+    >
       <h1 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
-        <span>{{ displayedDateManager.day1 }}
-          {{ displayedDateManager.month1 }}</span>
+        <span
+          >{{ displayedDateManager.day1 }}
+          {{ displayedDateManager.month1 }}</span
+        >
       </h1>
     </div>
 
-    <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.LIST">
+    <div
+      class="calendar__wrapper-date"
+      v-if="currentLayout === AVAILABLE_LAYOUT.LIST"
+    >
       <h1 class="calendar__date">{{ displayedDateManager.year1 }}</h1>
       <p>
         {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
         {{ displayedDateManager.year1 }}
-        <span v-show="displayedDateManager.day2"> - </span>{{ displayedDateManager.day2 }} {{
-            displayedDateManager.month2
-        }}
+        <span v-show="displayedDateManager.day2"> - </span
+        >{{ displayedDateManager.day2 }} {{ displayedDateManager.month2 }}
         {{ displayedDateManager.year2 }}
       </p>
     </div>
 
     <!--====  calendar navigations  ====-->
     <header class="calendar__header">
-      <button @click="currentPopup = AVAILABLE_POPUP.FILTER"><span class="material-icons">filter_alt</span></button>
-      <button @click="actualPeriod"><span class="material-icons">today</span></button>
-      <button @click="showNewEventForm"><span class="material-icons">add_circle_outline</span></button>
-      <button @click="currentPopup = AVAILABLE_POPUP.CALENDAR_OPTIONS"><span
-          class="material-icons">edit_calendar</span></button>
+      <button @click="currentPopup = AVAILABLE_POPUP.FILTER">
+        <span class="material-icons">filter_alt</span>
+      </button>
+      <button @click="actualPeriod">
+        <span class="material-icons">today</span>
+      </button>
+      <button @click="showNewEventForm">
+        <span class="material-icons">add_circle_outline</span>
+      </button>
+      <button @click="currentPopup = AVAILABLE_POPUP.CALENDAR_OPTIONS">
+        <span class="material-icons">edit_calendar</span>
+      </button>
     </header>
     <!--====  Calendar days names  ====-->
     <div class="calendar__days-names">
-      <div v-show="currentLayout === AVAILABLE_LAYOUT.MONTH" v-for="dayLabel in dayLabels" class="calendar__days-name">
+      <div
+        v-show="currentLayout === AVAILABLE_LAYOUT.MONTH"
+        v-for="dayLabel in dayLabels"
+        class="calendar__days-name"
+      >
         {{ dayLabel }}
       </div>
     </div>
     <!--====  Calendar no events message  ====-->
-    <div class="calendar__no-events" v-show="currentLayout === AVAILABLE_LAYOUT.LIST">
+    <div
+      class="calendar__no-events"
+      v-show="currentLayout === AVAILABLE_LAYOUT.LIST"
+    >
       <p>
         Aucun événements <br />
         pour cette période
@@ -908,50 +983,88 @@ function showEventEditForm(startDate, id) {
     <!--==================================-->
 
     <!--====  Calendar days MONTH  ====-->
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.MONTH" class="calendar__days" :class="
-      'calendar__days--' +
-      getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
-    ">
-      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
-        selectedDate === index ? 'is-selected-day' : '',
-        day?.class,
-        currentLayout === AVAILABLE_LAYOUT.MONTH &&
+    <div
+      v-if="currentLayout === AVAILABLE_LAYOUT.MONTH"
+      class="calendar__days"
+      :class="
+        'calendar__days--' +
+        getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
+      "
+    >
+      <div
+        v-for="(day, index) in dates"
+        class="calendar__day"
+        @click="showCurrentEvent(day?.local, index)"
+        :class="
+          (selectedDate === index ? 'is-selected-day' : '',
+          day?.class,
+          currentLayout === AVAILABLE_LAYOUT.MONTH &&
           MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
-          ? 'is-other-month'
-          : ''
-      " :key="index" :date-id="day?.local">
-        <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">
+            ? 'is-other-month'
+            : '')
+        "
+        :key="index"
+        :date-id="day?.local"
+      >
+        <p
+          class="calendar__day-number"
+          :class="events[day?.local]?.length >= 1 ? 'is-events' : ''"
+        >
           {{ day?.dayOfMonthNumber }}
         </p>
         <div class="calendar__dotes">
-          <div v-show="eventId < 5" v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__dot">
-          </div>
+          <div
+            v-show="eventId < 5"
+            v-for="(event, eventId) in sortEventsByDate(day?.local)"
+            :key="eventId"
+            class="calendar__dot"
+            :style="{ 'background-color': event.color }"
+          ></div>
         </div>
       </div>
     </div>
     <!--====  Calendar days WEEK  ====-->
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.WEEK" class="calendar__days" :class="
-      'calendar__days--' +
-      getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
-    ">
-      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)"
-        :class="(selectedDate === index ? 'is-selected-day' : '', day?.class)" :key="index" :date-id="day?.local">
+    <div
+      v-if="currentLayout === AVAILABLE_LAYOUT.WEEK"
+      class="calendar__days"
+      :class="
+        'calendar__days--' +
+        getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
+      "
+    >
+      <div
+        v-for="(day, index) in dates"
+        class="calendar__day"
+        @click="showCurrentEvent(day?.local, index)"
+        :class="(selectedDate === index ? 'is-selected-day' : '', day?.class)"
+        :key="index"
+        :date-id="day?.local"
+      >
         <div class="calendar__day-header">
-          <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">
+          <p
+            class="calendar__day-number"
+            :class="events[day?.local]?.length >= 1 ? 'is-events' : ''"
+          >
             <span class="calendar__day-of-month">{{
-                day?.dayOfMonthNumber
+              day?.dayOfMonthNumber
             }}</span>
             <span class="calendar__day-of-week">{{
-                DAY_LABELS_SHORT[day.dayOfWeekNumber]
+              DAY_LABELS_SHORT[day.dayOfWeekNumber]
             }}</span>
           </p>
           <div class="calendar__dotes">
-            <div v-show="eventId < 5" v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__dot">
-            </div>
+            <div
+              v-show="eventId < 5"
+              v-for="(event, eventId) in sortEventsByDate(day?.local)"
+              class="calendar__dot"
+            ></div>
           </div>
         </div>
         <div class="calendar__events">
-          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event">
+          <div
+            v-for="(event, eventId) in sortEventsByDate(day?.local)"
+            class="calendar__event"
+          >
             <p class="event__title">{{ event.title }}</p>
             <p class="event__time">
               {{ useDate.toEventTime(event.start, event.end) }}
@@ -962,24 +1075,39 @@ function showEventEditForm(startDate, id) {
       </div>
     </div>
     <!--====  Calendar days LIST  ====-->
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.LIST" class="calendar__days" :class="
-      'calendar__days--' +
-      getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
-    ">
-      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
-        (selectedDate === index ? 'is-selected-day' : '',
+    <div
+      v-if="currentLayout === AVAILABLE_LAYOUT.LIST"
+      class="calendar__days"
+      :class="
+        'calendar__days--' +
+        getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
+      "
+    >
+      <div
+        v-for="(day, index) in dates"
+        class="calendar__day"
+        @click="showCurrentEvent(day?.local, index)"
+        :class="
+          (selectedDate === index ? 'is-selected-day' : '',
           day?.class,
           currentLayout === AVAILABLE_LAYOUT.LIST &&
-            !events.hasOwnProperty(day?.local)
+          !events.hasOwnProperty(day?.local)
             ? 'is-display-none'
             : '')
-      " :key="index" :date-id="day?.local">
+        "
+        :key="index"
+        :date-id="day?.local"
+      >
         <article class="calendar__events">
-          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event" :data-date="
-            day?.dayOfMonthNumber +
-            ' ' +
-            DAY_LABELS_SHORT[day?.dayOfWeekNumber]
-          ">
+          <div
+            v-for="(event, eventId) in sortEventsByDate(day?.local)"
+            class="calendar__event"
+            :data-date="
+              day?.dayOfMonthNumber +
+              ' ' +
+              DAY_LABELS_SHORT[day?.dayOfWeekNumber]
+            "
+          >
             <p class="calendar__event-text">{{ event.title }}</p>
             <p class="calendar__event-text">{{ event.start }}</p>
           </div>
@@ -987,37 +1115,52 @@ function showEventEditForm(startDate, id) {
       </div>
     </div>
     <!--====  Calendar days DAY  ====-->
-    <div v-if="currentLayout === AVAILABLE_LAYOUT.DAY" class="calendar__days" :class="
-      'calendar__days--' +
-      getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
-    ">
-      <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)"
-        :class="(selectedDate === index ? 'is-selected-day' : '', day?.class)" :key="index" :date-id="day?.local">
+    <div
+      v-if="currentLayout === AVAILABLE_LAYOUT.DAY"
+      class="calendar__days"
+      :class="
+        'calendar__days--' +
+        getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
+      "
+    >
+      <div
+        v-for="(day, index) in dates"
+        class="calendar__day"
+        @click="showCurrentEvent(day?.local, index)"
+        :class="(selectedDate === index ? 'is-selected-day' : '', day?.class)"
+        :key="index"
+        :date-id="day?.local"
+      >
         <article class="calendar__events">
-          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event"
-            :data-time="useDate.toEventTime(event?.start)" :class="event.calendar_id == 1 ? 'is-heig-calendar' : ''"
+          <div
+            v-for="(event, eventId) in sortEventsByDate(day?.local)"
+            class="calendar__event"
+            :data-time="useDate.toEventTime(event?.start)"
+            :class="event.calendar_id == 1 ? 'is-heig-calendar' : ''"
             :data-bullet="
               useDate.toEventTime(
                 events[day?.local][eventId - 1]?.start || ' '
               ) != useDate.toEventTime(event.start)
                 ? 'true'
                 : 'false'
-            ">
+            "
+          >
             <p class="event__header">
               <span class="event__title">{{ event.title }}</span>
               <span class="event__location">{{ event.location }}</span>
               <span v-if="event.calendar_id == 1" class="event__time">{{
-                  useDate.toEventTime(event.start, event.end)
+                useDate.toEventTime(event.start, event.end)
               }}</span>
               <span v-if="event.calendar_id !== 1" class="event__time">{{
-                  useDate.toEventTime(event.start)
+                useDate.toEventTime(event.start)
               }}</span>
             </p>
             <p v-show="event.calendar_id !== 1" class="event__description">
               {{ event.description }}
             </p>
             <p v-show="event.calendar_id !== 1" class="event__calendar">
-              <span class="material-icons">calendar_month</span><span>{{ calendarsNames[event.calendar_id] }}</span>
+              <span class="material-icons">calendar_month</span
+              ><span>{{ calendarsNames[event.calendar_id] }}</span>
             </p>
           </div>
         </article>
@@ -1029,31 +1172,78 @@ function showEventEditForm(startDate, id) {
   <!-- Popup new event -->
   <!--==================================-->
 
-  <div class="popup popup--new-event" v-show="currentPopup === AVAILABLE_POPUP.STORE_EVENT">
+  <div
+    class="popup popup--new-event"
+    v-show="currentPopup === AVAILABLE_POPUP.STORE_EVENT"
+  >
     <button @click="currentPopup = null" class="popup__close">
       <span class="material-icons">close</span>
     </button>
     <h2 class="popup__title">
       <span>Ajouter un événement</span>
     </h2>
-    <FormKit type="form" v-model="newEventForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Enregistrer"
-      @submit="storeEvent">
-      <FormKit type="text" name="title" validation="required" label="Titre" placeholder="Titre" />
-      <FormKit type="text" name="location" validation="required" label="Lieu" placeholder="Lieu" />
-      <FormKit type="textarea" name="description" validation="required" label="Description" placeholder="Description..."
-        rows="5" />
+    <FormKit
+      type="form"
+      v-model="newEventForm"
+      :form-class="isSubmitted ? 'hide' : 'show'"
+      submit-label="Enregistrer"
+      @submit="storeEvent"
+    >
+      <FormKit
+        type="text"
+        name="title"
+        validation="required"
+        label="Titre"
+        placeholder="Titre"
+      />
+      <FormKit
+        type="text"
+        name="location"
+        validation="required"
+        label="Lieu"
+        placeholder="Lieu"
+      />
+      <FormKit
+        type="textarea"
+        name="description"
+        validation="required"
+        label="Description"
+        placeholder="Description..."
+        rows="5"
+      />
       <FormKit type="time" name="start" label="Début" v-model="newEventStart" />
-      <FormKit type="time" name="end" validation="required" label="Fin" :min="newEventStart" :value="newEventStart" />
-      <FormKit name="start_date" type="date" :value="getCurrentDateForForm" label="Date de Début" validation="required"
-        :min="getCurrentDateForForm" />
-      <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
-        validation="required">
+      <FormKit
+        type="time"
+        name="end"
+        validation="required"
+        label="Fin"
+        :min="newEventStart"
+        :value="newEventStart"
+      />
+      <FormKit
+        name="start_date"
+        type="date"
+        :value="getCurrentDateForForm"
+        label="Date de Début"
+        validation="required"
+        :min="getCurrentDateForForm"
+      />
+      <FormKit
+        v-model="calendarIdWhereToAddTheNewEvent"
+        type="select"
+        label="calendrier"
+        name="calendar_id"
+        validation="required"
+      >
         <option v-for="(name, id) in editableCalendarsNames" :value="id">
           {{ name }}
         </option>
       </FormKit>
       <div class="popup__button-wrapper">
-        <button class="button button--cancel" @click.prevent="newEventForm = {}">
+        <button
+          class="button button--cancel"
+          @click.prevent="newEventForm = {}"
+        >
           Annuler
         </button>
         <button class="button button--save" type="submit">Enregistrer</button>
@@ -1066,27 +1256,52 @@ function showEventEditForm(startDate, id) {
   <!--==================================-->
 
   <div class="popup popup--event" v-if="eventPopup === EVENT_POPUP">
-    <button @click="eventPopup = null" class="popup__close"><span class="material-icons">close</span></button>
+    <button @click="eventPopup = null" class="popup__close">
+      <span class="material-icons">close</span>
+    </button>
     <h1 class="event__title">
       <span>{{ selectedEvent.title }}</span>
     </h1>
     <div class="event__wrapper">
       <p class="event__date">{{ useDate.toEventDate(selectedEvent.start) }}</p>
       <p class="event__location">Lieu: {{ selectedEvent.location }}</p>
-      <p class="event__start">Début {{ useDate.toEventTime(selectedEvent.start) }}</p>
+      <p class="event__start">
+        Début {{ useDate.toEventTime(selectedEvent.start) }}
+      </p>
       <p class="event__end">Fin {{ useDate.toEventTime(selectedEvent.end) }}</p>
-      <p class="event__calendar">{{ calendarsNames[selectedEvent.calendar_id] }}<span
-          class="material-icons">calendar_month</span> </p>
+      <p class="event__calendar">
+        {{ calendarsNames[selectedEvent.calendar_id]
+        }}<span class="material-icons">calendar_month</span>
+      </p>
     </div>
     <hr />
     <p class="event__description">{{ selectedEvent.description }}</p>
     <div class="popup__button-wrapper">
-      <button class="button button--edit" v-show="selectedEvent.can_edit"
-        @click="showEventEditForm(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id), currentPopup = AVAILABLE_POPUP.EDIT_EVENT">
+      <button
+        class="button button--edit"
+        v-show="selectedEvent.can_edit"
+        @click="
+          showEventEditForm(
+            selectedEvent.start,
+            selectedEvent.id,
+            selectedEvent.calendar_id
+          );
+          currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
+        "
+      >
         Modifier
       </button>
-      <button class="button button--delete" v-show="selectedEvent.can_edit"
-        @click="deleteEventPopup(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id)">
+      <button
+        class="button button--delete"
+        v-show="selectedEvent.can_edit"
+        @click="
+          deleteEventPopup(
+            selectedEvent.start,
+            selectedEvent.id,
+            selectedEvent.calendar_id
+          )
+        "
+      >
         supprimer
       </button>
     </div>
@@ -1096,70 +1311,179 @@ function showEventEditForm(startDate, id) {
   <!-- Popup Calendar -->
   <!--==================================-->
 
-  <div class="popup popup--calendar" v-show="currentPopup === AVAILABLE_POPUP.CALENDAR_OPTIONS">
-    <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
+  <div
+    class="popup popup--calendar"
+    v-show="currentPopup === AVAILABLE_POPUP.CALENDAR_OPTIONS"
+  >
+    <button @click="currentPopup = ''" class="popup__close">
+      <span class="material-icons">close</span>
+    </button>
     <h2 class="popup__subtitle">Options de calendrier</h2>
     <div class="popup__choose">
-      <FormKit v-model="currentCalendarPopupOption" type="radio" :options="[
-        { label: 'Créer', value: 0 },
-        { label: 'Modifier', value: 1 },
-        { label: 'Partager', value: 2 },
-      ]" :sections-schema="{
-  input: {
-    attrs: {
-      class: { 'material-icons': 'material-icons' }
-    },
-  }
-}" />
+      <FormKit
+        v-model="currentCalendarPopupOption"
+        type="radio"
+        :options="[
+          { label: 'Créer', value: AVAILABLE_CALENDAR_POPUP.STORE },
+          { label: 'Modifier', value: AVAILABLE_CALENDAR_POPUP.EDIT },
+          { label: 'Partager', value: AVAILABLE_CALENDAR_POPUP.SHARE },
+        ]"
+        :sections-schema="{
+          input: {
+            attrs: {
+              class: { 'material-icons': 'material-icons' },
+            },
+          },
+        }"
+      />
     </div>
     <hr />
-    <!--====  Popup share Calendar  ====-->
-    <div class="popup--share-calendar" v-show="currentCalendarPopupOption == AVAILABLE_CALENDAR_POPUP.SHARE">
-      <h1>Partager un Calendrier</h1>
-      <FormKit type="search" placeholder="prenom.nom..." label="Search" v-model="userSearch" />
-      <FormKit type="form" v-model="usersForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Partager"
-        @submit="shareCalendar">
-        <FormKit type="checkbox" name="users" :options="searchedUser" validation="required"
-          v-if="searchedUser.length > 0" />
-        <FormKit type="select" label="calendrier" name="calendar_id" :options="calendarsNames" />
-        <FormKit type="checkbox" label="Droit de modification" name="can_own" />
+    <!--====  Popup store Calendar  ====-->
+    <div
+      class="popup--new-calendar"
+      v-show="currentCalendarPopupOption == AVAILABLE_CALENDAR_POPUP.STORE"
+    >
+      <h1 class="popup__title">
+        <span>Ajouter un Calendrier</span>
+      </h1>
+      <FormKit
+        type="form"
+        v-model="newCalendarForm"
+        :form-class="isSubmitted ? 'hide' : 'show'"
+        submit-label="Enregistrer"
+        @submit="storeCalendar"
+      >
+        <FormKit type="text" name="name" validation="required" label="Nom" />
+        <div class="popup__button-wrapper">
+          <button
+            class="button button--cancel"
+            @click.prevent="currentPopup = null"
+          >
+            Annuler
+          </button>
+          <button class="button button--save" type="submit">Enregistrer</button>
+        </div>
       </FormKit>
     </div>
+
     <!--====  Popup Edit Calendar  ====-->
-    <div class="popup--edit-calendar" v-show="currentCalendarPopupOption == AVAILABLE_CALENDAR_POPUP.EDIT">
+    <div
+      class="popup--edit-calendar"
+      v-show="currentCalendarPopupOption === AVAILABLE_CALENDAR_POPUP.EDIT"
+    >
       <h1 class="popup__title">Editer les calendrier</h1>
-      <div v-for="calendar in getCalendarsData">
-        <FormKit v-if="calendar.can_edit" type="form" :form-class="isSubmitted ? 'hide' : 'show'"
-          submit-label="Enregistrer" @submit="updateCalendar">
-          <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
-            validation="required" />
-          <FormKit type="text" label="Nom" name="name" validation="required" :value="calendar.name" />
-          <FormKit type="color" value="#00FF00" label="Couleur" />
-          <button class="button" @click="deleteCalendar(calendar.id)">supprimer</button>
+      <div
+        v-for="calendar in getCalendarsData"
+        class="calendar__edit"
+        :key="calendar.id"
+      >
+        <FormKit
+          v-if="calendar.can_edit"
+          type="form"
+          :form-class="isSubmitted ? 'hide' : 'show'"
+          submit-label="Enregistrer"
+          @submit="updateCalendar"
+        >
+          <!-- <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
+            validation="required" /> -->
+          <FormKit type="hidden" name="calendar_id" :value="calendar.id" />
+          <FormKit
+            type="text"
+            label="Nom"
+            name="name"
+            validation="required"
+            :value="calendar.name"
+          />
+          <FormKit
+            type="color"
+            name="color"
+            :value="calendar.color"
+            label="Couleur"
+          />
+          <div class="calendar__edit-button-wrapper">
+            <button
+              class="button button--delete"
+              @click="deleteCalendar(calendar.id)"
+            >
+              Supprimer
+            </button>
+            <button class="button button--save" type="submit">
+              Mettre à jour
+            </button>
+          </div>
         </FormKit>
-        <div class="popup__button-wrapper">
+        <!-- <div class="popup__button-wrapper">
           <button class="button button--edit"
-            @click="showEventEditForm(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id), currentPopup = AVAILABLE_POPUP.EDIT_EVENT">
+            @click="showEventEditForm(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id); currentPopup = AVAILABLE_POPUP.EDIT_EVENT">
             Modifier
           </button>
           <button class="button button--delete"
             @click="deleteCalendarPopup(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id)">
             supprimer
           </button>
-        </div>
+        </div> -->
       </div>
     </div>
-    <!--====  Popup store Calendar  ====-->
-    <div class="popup--new-calendar" v-show="currentCalendarPopupOption == AVAILABLE_CALENDAR_POPUP.STORE">
-      <h1 class="popup__title">
-        <span>Ajouter un Calendrier</span>
-      </h1>
-      <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
-        submit-label="Enregistrer" @submit="storeCalendar">
-        <FormKit type="text" name="name" validation="required" label="Nom" />
+
+    <!--====  Popup share Calendar  ====-->
+    <div
+      class="popup--share-calendar"
+      v-show="currentCalendarPopupOption === AVAILABLE_CALENDAR_POPUP.SHARE"
+    >
+      <h1>Partager un Calendrier</h1>
+      <FormKit
+        type="search"
+        placeholder="prenom.nom..."
+        label="Rechercher un utilisateur"
+        v-model="userSearch"
+      />
+      <FormKit
+        type="form"
+        v-model="usersForm"
+        :form-class="isSubmitted ? 'hide' : 'show'"
+        submit-label="Partager"
+        @submit="shareCalendar"
+      >
+        <FormKit
+          type="checkbox"
+          name="users"
+          :options="searchedUser"
+          validation="required"
+          v-if="searchedUser.length > 0"
+          :sections-schema="{
+            input: {
+              attrs: {
+                class: {
+                  'material-icons': 'material-icons',
+                  'my-checkbox': 'my-checkbox',
+                },
+              },
+            },
+          }"
+        />
+
+        <FormKit
+          type="select"
+          label="Calendrier"
+          name="calendar_id"
+          :options="editableCalendarsNames"
+        />
+        <div class="my-checkbox">
+          <FormKit
+            type="checkbox"
+            label="Droit de modification"
+            name="can_own"
+            :sections-schema="{
+              input: {
+                attrs: {
+                  class: { 'material-icons': 'material-icons' },
+                },
+              },
+            }"
+          />
+        </div>
         <div class="popup__button-wrapper">
-          <button class="button button--cancel" @click.prevent="currentPopup = null">Annuler</button>
-          <button class="button button--save" type="submit">Enregistrer</button>
+          <button class="button button--save" type="submit">Partager</button>
         </div>
       </FormKit>
     </div>
@@ -1169,7 +1493,10 @@ function showEventEditForm(startDate, id) {
   <!-- Popup Filter -->
   <!--==================================-->
 
-  <div class="popup popup--filter" v-show="currentPopup === AVAILABLE_POPUP.FILTER">
+  <div
+    class="popup popup--filter"
+    v-show="currentPopup === AVAILABLE_POPUP.FILTER"
+  >
     <button @click="currentPopup = null" class="popup__close">
       <span class="material-icons">close</span>
     </button>
@@ -1180,45 +1507,70 @@ function showEventEditForm(startDate, id) {
     <h3 class="popup__subtitle">Affichage</h3>
     <ul class="popup__layout-options">
       <li class="popup__layout-option">
-        <button :class="
-          currentLayout == AVAILABLE_LAYOUT.MONTH ? 'is-selected-layout' : ''
-        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.MONTH">
-          <span class="material-icons">calendar_month</span><span class="popup__text">Mois</span>
+        <button
+          :class="
+            currentLayout == AVAILABLE_LAYOUT.MONTH ? 'is-selected-layout' : ''
+          "
+          class="popup__layout-button"
+          @click="currentLayout = AVAILABLE_LAYOUT.MONTH"
+        >
+          <span class="material-icons">calendar_month</span
+          ><span class="popup__text">Mois</span>
         </button>
       </li>
       <li class="popup__layout-option">
-        <button :class="
-          currentLayout == AVAILABLE_LAYOUT.WEEK ? 'is-selected-layout' : ''
-        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.WEEK">
-          <span class="material-icons is-90-deg">calendar_view_week</span><span class="popup__text">Semaine</span>
+        <button
+          :class="
+            currentLayout == AVAILABLE_LAYOUT.WEEK ? 'is-selected-layout' : ''
+          "
+          class="popup__layout-button"
+          @click="currentLayout = AVAILABLE_LAYOUT.WEEK"
+        >
+          <span class="material-icons is-90-deg">calendar_view_week</span
+          ><span class="popup__text">Semaine</span>
         </button>
       </li>
       <li class="popup__layout-option">
-        <button :class="
-          currentLayout == AVAILABLE_LAYOUT.LIST ? 'is-selected-layout' : ''
-        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.LIST">
-          <span class="material-icons">event_note</span><span class="popup__text">List</span>
+        <button
+          :class="
+            currentLayout == AVAILABLE_LAYOUT.LIST ? 'is-selected-layout' : ''
+          "
+          class="popup__layout-button"
+          @click="currentLayout = AVAILABLE_LAYOUT.LIST"
+        >
+          <span class="material-icons">event_note</span
+          ><span class="popup__text">List</span>
         </button>
       </li>
       <li class="popup__layout-option">
-        <button :class="
-          currentLayout == AVAILABLE_LAYOUT.DAY ? 'is-selected-layout' : ''
-        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.DAY">
-          <span class="material-icons">date_range</span><span class="popup__text">Jour</span>
+        <button
+          :class="
+            currentLayout == AVAILABLE_LAYOUT.DAY ? 'is-selected-layout' : ''
+          "
+          class="popup__layout-button"
+          @click="currentLayout = AVAILABLE_LAYOUT.DAY"
+        >
+          <span class="material-icons">date_range</span
+          ><span class="popup__text">Jour</span>
         </button>
       </li>
     </ul>
     <hr />
     <h3 class="popup__subtitle">Mes calendriers</h3>
     <div class="calendar__choose">
-      <FormKit v-model="currentsCalendarIds" type="checkbox" label="Calendrier" :options="calendarsNames"
+      <FormKit
+        v-model="currentsCalendarIds"
+        type="checkbox"
+        label="Calendrier"
+        :options="calendarsNames"
         :sections-schema="{
           input: {
             attrs: {
               class: { 'material-icons': 'material-icons' },
             },
           },
-        }" />
+        }"
+      />
     </div>
   </div>
 
@@ -1226,7 +1578,10 @@ function showEventEditForm(startDate, id) {
   <!-- Popup month events -->
   <!--==================================-->
 
-  <div class="popup popup--month-events" v-show="currentLayout === AVAILABLE_LAYOUT.MONTH">
+  <div
+    class="popup popup--month-events"
+    v-show="currentLayout === AVAILABLE_LAYOUT.MONTH"
+  >
     <h2 class="popup__title">
       <p>A venir</p>
       <p>
@@ -1234,15 +1589,23 @@ function showEventEditForm(startDate, id) {
       </p>
     </h2>
     <div class="popup__events">
-      <article class="popup__event" v-for="(event, index) in newEventPopup"
-        @click="selectedEvent = event; eventPopup = EVENT_POPUP">
+      <article
+        class="popup__event"
+        v-for="(event, index) in newEventPopup"
+        @click="
+          selectedEvent = event;
+          eventPopup = EVENT_POPUP;
+        "
+      >
         <div class="event">
           <div class="event__infos">
             <p class="event__dot"></p>
             <div class="event__wrapper">
               <p class="event__title">{{ event.title }}</p>
-              <p class="event__date">{{ calendarsNames[event.calendar_id] }}<span
-                  class="material-icons">calendar_month</span></p>
+              <p class="event__date">
+                {{ calendarsNames[event.calendar_id]
+                }}<span class="material-icons">calendar_month</span>
+              </p>
             </div>
             <p class="event__time">{{ useDate.toEventTime(event.start) }}</p>
           </div>
@@ -1255,39 +1618,59 @@ function showEventEditForm(startDate, id) {
   <!-- Popup edit event -->
   <!--==================================-->
 
-  <div class="popup popup--edit-event" v-if="currentPopup === AVAILABLE_POPUP.EDIT_EVENT">
-    <button @click="currentPopup = null" class="popup__close"><span class="material-icons">close</span></button>
+  <div
+    class="popup popup--edit-event"
+    v-if="currentPopup === AVAILABLE_POPUP.EDIT_EVENT"
+  >
+    <button @click="currentPopup = null" class="popup__close">
+      <span class="material-icons">close</span>
+    </button>
     <h1 class="event__title">
       <span>Modifier un événement</span>
     </h1>
     <article class="popup__event">
-      <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent">
+      <FormKit
+        type="form"
+        v-model="formUpdate"
+        submit-label="Enregistrer"
+        @submit="updateEvent"
+      >
         <FormKit type="text" name="title" validation="required" label="Titre" />
-        <FormKit type="text" name="location" validation="required" label="Lieu" />
-        <FormKit type="textarea" name="description" validation="required" label="Description" />
+        <FormKit
+          type="text"
+          name="location"
+          validation="required"
+          label="Lieu"
+        />
+        <FormKit
+          type="textarea"
+          name="description"
+          validation="required"
+          label="Description"
+        />
         <FormKit type="time" name="start" label="Début" />
         <FormKit type="time" name="end" label="Fin" />
         <FormKit name="end_date" type="hidden" :value="formUpdate.start" />
         <FormKit name="start_date" type="hidden" :value="formUpdate.start" />
         <FormKit name="id" type="hidden" :value="formUpdate.id" />
-        <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
-          validation="required">
+        <FormKit
+          v-model="calendarIdWhereToAddTheNewEvent"
+          type="select"
+          label="calendrier"
+          name="calendar_id"
+          validation="required"
+        >
           <option v-for="(name, id) in editableCalendarsNames" :value="id">
             {{ name }}
           </option>
         </FormKit>
         <div class="popup__button-wrapper">
-          <button class="button button--cancel">
-            Annuler
-          </button>
-          <button class="button button--edit" type="submit">
-            Modifier
-          </button>
+          <button class="button button--cancel">Annuler</button>
+          <button class="button button--edit" type="submit">Modifier</button>
         </div>
       </FormKit>
     </article>
   </div>
-
 </template>
 <style lang="scss" scoped>
 // ==========================================================================
@@ -1302,7 +1685,7 @@ $header-height: 60px;
 $footer-height: 50px;
 $date-wrapper-height: 6rem;
 $navigation-height: 3rem;
-@import '../../sass/abstracts/mixins';
+@import "../../sass/abstracts/mixins";
 
 :global(.main--calendar) {
   display: grid;
@@ -1357,6 +1740,9 @@ $navigation-height: 3rem;
 
 .button--cancel {
   grid-column: 1 / 4;
+  background-color: var(--background-color);
+  color: var(--secondary-color);
+  border: 3px solid var(--secondary-color);
 }
 
 .button--edit {
@@ -1405,7 +1791,7 @@ hr {
   margin: 0;
   align-items: center;
   height: $date-wrapper-height;
-  @include font-h1(var(--text-color), unset)
+  @include font-h1(var(--text-color), unset);
 }
 
 //*2# Calendar Header
@@ -1839,7 +2225,6 @@ hr {
   margin: 0 0 0 auto;
 }
 
-
 .popup__title {
   width: 100%;
   box-sizing: border-box;
@@ -1850,11 +2235,10 @@ hr {
 // ==========================================================================
 
 .popup--event {
-
   .event__wrapper {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    column-gap: $calendar-gap ;
+    column-gap: $calendar-gap;
   }
 
   p {
@@ -1867,23 +2251,23 @@ hr {
   }
 
   .event__start {
-    @include font-title-subject(var(--text-color), left)
+    @include font-title-subject(var(--text-color), left);
   }
 
   .event__end {
-    @include font-title-subject(var(--text-color), right)
+    @include font-title-subject(var(--text-color), right);
   }
 
   .event__date {
-    @include font-title-subject(var(--text-color), left)
+    @include font-title-subject(var(--text-color), left);
   }
 
   .event__location {
-    @include font-title-subject(var(--text-color), right)
+    @include font-title-subject(var(--text-color), right);
   }
 
   .event__description {
-    @include font-title-subject(var(--text-color), left)
+    @include font-title-subject(var(--text-color), left);
   }
 
   .event__calendar {
@@ -1976,10 +2360,6 @@ hr {
     width: 0;
   }
 
-  :deep(.formkit-input) {
-    width: 0;
-  }
-
   :deep(.formkit-wrapper) {
     position: relative;
   }
@@ -2066,7 +2446,7 @@ hr {
   .event__date {
     @include font-calendar-month-date-event(var(--inactive-color), left);
     display: flex;
-    align-items: center
+    align-items: center;
   }
 
   .event__time {
@@ -2105,7 +2485,6 @@ hr {
 // ==========================================================================
 
 .popup--edit-event {
-
   .event__title {
     @include font-h1(var(--text-color), left);
   }
@@ -2114,7 +2493,6 @@ hr {
 //*2# Popup add event
 // ==========================================================================
 .popup--new-event {
-
   :deep(.formkit-input[type="submit"]) {
     display: none;
   }
@@ -2125,7 +2503,6 @@ hr {
 // ==========================================================================
 
 .popup--calendar {
-
   .popup__subtitle {
     @include font-h2(var(--text-color), left);
   }
@@ -2176,6 +2553,17 @@ hr {
   :deep(fieldset .material-icons:checked::before) {
     content: "radio_button_checked";
   }
+
+  .calendar__edit-button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .calendar__edit {
+    margin-bottom: var(--spacer-sm);
+  }
 }
 
 // ==========================================================================
@@ -2206,5 +2594,54 @@ hr {
   opacity: 0.5;
 }
 
-.is-selected-day {}
+.is-selected-day {
+}
+
+// ==========================================================================
+
+.my-checkbox {
+  display: flex;
+  width: 100%;
+  margin: var(--spacer-xsm);
+  position: relative;
+  right: -2.5rem;
+  top: -2.5rem;
+  :deep(.formkit-options) {
+    list-style: none;
+  }
+  :deep(.formkit-input) {
+    width: 0;
+  }
+  :deep(.formkit-wrapper) {
+    position: relative;
+  }
+  :deep(input[type="checkbox"]) {
+    width: 0;
+  }
+  :deep(.formkit-legend) {
+    display: none;
+  }
+  :deep(.formkit-fieldset) {
+    border: none;
+  }
+  :deep(.formkit-options) {
+    padding: 0;
+    margin: 0;
+  }
+  :deep(.formkit-label) {
+    @include font-text-calendar-content(var(--text-color), left);
+  }
+  :deep(.material-icons::before) {
+    content: "check_box_outline_blank";
+    font-size: 2rem;
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 2.4rem;
+    left: -2.4rem;
+  }
+  :deep(.material-icons:checked::before) {
+    content: "check_box";
+  }
+}
 </style>
