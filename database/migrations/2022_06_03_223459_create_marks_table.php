@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('course_name');
             $table->string('value');
             $table->string('years');
+            $table->double('weight');
+            $table->double('weight_percentage');
             $table->foreignId('markmodule_id')->constrained('markmodules')->onDelete('cascade')->onUpdate('cascade');
             $table->foreignIdFor(User::class)->constrained()->onDelete('cascade')->onUpdate('cascade');
             $table->timestamps();

@@ -7,6 +7,8 @@ use App\Http\Requests\UpdateMarkRequest;
 use App\Http\Services\GapsMarksService;
 use App\Models\Mark;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
+use voku\helper\HtmlDomParser;
 
 /**
  * @group Notes
@@ -91,5 +93,10 @@ class MarkController extends Controller
     public function destroy(Mark $mark)
     {
         //
+    }
+
+    public function test(Request $request)
+    {
+        $user = $request->user();
     }
 }

@@ -75,8 +75,13 @@ function changeDate(id) {
                 <div class="mark__module_code">
                   {{ mark.course_code }}
                 </div>
-                <div class="mark__value">
-                  {{ mark.value }}
+                <div class="mark_total">
+                  <div class="mark__value">
+                    {{ mark.value }}
+                  </div>
+                  <div class="mark__pourcentage">
+                    {{ mark.weight_percentage }}%
+                  </div>
                 </div>
               </div>
               <div class="module__description">
@@ -138,16 +143,28 @@ function changeDate(id) {
 }
 
 .mark__module_code {
-  color: var(--text-color);
-  background-color: var(--information-color);
+  color: var(--text-secondary-color);
+  background-color: var(--primary-color);
   padding: calc(2 * var(--default-padding));
   border-radius: var(--border-radius-md);
   border: 1px solid var(--text-color);
 
   font-size: 2rem;
 }
+.mark_total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
 
 .mark__value {
+  font-weight: 500;
+  font-size: 2rem;
+  padding: var(--spacer-xsm);
+}
+
+.mark__pourcentage {
   font-weight: 500;
   font-size: 2rem;
   padding: var(--spacer-xsm);

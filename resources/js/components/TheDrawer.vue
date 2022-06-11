@@ -56,12 +56,26 @@ function buildMenu() {
         </div>
         <span class="material-icons">keyboard_arrow_right</span>
       </div>
+
+      <div class="drawer__content-telegram">
+        <div class="hr"></div>
+
+        <div class="drawer__content-telegram-text">
+          Telegram la messagerie pour connaitre ses informations.
+        </div>
+        <div class="drawer__content-telegram-link">
+          <a href="https://t.me/redy_gaps_bot"
+            >Télégram <span class="material-icons">telegram</span></a
+          >
+        </div>
+      </div>
     </div>
   </div>
   <div class="drawer-invisible" @click="toggle">&nbsp;</div>
 </template>
 
 <style scoped lang="scss">
+@import "../../sass/abstracts/mixins";
 .drawer {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -103,6 +117,11 @@ function buildMenu() {
   padding: var(--default-pading);
 }
 
+.drawer__header-name {
+  margin-top: var(--spacer-sm);
+  @include font-h1(var(--text-color), center);
+}
+
 .drawer__content {
   display: flex;
   flex-direction: column;
@@ -119,11 +138,41 @@ function buildMenu() {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacer-sm);
+  color: var(--accent-color);
+  font-weight: 600;
 }
 
 .drawer__content-item-text {
   padding-left: var(--default-padding);
+  font-size: 1.8rem;
+}
+
+.drawer__content-telegram {
+  padding-left: var(--default-padding);
+  position: absolute;
+  bottom: 15vh;
+}
+
+.drawer__content-telegram-text {
+  font-weight: 600;
+  font-size: 1.8rem;
+  color: var(--text-color);
+}
+
+.drawer__content-telegram-link {
+  font-size: 1.8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: var(--spacer-sm);
+}
+
+.drawer__content-telegram-link a {
+  all: unset;
+  color: var(--accent-color);
+  font-weight: 600;
 }
 
 .icon {
