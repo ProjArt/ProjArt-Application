@@ -60,31 +60,4 @@
 .infos-buttons a {
   text-decoration: none;
 }
-
-.button--main {
-  background-color: var(--accent-color);
-  border-radius: var(--border-radius-md);
-  height: 3.4rem;
-  width: 15.8rem;
-  border: none;
-  color: var(--text-secondary-color);
-  padding: var(--spacer-xxsm);
-  border: 3px solid var(--accent-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.button--secondary {
-  background-color: var(--background-color);
-  color: var(--accent-color);
-  border-radius: var(--border-radius-md);
-  border: 3px solid var(--accent-color);
-  height: 3.4rem;
-  width: 15.8rem;
-  padding: var(--spacer-xxsm);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
 </style>

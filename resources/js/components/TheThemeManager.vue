@@ -65,7 +65,12 @@ async function registerUserThemeInDb(themeId) {
           :id="theme.id"
         />
 
-        <label :for="theme.id">{{ theme.name }}</label>
+        <label
+          :for="theme.id"
+          class="theme__button"
+          :class="'theme__button--' + theme.name"
+          >{{ theme.name }}</label
+        >
       </div>
     </form>
   </div>
@@ -74,6 +79,10 @@ async function registerUserThemeInDb(themeId) {
 <style scoped lang="scss">
 @import "../../sass/components/_page.scss";
 .themeSlectionForm {
+  display: flex;
+  margin-top: var(--spacer-md);
+  margin-bottom: var(--spacer-md);
+  justify-content: space-between;
 }
 
 .themeSelection h2 {
@@ -82,5 +91,32 @@ async function registerUserThemeInDb(themeId) {
 
 .theme__input {
   color: var(--text-color);
+}
+
+input[type="radio"] {
+  display: none;
+}
+.theme__button {
+  margin: var(--spacer-sm);
+  padding: var(--spacer-sm);
+  border-radius: var(--border-radius-sm);
+}
+
+.theme__button--light {
+  background-color: white;
+  border: 3px solid black;
+  color: black;
+}
+
+.theme__button--dark {
+  background-color: black;
+  border: 3px solid black;
+  color: white;
+}
+
+.theme__button--blue {
+  background-color: blue;
+  border: 3px solid blue;
+  color: white;
 }
 </style>
