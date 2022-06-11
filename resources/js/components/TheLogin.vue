@@ -17,7 +17,7 @@ const submitHandler = async () => {
   if (localStorage.getItem("hasAcceptedDatas") != "true") {
     usePopup({
       title: "Acceptez-vous ?",
-      body: "Pour le bon fonctionnnement de l’application RedY nous devons accéder et télécharger vos données Gaps sur le serveur de l'école. Etes-vous d’accord ?",
+      body: "Pour le bon fonctionnnement de l’application RedY nous devons accéder et télécharger vos données Gaps sur le serveur de l'école. <br> <br>Etes-vous d’accord ?",
       buttons: [
         {
           title: "Non",
