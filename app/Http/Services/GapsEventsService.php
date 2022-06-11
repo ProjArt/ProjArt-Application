@@ -63,6 +63,7 @@ class GapsEventsService
                 ]);
                 $user->calendars()->attach($calendar->id, [
                     'color' => random_color(),
+                    'rights' => Calendar::EDIT_RIGHT
                 ]);
             } else {
                 $calendar = $user->calendars()->whereName('Horaires')->first();

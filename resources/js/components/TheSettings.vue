@@ -28,11 +28,23 @@ function disconnectAndRedirect() {
 
 <template>
   <div class="settings__group">Réglages</div>
-  <Suspense><the-theme-manager /></Suspense>
-  <br />
-  <div class="page__subtitle">
-    <div class="page__subtitle--main">Déconnexion</div>
+  <div class="settings__item">
+    <div class="settings__item__content">
+      <Suspense><the-theme-manager /></Suspense>
+    </div>
   </div>
+
+  <div class="settings__item">
+    <div class="page__subtitle">
+      <div class="page__subtitle--main">Mettre à jour les données de Gaps</div>
+    </div>
+    <div class="settings__item__content">
+      <div class="settings-button">
+        <button class="button--main">Mettre à jour</button>
+      </div>
+    </div>
+  </div>
+
   <div class="disconnect">
     <form
       class="disconnectForm"
@@ -40,7 +52,7 @@ function disconnectAndRedirect() {
       @submit.prevent="disconnectAndRedirect"
       action="/register"
     >
-      <input type="submit" value="Se déconnecter" />
+      <input type="submit" value="Déconnexion" class="button--main" />
     </form>
   </div>
 </template>
@@ -53,5 +65,17 @@ function disconnectAndRedirect() {
 
 .disconnectForm {
   padding-left: var(--default-padding);
+}
+
+.disconnect {
+  position: absolute;
+  bottom: 8vh;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.settings-button {
+  display: flex;
+  justify-content: center;
 }
 </style>
