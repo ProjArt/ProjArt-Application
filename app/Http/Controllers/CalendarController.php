@@ -137,8 +137,8 @@ class CalendarController extends Controller
 
         $this->authorize('share', $calendar);  // Check if user can share calendar
 
-        foreach ($request->users as $user_id) {
-            $user = User::find($user_id);
+        foreach ($request->users as $username) {
+            $user = User::whereUsername($username)->firstOrFail();
             $user->calendars()
                 ->sync([$calendar->id => [
                     'rights' => $request->can_own ? Calendar::EDIT_RIGHT : Calendar::READ_RIGHT

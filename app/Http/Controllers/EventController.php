@@ -57,7 +57,10 @@ class EventController extends Controller
                 "name" => $calendar->name,
                 "can_edit" => $calendar->pivot->rights == Calendar::EDIT_RIGHT,
                 "color" => $calendar->pivot->color,
-                "events" => $calendar->events,
+                "events" => $calendar->events->map(function ($event) use ($calendar) {
+                    $event['color'] = $calendar->pivot->color;
+                    return $event;
+                })
             ];
         });
 
