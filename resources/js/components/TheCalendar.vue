@@ -629,7 +629,6 @@ function getEvents() {
     return calendars;
   } catch (e) {
     console.log("ERROR", e);
-    waitingForData();
   }
 }
 
@@ -712,6 +711,9 @@ function showEventEditForm(startDate, id) {
   displayedDateManager.value = { dateStart: TODAY };
   currentLayout.value = layoutStorage.value || AVAILABLE_LAYOUT.MONTH;
   const calendars = await getCalendars();
+  if (calendars.length == 0) {
+    waitingForData();
+  }
   await setCalendars(calendars);
   await setAllUsers();
   setEvents(getEvents());
