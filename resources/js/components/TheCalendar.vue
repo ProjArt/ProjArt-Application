@@ -7,6 +7,7 @@ import { API } from "../stores/api";
 import useSwipe from "../composables/useSwipe";
 import useLog from "../composables/useLog";
 import { useLoading } from "../composables/useLoading";
+import { usePopup } from "../composables/usePopup";
 
 useSwipe({
   onSwipeLeft: () => {
@@ -199,6 +200,48 @@ const getCurrentDateForForm = computed(() => {
 
 // Helpers
 // ======================================
+
+function deleteEventPopup(dayId, eventId, calendarId) {
+  usePopup({
+    title: "Supprimer l'événement ?",
+    body: "",
+    buttons: [
+      {
+        title: "Annuler",
+        onClick: () => { },
+        main: false,
+      },
+      {
+        title: "Supprimer",
+        onClick: async () => {
+          deleteEvent(dayId, eventId, calendarId)
+        },
+        main: true,
+      },
+    ],
+  });
+}
+
+function deleteCalendarPopup(calendarId) {
+  usePopup({
+    title: "Supprimer le calendrier ?",
+    body: "",
+    buttons: [
+      {
+        title: "Annuler",
+        onClick: () => { },
+        main: false,
+      },
+      {
+        title: "Supprimer",
+        onClick: async () => {
+          deleteCalendar(calendarId)
+        },
+        main: true,
+      },
+    ],
+  });
+}
 
 function getKeyByValue(object, value) {
   return Object.keys(object).find((key) => object[key] === value);
@@ -678,12 +721,10 @@ function showCurrentEvent(index, dayIndex) {
   if (index == currentEventPopupIndex.value) {
     selectedDate.value = null;
     currentEventPopupIndex.value = null;
-    currentPopup.value = null;
   } else {
     selectedDate.value = dayIndex;
     currentEventPopupIndex.value = index;
     newEventPopup.value = sortEventsByDate(index);
-    currentPopup.value = AVAILABLE_POPUP.MONTH_EVENTS;
   }
 }
 
@@ -800,8 +841,7 @@ function showEventEditForm(startDate, id) {
     <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.MONTH">
       <h1 class="calendar__date">
         <span>{{ displayedDateManager.year1 }}</span>
-        <span>{{ displayedDateManager.day1 }}
-          {{ displayedDateManager.month1 }}</span>
+        <span>{{ displayedDateManager.month1 }}</span>
       </h1>
     </div>
 
@@ -1011,7 +1051,7 @@ function showEventEditForm(startDate, id) {
         </option>
       </FormKit>
       <div class="popup__button-wrapper">
-        <button class="button button--cancel" @click.prevent="currentPopup = null">
+        <button class="button button--cancel" @click.prevent="newEventForm = {}">
           Annuler
         </button>
         <button class="button button--save" type="submit">Enregistrer</button>
@@ -1044,7 +1084,7 @@ function showEventEditForm(startDate, id) {
         Modifier
       </button>
       <button class="button button--delete" v-show="selectedEvent.can_edit"
-        @click="deleteEvent(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id)">
+        @click="deleteEventPopup(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id)">
         supprimer
       </button>
     </div>
@@ -1101,7 +1141,7 @@ function showEventEditForm(startDate, id) {
             Modifier
           </button>
           <button class="button button--delete"
-            @click="deleteEvent(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id)">
+            @click="deleteCalendarPopup(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id)">
             supprimer
           </button>
         </div>
@@ -1188,20 +1228,19 @@ function showEventEditForm(startDate, id) {
     <h2 class="popup__title">
       <p>A venir</p>
       <p>
-        {{ displayedDateManager.day1 }} {{ displayedDateManager.month1 }}
-        {{ displayedDateManager.year1 }}
+        {{ useDate.toEventDate(newEventPopup[0]?.start) }}
       </p>
     </h2>
-    {{ currDateCursor }}
     <div class="popup__events">
       <article class="popup__event" v-for="(event, index) in newEventPopup"
-        @click="eventPopup = EVENT_POPUP; selectedEvent = event">
+        @click="selectedEvent = event; eventPopup = EVENT_POPUP">
         <div class="event">
           <div class="event__infos">
             <p class="event__dot"></p>
             <div class="event__wrapper">
               <p class="event__title">{{ event.title }}</p>
-              <p class="event__date">{{ useDate.toEventDate(event.start) }}</p>
+              <p class="event__date">{{ calendarsNames[event.calendar_id] }}<span
+                  class="material-icons">calendar_month</span></p>
             </div>
             <p class="event__time">{{ useDate.toEventTime(event.start) }}</p>
           </div>
@@ -1471,6 +1510,12 @@ hr {
 
   .is-selected-day .calendar__day-number {
     border: 3px solid var(--text-color) !important;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .calendar__days--month {
+    grid-gap: 1rem;
   }
 }
 
@@ -2018,6 +2063,8 @@ hr {
 
   .event__date {
     @include font-calendar-month-date-event(var(--inactive-color), left);
+    display: flex;
+    align-items: center
   }
 
   .event__time {

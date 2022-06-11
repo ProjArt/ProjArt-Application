@@ -152,17 +152,21 @@ export function toEventTime(startDate, endDate) {
 }
 
 export function toEventDate(startDate) {
-    const date = startDate.split(" ")[0];
-    const newDate = new Date(date);
-    let month = MONTH_LABELS[newDate.getMonth()];
-    month =
-        month.substring(0, 1).toUpperCase() +
-        month.substring(1, 3).toLowerCase() +
-        ".";
-    let day = newDate.getDate().toString();
-    day = day.replace(/^0+/, "");
-    const year = newDate.getFullYear().toString().substring(2);
-    return `${day} ${month} ${year}`;
+    if (typeof startDate === "undefined") {
+        return "";
+    } else {
+        const date = startDate.split(" ")[0];
+        const newDate = new Date(date);
+        let month = MONTH_LABELS[newDate.getMonth()];
+        month =
+            month.substring(0, 1).toUpperCase() +
+            month.substring(1, 3).toLowerCase() +
+            ".";
+        let day = newDate.getDate().toString();
+        day = day.replace(/^0+/, "");
+        const year = newDate.getFullYear().toString().substring(2);
+        return `${day} ${month} ${year}`;
+    }
 }
 
 export function getDaysRelativeToDate(date, numberOfDays) {
