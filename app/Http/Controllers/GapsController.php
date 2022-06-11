@@ -27,8 +27,10 @@ class GapsController extends Controller
     {
         $user = $request->user();
         GapsEventsService::fetchAllHoraires($user);
-        GapsMarksService::fetchAllNotes($user);
-        GapsAbsencesService::fetchAllAbsences($user);
+        if ($this->user->role == User::ROLE_STUDENT) {
+            GapsMarksService::fetchAllNotes($user);
+            GapsAbsencesService::fetchAllAbsences($user);
+        }
         return httpSuccess('All fetched', ["user" => $user]);
     }
 

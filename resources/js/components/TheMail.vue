@@ -2,6 +2,7 @@
 import { ref, computed, toRaw, watch, watchEffect } from "vue";
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
+import router from "../router/routes";
 
 // At start of component, fetch the data
 
@@ -29,19 +30,26 @@ setupMail();
 </script>
 
 <template>
-  <div>
-    <h1 class="title">Mail</h1>
+  <div class="wrapper">
+    <h2 class="sendmail__title">
+      <button @click="router.back()" class="bouton-back">
+        <span class="material-symbols-outlined"> arrow_back_ios </span>
+      </button>
+      <div class="sendmail__title-text">Mail</div>
+    </h2>
     <div class="mail-group" v-if="mail != undefined">
-      <div clas="mail-from">
-        {{ mail.fromName }}
+      <div class="mail__header">
+        <div clas="mail-from">
+          {{ mail.fromName }}
+        </div>
+        <div class="mail-date">
+          {{ mail.date }}
+        </div>
       </div>
-      <div class="mail-date">
-        {{ mail.date }}
-      </div>
-      <div class="subject">
+      <div class="mail__subject">
         {{ mail.subject }}
       </div>
-      <hr />
+      <div class="hr"></div>
       <div
         class="mail-message"
         v-html="
@@ -56,7 +64,32 @@ setupMail();
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../sass/abstracts/mixins";
+
+.wrapper {
+  padding: var(--default-padding);
+}
+
+.mail__header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+}
+.sendmail__title {
+  display: flex;
+  align-items: center;
+}
+
+.sendmail__title-text {
+  @include font-h1(var(--text-color), left);
+}
+.bouton-back {
+  all: unset;
+  color: var(--accent-color);
+}
 .mail-group {
   display: flex;
   flex-direction: column;
@@ -77,5 +110,18 @@ setupMail();
 .menu__item-link {
   color: inherit;
   text-decoration: inherit;
+}
+
+.hr {
+  width: 100%;
+  border-bottom: 1px solid var(--secondary-color);
+  margin-top: var(--spacer-sm);
+  margin-bottom: var(--spacer-sm);
+}
+
+.mail__subject {
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin-top: var(--spacer-sm);
 }
 </style>
