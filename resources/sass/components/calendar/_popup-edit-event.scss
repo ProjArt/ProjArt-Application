@@ -1,0 +1,8 @@
+@use '../../abstracts/variables'as v;
+
+.popup--edit-event {
+
+    .event__title {
+        @include font-h1(var(--text-color), left);
+    }
+}

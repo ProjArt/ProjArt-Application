@@ -13,6 +13,12 @@ import {
 /* navigator.serviceWorker.register('/workerCacheFetched.js');
  */
 
+navigator.serviceWorker.getRegistrations().then(function(registrations) {
+    for (let registration of registrations) {
+        registration.unregister()
+    }
+});
+
 const app = createApp(App).use(router);
 app.use(plugin, defaultConfig);
 

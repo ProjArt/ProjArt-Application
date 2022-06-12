@@ -9,8 +9,12 @@ function useSwipe({ element = document, excepts = [], onCreated = () => {}, prec
         "touchstart",
         function(event) {
             for (const path of event.path) {
-                for (const except of excepts) {
-                    if (path.className === except) return;
+                if (path.className) {
+                    for (const p of path.className.split(" ")) {
+                        for (const except of excepts) {
+                            if (p === except) return;
+                        }
+                    }
                 }
             }
             touchstartX = event.changedTouches[0].screenX;
