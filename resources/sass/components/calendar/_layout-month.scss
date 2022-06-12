@@ -1,0 +1,77 @@
+@use '../../abstracts/variables'as v;
+
+.calendar__days-names {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    @include font-h3-uppercase(var(--text-color), center);
+    grid-gap: v.$calendar-gap;
+    margin: 3rem 0;
+}
+
+.calendar__days-name {
+    text-align: center;
+}
+
+.calendar__day {
+    max-width: 100%;
+    position: relative;
+    align-items: center;
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.5rem;
+    background-color: transpartent;
+    color: black;
+}
+
+.calendar__dotes {
+    display: grid;
+    margin: 0 auto;
+    grid-auto-flow: column;
+    grid-gap: v.$dot-size;
+}
+
+.calendar__dot {
+    background-color: red;
+    width: v.$dot-size;
+    height: v.$dot-size;
+    border-radius: 50%;
+}
+
+//*2# Calendar days MONTH
+// ==========================================================================
+
+.calendar__days--month {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: v.$calendar-gap;
+
+    .calendar__day {
+        border: none;
+    }
+
+    .calendar__day-number {
+        width: 2.8rem;
+        height: 2.8rem;
+        margin: 0 0 0.5rem 0;
+        border: 3px solid transparent;
+        border-radius: 50%;
+        @include font-text-calendar(var(--text-color), center);
+    }
+
+    .is-events {
+        background-color: red;
+        border-radius: 50%;
+        color: white;
+    }
+
+    .is-selected-day .calendar__day-number {
+        border: 3px solid var(--text-color) !important;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .calendar__days--month {
+        grid-gap: 1rem;
+    }
+}
