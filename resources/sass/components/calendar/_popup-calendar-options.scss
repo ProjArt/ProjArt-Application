@@ -1,41 +1,32 @@
 .popup--calendar {
-
     .popup__subtitle {
         @include font-h2(var(--text-color), left);
     }
-
     .formkit-fieldset {
         border: none;
     }
-
     .popup__choose .formkit-wrapper {
         display: flex;
     }
-
     .popup__choose .formkit-inner {
         padding: 0 1rem;
     }
-
     .popup__choose .formkit-input {
         width: 2.4rem;
     }
-
     .formkit-options {
         list-style: none;
         display: flex;
         justify-content: space-between;
         padding: 0;
     }
-
     .formkit-wrapper {
         align-items: center;
     }
-
     input[type="radio"] {
         width: 0;
         position: relative;
     }
-
     fieldset .material-icons::before {
         content: "radio_button_unchecked";
         font-size: 2.4rem;
@@ -46,16 +37,33 @@
         left: -2rem;
         color: var(--accent-color);
     }
-
     fieldset .material-icons:checked::before {
         content: "radio_button_checked";
+    }
+    .formkit-label {
+        @include font-text-calendar-content(var(--text-color), left);
+    }
+    input[type="checkbox"] {
+        width: 0;
+    }
+    input[type="checkbox"]::before {
+        content: "check_box_outline_blank";
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+        position: absolute;
+        top: 2.4rem;
+        left: -2.4rem;
+        color: var(--text-color);
+    }
+    input[type="checkbox"]:checked::before {
+        content: "check_box";
     }
 }
 
 .popup--edit-calendar {
     height: 100%;
     overflow-y: scroll;
-
     .calendar__edit-button-wrapper {
         display: grid;
         grid-template-columns: repeat(7, 1fr);
@@ -64,5 +72,26 @@
         margin: 2rem 0;
         justify-content: center;
         box-sizing: border-box;
+    }
+}
+
+.popup--share-calendar {
+    .checkbox__label {
+        @include font-text-calendar-content(var(--text-color), left);
+        margin-left: 2rem;
+        margin-top: 0.6rem;
+    }
+    .checkbox__wrapper {
+        display: flex;
+    }
+    .formkit-option {
+        display: flex;
+        align-items: center;
+    }
+    span.formkit-label {
+        margin-top: -1.4rem;
+    }
+    .checkbox__options {
+        margin-left: -5rem;
     }
 }

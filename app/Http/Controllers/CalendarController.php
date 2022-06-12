@@ -141,7 +141,8 @@ class CalendarController extends Controller
             $user = User::whereUsername($username)->firstOrFail();
             $user->calendars()
                 ->sync([$calendar->id => [
-                    'rights' => $request->can_own ? Calendar::EDIT_RIGHT : Calendar::READ_RIGHT
+                    'rights' => $request->can_own ? Calendar::EDIT_RIGHT : Calendar::READ_RIGHT,
+                    'color' => random_color()
                 ]], false);
         }
 

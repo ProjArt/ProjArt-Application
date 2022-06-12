@@ -23,7 +23,6 @@ onMounted(() => {
   });
 });
 
-
 function waitingForData() {
   useLoading({
     waitFor: async () => {
@@ -103,6 +102,7 @@ const currentPopup = ref(null);
 const users = ref([]);
 const userSearch = ref("");
 const searchedUser = ref([]);
+const userToShare = ref([]);
 const usersForm = ref({});
 const newEventStart = ref("08:00");
 const selectedEvent = ref(null);
@@ -262,16 +262,6 @@ function truncate(str, n) {
 function getKeyByValue(object, value) {
   return Object.keys(object).find((key) => object[key] === value);
 }
-/**
- * Console log to value of an array of refs
- * @param {Array} obj { name: string, value: ref }
- */
-function consoleRef(array) {
-  array.forEach((element) => {
-    const item = toRaw(element.value.value);
-    console.log({ [element.name]: item });
-  });
-}
 
 function prepareFormBeforeSending(rawForm) {
   //  expected output: 2022-05-27 12:06:28
@@ -290,30 +280,6 @@ function showNewEventForm(event) {
     currentPopup.value === AVAILABLE_POPUP.STORE_EVENT
       ? null
       : AVAILABLE_POPUP.STORE_EVENT;
-}
-
-function showShareCalendarForm(event) {
-  event.stopPropagation();
-  currentPopup.value =
-    currentPopup.value === AVAILABLE_POPUP.SHARE_CALENDAR
-      ? null
-      : AVAILABLE_POPUP.SHARE_CALENDAR;
-}
-
-function showNewCalendarForm(event) {
-  event.stopPropagation();
-  currentPopup.value =
-    currentPopup.value === AVAILABLE_POPUP.STORE_CALENDAR
-      ? null
-      : AVAILABLE_POPUP.STORE_CALENDAR;
-}
-
-function showEditCalendarForm(event) {
-  event.stopPropagation();
-  currentPopup.value =
-    currentPopup.value === AVAILABLE_POPUP.EDIT_CALENDAR
-      ? null
-      : AVAILABLE_POPUP.EDIT_CALENDAR;
 }
 
 function formatCurrentDateForDisplay(date, nextDays = 0) {
@@ -600,12 +566,13 @@ async function shareCalendar(form) {
     method: API.shareCalendar.method,
     data: {
       users: form.users,
-      can_own: form.can_own,
+      can_own: form.can_own ?? false,
       calendar_id: form.calendar_id,
     },
   });
   if (response.success === true) {
-    useToast("Le calendrier a été partagé", "success");
+    useToast("Le calendrier a bien été partagé.", "success");
+    currentPopup.value = null;
   } else {
     useLog(
       "shareCalendar: Request failed with status code " + response.status,
@@ -893,11 +860,13 @@ async function initData() {
             .includes(toRaw(userSearch.value.toLowerCase())) &&
           user.is_shareable
         ) {
-          resultOfsearch.push(user.username);
+          if (!userToShare.value.includes(user.username)) {
+            resultOfsearch.push(user.username);
+          }
         }
       });
     }
-    searchedUser.value = resultOfsearch;
+    searchedUser.value = [...userToShare.value, ...resultOfsearch];
   });
 })();
 </script>
@@ -1249,8 +1218,23 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
       <FormKit type="search" placeholder="prenom.nom..." label="Rechercher un utilisateur" v-model="userSearch" />
       <FormKit type="form" v-model="usersForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Partager"
         @submit="shareCalendar">
-        <FormKit type="checkbox" name="users" :options="searchedUser" validation="required"
+        <FormKit type="checkbox" name="users" :options="searchedUser" v-model="userToShare" validation="required"
           v-if="searchedUser.length > 0" :sections-schema="{
+            options: {
+              attrs: {
+                class: ['checkbox__options'],
+              },
+            },
+            wrapper: {
+              attrs: {
+                class: ['checkbox__wrapper'],
+              },
+            },
+            label: {
+              attrs: {
+                class: ['checkbox__label'],
+              },
+            },
             input: {
               attrs: {
                 class: {

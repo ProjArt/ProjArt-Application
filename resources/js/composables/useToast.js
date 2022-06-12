@@ -10,7 +10,7 @@ function useToast(message, type) {
     };
     const config = {
         type: type,
-        timeout: 1500,
+        timeout: 2000,
         position: "top-center",
         showCloseButton: true,
         showIcon: true,
