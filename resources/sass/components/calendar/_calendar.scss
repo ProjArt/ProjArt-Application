@@ -76,6 +76,7 @@
         border: none;
         border-radius: v.$border-radius;
         min-height: 4.1rem;
+        box-sizing: border-box;
     }
 
     .formkit-input[type="submit"] {
@@ -180,7 +181,7 @@
         background-color: red;
         height: 1.8rem;
         border-radius: 16px;
-        color: white;
+        color: var(--text-secondary-color);
         padding: 0 0.5rem;
         margin: auto 0;
         text-align: center;

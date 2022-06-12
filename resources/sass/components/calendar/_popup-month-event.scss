@@ -48,7 +48,7 @@
     }
 
     .event__time {
-        @include font-calendar-month-name-time-event(white, center);
+        @include font-calendar-month-name-time-event(var(--text-secondary-color), center);
         padding: 0.5rem;
         width: 5rem;
     }
@@ -74,7 +74,7 @@
 
     .event {
         margin: 0 1rem;
-        background-color: white;
+        background-color: var(--text-secondary-color);
         border-radius: 6px;
     }
 }

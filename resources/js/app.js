@@ -9,19 +9,12 @@ import {
     registerToChannelNotification,
 } from "./stores/notifications";
 
-
 /* navigator.serviceWorker.register('/workerCacheFetched.js');
  */
 
-navigator.serviceWorker.getRegistrations().then(function(registrations) {
-    for (let registration of registrations) {
-        registration.unregister()
-    }
-});
-
-const app = createApp(App).use(router);
+const app = createApp(App);
+app.use(router);
 app.use(plugin, defaultConfig);
-
 app.mount("#app");
 
 /* registerToChannelNotification("all");
@@ -38,16 +31,15 @@ navigator.serviceWorker.addEventListener("message", (event) => {
 } */
 
 
+
 //to disable back navigation in safari
 document.querySelector("#app").addEventListener("touchstart", (e) => {
-    console.log(e);
     const xPos = e.touches[0].clientX;
     const yPos = e.touches[0].clientY;
     const minX = 30;
     const minY = 50;
 
     if ((xPos < minX && yPos > minY)) {
-        console.log(xPos, yPos);
         e.preventDefault();
         return false;
     }
@@ -64,9 +56,8 @@ useSwipe({
 });
 
 
-// ============
 
-if (!("path" in Event.prototype))
+if (!("path" in Event.prototype)) {
     Object.defineProperty(Event.prototype, "path", {
         get: function() {
             var path = [];
@@ -82,3 +73,4 @@ if (!("path" in Event.prototype))
             return path;
         }
     });
+}

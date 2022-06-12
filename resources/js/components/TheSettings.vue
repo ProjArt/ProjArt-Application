@@ -117,7 +117,7 @@ function updateGaps() {
 
 .disconnect {
   position: absolute;
-  bottom: 8vh;
+  bottom: 20vh;
   left: 50%;
   transform: translateX(-50%);
 }
