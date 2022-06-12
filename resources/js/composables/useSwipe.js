@@ -8,6 +8,7 @@ function useSwipe({ element = document, excepts = [], onCreated = () => {}, prec
     element.addEventListener(
         "touchstart",
         function(event) {
+            console.log("event", event);
             console.log("paths", event.path);
             for (const path of event.path) {
                 if (path.className) {
