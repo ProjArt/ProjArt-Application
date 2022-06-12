@@ -14,11 +14,7 @@ import {
 
 const app = createApp(App);
 app.use(router);
-
-
-const app = createApp(App).use(router);
 app.use(plugin, defaultConfig);
-
 app.mount("#app");
 
 /* registerToChannelNotification("all");
@@ -61,7 +57,7 @@ useSwipe({
 
 
 
-if (!("path" in Event.prototype))
+if (!("path" in Event.prototype)) {
     Object.defineProperty(Event.prototype, "path", {
         get: function() {
             var path = [];
@@ -77,3 +73,4 @@ if (!("path" in Event.prototype))
             return path;
         }
     });
+}
