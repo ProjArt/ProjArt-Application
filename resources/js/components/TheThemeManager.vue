@@ -4,6 +4,7 @@ import useFetch from "../composables/useFetch";
 import { changeCssColorsVariable } from "../composables/changeCssColorsVariable.js";
 import { ref, computed, watchEffect, watch } from "vue";
 import { user } from "../stores/auth.js";
+import { theme } from "../stores/preferences";
 
 async function getThemes() {
   const response = await useFetch({
@@ -32,6 +33,7 @@ function updateUserTheme() {
   //console.log("newUserTheme", user.value.theme);
   changeCssColorsVariable();
   registerUserThemeInDb();
+  theme.value = newTheme;
 }
 
 async function registerUserThemeInDb(themeId) {

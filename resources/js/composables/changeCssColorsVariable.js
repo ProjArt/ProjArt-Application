@@ -22,6 +22,7 @@ export function changeCssColorsVariable() {
     --rgb-accent-color: ${user.value.theme.accent.value};
     --rgb-inactive-color: ${user.value.theme.inactive.value};
     --rgb-border-color: ${user.value.theme.border.value};
+    --theme-name: ${user.value.theme.name};
     }
     `;
 }
