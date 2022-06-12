@@ -53,7 +53,7 @@
     }
 
     .calendar__event:not(.is-heig-calendar) {
-        color: white;
+        color: var(--text-secondary-color);
     }
 
     .calendar__event[data-bullet="true"]::before {
@@ -98,7 +98,7 @@
     }
 
     .event__description {
-        @include font-calendar-day-description-event(white, left);
+        @include font-calendar-day-description-event(var(--text-secondary-color), left);
     }
 
     .event__time {
@@ -113,14 +113,14 @@
     }
 
     .calendar__event:not(.is-heig-calendar) .event__title {
-        color: white;
+        color: var(--text-secondary-color);
     }
 
     .event__calendar {
         margin: 0 0 0 auto;
         display: flex;
         align-items: center;
-        @include font-calendar-day-description-event(white, right);
+        @include font-calendar-day-description-event(var(--text-secondary-color), right);
     }
 
     .is-current-day {

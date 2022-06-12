@@ -9,7 +9,7 @@
 .is-clickable-day {
     cursor: pointer;
     pointer-events: all;
-    background-color: white;
+    background-color: var(--text-secondary-color);
 }
 
 .is-current-day {
