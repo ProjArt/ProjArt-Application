@@ -19,6 +19,20 @@
     overflow: scroll;
     margin: 0 0 calc(var(--footer-height) * 2) 0;
 
+    .calendar__event.is-heig-event {
+
+        .event__title,
+        .event__location {
+            color: var(--text-color);
+        }
+    }
+
+    .calendar__event:not(.is-heig-event) {
+
+        .event__time {
+            color: var(--text-color);
+        }
+    }
 
     .calendar__day {
         display: grid;
