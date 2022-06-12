@@ -145,6 +145,15 @@ main {
   align-items: center;
 }
 
+.main--marks,
+.main--absences,
+.main--mails,
+.main--infos,
+.main--mails_send,
+.main--settings {
+  padding-bottom: 7rem;
+}
+
 .page__title, .menu__title, .module__title {
   font-size: 2.6rem;
   font-weight: 800;

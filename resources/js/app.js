@@ -40,14 +40,12 @@ navigator.serviceWorker.addEventListener("message", (event) => {
 
 //to disable back navigation in safari
 document.querySelector("#app").addEventListener("touchstart", (e) => {
-    console.log(e);
     const xPos = e.touches[0].clientX;
     const yPos = e.touches[0].clientY;
     const minX = 30;
     const minY = 50;
 
     if ((xPos < minX && yPos > minY)) {
-        console.log(xPos, yPos);
         e.preventDefault();
         return false;
     }

@@ -30,7 +30,10 @@ const route = computed(() => router.currentRoute.value.name);
   <the-app-bar @open-drawer="openDrawer" v-if="!isHome && !is404" />
   <the-notification></the-notification>
   <router-view v-slot="{ Component }">
-    <main :class="'main--' + getLocation()" v-if="!is404 && !isHome">
+    <main
+      :class="'main--' + getLocation().replace('/', '_')"
+      v-if="!is404 && !isHome"
+    >
       <template v-if="['mail', ''].includes(route)">
         <component :is="Component" />
       </template>
