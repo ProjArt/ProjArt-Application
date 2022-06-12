@@ -1,0 +1,8 @@
+@use '../../abstracts/variables'as v;
+
+.popup--new-event {
+
+    .formkit-input[type="submit"] {
+        display: none;
+    }
+}

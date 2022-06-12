@@ -5,7 +5,7 @@ const props = defineProps(["image", "text"]);
 
 <template >
   <div class="empty__page">
-    <img :src="props.image" class="empty__image" />
+    <img v-if="props.image" :src="props.image" class="empty__image" />
     <p class="empty__text">{{ props.text }}</p>
   </div>
 </template>
@@ -18,6 +18,7 @@ const props = defineProps(["image", "text"]);
   justify-content: center;
   text-align: center;
 }
+
 .empty__image {
   width: 100px;
   height: 100px;
@@ -28,6 +29,7 @@ const props = defineProps(["image", "text"]);
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 .empty__text {
   position: absolute;
   top: 60vh;

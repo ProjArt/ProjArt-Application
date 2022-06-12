@@ -1,0 +1,55 @@
+.my-checkbox {
+    display: flex;
+    width: 100%;
+    margin: var(--spacer-xsm);
+    position: relative;
+    right: -2.5rem;
+    top: -2.5rem;
+
+    .formkit-options {
+        list-style: none;
+    }
+
+    .formkit-input {
+        width: 0;
+    }
+
+    .formkit-wrapper {
+        position: relative;
+    }
+
+    input[type="checkbox"] {
+        width: 0;
+    }
+
+    .formkit-legend {
+        display: none;
+    }
+
+    .formkit-fieldset {
+        border: none;
+    }
+
+    .formkit-options {
+        padding: 0;
+        margin: 0;
+    }
+
+    .formkit-label {
+        @include font-text-calendar-content(var(--text-color), left);
+    }
+
+    .material-icons::before {
+        content: "check_box_outline_blank";
+        font-size: 2rem;
+        width: 2rem;
+        height: 2rem;
+        position: absolute;
+        top: 2.4rem;
+        left: -2.4rem;
+    }
+
+    .material-icons:checked::before {
+        content: "check_box";
+    }
+}
