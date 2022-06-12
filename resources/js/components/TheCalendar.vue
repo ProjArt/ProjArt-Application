@@ -355,7 +355,7 @@ async function storeEvent(form) {
     try {
       form.id = response.data.id;
       displayNewlyCreatedEvent(form);
-      reset('formNewEvent');
+      reset('newEvent');
       useToast("L'événement a été créé", "success");
     } catch (error) {
       console.log(error);
@@ -526,6 +526,7 @@ async function updateCalendar(form) {
       });
       setCalendars(calendars, false);
       initData();
+      useToast("Le calendrier a été mis à jour", "success");
     } catch (error) {
       console.log(error);
     }
@@ -956,7 +957,7 @@ async function initData() {
           ? 'is-other-month'
           : ''
       " :key="index" :date-id="day?.local">
-        <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">
+        <p class="calendar__day-number">
           {{ day?.dayOfMonthNumber }}
         </p>
         <div class="calendar__dotes">
@@ -982,15 +983,19 @@ async function initData() {
             }}</span>
           </p>
           <div class="calendar__dotes">
-            <div v-show="eventId < 5" v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__dot">
+            <div v-show="eventId < 5" v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__dot"
+              :style="'background-color:' + event.color">
             </div>
           </div>
         </div>
         <div class="calendar__events">
           <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event"
-            :style="{ 'background-color': event.color }">
-            <p class="event__title">{{ truncate(event.title, 30) }}</p>
-            <p class="event__time">
+            :class="event.calendar_id == 1 ? 'is-heig-event' : ''"
+            :style="event.calendar_id == 1 ? 'background-color: var(--information-color)' : { 'background-color': event.color }">
+            <p class="event__title">
+              {{ truncate(event.title, 30) }}</p>
+            <p class="event__time"
+              :style="event.calendar_id == 1 ? { 'background-color': event.color } : 'background-color: var(--information-color)'">
               {{ useDate.toEventTime(event.start, event.end) }}
             </p>
             <p class="event__location">{{ event.location }}</p>
@@ -1018,7 +1023,7 @@ async function initData() {
             DAY_LABELS_SHORT[day?.dayOfWeekNumber]
           " :style="{ 'background-color': event.color }">
             <p class="calendar__event-text">{{ event.title }}</p>
-            <p class="calendar__event-text">{{ event.start }}</p>
+            <p class="calendar__event-text">{{ useDate.toEventTime(event.start) }}</p>
           </div>
         </article>
       </div>
@@ -1043,14 +1048,15 @@ async function initData() {
               ) != useDate.toEventTime(event.start)
                 ? 'true'
                 : 'false'
-            " :style="{ 'background-color': event.color }">
+            "
+            :style="event.calendar_id == 1 ? 'background-color: var(--information-color)' : { 'background-color': event.color }">
             <p class="event__header">
               <span class="event__title">{{ event.title }}</span>
               <span class="event__location">{{ event.location }}</span>
-              <span v-if="event.calendar_id == 1" class="event__time">{{
+              <span v-if="event.calendar_id == 1" class="event__time" :style="'background-color:' + event.color">{{
                   useDate.toEventTime(event.start, event.end)
               }}</span>
-              <span v-if="event.calendar_id !== 1" class="event__time">{{
+              <span v-if="event.calendar_id !== 1" class="event__time" :style="'background-color:transparent'">{{
                   useDate.toEventTime(event.start)
               }}</span>
             </p>
@@ -1078,7 +1084,7 @@ async function initData() {
       <span>Ajouter un événement</span>
     </h2>
     <FormKit type="form" v-model="newEventForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Enregistrer"
-      @submit="storeEvent" id="formNewEvent">
+      @submit="storeEvent" id="newEvent">
       <FormKit type="text" name="title" validation="required" label="Titre" placeholder="Titre" />
       <FormKit type="text" name="location" validation="required" label="Lieu" placeholder="Lieu" />
       <FormKit type="textarea" name="description" validation="required" label="Description" placeholder="Description..."
@@ -1095,7 +1101,7 @@ async function initData() {
         <p class="is-submited">Evénement crée</p>
       </FormKit>
       <div class="popup__button-wrapper">
-        <button class="button button--cancel" @click.prevent="reset('formNewEvent')">
+        <button class="button button--cancel is-secondary-button" @click.prevent="reset('newEvent')">
           Annuler
         </button>
         <button class="button button--save" type="submit">Enregistrer</button>
@@ -1179,11 +1185,11 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
       <h1 class="popup__title">
         <span>Créer un Calendrier</span>
       </h1>
-      <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
+      <FormKit id="storeCalendar" type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
         submit-label="Enregistrer" @submit="storeCalendar">
         <FormKit type="text" name="name" validation="required" label="Nom" />
         <div class="popup__button-wrapper">
-          <button class="button button--cancel" @click.prevent="currentPopup = null">
+          <button class="button button--cancel is-secondary-button" @click.prevent="reset('storeCalendar')">
             Annuler
           </button>
           <button class="button button--save" type="submit">Enregistrer</button>

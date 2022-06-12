@@ -12,6 +12,11 @@
     text-align: center;
 }
 
+.is-current-day .calendar__day-number {
+    color: var(--accent-color) !important;
+}
+
+
 .calendar__day {
     max-width: 100%;
     position: relative;
@@ -46,6 +51,7 @@
     grid-template-columns: repeat(7, 1fr);
     grid-gap: v.$calendar-gap;
     margin: 0 0 2rem 0;
+
 
     .calendar__day {
         border: none;
