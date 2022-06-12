@@ -46,10 +46,11 @@ document.querySelector("#app").addEventListener("touchstart", (e) => {
     const minX = 30;
     const minY = 50;
 
-    if (!(xPos < minX && yPos > minY)) return;
-    console.log(xPos, yPos);
-
-    e.preventDefault();
+    if ((xPos < minX && yPos > minY)) {
+        console.log(xPos, yPos);
+        e.preventDefault();
+        return false;
+    }
 }, { passive: true });
 
 useSwipe({
