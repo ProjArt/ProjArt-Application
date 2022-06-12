@@ -6,7 +6,7 @@ import { API } from "../stores/api";
 import useSwipe from "../composables/useSwipe";
 import useLog from "../composables/useLog";
 import { useLoading } from "../composables/useLoading";
-import { usePopup } from "../composables/usePopup";
+import { options, usePopup } from "../composables/usePopup";
 import theEmptyPage from "./TheEmptyPage";
 import { reset } from '@formkit/core'
 import { createToast } from 'mosha-vue-toastify';
@@ -604,7 +604,7 @@ async function shareCalendar(form) {
     method: API.shareCalendar.method,
     data: {
       users: form.users,
-      can_own: form.can_own,
+      can_own: form.can_own ?? false,
       calendar_id: form.calendar_id,
     },
   });
@@ -1266,6 +1266,21 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
         @submit="shareCalendar">
         <FormKit type="checkbox" name="users" :options="searchedUser" validation="required"
           v-if="searchedUser.length > 0" :sections-schema="{
+            options: {
+              attrs: {
+                class: ['checkbox__options'],
+              },
+            },
+            wrapper: {
+              attrs: {
+                class: ['checkbox__wrapper' ],
+              },
+            },
+            label: {
+              attrs: {
+                class: [ 'checkbox__label' ],
+              },
+            },
             input: {
               attrs: {
                 class: {
