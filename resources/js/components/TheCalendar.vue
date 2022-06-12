@@ -212,6 +212,19 @@ const getCurrentDateForForm = computed(() => {
 // Helpers
 // ======================================
 
+function toast(message, type) {
+  const config = {
+    type: type,
+    timeout: 1000,
+    position: "top-right",
+    showCloseButton: true,
+    showIcon: true,
+    transition: 'slide',
+    swipeClose: true,
+  }
+  createToast(message, config)
+}
+
 function deleteEventPopup(dayId, eventId, calendarId) {
   usePopup({
     title: "Supprimer l'événement ?",
@@ -226,6 +239,7 @@ function deleteEventPopup(dayId, eventId, calendarId) {
         title: "Supprimer",
         onClick: async () => {
           deleteEvent(dayId, eventId, calendarId);
+          toast("L'événement a été supprimé", "success");
         },
         main: true,
       },
@@ -854,10 +868,6 @@ async function initData() {
     formatCurrentDateForDisplay(currDateCursor.value);
   }
   newEventPopup.value = events.value[TODAY.toLocaleDateString()]
-  const toast = () => {
-    createToast('Wow, easy')
-  }
-  toast()
 
   watch(currentsCalendarIds, () => {
     selectedCalendarsIdStorage.value = toRaw(currentsCalendarIds.value);
