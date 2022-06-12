@@ -15,8 +15,7 @@ function useSwipe({ element = document, excepts = [], onCreated = () => {}, prec
             }
             touchstartX = event.changedTouches[0].screenX;
             touchstartY = event.changedTouches[0].screenY;
-        },
-        false
+        }, { passive: true }
     );
 
     element.addEventListener(
@@ -39,8 +38,7 @@ function useSwipe({ element = document, excepts = [], onCreated = () => {}, prec
             if (touchendY > touchstartY + precision) {
                 onSwipeDown();
             }
-        },
-        false
+        }, { passive: true }
     );
 }
 

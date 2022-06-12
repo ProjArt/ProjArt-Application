@@ -43,7 +43,7 @@ document.querySelector("#app").addEventListener("touchstart", (e) => {
     console.log(xPos, yPos);
 
     e.preventDefault();
-});
+}, { passive: true });
 
 useSwipe({
     excepts: ["calendar"],
