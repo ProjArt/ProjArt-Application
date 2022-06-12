@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, toRaw, watch } from "vue";
+import { ref, computed, toRaw, watch, onMounted } from "vue";
 import useFetch from "../composables/useFetch";
 import * as useDate from "../composables/useDate";
 import { API } from "../stores/api";
@@ -12,14 +12,18 @@ import { reset } from '@formkit/core'
 import { createToast } from 'mosha-vue-toastify';
 import 'mosha-vue-toastify/dist/style.css'
 
-useSwipe({
-  onSwipeLeft: () => {
-    nextPeriod();
-  },
-  onSwipeRight: () => {
-    previousPeriod();
-  },
+onMounted( ()=> {
+  useSwipe({
+    element : document.querySelector(".main--calendar"),
+    onSwipeLeft: () => {
+      nextPeriod();
+    },
+    onSwipeRight: () => {
+      previousPeriod();
+    },
+  });
 });
+
 
 function waitingForData() {
   useLoading({
@@ -1033,7 +1037,7 @@ async function initData() {
           </div>
         </div>
         <div class="calendar__events">
-          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event">
+          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event" :style="{'background-color' : event.color}">
             <p class="event__title">{{ truncate(event.title, 30) }}</p>
             <p class="event__time">
               {{ useDate.toEventTime(event.start, event.end) }}
@@ -1057,11 +1061,16 @@ async function initData() {
             : '')
       " :key="index" :date-id="day?.local">
         <article class="calendar__events">
-          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event" :data-date="
-            day?.dayOfMonthNumber +
-            ' ' +
-            DAY_LABELS_SHORT[day?.dayOfWeekNumber]
-          ">
+          <div
+            v-for="(event, eventId) in sortEventsByDate(day?.local)"
+            class="calendar__event"
+            :data-date="
+              day?.dayOfMonthNumber +
+              ' ' +
+              DAY_LABELS_SHORT[day?.dayOfWeekNumber]
+            "
+            :style="{'background-color' : event.color}"
+          >
             <p class="calendar__event-text">{{ event.title }}</p>
             <p class="calendar__event-text">{{ event.start }}</p>
           </div>
@@ -1088,7 +1097,9 @@ async function initData() {
               ) != useDate.toEventTime(event.start)
                 ? 'true'
                 : 'false'
-            ">
+            "
+            :style="{'background-color' : event.color}"
+          >
             <p class="event__header">
               <span class="event__title">{{ event.title }}</span>
               <span class="event__location">{{ event.location }}</span>

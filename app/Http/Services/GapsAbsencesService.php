@@ -57,6 +57,11 @@ class GapsAbsencesService
         $users = $user != null ? [$user] : User::all();
 
         foreach ($users as $user) {
+
+            if ($user->role != User::ROLE_STUDENT) {
+                continue;
+            }
+
             $args =  '["studentAbsGrid_rateSelectorId", "studentAbsGrid", null, null, null, "2021", "0", "' . $user->gaps_id . '", null]';
 
             try {

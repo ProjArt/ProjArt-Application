@@ -2,6 +2,7 @@
 import { ref, computed, toRaw, watch, watchEffect } from "vue";
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
+import router from "../router/routes";
 
 const formData = ref({});
 
@@ -34,7 +35,12 @@ async function send() {
       submit-label="Envoyer"
       @submit="send"
     >
-      <h2>Envoyer un mail</h2>
+      <h2 class="sendmail__title">
+        <button @click="router.back()" class="bouton-back">
+          <span class="material-symbols-outlined"> arrow_back_ios </span>
+        </button>
+        <div class="sendmail__title-text">Mail</div>
+      </h2>
       <FormKit
         type="text"
         name="to"
@@ -55,7 +61,15 @@ async function send() {
         placeholder="Message"
         validation="required"
         label="Message"
+        :sections-schema="{
+          input: {
+            attrs: {
+              rows: 20,
+            },
+          },
+        }"
       />
+      <button class="button--main" type="submit">Envoyer</button>
     </FormKit>
     <div v-if="isSent">
       <h2>Mail envoyé</h2>
@@ -63,13 +77,29 @@ async function send() {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
+@import "../../sass/abstracts/mixins";
+.wrapper {
+  margin: var(--default-padding);
+}
+.sendmail__title {
+  display: flex;
+  align-items: center;
+}
+
+.sendmail__title-text {
+  @include font-h1(var(--text-color), left);
+}
+.bouton-back {
+  all: unset;
+  color: var(--accent-color);
+}
 .mail-group {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
+  padding: var(--default-padding);
   border-bottom: 1px solid #e0e0e0;
 }
 .mail-group .seen {
@@ -83,5 +113,39 @@ async function send() {
 .menu__item-link {
   color: inherit;
   text-decoration: inherit;
+}
+
+:deep(.formkit-input) {
+  width: 100%;
+  background-color: var(--information-color);
+  border: none;
+  border-radius: var(--border-radius-md);
+  min-height: 4.1rem;
+}
+
+:deep(.formkit-label) {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+:deep(.formkit-outer) {
+  margin-top: var(--spacer-sm);
+}
+
+:deep(.formkit-input[type="submit"]) {
+  display: none;
+}
+
+.button--main {
+  position: absolute;
+  bottom: var(--spacer-lg);
+  right: 50%;
+  transform: translateX(50%);
+}
+
+textarea {
+  width: 100%;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
 }
 </style>

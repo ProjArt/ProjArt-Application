@@ -6,6 +6,7 @@
 // Base
 @import 'base/base';
 @import 'base/forms';
+@import 'base/spacer';
 // Components
 @import 'components/tabbar';
 @import 'components/page';
@@ -25,6 +26,4 @@
 @import 'components/calendar/popup-new-event';
 @import 'components/calendar/checkbox';
 @import 'components/calendar/popup-calendar-options';
-
-
 @import url('https://fonts.googleapis.com/css?family=Nunito');

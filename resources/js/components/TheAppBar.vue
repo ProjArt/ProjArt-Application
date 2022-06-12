@@ -1,5 +1,5 @@
 <script setup>
-import { user } from "../stores/auth";
+import TheLogo from "./TheLogo.vue";
 
 const emits = defineEmits(["open-drawer"]);
 
@@ -11,7 +11,7 @@ function openDrawer() {
 <template>
   <div class="app-bar">
     <span @click="openDrawer()" class="material-icons">menu</span>
-    <img class="icon" src="/images/logo_REDY.svg" />
+    <the-logo></the-logo>
     <span class="material-icons">search</span>
   </div>
 </template>
