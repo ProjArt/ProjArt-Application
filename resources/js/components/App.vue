@@ -10,13 +10,13 @@ import { is404 } from "../stores/route";
 import router from "../router/routes";
 import ThePopup from "./ThePopup.vue";
 import TheLoader from "./TheLoader.vue";
+import { drawer } from "../stores/drawer";
 
 //console.log("is404App", is404")
 
-const drawer = ref();
-const getLocation = (() => {
+const getLocation = () => {
   return window.location.pathname.replace(/^\//, "");
-});
+};
 
 function openDrawer() {
   drawer.value.toggle();

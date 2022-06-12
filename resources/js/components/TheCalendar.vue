@@ -9,14 +9,18 @@ import useLog from "../composables/useLog";
 import { useLoading } from "../composables/useLoading";
 import { usePopup } from "../composables/usePopup";
 
-useSwipe({
-  onSwipeLeft: () => {
-    nextPeriod();
-  },
-  onSwipeRight: () => {
-    previousPeriod();
-  },
+onMounted( ()=> {
+  useSwipe({
+    element : document.querySelector(".main--calendar"),
+    onSwipeLeft: () => {
+      nextPeriod();
+    },
+    onSwipeRight: () => {
+      previousPeriod();
+    },
+  });
 });
+
 
 function waitingForData() {
   useLoading({

@@ -2,6 +2,8 @@ import { createApp } from "vue";
 import App from "./components/App.vue";
 import { plugin, defaultConfig } from "@formkit/vue";
 import router from "./router/routes";
+import { drawer } from "./stores/drawer";
+import useSwipe from "./composables/useSwipe";
 import {
     notification,
     registerToChannelNotification,
@@ -41,4 +43,14 @@ document.querySelector("#app").addEventListener("touchstart", (e) => {
     console.log(xPos, yPos);
 
     e.preventDefault();
+});
+
+useSwipe({
+    excepts: ["calendar"],
+    onSwipeLeft: () => {
+        console.log("swipe left");
+    },
+    onSwipeRight: () => {
+        drawer.value.toggle();
+    },
 });
