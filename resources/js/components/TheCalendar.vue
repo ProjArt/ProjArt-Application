@@ -1070,7 +1070,7 @@ async function initData() {
             class="calendar__event"
           >
             <p class="event__title">{{ event.title }}</p>
-            <p class="event__time">
+            <p class="event__time" :style="{'background-color' : event.color}">
               {{ useDate.toEventTime(event.start, event.end) }}
             </p>
             <p class="event__location">{{ event.location }}</p>
@@ -1111,6 +1111,7 @@ async function initData() {
               ' ' +
               DAY_LABELS_SHORT[day?.dayOfWeekNumber]
             "
+            :style="{'background-color' : event.color}"
           >
             <p class="calendar__event-text">{{ event.title }}</p>
             <p class="calendar__event-text">{{ event.start }}</p>
@@ -1148,6 +1149,7 @@ async function initData() {
                 ? 'true'
                 : 'false'
             "
+            :style="{'background-color' : event.color}"
           >
             <p class="event__header">
               <span class="event__title">{{ event.title }}</span>
@@ -2113,7 +2115,7 @@ hr {
     display: grid;
     width: 100%;
     grid-template-columns: repeat(5, 1fr);
-    @include font-calendar-month-name-time-event(var(--text-color), unset);
+    @include font-calendar-month-name-time-event(var(--text-secondary-color), unset);
   }
 
   .event__title {
