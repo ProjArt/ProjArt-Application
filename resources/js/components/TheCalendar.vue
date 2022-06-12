@@ -108,6 +108,7 @@ const currentPopup = ref(null);
 const users = ref([]);
 const userSearch = ref("");
 const searchedUser = ref([]);
+const userToShare = ref([]);
 const usersForm = ref({});
 const newEventStart = ref("08:00");
 const selectedEvent = ref(null);
@@ -902,11 +903,13 @@ async function initData() {
             .includes(toRaw(userSearch.value.toLowerCase())) &&
           user.is_shareable
         ) {
+          if(!userToShare.value.includes(user.username)){
           resultOfsearch.push(user.username);
+        }
         }
       });
     }
-    searchedUser.value = resultOfsearch;
+    searchedUser.value =  [...userToShare.value , ...resultOfsearch];
   });
 })();
 </script>
@@ -1264,7 +1267,7 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
       <FormKit type="search" placeholder="prenom.nom..." label="Rechercher un utilisateur" v-model="userSearch" />
       <FormKit type="form" v-model="usersForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Partager"
         @submit="shareCalendar">
-        <FormKit type="checkbox" name="users" :options="searchedUser" validation="required"
+        <FormKit type="checkbox" name="users" :options="searchedUser" v-model="userToShare" validation="required"
           v-if="searchedUser.length > 0" :sections-schema="{
             options: {
               attrs: {
