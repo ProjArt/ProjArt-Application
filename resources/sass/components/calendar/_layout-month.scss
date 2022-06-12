@@ -62,7 +62,7 @@
     .is-events {
         background-color: red;
         border-radius: 50%;
-        color: white;
+        color: var(--text-secondary-color);
     }
 
     .is-selected-day .calendar__day-number {

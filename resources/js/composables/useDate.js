@@ -133,7 +133,9 @@ export function getSunday(date) {
 }
 
 export function toSwissDate(date) {
-    date = date.split(" ")[0];
+    try {
+        date = date.split(" ")[0];
+    } catch (error) {}
     date = date.split("-");
     date = `${date[2]}/${date[1]}/${date[0]}`;
     return date;

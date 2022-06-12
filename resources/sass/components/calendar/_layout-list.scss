@@ -43,7 +43,7 @@
         padding: 1rem;
         margin: 1rem 0 0 3.8rem;
         background-color: red;
-        color: white;
+        color: var(--text-secondary-color);
         border-radius: v.$border-radius;
         text-overflow: ellipsis;
         position: relative;
@@ -74,7 +74,7 @@
     }
 
     .calendar__event-text {
-        @include font-calendar-month-name-time-event(white, unset);
+        @include font-calendar-month-name-time-event(var(--text-secondary-color), unset);
     }
 
     .is-current-day {
