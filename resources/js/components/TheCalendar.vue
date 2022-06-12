@@ -11,6 +11,7 @@ import theEmptyPage from "./TheEmptyPage";
 import { reset } from '@formkit/core'
 import { createToast } from 'mosha-vue-toastify';
 import 'mosha-vue-toastify/dist/style.css'
+import useToast from "../composables/useToast";
 
 onMounted( ()=> {
   useSwipe({
@@ -610,6 +611,8 @@ async function shareCalendar(form) {
     },
   });
   if (response.success === true) {
+    useToast("Le calendrier a bien été partagé.", "success");
+    currentPopup.value = null;
   } else {
     useLog(
       "shareCalendar: Request failed with status code " + response.status,
