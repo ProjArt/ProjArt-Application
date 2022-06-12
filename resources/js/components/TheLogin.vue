@@ -65,7 +65,7 @@ async function proceedLogin() {
 <template>
   <div class="wrapper login">
     <div class="login__logo">
-      <the-logo />
+      <img src="/images/logo_REDY_light.svg" />
     </div>
     <FormKit
       type="form"

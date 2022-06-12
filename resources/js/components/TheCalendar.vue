@@ -1358,7 +1358,7 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
     <h2 class="popup__title">
       <p>A venir</p>
       <p>
-        {{ useDate.toEventDate(newEventPopup[0]?.start) }}
+        {{ useDate.toEventDate(newEventPopup?.[0]?.start) }}
       </p>
     </h2>
     <div class="popup__events">

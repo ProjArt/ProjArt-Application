@@ -122,10 +122,6 @@ function updateGaps() {
   transform: translateX(-50%);
 }
 
-.disconnect input {
-  padding: var(--spacer-md);
-}
-
 .settings-button {
   display: flex;
   justify-content: center;
