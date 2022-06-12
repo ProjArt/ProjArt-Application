@@ -9,12 +9,11 @@ import { useLoading } from "../composables/useLoading";
 import { usePopup } from "../composables/usePopup";
 import theEmptyPage from "./TheEmptyPage";
 import { reset } from '@formkit/core'
-import { createToast } from 'mosha-vue-toastify';
-import 'mosha-vue-toastify/dist/style.css'
+import useToast from "../composables/useToast";
 
-onMounted( ()=> {
+onMounted(() => {
   useSwipe({
-    element : document.querySelector(".main--calendar"),
+    element: document.querySelector(".main--calendar"),
     onSwipeLeft: () => {
       nextPeriod();
     },
@@ -28,17 +27,13 @@ onMounted( ()=> {
 function waitingForData() {
   useLoading({
     waitFor: async () => {
-      console.log("waiting....");
       await useFetch({
         url: API.updateAllGaps.path(),
         method: API.updateAllGaps.method,
       });
-      console.log("waiting done");
     },
     then: async () => {
-      console.log("reloading");
       location.reload();
-      console.log("reloaded");
     },
   });
 }
@@ -216,19 +211,6 @@ const getCurrentDateForForm = computed(() => {
 // Helpers
 // ======================================
 
-function toast(message, type) {
-  const config = {
-    type: type,
-    timeout: 1000,
-    position: "top-right",
-    showCloseButton: true,
-    showIcon: true,
-    transition: 'slide',
-    swipeClose: true,
-  }
-  createToast(message, config)
-}
-
 function deleteEventPopup(dayId, eventId, calendarId) {
   usePopup({
     title: "Supprimer l'événement ?",
@@ -243,7 +225,7 @@ function deleteEventPopup(dayId, eventId, calendarId) {
         title: "Supprimer",
         onClick: async () => {
           deleteEvent(dayId, eventId, calendarId);
-          toast("L'événement a été supprimé", "success");
+          useToast("L'événement a été supprimé", "success");
         },
         main: true,
       },
@@ -265,6 +247,7 @@ function deleteCalendarPopup(calendarId) {
         title: "Supprimer",
         onClick: async () => {
           deleteCalendar(calendarId);
+          useToast("Le calendrier a été supprimé", "success");
         },
         main: true,
       },
@@ -382,6 +365,7 @@ async function storeCalendar(form) {
       currentsCalendarIds.value.push(newId);
       selectedCalendarsIdStorage.value = toRaw(currentsCalendarIds.value);
       currentPopup.value = null;
+      useToast("Le calendrier a été créé", "success");
     } catch (error) {
       console.log(error);
     }
@@ -400,12 +384,13 @@ async function storeEvent(form) {
     method: API.storeEvent.method,
     data: form,
   });
+  console.log({ response });
   if (response.success === true) {
     try {
       form.id = response.data.id;
-      newEventForm.value = {}
       displayNewlyCreatedEvent(form);
-      reset('formNewEvent')
+      reset('formNewEvent');
+      useToast("L'événement a été créé", "success");
     } catch (error) {
       console.log(error);
     }
@@ -498,7 +483,6 @@ async function getCalendars() {
     method: API.getEvents.method,
   });
   if (response.success === true) {
-    console.log("calendars", response.data);
     return response.data;
   } else {
     useLog(
@@ -593,7 +577,6 @@ async function getAllUsers() {
     method: API.getUsers.method,
   });
   if (response.success === true) {
-    console.log("users", response.data);
     return response.data;
   } else {
     console.log(response, "error: no users");
@@ -612,7 +595,6 @@ async function setAllUsers() {
 }
 
 async function shareCalendar(form) {
-  console.log(form);
   const response = await useFetch({
     url: API.shareCalendar.path(form.calendar_id),
     method: API.shareCalendar.method,
@@ -623,6 +605,7 @@ async function shareCalendar(form) {
     },
   });
   if (response.success === true) {
+    useToast("Le calendrier a été partagé", "success");
   } else {
     useLog(
       "shareCalendar: Request failed with status code " + response.status,
@@ -642,10 +625,11 @@ function displayNewlyCreatedEvent(event) {
       const canEdit = calendar.can_edit;
       event["can_edit"] = canEdit;
       event["calendar_id"] = calendar.id;
+      event['color'] = calendar.color;
       const ids = Object.keys(currentsCalendarIds.value).map(function (key) {
         return currentsCalendarIds.value[key];
       });
-      if (ids.includes(calendarId.toString())) {
+      if (ids.includes(calendarId)) {
         if (events.value[index]) {
           events.value[index].push(event);
         } else {
@@ -875,7 +859,6 @@ async function initData() {
 
   watch(currentsCalendarIds, () => {
     selectedCalendarsIdStorage.value = toRaw(currentsCalendarIds.value);
-    console.log(toRaw(selectedCalendarsIdStorage.value));
     setEvents(getEvents());
   });
 
@@ -902,8 +885,6 @@ async function initData() {
 
   watch(userSearch, () => {
     const resultOfsearch = [];
-    console.log(userSearch.value);
-    console.log(users.value);
     if (userSearch.value != "") {
       users.value.forEach((user) => {
         if (
@@ -1037,7 +1018,8 @@ async function initData() {
           </div>
         </div>
         <div class="calendar__events">
-          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event" :style="{'background-color' : event.color}">
+          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event"
+            :style="{ 'background-color': event.color }">
             <p class="event__title">{{ truncate(event.title, 30) }}</p>
             <p class="event__time">
               {{ useDate.toEventTime(event.start, event.end) }}
@@ -1061,16 +1043,11 @@ async function initData() {
             : '')
       " :key="index" :date-id="day?.local">
         <article class="calendar__events">
-          <div
-            v-for="(event, eventId) in sortEventsByDate(day?.local)"
-            class="calendar__event"
-            :data-date="
-              day?.dayOfMonthNumber +
-              ' ' +
-              DAY_LABELS_SHORT[day?.dayOfWeekNumber]
-            "
-            :style="{'background-color' : event.color}"
-          >
+          <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event" :data-date="
+            day?.dayOfMonthNumber +
+            ' ' +
+            DAY_LABELS_SHORT[day?.dayOfWeekNumber]
+          " :style="{ 'background-color': event.color }">
             <p class="calendar__event-text">{{ event.title }}</p>
             <p class="calendar__event-text">{{ event.start }}</p>
           </div>
@@ -1097,9 +1074,7 @@ async function initData() {
               ) != useDate.toEventTime(event.start)
                 ? 'true'
                 : 'false'
-            "
-            :style="{'background-color' : event.color}"
-          >
+            " :style="{ 'background-color': event.color }">
             <p class="event__header">
               <span class="event__title">{{ event.title }}</span>
               <span class="event__location">{{ event.location }}</span>
@@ -1167,7 +1142,7 @@ async function initData() {
     <button @click="eventPopup = null" class="popup__close">
       <span class="material-icons">close</span>
     </button>
-    <h1 class="event__title">
+    <h1 class="event__title" :style="'color:' + selectedEvent.color">
       <span>{{ selectedEvent.title }}</span>
     </h1>
     <div class="event__wrapper">
@@ -1177,7 +1152,7 @@ async function initData() {
         Début {{ useDate.toEventTime(selectedEvent.start) }}
       </p>
       <p class="event__end">Fin {{ useDate.toEventTime(selectedEvent.end) }}</p>
-      <p class="event__calendar">
+      <p class="event__calendar" :style="'color:' + selectedEvent.color">
         {{ calendarsNames[selectedEvent.calendar_id]
         }}<span class="material-icons">calendar_month</span>
       </p>
@@ -1185,7 +1160,7 @@ async function initData() {
     <hr />
     <p class="event__description">{{ selectedEvent.description }}</p>
     <div class="popup__button-wrapper">
-      <button class="button button--edit" v-show="selectedEvent.can_edit" @click="
+      <button class="button button--edit" v-show="selectedEvent.can_edit" @click.prevent="
   showEventEditForm(
     selectedEvent.start,
     selectedEvent.id,
@@ -1195,7 +1170,7 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
       ">
         Modifier
       </button>
-      <button class="button button--delete" v-show="selectedEvent.can_edit" @click="
+      <button class="button button--delete" v-show="selectedEvent.can_edit" @click.prevent="
         deleteEventPopup(
           selectedEvent.start,
           selectedEvent.id,
@@ -1257,7 +1232,7 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
           <FormKit type="text" label="Nom" name="name" validation="required" :value="calendar.name" />
           <FormKit type="color" name="color" :value="calendar.color" label="Couleur" />
           <div class="calendar__edit-button-wrapper">
-            <button class="button button--delete" @click="deleteCalendarPopup(calendar.id)">
+            <button class="button button--delete" @click.prevent="deleteCalendarPopup(calendar.id)">
               Supprimer
             </button>
             <button class="button button--save button" type="submit">
@@ -1368,7 +1343,7 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
     <h2 class="popup__title">
       <p>A venir</p>
       <p>
-        {{ useDate.toEventDate(newEventPopup[0]?.start) }}
+        {{ useDate.toEventDate(newEventPopup?.['0']?.start) }}
       </p>
     </h2>
     <div class="popup__events">
@@ -1378,7 +1353,7 @@ eventPopup = EVENT_POPUP;
       ">
         <div class="event">
           <div class="event__infos">
-            <p class="event__dot"></p>
+            <p class="event__dot" :style="'background-color:' + event.color"></p>
             <div class="event__wrapper">
               <p class="event__title">{{ event.title }}</p>
               <p class="event__date">
@@ -1386,7 +1361,7 @@ eventPopup = EVENT_POPUP;
                 }}<span class="material-icons">calendar_month</span>
               </p>
             </div>
-            <p class="event__time">{{ useDate.toEventTime(event.start) }}</p>
+            <p class="event__time" :style="'background-color:' + event.color">{{ useDate.toEventTime(event.start) }}</p>
           </div>
         </div>
       </article>
