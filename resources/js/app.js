@@ -53,7 +53,7 @@ document.querySelector("#app").addEventListener("touchstart", (e) => {
     }
 }, { passive: true });
 
-/* useSwipe({
+useSwipe({
     excepts: ["calendar"],
     onSwipeLeft: () => {
         console.log("swipe left");
@@ -61,7 +61,7 @@ document.querySelector("#app").addEventListener("touchstart", (e) => {
     onSwipeRight: () => {
         drawer.value.toggle();
     },
-}); */
+});
 
 
 // ============
