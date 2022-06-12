@@ -9,15 +9,12 @@ import {
     registerToChannelNotification,
 } from "./stores/notifications";
 
-
 /* navigator.serviceWorker.register('/workerCacheFetched.js');
  */
 
-/* navigator.serviceWorker.getRegistrations().then(function(registrations) {
-    for (let registration of registrations) {
-        registration.unregister()
-    }
-}); */
+const app = createApp(App);
+app.use(router);
+
 
 const app = createApp(App).use(router);
 app.use(plugin, defaultConfig);
@@ -36,6 +33,7 @@ navigator.serviceWorker.addEventListener("message", (event) => {
         history.go(1);
     }
 } */
+
 
 
 //to disable back navigation in safari
@@ -62,7 +60,6 @@ useSwipe({
 });
 
 
-// ============
 
 if (!("path" in Event.prototype))
     Object.defineProperty(Event.prototype, "path", {

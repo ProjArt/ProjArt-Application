@@ -1,4 +1,3 @@
-
 <script setup>
 import { ref, computed, toRaw, watch, onMounted } from "vue";
 import useFetch from "../composables/useFetch";
@@ -9,6 +8,9 @@ import useLog from "../composables/useLog";
 import { useLoading } from "../composables/useLoading";
 import { usePopup } from "../composables/usePopup";
 import theEmptyPage from "./TheEmptyPage";
+import { reset } from '@formkit/core'
+import { createToast } from 'mosha-vue-toastify';
+import 'mosha-vue-toastify/dist/style.css'
 
 onMounted( ()=> {
   useSwipe({
@@ -387,7 +389,9 @@ async function storeEvent(form) {
   if (response.success === true) {
     try {
       form.id = response.data.id;
+      newEventForm.value = {}
       displayNewlyCreatedEvent(form);
+      reset('formNewEvent')
     } catch (error) {
       console.log(error);
     }
@@ -853,6 +857,11 @@ async function initData() {
     dates.value = useDate.getDaysFromDate(TODAY, 1);
     formatCurrentDateForDisplay(currDateCursor.value);
   }
+  newEventPopup.value = events.value[TODAY.toLocaleDateString()]
+  const toast = () => {
+    createToast('Wow, easy')
+  }
+  toast()
 
   watch(currentsCalendarIds, () => {
     selectedCalendarsIdStorage.value = toRaw(currentsCalendarIds.value);
@@ -980,12 +989,12 @@ async function initData() {
       getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
     ">
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
-        (selectedDate === index ? 'is-selected-day' : '',
-          day?.class,
-          currentLayout === AVAILABLE_LAYOUT.MONTH &&
-            MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
-            ? 'is-other-month'
-            : '')
+        selectedDate === index ? 'is-selected-day' : '',
+        day?.class,
+        currentLayout === AVAILABLE_LAYOUT.MONTH &&
+          MONTH_LABELS[day?.monthNumber] !== displayedDateManager.month1
+          ? 'is-other-month'
+          : ''
       " :key="index" :date-id="day?.local">
         <p class="calendar__day-number" :class="events[day?.local]?.length >= 1 ? 'is-events' : ''">
           {{ day?.dayOfMonthNumber }}
@@ -1115,7 +1124,7 @@ async function initData() {
       <span>Ajouter un événement</span>
     </h2>
     <FormKit type="form" v-model="newEventForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Enregistrer"
-      @submit="storeEvent">
+      @submit="storeEvent" id="formNewEvent">
       <FormKit type="text" name="title" validation="required" label="Titre" placeholder="Titre" />
       <FormKit type="text" name="location" validation="required" label="Lieu" placeholder="Lieu" />
       <FormKit type="textarea" name="description" validation="required" label="Description" placeholder="Description..."
@@ -1129,9 +1138,10 @@ async function initData() {
         <option v-for="(name, id) in editableCalendarsNames" :value="id">
           {{ name }}
         </option>
+        <p class="is-submited">Evénement crée</p>
       </FormKit>
       <div class="popup__button-wrapper">
-        <button class="button button--cancel" @click.prevent="newEventForm = {}">
+        <button class="button button--cancel" @click.prevent="reset('formNewEvent')">
           Annuler
         </button>
         <button class="button button--save" type="submit">Enregistrer</button>
@@ -1166,12 +1176,12 @@ async function initData() {
     <p class="event__description">{{ selectedEvent.description }}</p>
     <div class="popup__button-wrapper">
       <button class="button button--edit" v-show="selectedEvent.can_edit" @click="
-        showEventEditForm(
-          selectedEvent.start,
-          selectedEvent.id,
-          selectedEvent.calendar_id
-        );
-      currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
+  showEventEditForm(
+    selectedEvent.start,
+    selectedEvent.id,
+    selectedEvent.calendar_id
+  );
+currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
       ">
         Modifier
       </button>
@@ -1213,7 +1223,7 @@ async function initData() {
     <!--====  Popup store Calendar  ====-->
     <div class="popup--new-calendar" v-show="currentCalendarPopupOption == AVAILABLE_CALENDAR_POPUP.STORE">
       <h1 class="popup__title">
-        <span>Ajouter un Calendrier</span>
+        <span>Créer un Calendrier</span>
       </h1>
       <FormKit type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
         submit-label="Enregistrer" @submit="storeCalendar">
@@ -1233,36 +1243,24 @@ async function initData() {
       <div v-for="calendar in getCalendarsData" class="calendar__edit" :key="calendar.id">
         <FormKit v-if="calendar.can_edit" type="form" :form-class="isSubmitted ? 'hide' : 'show'"
           submit-label="Enregistrer" @submit="updateCalendar">
-          <!-- <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
-            validation="required" /> -->
           <FormKit type="hidden" name="calendar_id" :value="calendar.id" />
           <FormKit type="text" label="Nom" name="name" validation="required" :value="calendar.name" />
           <FormKit type="color" name="color" :value="calendar.color" label="Couleur" />
           <div class="calendar__edit-button-wrapper">
-            <button class="button button--delete" @click="deleteCalendar(calendar.id)">
+            <button class="button button--delete" @click="deleteCalendarPopup(calendar.id)">
               Supprimer
             </button>
-            <button class="button button--save" type="submit">
+            <button class="button button--save button" type="submit">
               Mettre à jour
             </button>
           </div>
         </FormKit>
-        <!-- <div class="popup__button-wrapper">
-          <button class="button button--edit"
-            @click="showEventEditForm(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id); currentPopup = AVAILABLE_POPUP.EDIT_EVENT">
-            Modifier
-          </button>
-          <button class="button button--delete"
-            @click="deleteCalendarPopup(selectedEvent.start, selectedEvent.id, selectedEvent.calendar_id)">
-            supprimer
-          </button>
-        </div> -->
       </div>
     </div>
 
     <!--====  Popup share Calendar  ====-->
     <div class="popup--share-calendar" v-show="currentCalendarPopupOption === AVAILABLE_CALENDAR_POPUP.SHARE">
-      <h1>Partager un Calendrier</h1>
+      <h1 class="popup__title">Partager un Calendrier</h1>
       <FormKit type="search" placeholder="prenom.nom..." label="Rechercher un utilisateur" v-model="userSearch" />
       <FormKit type="form" v-model="usersForm" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Partager"
         @submit="shareCalendar">
@@ -1365,8 +1363,8 @@ async function initData() {
     </h2>
     <div class="popup__events">
       <article class="popup__event" v-for="(event, index) in newEventPopup" @click="
-        selectedEvent = event;
-      eventPopup = EVENT_POPUP;
+  selectedEvent = event;
+eventPopup = EVENT_POPUP;
       ">
         <div class="event">
           <div class="event__infos">
@@ -1419,5 +1417,4 @@ async function initData() {
       </FormKit>
     </article>
   </div>
-
 </template>
