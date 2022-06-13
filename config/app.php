@@ -197,6 +197,8 @@ return [
 
 
         jeremykenedy\LaravelLogger\LaravelLoggerServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
+
     ],
 
     /*
