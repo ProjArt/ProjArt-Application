@@ -68,14 +68,14 @@
   background-color: var(--text-secondary-color);
 }
 
-.is-current-day {
-  cursor: pointer;
-  pointer-events: all;
-  background-color: rgba(var(--rgb-inactive-color), 0.1);
-}
-
 .is-other-month {
   opacity: 0.5;
+}
+
+.is-secondary-button {
+  background-color: var(--background-color) !important;
+  color: var(--accent-color) !important;
+  border: 3px solid var(--accent-color) !important;
 }
 
 :root {
@@ -827,6 +827,10 @@ main {
   text-align: center;
 }
 
+.is-current-day .calendar__day-number {
+  color: var(--accent-color) !important;
+}
+
 .calendar__day {
   max-width: 100%;
   position: relative;
@@ -857,6 +861,7 @@ main {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-gap: 2rem;
+  margin: 0 0 2rem 0;
 }
 .calendar__days--month .calendar__day {
   border: none;
@@ -963,6 +968,13 @@ main {
   overflow: scroll;
   margin: 0 0 calc(var(--footer-height) * 2) 0;
 }
+.calendar__days--week .calendar__event.is-heig-event .event__title,
+.calendar__days--week .calendar__event.is-heig-event .event__location {
+  color: var(--text-color);
+}
+.calendar__days--week .calendar__event:not(.is-heig-event) .event__time {
+  color: var(--text-color);
+}
 .calendar__days--week .calendar__day {
   display: grid;
   grid-template-columns: 1fr 6fr;
@@ -1049,7 +1061,7 @@ main {
   padding: 1rem;
   box-sizing: border-box;
   position: absolute;
-  background-color: var(--text-secondary-color);
+  background-color: var(--background-color);
   z-index: 200;
   top: 0;
   display: flex;
@@ -1429,6 +1441,7 @@ main {
   position: absolute;
   top: 2.4rem;
   left: -2.4rem;
+  color: var(--text-color);
 }
 .calendar__choose .material-icons:checked::before {
   content: "check_box";
@@ -1569,7 +1582,7 @@ main {
 }
 .popup--month-events .event {
   margin: 0 1rem;
-  background-color: var(--text-secondary-color);
+  background-color: var(--background-color);
   border-radius: 6px;
 }
 
@@ -1768,6 +1781,9 @@ main {
   box-sizing: border-box;
 }
 
+.popup--share-calendar {
+  overflow: hidden;
+}
 .popup--share-calendar .checkbox__label {
   color: var(--text-color);
   text-align: left;

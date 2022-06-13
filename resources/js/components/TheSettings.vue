@@ -7,6 +7,7 @@ import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
 import { useLoading } from "../composables/useLoading";
 import { ref } from "vue";
+import useToast from "../composables/useToast";
 
 const canUploadDatas = ref(true);
 
@@ -52,10 +53,7 @@ function updateGaps() {
             method: API.updateAllGaps.method,
           });
           console.log("loaded");
-          usePopup({
-            title: "Mise à jour des données",
-            body: "Mise à jour des données terminée",
-          });
+          useToast("Mise à jour des données effectuée.", "success");
           canUploadDatas.value = true;
         },
       },
