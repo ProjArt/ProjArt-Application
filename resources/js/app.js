@@ -46,7 +46,7 @@ document.querySelector("#app").addEventListener("touchstart", (e) => {
 }, { passive: false });
 
 useSwipe({
-    excepts: ["calendar"],
+    excepts: ["main--calendar"],
     onSwipeLeft: () => {
         console.log("swipe left");
     },
