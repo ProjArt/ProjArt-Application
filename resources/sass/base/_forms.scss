@@ -62,3 +62,7 @@
 .formkit-message {
     @include font-form-message(var(--accent-color), left)
 }
+
+.formkit-actions {
+    display: none;
+}
