@@ -11,6 +11,7 @@ const data = ref({
     teachers_list_to_show: []
 });
 
+
 async function getFilieresList() {
     const response = await useFetch({
         url: API.getProfsOfMySection.path(),
@@ -91,8 +92,9 @@ await getFilieresList();
                 <div class="nom-utilisateur">
                     <span class="span-nom-prenom">{{ teacher.firstname }} </span> <span class="span-nom-prenom"> {{ teacher.name }}</span>
                 </div>
-                <div class="mail">
-                    <span>{{ teacher.mail }} </span>
+                <div class="mail-lessons">
+                <div class="mail"><span>{{ teacher.mail }}</span></div>
+                <div class="lessons"><span v-for="lesson in teacher.lessons">{{ lesson }}, </span></div>
                 </div>
             </li>
         </ul>
@@ -186,15 +188,34 @@ await getFilieresList();
     margin: 0 0 0 1rem;
 }
 
-.mail{
-    margin: 0 0 0 3.9rem;
+.span-course-list{
+    margin: 1.3rem 0 0 0;
+    text-align: 
+}
+
+.mail-lessons{
+   margin: 0 0 0 3.9rem;
     display: flex;
     text-align: justify;
     font-weight: 400;
+    text-align: left;
     font-family: Poppins;
     font-size: 1.2rem;
     line-height: 1.8rem;
-    align-items: center;
+    justify-content: center;
+    /* justify-content: center; */
+    /* align-items: center; */
+    text-align: left;
+    flex-direction: column;
+}
+
+.mail {
+    font-size: 1.4rem;
+}
+
+.lessons {
+    margin: 1.3rem 0 0 0;
+    font-size: 1.4rem;
 }
 
 .bottom-space-adder {
