@@ -139,6 +139,14 @@
     line-height: 2.1rem;
 }
 
+@mixin font-form-message($color, $text-align) {
+    @include font-style($color, $text-align);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.2rem;
+    line-height: 1.5rem;
+}
+
 // ==========================================================================
 //   1. OTHERS
 // ==========================================================================

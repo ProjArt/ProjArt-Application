@@ -37,23 +37,18 @@ function buildMenu() {
 <template>
   <div class="drawer">
     <div class="drawer__header">
-      <span class="material-icons" @click="toggle">close</span>
+      <span class="material-icons close" @click="toggle">close</span>
     </div>
     <div class="drawer__header-name">
       {{ user.gaps_user.name }} {{ user.gaps_user.firstname }}
     </div>
     <div class="hr"></div>
     <div class="drawer__content">
-      <div
-        v-for="route in buildMenu()"
-        :key="route.path"
-        class="drawer__content-item"
-        @click="changePage(route.path)"
-      >
+      <div v-for="route in buildMenu()" :key="route.path" class="drawer__content-item" @click="changePage(route.path)">
         <div class="drawer__content-item-text">
           {{ route.text }}
         </div>
-        <span class="material-icons">keyboard_arrow_right</span>
+        <span class="material-icons keyboard_arrow">keyboard_arrow_right</span>
       </div>
 
       <div class="drawer__content-telegram">
@@ -62,11 +57,9 @@ function buildMenu() {
         <div class="drawer__content-telegram-text">
           L'application RedY est aussi disponible sur Telegram. Rejoingez-nous !
         </div>
-        <div class="drawer__content-telegram-link">
-          <a href="https://t.me/redy_gaps_bot"
-            >Telegram <span class="material-icons">telegram</span></a
-          >
-        </div>
+        <a class="drawer__content-telegram-link" href="https://t.me/redy_gaps_bot">Telegram <span
+            class="material-icons">telegram</span>
+        </a>
       </div>
     </div>
   </div>
@@ -75,6 +68,7 @@ function buildMenu() {
 
 <style scoped lang="scss">
 @import "../../sass/abstracts/mixins";
+
 .drawer {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -90,6 +84,14 @@ function buildMenu() {
   width: 75%;
   transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
   font-size: 1.2rem;
+}
+
+.close {
+  margin: var(--default-padding);
+}
+
+.keyboard_arrow {
+  margin: 0 var(--default-padding);
 }
 
 .drawer-invisible {
@@ -128,8 +130,7 @@ function buildMenu() {
 .drawer__content {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  overflow-y: scroll;
   width: 100%;
   height: 100%;
   padding: var(--default-pading);
@@ -154,8 +155,11 @@ function buildMenu() {
 
 .drawer__content-telegram {
   padding-left: var(--default-padding);
-  position: absolute;
-  bottom: 15vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 0 5rem 0;
+  height: 100%;
 }
 
 .drawer__content-telegram-text {
@@ -166,12 +170,17 @@ function buildMenu() {
 }
 
 .drawer__content-telegram-link {
-  font-size: 1.8rem;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
+  text-decoration: none;
   margin-top: var(--spacer-sm);
+  @include font-text-calendar-content(var(--accent-color), left);
+
+  a {
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .drawer__content-telegram-link a {

@@ -22,7 +22,7 @@ const submitHandler = async () => {
       buttons: [
         {
           title: "Non",
-          onClick: () => {},
+          onClick: () => { },
           main: false,
         },
         {
@@ -42,6 +42,8 @@ const submitHandler = async () => {
 
 async function proceedLogin() {
   isSubmitted.value = true;
+  formData.value.username = formData.value.username.replace(/\@.*$/g, "").toLowerCase();
+  console.log(toRaw(formData.value))
   const response = await useFetch({
     url: API.login.path(),
     method: API.login.method,
@@ -67,28 +69,14 @@ async function proceedLogin() {
     <div class="login__logo">
       <img src="/images/logo_REDY_light.svg" />
     </div>
-    <FormKit
-      type="form"
-      v-model="formData"
-      :form-class="isSubmitted ? 'hide' : 'show'"
-      submit-label="Connexion"
-      @submit="submitHandler"
-    >
+    <FormKit type="form" v-model="formData" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Connexion"
+      @submit="submitHandler">
       <h2 class="login__title">Connexion</h2>
-      <FormKit
-        type="text"
-        name="username"
-        placeholder="prenom.nom"
-        validation="required"
-        label="Nom d'utilisateur Gaps"
-      />
-      <FormKit
-        type="password"
-        name="password"
-        placeholder="Mot de passe Gaps"
-        validation="required"
-        label="Mot de passe Gaps"
-      />
+      <FormKit type="text" name="username" placeholder="prenom.nom" validation="required"
+        label="Nom d'utilisateur Gaps" />
+      <FormKit type="password" name="password" placeholder="Mot de passe Gaps" validation="required"
+        label="Mot de passe Gaps" />
+      <button class="button button--main">Connexion</button>
     </FormKit>
     <div>
       <p>{{ errorMessage }}</p>
@@ -97,6 +85,8 @@ async function proceedLogin() {
   </div>
 </template>
 <style scoped lang="scss">
+@import "../../sass/abstracts/mixins.scss";
+
 .wrapper {
   width: 100vw;
   height: 100vh;
@@ -110,19 +100,45 @@ async function proceedLogin() {
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 400px;
 }
 
 .login__title {
-  font-size: 2rem;
-  font-weight: bold;
-  color: #fff;
-  margin-bottom: 1rem;
+  @include font-h1(var(--text-secondary-color), center);
+  margin: 3rem 0;
+}
+
+:deep(.formkit-input[type="submit"]) {
+  display: none;
+}
+
+:deep(.formkit-inner) {
+  margin: 1rem 0 3rem 0;
+}
+
+:deep(.formkit-label) {
+  @include font-title-subject(var(--text-secondary-color), left);
+}
+
+
+:deep(.formkit-input),
+.button {
+  width: 100%;
+  max-width: 400px !important;
+}
+
+.button {
+  padding: 0;
+  margin: 1rem 0;
 }
 
 .login__logo {
   margin-top: 10rem;
   width: 40vw;
   max-width: 200px;
-  margin-bottom: 1rem;
+}
+
+input {
+  margin: 0;
 }
 </style>
