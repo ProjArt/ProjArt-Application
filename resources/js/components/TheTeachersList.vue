@@ -121,7 +121,7 @@ await getFilieresList();
                 </div>
                 <div class="mail-lessons">
                     <div class="mail">
-                        <span>{{ teacher.mail }}</span>
+                        <a :href="'mailto:'+teacher.mail"><span>{{ teacher.mail }}</span></a>
                     </div>
                     <div class="lessons">
                         <span v-for="lesson in teacher.lessons"
@@ -214,6 +214,7 @@ await getFilieresList();
     flex-direction: column;
     justify-content: center;
     padding: 0.75rem 0 0.75rem 0;
+    min-width: 30vw;
 }
 
 .span-nom-prenom {
