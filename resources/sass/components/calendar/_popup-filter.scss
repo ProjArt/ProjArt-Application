@@ -70,20 +70,12 @@
         list-style: none;
     }
 
-    .formkit-input {
-        width: 0;
-    }
-
-    .formkit-input {
-        width: 0;
+    input[type="checkbox"] {
+        appearance: none;
     }
 
     .formkit-wrapper {
         position: relative;
-    }
-
-    input[type="checkbox"] {
-        width: 0;
     }
 
     .formkit-legend {
@@ -109,7 +101,7 @@
         width: 2rem;
         height: 2rem;
         position: absolute;
-        top: 2.4rem;
+        top: 2rem;
         left: -2.4rem;
         color: var(--text-color);
     }

@@ -8,7 +8,7 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 //scss
 $dot-size: 4px;
-$calendar-gap: 2rem;
+$calendar-gap: var(--column-gap);
 $border-radius: 6px;
 $border-width: 3px;
 $heig-planning-color: var(--information-color);
@@ -24,8 +24,8 @@ $navigation-height: 3rem;
     --app-footer-height: 50px;
     --tab-bar-bg-color: #ffffff;
     --tab-bar-active-color: var(--accent-color);
-    --default-margin: 0.5rem;
-    --default-padding: 0.5rem;
+    --default-margin: 1rem;
+    --default-padding: 1rem;
     --drawer-bg-color: rgb(255, 255, 255);
     --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
     // Sizes
@@ -37,6 +37,7 @@ $navigation-height: 3rem;
     --rgb-secondary-color: 231, 33, 40;
     --rgb-accent-color: 249, 59, 88;
     --rgb-text-color: 58, 60, 61;
+    --rgb-text-color-secondary: 255, 255, 255;
     --rgb-inactive-color: 146, 145, 148;
     --rgb-background-color: 255, 255, 255;
     --rgb-information-color: 240, 240, 240;
@@ -77,4 +78,11 @@ $navigation-height: 3rem;
     font-size: 10px;
     line-height: 16px;
     box-sizing: border-box;
+}
+
+
+@media (max-width:400px) {
+    :root {
+        --column-gap: 1rem;
+    }
 }
