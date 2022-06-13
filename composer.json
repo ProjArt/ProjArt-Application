@@ -9,6 +9,7 @@
         "defstudio/telegraph": "^1.11",
         "doctrine/dbal": "^3.3",
         "guzzlehttp/guzzle": "^7.4.3",
+        "jeremykenedy/laravel-logger": "^6.0",
         "laravel-notification-channels/pusher-push-notifications": "^3.0",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.15",
