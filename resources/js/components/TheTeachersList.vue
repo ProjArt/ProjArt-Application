@@ -42,9 +42,21 @@ function updateTeachersList() {
 
     data.value.teachers_list_to_show = new_teachers_list
     console.log(data.value.teachers_list_to_show)
+
+    updateCoursesLists ()
 }
 
-
+//Cette fonction permet d'ajouter une virgule à tous les cours des profs sauf le dernier
+function updateCoursesLists(){
+    data.value.teachers_list_to_show.forEach(teacher => {
+        const courses_with_virgule = [];
+        for(let i = 0; i < teacher.lessons.length - 1; i ++ ){
+            courses_with_virgule[i] = `${teacher.lessons[0]}, `;
+        }
+       courses_with_virgule.push(teacher.lessons[teacher.lessons.length -1])    
+       teacher.lessons = courses_with_virgule;
+    });
+}
 
 const available_filieres = computed({
     get: () => data.value.available_filieres,
@@ -90,11 +102,11 @@ await getFilieresList();
         <ul class="teachers-list">
             <li class="teacher" v-for="teacher in data.teachers_list_to_show">
                 <div class="nom-utilisateur">
-                    <span class="span-nom-prenom">{{ teacher.firstname }} </span> <span class="span-nom-prenom"> {{ teacher.name }}</span>
+                    <span class="span-nom-prenom"> {{ teacher.name }}</span><span class="span-nom-prenom">{{ teacher.firstname }}</span> 
                 </div>
                 <div class="mail-lessons">
                 <div class="mail"><span>{{ teacher.mail }}</span></div>
-                <div class="lessons"><span v-for="lesson in teacher.lessons">{{ lesson }}, </span></div>
+                <div class="lessons"><span v-for="lesson in teacher.lessons" >{{ lesson }} </span></div>
                 </div>
             </li>
         </ul>
