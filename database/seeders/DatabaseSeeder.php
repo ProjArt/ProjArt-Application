@@ -53,6 +53,8 @@ class DatabaseSeeder extends Seeder
             $this->call(ChannelSeeder::class);
             //$this->call(NotificationSeeder::class);
             User::find(1)->channels()->attach(config('gaps.username'));
+
+            $this->call(FakeProfSeeder::class);
         }
 
 
