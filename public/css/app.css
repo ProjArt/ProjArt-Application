@@ -324,6 +324,7 @@ main {
 }
 .main--calendar .formkit-input {
   width: 100%;
+  color: var(--text-color);
   background-color: var(--information-color);
   border: none;
   border-radius: 6px;

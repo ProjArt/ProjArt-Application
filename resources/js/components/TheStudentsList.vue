@@ -39,11 +39,20 @@ function updateStudentsList() {
 
     data.value.students_list = newStudentsList;
     data.value.current_course = newStudentsList.code;
-    //console.log("newCourse", data.value.current_course.split('-')[0]);
+    console.log("newCourseList", data.value.students_list);
 }
 
+
+//Liste des étudiants par ordre alphabétique selon le nom de famille
 const students_list = computed({
-    get: () => data.value.students_list,
+    get: () => data.value.students_list.gapsUsers.sort
+    ((student_a, student_b) => {
+         if(student_a.name[0] < student_b.name[0]){
+            return - 1
+         } else {
+            return 1
+         }
+         }),
 });
 
 const teachersList = computed({
@@ -98,9 +107,9 @@ await getCoursesList();
     </div>
     <div class="students">
         <ul class="students-list">
-            <li class="student" v-for="student in data.students_list.gapsUsers">
+            <li class="student" v-for="student in students_list">
                 <div class="nom-utilisateur">
-                    <span class="span-nom-prenom">{{ student.firstname }} </span> <span class="span-nom-prenom"> {{ student.name }}</span>
+                    <span class="span-nom-prenom"> {{ student.name }}</span><span class="span-nom-prenom">{{ student.firstname }}</span>
                 </div>
                 <div class="mail">
                     <span>{{ student.mail }} </span>
