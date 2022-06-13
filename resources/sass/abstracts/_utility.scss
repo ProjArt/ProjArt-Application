@@ -12,14 +12,14 @@
     background-color: var(--text-secondary-color);
 }
 
-.is-current-day {
-    cursor: pointer;
-    pointer-events: all;
-    background-color: rgba(var(--rgb-inactive-color), 0.1);
-}
-
 .is-other-month {
     opacity: 0.5;
+}
+
+.is-secondary-button {
+    background-color: var(--background-color) !important;
+    color: var(--accent-color) !important;
+    border: 3px solid var(--accent-color) !important;
 }
 
 .is-selected-day {}
