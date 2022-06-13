@@ -51,9 +51,16 @@ function updateCoursesLists(){
     data.value.teachers_list_to_show.forEach(teacher => {
         const courses_with_virgule = [];
         for(let i = 0; i < teacher.lessons.length - 1; i ++ ){
-            courses_with_virgule[i] = `${teacher.lessons[0]}, `;
+            //console.log("phrase", teacher.lessons[i], teacher.lessons[i].length-2)
+            //Récupère le dernier caractère de la phrase, pour éviter de multiplier les virgules en cas de génération multiple de la liste
+            if(teacher.lessons[i][teacher.lessons[i].length-2] != ","){
+            courses_with_virgule[i] = `${teacher.lessons[i]}, `;
+            }
+            else {
+             courses_with_virgule[i] = teacher.lessons[i]
+            }
         }
-       courses_with_virgule.push(teacher.lessons[teacher.lessons.length -1])    
+       courses_with_virgule.push(teacher.lessons[teacher.lessons.length -1])
        teacher.lessons = courses_with_virgule;
     });
 }
@@ -79,13 +86,18 @@ await getFilieresList();
 </script>
 
 <template>
-        <div class="page__title">LISTE DES PROFESSEURS</div>
-        <div class="subtitle_and_filiere_selection">
+    <div class="page__title">LISTE DES PROFESSEURS</div>
+    <div class="subtitle_and_filiere_selection">
         <div class="page__subtitle_big">{{ current_filiere }}</div>
         <div class="filiere-selection">
             <form class="filiere-selection-form" @change="updateTeachersList()">
                 <select class="filiere-select" v-model="data.current_filiere">
-                    <option class="option" value="Filtrer par filière" disabled="disabled" selected="true">
+                    <option
+                        class="option"
+                        value="Filtrer par filière"
+                        disabled="disabled"
+                        selected="true"
+                    >
                         Filtrer par filière
                     </option>
                     <option
@@ -97,16 +109,25 @@ await getFilieresList();
                 </select>
             </form>
         </div>
-        </div>
-        <div class="teachers">
+    </div>
+    <div class="teachers">
         <ul class="teachers-list">
             <li class="teacher" v-for="teacher in data.teachers_list_to_show">
                 <div class="nom-utilisateur">
-                    <span class="span-nom-prenom"> {{ teacher.name }}</span><span class="span-nom-prenom">{{ teacher.firstname }}</span> 
+                    <span class="span-nom-prenom"> {{ teacher.name }}</span
+                    ><span class="span-nom-prenom">{{
+                        teacher.firstname
+                    }}</span>
                 </div>
                 <div class="mail-lessons">
-                <div class="mail"><span>{{ teacher.mail }}</span></div>
-                <div class="lessons"><span v-for="lesson in teacher.lessons" >{{ lesson }} </span></div>
+                    <div class="mail">
+                        <span>{{ teacher.mail }}</span>
+                    </div>
+                    <div class="lessons">
+                        <span v-for="lesson in teacher.lessons"
+                            >{{ lesson }}
+                        </span>
+                    </div>
                 </div>
             </li>
         </ul>
@@ -115,7 +136,7 @@ await getFilieresList();
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap");
 .page__title {
     font-family: "Poppins";
     font-style: normal;
@@ -136,13 +157,12 @@ await getFilieresList();
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 3.1em 0 0 0 ;
+    margin: 3.1em 0 0 0;
 }
 
 .filiere-selection {
     margin: 0em 0.44em 0.22em 0;
 }
-
 
 .filiere-select {
     background-color: var(--accent-color);
@@ -168,8 +188,8 @@ await getFilieresList();
 }
 
 .teachers-list {
-     list-style-type: none;
-     padding: 0 0 0 0;
+    list-style-type: none;
+    padding: 0 0 0 0;
 }
 .teacher {
     margin: 0 0 1em 0;
@@ -180,13 +200,13 @@ await getFilieresList();
 }
 
 .nom-utilisateur {
-   background-color: var(--primary-color);
+    background-color: var(--primary-color);
     margin: 0.7em 0 0.7em 0.7em;
     border-radius: 1rem;
     width: 11.1rem;
     font-size: 1.4rem;
     color: var(--background-color);
-    font-family: 'Poppins';
+    font-family: "Poppins";
     display: flex;
     align-items: flex-start;
     font-weight: 700;
@@ -200,13 +220,13 @@ await getFilieresList();
     margin: 0 0 0 1rem;
 }
 
-.span-course-list{
+.span-course-list {
     margin: 1.3rem 0 0 0;
-    text-align: 
+    text-align: ;
 }
 
-.mail-lessons{
-   margin: 0 0 0 3.9rem;
+.mail-lessons {
+    margin: 0 0 0 3.9rem;
     display: flex;
     text-align: justify;
     font-weight: 400;
@@ -234,4 +254,3 @@ await getFilieresList();
     height: 7.6rem;
 }
 </style>
-
