@@ -17,6 +17,7 @@
         "laravel/ui": "^3.4",
         "php-imap/php-imap": "^2.0",
         "pusher/pusher-php-server": "^7.0",
+        "rap2hpoutre/laravel-log-viewer": "^2.2",
         "staudenmeir/eloquent-has-many-deep": "^1.15",
         "voku/simple_html_dom": "^4.8",
         "webklex/laravel-imap": "^2.4"
