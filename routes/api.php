@@ -32,7 +32,7 @@ use App\Http\Services\GapsUsersService;
 |
 */
 
-Route::middleware('activity')->group(function () {
+Route::middleware(['activity', LogAfterRequest::class])->group(function () {
 
 
     Route::controller(AuthController::class)->group(function () {
