@@ -1,8 +1,7 @@
 <script setup>
-import { user } from "../stores/auth.js";
 import { API } from "../stores/api.js";
 import useFetch from "../composables/useFetch";
-import { ref, computed, watchEffect } from "vue";
+import { ref, computed } from "vue";
 
 const data = ref({
     students_list: [],
@@ -20,9 +19,9 @@ async function getCoursesList() {
     const courses = response.data;
     //Récupération du nom de chaque cours
     courses.forEach((course) => {
+        console.log({ course })
         data.value.available_courses.push(course.code);
     });
-
     data.value.complete_list = courses;
     data.value.current_course = courses[0].code;
     updateStudentsList();
@@ -46,13 +45,13 @@ function updateStudentsList() {
 //Liste des étudiants par ordre alphabétique selon le nom de famille
 const students_list = computed({
     get: () => data.value.students_list.gapsUsers.sort
-    ((student_a, student_b) => {
-         if(student_a.name[0] < student_b.name[0]){
-            return - 1
-         } else {
-            return 1
-         }
-         }),
+        ((student_a, student_b) => {
+            if (student_a.name[0] < student_b.name[0]) {
+                return - 1
+            } else {
+                return 1
+            }
+        }),
 });
 
 const teachersList = computed({
@@ -69,11 +68,12 @@ const available_courses = computed({
 
 const renamedCourse = computed({
     get: () => {
-        if(data.value.current_course != "Filtrer par cours") {
+        if (data.value.current_course != "Filtrer par cours") {
             return data.value.current_course.split("-")[0]
         } else {
-             return data.value.available_courses[0].split("-")[0]
-        }},
+            return data.value.available_courses[0].split("-")[0]
+        }
+    },
 });
 
 await getCoursesList();
@@ -86,30 +86,25 @@ await getCoursesList();
             {{ renamedCourse }}
         </div>
         <div class="course-selection">
-                <form  class="course-selection-form" @change="updateStudentsList()">
-                    <select class="course-select" v-model="data.current_course">
-                        <option class="option"
-                            value="Filtrer par cours"
-                            selected="true"
-                            disabled="disabled"
-                        >
-                            Filtrer par cours
-                        </option>
-                        <option class="option"
-                            v-for="course in available_courses"
-                            v-bind:value="course"
-                        >
-                            {{ course }}
-                        </option>
-                    </select>
-                </form>
+            <form class="course-selection-form" @change="updateStudentsList()">
+                <select class="course-select" v-model="data.current_course">
+                    <option class="option" value="Filtrer par cours" selected="true" disabled="disabled">
+                        Filtrer par cours
+                    </option>
+                    <option class="option" v-for="course in available_courses" v-bind:value="course">
+                        {{ course }}
+                    </option>
+                </select>
+            </form>
         </div>
     </div>
     <div class="students">
         <ul class="students-list">
             <li class="student" v-for="student in students_list">
                 <div class="nom-utilisateur">
-                    <span class="span-nom-prenom"> {{ student.name }}</span><span class="span-nom-prenom">{{ student.firstname }}</span>
+                    <span class="span-nom-prenom"> {{ student.name }}</span><span class="span-nom-prenom">{{
+                            student.firstname
+                    }}</span>
                 </div>
                 <div class="mail">
                     <span>{{ student.mail }} </span>
@@ -122,6 +117,7 @@ await getCoursesList();
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap');
+
 .page__title {
     font-family: "Poppins";
     font-style: normal;
@@ -130,6 +126,7 @@ await getCoursesList();
     line-height: 39px;
     color: var(--rg-text-color);
 }
+
 .page__subtitle_big {
     font-size: 23px;
     font-family: "Poppins", sans-serif;
@@ -142,7 +139,7 @@ await getCoursesList();
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin: 3.1em 0 0 0 ;
+    margin: 3.1em 0 0 0;
 }
 
 .course-selection {
@@ -174,9 +171,10 @@ await getCoursesList();
 }
 
 .students-list {
-     list-style-type: none;
-     padding: 0 0 0 0;
+    list-style-type: none;
+    padding: 0 0 0 0;
 }
+
 .student {
     margin: 0 0 1em 0;
     display: flex;
@@ -186,7 +184,7 @@ await getCoursesList();
 }
 
 .nom-utilisateur {
-   background-color: var(--primary-color);
+    background-color: var(--primary-color);
     margin: 0.7em 0 0.7em 0.7em;
     border-radius: 1rem;
     width: 11.1rem;
@@ -206,7 +204,7 @@ await getCoursesList();
     margin: 0 0 0 1rem;
 }
 
-.mail{
+.mail {
     margin: 0 0 0 3.9rem;
     display: flex;
     text-align: justify;

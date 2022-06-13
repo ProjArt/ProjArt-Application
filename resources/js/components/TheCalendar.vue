@@ -914,16 +914,22 @@ async function initData() {
 
     <!--====  calendar navigations  ====-->
     <header class="calendar__header">
-      <button @click="currentPopup = AVAILABLE_POPUP.FILTER">
+      <button @click="currentPopup = AVAILABLE_POPUP.FILTER" data-name="filtres">
         <span class="material-icons">filter_alt</span>
       </button>
-      <button @click="actualPeriod">
+      <button @click="previousPeriod" data-name="précédant">
+        <span class="material-icons">arrow_back</span>
+      </button>
+      <button @click="actualPeriod" data-name="aujaurd'hui">
         <span class="material-icons">today</span>
       </button>
-      <button @click="showNewEventForm">
+      <button @click="showNewEventForm" data-name="ajouter">
         <span class="material-icons">add_circle_outline</span>
       </button>
-      <button @click="currentPopup = AVAILABLE_POPUP.CALENDAR_OPTIONS">
+      <button @click="nextPeriod" data-name="suivant">
+        <span class="material-icons">arrow_forward</span>
+      </button>
+      <button @click="currentPopup = AVAILABLE_POPUP.CALENDAR_OPTIONS" data-name="éditer">
         <span class="material-icons">edit_calendar</span>
       </button>
     </header>
@@ -1286,28 +1292,28 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
       <li class="popup__layout-option">
         <button :class="
           currentLayout == AVAILABLE_LAYOUT.MONTH ? 'is-selected-layout' : ''
-        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.MONTH">
+        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.MONTH; currentPopup = null">
           <span class="material-icons">calendar_month</span><span class="popup__text">Mois</span>
         </button>
       </li>
       <li class="popup__layout-option">
         <button :class="
           currentLayout == AVAILABLE_LAYOUT.WEEK ? 'is-selected-layout' : ''
-        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.WEEK">
+        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.WEEK; currentPopup = null">
           <span class="material-icons is-90-deg">calendar_view_week</span><span class="popup__text">Semaine</span>
         </button>
       </li>
       <li class="popup__layout-option">
         <button :class="
           currentLayout == AVAILABLE_LAYOUT.LIST ? 'is-selected-layout' : ''
-        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.LIST">
+        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.LIST; currentPopup = null">
           <span class="material-icons">event_note</span><span class="popup__text">List</span>
         </button>
       </li>
       <li class="popup__layout-option">
         <button :class="
           currentLayout == AVAILABLE_LAYOUT.DAY ? 'is-selected-layout' : ''
-        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.DAY">
+        " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.DAY; currentPopup = null">
           <span class="material-icons">date_range</span><span class="popup__text">Jour</span>
         </button>
       </li>
