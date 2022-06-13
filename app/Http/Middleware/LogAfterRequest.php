@@ -12,7 +12,7 @@ class LogAfterRequest {
 
 	public function terminate($request, $response)
 	{
-		Log::debug('app.requests', ['request' => $request->all(), 'response' => $response]);
+		Log::debug('app.requests', ['request' => $request, 'response' => $response]);
 	}
 
 }
