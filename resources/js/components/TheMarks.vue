@@ -24,7 +24,7 @@ setupMarks();
 
 const modules = ref([]);
 const years = computed(() => {
-  return new Set(modules.value.map((module) => module.years).filter((x) => x !== null || x !== undefined || x !== ""));
+  return new Set(modules.value.map((module) => module.years).filter(year => year != ""));
 });
 const selectedYear = ref("");
 const selectedModules = computed(() => {
