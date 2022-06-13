@@ -32,7 +32,7 @@ const routes = [
         component: absences,
         icon: "person_off",
         is_visible: ["student"],
-        order: 4,
+        order: 6,
     },
     {
         name: "marks",
@@ -40,7 +40,7 @@ const routes = [
         component: marks,
         icon: "format_list_bulleted",
         is_visible: ["student"],
-        order: 3,
+        order: 5,
     },
     {
         name: "menus",
@@ -48,7 +48,7 @@ const routes = [
         component: menus,
         icon: "restaurant_menu",
         is_visible: ["*"],
-        order: 2,
+        order: 4,
     },
     {
         name: "notFound",
@@ -64,7 +64,7 @@ const routes = [
         icon: "home",
         is_visible: [],
         is_secondary: true,
-        order: 4,
+        order: 8,
         text: "Réglages",
     },
     {
@@ -74,7 +74,7 @@ const routes = [
         icon: "home",
         is_visible: [],
         is_secondary: true,
-        order: 3,
+        order: 7,
         text: "Informations",
     },
     {
@@ -82,9 +82,9 @@ const routes = [
         path: "/students",
         component: students,
         icon: "group",
-        is_visible: [],
+        is_visible: ["teacher"],
         is_secondary: true,
-        order: 2,
+        order: 3,
         text: "Liste des étudiants",
     },
     {
@@ -92,9 +92,9 @@ const routes = [
         path: "/teachers",
         component: teachers,
         icon: "group",
-        is_visible: [],
+        is_visible: ["teacher"],
         is_secondary: true,
-        order: 1,
+        order: 2,
         text: "Liste des enseignants",
     },
     {
@@ -133,7 +133,7 @@ const routes = [
         icon: "home",
         is_visible: [],
         is_secondary: true,
-        order: 5,
+        order: 9,
         text: "Crédits",
     },
 

@@ -57,10 +57,11 @@ const mails = ref([]);
         </div>
       </router-link>
     </div>
-    <router-link :to="'/mails/send'" class="mail__send-button"
+    
+  </template>
+  <router-link :to="'/mails/send'" class="mail__send-button"
       >Envoyer</router-link
     >
-  </template>
 </template>
 
 <style scoped>

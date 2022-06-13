@@ -86,7 +86,7 @@ class GapsUsersService
                         'mail' => strtolower($u_mail),
                         'is_teacher' => $u_is_prof,
                     ]);
-                    $course->gapsUsers()->attach($u_username);
+                    $course->gapsUsers()->attach($gaps_username);
                 } catch (\Exception $e) {
                     //echo $e->getMessage();
                 }
