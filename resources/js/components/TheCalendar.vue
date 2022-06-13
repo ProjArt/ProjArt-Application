@@ -800,6 +800,7 @@ async function initData() {
   await setCalendars(calendars);
   await setAllUsers();
   setEvents(getEvents());
+  console.log("calendars", calendars);
 }
 
 (async function startUp() {
