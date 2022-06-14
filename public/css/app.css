@@ -174,7 +174,8 @@ main {
 .main--infos,
 .main--mails_send,
 .main--settings,
-.main--menus {
+.main--menus,
+.main--calendar {
   padding-bottom: 7rem;
 }
 
