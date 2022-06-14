@@ -111,6 +111,7 @@ main {
   width: 70vw;
   max-width: 400px;
   box-sizing: border-box;
+  border: 2px solid var(--inactive-color);
 }
 .login .formkit-form .formkit-label {
   color: var(--text-secondary-color);
@@ -166,6 +167,21 @@ main {
 
 .formkit-input {
   font-size: 1.6rem;
+  border: 2px solid var(--inactive-color);
+}
+
+.formkit-input:not([type=color]) {
+  padding: 1rem;
+}
+
+.close {
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus,
+.close:active {
+  color: var(--inactive-color) !important;
 }
 
 .main--marks,
@@ -302,6 +318,9 @@ main {
   height: 100%;
   overflow-y: scroll;
 }
+.main--calendar .formkit-wrapper {
+  margin: 0 0 2rem 0;
+}
 .main--calendar .calendar {
   position: relative;
   margin: 0 var(--column-gap);
@@ -360,7 +379,6 @@ main {
   width: 100%;
   color: var(--text-color);
   background-color: var(--information-color);
-  border: none;
   border-radius: 6px;
   min-height: 4.1rem;
   box-sizing: border-box;
@@ -1273,6 +1291,9 @@ main {
   line-height: 3.9rem;
   text-transform: uppercase;
 }
+.popup--edit-event .popup__event {
+  height: 100%;
+}
 
 :root {
   --app-bar-height: 60px;
@@ -1531,7 +1552,7 @@ main {
   width: 40%;
   margin: 0 auto;
   position: relative;
-  right: -2.5rem;
+  right: 0.2rem;
   top: -2.5rem;
 }
 .calendar__choose .formkit-options {
@@ -1543,7 +1564,14 @@ main {
           appearance: none;
 }
 .calendar__choose .formkit-wrapper {
-  position: relative;
+  display: flex;
+  align-items: center;
+}
+.calendar__choose .formkit-inner {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  width: moz-fit-content;
 }
 .calendar__choose .formkit-legend {
   display: none;
@@ -1568,9 +1596,6 @@ main {
   font-size: 2rem;
   width: 2rem;
   height: 2rem;
-  position: absolute;
-  top: 2rem;
-  left: -2.4rem;
   color: var(--text-color);
 }
 .calendar__choose .material-icons:checked::before {
