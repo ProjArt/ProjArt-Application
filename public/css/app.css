@@ -109,6 +109,7 @@ main {
   padding: var(--default-padding);
   color: var(--text-color);
   width: 70vw;
+  max-width: 400px;
   box-sizing: border-box;
 }
 .login .formkit-form .formkit-label {
@@ -128,6 +129,7 @@ main {
   border-radius: var(--border-radius-md);
   padding: var(--spacer-xxsm);
   box-sizing: border-box;
+  cursor: pointer;
 }
 
 .button--main {
@@ -160,6 +162,10 @@ main {
 
 .formkit-actions {
   display: none;
+}
+
+.formkit-input {
+  font-size: 1.6rem;
 }
 
 .main--marks,
@@ -290,6 +296,12 @@ main {
   grid-auto-flow: column;
   height: 100%;
 }
+.main--calendar .formkit-form {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: scroll;
+}
 .main--calendar .calendar {
   position: relative;
   margin: 0 var(--column-gap);
@@ -309,14 +321,12 @@ main {
   grid-gap: 6px;
   width: calc(100% - 2rem);
   padding: 0 1rem;
-  margin: 0 0 2.4rem 0;
-  position: absolute;
+  margin: auto 0 2.4rem 0;
   justify-content: center;
-  bottom: 0;
   box-sizing: border-box;
 }
 .main--calendar .button {
-  color: white;
+  color: var(--text-secondary-color);
   text-align: center;
   font-style: normal;
   font-weight: 500;
