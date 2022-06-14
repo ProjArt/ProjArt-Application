@@ -93,23 +93,27 @@ input[type="radio"] {
   margin: var(--spacer-sm);
   padding: var(--spacer-sm);
   border-radius: var(--border-radius-sm);
+  box-sizing: border-box;
 }
 
 .theme__button--light {
   background-color: white;
   border: 3px solid black;
   color: black;
+  border-radius: 6px;
 }
 
 .theme__button--dark {
   background-color: black;
-  border: 3px solid black;
+  border: 3px solid white;
   color: white;
+  border-radius: 6px;
 }
 
 .theme__button--blue {
-  background-color: blue;
-  border: 3px solid blue;
+  background-color: #304277;
+  border: 3px solid white;
   color: white;
+  border-radius: 6px;
 }
 </style>

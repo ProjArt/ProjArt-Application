@@ -1,29 +1,29 @@
 <script setup>
 import { is404 } from "../stores/route";
-//console.log("notFound");
+import TheLogo from "./TheLogo.vue";
 
 document.querySelector('main').setAttribute('style', 'margin: 0 0 0 0');
 
 //Remove top and bottom menus
-function removeMenus(){
-let botMenu = document.querySelector('.menu');
-let parent = botMenu.parentNode; 
-parent.removeChild(botMenu);
+function removeMenus() {
+    let botMenu = document.querySelector('.menu');
+    let parent = botMenu.parentNode;
+    parent.removeChild(botMenu);
 
-let spaceMenu = document.querySelector('.spacer-bottom')
-parent = spaceMenu.parentNode
-parent.removeChild(spaceMenu)
+    let spaceMenu = document.querySelector('.spacer-bottom')
+    parent = spaceMenu.parentNode
+    parent.removeChild(spaceMenu)
 
-let topMenu = document.querySelector('.app-bar')
-parent = topMenu.parentNode
-parent.removeChild(topMenu)
+    let topMenu = document.querySelector('.app-bar')
+    parent = topMenu.parentNode
+    parent.removeChild(topMenu)
 
-let spacerTop = document.querySelector('.spacer-top')
-parent = spacerTop.parentNode
-parent.removeChild(spacerTop)
+    let spacerTop = document.querySelector('.spacer-top')
+    parent = spacerTop.parentNode
+    parent.removeChild(spacerTop)
 }
 
-function removeTopWhiteSpace(){
+function removeTopWhiteSpace() {
     let body = document.querySelector('body')
     body.classList.add('top-to-remove')
     body.setAttribute("style", "margin: 0 0 0 0")
@@ -38,10 +38,10 @@ console.log("is404", is404)
     <div class="main-body">
         <router-view />
         <div class="title-wrapper-wrapper">
-        <div class="title-wrapper">
-        <h2 class="erreur-quatre-zero-quatre">ERREUR</h2>
-        <h1 class="quatre-zero-quatre-chiffre">404</h1>
-        </div>
+            <div class="title-wrapper">
+                <h2 class="erreur-quatre-zero-quatre">ERREUR</h2>
+                <h1 class="quatre-zero-quatre-chiffre">404</h1>
+            </div>
         </div>
         <div class="indisponible-text">
             La page que vous cherchez est malheureusement indisponible
@@ -50,12 +50,7 @@ console.log("is404", is404)
             <a class="anchor-back-to-home" href="/">Retour à l'accueil</a>
         </div>
         <div class="logo">
-            <img
-                class="anchor-back-to-home"
-                src="/storage/images/logo.png"
-                width="50%"
-                style="position: relative"
-            />
+            <the-logo class="anchor-back-to-home"></the-logo>
         </div>
     </div>
 </template>
@@ -71,16 +66,21 @@ main {
     margin: 0 0 0 0 !important;
 }
 
-.app-bar{
-    display:none;
+.anchor-back-to-home :deep(svg) {
+    width: 10rem;
+    height: 10rem;
 }
 
-.menu{
-    display:none !important;
+.app-bar {
+    display: none;
 }
 
-.spacer-bottom{
-    display:none;
+.menu {
+    display: none !important;
+}
+
+.spacer-bottom {
+    display: none;
 }
 
 .top-to-remove {
@@ -90,15 +90,15 @@ main {
 .main-body {
     display: flex;
     flex-direction: column;
-    background-color: var(--primary-color);
-    color: var(--background-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
     font-family: Poppins;
     height: 100vh;
     width: 100vw;
     align-items: center;
 }
 
-.title-wrapper-wrapper{
+.title-wrapper-wrapper {
     margin: 4.8rem 0 0 0;
 }
 
@@ -127,12 +127,12 @@ main {
     display: flex;
     align-items: flex-end;
     text-align: center;
-    color: #ffffff;
+    color: var(--text-color);
 }
 
 /* 404 */
 .quatre-zero-quatre-chiffre {
-        position: relative;
+    position: relative;
     width: -webkit-fit-content;
     width: -moz-fit-content;
     margin: 0 0 0 15rem;
@@ -145,7 +145,7 @@ main {
     display: flex;
     align-items: flex-end;
     text-align: center;
-    color: #ffffff;
+    color: var(--text-color);
 }
 
 /* La page que vous recherchez est malheureusement indisponible */
@@ -160,7 +160,7 @@ main {
     display: flex;
     align-items: flex-end;
     text-align: center;
-    color: #ffffff;
+    color: var(--text-color);
     justify-content: center;
 }
 
@@ -188,7 +188,6 @@ main {
 
 .anchor-back-to-home {
     text-decoration: none;
-    color: white;
+    color: var(--text-secondary-color);
 }
-
 </style>

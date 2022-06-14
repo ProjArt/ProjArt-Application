@@ -28,6 +28,7 @@
     border-radius: var(--border-radius-md);
     padding: var(--spacer-xxsm);
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .button--main {
@@ -59,4 +60,8 @@
 
 .formkit-actions {
     display: none;
+}
+
+.formkit-input {
+    font-size: 1.6rem;
 }

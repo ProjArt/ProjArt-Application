@@ -35,11 +35,8 @@ const date = computed(() => {
     </div>
   </div>
 
-  <the-empty-page
-    v-if="menus.length == 0"
-    image="/images/no_meal.svg"
-    text="Il n'y a pas de menus disponibles pour le moment, revenez à 11h."
-  >
+  <the-empty-page v-if="menus.length == 0" image="/images/no_meal.svg"
+    text="Il n'y a pas de menus disponibles pour le moment, revenez à 11h.">
   </the-empty-page>
 
   <template v-else>
@@ -77,6 +74,7 @@ const date = computed(() => {
   margin-bottom: var(--spacer-lg);
   font-size: 1.2rem;
 }
+
 .menu__group {
   width: 90%;
   display: flex;
@@ -87,6 +85,10 @@ const date = computed(() => {
   margin-bottom: var(--spacer-sm);
   border-radius: var(--border-radius-md);
   background-color: var(--information-color);
+}
+
+.menu__group:last-child {
+  margin-bottom: calc(var(--footer-height) * 2);
 }
 
 .menu__title-item {
