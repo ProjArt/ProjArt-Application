@@ -76,11 +76,11 @@ function changeDate(id) {
                   {{ mark.course_code }}
                 </div>
                 <div class="mark_total">
-                  <div class="mark__value">
-                    {{ mark.value }}
-                  </div>
                   <div class="mark__pourcentage">
                     {{ mark.weight_percentage }}%
+                  </div>
+                   <div class="mark__value">
+                    {{ mark.value }}
                   </div>
                 </div>
               </div>
@@ -157,6 +157,7 @@ function changeDate(id) {
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
+  width:100%;
 }
 
 .mark__value {
