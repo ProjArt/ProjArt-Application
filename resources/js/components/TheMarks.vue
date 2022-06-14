@@ -13,7 +13,7 @@ async function setupMarks() {
   });
   if (response.success === true) {
     console.log("Marks fetched", response.data);
-    modules.value = response.data;
+    modules.value = response.data.sort((b, a) => a.years.localeCompare(b.years));
     selectedYear.value = response.data[0].years;
   } else {
     console.log(response, "error");
