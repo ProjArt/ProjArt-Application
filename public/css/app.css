@@ -124,10 +124,10 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 3.4rem;
+  height: calc(3.4rem + 6px);
   border-radius: var(--border-radius-md);
   padding: var(--spacer-xxsm);
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 
 .button--main {

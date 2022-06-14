@@ -1377,8 +1377,7 @@ eventPopup = EVENT_POPUP;
             <div class="event__wrapper">
               <p class="event__title">{{ event.title }}</p>
               <p class="event__date">
-                {{ calendarsNames[event.calendar_id]
-                }}<span class="material-icons">calendar_month</span>
+                {{ event.location }}
               </p>
             </div>
             <p class="event__time" :style="'background-color:' + event.color">{{ useDate.toEventTime(event.start) }}</p>
