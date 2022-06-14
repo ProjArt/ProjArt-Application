@@ -48,7 +48,6 @@ async function proceedLogin() {
     method: API.login.method,
     data: toRaw(formData.value),
   });
-  console.log({ response })
   if (response.success === true) {
     /*     await registerToChannelNotification(response.data.user.username);
      */

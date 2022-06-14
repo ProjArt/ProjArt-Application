@@ -1,7 +1,6 @@
 <script setup>
 import { is404 } from "../stores/route";
 import TheLogo from "./TheLogo.vue";
-//console.log("notFound");
 
 document.querySelector('main').setAttribute('style', 'margin: 0 0 0 0');
 

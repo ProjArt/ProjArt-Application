@@ -472,7 +472,7 @@ async function setCalendars(calendars, setIds = true) {
       currentsCalendarIds.value =
         storageValue && typeof JSON.parse(storageValue) == "object"
           ? JSON.parse(storageValue)
-          : [calendars[0].id.toString()];
+          : [calendars[1].id.toString()];
     }
   } catch (error) {
     useLog(
@@ -797,7 +797,6 @@ function checkIsListLayoutAsEvent() {
       hasNotEvent = false;
     }
   })
-  console.log({ hasNotEvent })
   return hasNotEvent
 }
 
