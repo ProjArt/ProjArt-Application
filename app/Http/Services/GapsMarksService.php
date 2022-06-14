@@ -44,6 +44,8 @@ class GapsMarksService
                 continue;
             }
 
+            $user->markmodules()->delete();
+
             try {
                 $user->setPersonalNumber();
 
