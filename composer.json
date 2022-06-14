@@ -9,7 +9,6 @@
         "defstudio/telegraph": "^1.11",
         "doctrine/dbal": "^3.3",
         "guzzlehttp/guzzle": "^7.4.3",
-        "jeremykenedy/laravel-logger": "^6.0",
         "laravel-notification-channels/pusher-push-notifications": "^3.0",
         "laravel/framework": "^9.11",
         "laravel/sanctum": "^2.15",
@@ -17,7 +16,6 @@
         "laravel/ui": "^3.4",
         "php-imap/php-imap": "^2.0",
         "pusher/pusher-php-server": "^7.0",
-        "rap2hpoutre/laravel-log-viewer": "^2.2",
         "staudenmeir/eloquent-has-many-deep": "^1.15",
         "voku/simple_html_dom": "^4.8",
         "webklex/laravel-imap": "^2.4"
