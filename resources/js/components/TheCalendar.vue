@@ -901,6 +901,14 @@ async function initData() {
       <h1 class="calendar__date">
         <span>{{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}</span>
       </h1>
+      <div class="calendar__button-period">
+        <button @click="previousPeriod" data-name="précédent" style="all:unset;">
+          <span class="material-icons">arrow_back</span>
+        </button>
+        <button @click="nextPeriod" data-name="suivant" style="all:unset;">
+          <span class="material-icons">arrow_forward</span>
+        </button>
+      </div>
     </div>
 
     <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.WEEK">
@@ -935,18 +943,14 @@ async function initData() {
       <button @click="currentPopup = AVAILABLE_POPUP.FILTER" data-name="filtres">
         <span class="material-icons">filter_alt</span>
       </button>
-      <button @click="previousPeriod" data-name="précédant">
-        <span class="material-icons">arrow_back</span>
-      </button>
+      
       <button @click="actualPeriod" data-name="aujourd'hui">
         <span class="material-icons">today</span>
       </button>
       <button @click="showNewEventForm" data-name="ajouter">
         <span class="material-icons">add_circle_outline</span>
       </button>
-      <button @click="nextPeriod" data-name="suivant">
-        <span class="material-icons">arrow_forward</span>
-      </button>
+      
       <button @click="currentPopup = AVAILABLE_POPUP.CALENDAR_OPTIONS" data-name="éditer">
         <span class="material-icons">edit_calendar</span>
       </button>
