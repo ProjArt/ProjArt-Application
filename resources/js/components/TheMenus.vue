@@ -28,20 +28,25 @@ const date = computed(() => {
 </script>
 
 <template>
-  <div class="page__title">Cafeteria</div>
-  <div class="page__subtitle">
-    <div class="page__subtitle--main">
-      {{ date }}
-    </div>
+  <div class="page__title">
+    <span>Cafeteria</span><span>{{ date }}</span>
   </div>
 
-  <the-empty-page v-if="menus.length == 0" image="/images/no_meal.svg"
-    text="Il n'y a pas de menus disponibles pour le moment, revenez à 11h.">
+  <the-empty-page
+    v-if="menus.length == 0"
+    image="/images/no_meal.svg"
+    text="Il n'y a pas de menus disponibles pour le moment, revenez à 11h."
+  >
   </the-empty-page>
 
   <template v-else>
     <div class="menus__group">
-      <div v-for="menu in menus" :key="menu.id" class="menu__menu">
+      <div v-for="(menu,index) in menus" :key="menu.id" class="menu__menu">
+        <div class="page__subtitle">
+          <div class="page__subtitle--main">
+            Menu {{ index + 1 }}
+          </div>
+        </div>
         <div class="menu__group">
           <div class="menu__title-item">Entrée</div>
           <div class="menu__description-item">
@@ -66,12 +71,18 @@ const date = computed(() => {
 </template>
 
 <style scoped>
+.page__title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-right: var(--default-padding);
+}
 .menu__menu {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: var(--spacer-lg);
+  margin-bottom: var(--spacer-xxsm);
   font-size: 1.2rem;
 }
 
@@ -85,10 +96,6 @@ const date = computed(() => {
   margin-bottom: var(--spacer-sm);
   border-radius: var(--border-radius-md);
   background-color: var(--information-color);
-}
-
-.menu__group:last-child {
-  margin-bottom: calc(var(--footer-height) * 2);
 }
 
 .menu__title-item {
