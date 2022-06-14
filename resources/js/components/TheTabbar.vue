@@ -113,7 +113,7 @@ function buildMenu() {
 }
 
 .menu__main .menu__item-link.router-link-active .menu__icon {
-  color: #fff;
+  color: var(--text-secondary-color);
 }
 
 .menu__main .menu__icon {

@@ -41,8 +41,6 @@ document.querySelector("#app").addEventListener("touchstart", (e) => {
 
     if ((xPos < minX && yPos > minY)) {
         e.preventDefault();
-        drawer.value.toggle();
-
         return false;
     }
 }, { passive: false });

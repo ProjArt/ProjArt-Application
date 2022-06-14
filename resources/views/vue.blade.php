@@ -12,6 +12,9 @@
     <meta name="msapplication-TileImage" content="link to the image in static folder">
     <meta name="msapplication-TileColor" content="#000">
 
+    <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico">
+
+
     <title>{{ config('app.name') }}</title>
 
     <link rel="manifest" href="{{ asset('manifest.webmanifest') }} " />
@@ -31,6 +34,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+
+    <!-- Matomo -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            var u = "//bidule.fun/matomo/";
+            _paq.push(['setTrackerUrl', u + 'matomo.php']);
+            _paq.push(['setSiteId', '6']);
+            var d = document,
+                g = d.createElement('script'),
+                s = d.getElementsByTagName('script')[0];
+            g.async = true;
+            g.src = u + 'matomo.js';
+            s.parentNode.insertBefore(g, s);
+        })();
+    </script>
+    <!-- End Matomo Code -->
 
     <style>
         body {

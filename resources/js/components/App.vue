@@ -34,7 +34,7 @@ const route = computed(() => router.currentRoute.value.name);
       :class="'main--' + getLocation().replace('/', '_')"
       v-if="!is404 && !isHome"
     >
-      <template v-if="['mail', ''].includes(route)">
+      <template v-if="['mail', 'sendMail', ''].includes(route)">
         <component :is="Component" />
       </template>
       <template v-else>

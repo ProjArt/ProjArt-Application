@@ -61,7 +61,7 @@ async function registerUserThemeInDb(themeId) {
         <input type="radio" name="theme" :value="theme.id" v-model="selectedThemeId" :data-colors="theme.name"
           :id="theme.id" />
 
-        <label :for="theme.id" class="theme__button" :class="'theme__button--' + theme.name">{{ theme.name }}</label>
+        <label :for="theme.id" class="theme__button" :class="'theme__button--' + theme.name" :style="{'border' : '1px solid ' + 'rgb('+ theme.text.value +')'}">{{ theme.name }}</label>
       </div>
     </form>
   </div>
