@@ -41,11 +41,13 @@ document.querySelector("#app").addEventListener("touchstart", (e) => {
 
     if ((xPos < minX && yPos > minY)) {
         e.preventDefault();
+        drawer.value.toggle();
+
         return false;
     }
 }, { passive: false });
 
-useSwipe({
+/* useSwipe({
     excepts: ["main--calendar", "login"],
     onSwipeLeft: () => {
         console.log("swipe left");
@@ -53,7 +55,7 @@ useSwipe({
     onSwipeRight: () => {
         drawer.value.toggle();
     },
-});
+}); */
 
 
 
