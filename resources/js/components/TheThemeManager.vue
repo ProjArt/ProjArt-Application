@@ -50,7 +50,7 @@ async function registerUserThemeInDb(themeId) {
 <template>
   <div class="themeSelection">
     <div class="page__subtitle">
-      <div class="page__subtitle--main">Selectionner un thème</div>
+      <div class="page__subtitle--main">Sélectionner un thème</div>
     </div>
     <form class="themeSlectionForm" @change="updateUserTheme()">
       <!-- Cette procédure fait en sorte que seul le tème correspondant à celui sélectionné est checké par défaut.
@@ -58,21 +58,10 @@ async function registerUserThemeInDb(themeId) {
         couleurs en hexadecimal, ce qui est illisible pour un humain.       -->
 
       <div v-for="theme in themesList" :key="theme.id" class="theme__input">
-        <input
-          type="radio"
-          name="theme"
-          :value="theme.id"
-          v-model="selectedThemeId"
-          :data-colors="theme.name"
-          :id="theme.id"
-        />
+        <input type="radio" name="theme" :value="theme.id" v-model="selectedThemeId" :data-colors="theme.name"
+          :id="theme.id" />
 
-        <label
-          :for="theme.id"
-          class="theme__button"
-          :class="'theme__button--' + theme.name"
-          >{{ theme.name }}</label
-        >
+        <label :for="theme.id" class="theme__button" :class="'theme__button--' + theme.name">{{ theme.name }}</label>
       </div>
     </form>
   </div>
@@ -80,6 +69,7 @@ async function registerUserThemeInDb(themeId) {
 
 <style scoped lang="scss">
 @import "../../sass/components/_page.scss";
+
 .themeSlectionForm {
   display: flex;
   margin-top: var(--spacer-md);
@@ -98,6 +88,7 @@ async function registerUserThemeInDb(themeId) {
 input[type="radio"] {
   display: none;
 }
+
 .theme__button {
   margin: var(--spacer-sm);
   padding: var(--spacer-sm);
