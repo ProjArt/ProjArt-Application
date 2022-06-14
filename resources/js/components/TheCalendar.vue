@@ -815,6 +815,7 @@ async function initData() {
   if (calendars.length == 0) {
     waitingForData();
   }
+  console.log("calendars init data", calendars);
   await setCalendars(calendars);
   await setAllUsers();
   setEvents(getEvents());
