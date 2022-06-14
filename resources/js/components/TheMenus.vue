@@ -95,7 +95,7 @@ const date = computed(() => {
   padding: calc(2 * var(--default-padding));
   border-radius: var(--border-radius-md);
   margin-right: var(--default-padding);
-  min-width: 5rem;
+  min-width: 20vw;
   font-size: 2rem;
 }
 
