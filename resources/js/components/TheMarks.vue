@@ -28,7 +28,13 @@ const years = computed(() => {
 });
 const selectedYear = ref("");
 const selectedModules = computed(() => {
-  return modules.value.filter((module) => module.years == selectedYear.value);
+  return modules.value.filter((module) => module.years == selectedYear.value).sort((a,b) => {
+    if(a.mark == 0 || b.mark == 0 ) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
 });
 
 function changeDate(id) {
@@ -64,7 +70,7 @@ function changeDate(id) {
           <div class="module__code">
             {{ module.code }}
           </div>
-          <div class="module_mark">
+          <div class="module_mark" v-if="module.mark != 0">
             {{ module.mark }}
           </div>
         </div>
@@ -76,7 +82,7 @@ function changeDate(id) {
                   {{ mark.course_code }}
                 </div>
                 <div class="mark_total">
-                  <div class="mark__pourcentage">
+                  <div class="mark__pourcentage" v-if="mark.weight_percentage != 0">
                     {{ mark.weight_percentage }}%
                   </div>
                    <div class="mark__value">

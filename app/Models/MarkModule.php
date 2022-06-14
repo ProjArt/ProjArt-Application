@@ -18,6 +18,7 @@ class MarkModule extends Model
         'years',
         'credits',
         'mark',
+        'user_id'
     ];
 
     protected $with = [
