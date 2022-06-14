@@ -5,8 +5,8 @@
   --app-footer-height: 50px;
   --tab-bar-bg-color: #ffffff;
   --tab-bar-active-color: var(--accent-color);
-  --default-margin: 0.5rem;
-  --default-padding: 0.5rem;
+  --default-margin: 1rem;
+  --default-padding: 1rem;
   --drawer-bg-color: rgb(255, 255, 255);
   --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
   --footer-height: 3.5rem;
@@ -16,6 +16,7 @@
   --rgb-secondary-color: 231, 33, 40;
   --rgb-accent-color: 249, 59, 88;
   --rgb-text-color: 58, 60, 61;
+  --rgb-text-color-secondary: 255, 255, 255;
   --rgb-inactive-color: 146, 145, 148;
   --rgb-background-color: 255, 255, 255;
   --rgb-information-color: 240, 240, 240;
@@ -54,6 +55,11 @@
   box-sizing: border-box;
 }
 
+@media (max-width: 400px) {
+  :root {
+    --column-gap: 1rem;
+  }
+}
 .is-display-none {
   display: none !important;
 }
@@ -101,16 +107,12 @@ main {
   border-radius: var(--border-radius-md);
   background-color: #182047;
   padding: var(--default-padding);
-  margin-bottom: 2rem;
   color: #5E6C9D;
   width: 70vw;
-  margin-top: 1rem;
+  box-sizing: border-box;
 }
 .login .formkit-form .formkit-label {
   color: #fff;
-}
-.login .formkit-form .formkit-outer {
-  margin-top: 4rem;
 }
 .login .formkit-form button.formkit-input {
   background-color: var(--secondary-color);
@@ -118,31 +120,46 @@ main {
   text-align: center;
 }
 
-.button--main {
-  background-color: var(--accent-color);
-  border-radius: var(--border-radius-md);
-  height: 3.4rem;
-  width: 15.8rem;
-  border: none;
-  color: var(--text-secondary-color);
-  padding: var(--spacer-xxsm);
-  border: 3px solid var(--accent-color);
+.button {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 3.4rem;
+  border-radius: var(--border-radius-md);
+  padding: var(--spacer-xxsm);
+  box-sizing: content-box;
 }
 
-.button--secondary {
-  background-color: var(--background-color);
-  color: var(--accent-color);
-  border-radius: var(--border-radius-md);
+.button--main {
+  background-color: var(--accent-color);
+  color: var(--text-secondary-color);
   border: 3px solid var(--accent-color);
-  height: 3.4rem;
-  width: 15.8rem;
-  padding: var(--spacer-xxsm);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.button--secondary, .button--main:active,
+.button--main:hover {
+  background-color: transparent;
+  color: var(--accent-color);
+  border: 3px solid var(--accent-color);
+}
+
+.formkit-messages {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.formkit-message {
+  color: var(--accent-color);
+  text-align: left;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+}
+
+.formkit-actions {
+  display: none;
 }
 
 .main--marks,
@@ -211,8 +228,8 @@ main {
   --app-footer-height: 50px;
   --tab-bar-bg-color: #ffffff;
   --tab-bar-active-color: var(--accent-color);
-  --default-margin: 0.5rem;
-  --default-padding: 0.5rem;
+  --default-margin: 1rem;
+  --default-padding: 1rem;
   --drawer-bg-color: rgb(255, 255, 255);
   --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
   --footer-height: 3.5rem;
@@ -222,6 +239,7 @@ main {
   --rgb-secondary-color: 231, 33, 40;
   --rgb-accent-color: 249, 59, 88;
   --rgb-text-color: 58, 60, 61;
+  --rgb-text-color-secondary: 255, 255, 255;
   --rgb-inactive-color: 146, 145, 148;
   --rgb-background-color: 255, 255, 255;
   --rgb-information-color: 240, 240, 240;
@@ -260,9 +278,14 @@ main {
   box-sizing: border-box;
 }
 
+@media (max-width: 400px) {
+  :root {
+    --column-gap: 1rem;
+  }
+}
 .main--calendar {
   display: grid;
-  grid-template-rows: 1fr 0.82fr;
+  grid-template-rows: 1fr 1fr;
   grid-auto-flow: column;
   height: 100%;
 }
@@ -343,8 +366,8 @@ main {
 .main--calendar .calendar__header {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 2rem;
-  height: 3rem;
+  grid-gap: var(--column-gap);
+  margin: 0 0 1rem 0;
 }
 .main--calendar .calendar__header button {
   border: none;
@@ -352,21 +375,39 @@ main {
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--accent-color);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+.main--calendar .calendar__header button::before {
+  content: attr(data-name);
+  width: 100%;
+  position: relative;
+  font-size: 1rem;
 }
 .main--calendar .calendar__header button:nth-child(1) {
   grid-column: 1/2;
 }
 .main--calendar .calendar__header button:nth-child(2) {
-  grid-column: 3/4;
+  grid-column: 2/3;
 }
 .main--calendar .calendar__header button:nth-child(3) {
-  grid-column: 5/6;
+  grid-column: 3/4;
 }
 .main--calendar .calendar__header button:nth-child(4) {
+  grid-column: 5/6;
+}
+.main--calendar .calendar__header button:nth-child(5) {
+  grid-column: 6/7;
+}
+.main--calendar .calendar__header button:nth-child(6) {
   grid-column: 7/8;
 }
 .main--calendar .calendar__header .material-icons {
-  font-size: 2.6rem;
+  font-size: 3rem;
 }
 .main--calendar .calendar__date {
   display: block;
@@ -426,14 +467,37 @@ main {
   margin: auto 0.5rem;
 }
 
+@media (max-width: 400px) {
+  .main--calendar .calendar__header {
+    grid-template-columns: repeat(6, 1fr);
+  }
+  .main--calendar .calendar__header button:nth-child(1) {
+    grid-column: 1/2;
+  }
+  .main--calendar .calendar__header button:nth-child(2) {
+    grid-column: 2/3;
+  }
+  .main--calendar .calendar__header button:nth-child(3) {
+    grid-column: 3/4;
+  }
+  .main--calendar .calendar__header button:nth-child(4) {
+    grid-column: 4/5;
+  }
+  .main--calendar .calendar__header button:nth-child(5) {
+    grid-column: 5/6;
+  }
+  .main--calendar .calendar__header button:nth-child(6) {
+    grid-column: 6/7;
+  }
+}
 :root {
   --app-bar-height: 60px;
   --app-bar-bg-color: #fff;
   --app-footer-height: 50px;
   --tab-bar-bg-color: #ffffff;
   --tab-bar-active-color: var(--accent-color);
-  --default-margin: 0.5rem;
-  --default-padding: 0.5rem;
+  --default-margin: 1rem;
+  --default-padding: 1rem;
   --drawer-bg-color: rgb(255, 255, 255);
   --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
   --footer-height: 3.5rem;
@@ -443,6 +507,7 @@ main {
   --rgb-secondary-color: 231, 33, 40;
   --rgb-accent-color: 249, 59, 88;
   --rgb-text-color: 58, 60, 61;
+  --rgb-text-color-secondary: 255, 255, 255;
   --rgb-inactive-color: 146, 145, 148;
   --rgb-background-color: 255, 255, 255;
   --rgb-information-color: 240, 240, 240;
@@ -481,6 +546,11 @@ main {
   box-sizing: border-box;
 }
 
+@media (max-width: 400px) {
+  :root {
+    --column-gap: 1rem;
+  }
+}
 .calendar--day {
   display: grid;
   height: 100%;
@@ -623,8 +693,8 @@ main {
   --app-footer-height: 50px;
   --tab-bar-bg-color: #ffffff;
   --tab-bar-active-color: var(--accent-color);
-  --default-margin: 0.5rem;
-  --default-padding: 0.5rem;
+  --default-margin: 1rem;
+  --default-padding: 1rem;
   --drawer-bg-color: rgb(255, 255, 255);
   --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
   --footer-height: 3.5rem;
@@ -634,6 +704,7 @@ main {
   --rgb-secondary-color: 231, 33, 40;
   --rgb-accent-color: 249, 59, 88;
   --rgb-text-color: 58, 60, 61;
+  --rgb-text-color-secondary: 255, 255, 255;
   --rgb-inactive-color: 146, 145, 148;
   --rgb-background-color: 255, 255, 255;
   --rgb-information-color: 240, 240, 240;
@@ -672,6 +743,11 @@ main {
   box-sizing: border-box;
 }
 
+@media (max-width: 400px) {
+  :root {
+    --column-gap: 1rem;
+  }
+}
 .calendar--list {
   height: 100%;
   grid-row: 1/3;
@@ -761,8 +837,8 @@ main {
   --app-footer-height: 50px;
   --tab-bar-bg-color: #ffffff;
   --tab-bar-active-color: var(--accent-color);
-  --default-margin: 0.5rem;
-  --default-padding: 0.5rem;
+  --default-margin: 1rem;
+  --default-padding: 1rem;
   --drawer-bg-color: rgb(255, 255, 255);
   --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
   --footer-height: 3.5rem;
@@ -772,6 +848,7 @@ main {
   --rgb-secondary-color: 231, 33, 40;
   --rgb-accent-color: 249, 59, 88;
   --rgb-text-color: 58, 60, 61;
+  --rgb-text-color-secondary: 255, 255, 255;
   --rgb-inactive-color: 146, 145, 148;
   --rgb-background-color: 255, 255, 255;
   --rgb-information-color: 240, 240, 240;
@@ -810,6 +887,11 @@ main {
   box-sizing: border-box;
 }
 
+@media (max-width: 400px) {
+  :root {
+    --column-gap: 1rem;
+  }
+}
 .calendar__days-names {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -820,7 +902,6 @@ main {
   font-size: 2.1rem;
   line-height: 3.2rem;
   text-transform: uppercase;
-  grid-gap: 2rem;
   margin: 3rem 0;
 }
 
@@ -861,7 +942,6 @@ main {
 .calendar__days--month {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-gap: 2rem;
   margin: 0 0 2rem 0;
 }
 .calendar__days--month .calendar__day {
@@ -873,6 +953,9 @@ main {
   margin: 0 0 0.5rem 0;
   border: 3px solid transparent;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: var(--text-color);
   text-align: center;
   font-style: normal;
@@ -891,8 +974,10 @@ main {
 }
 
 @media only screen and (max-width: 400px) {
-  .calendar__days--month {
-    grid-gap: 1rem;
+  .calendar__day-number {
+    height: 2rem !important;
+    width: 2rem !important;
+    font-size: 1.5rem !important;
   }
 }
 :root {
@@ -901,8 +986,8 @@ main {
   --app-footer-height: 50px;
   --tab-bar-bg-color: #ffffff;
   --tab-bar-active-color: var(--accent-color);
-  --default-margin: 0.5rem;
-  --default-padding: 0.5rem;
+  --default-margin: 1rem;
+  --default-padding: 1rem;
   --drawer-bg-color: rgb(255, 255, 255);
   --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
   --footer-height: 3.5rem;
@@ -912,6 +997,7 @@ main {
   --rgb-secondary-color: 231, 33, 40;
   --rgb-accent-color: 249, 59, 88;
   --rgb-text-color: 58, 60, 61;
+  --rgb-text-color-secondary: 255, 255, 255;
   --rgb-inactive-color: 146, 145, 148;
   --rgb-background-color: 255, 255, 255;
   --rgb-information-color: 240, 240, 240;
@@ -950,6 +1036,11 @@ main {
   box-sizing: border-box;
 }
 
+@media (max-width: 400px) {
+  :root {
+    --column-gap: 1rem;
+  }
+}
 .calendar__days-names {
   margin: 0;
 }
@@ -980,7 +1071,7 @@ main {
   display: grid;
   grid-template-columns: 1fr 6fr;
   grid-auto-flow: column;
-  grid-gap: 2rem;
+  grid-gap: var(--column-gap);
   padding: 1rem;
   border: none;
   border-bottom: 1px solid var(--primary-color);
@@ -1050,7 +1141,7 @@ main {
   min-width: 100px;
   background: var(--information-color);
   border-radius: 6px;
-  margin: 0 2rem 0 0;
+  margin: 0 var(--column-gap) 0 0;
   padding: 1rem;
   box-sizing: content-box;
   color: var(--text-secondary-color);
@@ -1094,8 +1185,8 @@ main {
   --app-footer-height: 50px;
   --tab-bar-bg-color: #ffffff;
   --tab-bar-active-color: var(--accent-color);
-  --default-margin: 0.5rem;
-  --default-padding: 0.5rem;
+  --default-margin: 1rem;
+  --default-padding: 1rem;
   --drawer-bg-color: rgb(255, 255, 255);
   --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
   --footer-height: 3.5rem;
@@ -1105,6 +1196,7 @@ main {
   --rgb-secondary-color: 231, 33, 40;
   --rgb-accent-color: 249, 59, 88;
   --rgb-text-color: 58, 60, 61;
+  --rgb-text-color-secondary: 255, 255, 255;
   --rgb-inactive-color: 146, 145, 148;
   --rgb-background-color: 255, 255, 255;
   --rgb-information-color: 240, 240, 240;
@@ -1143,6 +1235,11 @@ main {
   box-sizing: border-box;
 }
 
+@media (max-width: 400px) {
+  :root {
+    --column-gap: 1rem;
+  }
+}
 .popup--edit-event .event__title {
   color: var(--text-color);
   text-align: left;
@@ -1159,8 +1256,8 @@ main {
   --app-footer-height: 50px;
   --tab-bar-bg-color: #ffffff;
   --tab-bar-active-color: var(--accent-color);
-  --default-margin: 0.5rem;
-  --default-padding: 0.5rem;
+  --default-margin: 1rem;
+  --default-padding: 1rem;
   --drawer-bg-color: rgb(255, 255, 255);
   --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
   --footer-height: 3.5rem;
@@ -1170,6 +1267,7 @@ main {
   --rgb-secondary-color: 231, 33, 40;
   --rgb-accent-color: 249, 59, 88;
   --rgb-text-color: 58, 60, 61;
+  --rgb-text-color-secondary: 255, 255, 255;
   --rgb-inactive-color: 146, 145, 148;
   --rgb-background-color: 255, 255, 255;
   --rgb-information-color: 240, 240, 240;
@@ -1208,11 +1306,16 @@ main {
   box-sizing: border-box;
 }
 
+@media (max-width: 400px) {
+  :root {
+    --column-gap: 1rem;
+  }
+}
 .popup--event .event__wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  -moz-column-gap: 2rem;
-       column-gap: 2rem;
+  -moz-column-gap: var(--column-gap);
+       column-gap: var(--column-gap);
 }
 .popup--event p {
   margin: 1rem 0;
@@ -1289,8 +1392,8 @@ main {
   --app-footer-height: 50px;
   --tab-bar-bg-color: #ffffff;
   --tab-bar-active-color: var(--accent-color);
-  --default-margin: 0.5rem;
-  --default-padding: 0.5rem;
+  --default-margin: 1rem;
+  --default-padding: 1rem;
   --drawer-bg-color: rgb(255, 255, 255);
   --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
   --footer-height: 3.5rem;
@@ -1300,6 +1403,7 @@ main {
   --rgb-secondary-color: 231, 33, 40;
   --rgb-accent-color: 249, 59, 88;
   --rgb-text-color: 58, 60, 61;
+  --rgb-text-color-secondary: 255, 255, 255;
   --rgb-inactive-color: 146, 145, 148;
   --rgb-background-color: 255, 255, 255;
   --rgb-information-color: 240, 240, 240;
@@ -1338,6 +1442,11 @@ main {
   box-sizing: border-box;
 }
 
+@media (max-width: 400px) {
+  :root {
+    --column-gap: 1rem;
+  }
+}
 .popup--filter .popup__subtitle {
   color: var(--text-color);
   text-align: center;
@@ -1404,17 +1513,13 @@ main {
 .calendar__choose .formkit-options {
   list-style: none;
 }
-.calendar__choose .formkit-input {
-  width: 0;
-}
-.calendar__choose .formkit-input {
-  width: 0;
+.calendar__choose input[type=checkbox] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
 }
 .calendar__choose .formkit-wrapper {
   position: relative;
-}
-.calendar__choose input[type=checkbox] {
-  width: 0;
 }
 .calendar__choose .formkit-legend {
   display: none;
@@ -1440,7 +1545,7 @@ main {
   width: 2rem;
   height: 2rem;
   position: absolute;
-  top: 2.4rem;
+  top: 2rem;
   left: -2.4rem;
   color: var(--text-color);
 }
@@ -1454,8 +1559,8 @@ main {
   --app-footer-height: 50px;
   --tab-bar-bg-color: #ffffff;
   --tab-bar-active-color: var(--accent-color);
-  --default-margin: 0.5rem;
-  --default-padding: 0.5rem;
+  --default-margin: 1rem;
+  --default-padding: 1rem;
   --drawer-bg-color: rgb(255, 255, 255);
   --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
   --footer-height: 3.5rem;
@@ -1465,6 +1570,7 @@ main {
   --rgb-secondary-color: 231, 33, 40;
   --rgb-accent-color: 249, 59, 88;
   --rgb-text-color: 58, 60, 61;
+  --rgb-text-color-secondary: 255, 255, 255;
   --rgb-inactive-color: 146, 145, 148;
   --rgb-background-color: 255, 255, 255;
   --rgb-information-color: 240, 240, 240;
@@ -1503,6 +1609,11 @@ main {
   box-sizing: border-box;
 }
 
+@media (max-width: 400px) {
+  :root {
+    --column-gap: 1rem;
+  }
+}
 .popup--month-events {
   overflow: hidden;
   background-color: var(--information-color);
@@ -1578,7 +1689,7 @@ main {
   display: grid;
   width: 100%;
   grid-template-columns: 1fr;
-  grid-gap: 2rem;
+  grid-gap: var(--column-gap);
   margin: 0 0 1rem 0;
 }
 .popup--month-events .event {
@@ -1593,8 +1704,8 @@ main {
   --app-footer-height: 50px;
   --tab-bar-bg-color: #ffffff;
   --tab-bar-active-color: var(--accent-color);
-  --default-margin: 0.5rem;
-  --default-padding: 0.5rem;
+  --default-margin: 1rem;
+  --default-padding: 1rem;
   --drawer-bg-color: rgb(255, 255, 255);
   --drawer-invisible-background-color: rgba(0, 0, 0, 0.7);
   --footer-height: 3.5rem;
@@ -1604,6 +1715,7 @@ main {
   --rgb-secondary-color: 231, 33, 40;
   --rgb-accent-color: 249, 59, 88;
   --rgb-text-color: 58, 60, 61;
+  --rgb-text-color-secondary: 255, 255, 255;
   --rgb-inactive-color: 146, 145, 148;
   --rgb-background-color: 255, 255, 255;
   --rgb-information-color: 240, 240, 240;
@@ -1642,6 +1754,11 @@ main {
   box-sizing: border-box;
 }
 
+@media (max-width: 400px) {
+  :root {
+    --column-gap: 1rem;
+  }
+}
 .popup--new-event .formkit-input[type=submit] {
   display: none;
 }

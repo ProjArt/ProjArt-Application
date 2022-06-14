@@ -3,6 +3,7 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
 import TheEmptyPage from "./TheEmptyPage";
+import { theme } from "../stores/preferences";
 
 // At start of component, fetch the data
 async function setupMails() {
@@ -31,7 +32,7 @@ const mails = ref([]);
 
   <the-empty-page
     v-if="mails.length == 0"
-    image="/images/logo_REDY.svg"
+    :image="'/images/logo_REDY_'+ (theme.name == 'light' ? 'dark' : 'light')+'.svg'"
     text="Vous n'avez pas de mails"
   >
   </the-empty-page>
