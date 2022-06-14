@@ -32,7 +32,7 @@ const selectedModules = computed(() => {
     if(a.mark == 0 || b.mark == 0 ) {
       return -1;
     } else {
-      return 0;
+      return a.name.localeCompare(b.name);
     }
   });
 });
