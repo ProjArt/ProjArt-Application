@@ -43,12 +43,12 @@ const submitHandler = async () => {
 async function proceedLogin() {
   isSubmitted.value = true;
   formData.value.username = formData.value.username.replace(/\@.*$/g, "").toLowerCase();
-  console.log(toRaw(formData.value))
   const response = await useFetch({
     url: API.login.path(),
     method: API.login.method,
     data: toRaw(formData.value),
   });
+  console.log({ response })
   if (response.success === true) {
     /*     await registerToChannelNotification(response.data.user.username);
      */
