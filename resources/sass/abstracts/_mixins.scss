@@ -152,7 +152,7 @@
 // ==========================================================================
 
 @mixin button {
-    @include font-button(white, center);
+    @include font-button(var(--text-secondary-color), center);
     height: 3.4rem;
     background: var(--accent-color);
     border-radius: var(--border-radius-rg);
