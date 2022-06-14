@@ -3,6 +3,7 @@ import { computed, onMounted, ref, watch } from "vue";
 import { user } from "../stores/auth";
 import router from "../router/routes";
 import { routesNames } from "../router/routes";
+import TheLogo from "./TheLogo.vue";
 
 defineExpose({
   toggle,
@@ -32,6 +33,7 @@ function buildMenu() {
   menu.sort((a, b) => a.order - b.order);
   return menu;
 }
+
 </script>
 
 <template>
@@ -40,11 +42,16 @@ function buildMenu() {
       <span class="material-icons close" @click="toggle">close</span>
     </div>
     <div class="drawer__header-name">
-      {{ user.gaps_user.name }} {{ user.gaps_user.firstname }}
+      <the-logo></the-logo>
     </div>
     <div class="hr"></div>
     <div class="drawer__content">
-      <div v-for="route in buildMenu()" :key="route.path" class="drawer__content-item" @click="changePage(route.path)">
+      <div
+        v-for="route in buildMenu()"
+        :key="route.path"
+        class="drawer__content-item"
+        @click="changePage(route.path)"
+      >
         <div class="drawer__content-item-text">
           {{ route.text }}
         </div>
@@ -57,8 +64,10 @@ function buildMenu() {
         <div class="drawer__content-telegram-text">
           L'application RedY est aussi disponible sur Telegram. Rejoingez-nous !
         </div>
-        <a class="drawer__content-telegram-link" href="https://t.me/redy_gaps_bot">Telegram <span
-            class="material-icons">telegram</span>
+        <a
+          class="drawer__content-telegram-link"
+          href="https://t.me/redy_gaps_bot"
+          >Telegram <span class="material-icons">telegram</span>
         </a>
       </div>
     </div>
