@@ -99,7 +99,7 @@
         display: grid;
         grid-template-columns: repeat(7, 1fr);
         grid-gap: v.$calendar-gap;
-        margin: 0 0 1rem 0;
+        margin: 0 0 2rem 0;
 
         button {
             border: none;
@@ -223,7 +223,7 @@
 
 @media (max-width:400px) {
     .main--calendar .calendar__header {
-        grid-template-columns: repeat(6, 1fr);
+        grid-template-columns: repeat(4, 1fr);
 
         button:nth-child(1) {
             grid-column: 1 / 2;
@@ -248,5 +248,20 @@
         button:nth-child(6) {
             grid-column: 6 / 7;
         }
+    }
+}
+
+
+.calendar__wrapper-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.calendar__button-period {
+    color: var(--accent-color);
+
+    button span{
+        padding : 1rem;
     }
 }
