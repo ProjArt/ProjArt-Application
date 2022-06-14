@@ -73,10 +73,10 @@ async function proceedLogin() {
       @submit="submitHandler">
       <h2 class="login__title">Connexion</h2>
       <FormKit type="text" name="username" placeholder="prenom.nom" validation="required"
-        label="Nom d'utilisateur Gaps" />
-      <FormKit type="password" name="password" placeholder="Mot de passe Gaps" validation="required"
-        label="Mot de passe Gaps" />
-      <button class="button button--main">Connexion</button>
+        label="Nom d'utilisateur GAPS" />
+      <FormKit type="password" name="password" placeholder="Mot de passe GAPS" validation="required"
+        label="Mot de passe GAPS" />
+      <button type="submit" class="button button--main">Connexion</button>
     </FormKit>
     <div>
       <p>{{ errorMessage }}</p>
