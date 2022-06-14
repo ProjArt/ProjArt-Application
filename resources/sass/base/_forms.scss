@@ -2,9 +2,9 @@
     .formkit-input {
         all: unset;
         border-radius: var(--border-radius-md);
-        background-color: #182047;
+        background-color: var(--information-color);
         padding: var(--default-padding);
-        color: #5E6C9D;
+        color: var(--text-color);
         width: 70vw;
         box-sizing: border-box;
     }
@@ -14,7 +14,7 @@
     }
 
     button.formkit-input {
-        background-color: var(--secondary-color);
+        background-color: var(--information-color);
         color: #fff;
         text-align: center;
     }
