@@ -66,7 +66,7 @@ async function proceedLogin() {
 <template>
   <div class="wrapper login">
     <div class="login__logo">
-      <the-logo/>
+      <the-logo />
     </div>
     <FormKit type="form" v-model="formData" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Connexion"
       @submit="submitHandler">
@@ -102,6 +102,7 @@ async function proceedLogin() {
   max-width: 400px;
 }
 
+
 .login__title {
   @include font-h1(var(--text-color), center);
   margin: 3rem 0;
@@ -116,7 +117,7 @@ async function proceedLogin() {
 }
 
 :deep(.formkit-label) {
-  @include font-title-subject(var(--text-color), left);
+  @include font-title-subject(var(--text-color) !important, left);
 }
 
 

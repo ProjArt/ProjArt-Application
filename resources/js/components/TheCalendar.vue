@@ -667,7 +667,7 @@ function nextPeriod() {
     formatCurrentDateForDisplay(nextPeriod);
   }
   currDateCursor.value = nextPeriod;
-  selectedDate.value = ""; 
+  selectedDate.value = "";
   newEventPopupRef.value = null;
 }
 
@@ -704,7 +704,7 @@ function previousPeriod() {
     formatCurrentDateForDisplay(previousPeriod);
   }
   currDateCursor.value = previousPeriod;
-  selectedDate.value = ""; 
+  selectedDate.value = "";
   newEventPopupRef.value = null;
 }
 
@@ -945,14 +945,22 @@ async function initData() {
       <button @click="currentPopup = AVAILABLE_POPUP.FILTER" data-name="filtres">
         <span class="material-icons">filter_alt</span>
       </button>
-      
+
+      <button @click="previousPeriod" data-name="précédant">
+        <span class="material-icons">arrow_back</span>
+      </button>
+
       <button @click="actualPeriod" data-name="aujourd'hui">
         <span class="material-icons">today</span>
       </button>
       <button @click="showNewEventForm" data-name="ajouter">
         <span class="material-icons">add_circle_outline</span>
       </button>
-      
+
+      <button @click="nextPeriod" data-name="suivant">
+        <span class="material-icons">arrow_forward</span>
+      </button>
+
       <button @click="currentPopup = AVAILABLE_POPUP.CALENDAR_OPTIONS" data-name="éditer">
         <span class="material-icons">edit_calendar</span>
       </button>

@@ -89,20 +89,10 @@ await getCoursesList();
     <div class="course-selection">
       <form class="course-selection-form" @change="updateStudentsList()">
         <select class="course-select" v-model="data.current_course">
-          <option
-            class="option"
-            value="Filtrer par cours"
-            selected="true"
-            disabled="disabled"
-          >
+          <option class="option" value="Filtrer par cours" selected="true" disabled="disabled">
             Filtrer par cours
           </option>
-          <option
-            class="option"
-            v-for="course in available_courses"
-            v-bind:value="course"
-            :key="course.id"
-          >
+          <option class="option" v-for="course in available_courses" v-bind:value="course" :key="course.id">
             {{ course }}
           </option>
         </select>
@@ -113,18 +103,16 @@ await getCoursesList();
     <ul class="students-list">
       <li class="student" v-for="student in students_list" :key="student.id">
         <div class="nom-utilisateur">
-          <span class="span-nom-prenom"> {{ student.name }}</span
-          ><span class="span-nom-prenom">{{ student.firstname }}</span>
+          <span class="span-nom-prenom"> {{ student.name }}</span><span class="span-nom-prenom">{{ student.firstname
+          }}</span>
         </div>
         <div class="mail">
-          <router-link :to="'/mails/send/' + student.mail"
-            ><span class="student__mail">{{ student.mail }}</span></router-link
-          >
+          <router-link :to="'/mails/send/' + student.mail"><span class="student__mail">{{ student.mail }}</span>
+          </router-link>
         </div>
       </li>
     </ul>
   </div>
-  <div class="bottom-space-adder"></div>
 </template>
 
 <style scoped>
@@ -183,7 +171,7 @@ await getCoursesList();
 
 .students-list {
   list-style-type: none;
-  padding: 0 0 0 0;
+  padding: 0 0 calc(var(--footer-height) * 2) 0;
 }
 
 .student {

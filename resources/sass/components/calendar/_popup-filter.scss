@@ -63,7 +63,7 @@
     width: 40%;
     margin: 0 auto;
     position: relative;
-    right: -2.5rem;
+    right: 0.2rem;
     top: -2.5rem;
 
     .formkit-options {
@@ -75,7 +75,13 @@
     }
 
     .formkit-wrapper {
-        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .formkit-inner {
+        width: fit-content;
+        width: moz-fit-content;
     }
 
     .formkit-legend {
@@ -100,9 +106,6 @@
         font-size: 2rem;
         width: 2rem;
         height: 2rem;
-        position: absolute;
-        top: 2rem;
-        left: -2.4rem;
         color: var(--text-color);
     }
 

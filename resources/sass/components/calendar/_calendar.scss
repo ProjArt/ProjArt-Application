@@ -23,8 +23,6 @@
         overflow-y: scroll;
     }
 
-
-
     .calendar {
         position: relative;
         margin: 0 var(--column-gap);
@@ -79,7 +77,6 @@
         width: 100%;
         color: var(--text-color);
         background-color: var(--information-color);
-        border: none;
         border-radius: v.$border-radius;
         min-height: 4.1rem;
         box-sizing: border-box;
@@ -266,7 +263,7 @@
 .calendar__button-period {
     color: var(--accent-color);
 
-    button span{
-        padding : 1rem;
+    button span {
+        padding: 1rem;
     }
 }

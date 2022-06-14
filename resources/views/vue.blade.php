@@ -25,8 +25,7 @@
 
     {{-- ICONS --}}
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
 
     <link rel="stylesheet" href="{{ mix('/css/app.css') }}">
 
@@ -46,13 +45,14 @@
             var u = "//bidule.fun/matomo/";
             _paq.push(['setTrackerUrl', u + 'matomo.php']);
             _paq.push(['setSiteId', '6']);
-            var d = document,
-                g = d.createElement('script'),
-                s = d.getElementsByTagName('script')[0];
+            var d = document
+                , g = d.createElement('script')
+                , s = d.getElementsByTagName('script')[0];
             g.async = true;
             g.src = u + 'matomo.js';
             s.parentNode.insertBefore(g, s);
         })();
+
     </script>
     <!-- End Matomo Code -->
 
@@ -62,6 +62,7 @@
             background: var(--background-color);
             color: var(--text-color);
         }
+
     </style>
 </head>
 
@@ -71,11 +72,3 @@
 </body>
 
 </html>
-
-<style>
-    #app {
-        position: absolute;
-        width: 100vw;
-        left: 0px;
-    }
-</style>

@@ -46,12 +46,7 @@ function buildMenu() {
     </div>
     <div class="hr"></div>
     <div class="drawer__content">
-      <div
-        v-for="route in buildMenu()"
-        :key="route.path"
-        class="drawer__content-item"
-        @click="changePage(route.path)"
-      >
+      <div v-for="route in buildMenu()" :key="route.path" class="drawer__content-item" @click="changePage(route.path)">
         <div class="drawer__content-item-text">
           {{ route.text }}
         </div>
@@ -64,10 +59,8 @@ function buildMenu() {
         <div class="drawer__content-telegram-text">
           L'application RedY est aussi disponible sur Telegram. Rejoingez-nous !
         </div>
-        <a
-          class="drawer__content-telegram-link"
-          href="https://t.me/redy_gaps_bot"
-          >Telegram <span class="material-icons">telegram</span>
+        <a class="drawer__content-telegram-link" href="https://t.me/redy_gaps_bot">Telegram <span
+            class="material-icons">telegram</span>
         </a>
       </div>
     </div>
@@ -101,6 +94,7 @@ function buildMenu() {
 
 .keyboard_arrow {
   margin: 0 var(--default-padding);
+  cursor: pointer;
 }
 
 .drawer-invisible {
@@ -155,11 +149,19 @@ function buildMenu() {
   margin-bottom: var(--spacer-sm);
   color: var(--accent-color);
   font-weight: 600;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: var(--inactive-color);
+  }
 }
+
 
 .drawer__content-item-text {
   padding-left: var(--default-padding);
   font-size: 1.8rem;
+  cursor: pointer;
 }
 
 .drawer__content-telegram {
