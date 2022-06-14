@@ -478,7 +478,7 @@ async function setCalendars(calendars, setIds = true) {
     }
   } catch (error) {
     useLog(
-      "setCalendars: Request failed with status code " + response.status,
+      "setCalendars: Error " + error,
       "error"
     );
   }
@@ -1291,7 +1291,7 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
           <FormKit type="checkbox" label="Droit de modification" name="can_own" :sections-schema="{
             input: {
               attrs: {
-                class: { 'material-icons': 'material-icons' },
+                class: ['material-icons'],
               },
             },
           }" />
