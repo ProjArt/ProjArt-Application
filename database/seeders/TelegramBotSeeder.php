@@ -16,12 +16,17 @@ class TelegramBotSeeder extends Seeder
      */
     public function run()
     {
-        TelegraphBot::create([
-            'name' => 'TelegramBot',
-            'token' => config('telegram.bot_token'),
-        ]);
+        if (config('telegram.bot_token')) {
 
-        $url = 'https://api.telegram.org/bot' . config('telegram.bot_token') . '/setWebhook?url=' . env('APP_URL') . '/api/telegram/'. config('telegram.bot_token');
-        Http::get($url);
+            TelegraphBot::create([
+                'name' => 'TelegramBot',
+                'token' => config('telegram.bot_token'),
+            ]);
+
+            $url = 'https://api.telegram.org/bot' . config('telegram.bot_token') . '/setWebhook?url=' . env('APP_URL') . '/api/telegram/' . config('telegram.bot_token');
+            Http::get($url);
+        } else {
+            $this->command->error('Telegram bot token is not defined in config/telegram.php');
+        }
     }
 }
