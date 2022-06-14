@@ -450,6 +450,7 @@ async function getCalendars() {
     url: API.getEvents.path(),
     method: API.getEvents.method,
   });
+  console.log(response);
   if (response.success === true) {
     return response.data;
   } else {
