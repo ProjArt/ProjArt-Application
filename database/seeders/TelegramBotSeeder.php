@@ -22,8 +22,6 @@ class TelegramBotSeeder extends Seeder
         ]);
 
         $url = 'https://api.telegram.org/bot' . config('telegram.bot_token') . '/setWebhook?url=' . env('APP_URL') . '/api/telegram/'. config('telegram.bot_token');
-
-        echo $url;
         Http::get($url);
     }
 }
