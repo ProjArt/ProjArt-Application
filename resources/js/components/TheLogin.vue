@@ -18,7 +18,7 @@ const submitHandler = async () => {
   if (localStorage.getItem("hasAcceptedDatas") != "true") {
     usePopup({
       title: "Acceptez-vous ?",
-      body: "Pour le bon fonctionnnement de l’application RedY nous devons accéder et télécharger vos données Gaps sur le serveur de l'école. <br> <br>Etes-vous d’accord ? <br><br> (Le téléchargement va prendre environ 2 minutes, soyez patients et actualiser la page pour obtenir les données.)",
+      body: "Pour le bon fonctionement de l’application RedY nous devons accéder et télécharger vos données GAPS sur le serveur de l'école. <br> <br>Etes-vous d’accord ? <br><br> (Le téléchargement va prendre environ 2 minutes, soyez patients et actualisez la page pour obtenir les données.)",
       buttons: [
         {
           title: "Non",
@@ -66,7 +66,7 @@ async function proceedLogin() {
 <template>
   <div class="wrapper login">
     <div class="login__logo">
-      <the-logo/>
+      <the-logo />
     </div>
     <FormKit type="form" v-model="formData" :form-class="isSubmitted ? 'hide' : 'show'" submit-label="Connexion"
       @submit="submitHandler">
@@ -102,6 +102,7 @@ async function proceedLogin() {
   max-width: 400px;
 }
 
+
 .login__title {
   @include font-h1(var(--text-color), center);
   margin: 3rem 0;
@@ -116,7 +117,7 @@ async function proceedLogin() {
 }
 
 :deep(.formkit-label) {
-  @include font-title-subject(var(--text-color), left);
+  @include font-title-subject(var(--text-color) !important, left);
 }
 
 

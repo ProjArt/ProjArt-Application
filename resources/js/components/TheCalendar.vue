@@ -667,7 +667,7 @@ function nextPeriod() {
     formatCurrentDateForDisplay(nextPeriod);
   }
   currDateCursor.value = nextPeriod;
-  selectedDate.value = ""; 
+  selectedDate.value = "";
   newEventPopupRef.value = null;
 }
 
@@ -704,7 +704,7 @@ function previousPeriod() {
     formatCurrentDateForDisplay(previousPeriod);
   }
   currDateCursor.value = previousPeriod;
-  selectedDate.value = ""; 
+  selectedDate.value = "";
   newEventPopupRef.value = null;
 }
 
@@ -945,14 +945,22 @@ async function initData() {
       <button @click="currentPopup = AVAILABLE_POPUP.FILTER" data-name="filtres">
         <span class="material-icons">filter_alt</span>
       </button>
-      
+
+      <button @click="previousPeriod" data-name="précédant">
+        <span class="material-icons">arrow_back</span>
+      </button>
+
       <button @click="actualPeriod" data-name="aujourd'hui">
         <span class="material-icons">today</span>
       </button>
       <button @click="showNewEventForm" data-name="ajouter">
         <span class="material-icons">add_circle_outline</span>
       </button>
-      
+
+      <button @click="nextPeriod" data-name="suivant">
+        <span class="material-icons">arrow_forward</span>
+      </button>
+
       <button @click="currentPopup = AVAILABLE_POPUP.CALENDAR_OPTIONS" data-name="éditer">
         <span class="material-icons">edit_calendar</span>
       </button>
@@ -1124,7 +1132,7 @@ async function initData() {
       <FormKit type="text" name="title" validation="required" label="Titre" placeholder="Titre" />
       <FormKit type="text" name="location" validation="required" label="Lieu" placeholder="Lieu" />
       <FormKit type="textarea" name="description" validation="required" label="Description" placeholder="Description..."
-        rows="5" />
+        rows="3" />
       <FormKit type="time" name="start" label="Début" v-model="newEventStart" />
       <FormKit type="time" name="end" validation="required" label="Fin" :min="newEventStart" :value="newEventStart" />
       <FormKit name="start_date" type="date" :value="getCurrentDateForForm" label="Date de Début" validation="required"
@@ -1410,7 +1418,7 @@ eventPopup = EVENT_POPUP;
       <FormKit id="editEvent" type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent">
         <FormKit type="text" name="title" validation="required" label="Titre" />
         <FormKit type="text" name="location" validation="required" label="Lieu" />
-        <FormKit type="textarea" name="description" validation="required" label="Description" />
+        <FormKit type="textarea" name="description" validation="required" label="Description" rows="3" />
         <FormKit type="time" name="start" label="Début" />
         <FormKit type="time" name="end" label="Fin" />
         <FormKit name="end_date" type="hidden" :value="formUpdate.start" />

@@ -8,10 +8,13 @@
         width: 70vw;
         max-width: 400px;
         box-sizing: border-box;
+        border: 2px solid var(--inactive-color);
     }
+
     .formkit-label {
         color: var(--text-secondary-color);
     }
+
     button.formkit-input {
         background-color: var(--information-color);
         color: var(--text-secondary-color);
@@ -63,4 +66,19 @@
 
 .formkit-input {
     font-size: 1.6rem;
+    border: 2px solid var(--inactive-color);
+}
+
+.formkit-input:not([type="color"]) {
+    padding: 1rem;
+}
+
+.close {
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus,
+.close:active {
+    color: var(--inactive-color) !important;
 }

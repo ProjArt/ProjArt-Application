@@ -1,5 +1,7 @@
 import { API } from "../stores/api";
 import axios from "axios";
+import useLogout from "./useLogout";
+import useToast from "./useToast";
 /**
  * It takes a url, a token, a method and a body and returns a response
  * @param {FetchParameters} params - FetchParameters
@@ -35,7 +37,21 @@ async function useFetch(params) {
 
     const response = await axios(requestOptions).catch((error) => {
         if (error.response) {
-            console.log(error.response);
+            console.log("error: ", error.response);
+            if (
+                error.response.status == 401 &&
+                !url.includes("login") &&
+                !url.includes("api/me")
+            ) {
+                useLogout();
+                useToast(
+                    "Vous avez été déconnecté, car votre identifiant n'est pas valid",
+                    "danger",
+                    4000
+                );
+                console.log(url);
+                return error.response;
+            }
             return error.response;
         }
     });
