@@ -47,9 +47,6 @@ Route::middleware(['activity', LogAfterRequest::class])->group(function () {
     //Auth routes
     Route::middleware('auth:sanctum')->group(function () {
 
-        Route::get('logs', [\Rap2hpoutre\LaravelLogViewer\LogViewerController::class, 'index']);
-
-
         Route::controller(AuthController::class)->group(function () {
             Route::get('/me', 'me')->name("api.me");
             Route::get('/logout', 'logout')->name("api.logout");
