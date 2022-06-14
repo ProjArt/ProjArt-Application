@@ -150,6 +150,7 @@ function changeDate(id) {
   border: 1px solid var(--text-color);
 
   font-size: 2rem;
+  width: 30vw;
 }
 .mark_total {
   display: flex;
