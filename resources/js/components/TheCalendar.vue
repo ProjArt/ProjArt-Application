@@ -1132,7 +1132,7 @@ async function initData() {
       <FormKit type="text" name="title" validation="required" label="Titre" placeholder="Titre" />
       <FormKit type="text" name="location" validation="required" label="Lieu" placeholder="Lieu" />
       <FormKit type="textarea" name="description" validation="required" label="Description" placeholder="Description..."
-        rows="5" />
+        rows="3" />
       <FormKit type="time" name="start" label="Début" v-model="newEventStart" />
       <FormKit type="time" name="end" validation="required" label="Fin" :min="newEventStart" :value="newEventStart" />
       <FormKit name="start_date" type="date" :value="getCurrentDateForForm" label="Date de Début" validation="required"
@@ -1418,7 +1418,7 @@ eventPopup = EVENT_POPUP;
       <FormKit id="editEvent" type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent">
         <FormKit type="text" name="title" validation="required" label="Titre" />
         <FormKit type="text" name="location" validation="required" label="Lieu" />
-        <FormKit type="textarea" name="description" validation="required" label="Description" />
+        <FormKit type="textarea" name="description" validation="required" label="Description" rows="3" />
         <FormKit type="time" name="start" label="Début" />
         <FormKit type="time" name="end" label="Fin" />
         <FormKit name="end_date" type="hidden" :value="formUpdate.start" />

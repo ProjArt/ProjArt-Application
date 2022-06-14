@@ -69,6 +69,10 @@
     border: 2px solid var(--inactive-color);
 }
 
+.formkit-input:not([type="color"]) {
+    padding: 1rem;
+}
+
 .close {
     cursor: pointer;
 }
