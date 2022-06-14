@@ -432,6 +432,8 @@ async function updateEvent(form) {
       indexUnderEdition.value = null;
       currentPopup.value = AVAILABLE_POPUP.MONTH_EVENTS;
       eventPopup.value = null;
+      useToast("L'événement a été modifié", "success");
+      currentPopup.value = null;
     } catch (error) {
       console.log(error);
     }
@@ -664,6 +666,8 @@ function nextPeriod() {
     formatCurrentDateForDisplay(nextPeriod);
   }
   currDateCursor.value = nextPeriod;
+  selectedDate.value = ""; 
+  newEventPopupRef.value = null;
 }
 
 function previousPeriod() {
@@ -699,6 +703,8 @@ function previousPeriod() {
     formatCurrentDateForDisplay(previousPeriod);
   }
   currDateCursor.value = previousPeriod;
+  selectedDate.value = ""; 
+  newEventPopupRef.value = null;
 }
 
 function getEvents() {
@@ -1387,7 +1393,7 @@ eventPopup = EVENT_POPUP;
         <FormKit name="start_date" type="hidden" :value="formUpdate.start" />
         <FormKit name="id" type="hidden" :value="formUpdate.id" />
         <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
-          validation="required">
+          validation="required" disabled>
           <option v-for="(name, id) in editableCalendarsNames" :value="id">
             {{ name }}
           </option>

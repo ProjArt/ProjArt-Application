@@ -4,6 +4,7 @@ import { API } from "../stores/api.js";
 import useFetch from "../composables/useFetch";
 import { ref, computed, watchEffect } from "vue";
 
+
 const data = ref({
     teachers_lists: [],
     current_filiere: "Filtrer par filière",
@@ -103,6 +104,7 @@ await getFilieresList();
                     <option
                         v-for="filiere in available_filieres"
                         v-bind:value="filiere"
+                        :key="filiere.id"
                     >
                         {{ filiere }}
                     </option>
@@ -112,7 +114,7 @@ await getFilieresList();
     </div>
     <div class="teachers">
         <ul class="teachers-list">
-            <li class="teacher" v-for="teacher in data.teachers_list_to_show">
+            <li class="teacher" v-for="teacher in data.teachers_list_to_show" :key="teacher.id">
                 <div class="nom-utilisateur">
                     <span class="span-nom-prenom"> {{ teacher.name }}</span
                     ><span class="span-nom-prenom">{{
@@ -121,10 +123,10 @@ await getFilieresList();
                 </div>
                 <div class="mail-lessons">
                     <div class="mail">
-                        <a :href="'mailto:'+teacher.mail"><span>{{ teacher.mail }}</span></a>
+                        <router-link :to="'/mails/send/' + teacher.mail"><span>{{ teacher.mail }}</span></router-link>
                     </div>
                     <div class="lessons">
-                        <span v-for="lesson in teacher.lessons"
+                        <span v-for="lesson in teacher.lessons" :key="lesson.id"
                             >{{ lesson }}
                         </span>
                     </div>
@@ -205,7 +207,7 @@ await getFilieresList();
     border-radius: 1rem;
     width: 11.1rem;
     font-size: 1.4rem;
-    color: var(--background-color);
+    color: var(--text-secondary-color);
     font-family: "Poppins";
     display: flex;
     align-items: flex-start;
@@ -223,7 +225,7 @@ await getFilieresList();
 
 .span-course-list {
     margin: 1.3rem 0 0 0;
-    text-align: ;
+    text-align: left;
 }
 
 .mail-lessons {
@@ -254,4 +256,10 @@ await getFilieresList();
 .bottom-space-adder {
     height: 7.6rem;
 }
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+}
+
 </style>

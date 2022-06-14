@@ -121,7 +121,7 @@ const routes = [
     },
     {
         name: "sendMail",
-        path: "/mails/send",
+        path: "/mails/send/:mail?",
         component: sendMail,
         icon: "home",
         is_visible: [],

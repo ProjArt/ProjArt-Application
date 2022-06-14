@@ -11,8 +11,10 @@ function openDrawer() {
 <template>
   <div class="app-bar">
     <span @click="openDrawer()" class="material-icons">menu</span>
-    <the-logo></the-logo>
-    <span class="material-icons" style="color:transparent;">search</span>
+    <router-link :to="'/'">
+      <the-logo></the-logo>
+    </router-link>
+    <span class="material-icons" style="color: transparent">search</span>
   </div>
 </template>
 

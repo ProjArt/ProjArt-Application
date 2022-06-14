@@ -4,6 +4,11 @@ import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
 import router from "../router/routes";
 
+const mailTo = window.location.href.substring(
+  window.location.href.lastIndexOf("/") + 1
+);
+console.log(mailTo);
+
 const formData = ref({});
 
 const isSent = ref(false);
@@ -35,18 +40,20 @@ async function send() {
       submit-label="Envoyer"
       @submit="send"
     >
-      <h2 class="sendmail__title">
-        <button @click="router.back()" class="bouton-back">
-          <span class="material-symbols-outlined"> arrow_back_ios </span>
-        </button>
-        <div class="sendmail__title-text">Mail</div>
-      </h2>
+      <router-link :to="'/mails'" class="bouton-back">
+        <h2 class="sendmail__title">
+          <div class="material-symbols-outlined">arrow_back_ios</div>
+          <div class="sendmail__title-text">Mail</div>
+        </h2>
+      </router-link>
+
       <FormKit
         type="text"
         name="to"
         placeholder="À"
         validation="required"
         label="À"
+        :value="mailTo"
       />
       <FormKit
         type="text"
@@ -69,7 +76,7 @@ async function send() {
           },
         }"
       />
-      <button class="button--main" type="submit">Envoyer</button>
+      <button class="mail__send-button" type="submit">Envoyer</button>
     </FormKit>
     <div v-if="isSent">
       <h2>Mail envoyé</h2>
@@ -85,6 +92,7 @@ async function send() {
 .sendmail__title {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
 }
 
 .sendmail__title-text {
@@ -93,6 +101,8 @@ async function send() {
 .bouton-back {
   all: unset;
   color: var(--accent-color);
+  display: flex;
+  align-items: center;
 }
 .mail-group {
   display: flex;
@@ -121,6 +131,8 @@ async function send() {
   border: none;
   border-radius: var(--border-radius-md);
   min-height: 4.1rem;
+  color: var(--text-color);
+  font-family: "Poppins", sans-serif;
 }
 
 :deep(.formkit-label) {
@@ -147,5 +159,22 @@ textarea {
   width: 100%;
   height: 100%;
   font-family: "Poppins", sans-serif;
+  color: var(--text-color);
+  resize: none;
+}
+
+.mail__send-button {
+  position: fixed;
+  bottom: var(--spacer-lg);
+  right: var(--spacer-sm);
+  background-color: var(--accent-color);
+  padding: var(--spacer-sm);
+  border-radius: var(--border-radius-md);
+  color: var(--text-secondary-color);
+  text-decoration: none;
+  font-size: 1.4rem;
+  background-color: var(--accent-color);
+  color: var(--text-secondary-color);
+  border: 3px solid var(--accent-color);
 }
 </style>
