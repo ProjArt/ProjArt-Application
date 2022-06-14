@@ -234,98 +234,98 @@ class GapsMarksService
             // CONTROLE CONTINU 
 
             $response = Http::withBasicAuth($user->username, $user->password)
-            ->asForm()
-            ->post("https://gaps.heig-vd.ch/consultation/controlescontinus/consultation.php?idst=" . $user->gaps_id, [
-                "rs" => "getStudentCCs",
-                "rsargs" => "[" . $user->gaps_id . ", 2021, null]"
-            ]);
-
-        $res =  str_replace('\\', '', $response->body());
-        $res = str_replace('+:"', '', $res);
-        $res =  str_replace('&nbsp', '', $res);
-        $res =  str_replace('u00e9', 'é', $res);
-        $res =  str_replace('u00e0', 'à', $res);
-        $res =  str_replace('u00e7', 'ç', $res);
-        $res =  str_replace('u00e2', 'â', $res);
-        $res =  str_replace('u00e4', 'ä', $res);
-        $res =  str_replace('u00f6', 'ö', $res);
-        $res =  str_replace('u00fc', 'ü', $res);
-        $res =  str_replace('u00f1', 'ñ', $res);
-        $res =  str_replace('u00e8', 'è', $res);
-        $res =  str_replace('u00f4', 'ô', $res);
-        $res =  str_replace('u00fb', 'û', $res);
-
-        $res = substr_replace($res, "", -1);
-
-
-        $dom = HtmlDomParser::str_get_html($res);
-
-        $trs = $dom->find("table.displayArray")->findMulti("tr");
-
-        $course = "";
-        $course_code = "";
-        $course_details = [];
-
-        $marks = [];
-
-        foreach ($trs as $tr) {
-            $tds = $tr->findMulti("td");
-            if ($tds[0]->class == "bigheader") {
-                $course = $tds[0]->innerText;
-                $course_code = explode(" - ", $course)[0];
-                $marks[$course_code] = [
-                    'course_name' => $course,
-                    'course_code' => $course_code,
-                ];
-            }
-            if ($tds[0]->class == "bodyCC") {
-                $course_details = [
-                    'date' => $tds[0]->innerText,
-                    'name' => explode(";[...]", preg_replace('/<[^>]*>/', '', $tds[1]->find('div')[0]->innerText))[0],
-                    'class_average' => $tds[2]->innerText,
-                    'poids' => $tds[3]->innerText,
-                    'note' => $tds[4]->innerText,
-
-                ];
-                $marks[$course_code]['details'][] = $course_details;
-            }
-        }
-
-        $marks = array_values($marks);
-
-        $_marks = [];
-
-        foreach ($marks as $key => $m) {
-            $mark =  $user->marks()->firstOrCreate([
-                'course_code' => $m['course_code'],
-            ], [
-                'course_code' => $m['course_code'],
-                'course_name' => $m['course_name'],
-                'value' => explode(" : ", $m['course_name'])[1],
-                'years' => self::getSchoolYearsFromDate($m['details'][0]['date']),
-                'weight' => 0,
-                'weight_percentage' => 0,
-                'markmodule_id' => MarkModule::firstOrCreate([
-                    'user_id' => $user->id,
-                    'code' => 'Contrôles continus',
-                    'name' => 'Contrôles continus',
-                    'status' => '',
-                    'years' => self::getSchoolYearsFromDate(date('d.m.Y')),
-                    'mark' => 0,
-                    'credits' => 0
-                ])->id,
-            ]);
-
-            foreach ($m['details'] as $detail) {
-                $mark->details()->firstOrCreate([
-                    'title' => $detail['name'],
-                    'weight' => explode(" ", $detail['poids'])[1],
-                    'value' => $detail['note'],
+                ->asForm()
+                ->post("https://gaps.heig-vd.ch/consultation/controlescontinus/consultation.php?idst=" . $user->gaps_id, [
+                    "rs" => "getStudentCCs",
+                    "rsargs" => "[" . $user->gaps_id . ", 2021, null]"
                 ]);
+
+            $res =  str_replace('\\', '', $response->body());
+            $res = str_replace('+:"', '', $res);
+            $res =  str_replace('&nbsp', '', $res);
+            $res =  str_replace('u00e9', 'é', $res);
+            $res =  str_replace('u00e0', 'à', $res);
+            $res =  str_replace('u00e7', 'ç', $res);
+            $res =  str_replace('u00e2', 'â', $res);
+            $res =  str_replace('u00e4', 'ä', $res);
+            $res =  str_replace('u00f6', 'ö', $res);
+            $res =  str_replace('u00fc', 'ü', $res);
+            $res =  str_replace('u00f1', 'ñ', $res);
+            $res =  str_replace('u00e8', 'è', $res);
+            $res =  str_replace('u00f4', 'ô', $res);
+            $res =  str_replace('u00fb', 'û', $res);
+
+            $res = substr_replace($res, "", -1);
+
+
+            $dom = HtmlDomParser::str_get_html($res);
+
+            $trs = $dom->find("table.displayArray")->findMulti("tr");
+
+            $course = "";
+            $course_code = "";
+            $course_details = [];
+
+            $marks = [];
+
+            foreach ($trs as $tr) {
+                $tds = $tr->findMulti("td");
+                if ($tds[0]->class == "bigheader") {
+                    $course = $tds[0]->innerText;
+                    $course_code = explode(" - ", $course)[0];
+                    $marks[$course_code] = [
+                        'course_name' => $course,
+                        'course_code' => $course_code,
+                    ];
+                }
+                if ($tds[0]->class == "bodyCC") {
+                    $course_details = [
+                        'date' => $tds[0]->innerText,
+                        'name' => explode(";[...]", preg_replace('/<[^>]*>/', '', $tds[1]->find('div')[0]->innerText))[0],
+                        'class_average' => $tds[2]->innerText,
+                        'poids' => $tds[3]->innerText,
+                        'note' => $tds[4]->innerText,
+
+                    ];
+                    $marks[$course_code]['details'][] = $course_details;
+                }
             }
 
-            $_marks[] = $mark;
-        }
+            $marks = array_values($marks);
+
+            $_marks = [];
+
+            foreach ($marks as $key => $m) {
+                $mark =  $user->marks()->firstOrCreate([
+                    'course_code' => $m['course_code'],
+                ], [
+                    'course_code' => $m['course_code'],
+                    'course_name' => $m['course_name'],
+                    'value' => explode(" : ", $m['course_name'])[1],
+                    'years' => self::getSchoolYearsFromDate($m['details'][0]['date']),
+                    'weight' => 0,
+                    'weight_percentage' => 0,
+                    'markmodule_id' => MarkModule::firstOrCreate([
+                        'user_id' => $user->id,
+                        'code' => 'Contrôles continus',
+                        'name' => 'Contrôles continus',
+                        'status' => '',
+                        'years' => self::getSchoolYearsFromDate(date('d.m.Y')),
+                        'mark' => 0,
+                        'credits' => 0
+                    ])->id,
+                ]);
+
+                foreach ($m['details'] as $detail) {
+                    $mark->details()->firstOrCreate([
+                        'title' => $detail['name'],
+                        'weight' => explode(" ", $detail['poids'])[1],
+                        'value' => $detail['note'],
+                    ]);
+                }
+
+                $_marks[] = $mark;
+            }
         }
         return "ok";
     }
