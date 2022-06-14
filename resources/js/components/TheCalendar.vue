@@ -475,8 +475,7 @@ async function setCalendars(calendars, setIds = true) {
       currentsCalendarIds.value =
         storageValue && typeof JSON.parse(storageValue) == "object"
           ? JSON.parse(storageValue)
-          : [calendars[1].id.toString()];
-      console.log("currentsCalendarIds", currentsCalendarIds)
+          : [calendars[0].id.toString()];
     }
   } catch (error) {
     useLog(
