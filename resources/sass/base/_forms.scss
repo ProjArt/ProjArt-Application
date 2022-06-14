@@ -2,20 +2,19 @@
     .formkit-input {
         all: unset;
         border-radius: var(--border-radius-md);
-        background-color: #182047;
+        background-color: var(--information-color);
         padding: var(--default-padding);
-        color: #5E6C9D;
+        color: var(--text-color);
         width: 70vw;
+        max-width: 400px;
         box-sizing: border-box;
     }
-
     .formkit-label {
-        color: #fff;
+        color: var(--text-secondary-color);
     }
-
     button.formkit-input {
-        background-color: var(--secondary-color);
-        color: #fff;
+        background-color: var(--information-color);
+        color: var(--text-secondary-color);
         text-align: center;
     }
 }
@@ -28,6 +27,7 @@
     border-radius: var(--border-radius-md);
     padding: var(--spacer-xxsm);
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 .button--main {
@@ -59,4 +59,8 @@
 
 .formkit-actions {
     display: none;
+}
+
+.formkit-input {
+    font-size: 1.6rem;
 }

@@ -474,7 +474,7 @@ async function setCalendars(calendars, setIds = true) {
       currentsCalendarIds.value =
         storageValue && typeof JSON.parse(storageValue) == "object"
           ? JSON.parse(storageValue)
-          : [calendars[0].id.toString()];
+          : [calendars[1].id.toString()];
     }
   } catch (error) {
     useLog(
@@ -803,7 +803,6 @@ function checkIsListLayoutAsEvent() {
       hasNotEvent = false;
     }
   })
-  console.log({ hasNotEvent })
   return hasNotEvent
 }
 
@@ -1020,7 +1019,8 @@ async function initData() {
         <div class="calendar__events">
           <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event"
             :class="event.calendar_id == 1 ? 'is-heig-event' : ''"
-            :style="event.calendar_id == 1 ? 'background-color: var(--information-color)' : { 'background-color': event.color }">
+            :style="event.calendar_id == 1 ? 'background-color: var(--information-color)' : { 'background-color': event.color }"
+            @click="selectedEvent = event; eventPopup = EVENT_POPUP;">
             <p class="event__title">
               {{ truncate(event.title, 30) }}</p>
             <p class="event__time"
@@ -1054,7 +1054,7 @@ async function initData() {
             day?.dayOfMonthNumber +
             ' ' +
             DAY_LABELS_SHORT[day?.dayOfWeekNumber]
-          " :style="{ 'background-color': event.color }">
+          " :style="{ 'background-color': event.color }" @click="selectedEvent = event; eventPopup = EVENT_POPUP;">
             <p class="calendar__event-text">{{ event.title }}</p>
             <p class="calendar__event-text">{{ useDate.toEventTime(event.start) }}</p>
           </div>
@@ -1081,7 +1081,8 @@ async function initData() {
                 ? 'true'
                 : 'false'
             "
-            :style="event.calendar_id == 1 ? 'background-color: var(--information-color)' : { 'background-color': event.color }">
+            :style="event.calendar_id == 1 ? 'background-color: var(--information-color)' : { 'background-color': event.color }"
+            @click="selectedEvent = event; eventPopup = EVENT_POPUP;">
             <p class="event__header">
               <span class="event__title">{{ event.title }}</span>
               <span class="event__location">{{ event.location }}</span>
@@ -1220,7 +1221,7 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
       </h1>
       <FormKit id="storeCalendar" type="form" v-model="newCalendarForm" :form-class="isSubmitted ? 'hide' : 'show'"
         submit-label="Enregistrer" @submit="storeCalendar">
-        <FormKit type="text" name="name" validation="required" label="Nom" />
+        <FormKit type="text" name="name" validation="required" label="Nom" placeholder="Nom du calendrier" />
         <div class="popup__button-wrapper">
           <button class="button button--cancel is-secondary-button"
             @click.prevent="reset('storeCalendar'), currentCalendarPopupOption = null">

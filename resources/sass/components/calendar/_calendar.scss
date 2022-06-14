@@ -16,6 +16,13 @@
     grid-auto-flow: column;
     height: 100%;
 
+    .formkit-form {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow-y: scroll;
+    }
+
 
 
     .calendar {
@@ -35,10 +42,8 @@
         grid-gap: v.$border-radius;
         width: calc(100% - 2rem);
         padding: 0 1rem;
-        margin: 0 0 2.4rem 0;
-        position: absolute;
+        margin: auto 0 2.4rem 0;
         justify-content: center;
-        bottom: 0;
         box-sizing: border-box;
     }
 
