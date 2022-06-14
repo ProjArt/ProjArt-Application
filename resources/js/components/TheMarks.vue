@@ -65,7 +65,7 @@ function changeDate(id) {
   <template v-else>
     <!-- {{ marks }} -->
     <div v-for="module in selectedModules" :key="module.id">
-      <div class="module__group">
+      <div class="module__group" v-if="module.marks.length != 0">
         <div class="module__title">
           <div class="module__code">
             {{ module.code }}
