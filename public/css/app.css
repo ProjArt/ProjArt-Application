@@ -113,11 +113,11 @@ main {
   box-sizing: border-box;
 }
 .login .formkit-form .formkit-label {
-  color: #fff;
+  color: var(--text-secondary-color);
 }
 .login .formkit-form button.formkit-input {
   background-color: var(--information-color);
-  color: #fff;
+  color: var(--text-secondary-color);
   text-align: center;
 }
 

@@ -10,11 +10,11 @@
         box-sizing: border-box;
     }
     .formkit-label {
-        color: #fff;
+        color: var(--text-secondary-color);
     }
     button.formkit-input {
         background-color: var(--information-color);
-        color: #fff;
+        color: var(--text-secondary-color);
         text-align: center;
     }
 }
