@@ -475,7 +475,7 @@ async function setCalendars(calendars, setIds = true) {
       currentsCalendarIds.value =
         storageValue && typeof JSON.parse(storageValue) == "object"
           ? JSON.parse(storageValue)
-          : [calendars[1].id.toString()];
+          : [calendars[0].id.toString()];
     }
   } catch (error) {
     useLog(
@@ -709,6 +709,7 @@ function previousPeriod() {
 }
 
 function getEvents() {
+  console.log("get event calendars", allCalendars.value);
   try {
     const calendars = [];
     for (const [key, value] of Object.entries(currentsCalendarIds.value)) {
