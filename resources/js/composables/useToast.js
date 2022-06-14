@@ -1,6 +1,6 @@
 import { createToast } from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
-function useToast(message, type) {
+function useToast(message, type, timeout = 2000) {
     const color = {
         success: "#00C851",
         warning: "#FFC107",
@@ -10,7 +10,7 @@ function useToast(message, type) {
     };
     const config = {
         type: type,
-        timeout: 2000,
+        timeout: timeout,
         position: "top-center",
         showCloseButton: true,
         showIcon: true,

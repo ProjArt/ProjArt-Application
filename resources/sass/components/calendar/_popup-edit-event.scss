@@ -5,4 +5,8 @@
     .event__title {
         @include font-h1(var(--text-color), left);
     }
+
+    .popup__event {
+        height: 100%;
+    }
 }
