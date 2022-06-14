@@ -18,7 +18,7 @@ function disconnectAndRedirect() {
     buttons: [
       {
         title: "Non",
-        onClick: () => {},
+        onClick: () => { },
         main: false,
       },
       {
@@ -39,7 +39,7 @@ function updateGaps() {
     buttons: [
       {
         title: "Non",
-        onClick: () => {},
+        onClick: () => { },
         main: false,
       },
       {
@@ -66,7 +66,9 @@ function updateGaps() {
   <div class="settings__group">Réglages</div>
   <div class="settings__item">
     <div class="settings__item__content">
-      <Suspense><the-theme-manager /></Suspense>
+      <Suspense>
+        <the-theme-manager />
+      </Suspense>
     </div>
   </div>
 
@@ -76,11 +78,7 @@ function updateGaps() {
     </div>
     <div class="settings__item__content">
       <div class="settings-button">
-        <button
-          class="button--main"
-          @click="canUploadDatas ? updateGaps() : null"
-          v-if="canUploadDatas"
-        >
+        <button class="button button--main" @click="canUploadDatas ? updateGaps() : null" v-if="canUploadDatas">
           Mettre à jour
         </button>
         <div v-else>
@@ -92,19 +90,15 @@ function updateGaps() {
   </div>
 
   <div class="disconnect">
-    <form
-      class="disconnectForm"
-      method="post"
-      @submit.prevent="disconnectAndRedirect"
-      action="/register"
-    >
-      <input type="submit" value="Déconnexion" class="button--main" />
+    <form class="disconnectForm" method="post" @submit.prevent="disconnectAndRedirect" action="/register">
+      <input type="submit" value="Déconnexion" class="button button--main" />
     </form>
   </div>
 </template>
 
 <style scoped lang="scss">
 @import "../../sass/components/_page.scss";
+
 .settings__group {
   @extend .page__title;
 }
