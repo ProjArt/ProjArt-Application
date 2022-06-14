@@ -789,6 +789,18 @@ function showEventEditForm(startDate, id) {
   };
 }
 
+function checkIsListLayoutAsEvent() {
+  const days = toRaw(dates.value)
+  let hasNotEvent = true;
+  Object.values(days).forEach((day) => {
+    if (toRaw(typeof events.value[day.local] != 'undefined' && events.value[day.local]?.length > 0)) {
+      hasNotEvent = false;
+    }
+  })
+  console.log({ hasNotEvent })
+  return hasNotEvent
+}
+
 // At startup
 // ======================================
 
@@ -920,7 +932,7 @@ async function initData() {
       <button @click="previousPeriod" data-name="précédant">
         <span class="material-icons">arrow_back</span>
       </button>
-      <button @click="actualPeriod" data-name="aujaurd'hui">
+      <button @click="actualPeriod" data-name="aujourd'hui">
         <span class="material-icons">today</span>
       </button>
       <button @click="showNewEventForm" data-name="ajouter">
@@ -1015,6 +1027,9 @@ async function initData() {
       'calendar__days--' +
       getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
     ">
+      <the-empty-page v-if="checkIsListLayoutAsEvent()"
+        text="Tu n'as aucun événement de programmé, tu peux profiter de ton temps libre !!!"
+        image="/images/no_event.svg" />
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
         (selectedDate === index ? 'is-selected-day' : '',
           day?.class,
@@ -1023,6 +1038,7 @@ async function initData() {
             ? 'is-display-none'
             : '')
       " :key="index" :date-id="day?.local">
+
         <article class="calendar__events">
           <div v-for="(event, eventId) in sortEventsByDate(day?.local)" class="calendar__event" :data-date="
             day?.dayOfMonthNumber +
@@ -1041,8 +1057,7 @@ async function initData() {
       getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
     ">
       <the-empty-page v-if="sortEventsByDate(dates[Object.keys(dates)[0]]?.local)?.length == 0"
-        text="Tu n'as aucun événement de programmé, tu peux profiter de ta journée !!!"
-        image="/images/no_absence.svg" />
+        text="Tu n'as aucun événement de programmé, tu peux profiter de ta journée !!!" image="/images/no_event.svg" />
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)"
         :class="(selectedDate === index ? 'is-selected-day' : '', day?.class)" :key="index" :date-id="day?.local">
 
@@ -1108,7 +1123,8 @@ async function initData() {
         <p class="is-submited">Evénement crée</p>
       </FormKit>
       <div class="popup__button-wrapper">
-        <button class="button button--cancel is-secondary-button" @click.prevent="reset('newEvent')">
+        <button class="button button--cancel is-secondary-button"
+          @click.prevent="reset('newEvent'); currentPopup = null">
           Annuler
         </button>
         <button class="button button--save" type="submit">Enregistrer</button>
@@ -1196,7 +1212,8 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
         submit-label="Enregistrer" @submit="storeCalendar">
         <FormKit type="text" name="name" validation="required" label="Nom" />
         <div class="popup__button-wrapper">
-          <button class="button button--cancel is-secondary-button" @click.prevent="reset('storeCalendar')">
+          <button class="button button--cancel is-secondary-button"
+            @click.prevent="reset('storeCalendar'), currentCalendarPopupOption = null">
             Annuler
           </button>
           <button class="button button--save" type="submit">Enregistrer</button>
@@ -1377,7 +1394,7 @@ eventPopup = EVENT_POPUP;
       <span>Modifier un événement</span>
     </h1>
     <article class="popup__event">
-      <FormKit type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent">
+      <FormKit id="editEvent" type="form" v-model="formUpdate" submit-label="Enregistrer" @submit="updateEvent">
         <FormKit type="text" name="title" validation="required" label="Titre" />
         <FormKit type="text" name="location" validation="required" label="Lieu" />
         <FormKit type="textarea" name="description" validation="required" label="Description" />
@@ -1393,7 +1410,7 @@ eventPopup = EVENT_POPUP;
           </option>
         </FormKit>
         <div class="popup__button-wrapper">
-          <button class="button button--cancel">Annuler</button>
+          <button class="button button--cancel" @click="currentPopup = null">Annuler</button>
           <button class="button button--edit" type="submit">Modifier</button>
         </div>
       </FormKit>
