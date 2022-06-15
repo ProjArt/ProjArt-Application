@@ -25,7 +25,7 @@ class GapsEventsService
             return $calendar->events;
         })->flatten()->sortBy('date')->take(3);
 
-        return $items;
+        return count($events);
 
 
         return $this->displayHoraires($events);
