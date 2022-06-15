@@ -87,14 +87,12 @@ async function registerUserThemeInDb(themeId) {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-}
 
-/* .themeSelection h2 { */
-/*   @extend .page__subtitle--main; */
-/* } */
+}
 
 .theme__input {
   color: var(--text-color);
+  margin: 1rem;
 }
 
 input[type="radio"] {
