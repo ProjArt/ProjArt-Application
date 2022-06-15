@@ -20,7 +20,7 @@ class GapsMarksService
     public function fetchNotes()
     {
         $year = date('Y');
-        $notes = $this->user->marks()->where('years', "=", $year - 1 . " - " . $year)->orWhere('years', '=', $year . " - " . $year + 1)->orderBy('markmodule_id')->get();
+        $notes = $this->user->marks()->where('years', "=", $year - 1 . " - " . $year)->orWhere('years', '=', $year . " - " . $year + 1)->orderBy('course_code')->get();
         return $this->displayNotes($notes);
     }
 
