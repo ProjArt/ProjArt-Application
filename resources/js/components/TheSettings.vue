@@ -73,11 +73,11 @@ function updateGaps() {
   </div>
 
   <div class="settings__item">
-    <div class="page__subtitle">
-      <div class="page__subtitle--main">Mettre à jour les données de Gaps</div>
-    </div>
-    <div class="settings__item__content">
+    <div class="wrapper settings__item__content">
       <div class="settings-button">
+        <h2 class="settings__title"><span class="material-icons">upload_file</span><span>Mettre à jour les données de
+            GAPS</span>
+        </h2>
         <button class="button button--main" @click="canUploadDatas ? updateGaps() : null" v-if="canUploadDatas">
           Mettre à jour
         </button>
@@ -98,9 +98,25 @@ function updateGaps() {
 
 <style scoped lang="scss">
 @import "../../sass/components/_page.scss";
+@import "../../sass/abstracts/mixins";
 
 .settings__group {
   @extend .page__title;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 2rem 1rem;
+  padding: 1rem;
+  border-radius: var(--border-radius-md);
+  background-color: var(--information-color);
+}
+
+.settings__title {
+  @include font-title-subject (var(--text-color), left);
+  display: flex;
+  align-items: center;
 }
 
 .disconnectForm {
@@ -117,7 +133,13 @@ function updateGaps() {
 .settings-button {
   display: flex;
   justify-content: center;
+  flex-direction: column;
   text-align: center;
   font-size: 1.4rem;
+}
+
+button {
+  max-width: 250px;
+  margin: 0 auto;
 }
 </style>
