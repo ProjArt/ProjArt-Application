@@ -45,7 +45,7 @@ async function useFetch(params) {
             ) {
                 useLogout();
                 useToast(
-                    "Vous avez été déconnecté, car votre identifiant n'est pas valid",
+                    "Vous avez été déconnecté, car votre identifiant n'est pas valide.",
                     "danger",
                     4000
                 );

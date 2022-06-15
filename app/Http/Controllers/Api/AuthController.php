@@ -38,20 +38,27 @@ class AuthController extends Controller
     {
 
         if (User::whereUsername(strtolower($request->username))->exists()) {
-            return httpError("This username is already taken");
+            return httpError("Ce nom d'utilisateur est déjà utilisé. Vous vous trompez de mot de passe ?");
         }
 
-        if (!GapsUser::whereUsername($request->username)->exists()) {
-            return httpError("This username is not registered in Gaps");
+        if (!$gapsUser = GapsUser::whereUsername($request->username)->first()) {
+            return httpError("Cet utilisateur n'existe pas dans Gaps. Veuillez nous contacter.");
         }
 
         if (!$this->credentialsIsValid($request->username, $request->password)) {
-            return httpError("This credentials are not valid");
+            return httpError("Ce nom d'utilisateur ou mot de passe est incorrect.");
         }
 
         $data = $request->all();
         $data['username'] = strtolower($request->username);
         $user = User::create($data);
+
+        if ($gapsUser->is_teacher) {
+            $user->update([
+                'role' => User::ROLE_TEACHER,
+            ]);
+        }
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         if ($request->classroom_name) {
@@ -166,13 +173,13 @@ class AuthController extends Controller
             return false;
         }
 
-        $response = Http::withBasicAuth($username, $password)->get('https://gaps.heig-vd.ch/consultation/etudiant/');
+        $response = Http::withBasicAuth($username, $password)->get('https://gaps.heig-vd.ch/consultation/');
 
         if ($response->status() != 200) {
             return false;
         }
 
-        if (substr($response->body(), 3, 8) != "<script>") { // not a logged response
+        if (str_contains($response->body(), 'il suffit de vous identifier')) {
             return false;
         }
 

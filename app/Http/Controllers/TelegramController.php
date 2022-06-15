@@ -9,6 +9,8 @@ use App\Models\Meal;
 use App\Models\TelegramChat;
 use App\Models\User;
 use DefStudio\Telegraph\Models\TelegraphBot;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class TelegramController extends Controller
 {
@@ -21,9 +23,22 @@ class TelegramController extends Controller
     public function handle()
     {
         $content = file_get_contents("php://input");
+        Log::debug("Telegram content: " . $content);
         $update = json_decode($content, true);
+        $chat_id = "";
+        $message = "";
+        try{
         $chat_id = $update["message"]["chat"]["id"];
         $message = $update["message"]["text"];
+        } catch(Exception $e) {
+            try {
+                $chat_id = $update["edited_message"]["chat"]["id"];
+                $message = $update["edited_message"]["text"];
+            } catch(Exception $e) {
+                Log::error("Telegram update error: " . $e->getMessage());
+                return;
+            } 
+        }
         $chat = TelegramChat::where('chat_id', $chat_id)->first();
 
         if (!$chat) {
@@ -88,7 +103,7 @@ class TelegramController extends Controller
             $u = User::whereUsername($username)->first();
             $passwordCorrect = $u?->password == $password;
             if (!($u != null && $passwordCorrect)) {
-                return $this->chat->html("Les données entrées sont incorrects");
+                return $this->chat->html("Les données entrées sont incorrects. Veuillez vous connecter en premier depuis notre application. https://heig.ch/redy");
             }
             $this->chat->users()->attach($u->id);
         } else if (!$user) {
