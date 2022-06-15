@@ -81,9 +81,10 @@ class User extends Authenticatable
     public function setPersonalNumber()
     {
         if ($this->gaps_id == 0) {
-            $content = file_get_contents("https://" . $this->username . ":" . urlencode($this->password) . "@gaps.heig-vd.ch/consultation/horaires/");
-            $dom = HtmlDomParser::str_get_html($content);
-            $element = $dom->findOne('div.scheduleLinks span.navLink a'); // "$element" === instance of "SimpleHtmlDomInterface"
+            $response = Http::withBasicAuth($this->username, $this->password)
+                                ->get("https://gaps.heig-vd.ch/consultation/horaires/");
+            $dom = HtmlDomParser::str_get_html($response->body());
+            $element = $dom->findOne('div.scheduleLinks span.navLink a'); 
 
             preg_match('/[0-9]{5}/', $element->href, $matches);
             $this->update([

@@ -17,8 +17,6 @@ class GapsMenuService
     {
         $response = Http::withToken(config('twitter.token'))
             ->get("https://api.twitter.com/2/users/185659828/tweets", [
-                /*  'start_time' => '2022-05-22T00:00:00Z',
-                'end_time' => "2022-05-25T00:00:00Z", */
                 'max_results' => 10,
             ]);
 
