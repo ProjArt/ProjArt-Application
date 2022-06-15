@@ -26,9 +26,7 @@ class GapsEventsService
 
         foreach ($calendars as $calendar) {
             foreach ($calendar->events as $event) {
-                if ($event->start >= now()) {
-                    $events[] = $event;
-                }
+                $events[] = $event;
             }
         }
 
