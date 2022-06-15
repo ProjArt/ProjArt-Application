@@ -30,7 +30,9 @@ class GapsEventsService
             }
         }
 
-        $events = collect($events)->sortBy('start')->take($items);
+        $events = collect($events)->sortBy('start')->reject(function ($event) {
+            return $event->start < now();
+        })->take($items);
 
         return $this->displayHoraires($events);
     }
