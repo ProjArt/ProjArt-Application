@@ -53,9 +53,11 @@ class AuthController extends Controller
         $data['username'] = strtolower($request->username);
         $user = User::create($data);
 
-        $user->update([
-            'role' => $gapsUser->is_teacher ? User::ROLE_TEACHER : User::ROLE_STUDENT,
-        ]);
+        if ($gapsUser->is_teacher) {
+            $user->update([
+                'role' => User::ROLE_TEACHER,
+            ]);
+        }
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
@@ -177,7 +179,7 @@ class AuthController extends Controller
             return false;
         }
 
-        if(str_contains($response->body(), 'il suffit de vous identifier')) {
+        if (str_contains($response->body(), 'il suffit de vous identifier')) {
             return false;
         }
 
