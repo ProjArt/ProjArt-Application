@@ -160,7 +160,7 @@
 
 
     .calendar__date {
-        display: block;
+        display: flex;
         align-items: center;
         height: v.$date-wrapper-height;
         @include font-h1(var(--text-color), unset)

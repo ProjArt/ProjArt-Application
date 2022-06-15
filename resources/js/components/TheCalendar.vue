@@ -968,13 +968,6 @@ async function initData() {
         {{ dayLabel }}
       </div>
     </div>
-    <!--====  Calendar no events message  ====-->
-    <div class="calendar__no-events" v-show="currentLayout === AVAILABLE_LAYOUT.LIST">
-      <p>
-        Aucun événements <br />
-        pour cette période
-      </p>
-    </div>
 
     <!--==================================-->
     <!-- Calendar layout -->
