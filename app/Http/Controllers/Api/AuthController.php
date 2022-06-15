@@ -41,7 +41,7 @@ class AuthController extends Controller
             return httpError("Ce nom d'utilisateur est déjà utilisé. Vous vous trompez de mot de passe ?");
         }
 
-        if (!GapsUser::whereUsername($request->username)->exists()) {
+        if (!$gapsUser = GapsUser::whereUsername($request->username)->first()) {
             return httpError("Cet utilisateur n'existe pas dans Gaps. Veuillez nous contacter.");
         }
 
@@ -52,6 +52,13 @@ class AuthController extends Controller
         $data = $request->all();
         $data['username'] = strtolower($request->username);
         $user = User::create($data);
+
+        if ($gapsUser->is_teacher) {
+            $user->update([
+                'role' => User::ROLE_TEACHER,
+            ]);
+        }
+
         $token = $user->createToken('auth_token')->plainTextToken;
 
         if ($request->classroom_name) {
@@ -172,7 +179,7 @@ class AuthController extends Controller
             return false;
         }
 
-        if(str_contains($response->body(), 'il suffit de vous identifier')) {
+        if (str_contains($response->body(), 'il suffit de vous identifier')) {
             return false;
         }
 
