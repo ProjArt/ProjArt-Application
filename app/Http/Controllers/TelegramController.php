@@ -36,6 +36,7 @@ class TelegramController extends Controller
                 $message = $update["edited_message"]["text"];
             } catch(Exception $e) {
                 Log::error("Telegram update error: " . $e->getMessage());
+                return;
             } 
         }
         $chat = TelegramChat::where('chat_id', $chat_id)->first();
