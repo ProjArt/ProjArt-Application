@@ -81,6 +81,7 @@
       <li>vue-router</li>
     </ul>
   </div>
+  <div class="spacer"></div>
 </template>
 
 <style scoped>
@@ -110,5 +111,10 @@
   border-radius: var(--border-radius-md);
   padding: var(--spacer-sm);
   margin-top: var(--spacer-sm);
+}
+
+.spacer {
+  height: calc(var(--footer-height) * 2 + 1rem);
+  width: 100%;
 }
 </style>

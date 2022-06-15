@@ -119,16 +119,10 @@ function updateGaps() {
   align-items: center;
 }
 
-.disconnectForm {
-  padding-left: var(--default-padding);
+.disconnectForm input {
+  margin: 0 auto;
 }
 
-.disconnect {
-  position: absolute;
-  bottom: 20vh;
-  left: 50%;
-  transform: translateX(-50%);
-}
 
 .settings-button {
   display: flex;

@@ -98,6 +98,10 @@
         margin-top: 0.6rem;
     }
 
+    .formkit-form {
+        overflow-y: unset;
+    }
+
     .checkbox__wrapper {
         display: flex;
     }
@@ -113,5 +117,9 @@
 
     .checkbox__options {
         margin-left: -5rem;
+    }
+
+    .popup__button-wrapper {
+        margin: unset;
     }
 }
