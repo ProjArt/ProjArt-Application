@@ -77,6 +77,10 @@ const date = computed(() => {
   justify-content: space-between;
   margin-right: var(--default-padding);
 }
+
+.page__subtitle {
+  width: 100%;
+}
 .menu__menu {
   display: flex;
   flex-direction: column;
