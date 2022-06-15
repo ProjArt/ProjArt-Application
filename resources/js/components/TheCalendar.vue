@@ -600,7 +600,9 @@ function displayNewlyCreatedEvent(event) {
       const ids = Object.keys(currentsCalendarIds.value).map(function (key) {
         return currentsCalendarIds.value[key];
       });
-      if (ids.includes(calendarId)) {
+      console.log({ calendarId })
+      console.log({ ids })
+      if (ids.includes(calendarId.toString())) {
         if (events.value[index]) {
           events.value[index].push(event);
         } else {
@@ -903,14 +905,6 @@ async function initData() {
       <h1 class="calendar__date">
         <span>{{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}</span>
       </h1>
-      <div class="calendar__button-period">
-        <button @click="previousPeriod" data-name="précédent" style="all:unset;">
-          <span class="material-icons">arrow_back</span>
-        </button>
-        <button @click="nextPeriod" data-name="suivant" style="all:unset;">
-          <span class="material-icons">arrow_forward</span>
-        </button>
-      </div>
     </div>
 
     <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.WEEK">
@@ -942,13 +936,14 @@ async function initData() {
 
     <!--====  calendar navigations  ====-->
     <header class="calendar__header">
+
+      <button @click="previousPeriod" data-name="précédant">
+        <span class="material-icons">arrow_back</span>
+      </button>
+
       <button @click="currentPopup = AVAILABLE_POPUP.FILTER" data-name="filtres">
         <span class="material-icons">filter_alt</span>
       </button>
-
-     <!--  <button @click="previousPeriod" data-name="précédant">
-        <span class="material-icons">arrow_back</span>
-      </button> -->
 
       <button @click="actualPeriod" data-name="aujourd'hui">
         <span class="material-icons">today</span>
@@ -957,13 +952,14 @@ async function initData() {
         <span class="material-icons">add_circle_outline</span>
       </button>
 
-      <!-- <button @click="nextPeriod" data-name="suivant">
-        <span class="material-icons">arrow_forward</span>
-      </button> -->
-
       <button @click="currentPopup = AVAILABLE_POPUP.CALENDAR_OPTIONS" data-name="éditer">
         <span class="material-icons">edit_calendar</span>
       </button>
+
+      <button @click="nextPeriod" data-name="suivant">
+        <span class="material-icons">arrow_forward</span>
+      </button>
+
     </header>
     <!--====  Calendar days names  ====-->
     <div class="calendar__days-names">
