@@ -9,6 +9,7 @@ use App\Models\Meal;
 use App\Models\TelegramChat;
 use App\Models\User;
 use DefStudio\Telegraph\Models\TelegraphBot;
+use Illuminate\Support\Facades\Log;
 
 class TelegramController extends Controller
 {
@@ -21,6 +22,7 @@ class TelegramController extends Controller
     public function handle()
     {
         $content = file_get_contents("php://input");
+        Log::debug("Telegram content: " . $content);
         $update = json_decode($content, true);
         $chat_id = $update["message"]["chat"]["id"];
         $message = $update["message"]["text"];
