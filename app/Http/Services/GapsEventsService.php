@@ -21,11 +21,9 @@ class GapsEventsService
 
     public function fetchFuturesHoraires($items = 1)
     {
-        $events = $this->user->calendars->map(function (Calendar $calendar) {
-            return $calendar->events->filter(function (Event $event) {
-                return $event->date >= now();
-            });
-        })->flatten()->sortBy('date')->take($items);
+        $events = $this->user->calendars->map(function ($calendar) {
+            return $calendar->events;
+        })->flatten()->sortBy('date')->take(3);
         return $this->displayHoraires($events);
     }
 
