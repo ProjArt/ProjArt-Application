@@ -195,8 +195,7 @@ class TelegramController extends Controller
             $s = "";
 
             foreach ($absences as $absence) {
-                $s .= $absence->unity . "\n";
-                $s .= $absence->absolute_rate . " %" . "\n";
+                $s .= $absence->unity . " " . $absence->absolute_rate . " %";
                 $s .= "\n";
             }
 
