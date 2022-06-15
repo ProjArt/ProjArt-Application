@@ -903,14 +903,6 @@ async function initData() {
       <h1 class="calendar__date">
         <span>{{ displayedDateManager.month1 }} {{ displayedDateManager.year1 }}</span>
       </h1>
-      <div class="calendar__button-period">
-        <button @click="previousPeriod" data-name="précédent" style="all:unset;">
-          <span class="material-icons">arrow_back</span>
-        </button>
-        <button @click="nextPeriod" data-name="suivant" style="all:unset;">
-          <span class="material-icons">arrow_forward</span>
-        </button>
-      </div>
     </div>
 
     <div class="calendar__wrapper-date" v-if="currentLayout === AVAILABLE_LAYOUT.WEEK">
