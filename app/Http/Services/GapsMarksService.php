@@ -27,7 +27,7 @@ class GapsMarksService
     {
         $s = "";
         foreach ($notes as $note) {
-            $s .= "<strong>{$note->module_code}</strong> : {$note->value} \n";
+            $s .= "<strong>{$note->course_code}</strong> : {$note->value} \n";
             //$s .= "<strong>" . $note->module_code . ": </strong>" . strval($note->note) . "\n";
         }
         return $s;
