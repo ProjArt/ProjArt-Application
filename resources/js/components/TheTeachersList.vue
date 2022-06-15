@@ -44,25 +44,25 @@ function updateTeachersList() {
     data.value.teachers_list_to_show = new_teachers_list
     console.log(data.value.teachers_list_to_show)
 
-    updateCoursesLists ()
+    updateCoursesLists()
 }
 
 //Cette fonction permet d'ajouter une virgule à tous les cours des profs sauf le dernier
-function updateCoursesLists(){
+function updateCoursesLists() {
     data.value.teachers_list_to_show.forEach(teacher => {
         const courses_with_virgule = [];
-        for(let i = 0; i < teacher.lessons.length - 1; i ++ ){
+        for (let i = 0; i < teacher.lessons.length - 1; i++) {
             //console.log("phrase", teacher.lessons[i], teacher.lessons[i].length-2)
             //Récupère le dernier caractère de la phrase, pour éviter de multiplier les virgules en cas de génération multiple de la liste
-            if(teacher.lessons[i][teacher.lessons[i].length-2] != ","){
-            courses_with_virgule[i] = `${teacher.lessons[i]}, `;
+            if (teacher.lessons[i][teacher.lessons[i].length - 2] != ",") {
+                courses_with_virgule[i] = `${teacher.lessons[i]}, `;
             }
             else {
-             courses_with_virgule[i] = teacher.lessons[i]
+                courses_with_virgule[i] = teacher.lessons[i]
             }
         }
-       courses_with_virgule.push(teacher.lessons[teacher.lessons.length -1])
-       teacher.lessons = courses_with_virgule;
+        courses_with_virgule.push(teacher.lessons[teacher.lessons.length - 1])
+        teacher.lessons = courses_with_virgule;
     });
 }
 
@@ -70,42 +70,34 @@ const available_filieres = computed({
     get: () => data.value.available_filieres,
 });
 
-const teachers_list_to_show = computed ({
+const teachers_list_to_show = computed({
     get: () => data.value.teachers_list,
 })
 
 const current_filiere = computed({
     get: () => {
-        if(data.value.current_filiere != "Filtrer par filière") {
+        if (data.value.current_filiere != "Filtrer par filière") {
             return data.value.current_filiere
         } else {
-             return data.value.available_filieres[0]
-        }},
+            return data.value.available_filieres[0]
+        }
+    },
 });
 
 await getFilieresList();
 </script>
 
 <template>
-    <div class="page__title">LISTE DES PROFESSEURS</div>
+    <div class="page__title">LISTE DES ENSEIGNANTS</div>
     <div class="subtitle_and_filiere_selection">
         <div class="page__subtitle_big">{{ current_filiere }}</div>
         <div class="filiere-selection">
             <form class="filiere-selection-form" @change="updateTeachersList()">
                 <select class="filiere-select" v-model="data.current_filiere">
-                    <option
-                        class="option"
-                        value="Filtrer par filière"
-                        disabled="disabled"
-                        selected="true"
-                    >
+                    <option class="option" value="Filtrer par filière" disabled="disabled" selected="true">
                         Filtrer par filière
                     </option>
-                    <option
-                        v-for="filiere in available_filieres"
-                        v-bind:value="filiere"
-                        :key="filiere.id"
-                    >
+                    <option v-for="filiere in available_filieres" v-bind:value="filiere" :key="filiere.id">
                         {{ filiere }}
                     </option>
                 </select>
@@ -116,9 +108,8 @@ await getFilieresList();
         <ul class="teachers-list">
             <li class="teacher" v-for="teacher in data.teachers_list_to_show" :key="teacher.id">
                 <div class="nom-utilisateur">
-                    <span class="span-nom-prenom"> {{ teacher.name }}</span
-                    ><span class="span-nom-prenom">{{
-                        teacher.firstname
+                    <span class="span-nom-prenom"> {{ teacher.name }}</span><span class="span-nom-prenom">{{
+                            teacher.firstname
                     }}</span>
                 </div>
                 <div class="mail-lessons">
@@ -126,8 +117,7 @@ await getFilieresList();
                         <router-link :to="'/mails/send/' + teacher.mail"><span>{{ teacher.mail }}</span></router-link>
                     </div>
                     <div class="lessons">
-                        <span v-for="lesson in teacher.lessons" :key="lesson.id"
-                            >{{ lesson }}
+                        <span v-for="lesson in teacher.lessons" :key="lesson.id">{{ lesson }}
                         </span>
                     </div>
                 </div>
@@ -139,6 +129,7 @@ await getFilieresList();
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap");
+
 .page__title {
     font-family: "Poppins";
     font-style: normal;
@@ -147,6 +138,7 @@ await getFilieresList();
     line-height: 39px;
     color: var(--rg-text-color);
 }
+
 .page__subtitle_big {
     font-size: 23px;
     font-family: "Poppins", sans-serif;
@@ -193,6 +185,7 @@ await getFilieresList();
     list-style-type: none;
     padding: 0 0 0 0;
 }
+
 .teacher {
     margin: 0 0 1em 0;
     display: flex;
@@ -261,5 +254,4 @@ a {
     text-decoration: none;
     color: var(--text-color);
 }
-
 </style>

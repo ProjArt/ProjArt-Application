@@ -57,7 +57,7 @@ function buildMenu() {
         <div class="hr"></div>
 
         <div class="drawer__content-telegram-text">
-          L'application RedY est aussi disponible sur Telegram. Rejoingez-nous !
+          L'application RedY est aussi disponible sur Telegram. Rejoignez-nous !
         </div>
         <a class="drawer__content-telegram-link" href="https://t.me/redy_gaps_bot">Telegram <span
             class="material-icons">telegram</span>

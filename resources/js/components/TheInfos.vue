@@ -2,9 +2,9 @@
 </script>
 
 <template>
-  <div class="page__title">Infos</div>
+  <div class="page__title">Informations</div>
   <div class="page__subtitle">
-    <div class="page__subtitle--main">Les batiments</div>
+    <div class="page__subtitle--main">Les bâtiments</div>
   </div>
   <div class="map">
     <iframe
@@ -14,11 +14,11 @@
   </div>
 
   <div class="page__subtitle">
-    <div class="page__subtitle--main">Section ingénierie des médias</div>
+    <div class="page__subtitle--main">Section Ingénierie des Médias</div>
   </div>
 
   <div class="section">
-    <div class="comem-title">Comem</div>
+    <div class="comem-title">COMEM+</div>
     <div class="infos-title">CONTACT ADMINISTRATIF</div>
     <div class="infos-content">Secrétariat de département</div>
     <div class="infos-contact">Mme Daniela Oberlojer</div>

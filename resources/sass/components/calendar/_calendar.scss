@@ -229,7 +229,7 @@
 
 @media (max-width:400px) {
     .main--calendar .calendar__header {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(6, 1fr);
 
         button:nth-child(1) {
             grid-column: 1 / 2;
