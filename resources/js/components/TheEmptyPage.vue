@@ -1,11 +1,12 @@
 
 <script setup>
-const props = defineProps(["image", "text"]);
+const props = defineProps(["image", "text", "component"]);
 </script>
 
 <template >
   <div class="empty__page">
     <img v-if="props.image" :src="props.image" class="empty__image" />
+    <component :is="props.component" />
     <p class="empty__text">{{ props.text }}</p>
   </div>
 </template>

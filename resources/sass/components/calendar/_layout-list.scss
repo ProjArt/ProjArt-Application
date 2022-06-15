@@ -8,6 +8,9 @@
     height: 100%;
     grid-template-rows: min-content min-content;
 
+    .calendar__days-names {
+        display: none;
+    }
 }
 
 .calendar__days--list {
