@@ -88,7 +88,7 @@ class TelegramController extends Controller
             $u = User::whereUsername($username)->first();
             $passwordCorrect = $u?->password == $password;
             if (!($u != null && $passwordCorrect)) {
-                return $this->chat->html("Les données entrées sont incorrects");
+                return $this->chat->html("Les données entrées sont incorrects. Veuillez vous connecter en premier depuis notre application. https://heig.ch/redy");
             }
             $this->chat->users()->attach($u->id);
         } else if (!$user) {
