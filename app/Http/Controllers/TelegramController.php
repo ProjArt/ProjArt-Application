@@ -104,9 +104,6 @@ class TelegramController extends Controller
         $gaps = $this->chat->users()->first();
         if ($gaps) {
             $horaires = new GapsEventsService($gaps);
-
-            return $this->chat->html("ok");
-
             return $this->chat->html($horaires->fetchFuturesHoraires(1));
         } else {
             return $this->chat->html("Vous n'êtes pas connecter à Gaps.\n/gaps");
