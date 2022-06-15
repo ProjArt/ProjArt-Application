@@ -21,6 +21,7 @@ class GapsEventsService
 
     public function fetchFuturesHoraires($items = 1)
     {
+        return $items;
         $events = $this->user->calendars->map(function ($calendar) {
             return $calendar->events;
         })->flatten()->sortBy('date')->take(3);
