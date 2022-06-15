@@ -14,9 +14,10 @@
     }
 }
 
-
 .calendar__days--day {
     grid-template-columns: 1fr;
+    overflow: scroll;
+    margin: 0 0 calc(var(--footer-height) * 2) 0;
 
     .calendar__day {
         flex-direction: row;

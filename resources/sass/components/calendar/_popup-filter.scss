@@ -72,6 +72,10 @@
 
     input[type="checkbox"] {
         appearance: none;
+        padding: 0 1rem 0 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .formkit-wrapper {

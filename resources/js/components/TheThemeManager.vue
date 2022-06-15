@@ -49,7 +49,7 @@ async function registerUserThemeInDb(themeId) {
         Elle permet de contourner le problème lié au fait que le backend ne retourne pas le nom du thème concerné mais des
         couleurs en hexadecimal, ce qui est illisible pour un humain.       -->
 
-      <h2 class="theme__title"><span class="material-icons">star_border</span><span>Séléctionner un thème</span> </h2>
+      <h2 class="theme__title"><span class="material-icons">star_border</span><span>Sélectionner un thème</span> </h2>
       <div class="theme__wrapper">
         <div v-for="ctheme in themesList" :key="ctheme.id" class="theme__input">
           <input type="radio" name="theme" :value="ctheme.id" v-model="selectedThemeId"
