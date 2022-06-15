@@ -17,7 +17,14 @@ import sendMail from "./SendMailRoute.vue";
 import credits from "./CreditsRoute.vue";
 
 const routes = [
-    { name: "home", path: "/", component: home, icon: "home", is_visible: [], order: 0, },
+    {
+        name: "home",
+        path: "/",
+        component: home,
+        icon: "home",
+        is_visible: [],
+        order: 0,
+    },
     {
         name: "calendar",
         path: "/calendar",
@@ -121,7 +128,7 @@ const routes = [
     },
     {
         name: "sendMail",
-        path: "/mails/send/:mail?",
+        path: "/mails/send",
         component: sendMail,
         icon: "home",
         is_visible: [],
@@ -136,11 +143,9 @@ const routes = [
         order: 9,
         text: "Crédits",
     },
-
 ];
 
 export const routesNames = () => {
-
     return routes;
 };
 
@@ -149,7 +154,7 @@ const router = createRouter({
     routes,
 });
 
-router.beforeEach(async(to, from) => {
+router.beforeEach(async (to, from) => {
     const isAuthenticated = localStorage.getItem("token");
     if (!isAuthenticated && to.name !== "home" && to.name !== "register") {
         return { name: "home" };

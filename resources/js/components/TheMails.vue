@@ -30,48 +30,43 @@ const mails = ref([]);
 <template>
   <div class="page__title">Mails</div>
 
-  <the-empty-page
-    v-if="mails.length == 0"
-    :image="'/images/logo_REDY_'+ (theme.name == 'light' ? 'dark' : 'light')+'.svg'"
-    text="Vous n'avez pas de mails"
-  >
+  <the-empty-page v-if="mails.length == 0"
+    :image="'/images/logo_REDY_' + (theme.name == 'light' ? 'dark' : 'light') + '.svg'"
+    text="Vous n'avez pas d'e-mails">
   </the-empty-page>
   <template v-else>
     <div v-for="mail in mails" :key="mail.uid">
       <router-link :to="'/mails/' + mail.uid" class="menu__item-link">
-        <div
-          class="mail-group"
-          :class="mail.seen ? '' : 'mail-group--not-seen'"
-        >
+        <div class="mail-group" :class="mail.seen ? '' : 'mail-group--not-seen'">
           <div class="mail-content">
             <div class="mail__from">{{ mail.from.split("<")[0] }}</div>
-          </div>
-          <div class="mail__content-group">
-            <div class="mail__content--message">
-              <div class="mail__subject">{{ mail.subject }}</div>
-              <div class="mail__date">
-                {{ new Date(Date.parse(mail.date)).toLocaleString("ch-FR") }}
-              </div>
             </div>
-            <span class="material-icons">arrow_right</span>
+            <div class="mail__content-group">
+              <div class="mail__content--message">
+                <div class="mail__subject">{{ mail.subject }}</div>
+                <div class="mail__date">
+                  {{ new Date(Date.parse(mail.date)).toLocaleString("ch-FR") }}
+                </div>
+              </div>
+              <span class="material-icons">arrow_right</span>
+            </div>
           </div>
-        </div>
       </router-link>
     </div>
-    
+
   </template>
-  <router-link :to="'/mails/send'" class="mail__send-button"
-      >Envoyer</router-link
-    >
+  <router-link :to="'/mails/send'" class="mail__send-button">Envoyer</router-link>
 </template>
 
 <style scoped>
 .mail-group--not-seen {
   border: 1px solid var(--secondary-color);
 }
+
 .mail-group--not-seen .material-icons {
   color: var(--secondary-color);
 }
+
 .mail-group {
   display: flex;
   flex-direction: row;
@@ -80,10 +75,10 @@ const mails = ref([]);
   padding: var(--spacer-xxsm);
   font-size: 1.2rem;
   background-color: var(--information-color);
-  margin: var(--spacer-sm) var(--default-padding) var(--spacer-sm)
-    var(--default-padding);
+  margin: var(--spacer-sm) var(--default-padding) var(--spacer-sm) var(--default-padding);
   border-radius: var(--border-radius-md);
 }
+
 .mail-group .seen {
   background-color: #00ff00;
 }
@@ -115,6 +110,7 @@ const mails = ref([]);
   flex-direction: row;
   align-items: center;
 }
+
 .mail__content--message {
   text-align: right;
 }

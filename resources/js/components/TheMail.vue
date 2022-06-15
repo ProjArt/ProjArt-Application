@@ -32,11 +32,11 @@ setupMail();
 <template>
   <div class="wrapper">
     <router-link :to="'/mails'" class="bouton-back">
-        <h2 class="sendmail__title">
-          <div class="material-symbols-outlined">arrow_back_ios</div>
-          <div class="sendmail__title-text">Mail</div>
-        </h2>
-      </router-link>
+      <h2 class="sendmail__title">
+        <div class="material-symbols-outlined">arrow_back_ios</div>
+        <div class="sendmail__title-text">E-mail</div>
+      </h2>
+    </router-link>
     <div class="mail-group" v-if="mail != undefined">
       <div class="mail__header">
         <div clas="mail-from">
@@ -50,16 +50,13 @@ setupMail();
         {{ mail.subject }}
       </div>
       <div class="hr"></div>
-      <div
-        class="mail-message"
-        v-html="
-          mail.textPlain != null
-            ? mail.textPlain
-                .replace(/<\/?[^>]+(>|$)/g, '')
-                .replace(/(?:\r\n|\r|\n)/g, '<br />')
-            : mail.textHtml.replace('<script>', '').replace('</script>', '')
-        "
-      ></div>
+      <div class="mail-message" v-html="
+        mail.textPlain != null
+          ? mail.textPlain
+            .replace(/<\/?[^>]+(>|$)/g, '')
+            .replace(/(?:\r\n|\r|\n)/g, '<br />')
+          : mail.textHtml.replace('<script>', '').replace('</script>', '')
+      "></div>
     </div>
   </div>
 </template>
@@ -78,6 +75,7 @@ setupMail();
   align-items: center;
   font-weight: 600;
 }
+
 .sendmail__title {
   display: flex;
   align-items: center;
@@ -86,10 +84,12 @@ setupMail();
 .sendmail__title-text {
   @include font-h1(var(--text-color), left);
 }
+
 .bouton-back {
   all: unset;
   color: var(--accent-color);
 }
+
 .mail-group {
   display: flex;
   flex-direction: column;
@@ -99,6 +99,7 @@ setupMail();
   border-bottom: 1px solid #e0e0e0;
   font-size: 1.2rem;
 }
+
 .mail-group .seen {
   background-color: #00ff00;
 }

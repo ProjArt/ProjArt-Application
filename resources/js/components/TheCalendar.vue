@@ -937,7 +937,7 @@ async function initData() {
     <!--====  calendar navigations  ====-->
     <header class="calendar__header">
 
-      <button @click="previousPeriod" data-name="précédant">
+      <button @click="previousPeriod" data-name="précédent">
         <span class="material-icons">arrow_back</span>
       </button>
 
@@ -1133,7 +1133,7 @@ async function initData() {
       <FormKit type="time" name="end" validation="required" label="Fin" :min="newEventStart" :value="newEventStart" />
       <FormKit name="start_date" type="date" :value="getCurrentDateForForm" label="Date de Début" validation="required"
         :min="getCurrentDateForForm" />
-      <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="calendrier" name="calendar_id"
+      <FormKit v-model="calendarIdWhereToAddTheNewEvent" type="select" label="Calendrier" name="calendar_id"
         validation="required">
         <option v-for="(name, id) in editableCalendarsNames" :value="id">
           {{ name }}
@@ -1342,7 +1342,7 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
         <button :class="
           currentLayout == AVAILABLE_LAYOUT.LIST ? 'is-selected-layout' : ''
         " class="popup__layout-button" @click="currentLayout = AVAILABLE_LAYOUT.LIST; currentPopup = null">
-          <span class="material-icons">event_note</span><span class="popup__text">List</span>
+          <span class="material-icons">event_note</span><span class="popup__text">Liste</span>
         </button>
       </li>
       <li class="popup__layout-option">

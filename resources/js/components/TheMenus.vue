@@ -29,19 +29,16 @@ const date = computed(() => {
 
 <template>
   <div class="page__title">
-    <span>Cafeteria</span><span>{{ date }}</span>
+    <span>Cafétéria</span><span>{{ date }}</span>
   </div>
 
-  <the-empty-page
-    v-if="menus.length == 0"
-    image="/images/no_meal.svg"
-    text="Il n'y a pas de menus disponibles pour le moment, revenez à 11h."
-  >
+  <the-empty-page v-if="menus.length == 0" image="/images/no_meal.svg"
+    text="Il n'y a pas de menus disponibles pour le moment, revenez à 11h.">
   </the-empty-page>
 
   <template v-else>
     <div class="menus__group">
-      <div v-for="(menu,index) in menus" :key="menu.id" class="menu__menu">
+      <div v-for="(menu, index) in menus" :key="menu.id" class="menu__menu">
         <div class="page__subtitle">
           <div class="page__subtitle--main">
             Menu {{ index + 1 }}
@@ -81,6 +78,7 @@ const date = computed(() => {
 .page__subtitle {
   width: 100%;
 }
+
 .menu__menu {
   display: flex;
   flex-direction: column;

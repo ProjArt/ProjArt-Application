@@ -5,8 +5,8 @@
   <div class="page__title">Crédits</div>
 
   <div class="credits__group">
-    Cette application a été crée dans le cadre du Projet d’articulation
-    (ProjArt) de la Haute École d’Ingénierie et Gestion du Canton de Vaud
+    Cette application a été créée dans le cadre d'un Projet d’articulation
+    (ProjArt) à la Haute École d’Ingénierie et Gestion du Canton de Vaud
     (HEIG-VD) en 2022. L’application RedY a été réalisée par les étudiants de la
     classe M49-1 de la filière Ingénierie des Médias :
 
@@ -81,6 +81,7 @@
       <li>vue-router</li>
     </ul>
   </div>
+  <div class="spacer"></div>
 </template>
 
 <style scoped>
@@ -110,5 +111,10 @@
   border-radius: var(--border-radius-md);
   padding: var(--spacer-sm);
   margin-top: var(--spacer-sm);
+}
+
+.spacer {
+  height: calc(var(--footer-height) * 2 + 1rem);
+  width: 100%;
 }
 </style>

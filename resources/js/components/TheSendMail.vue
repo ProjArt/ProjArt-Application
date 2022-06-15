@@ -34,48 +34,24 @@ async function send() {
 
 <template>
   <div class="wrapper">
-    <FormKit
-      type="form"
-      v-model="formData"
-      submit-label="Envoyer"
-      @submit="send"
-    >
+    <FormKit type="form" v-model="formData" submit-label="Envoyer" @submit="send">
       <router-link :to="'/mails'" class="bouton-back">
         <h2 class="sendmail__title">
           <div class="material-symbols-outlined">arrow_back_ios</div>
-          <div class="sendmail__title-text">Mail</div>
+          <div class="sendmail__title-text">E-mail</div>
         </h2>
       </router-link>
 
-      <FormKit
-        type="text"
-        name="to"
-        placeholder="À"
-        validation="required"
-        label="À"
-        :value="mailTo"
-      />
-      <FormKit
-        type="text"
-        name="subject"
-        placeholder="Sujet"
-        validation="required"
-        label="Sujet"
-      />
-      <FormKit
-        type="textarea"
-        name="message"
-        placeholder="Message"
-        validation="required"
-        label="Message"
+      <FormKit type="text" name="to" placeholder="À" validation="required" label="À" :value="mailTo" />
+      <FormKit type="text" name="subject" placeholder="Sujet" validation="required" label="Sujet" />
+      <FormKit type="textarea" name="message" placeholder="Message" validation="required" label="Message"
         :sections-schema="{
           input: {
             attrs: {
               rows: 20,
             },
           },
-        }"
-      />
+        }" />
       <button class="mail__send-button" type="submit">Envoyer</button>
     </FormKit>
     <div v-if="isSent">
@@ -86,9 +62,11 @@ async function send() {
 
 <style scoped lang="scss">
 @import "../../sass/abstracts/mixins";
+
 .wrapper {
   margin: var(--default-padding);
 }
+
 .sendmail__title {
   display: flex;
   align-items: center;
@@ -98,12 +76,14 @@ async function send() {
 .sendmail__title-text {
   @include font-h1(var(--text-color), left);
 }
+
 .bouton-back {
   all: unset;
   color: var(--accent-color);
   display: flex;
   align-items: center;
 }
+
 .mail-group {
   display: flex;
   flex-direction: row;
@@ -112,6 +92,7 @@ async function send() {
   padding: var(--default-padding);
   border-bottom: 1px solid #e0e0e0;
 }
+
 .mail-group .seen {
   background-color: #00ff00;
 }

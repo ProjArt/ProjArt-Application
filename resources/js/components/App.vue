@@ -12,7 +12,6 @@ import ThePopup from "./ThePopup.vue";
 import TheLoader from "./TheLoader.vue";
 import { drawer } from "../stores/drawer";
 
-//console.log("is404App", is404")
 
 const getLocation = () => {
   return window.location.pathname.replace(/^\//, "");
@@ -30,11 +29,8 @@ const route = computed(() => router.currentRoute.value.name);
   <the-app-bar @open-drawer="openDrawer" v-if="!isHome && !is404" />
   <the-notification></the-notification>
   <router-view v-slot="{ Component }">
-    <main
-      :class="'main--' + getLocation().replace('/', '_')"
-      v-if="!is404 && !isHome"
-    >
-      <template v-if="['mail', 'sendMail', ''].includes(route)">
+    <main :class="'main--' + getLocation().replace('/', '_')" v-if="!is404 && !isHome">
+      <template v-if="['mail', ''].includes(route)">
         <component :is="Component" />
       </template>
       <template v-else>

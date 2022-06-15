@@ -13,7 +13,6 @@ async function setupAbsences() {
     method: API.getAbsences.method,
   });
   if (response.success === true) {
-    console.log("Absences fetched", response.data);
     absences.value = response.data;
   } else {
     console.log(response, "error");
@@ -51,11 +50,7 @@ function popup() {
 <template>
   <div class="page__title">Absences</div>
 
-  <the-empty-page
-    v-if="absences.length == 0"
-    image="/images/no_absence.svg"
-    text="Vous n'avez pas d'absences"
-  >
+  <the-empty-page v-if="absences.length == 0" image="/images/no_absence.svg" text="Vous n'avez pas d'absences">
   </the-empty-page>
   <template v-else>
     <div class="page__subtitle" v-if="absences.length != 0">
@@ -68,10 +63,7 @@ function popup() {
           {{ absence.unity.split(" - ")[0] }}
         </div>
         <div class="absences__right">
-          <span
-            class="material-symbols-outlined"
-            v-if="absence.absolute_rate > 15"
-          >
+          <span class="material-symbols-outlined" v-if="absence.absolute_rate > 15">
             warning
           </span>
           <div class="absence__absolute_rate">{{ absence.absolute_rate }}%</div>
@@ -104,6 +96,7 @@ function popup() {
 .absence__item {
   font-size: 1.2rem;
 }
+
 .absence__absolute_rate {
   font-size: 2rem;
   padding: var(--spacer-xsm);
