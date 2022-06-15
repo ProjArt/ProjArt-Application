@@ -30,9 +30,6 @@ class GapsEventsService
             }
         }
 
-        return count($events);
-
-
         return $this->displayHoraires($events);
     }
 
