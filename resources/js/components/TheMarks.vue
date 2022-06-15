@@ -4,6 +4,7 @@ import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
 import TheSelect from "./TheSelect";
 import TheEmptyPage from "./TheEmptyPage";
+import NoMark from "./svg/NoMark";
 
 // At start of component, fetch the data
 async function setupMarks() {
@@ -28,8 +29,8 @@ const years = computed(() => {
 });
 const selectedYear = ref("");
 const selectedModules = computed(() => {
-  return modules.value.filter((module) => module.years == selectedYear.value).sort((a,b) => {
-    if(a.mark == 0 || b.mark == 0 ) {
+  return modules.value.filter((module) => module.years == selectedYear.value).sort((a, b) => {
+    if (a.mark == 0 || b.mark == 0) {
       return -1;
     } else {
       return a.name.localeCompare(b.name);
@@ -47,19 +48,12 @@ function changeDate(id) {
   <div class="marks__header">
     <div class="page__title">Notes</div>
     <div class="marks__select">
-      <the-select
-        :options="years"
-        @onChange="(value) => changeDate(value)"
-      ></the-select>
+      <the-select :options="years" @onChange="(value) => changeDate(value)"></the-select>
     </div>
   </div>
 
-  <the-empty-page
-    v-if="selectedModules.length == 0"
-    model=""
-    image="/images/no_mark.svg"
-    text="Vous n'avez pas encore de notes"
-  >
+  <the-empty-page v-if="selectedModules.length == 0" model="" :component="NoMark"
+    text="Vous n'avez pas encore de notes">
   </the-empty-page>
 
   <template v-else>
@@ -85,17 +79,13 @@ function changeDate(id) {
                   <div class="mark__pourcentage" v-if="mark.weight_percentage != 0">
                     {{ mark.weight_percentage }}%
                   </div>
-                   <div class="mark__value">
+                  <div class="mark__value">
                     {{ mark.value }}
                   </div>
                 </div>
               </div>
               <div class="module__description">
-                <div
-                  v-for="detail in mark.details"
-                  :key="detail.id"
-                  class="mark__detail_item"
-                >
+                <div v-for="detail in mark.details" :key="detail.id" class="mark__detail_item">
                   <div class="mark__detail_title">
                     {{ detail.title }}
                   </div>
@@ -117,15 +107,18 @@ function changeDate(id) {
 
 <style scoped lang="scss">
 @import "../../sass/components/_page.scss";
+
 .module__title {
   @extend .page__subtitle;
   margin-right: var(--default-padding);
   margin-top: var(--spacer-xsm);
 }
+
 .marks__header {
   display: flex;
   justify-content: space-between;
 }
+
 .mark__group {
   display: flex;
   flex-direction: row;
@@ -158,12 +151,13 @@ function changeDate(id) {
   font-size: 2rem;
   width: 30vw;
 }
+
 .mark_total {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: flex-start;
-  width:100%;
+  width: 100%;
 }
 
 .mark__value {

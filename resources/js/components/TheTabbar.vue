@@ -22,9 +22,12 @@ async function _send() {
 }
 
 function buildMenu() {
+  console.log('buildMenu');
+  console.log(user.value)
+  console.log(user.value.role)
   let menu = routesNames().filter(
     (route) =>
-      route.is_visible.includes(user.value.role) ||
+      route.is_visible.includes(user?.value?.role) ||
       route.is_visible.includes("*")
   );
   menu.sort((a, b) => a.order - b.order);

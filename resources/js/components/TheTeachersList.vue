@@ -235,6 +235,7 @@ await getFilieresList();
     /* align-items: center; */
     text-align: left;
     flex-direction: column;
+    padding: 1rem 1rem 1rem 0;
 }
 
 .mail {

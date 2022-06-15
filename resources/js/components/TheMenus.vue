@@ -3,6 +3,7 @@ import { ref, computed, toRaw, watch, watchEffect } from "vue";
 import useFetch from "../composables/useFetch";
 import { API } from "../stores/api";
 import TheEmptyPage from "./TheEmptyPage";
+import NoMeals from "./svg/NoMeals";
 
 // At start of component, fetch the data
 async function setupMenus() {
@@ -32,9 +33,10 @@ const date = computed(() => {
     <span>Cafétéria</span><span>{{ date }}</span>
   </div>
 
-  <the-empty-page v-if="menus.length == 0" image="/images/no_meal.svg"
+  <the-empty-page v-if="menus.length == 0" :component="NoMeals"
     text="Il n'y a pas de menus disponibles pour le moment, revenez à 11h.">
   </the-empty-page>
+
 
   <template v-else>
     <div class="menus__group">

@@ -10,6 +10,7 @@ import { usePopup } from "../composables/usePopup";
 import theEmptyPage from "./TheEmptyPage";
 import { reset } from '@formkit/core'
 import useToast from "../composables/useToast";
+import NoEvents from "./svg/NoEvents";
 
 onMounted(() => {
   useSwipe({
@@ -1045,8 +1046,7 @@ async function initData() {
       getKeyByValue(AVAILABLE_LAYOUT, currentLayout).toLocaleLowerCase()
     ">
       <the-empty-page v-if="checkIsListLayoutAsEvent()"
-        text="Tu n'as aucun événement de programmé, tu peux profiter de ton temps libre !!!"
-        image="/images/no_event.svg" />
+        text="Tu n'as aucun événement de programmé, tu peux profiter de ton temps libre !!!" :component="NoEvents" />
       <div v-for="(day, index) in dates" class="calendar__day" @click="showCurrentEvent(day?.local, index)" :class="
         (selectedDate === index ? 'is-selected-day' : '',
           day?.class,
