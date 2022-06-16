@@ -16,16 +16,11 @@ npm install
 npm run dev
 cp .env.example .env
 php artisan key:generate
-cat <<EOT >> .env
-GAPS_TOKEN=""
-
+echo 'GAPS_TOKEN=""
 GAPS_USERNAME=""
 GAPS_PASSWORD=""
-
 TWITTER_TOKEN=""
-
-TELEGRAM_BOT_TOKEN=""
-EOT
+TELEGRAM_BOT_TOKEN=""' >> .env
 
 
 
