@@ -1224,7 +1224,7 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
         <FormKit type="text" name="name" validation="required" label="Nom" placeholder="Nom du calendrier" />
         <div class="popup__button-wrapper">
           <button class="button button--cancel is-secondary-button"
-            @click.prevent="reset('storeCalendar'), currentCalendarPopupOption = null">
+            @click.prevent="reset('storeCalendar'), currentPopup = null">
             Annuler
           </button>
           <button class="button button--save" type="submit">Enregistrer</button>

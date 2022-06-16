@@ -29,9 +29,6 @@ function removeTopWhiteSpace() {
     body.setAttribute("style", "margin: 0 0 0 0")
 }
 
-console.log("is404", is404)
-// removeMenus()
-// removeTopWhiteSpace()
 </script>
 
 <template>
