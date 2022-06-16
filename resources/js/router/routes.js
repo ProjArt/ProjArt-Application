@@ -16,8 +16,7 @@ import mail from "./MailRoute.vue";
 import sendMail from "./SendMailRoute.vue";
 import credits from "./CreditsRoute.vue";
 
-const routes = [
-    {
+const routes = [{
         name: "home",
         path: "/",
         component: home,
@@ -128,7 +127,7 @@ const routes = [
     },
     {
         name: "sendMail",
-        path: "/mails/send",
+        path: "/mails/send/:mail",
         component: sendMail,
         icon: "home",
         is_visible: [],
@@ -154,7 +153,7 @@ const router = createRouter({
     routes,
 });
 
-router.beforeEach(async (to, from) => {
+router.beforeEach(async(to, from) => {
     const isAuthenticated = localStorage.getItem("token");
     if (!isAuthenticated && to.name !== "home" && to.name !== "register") {
         return { name: "home" };
