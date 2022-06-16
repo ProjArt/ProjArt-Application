@@ -1187,7 +1187,7 @@ currentPopup = AVAILABLE_POPUP.EDIT_EVENT;
           selectedEvent.calendar_id
         )
       ">
-        supprimer
+        Supprimer
       </button>
     </div>
   </div>
