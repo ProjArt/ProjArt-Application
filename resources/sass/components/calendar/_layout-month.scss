@@ -1,6 +1,16 @@
 @use '../../abstracts/variables'as v;
 
 
+.calendar--month {
+
+    .calendar__days-names {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        @include font-h3-uppercase(var(--text-color), center);
+        margin: 0;
+    }
+}
+
 .is-current-day .calendar__day-number {
     color: var(--accent-color) !important;
 }
@@ -35,17 +45,12 @@
 //*2# Calendar days MONTH
 // ==========================================================================
 
+
 .calendar__days--month {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     margin: 0 0 2rem 0;
 
-    .calendar__days-names {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        @include font-h3-uppercase(var(--text-color), center);
-        margin: 3rem 0;
-    }
 
     .calendar__days-name {
         text-align: center;
