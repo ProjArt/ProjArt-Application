@@ -44,14 +44,7 @@ async function send() {
 
       <FormKit type="text" name="to" placeholder="À" validation="required" label="À" :value="mailTo" />
       <FormKit type="text" name="subject" placeholder="Sujet" validation="required" label="Sujet" />
-      <FormKit type="textarea" name="message" placeholder="Message" validation="required" label="Message"
-        :sections-schema="{
-          input: {
-            attrs: {
-              rows: 20,
-            },
-          },
-        }" />
+      <FormKit rows="20" type="textarea" name="message" placeholder="Message" validation="required" label="Message" />
       <button class="mail__send-button" type="submit">Envoyer</button>
     </FormKit>
     <div v-if="isSent">
@@ -114,6 +107,7 @@ async function send() {
   min-height: 4.1rem;
   color: var(--text-color);
   font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
 }
 
 :deep(.formkit-label) {
