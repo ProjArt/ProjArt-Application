@@ -91,7 +91,7 @@ function updateGaps() {
 
   <div class="disconnect">
     <form class="disconnectForm" method="post" @submit.prevent="disconnectAndRedirect" action="/register">
-      <input type="submit" value="Déconnexion" class="button button--main" />
+      <button type="submit" class="button button--main">Déconnexion</button>
     </form>
   </div>
 </template>
