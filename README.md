@@ -13,8 +13,9 @@ Veuillez entrer vos tokens pour les différents API. Le GAPS_TOKEN est un string
 ```bash
 composer install
 npm install
-npm run dev
 cp .env.example .env
 php artisan key:generate
+php artisan scribe:generate
+npm run dev
 php artisan serve
 ```
