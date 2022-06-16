@@ -16,13 +16,5 @@ npm install
 npm run dev
 cp .env.example .env
 php artisan key:generate
-echo 'GAPS_TOKEN=""
-GAPS_USERNAME=""
-GAPS_PASSWORD=""
-TWITTER_TOKEN=""
-TELEGRAM_BOT_TOKEN=""' >> .env
-
-
-
 php artisan serve
 ```
