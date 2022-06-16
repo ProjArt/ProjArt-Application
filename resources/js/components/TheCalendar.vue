@@ -723,6 +723,7 @@ function getEvents() {
         }
       });
     }
+    console.log({ calendars })
     return calendars;
   } catch (e) {
     console.log("ERROR", e);
@@ -817,6 +818,9 @@ function checkIsListLayoutAsEvent() {
 
 async function initData() {
   const calendars = await getCalendars();
+  calendars.forEach(calendar => {
+    if (calendar.events.length == 0 && calendar.id == 1) useLog("No events in " + calendar.name, 'warning')
+  });
   if (calendars.length == 0) {
     waitingForData();
   }
