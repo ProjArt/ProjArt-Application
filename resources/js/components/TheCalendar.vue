@@ -15,6 +15,7 @@ import NoEvents from "./svg/NoEvents";
 onMounted(() => {
   useSwipe({
     element: document.querySelector(".main--calendar"),
+    excepts: ["calendar--week"],
     onSwipeLeft: () => {
       nextPeriod();
     },
