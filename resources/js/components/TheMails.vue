@@ -31,7 +31,7 @@ const mails = ref([]);
   <div class="page__title">Mails</div>
 
   <the-empty-page v-if="mails.length == 0"
-    :image="'/images/logo_REDY_' + (theme.name == 'light' ? 'dark' : 'light') + '.svg'"
+    :image="'/images/logo_REDY_' + (theme.name == 'light' ? 'light' : 'dark') + '.svg'"
     text="Vous n'avez pas d'e-mails">
   </the-empty-page>
   <template v-else>

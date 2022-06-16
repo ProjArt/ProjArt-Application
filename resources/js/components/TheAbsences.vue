@@ -5,6 +5,7 @@ import AbsencesRouteVue from "../router/AbsencesRoute.vue";
 import { API } from "../stores/api";
 import TheEmptyPage from "./TheEmptyPage";
 import { usePopup } from "../composables/usePopup";
+import NoAbsence from "./svg/NoAbsence";
 
 // At start of component, fetch the data
 async function setupAbsences() {
@@ -50,7 +51,7 @@ function popup() {
 <template>
   <div class="page__title">Absences</div>
 
-  <the-empty-page v-if="absences.length == 0" image="/images/no_absence.svg" text="Vous n'avez pas d'absences">
+  <the-empty-page v-if="absences.length == 0" :component="NoAbsence" text="Vous n'avez pas d'absences">
   </the-empty-page>
   <template v-else>
     <div class="page__subtitle" v-if="absences.length != 0">
