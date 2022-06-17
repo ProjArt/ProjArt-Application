@@ -23,3 +23,7 @@ php artisan scribe:generate
 npm run dev
 php artisan serve
 ```
+
+## Potentielles erreurs
+
+Il se peut que vous rencontrer une erreur aux niveaux des mails. Veuillez installer l'extension Imap si cette fonctionnalité est désirée.
