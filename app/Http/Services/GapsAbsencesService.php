@@ -62,7 +62,7 @@ class GapsAbsencesService
                 continue;
             }
 
-            $args =  '["studentAbsGrid_rateSelectorId", "studentAbsGrid", null, null, null, "2021", "0", "' . $user->gaps_id . '", null]';
+            $args =  '["studentAbsGrid_rateSelectorId", "studentAbsGrid", null, null, null, "2022", "0", "' . $user->gaps_id . '", null]';
 
             try {
                 $user->setPersonalNumber();
